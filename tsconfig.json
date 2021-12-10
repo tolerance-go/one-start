@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "baseUrl": "./",
+    "target": "es6",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "declaration": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@@/*": [".umi/*"],
+      "@ty-one-start/utils": ["./packages/utils/src/index"],
+      "@ty-one-start/request": ["packages/request/src/index"],
+      "@ty-one-start/one-start": ["packages/one-start/src/index"],
+      "@ty-one-start/one-proto": ["packages/one-proto/src/index"],
+    }
+  },
+  "include": [
+    "**/src/**/*",
+    "**/docs/**/*",
+    "scripts/**/*",
+    "**/demos",
+    ".eslintrc.js",
+    "tests",
+    "jest.config.js",
+    "**/fixtures",
+    "./tests/no-duplicated.ts",
+    "./typings.d.ts",
+    "./settings.d.ts",
+    "*.upgrade.js",
+    "./config/**/*"
+  ],
+  "exclude": ["scripts/templates/*"]
+}

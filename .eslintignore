@@ -1,0 +1,15 @@
+﻿# dependencies
+node_modules
+# production
+dist
+/.vscode
+lib
+es
+.umi
+.gitlab
+scripts
+public
+webpack.config.js
+public
+/mock
+/.temp

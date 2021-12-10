@@ -1,0 +1,22 @@
+{
+  "version": "independent",
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "**/example*",
+        "**/*.md",
+        "**/*.test.ts",
+        "**/*.e2e.ts",
+        "**/fixtures/**",
+        "**/test/**"
+      ],
+      "message": "chore(release): publish",
+      "registry": "http://npm.tongyu.tech"
+    },
+    "bootstrap": {
+      "registry": "http://npm.tongyu.tech"
+    }
+  }
+}

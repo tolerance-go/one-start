@@ -1,0 +1,2036 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 1.0.0 (2021-07-23)
+
+
+### Bug Fixes
+
+* 【前端】 结算日期不正确的提示信息优化 ([f8fa437](https://10.1.2.7/visual-fe/swap-modules/commits/f8fa43718ae225feb5fb94f57b9baf704c6aeacb))
+
+
+
+## 2021.7.15-beta.10 (2021-07-16)
+
+
+### Bug Fixes
+
+* 保障金管理明细：多头/空头盯市基准金额（结算货币）数值前货币代码显示有误 ([8dc27b5](https://10.1.2.7/visual-fe/swap-modules/commits/8dc27b57a08fd3d910ba4555527399f955081912))
+
+
+
+## 2021.7.15-beta.9 (2021-07-16)
+
+
+
+## 2021.7.15-beta.8 (2021-07-14)
+
+
+
+## 2021.7.15-beta.7 (2021-07-13)
+
+
+### Bug Fixes
+
+* 互换簿记/批量导入n个标的，初始预付金额未联动计算出结果 ([3a17958](https://10.1.2.7/visual-fe/swap-modules/commits/3a17958214109af6f43d8136ef7a84e9f73aaff7))
+
+
+
+## 2021.7.15-beta.6 (2021-07-12)
+
+
+### Bug Fixes
+
+* 合约录入/修改交易要素窗口：非首行标的的会出现第一行的部分值 ([7f3c32e](https://10.1.2.7/visual-fe/swap-modules/commits/7f3c32ecb6de64321d5254b68820fa7732e28003))
+
+
+
+## 2021.7.15-beta.5 (2021-07-09)
+
+
+### Bug Fixes
+
+* 查看持仓详情：交易方向中我方为空 ([ffd5289](https://10.1.2.7/visual-fe/swap-modules/commits/ffd528941f60de9b9564e74df7c14054e53cfc8d))
+* 平仓/结算金额利率、权益方向取值错误 ([c18b080](https://10.1.2.7/visual-fe/swap-modules/commits/c18b080fe32fc74ecbec8aa066a463430198cd18))
+* 平仓/结算实现权益收益.增强 最小值改为0 & 解除限制多头名义本金额去金额符号 ([c5b5ced](https://10.1.2.7/visual-fe/swap-modules/commits/c5b5ced532728b9b8893147161a9076a1dc00750))
+
+
+### Features
+
+* 保障金增加跨境字段 ([1ba4850](https://10.1.2.7/visual-fe/swap-modules/commits/1ba4850d317615583d7454a17f84de99d0f811aa))
+
+
+
+## 2021.7.15-beta.4 (2021-07-08)
+
+
+### Bug Fixes
+
+* 提前终止/期间收支/到期结算窗口：交易货币与结算货币不同时结算汇率获取汇率行情失败 ([768a55c](https://10.1.2.7/visual-fe/swap-modules/commits/768a55c0ef8d7e7dcbb5d68c4f841ffcfbc8ca34))
+
+
+### Features
+
+* 【前端】我方名取从后端取系统参数 ([513abd4](https://10.1.2.7/visual-fe/swap-modules/commits/513abd47fea1ef591d8dea8505d8ab56e14396aa))
+
+
+
+## 2021.7.15-beta.3 (2021-07-08)
+
+
+### Bug Fixes
+
+* 合约录入：期初汇率为0时可以簿记成功且可以修改交易要素成功 ([774ce9a](https://10.1.2.7/visual-fe/swap-modules/commits/774ce9ac61cc7b99f4a0ae621cdfb775bc513c08))
+* 切换互换类型没有清空交易货币和合约期初名义本金 ([f4524f6](https://10.1.2.7/visual-fe/swap-modules/commits/f4524f61110f423d14c112d5a08e8e33d7205a47))
+
+
+
+## 2021.7.15-beta.2 (2021-07-07)
+
+
+
+## 2021.7.15-beta.1 (2021-07-07)
+
+
+
+## 2021.7.15-alpha.6 (2021-07-06)
+
+
+### Bug Fixes
+
+* 标的物删除与保存时与交易货币的联动修复 && 互换合约录入/修改交易要素：不同标的货币的标的物可以进入同一合约 ([62db031](https://10.1.2.7/visual-fe/swap-modules/commits/62db031b6aaba12914dd241317823f5898010bb7))
+* 初始预付金联动fix ([1f82aee](https://10.1.2.7/visual-fe/swap-modules/commits/1f82aee2e4062743a6e0105a7a4d569e36cdccd4))
+* 合约详情窗口：多头非指增合约，标的信息表格显示不全 ([18db520](https://10.1.2.7/visual-fe/swap-modules/commits/18db52041e002c0f26b1413b1c9d7c9676efb631))
+* 计算平仓实现合约利率收益时，结算汇率设置默认值为 1 ([552464f](https://10.1.2.7/visual-fe/swap-modules/commits/552464f71ff182f6da1913da914f03cf481b3087))
+* 期间收支：期间收支实现合约利率收益(结算货币) 计算有误 ([01f494e](https://10.1.2.7/visual-fe/swap-modules/commits/01f494e7bb6a88a83ad6c5e9edd64b112190f21b))
+
+
+### Features
+
+* 【前端】持仓-查看详情中现金流货币单位改为结算货币 ([c2610f6](https://10.1.2.7/visual-fe/swap-modules/commits/c2610f627f4d26278db13f24f83a075d2fe0021d))
+
+
+
+## 2021.7.15-alpha.5 (2021-07-05)
+
+
+### Bug Fixes
+
+* 公司行为详情窗口：待实现单位股息、待实现股息数值前显示￥ ([8aca932](https://10.1.2.7/visual-fe/swap-modules/commits/8aca932e615353a99bbc5c1a47efdac9a0dbbdf5))
+
+
+### Features
+
+* 到期结算：期末价格数值符号显示有误 ([f05f9c2](https://10.1.2.7/visual-fe/swap-modules/commits/f05f9c2e0c440a39f410d31cb7ee23e31e6ac023))
+* ab款分页器特殊处理 && 升级protable ([621e0bb](https://10.1.2.7/visual-fe/swap-modules/commits/621e0bba6d74aced9e796c122098a0062239dd9f))
+
+
+
+## 2021.7.15-alpha.4 (2021-07-02)
+
+
+### Bug Fixes
+
+* 标的估值、合约信息增加结算汇率 & 交易方向拆分 ([ca168c1](https://10.1.2.7/visual-fe/swap-modules/commits/ca168c1c052fec9e0042d2b52deaab11d1f359fd))
+* 合约录入：交易货币显示有误 ([3273183](https://10.1.2.7/visual-fe/swap-modules/commits/3273183b8abad10200757bdac1408d25dbb8e521))
+* 互换合约录入：交易货币与结算货币一致时显示期初汇率、参考汇率字段 ([31807c6](https://10.1.2.7/visual-fe/swap-modules/commits/31807c60ce735e41e21bd5d453a36cacc9ecb147))
+
+
+### Features
+
+* 【前端】簿记、持仓详情中交易方向表格 UI 优化 ([80591bb](https://10.1.2.7/visual-fe/swap-modules/commits/80591bb508059a2654017f14b61b0dd8c1d6eb1e))
+* 【前端】簿记标的物列表增加分页器 ([5cb244c](https://10.1.2.7/visual-fe/swap-modules/commits/5cb244c8164ebeb9d14728cb93e7ae8acc4cb622))
+* 交易方向字段对齐 & 持仓详情优化 ([bd07ac7](https://10.1.2.7/visual-fe/swap-modules/commits/bd07ac715c92e559d5c7918864b882666556ac98))
+
+
+
+## 2021.7.15-alpha.3 (2021-06-30)
+
+
+### Features
+
+*  簿记-利率方向默认值设置为收取 && 增强收益率更新联动规则 ([d0b6aac](https://10.1.2.7/visual-fe/swap-modules/commits/d0b6aacb9b5cd07b5f369324548ec7617074aef1))
+* 【前端】标的估值、合约估值增加期初汇率、当日汇率 ([23ecf94](https://10.1.2.7/visual-fe/swap-modules/commits/23ecf947a07024046f91eca307db428fb04beeb0))
+* 【前端】持仓主页面增加交易货币与结算货币 ([3b473c2](https://10.1.2.7/visual-fe/swap-modules/commits/3b473c2492f7a70a270ab6340a60d3f77b5cb605))
+* 【前端】修改使用原「交易方向」的估值逻辑 ([0243820](https://10.1.2.7/visual-fe/swap-modules/commits/024382083da6c309b86ba94098a69e64b25f9da6))
+* 【前端】原「交易方向」拆成「权益方向」与「利率方向」 ([85ac997](https://10.1.2.7/visual-fe/swap-modules/commits/85ac99791750f1644be72f642c9ec63bc5ea929f))
+* 标的估值、合约估值增加跨境字段 ([0320a91](https://10.1.2.7/visual-fe/swap-modules/commits/0320a91e106800e013bc6103662339c842c3ce79))
+* 期初汇率、交易货币的联动 ([14b87c2](https://10.1.2.7/visual-fe/swap-modules/commits/14b87c241f37f021fd0112606d4178d570230d85))
+
+
+
+## 2021.7.15-alpha.1 (2021-06-24)
+
+
+### Bug Fixes
+
+* 【前端】到期结算/提前终止/期间收支利率收益生命周期增加结算要素默认值 ([00de26c](https://10.1.2.7/visual-fe/swap-modules/commits/00de26cafb2ef5fba37dc50fa85fd06ff5edee50))
+* 标的方向枚举修改 ([6550d40](https://10.1.2.7/visual-fe/swap-modules/commits/6550d40f0e34e19c87da8633c22809022120612d))
+* 标的估值 合约编号支持多个搜索 ([4e5c0a3](https://10.1.2.7/visual-fe/swap-modules/commits/4e5c0a3436e693170ec2a2728c7e88c950c5373c))
+* 标的估值、合约信息字段 改造（2） ([f49cbe7](https://10.1.2.7/visual-fe/swap-modules/commits/f49cbe7b265ee74925b75b8ae0cb638dc8063645))
+* 标的估值:部分列标题展示与设计文档不一致 ([f6a699c](https://10.1.2.7/visual-fe/swap-modules/commits/f6a699ccef60b26b13ff1bb1bd24cb0c935450f6))
+* 标的估值：选择部分列展示时，没有自适应列宽 ([37b0f5e](https://10.1.2.7/visual-fe/swap-modules/commits/37b0f5e805931cd5feb0492db51cb198cdfe6fb5))
+* 标的估值报告：交易确认书为空时，查询结果为空 ([a68ed5f](https://10.1.2.7/visual-fe/swap-modules/commits/a68ed5fc4b05dad1811b440eadb371c4bd0a380b))
+* 标的物白名单查询接口，在描述列表中报错 ([4b3b509](https://10.1.2.7/visual-fe/swap-modules/commits/4b3b509e48ac7a4b4e8fbf4c3094740f8933b790))
+* 簿记模板设置，更新时间取值错误 ([6257331](https://10.1.2.7/visual-fe/swap-modules/commits/62573314b0dcb7e8ef5b9a6d852c9862bd4aac4e))
+* 簿记修改字段 contractNotionalAmount(合约名义本金额)修改为 initNotionalAmount(合约期初名义本金额) 标的信息中 将 标的名义本金额notionalAmount 修改为 initNotionalAmount 标的期初名义本金额 修改交易要素 新增字段 标的名义数量 currentAmount  标的名义本金额 ([df92684](https://10.1.2.7/visual-fe/swap-modules/commits/df92684cf5d4e24078d91ad55c9a8290c10e27c5))
+* 持仓详情列表出现搜索项 ([170e57e](https://10.1.2.7/visual-fe/swap-modules/commits/170e57e0efacb16aab4f264e0064574d6b1982ae))
+* 多空结构特殊显示 format ([06ac461](https://10.1.2.7/visual-fe/swap-modules/commits/06ac461152a94f22f02897896eac9d53551f5cdc))
+* 多头初始预付金率 字段名&提示信息修复 ([affe733](https://10.1.2.7/visual-fe/swap-modules/commits/affe733f9c14fcd961d44e86e44a01bc1eb64880))
+* 多头约定浮动费率基准展示错误&标的信息中[标的乘数]列字段名未展示 ([fd9d75c](https://10.1.2.7/visual-fe/swap-modules/commits/fd9d75c3d46e5156733e6daed5e8f3e7f461a17f))
+* 非首行不可保存 ([b71d1b4](https://10.1.2.7/visual-fe/swap-modules/commits/b71d1b4f69112f66cd53083992180cc98d7f851c))
+* 浮动利率问题 ([83b96e0](https://10.1.2.7/visual-fe/swap-modules/commits/83b96e031580e45fd9db1e66e746da5e405c0e53))
+* 更改只能同时新增一行的文本 ([4b76bde](https://10.1.2.7/visual-fe/swap-modules/commits/4b76bde35cd8c33805ac74c75407260c12d8f8ce))
+* 更新非交易日验证 ([d614061](https://10.1.2.7/visual-fe/swap-modules/commits/d614061eb85bbcef666105dcc2dcb3905c9542d2))
+* 观察弹窗问题 ([aae304a](https://10.1.2.7/visual-fe/swap-modules/commits/aae304a39d28692d18dcd9cc08a67ff157a00adf))
+* 观察日置灰且不可编辑 ([c2d6129](https://10.1.2.7/visual-fe/swap-modules/commits/c2d612997407081db35a281bc2dd6ba67ea6b6f4))
+* 观察生命周期标的信息里的约定固定利率百分比显示错误 ([323b430](https://10.1.2.7/visual-fe/swap-modules/commits/323b430cfb20ea3257dac3a8c58c4203f7a2873d))
+* 合并主分支代码 ([a916a37](https://10.1.2.7/visual-fe/swap-modules/commits/a916a37593ab5e164915b709ecb280f7be8a153b))
+* 互换标的估值报告：【当日平仓数量】展示为当日平仓价格 ([f0737d2](https://10.1.2.7/visual-fe/swap-modules/commits/f0737d228b61da5f9f7e35c249f10b174f488d79))
+* 互换簿记：[空头追加后保障比例]输入框缺少字段名 ([c2e7363](https://10.1.2.7/visual-fe/swap-modules/commits/c2e73634dc2188788648a337d0bd8d0bb0e1e126))
+* 互换簿记：单位为百分比的数值，前端传值错误 ([4e8fc4b](https://10.1.2.7/visual-fe/swap-modules/commits/4e8fc4b38a9333215f2cbeeedd9c95ae43447642))
+* 互换簿记：动态下拉框清空已选项后，加载下拉项失败 ([dd406e1](https://10.1.2.7/visual-fe/swap-modules/commits/dd406e108e7616422977ad98d1a9e7f768ec829d))
+* 互换簿记：多头初始预付金率为负数值时，成功簿记交易 ([751bef5](https://10.1.2.7/visual-fe/swap-modules/commits/751bef5f32a04021538a02f7d561ce7494e52b18))
+* 互换簿记：基本费率改为必填项 ([773cfd4](https://10.1.2.7/visual-fe/swap-modules/commits/773cfd4af2da5d9a9196ea05ffa600956e126b6d))
+* 互换簿记：切换互换类型时，清空数据 ([a0a4009](https://10.1.2.7/visual-fe/swap-modules/commits/a0a40097081e7a7eb36728714d53e263968fa5da))
+* 互换簿记：未填写利率收益计息截止日时，批量生成观察日的提示信息有误 ([04738a6](https://10.1.2.7/visual-fe/swap-modules/commits/04738a6019fab4c3dc5cb9e3a3e41d9379612c71))
+* 互换簿记：增强收益率未填写时，提示信息建议优化 ([c8d07fa](https://10.1.2.7/visual-fe/swap-modules/commits/c8d07fa7f5829f45b5b1c063272f871695f7f298))
+* 互换簿记：重新生成观察日，未按修改后的起始日重新生成 ([0158c73](https://10.1.2.7/visual-fe/swap-modules/commits/0158c73429a58ed757f6f476569e9955c699ca63))
+* 互换簿记/标的物信息，标的名义本金联动 ([1848c9a](https://10.1.2.7/visual-fe/swap-modules/commits/1848c9a83cf04b1618d4c0859a50a3d69ba3e41c))
+* 互换簿记/标的物信息: 标的名义本金额为空 ([65443cd](https://10.1.2.7/visual-fe/swap-modules/commits/65443cd8684ffd72976a0b5bed9607bfe715aa8b))
+* 互换簿记/标的信息：标的代码不支持模糊搜索匹配 ([57eb01c](https://10.1.2.7/visual-fe/swap-modules/commits/57eb01c36cdb16444c55d67bbf2678f6e22bfc2a))
+* 互换簿记/多空互换：标的信息中可以编辑多头约定浮动利率 ([cf91b5b](https://10.1.2.7/visual-fe/swap-modules/commits/cf91b5bb3ffed177c42fa9de0605aa28864e2b23))
+* 互换簿记/多空互换：前端没传多头标的的fixrate,簿记失败 ([0796c35](https://10.1.2.7/visual-fe/swap-modules/commits/0796c35c3826be8bb40615edf18350519e7ff623))
+* 互换簿记/多头指增：增强收益率首行[观察日]不可编辑 ([2434394](https://10.1.2.7/visual-fe/swap-modules/commits/2434394e71969f3044a80e70efe183836a70364d))
+* 互换簿记/约定浮动利率：观察日校验与需求不一致 ([fbc4b10](https://10.1.2.7/visual-fe/swap-modules/commits/fbc4b1088b6c5e482b2a85fa46ce09ec9ac7ac98))
+* 互换簿记/约定浮动利率：观察日与作用起始日间隔可以输入非整数值 ([e0a8dfb](https://10.1.2.7/visual-fe/swap-modules/commits/e0a8dfb9b7a8cf5950f54eeb4054b5f5f7917584))
+* 互换持仓：多个弹窗有删除等无效且多余的按钮 ([55d7537](https://10.1.2.7/visual-fe/swap-modules/commits/55d7537e5bd43370274d729af34e74be8507a092))
+* 互换持仓/到期结算：到期结算详情中缺少字段，且存在错误的事件名称 ([b49f7ee](https://10.1.2.7/visual-fe/swap-modules/commits/b49f7ee9c6bab53fb60e1375e97949a2d3536a2d))
+* 互换持仓/到期结算：结算日和支付日期默认值有误 ([690e0d8](https://10.1.2.7/visual-fe/swap-modules/commits/690e0d8adccc26f4cb0ee3b0edc77ce916c3ebb2))
+* 互换持仓/到期结算：结算实现基本费用可以输入负数值，并成功结算 ([c98a2b8](https://10.1.2.7/visual-fe/swap-modules/commits/c98a2b8b8ebe903717f5f57927c4fd9e9ff350c0))
+* 互换持仓/观察：观察弹窗有删除等无效且多余的按钮 ([42431ad](https://10.1.2.7/visual-fe/swap-modules/commits/42431adf35502ffb367a74b440aea3fdf578bed6))
+* 互换持仓/交易详情：标的信息表格展示错乱 ([770c86e](https://10.1.2.7/visual-fe/swap-modules/commits/770c86e6688b65b5699a64cc0b995c0a2e30b25c))
+* 互换持仓/交易详情：合约期初名义本金和录入页面位置展示不一致 ([b6918ae](https://10.1.2.7/visual-fe/swap-modules/commits/b6918ae90cfa1188e15586af7fbc8be8cd7d19e1))
+* 互换持仓/结构详情：结构详情字段显示与原型设计图有出入 ([ff0b2ec](https://10.1.2.7/visual-fe/swap-modules/commits/ff0b2ec723506b9dec42dbd1bebdaaaa3ca01b13))
+* 互换持仓/结算：结算日字段与prd实现不一致 ([d8c8b41](https://10.1.2.7/visual-fe/swap-modules/commits/d8c8b41baca6f195a8b8da3341ad1fb27a941834))
+* 互换持仓/结算/提前终止详情：UI问题 ([f7256bd](https://10.1.2.7/visual-fe/swap-modules/commits/f7256bd52b1c5c73cae73c166fb608e3d150e50e))
+* 互换持仓/期间收支：[支付金额]缺少必填项标识 ([a418a64](https://10.1.2.7/visual-fe/swap-modules/commits/a418a6425f906995e953b9708697cdbb827be3e9))
+* 互换持仓/期间收支：不可编辑计息截止日 ([68f5171](https://10.1.2.7/visual-fe/swap-modules/commits/68f517174b095e21d9067d97b3fab8032712288e))
+* 互换持仓/期间收支：期间收支实现合约利率收益(￥)没有乘以交易方向 ([9f689dd](https://10.1.2.7/visual-fe/swap-modules/commits/9f689ddb67e02ba4e1deff46f0f114c2cd878781))
+* 互换持仓/生命周期事件：[生命周期事件]数据展示为英文字符 ([5c0f4e6](https://10.1.2.7/visual-fe/swap-modules/commits/5c0f4e6e3265fee4769e03674abab186bca19544))
+* 互换持仓/提前终止/到期结算：基本费用为0时，系统校验为负数 ([2b8d467](https://10.1.2.7/visual-fe/swap-modules/commits/2b8d4672d4e7a545ffaa77c75b09fa909afc3827))
+* 互换持仓/限制：多头限制期名义本金额（￥）与[新限制多头名义本金额（￥） ]保持联动 ([8b39fc2](https://10.1.2.7/visual-fe/swap-modules/commits/8b39fc216c5c651460e757f92f7b1419fe825e5d))
+* 互换持仓/限制：限制事件详情中字段名称展示有误 ([42221f1](https://10.1.2.7/visual-fe/swap-modules/commits/42221f1a99949c7e3342c02d6c44bbea7dcbba27))
+* 互换持仓/修改保证金：AB互换的【空头盯市基准】缺少联动 & UI优化 ([2407b74](https://10.1.2.7/visual-fe/swap-modules/commits/2407b74afd2fa643abe35bb886c9498581fff846))
+* 互换持仓/修改交易要素:编辑标的信息，标的乘数更新为1 ([1708af7](https://10.1.2.7/visual-fe/swap-modules/commits/1708af737ebe5674dd17e919c430007c9d4e46b5))
+* 互换持仓/修改交易要素：ab款空头与多头的多行联动 ([c8bd8b5](https://10.1.2.7/visual-fe/swap-modules/commits/c8bd8b51134d9f6d101c10cf5ec1b65b633297d1))
+* 互换持仓/ab互换/提前终止：空头标的平仓数量不允许修改 ([a473a3d](https://10.1.2.7/visual-fe/swap-modules/commits/a473a3dbab7aa17330ac44504382baafda54b646))
+* 互换类型/约定浮动费率：编辑编辑问题 ([7f8193f](https://10.1.2.7/visual-fe/swap-modules/commits/7f8193f8eafe737f5bc1aaeda5f9c1b3731532eb))
+* 互换列表：根据[交易达成日][结算日][期末观察日]查询，页面报错 ([02bb01a](https://10.1.2.7/visual-fe/swap-modules/commits/02bb01a4f81d97be4851d6652314ef03bbd9e935))
+* 互换录入:多头初始保障比例参数大于100时，提示信息有误 ([3f59503](https://10.1.2.7/visual-fe/swap-modules/commits/3f59503192b38b87edc371d8e10ddf19c7e87dad))
+* 互换详情/多头非指增：部分字段数据内容未展示 ([a10d2b2](https://10.1.2.7/visual-fe/swap-modules/commits/a10d2b2315d872e63e325faffe846fa0f2849907))
+* 互换详情/生命周期事件概览：操作时间展示不完整 ([9d545a2](https://10.1.2.7/visual-fe/swap-modules/commits/9d545a2d4ec8b61c2a122d399e981b5522b8cf65))
+* 互换详情/ab互换/多空互换：标的信息中展示错误 ([ca686f4](https://10.1.2.7/visual-fe/swap-modules/commits/ca686f4b3b3e581a0bfec835de4e5d4a630e4906))
+* 互换修改交易要素审批：修改交易要素详情中存在金额保留四位小数，且数值展示与单位不一致 ([c715305](https://10.1.2.7/visual-fe/swap-modules/commits/c715305c3dfd7b15b4fcb2cf3ca199735ca52be4))
+* 获取支付金额 总是一样的值 ([f638f6e](https://10.1.2.7/visual-fe/swap-modules/commits/f638f6e09ac0643e3f02e378cab3c3bdafa8bfe9))
+* 结算生命周期-总实现股息金额title修改 ([743776e](https://10.1.2.7/visual-fe/swap-modules/commits/743776e7d7aaa9d248718d57eed8641c8bf220bb))
+* 解决标的信息模块展示报错 ([ed9e904](https://10.1.2.7/visual-fe/swap-modules/commits/ed9e9049083ea34e1ae37c0337b1fdd695dbab96))
+* 解决互换 book 时回车触发表单验证 ([1d71bcd](https://10.1.2.7/visual-fe/swap-modules/commits/1d71bcd055f4fb6bcd0749f348bcb2cee6089b6e))
+* 解决列表相关bug ([56acfc6](https://10.1.2.7/visual-fe/swap-modules/commits/56acfc6bb32d871e4a4bb0c346eebd1797214e1c))
+* 解决批量生成卡死 ([6f32cc6](https://10.1.2.7/visual-fe/swap-modules/commits/6f32cc66da87b3757418c7c09802a5e7e4242bac))
+* 金额字段保留两位小数错误 ([8e6349c](https://10.1.2.7/visual-fe/swap-modules/commits/8e6349cd0bb103a2d1ac88385af1cac9736909a9))
+* 另存为增加默认值 & 提交按钮增加 loading ([3f50684](https://10.1.2.7/visual-fe/swap-modules/commits/3f506846112ca42e63858a09aa956ae497f4678a))
+* 名义数量不跟期初名义数量保持联动 ([e729032](https://10.1.2.7/visual-fe/swap-modules/commits/e7290323912288195f653f1f81c203952b373346))
+* 批量导入标的：标的方向有误时，模板导入成功 && 优化导入传参类型 ([6ed968b](https://10.1.2.7/visual-fe/swap-modules/commits/6ed968b71a20e15c6976ebfda2ce94fd5c291770))
+* 批量生成观察日失败 ([fa223fc](https://10.1.2.7/visual-fe/swap-modules/commits/fa223fc907576ff77158f02a6cab01496a00f04f))
+* 去除修改交易浮动利率弹窗多余按钮 ([b233e9f](https://10.1.2.7/visual-fe/swap-modules/commits/b233e9fd04d5c63f404b4af1f27e2ec308fb6707))
+* 删除【字段过长则自动收缩的提示】 ([4f0ae47](https://10.1.2.7/visual-fe/swap-modules/commits/4f0ae47b1e32810c0d415619e987abdcb74dbbaa))
+* 生命周期-多头非指增结构：结算实现权益收益.增强和结算实现合约权益收益.增强字段 ([fe602e3](https://10.1.2.7/visual-fe/swap-modules/commits/fe602e37b2141e76ffe9d2f988ebf15554c815cb))
+* 生命周期-提前平仓增加名义数量字段 ([7600251](https://10.1.2.7/visual-fe/swap-modules/commits/7600251449289ab21c294f7376d97d3f3903f1a2))
+* 生命周期概率按照时间降序 ([612d0f9](https://10.1.2.7/visual-fe/swap-modules/commits/612d0f98d0cbe5f48c4b2726215056d2bfd26985))
+* 生命周期事件概览,开仓事件有详情、撤销按钮 ([02e39c9](https://10.1.2.7/visual-fe/swap-modules/commits/02e39c918d8a88de8878e925524878e71e6bc27c))
+* 生命周期事件概览：缺少记录撤销状态的功能 ([9a76faa](https://10.1.2.7/visual-fe/swap-modules/commits/9a76faa206b0da2291886b1debdf708f42cd9636))
+* 收益互换保证金管理/查看明细：[合约编号]不支持排序功能 ([21170f1](https://10.1.2.7/visual-fe/swap-modules/commits/21170f1d04118368b2d3d4e394c3e5076cbec1f6))
+* 首行作用起始日固定为 起始日 ([7e1443d](https://10.1.2.7/visual-fe/swap-modules/commits/7e1443d7aea829420ea42d36b8278ed7eaae90d9))
+* 提前终止/到期结算窗口单位股息字段、实现权益收益.股息字段小数位限制有误 ([26f64fd](https://10.1.2.7/visual-fe/swap-modules/commits/26f64fd306452d2df40d5e3c066dd9c910ff5388))
+* 提前终止结算等相关 bug ([89a7310](https://10.1.2.7/visual-fe/swap-modules/commits/89a7310f50166ae1f2c23ca697d4e7c0c25e5c06))
+* 完善判断逻辑 ([4b39e05](https://10.1.2.7/visual-fe/swap-modules/commits/4b39e05da30c1074607d712061102900dc284da1))
+* 修复 修改交易要素 传值错误 ([a1d27ff](https://10.1.2.7/visual-fe/swap-modules/commits/a1d27ff9c7329b4c93c1b4132adc9c663287cb6b))
+* 修复 修改交易要素 数据转换错误 ([b566742](https://10.1.2.7/visual-fe/swap-modules/commits/b566742ad05b0ad51883d0fb2ce0c4b60fc342c4))
+* 修复薄记[交易对手SAC编号]与客户的主协议编号不匹配 ([f3ef645](https://10.1.2.7/visual-fe/swap-modules/commits/f3ef645ea69a1f71a50217894f581c9701d36ae5))
+* 修复编辑标的物信息，部分字段为空和第一行标的方向变空头的问题 ([17e6d88](https://10.1.2.7/visual-fe/swap-modules/commits/17e6d88fc3ec8371740b297b866acec9001f57b2))
+* 修复盯市基准展示为英文 ([65be383](https://10.1.2.7/visual-fe/swap-modules/commits/65be3836338e1bf776bf3fb41c331b17627a6c80))
+* 修复浮动利率 批量生成观察日后的bug ([bf6015c](https://10.1.2.7/visual-fe/swap-modules/commits/bf6015c779f5ecdd1549d5771c8655e9caa74871))
+* 修复浮动利率生成观察日错误 ([a342446](https://10.1.2.7/visual-fe/swap-modules/commits/a3424464ae995fa1dea1d74c9c7fcda4f199e17f))
+* 修复合约编号空格没有 trim ([bbc816a](https://10.1.2.7/visual-fe/swap-modules/commits/bbc816a38b5545a68f75f47bedf9a4e05d29471b))
+* 修复互换簿记：[多头约定固定利率]缺少前端必填校验和标识 ([f07f749](https://10.1.2.7/visual-fe/swap-modules/commits/f07f749eb48fb13701bf887da8ccd8cbd5a6148b))
+* 修复互换簿记/空头互换：查看约定浮动利率可以编辑数据 ([8b7c868](https://10.1.2.7/visual-fe/swap-modules/commits/8b7c8689ea79a41a1cfbf30f7f2a336ad850d149))
+* 修复互换簿记相关bug ([583eec3](https://10.1.2.7/visual-fe/swap-modules/commits/583eec3d88b05f4755833dc785d518ed5ea8ae78))
+* 修复互换持仓/结算/提前终止：[支付日期]缺少默认值，部分字段缺少必填标识 ([7b5e597](https://10.1.2.7/visual-fe/swap-modules/commits/7b5e5972fd143a2c6d8ec38985fceb5b82be5ef4))
+* 修复互换持仓/提前终止：[平仓日期]可以选择当天之后的日期 ([dd3cd6c](https://10.1.2.7/visual-fe/swap-modules/commits/dd3cd6cce0d198c98cbc0a37e6da0c6e94c90b2d))
+* 修复互换持仓/提前终止：[平仓数量][平仓单位股息]不可填写0，为空时提示信息有误 ([567d17a](https://10.1.2.7/visual-fe/swap-modules/commits/567d17a00df6b31d7907b8b3a8f6b9bc057b534a))
+* 修复交易详情，交易对手名称和SAC编号缺失问题 ([dde83a2](https://10.1.2.7/visual-fe/swap-modules/commits/dde83a284467e580f5dde816b018972910cbadad))
+* 修复空头和ab时 批量生成观察日失效 ([b1cb6ec](https://10.1.2.7/visual-fe/swap-modules/commits/b1cb6ec2f78bb34ab4a384f45ae79620feea3559))
+* 修复批量观察后新增观察区间，作用起始日不等于上一个作用截止日+1 ([0f454c9](https://10.1.2.7/visual-fe/swap-modules/commits/0f454c95ff7f9b28706c08f5058591688da2ad0a))
+* 修复批量观察日后 添加数据 起始日为空 ([6fcfad9](https://10.1.2.7/visual-fe/swap-modules/commits/6fcfad995459fafa2f5babd58770c80c5b4a55f3))
+* 修复批量生成观察区间后新增观察区间作用截止日错误 ([b4c6674](https://10.1.2.7/visual-fe/swap-modules/commits/b4c66744b26926f027c341e04f7f7299a7fb306c))
+* 修复批量生成观察日的最后一行观察区间不可删除 ([829008c](https://10.1.2.7/visual-fe/swap-modules/commits/829008c64d914a300432fe1962d5cabe3d02550c))
+* 修复取消后 约定浮动利率依然显示之前的数据 ([41ad1c0](https://10.1.2.7/visual-fe/swap-modules/commits/41ad1c08021bc617c62f03df1d0b94ab4637995e))
+* 修复收益互换合约信息支持多选 ([7b3bbfb](https://10.1.2.7/visual-fe/swap-modules/commits/7b3bbfb8e9aa40f2273231b055c0b7a33a585844))
+* 修复总权益收益 为负数时显示为0 ([f9c0871](https://10.1.2.7/visual-fe/swap-modules/commits/f9c0871ed6fc8b33d497aaaadff9419da3e232e3))
+* 修复ab框多头方向标的不支持编辑 ([3e4e4f0](https://10.1.2.7/visual-fe/swap-modules/commits/3e4e4f0aa5b370033082d7caffd5c293086eeb17))
+* 修改多头指增缺失字段 ([3aefe37](https://10.1.2.7/visual-fe/swap-modules/commits/3aefe37e5db4ecaa8578b0459a431875aaab8663))
+* 修改估值报告查询类型为数组 类型支持选择多个合约编号 ([841da44](https://10.1.2.7/visual-fe/swap-modules/commits/841da44b504e20d180054a2ac333c074575f662b))
+* 修改观察生命周期 备注 ([d7fadc1](https://10.1.2.7/visual-fe/swap-modules/commits/d7fadc1dfd11344ef5fbf8bbfad13bc31bbf01e2))
+* 修改互换详情的标的物信息的label ([e287f57](https://10.1.2.7/visual-fe/swap-modules/commits/e287f57aa6ae6fbb16a4d954c6a43803039c3ac5))
+* 修改交易要素：不能影响到标的信息的支付/收取方向 && 不允许修改标的方向 ([a975ea6](https://10.1.2.7/visual-fe/swap-modules/commits/a975ea681f7d276a77551cde01f1ddbe47fe4564))
+* 修改交易要素不修改时合约期初名义本金额变化 ([2483e9d](https://10.1.2.7/visual-fe/swap-modules/commits/2483e9d6426a22109123431893377d2a0de99e1b))
+* 修改交易要素是否指增不可修改 ([e25d463](https://10.1.2.7/visual-fe/swap-modules/commits/e25d4635e60f1ce3520d71fa94458adfb967bf08))
+* 修改交易要素增加 生命周期备注 ([b05b036](https://10.1.2.7/visual-fe/swap-modules/commits/b05b0360610f12587bb4d631ee10b011351e3a42))
+* 修改交易要素增加标的名义数量 ([e0f3c5d](https://10.1.2.7/visual-fe/swap-modules/commits/e0f3c5d772e00383ae938b972975f354be94d817))
+* 修改交易要素增加标的时 执行失败 ([ded3904](https://10.1.2.7/visual-fe/swap-modules/commits/ded3904fd326579997a504f1d6760bf7ef3d5e02))
+* 修改日期 添加默认值 ([888ca15](https://10.1.2.7/visual-fe/swap-modules/commits/888ca15ca4a5e46c808272f8f2641227cd75250a))
+* 修改文案 ([a307c8b](https://10.1.2.7/visual-fe/swap-modules/commits/a307c8b64d62cf364bb553410ecb383ae51a190d))
+* 修改细节 ([5526163](https://10.1.2.7/visual-fe/swap-modules/commits/55261635a8f9ea72f548af8950a5946d1c1d3813))
+* 修改详情窗口未新增[修改日期]字段 & 修改初始预付金字段修改 ([4d4c4bf](https://10.1.2.7/visual-fe/swap-modules/commits/4d4c4bf9320f5bb05a7baf1eded388137301fe0e))
+* 约定浮动利率提示：计息截止日 改为 利率收益计息截止日 ([f9cbd5e](https://10.1.2.7/visual-fe/swap-modules/commits/f9cbd5ecb0e4def31d8981495730af8e9b651d10))
+* 增加生命周期详情 ([c79b680](https://10.1.2.7/visual-fe/swap-modules/commits/c79b6802def813b4a4f9a52dec7bce638db75dd7))
+* 增加增强收益率 警告 修改显示问题 ([71594ce](https://10.1.2.7/visual-fe/swap-modules/commits/71594cee475182330a7bd577ad00913a4b49208f))
+* 增加key值 ([53ff82f](https://10.1.2.7/visual-fe/swap-modules/commits/53ff82fac2236face452daa1f3e3f92e0a06a7a0))
+* 增强收益率-首行观察日缺少默认值“等于起始日” ([f095927](https://10.1.2.7/visual-fe/swap-modules/commits/f095927dffff44e6bfb1d80582a65d334004307a))
+* 增强收益率在多头类型并且指增为否时显示 ([4edf489](https://10.1.2.7/visual-fe/swap-modules/commits/4edf489d8eb3a23ee8a51ff958765889cbab22b4))
+* 增强收益率在多头指增显示 ([264d85c](https://10.1.2.7/visual-fe/swap-modules/commits/264d85c6fe68c493231bd409f81dc8851b7a63d1))
+* 重置事件触发多头约定浮动利率弹窗重置 ([ac98ecc](https://10.1.2.7/visual-fe/swap-modules/commits/ac98eccd39acadc764f31840e5aecdb8975b87df))
+* 注释 ([fd99ab0](https://10.1.2.7/visual-fe/swap-modules/commits/fd99ab0c3cc8493cd91b126f124c31e1d3f7a06f))
+* ab互换/提前终止：合约平仓名义本金额,合约平仓后名义本金额有误 ([b785945](https://10.1.2.7/visual-fe/swap-modules/commits/b785945ccb6ec0ae5075e000f5a9aa6c3c0d4668))
+* ab款多头计息基准不可修改 ([a9c7d3a](https://10.1.2.7/visual-fe/swap-modules/commits/a9c7d3acbdada6248c0fd0c869d34b8d78e2a063))
+* format ([5fb8a3b](https://10.1.2.7/visual-fe/swap-modules/commits/5fb8a3b348705cbaf893837d79c75069eaef776e))
+* format code ([106963e](https://10.1.2.7/visual-fe/swap-modules/commits/106963e932a020e57f78427636d48512eaf90697))
+* format code ([fa10e99](https://10.1.2.7/visual-fe/swap-modules/commits/fa10e991f6c8e4e60296b09c883faeeb019755c5))
+* mege origin/master 合并主分支代码 ([0d78431](https://10.1.2.7/visual-fe/swap-modules/commits/0d78431b8914d20fd315b23b2ce4fa14bfe88021))
+* merge master into fix/SWHY3 ([92d4ec5](https://10.1.2.7/visual-fe/swap-modules/commits/92d4ec5319bd8460435a30813344155e4b74bdcd))
+* preserve 联动存在性能问题 ([983db3a](https://10.1.2.7/visual-fe/swap-modules/commits/983db3ab8b8c3a8546315fb13cc53686263a0b3d))
+* refine label ([0aab8c2](https://10.1.2.7/visual-fe/swap-modules/commits/0aab8c2573b3524bdb411c318a810309ac55a96b))
+* swhy3 170 ([1347237](https://10.1.2.7/visual-fe/swap-modules/commits/1347237413d4625a2f1a16bfeec516aa62eec480))
+
+
+### Features
+
+* 「前端」提前终止/到期结算/期间收支，增加「支付方式」 ([877808d](https://10.1.2.7/visual-fe/swap-modules/commits/877808dc7807bf38119c2cdb6b16d80f23238889))
+* 【前端】保证金管理界面改造，位置变更 ([904c241](https://10.1.2.7/visual-fe/swap-modules/commits/904c24121a8f7c006ac8e00854e5131507eb91d0))
+* 【前端】标的估值/互换合约信息改造 ([0b2403d](https://10.1.2.7/visual-fe/swap-modules/commits/0b2403da1e96be19d4341776ce8bb0af8e3aca05))
+* 【前端】查看生命周期事件详情改造-期间收支 ([469ff82](https://10.1.2.7/visual-fe/swap-modules/commits/469ff827b8c30edc4e58dfbe32f3b123875528e4))
+* 【前端】估值报告新增字段&顺序调整 ([8572456](https://10.1.2.7/visual-fe/swap-modules/commits/85724561467fa5975b30be10fa1939493a3eb657))
+* 【前端】互换簿记/持仓/修改生命周期事件页面-增加利率收益计息截止日 ([8fb42b0](https://10.1.2.7/visual-fe/swap-modules/commits/8fb42b06b8423d3ac28a4aa5691d9b20e8e30b27))
+* 【前端】互换簿记/修改/持仓页面要素修改 ([00915d3](https://10.1.2.7/visual-fe/swap-modules/commits/00915d3f0976234d040429727738a85c1e3f4aab))
+* 【前端】互换合约删除「交易对手资金账户代码」字段 & 查询交易对手接口变更 ([a8c15be](https://10.1.2.7/visual-fe/swap-modules/commits/a8c15be9793b28a27dbc8fabd7bae8b0828f1344))
+* 【前端】收益互换簿记改造（保证金相关保障比例校验） ([84c0ac4](https://10.1.2.7/visual-fe/swap-modules/commits/84c0ac4a40132bd7fd8840c489efe069d3e81196))
+* 【前端】提前终止、结算生命周期 [支付日期] 增加默认值 ([692815a](https://10.1.2.7/visual-fe/swap-modules/commits/692815a66ee2c58f2c5147d194b854c623ce6589))
+* 【前端】提前终止校验修改 ([41e2fcf](https://10.1.2.7/visual-fe/swap-modules/commits/41e2fcf0d4da16b6ae1e449e19e187898221ad42))
+* 百分比字段尾部增加单位 ([a8e770c](https://10.1.2.7/visual-fe/swap-modules/commits/a8e770cc8cfe27d3e01b1da3aaa310e76c5d712c))
+* 保证金参数校验修改 ([d27c39c](https://10.1.2.7/visual-fe/swap-modules/commits/d27c39c45f5be50386d88375d780ce44bf60259a))
+* 保证金管理页面 ([20d3ec4](https://10.1.2.7/visual-fe/swap-modules/commits/20d3ec4f494ea3bdb0922504bdaa6018de70efc3))
+* 保证金管理页面 ([61e0ebe](https://10.1.2.7/visual-fe/swap-modules/commits/61e0ebe4fe2a499e0d2352755727df6feaad207f))
+* 保证金页面修改&联调 ([511eb06](https://10.1.2.7/visual-fe/swap-modules/commits/511eb0698648544bf9ca73a69adf34a954b82873))
+* 保证金增加校验 & 默认值修改 ([76affa1](https://10.1.2.7/visual-fe/swap-modules/commits/76affa1238c67e72d18da05e15d9e61976fbe946))
+* 标的估值、合约信息金额展示支持跨境处理 ([0824765](https://10.1.2.7/visual-fe/swap-modules/commits/0824765863714da9071fe93679485f711a1389e9))
+* 标的估值字段修改 ([9fc370d](https://10.1.2.7/visual-fe/swap-modules/commits/9fc370dd5d24ef35c45e68a42638637f4b5d5f49))
+* 表格优化：调整表格间距，保持界面上下对齐，表格内一个字段一行 ([c32c47f](https://10.1.2.7/visual-fe/swap-modules/commits/c32c47f14a31a01129e9be778c0c1914fec3a216))
+* 表格UI优化 ([17db2c8](https://10.1.2.7/visual-fe/swap-modules/commits/17db2c87903220d4268fa64829c15e06fd86f9ca))
+* 簿记/持仓/修改交易要素 页面增加【业务类型】【初始预付金支付日】 ([84a3b0c](https://10.1.2.7/visual-fe/swap-modules/commits/84a3b0c3dc73175a31b097774dac403526598132))
+* 簿记模板开发 ([cf16f24](https://10.1.2.7/visual-fe/swap-modules/commits/cf16f246f269ea3e321545fc356c060ea6f55c98))
+* 初始预付金调整和查看页面 ([f2d90bd](https://10.1.2.7/visual-fe/swap-modules/commits/f2d90bd9345e677cddee7601d8cd7fe6b07dbd82))
+* 初始预付金率在修改交易要素中不与预付金支付方向、初始保障金联动 ([ee69f00](https://10.1.2.7/visual-fe/swap-modules/commits/ee69f0074bd2488c6f397293decdfb226ba604e2))
+* 估值报告 ui 调整 ([5af0a80](https://10.1.2.7/visual-fe/swap-modules/commits/5af0a80774370691b983dca91b148138a289b832))
+* 合并多头与空头的追加后/提取前/提取后保障比例 ([33d764c](https://10.1.2.7/visual-fe/swap-modules/commits/33d764ceaff3d10277ec3b1c7f412230901338ac))
+* 合约估值部分字段更改 ([20adf44](https://10.1.2.7/visual-fe/swap-modules/commits/20adf44e2c928b30418bc1c23352010141fd24ca))
+* 互换页面字段统一 ([2bad629](https://10.1.2.7/visual-fe/swap-modules/commits/2bad629639fc735b9f1d7116ac8022852c95f01b))
+* 结算生命周期-结算日期默认值为 期末观察日 & 平仓生命周期增加校验：总平仓数量需大于0 ([58e714a](https://10.1.2.7/visual-fe/swap-modules/commits/58e714ad71a8e1343f5e90ccee7d90347597f054))
+* 金额和百分比在报告中全部 向右靠齐 ([7e6f8d7](https://10.1.2.7/visual-fe/swap-modules/commits/7e6f8d7a5cfa67082f000952900ef449b46fa2f9))
+* 金额输入不限制（10位）展示两位，除支付金额、总利率收益金额/总权益收益金额/平仓金额/结算金额 ([a9a3696](https://10.1.2.7/visual-fe/swap-modules/commits/a9a3696038ab91b85ae46fd4ffab3ef4c51fa276))
+* 跨境货币功能开发 ([a38292b](https://10.1.2.7/visual-fe/swap-modules/commits/a38292bca3320df7a7d63c7730cdf57c55bc2dab))
+* 联调修改 ([108e3ec](https://10.1.2.7/visual-fe/swap-modules/commits/108e3ec766cd46ee39a701b6bd322ee010e8a37f))
+* 期间收支利率收益改为期间收支 & 期间收支字段增加浮窗 ([96c65e6](https://10.1.2.7/visual-fe/swap-modules/commits/96c65e6194b0cfa9fbaba395d034ea6c96869a66))
+* 生命周期改造- 提前终止 & 到期结算 - 查看 & 执行 ([ef79277](https://10.1.2.7/visual-fe/swap-modules/commits/ef79277049a6d4832522a36b640cb5077ada37ce))
+* 生命周期执行改造-期间收支 ([3071d72](https://10.1.2.7/visual-fe/swap-modules/commits/3071d72f9bf01eea1913942a1e6fdc5b782d2415))
+* 实现基本费率tip更改：365改为年化天数 ([cf4c0bb](https://10.1.2.7/visual-fe/swap-modules/commits/cf4c0bb6d26f76cef01abae0e146924395617589))
+* 数字输入输入不做四舍五入，金额输入不做，输出保留两位 ([a16c6a2](https://10.1.2.7/visual-fe/swap-modules/commits/a16c6a2f3bdb2ba4098cba37ceeceb4fa9b5aa3a))
+* 提前终止/到期结算-权益收益拆分为股息、浮动、增强 ([15726ec](https://10.1.2.7/visual-fe/swap-modules/commits/15726ecb30ded6750ca5180e432c51aad34dfa78))
+* 完善逻辑 ([b2287cb](https://10.1.2.7/visual-fe/swap-modules/commits/b2287cb58918aa505acf45a1e73f4430efbd37b6))
+* 行情字段改为显示四位小数 ([a806650](https://10.1.2.7/visual-fe/swap-modules/commits/a806650cf6a41e4411939562e543b0e56662dc32))
+* 修改保障金参数窗口，修改多头盯市基准时会清空空头盯市基准 ([e8cc752](https://10.1.2.7/visual-fe/swap-modules/commits/e8cc75200e25c43e0d56b867c846386616720331))
+* 增加期初合约初始保障金额 修复 提交未调用接口 ([45d07c7](https://10.1.2.7/visual-fe/swap-modules/commits/45d07c7478fa2fd9ef75b48cd42930b7913f4cfa))
+* 增加修改审批和结算审批 ([3f2ec38](https://10.1.2.7/visual-fe/swap-modules/commits/3f2ec382f39c4bdf98280ccf65d75552d213b979))
+* 增加一些功能 ([7089a0d](https://10.1.2.7/visual-fe/swap-modules/commits/7089a0deb6ef804e910de6fb05acc6f42f88a77d))
+* 折算率放到保证金参数中 & 页面标题 UI 优化 ([d8bcc5c](https://10.1.2.7/visual-fe/swap-modules/commits/d8bcc5c6294d3de921c69dd95a1b2bde4999b5d1))
+* ab款改造 ([eb21d36](https://10.1.2.7/visual-fe/swap-modules/commits/eb21d361945701fbc8d29ea167a0b0164a846567))
+* ab款下平仓数量跨行联动 ([ef76c80](https://10.1.2.7/visual-fe/swap-modules/commits/ef76c80e1ebb555ef6fd3da026cdd1640c2c22cb))
+* **io-container:** 支持表格多行之间的计算联动 ([a425928](https://10.1.2.7/visual-fe/swap-modules/commits/a425928bdd9519d7a09852a4a5beab7d749397ce))
+* 标的估值页面IOItem&容器集成 ([7ef7446](https://10.1.2.7/visual-fe/swap-modules/commits/7ef7446ed9c360e0716c5b7f0b82b17b83b198da))
+* 标的物信息联动相关内容 ([d9faeb7](https://10.1.2.7/visual-fe/swap-modules/commits/d9faeb71513cab52dabf15b34b67833a34b316dd))
+* 簿记页面添加 备注 删除一些console ([e7e2332](https://10.1.2.7/visual-fe/swap-modules/commits/e7e2332dd1e1701552095301ec7b5a6e159dae3a))
+* 除标的物代码联动 的1-30 ([64b53f2](https://10.1.2.7/visual-fe/swap-modules/commits/64b53f27ff8eec7461fad1af5723f564f17898db))
+* 除标的物代码联动 的30-64 ([f906838](https://10.1.2.7/visual-fe/swap-modules/commits/f906838b1fe8af28ca7623d5196ef8b0042ab408))
+* 多头浮动利率 增加批量生成 ([716dd29](https://10.1.2.7/visual-fe/swap-modules/commits/716dd297d5adfa8559ba80c0f57f95282448a786))
+* 根据字段名生成不同的valueType ([0b3571a](https://10.1.2.7/visual-fe/swap-modules/commits/0b3571ae27ed164f6439cae5cae54c2b11e7dbc0))
+* 观察生命周期 ([5cc1056](https://10.1.2.7/visual-fe/swap-modules/commits/5cc105612ebb40304b2893fc7fccc91eaef0da56))
+* 合约估值容器开发 ([4a6e000](https://10.1.2.7/visual-fe/swap-modules/commits/4a6e00002ea4570b3e634748761e76efecb03d0c))
+* 合约信息联调 ([fd62d0c](https://10.1.2.7/visual-fe/swap-modules/commits/fd62d0c157eccaf8e421471ce93fdde0afd40a61))
+* 互换合约详情初步提交 ([a330cbc](https://10.1.2.7/visual-fe/swap-modules/commits/a330cbc3316b133e5cdbc988bdb9cc2176ac277f))
+* 将5个观察生命周期 集成到一个组件中 ([61d51e1](https://10.1.2.7/visual-fe/swap-modules/commits/61d51e128462a04d3971cf5198fc32c67d8ad1df))
+* 接口联调 ([96af6ff](https://10.1.2.7/visual-fe/swap-modules/commits/96af6ff3c962d5aa68d5b59f2b0693c248fcd4ce))
+* 接口mock ([60a2e28](https://10.1.2.7/visual-fe/swap-modules/commits/60a2e28933c70d8ad632250bcedf2c0771bde1c2))
+* 结算&平仓集成到page，待联调 ([45de297](https://10.1.2.7/visual-fe/swap-modules/commits/45de297d7f4854cb62bb6a28871c4c83c148911c))
+* 类型定义使用枚举 ([5a42ce6](https://10.1.2.7/visual-fe/swap-modules/commits/5a42ce6f192e8a2c64956b6469bc537c148bd40a))
+* 列表增加表头固定 ([1be40e5](https://10.1.2.7/visual-fe/swap-modules/commits/1be40e568670a1f6a6832d4c52b314751b07aa7b))
+* 列表io-item width设置 ([037f414](https://10.1.2.7/visual-fe/swap-modules/commits/037f414d2eed1d90aba3c800be68a851afe9e8ee))
+* 平仓AB款计算之后决定是否弹框&其他设计修改 ([6c14d52](https://10.1.2.7/visual-fe/swap-modules/commits/6c14d520befb55205e63bc97bebc73a0634185c3))
+* 起始日 期末观察日 结算日 增加排序 ([1210b43](https://10.1.2.7/visual-fe/swap-modules/commits/1210b43824d256209698b5f490a1e5c054309eb3))
+* 删除 table 初始化方法 ([e9bc55d](https://10.1.2.7/visual-fe/swap-modules/commits/e9bc55d44a641535eeca4ac95490d5b7c95fafb2))
+* 生命周期demo ([4368ef0](https://10.1.2.7/visual-fe/swap-modules/commits/4368ef08f5e543156c59be6d8b9a8d91b7bf215b))
+* 添加跳转 ([61c635c](https://10.1.2.7/visual-fe/swap-modules/commits/61c635c9006bb1ca3d1494bd4585000f5364456e))
+* 完成标的物信息第一层字段的 demos 开发 ([21fc2bc](https://10.1.2.7/visual-fe/swap-modules/commits/21fc2bcc23bfe4eee15866e31d9e27dab6282e9a))
+* 限制&解除限制集成 ([14bf48a](https://10.1.2.7/visual-fe/swap-modules/commits/14bf48a11ae431a3bb48cef6535c950f3b150f85))
+* 小驼峰 ([f384b35](https://10.1.2.7/visual-fe/swap-modules/commits/f384b356b82deac129ad1dee27c074a6d0524db3))
+* 修复部分字段数据未展示 ([bef9db4](https://10.1.2.7/visual-fe/swap-modules/commits/bef9db47cac394f19cce00cf9d16965c82f1b386))
+* 修改代码 ([0d78b34](https://10.1.2.7/visual-fe/swap-modules/commits/0d78b345f027e2e1b40a406c4d2b8d0a10c0de3d))
+* 修改生命周期事件概览 ([5098681](https://10.1.2.7/visual-fe/swap-modules/commits/5098681c4c338261e344e73604b6a41fa9e6520e))
+* 增加 更改生命周期详情 ([78224c4](https://10.1.2.7/visual-fe/swap-modules/commits/78224c471a419230b35e4df67be04c49dc934caf))
+* 增加 生命周期详情 （除观察/修改） ([f0804dc](https://10.1.2.7/visual-fe/swap-modules/commits/f0804dc4078d3017c9d8a96ba14ada99fe2ac5dc))
+* 增加骨架屏 ([fe31a19](https://10.1.2.7/visual-fe/swap-modules/commits/fe31a1976a739a479f751901c2a51e24f0297092))
+* 增加观察生命周期详情 ([00cead7](https://10.1.2.7/visual-fe/swap-modules/commits/00cead73ed59875381561abb611bdaa23ae25144))
+* 增加集成期间收支生命周期 ([33b393e](https://10.1.2.7/visual-fe/swap-modules/commits/33b393eaee83282145be735ee90478e71c048803))
+* 增加删除提示 更改 swapFieldEnums 导出路径 ([2cf6572](https://10.1.2.7/visual-fe/swap-modules/commits/2cf65721a50adf1759afb7f27352e4aa55733062))
+* 增加修改生命周期 ([b2fe248](https://10.1.2.7/visual-fe/swap-modules/commits/b2fe2483ba4c095856f223daff3406ff1b72ffe1))
+* 增加修改生命周期 ([efcf3ee](https://10.1.2.7/visual-fe/swap-modules/commits/efcf3ee3e440c8217b652f4c91d33d32972b5669))
+* 支持 io-form-item-wrapper ([a71b74c](https://10.1.2.7/visual-fe/swap-modules/commits/a71b74c01fd98b9b708c03c67ed205545889516f))
+* 支持 io-item 组件 ([09e238c](https://10.1.2.7/visual-fe/swap-modules/commits/09e238ccc51922a90205a148b07ac4e19461100b))
+* 支持 IOTableItem option type 下可以自定义 编辑时的 actions ([c248ee4](https://10.1.2.7/visual-fe/swap-modules/commits/c248ee4c2366f5c27fad3ecf6208cba2bd7331ef))
+* 支持容器服务接口 ([2a6297b](https://10.1.2.7/visual-fe/swap-modules/commits/2a6297b05bb115821e1ee27e25ddd326f0b16238))
+* aaaa ([7152b59](https://10.1.2.7/visual-fe/swap-modules/commits/7152b597af083a93e5fdf8df92c41deb4241e345))
+* format ([5c9d6a2](https://10.1.2.7/visual-fe/swap-modules/commits/5c9d6a297cf0b07f56973f02c7d8267f371b4d78))
+* format ([2288372](https://10.1.2.7/visual-fe/swap-modules/commits/2288372566c48bf9ce5a8d7f72b3cc0730d5ce6c))
+* formatPercen改造 ([71adb3f](https://10.1.2.7/visual-fe/swap-modules/commits/71adb3fa60260e230d298ee98f55a167814c0d5c))
+* percent-raw改造 ([bebdaa1](https://10.1.2.7/visual-fe/swap-modules/commits/bebdaa106dacf1cae83133783565a1f5261c13eb))
+* service mock ([05d05a3](https://10.1.2.7/visual-fe/swap-modules/commits/05d05a39899e075b606f11f34781bc3b7b2e53f9))
+
+
+
+
+
+## [2021.7.15-beta.10](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-beta.9...v2021.7.15-beta.10) (2021-07-16)
+
+
+### Bug Fixes
+
+* 保障金管理明细：多头/空头盯市基准金额（结算货币）数值前货币代码显示有误 ([8dc27b5](https://10.1.2.7/visual-fe/swap-modules/commits/8dc27b57a08fd3d910ba4555527399f955081912))
+
+
+
+
+
+## [2021.7.15-beta.9](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-beta.8...v2021.7.15-beta.9) (2021-07-16)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+## [2021.7.15-beta.8](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-beta.7...v2021.7.15-beta.8) (2021-07-14)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+## [2021.7.15-beta.7](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-beta.6...v2021.7.15-beta.7) (2021-07-13)
+
+
+### Bug Fixes
+
+* 互换簿记/批量导入n个标的，初始预付金额未联动计算出结果 ([3a17958](https://10.1.2.7/visual-fe/swap-modules/commits/3a17958214109af6f43d8136ef7a84e9f73aaff7))
+
+
+
+
+
+
+## [2021.7.15-beta.6](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-beta.5...v2021.7.15-beta.6) (2021-07-12)
+
+
+### Bug Fixes
+
+* 合约录入/修改交易要素窗口：非首行标的的会出现第一行的部分值 ([7f3c32e](https://10.1.2.7/visual-fe/swap-modules/commits/7f3c32ecb6de64321d5254b68820fa7732e28003))
+
+
+### Features
+
+* 保障金增加跨境字段 ([1ba4850](https://10.1.2.7/visual-fe/swap-modules/commits/1ba4850d317615583d7454a17f84de99d0f811aa))
+
+
+
+
+
+
+## [2021.7.15-beta.5](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-beta.4...v2021.7.15-beta.5) (2021-07-09)
+
+
+### Bug Fixes
+
+* 查看持仓详情：交易方向中我方为空 ([ffd5289](https://10.1.2.7/visual-fe/swap-modules/commits/ffd528941f60de9b9564e74df7c14054e53cfc8d))
+* 平仓/结算金额利率、权益方向取值错误 ([c18b080](https://10.1.2.7/visual-fe/swap-modules/commits/c18b080fe32fc74ecbec8aa066a463430198cd18))
+* 平仓/结算实现权益收益.增强 最小值改为0 & 解除限制多头名义本金额去金额符号 ([c5b5ced](https://10.1.2.7/visual-fe/swap-modules/commits/c5b5ced532728b9b8893147161a9076a1dc00750))
+
+
+
+
+
+
+## [2021.7.15-beta.4](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-beta.3...v2021.7.15-beta.4) (2021-07-08)
+
+
+### Bug Fixes
+
+* 提前终止/期间收支/到期结算窗口：交易货币与结算货币不同时结算汇率获取汇率行情失败 ([768a55c](https://10.1.2.7/visual-fe/swap-modules/commits/768a55c0ef8d7e7dcbb5d68c4f841ffcfbc8ca34))
+
+
+### Features
+
+* 【前端】我方名取从后端取系统参数 ([513abd4](https://10.1.2.7/visual-fe/swap-modules/commits/513abd47fea1ef591d8dea8505d8ab56e14396aa))
+
+
+
+
+
+
+## [2021.7.15-beta.3](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-beta.2...v2021.7.15-beta.3) (2021-07-08)
+
+
+### Bug Fixes
+
+* 合约录入：期初汇率为0时可以簿记成功且可以修改交易要素成功 ([774ce9a](https://10.1.2.7/visual-fe/swap-modules/commits/774ce9ac61cc7b99f4a0ae621cdfb775bc513c08))
+* 切换互换类型没有清空交易货币和合约期初名义本金 ([f4524f6](https://10.1.2.7/visual-fe/swap-modules/commits/f4524f61110f423d14c112d5a08e8e33d7205a47))
+
+
+
+
+
+
+## [2021.7.15-beta.2](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-beta.1...v2021.7.15-beta.2) (2021-07-07)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+## [2021.7.15-beta.1](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-alpha.6...v2021.7.15-beta.1) (2021-07-07)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+## [2021.7.15-alpha.6](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-alpha.5...v2021.7.15-alpha.6) (2021-07-06)
+
+
+### Bug Fixes
+
+* 标的物删除与保存时与交易货币的联动修复 && 互换合约录入/修改交易要素：不同标的货币的标的物可以进入同一合约 ([62db031](https://10.1.2.7/visual-fe/swap-modules/commits/62db031b6aaba12914dd241317823f5898010bb7))
+* 初始预付金联动fix ([1f82aee](https://10.1.2.7/visual-fe/swap-modules/commits/1f82aee2e4062743a6e0105a7a4d569e36cdccd4))
+* 合约详情窗口：多头非指增合约，标的信息表格显示不全 ([18db520](https://10.1.2.7/visual-fe/swap-modules/commits/18db52041e002c0f26b1413b1c9d7c9676efb631))
+* 计算平仓实现合约利率收益时，结算汇率设置默认值为 1 ([552464f](https://10.1.2.7/visual-fe/swap-modules/commits/552464f71ff182f6da1913da914f03cf481b3087))
+* 期间收支：期间收支实现合约利率收益(结算货币) 计算有误 ([01f494e](https://10.1.2.7/visual-fe/swap-modules/commits/01f494e7bb6a88a83ad6c5e9edd64b112190f21b))
+
+
+### Features
+
+* 【前端】持仓-查看详情中现金流货币单位改为结算货币 ([c2610f6](https://10.1.2.7/visual-fe/swap-modules/commits/c2610f627f4d26278db13f24f83a075d2fe0021d))
+
+
+
+
+
+
+## [2021.7.15-alpha.5](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-alpha.4...v2021.7.15-alpha.5) (2021-07-05)
+
+
+### Bug Fixes
+
+* 公司行为详情窗口：待实现单位股息、待实现股息数值前显示￥ ([8aca932](https://10.1.2.7/visual-fe/swap-modules/commits/8aca932e615353a99bbc5c1a47efdac9a0dbbdf5))
+
+
+### Features
+
+* 到期结算：期末价格数值符号显示有误 ([f05f9c2](https://10.1.2.7/visual-fe/swap-modules/commits/f05f9c2e0c440a39f410d31cb7ee23e31e6ac023))
+* ab款分页器特殊处理 && 升级protable ([621e0bb](https://10.1.2.7/visual-fe/swap-modules/commits/621e0bba6d74aced9e796c122098a0062239dd9f))
+
+
+
+
+
+
+## [2021.7.15-alpha.4](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-alpha.3...v2021.7.15-alpha.4) (2021-07-02)
+
+
+### Bug Fixes
+
+* 标的估值、合约信息增加结算汇率 & 交易方向拆分 ([ca168c1](https://10.1.2.7/visual-fe/swap-modules/commits/ca168c1c052fec9e0042d2b52deaab11d1f359fd))
+* 合约录入：交易货币显示有误 ([3273183](https://10.1.2.7/visual-fe/swap-modules/commits/3273183b8abad10200757bdac1408d25dbb8e521))
+* 互换合约录入：交易货币与结算货币一致时显示期初汇率、参考汇率字段 ([31807c6](https://10.1.2.7/visual-fe/swap-modules/commits/31807c60ce735e41e21bd5d453a36cacc9ecb147))
+
+
+### Features
+
+* 【前端】簿记、持仓详情中交易方向表格 UI 优化 ([80591bb](https://10.1.2.7/visual-fe/swap-modules/commits/80591bb508059a2654017f14b61b0dd8c1d6eb1e))
+* 【前端】簿记标的物列表增加分页器 ([5cb244c](https://10.1.2.7/visual-fe/swap-modules/commits/5cb244c8164ebeb9d14728cb93e7ae8acc4cb622))
+* 交易方向字段对齐 & 持仓详情优化 ([bd07ac7](https://10.1.2.7/visual-fe/swap-modules/commits/bd07ac715c92e559d5c7918864b882666556ac98))
+
+
+
+
+
+
+## [2021.7.15-alpha.3](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-alpha.1...v2021.7.15-alpha.3) (2021-06-30)
+
+
+### Features
+
+*  簿记-利率方向默认值设置为收取 && 增强收益率更新联动规则 ([d0b6aac](https://10.1.2.7/visual-fe/swap-modules/commits/d0b6aacb9b5cd07b5f369324548ec7617074aef1))
+* 【前端】标的估值、合约估值增加期初汇率、当日汇率 ([23ecf94](https://10.1.2.7/visual-fe/swap-modules/commits/23ecf947a07024046f91eca307db428fb04beeb0))
+* 【前端】持仓主页面增加交易货币与结算货币 ([3b473c2](https://10.1.2.7/visual-fe/swap-modules/commits/3b473c2492f7a70a270ab6340a60d3f77b5cb605))
+* 【前端】修改使用原「交易方向」的估值逻辑 ([0243820](https://10.1.2.7/visual-fe/swap-modules/commits/024382083da6c309b86ba94098a69e64b25f9da6))
+* 【前端】原「交易方向」拆成「权益方向」与「利率方向」 ([85ac997](https://10.1.2.7/visual-fe/swap-modules/commits/85ac99791750f1644be72f642c9ec63bc5ea929f))
+* 标的估值、合约估值增加跨境字段 ([0320a91](https://10.1.2.7/visual-fe/swap-modules/commits/0320a91e106800e013bc6103662339c842c3ce79))
+* 期初汇率、交易货币的联动 ([14b87c2](https://10.1.2.7/visual-fe/swap-modules/commits/14b87c241f37f021fd0112606d4178d570230d85))
+
+
+
+
+
+
+## [2021.7.15-alpha.2](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-alpha.1...v2021.7.15-alpha.2) (2021-06-30)
+
+
+### Features
+
+* 【前端】标的估值、合约估值增加期初汇率、当日汇率 ([23ecf94](https://10.1.2.7/visual-fe/swap-modules/commits/23ecf947a07024046f91eca307db428fb04beeb0))
+* 【前端】修改使用原「交易方向」的估值逻辑 ([0243820](https://10.1.2.7/visual-fe/swap-modules/commits/024382083da6c309b86ba94098a69e64b25f9da6))
+* 【前端】原「交易方向」拆成「权益方向」与「利率方向」 ([85ac997](https://10.1.2.7/visual-fe/swap-modules/commits/85ac99791750f1644be72f642c9ec63bc5ea929f))
+* 标的估值、合约估值增加跨境字段 ([0320a91](https://10.1.2.7/visual-fe/swap-modules/commits/0320a91e106800e013bc6103662339c842c3ce79))
+* 期初汇率、交易货币的联动 ([14b87c2](https://10.1.2.7/visual-fe/swap-modules/commits/14b87c241f37f021fd0112606d4178d570230d85))
+
+
+
+
+
+# [2021.8.0-alpha.0](https://10.1.2.7/visual-fe/swap-modules/compare/v2021.7.15-alpha.1...v2021.8.0-alpha.0) (2021-06-30)
+
+
+### Features
+
+* 【前端】标的估值、合约估值增加期初汇率、当日汇率 ([23ecf94](https://10.1.2.7/visual-fe/swap-modules/commits/23ecf947a07024046f91eca307db428fb04beeb0))
+* 【前端】修改使用原「交易方向」的估值逻辑 ([0243820](https://10.1.2.7/visual-fe/swap-modules/commits/024382083da6c309b86ba94098a69e64b25f9da6))
+* 【前端】原「交易方向」拆成「权益方向」与「利率方向」 ([85ac997](https://10.1.2.7/visual-fe/swap-modules/commits/85ac99791750f1644be72f642c9ec63bc5ea929f))
+* 标的估值、合约估值增加跨境字段 ([0320a91](https://10.1.2.7/visual-fe/swap-modules/commits/0320a91e106800e013bc6103662339c842c3ce79))
+* 期初汇率、交易货币的联动 ([14b87c2](https://10.1.2.7/visual-fe/swap-modules/commits/14b87c241f37f021fd0112606d4178d570230d85))
+
+
+
+
+
+
+## 2021.7.15-alpha.1 (2021-06-24)
+
+
+### Bug Fixes
+
+* 【前端】到期结算/提前终止/期间收支利率收益生命周期增加结算要素默认值 ([00de26c](https://10.1.2.7/visual-fe/swap-modules/commits/00de26cafb2ef5fba37dc50fa85fd06ff5edee50))
+* 标的方向枚举修改 ([6550d40](https://10.1.2.7/visual-fe/swap-modules/commits/6550d40f0e34e19c87da8633c22809022120612d))
+* 标的估值 合约编号支持多个搜索 ([4e5c0a3](https://10.1.2.7/visual-fe/swap-modules/commits/4e5c0a3436e693170ec2a2728c7e88c950c5373c))
+* 标的估值、合约信息字段 改造（2） ([f49cbe7](https://10.1.2.7/visual-fe/swap-modules/commits/f49cbe7b265ee74925b75b8ae0cb638dc8063645))
+* 标的估值:部分列标题展示与设计文档不一致 ([f6a699c](https://10.1.2.7/visual-fe/swap-modules/commits/f6a699ccef60b26b13ff1bb1bd24cb0c935450f6))
+* 标的估值：选择部分列展示时，没有自适应列宽 ([37b0f5e](https://10.1.2.7/visual-fe/swap-modules/commits/37b0f5e805931cd5feb0492db51cb198cdfe6fb5))
+* 标的估值报告：交易确认书为空时，查询结果为空 ([a68ed5f](https://10.1.2.7/visual-fe/swap-modules/commits/a68ed5fc4b05dad1811b440eadb371c4bd0a380b))
+* 标的物白名单查询接口，在描述列表中报错 ([4b3b509](https://10.1.2.7/visual-fe/swap-modules/commits/4b3b509e48ac7a4b4e8fbf4c3094740f8933b790))
+* 簿记模板设置，更新时间取值错误 ([6257331](https://10.1.2.7/visual-fe/swap-modules/commits/62573314b0dcb7e8ef5b9a6d852c9862bd4aac4e))
+* 簿记修改字段 contractNotionalAmount(合约名义本金额)修改为 initNotionalAmount(合约期初名义本金额) 标的信息中 将 标的名义本金额notionalAmount 修改为 initNotionalAmount 标的期初名义本金额 修改交易要素 新增字段 标的名义数量 currentAmount  标的名义本金额 ([df92684](https://10.1.2.7/visual-fe/swap-modules/commits/df92684cf5d4e24078d91ad55c9a8290c10e27c5))
+* 持仓详情列表出现搜索项 ([170e57e](https://10.1.2.7/visual-fe/swap-modules/commits/170e57e0efacb16aab4f264e0064574d6b1982ae))
+* 多空结构特殊显示 format ([06ac461](https://10.1.2.7/visual-fe/swap-modules/commits/06ac461152a94f22f02897896eac9d53551f5cdc))
+* 多头初始预付金率 字段名&提示信息修复 ([affe733](https://10.1.2.7/visual-fe/swap-modules/commits/affe733f9c14fcd961d44e86e44a01bc1eb64880))
+* 多头约定浮动费率基准展示错误&标的信息中[标的乘数]列字段名未展示 ([fd9d75c](https://10.1.2.7/visual-fe/swap-modules/commits/fd9d75c3d46e5156733e6daed5e8f3e7f461a17f))
+* 非首行不可保存 ([b71d1b4](https://10.1.2.7/visual-fe/swap-modules/commits/b71d1b4f69112f66cd53083992180cc98d7f851c))
+* 浮动利率问题 ([83b96e0](https://10.1.2.7/visual-fe/swap-modules/commits/83b96e031580e45fd9db1e66e746da5e405c0e53))
+* 更改只能同时新增一行的文本 ([4b76bde](https://10.1.2.7/visual-fe/swap-modules/commits/4b76bde35cd8c33805ac74c75407260c12d8f8ce))
+* 更新非交易日验证 ([d614061](https://10.1.2.7/visual-fe/swap-modules/commits/d614061eb85bbcef666105dcc2dcb3905c9542d2))
+* 观察弹窗问题 ([aae304a](https://10.1.2.7/visual-fe/swap-modules/commits/aae304a39d28692d18dcd9cc08a67ff157a00adf))
+* 观察日置灰且不可编辑 ([c2d6129](https://10.1.2.7/visual-fe/swap-modules/commits/c2d612997407081db35a281bc2dd6ba67ea6b6f4))
+* 观察生命周期标的信息里的约定固定利率百分比显示错误 ([323b430](https://10.1.2.7/visual-fe/swap-modules/commits/323b430cfb20ea3257dac3a8c58c4203f7a2873d))
+* 合并主分支代码 ([a916a37](https://10.1.2.7/visual-fe/swap-modules/commits/a916a37593ab5e164915b709ecb280f7be8a153b))
+* 互换标的估值报告：【当日平仓数量】展示为当日平仓价格 ([f0737d2](https://10.1.2.7/visual-fe/swap-modules/commits/f0737d228b61da5f9f7e35c249f10b174f488d79))
+* 互换簿记：[空头追加后保障比例]输入框缺少字段名 ([c2e7363](https://10.1.2.7/visual-fe/swap-modules/commits/c2e73634dc2188788648a337d0bd8d0bb0e1e126))
+* 互换簿记：单位为百分比的数值，前端传值错误 ([4e8fc4b](https://10.1.2.7/visual-fe/swap-modules/commits/4e8fc4b38a9333215f2cbeeedd9c95ae43447642))
+* 互换簿记：动态下拉框清空已选项后，加载下拉项失败 ([dd406e1](https://10.1.2.7/visual-fe/swap-modules/commits/dd406e108e7616422977ad98d1a9e7f768ec829d))
+* 互换簿记：多头初始预付金率为负数值时，成功簿记交易 ([751bef5](https://10.1.2.7/visual-fe/swap-modules/commits/751bef5f32a04021538a02f7d561ce7494e52b18))
+* 互换簿记：基本费率改为必填项 ([773cfd4](https://10.1.2.7/visual-fe/swap-modules/commits/773cfd4af2da5d9a9196ea05ffa600956e126b6d))
+* 互换簿记：切换互换类型时，清空数据 ([a0a4009](https://10.1.2.7/visual-fe/swap-modules/commits/a0a40097081e7a7eb36728714d53e263968fa5da))
+* 互换簿记：未填写利率收益计息截止日时，批量生成观察日的提示信息有误 ([04738a6](https://10.1.2.7/visual-fe/swap-modules/commits/04738a6019fab4c3dc5cb9e3a3e41d9379612c71))
+* 互换簿记：增强收益率未填写时，提示信息建议优化 ([c8d07fa](https://10.1.2.7/visual-fe/swap-modules/commits/c8d07fa7f5829f45b5b1c063272f871695f7f298))
+* 互换簿记：重新生成观察日，未按修改后的起始日重新生成 ([0158c73](https://10.1.2.7/visual-fe/swap-modules/commits/0158c73429a58ed757f6f476569e9955c699ca63))
+* 互换簿记/标的物信息，标的名义本金联动 ([1848c9a](https://10.1.2.7/visual-fe/swap-modules/commits/1848c9a83cf04b1618d4c0859a50a3d69ba3e41c))
+* 互换簿记/标的物信息: 标的名义本金额为空 ([65443cd](https://10.1.2.7/visual-fe/swap-modules/commits/65443cd8684ffd72976a0b5bed9607bfe715aa8b))
+* 互换簿记/标的信息：标的代码不支持模糊搜索匹配 ([57eb01c](https://10.1.2.7/visual-fe/swap-modules/commits/57eb01c36cdb16444c55d67bbf2678f6e22bfc2a))
+* 互换簿记/多空互换：标的信息中可以编辑多头约定浮动利率 ([cf91b5b](https://10.1.2.7/visual-fe/swap-modules/commits/cf91b5bb3ffed177c42fa9de0605aa28864e2b23))
+* 互换簿记/多空互换：前端没传多头标的的fixrate,簿记失败 ([0796c35](https://10.1.2.7/visual-fe/swap-modules/commits/0796c35c3826be8bb40615edf18350519e7ff623))
+* 互换簿记/多头指增：增强收益率首行[观察日]不可编辑 ([2434394](https://10.1.2.7/visual-fe/swap-modules/commits/2434394e71969f3044a80e70efe183836a70364d))
+* 互换簿记/约定浮动利率：观察日校验与需求不一致 ([fbc4b10](https://10.1.2.7/visual-fe/swap-modules/commits/fbc4b1088b6c5e482b2a85fa46ce09ec9ac7ac98))
+* 互换簿记/约定浮动利率：观察日与作用起始日间隔可以输入非整数值 ([e0a8dfb](https://10.1.2.7/visual-fe/swap-modules/commits/e0a8dfb9b7a8cf5950f54eeb4054b5f5f7917584))
+* 互换持仓：多个弹窗有删除等无效且多余的按钮 ([55d7537](https://10.1.2.7/visual-fe/swap-modules/commits/55d7537e5bd43370274d729af34e74be8507a092))
+* 互换持仓/到期结算：到期结算详情中缺少字段，且存在错误的事件名称 ([b49f7ee](https://10.1.2.7/visual-fe/swap-modules/commits/b49f7ee9c6bab53fb60e1375e97949a2d3536a2d))
+* 互换持仓/到期结算：结算日和支付日期默认值有误 ([690e0d8](https://10.1.2.7/visual-fe/swap-modules/commits/690e0d8adccc26f4cb0ee3b0edc77ce916c3ebb2))
+* 互换持仓/到期结算：结算实现基本费用可以输入负数值，并成功结算 ([c98a2b8](https://10.1.2.7/visual-fe/swap-modules/commits/c98a2b8b8ebe903717f5f57927c4fd9e9ff350c0))
+* 互换持仓/观察：观察弹窗有删除等无效且多余的按钮 ([42431ad](https://10.1.2.7/visual-fe/swap-modules/commits/42431adf35502ffb367a74b440aea3fdf578bed6))
+* 互换持仓/交易详情：标的信息表格展示错乱 ([770c86e](https://10.1.2.7/visual-fe/swap-modules/commits/770c86e6688b65b5699a64cc0b995c0a2e30b25c))
+* 互换持仓/交易详情：合约期初名义本金和录入页面位置展示不一致 ([b6918ae](https://10.1.2.7/visual-fe/swap-modules/commits/b6918ae90cfa1188e15586af7fbc8be8cd7d19e1))
+* 互换持仓/结构详情：结构详情字段显示与原型设计图有出入 ([ff0b2ec](https://10.1.2.7/visual-fe/swap-modules/commits/ff0b2ec723506b9dec42dbd1bebdaaaa3ca01b13))
+* 互换持仓/结算：结算日字段与prd实现不一致 ([d8c8b41](https://10.1.2.7/visual-fe/swap-modules/commits/d8c8b41baca6f195a8b8da3341ad1fb27a941834))
+* 互换持仓/结算/提前终止详情：UI问题 ([f7256bd](https://10.1.2.7/visual-fe/swap-modules/commits/f7256bd52b1c5c73cae73c166fb608e3d150e50e))
+* 互换持仓/期间收支：[支付金额]缺少必填项标识 ([a418a64](https://10.1.2.7/visual-fe/swap-modules/commits/a418a6425f906995e953b9708697cdbb827be3e9))
+* 互换持仓/期间收支：不可编辑计息截止日 ([68f5171](https://10.1.2.7/visual-fe/swap-modules/commits/68f517174b095e21d9067d97b3fab8032712288e))
+* 互换持仓/期间收支：期间收支实现合约利率收益(￥)没有乘以交易方向 ([9f689dd](https://10.1.2.7/visual-fe/swap-modules/commits/9f689ddb67e02ba4e1deff46f0f114c2cd878781))
+* 互换持仓/生命周期事件：[生命周期事件]数据展示为英文字符 ([5c0f4e6](https://10.1.2.7/visual-fe/swap-modules/commits/5c0f4e6e3265fee4769e03674abab186bca19544))
+* 互换持仓/提前终止/到期结算：基本费用为0时，系统校验为负数 ([2b8d467](https://10.1.2.7/visual-fe/swap-modules/commits/2b8d4672d4e7a545ffaa77c75b09fa909afc3827))
+* 互换持仓/限制：多头限制期名义本金额（￥）与[新限制多头名义本金额（￥） ]保持联动 ([8b39fc2](https://10.1.2.7/visual-fe/swap-modules/commits/8b39fc216c5c651460e757f92f7b1419fe825e5d))
+* 互换持仓/限制：限制事件详情中字段名称展示有误 ([42221f1](https://10.1.2.7/visual-fe/swap-modules/commits/42221f1a99949c7e3342c02d6c44bbea7dcbba27))
+* 互换持仓/修改保证金：AB互换的【空头盯市基准】缺少联动 & UI优化 ([2407b74](https://10.1.2.7/visual-fe/swap-modules/commits/2407b74afd2fa643abe35bb886c9498581fff846))
+* 互换持仓/修改交易要素:编辑标的信息，标的乘数更新为1 ([1708af7](https://10.1.2.7/visual-fe/swap-modules/commits/1708af737ebe5674dd17e919c430007c9d4e46b5))
+* 互换持仓/修改交易要素：ab款空头与多头的多行联动 ([c8bd8b5](https://10.1.2.7/visual-fe/swap-modules/commits/c8bd8b51134d9f6d101c10cf5ec1b65b633297d1))
+* 互换持仓/ab互换/提前终止：空头标的平仓数量不允许修改 ([a473a3d](https://10.1.2.7/visual-fe/swap-modules/commits/a473a3dbab7aa17330ac44504382baafda54b646))
+* 互换类型/约定浮动费率：编辑编辑问题 ([7f8193f](https://10.1.2.7/visual-fe/swap-modules/commits/7f8193f8eafe737f5bc1aaeda5f9c1b3731532eb))
+* 互换列表：根据[交易达成日][结算日][期末观察日]查询，页面报错 ([02bb01a](https://10.1.2.7/visual-fe/swap-modules/commits/02bb01a4f81d97be4851d6652314ef03bbd9e935))
+* 互换录入:多头初始保障比例参数大于100时，提示信息有误 ([3f59503](https://10.1.2.7/visual-fe/swap-modules/commits/3f59503192b38b87edc371d8e10ddf19c7e87dad))
+* 互换详情/多头非指增：部分字段数据内容未展示 ([a10d2b2](https://10.1.2.7/visual-fe/swap-modules/commits/a10d2b2315d872e63e325faffe846fa0f2849907))
+* 互换详情/生命周期事件概览：操作时间展示不完整 ([9d545a2](https://10.1.2.7/visual-fe/swap-modules/commits/9d545a2d4ec8b61c2a122d399e981b5522b8cf65))
+* 互换详情/ab互换/多空互换：标的信息中展示错误 ([ca686f4](https://10.1.2.7/visual-fe/swap-modules/commits/ca686f4b3b3e581a0bfec835de4e5d4a630e4906))
+* 互换修改交易要素审批：修改交易要素详情中存在金额保留四位小数，且数值展示与单位不一致 ([c715305](https://10.1.2.7/visual-fe/swap-modules/commits/c715305c3dfd7b15b4fcb2cf3ca199735ca52be4))
+* 获取支付金额 总是一样的值 ([f638f6e](https://10.1.2.7/visual-fe/swap-modules/commits/f638f6e09ac0643e3f02e378cab3c3bdafa8bfe9))
+* 结算生命周期-总实现股息金额title修改 ([743776e](https://10.1.2.7/visual-fe/swap-modules/commits/743776e7d7aaa9d248718d57eed8641c8bf220bb))
+* 解决标的信息模块展示报错 ([ed9e904](https://10.1.2.7/visual-fe/swap-modules/commits/ed9e9049083ea34e1ae37c0337b1fdd695dbab96))
+* 解决互换 book 时回车触发表单验证 ([1d71bcd](https://10.1.2.7/visual-fe/swap-modules/commits/1d71bcd055f4fb6bcd0749f348bcb2cee6089b6e))
+* 解决列表相关bug ([56acfc6](https://10.1.2.7/visual-fe/swap-modules/commits/56acfc6bb32d871e4a4bb0c346eebd1797214e1c))
+* 解决批量生成卡死 ([6f32cc6](https://10.1.2.7/visual-fe/swap-modules/commits/6f32cc66da87b3757418c7c09802a5e7e4242bac))
+* 金额字段保留两位小数错误 ([8e6349c](https://10.1.2.7/visual-fe/swap-modules/commits/8e6349cd0bb103a2d1ac88385af1cac9736909a9))
+* 另存为增加默认值 & 提交按钮增加 loading ([3f50684](https://10.1.2.7/visual-fe/swap-modules/commits/3f506846112ca42e63858a09aa956ae497f4678a))
+* 名义数量不跟期初名义数量保持联动 ([e729032](https://10.1.2.7/visual-fe/swap-modules/commits/e7290323912288195f653f1f81c203952b373346))
+* 批量导入标的：标的方向有误时，模板导入成功 && 优化导入传参类型 ([6ed968b](https://10.1.2.7/visual-fe/swap-modules/commits/6ed968b71a20e15c6976ebfda2ce94fd5c291770))
+* 批量生成观察日失败 ([fa223fc](https://10.1.2.7/visual-fe/swap-modules/commits/fa223fc907576ff77158f02a6cab01496a00f04f))
+* 去除修改交易浮动利率弹窗多余按钮 ([b233e9f](https://10.1.2.7/visual-fe/swap-modules/commits/b233e9fd04d5c63f404b4af1f27e2ec308fb6707))
+* 删除【字段过长则自动收缩的提示】 ([4f0ae47](https://10.1.2.7/visual-fe/swap-modules/commits/4f0ae47b1e32810c0d415619e987abdcb74dbbaa))
+* 生命周期-多头非指增结构：结算实现权益收益.增强和结算实现合约权益收益.增强字段 ([fe602e3](https://10.1.2.7/visual-fe/swap-modules/commits/fe602e37b2141e76ffe9d2f988ebf15554c815cb))
+* 生命周期-提前平仓增加名义数量字段 ([7600251](https://10.1.2.7/visual-fe/swap-modules/commits/7600251449289ab21c294f7376d97d3f3903f1a2))
+* 生命周期概率按照时间降序 ([612d0f9](https://10.1.2.7/visual-fe/swap-modules/commits/612d0f98d0cbe5f48c4b2726215056d2bfd26985))
+* 生命周期事件概览,开仓事件有详情、撤销按钮 ([02e39c9](https://10.1.2.7/visual-fe/swap-modules/commits/02e39c918d8a88de8878e925524878e71e6bc27c))
+* 生命周期事件概览：缺少记录撤销状态的功能 ([9a76faa](https://10.1.2.7/visual-fe/swap-modules/commits/9a76faa206b0da2291886b1debdf708f42cd9636))
+* 收益互换保证金管理/查看明细：[合约编号]不支持排序功能 ([21170f1](https://10.1.2.7/visual-fe/swap-modules/commits/21170f1d04118368b2d3d4e394c3e5076cbec1f6))
+* 首行作用起始日固定为 起始日 ([7e1443d](https://10.1.2.7/visual-fe/swap-modules/commits/7e1443d7aea829420ea42d36b8278ed7eaae90d9))
+* 提前终止/到期结算窗口单位股息字段、实现权益收益.股息字段小数位限制有误 ([26f64fd](https://10.1.2.7/visual-fe/swap-modules/commits/26f64fd306452d2df40d5e3c066dd9c910ff5388))
+* 提前终止结算等相关 bug ([89a7310](https://10.1.2.7/visual-fe/swap-modules/commits/89a7310f50166ae1f2c23ca697d4e7c0c25e5c06))
+* 完善判断逻辑 ([4b39e05](https://10.1.2.7/visual-fe/swap-modules/commits/4b39e05da30c1074607d712061102900dc284da1))
+* 修复 修改交易要素 传值错误 ([a1d27ff](https://10.1.2.7/visual-fe/swap-modules/commits/a1d27ff9c7329b4c93c1b4132adc9c663287cb6b))
+* 修复 修改交易要素 数据转换错误 ([b566742](https://10.1.2.7/visual-fe/swap-modules/commits/b566742ad05b0ad51883d0fb2ce0c4b60fc342c4))
+* 修复薄记[交易对手SAC编号]与客户的主协议编号不匹配 ([f3ef645](https://10.1.2.7/visual-fe/swap-modules/commits/f3ef645ea69a1f71a50217894f581c9701d36ae5))
+* 修复编辑标的物信息，部分字段为空和第一行标的方向变空头的问题 ([17e6d88](https://10.1.2.7/visual-fe/swap-modules/commits/17e6d88fc3ec8371740b297b866acec9001f57b2))
+* 修复盯市基准展示为英文 ([65be383](https://10.1.2.7/visual-fe/swap-modules/commits/65be3836338e1bf776bf3fb41c331b17627a6c80))
+* 修复浮动利率 批量生成观察日后的bug ([bf6015c](https://10.1.2.7/visual-fe/swap-modules/commits/bf6015c779f5ecdd1549d5771c8655e9caa74871))
+* 修复浮动利率生成观察日错误 ([a342446](https://10.1.2.7/visual-fe/swap-modules/commits/a3424464ae995fa1dea1d74c9c7fcda4f199e17f))
+* 修复合约编号空格没有 trim ([bbc816a](https://10.1.2.7/visual-fe/swap-modules/commits/bbc816a38b5545a68f75f47bedf9a4e05d29471b))
+* 修复互换簿记：[多头约定固定利率]缺少前端必填校验和标识 ([f07f749](https://10.1.2.7/visual-fe/swap-modules/commits/f07f749eb48fb13701bf887da8ccd8cbd5a6148b))
+* 修复互换簿记/空头互换：查看约定浮动利率可以编辑数据 ([8b7c868](https://10.1.2.7/visual-fe/swap-modules/commits/8b7c8689ea79a41a1cfbf30f7f2a336ad850d149))
+* 修复互换簿记相关bug ([583eec3](https://10.1.2.7/visual-fe/swap-modules/commits/583eec3d88b05f4755833dc785d518ed5ea8ae78))
+* 修复互换持仓/结算/提前终止：[支付日期]缺少默认值，部分字段缺少必填标识 ([7b5e597](https://10.1.2.7/visual-fe/swap-modules/commits/7b5e5972fd143a2c6d8ec38985fceb5b82be5ef4))
+* 修复互换持仓/提前终止：[平仓日期]可以选择当天之后的日期 ([dd3cd6c](https://10.1.2.7/visual-fe/swap-modules/commits/dd3cd6cce0d198c98cbc0a37e6da0c6e94c90b2d))
+* 修复互换持仓/提前终止：[平仓数量][平仓单位股息]不可填写0，为空时提示信息有误 ([567d17a](https://10.1.2.7/visual-fe/swap-modules/commits/567d17a00df6b31d7907b8b3a8f6b9bc057b534a))
+* 修复交易详情，交易对手名称和SAC编号缺失问题 ([dde83a2](https://10.1.2.7/visual-fe/swap-modules/commits/dde83a284467e580f5dde816b018972910cbadad))
+* 修复空头和ab时 批量生成观察日失效 ([b1cb6ec](https://10.1.2.7/visual-fe/swap-modules/commits/b1cb6ec2f78bb34ab4a384f45ae79620feea3559))
+* 修复批量观察后新增观察区间，作用起始日不等于上一个作用截止日+1 ([0f454c9](https://10.1.2.7/visual-fe/swap-modules/commits/0f454c95ff7f9b28706c08f5058591688da2ad0a))
+* 修复批量观察日后 添加数据 起始日为空 ([6fcfad9](https://10.1.2.7/visual-fe/swap-modules/commits/6fcfad995459fafa2f5babd58770c80c5b4a55f3))
+* 修复批量生成观察区间后新增观察区间作用截止日错误 ([b4c6674](https://10.1.2.7/visual-fe/swap-modules/commits/b4c66744b26926f027c341e04f7f7299a7fb306c))
+* 修复批量生成观察日的最后一行观察区间不可删除 ([829008c](https://10.1.2.7/visual-fe/swap-modules/commits/829008c64d914a300432fe1962d5cabe3d02550c))
+* 修复取消后 约定浮动利率依然显示之前的数据 ([41ad1c0](https://10.1.2.7/visual-fe/swap-modules/commits/41ad1c08021bc617c62f03df1d0b94ab4637995e))
+* 修复收益互换合约信息支持多选 ([7b3bbfb](https://10.1.2.7/visual-fe/swap-modules/commits/7b3bbfb8e9aa40f2273231b055c0b7a33a585844))
+* 修复总权益收益 为负数时显示为0 ([f9c0871](https://10.1.2.7/visual-fe/swap-modules/commits/f9c0871ed6fc8b33d497aaaadff9419da3e232e3))
+* 修复ab框多头方向标的不支持编辑 ([3e4e4f0](https://10.1.2.7/visual-fe/swap-modules/commits/3e4e4f0aa5b370033082d7caffd5c293086eeb17))
+* 修改多头指增缺失字段 ([3aefe37](https://10.1.2.7/visual-fe/swap-modules/commits/3aefe37e5db4ecaa8578b0459a431875aaab8663))
+* 修改估值报告查询类型为数组 类型支持选择多个合约编号 ([841da44](https://10.1.2.7/visual-fe/swap-modules/commits/841da44b504e20d180054a2ac333c074575f662b))
+* 修改观察生命周期 备注 ([d7fadc1](https://10.1.2.7/visual-fe/swap-modules/commits/d7fadc1dfd11344ef5fbf8bbfad13bc31bbf01e2))
+* 修改互换详情的标的物信息的label ([e287f57](https://10.1.2.7/visual-fe/swap-modules/commits/e287f57aa6ae6fbb16a4d954c6a43803039c3ac5))
+* 修改交易要素：不能影响到标的信息的支付/收取方向 && 不允许修改标的方向 ([a975ea6](https://10.1.2.7/visual-fe/swap-modules/commits/a975ea681f7d276a77551cde01f1ddbe47fe4564))
+* 修改交易要素不修改时合约期初名义本金额变化 ([2483e9d](https://10.1.2.7/visual-fe/swap-modules/commits/2483e9d6426a22109123431893377d2a0de99e1b))
+* 修改交易要素是否指增不可修改 ([e25d463](https://10.1.2.7/visual-fe/swap-modules/commits/e25d4635e60f1ce3520d71fa94458adfb967bf08))
+* 修改交易要素增加 生命周期备注 ([b05b036](https://10.1.2.7/visual-fe/swap-modules/commits/b05b0360610f12587bb4d631ee10b011351e3a42))
+* 修改交易要素增加标的名义数量 ([e0f3c5d](https://10.1.2.7/visual-fe/swap-modules/commits/e0f3c5d772e00383ae938b972975f354be94d817))
+* 修改交易要素增加标的时 执行失败 ([ded3904](https://10.1.2.7/visual-fe/swap-modules/commits/ded3904fd326579997a504f1d6760bf7ef3d5e02))
+* 修改日期 添加默认值 ([888ca15](https://10.1.2.7/visual-fe/swap-modules/commits/888ca15ca4a5e46c808272f8f2641227cd75250a))
+* 修改文案 ([a307c8b](https://10.1.2.7/visual-fe/swap-modules/commits/a307c8b64d62cf364bb553410ecb383ae51a190d))
+* 修改细节 ([5526163](https://10.1.2.7/visual-fe/swap-modules/commits/55261635a8f9ea72f548af8950a5946d1c1d3813))
+* 修改详情窗口未新增[修改日期]字段 & 修改初始预付金字段修改 ([4d4c4bf](https://10.1.2.7/visual-fe/swap-modules/commits/4d4c4bf9320f5bb05a7baf1eded388137301fe0e))
+* 约定浮动利率提示：计息截止日 改为 利率收益计息截止日 ([f9cbd5e](https://10.1.2.7/visual-fe/swap-modules/commits/f9cbd5ecb0e4def31d8981495730af8e9b651d10))
+* 增加生命周期详情 ([c79b680](https://10.1.2.7/visual-fe/swap-modules/commits/c79b6802def813b4a4f9a52dec7bce638db75dd7))
+* 增加增强收益率 警告 修改显示问题 ([71594ce](https://10.1.2.7/visual-fe/swap-modules/commits/71594cee475182330a7bd577ad00913a4b49208f))
+* 增加key值 ([53ff82f](https://10.1.2.7/visual-fe/swap-modules/commits/53ff82fac2236face452daa1f3e3f92e0a06a7a0))
+* 增强收益率-首行观察日缺少默认值“等于起始日” ([f095927](https://10.1.2.7/visual-fe/swap-modules/commits/f095927dffff44e6bfb1d80582a65d334004307a))
+* 增强收益率在多头类型并且指增为否时显示 ([4edf489](https://10.1.2.7/visual-fe/swap-modules/commits/4edf489d8eb3a23ee8a51ff958765889cbab22b4))
+* 增强收益率在多头指增显示 ([264d85c](https://10.1.2.7/visual-fe/swap-modules/commits/264d85c6fe68c493231bd409f81dc8851b7a63d1))
+* 重置事件触发多头约定浮动利率弹窗重置 ([ac98ecc](https://10.1.2.7/visual-fe/swap-modules/commits/ac98eccd39acadc764f31840e5aecdb8975b87df))
+* 注释 ([fd99ab0](https://10.1.2.7/visual-fe/swap-modules/commits/fd99ab0c3cc8493cd91b126f124c31e1d3f7a06f))
+* ab互换/提前终止：合约平仓名义本金额,合约平仓后名义本金额有误 ([b785945](https://10.1.2.7/visual-fe/swap-modules/commits/b785945ccb6ec0ae5075e000f5a9aa6c3c0d4668))
+* ab款多头计息基准不可修改 ([a9c7d3a](https://10.1.2.7/visual-fe/swap-modules/commits/a9c7d3acbdada6248c0fd0c869d34b8d78e2a063))
+* format ([5fb8a3b](https://10.1.2.7/visual-fe/swap-modules/commits/5fb8a3b348705cbaf893837d79c75069eaef776e))
+* format code ([106963e](https://10.1.2.7/visual-fe/swap-modules/commits/106963e932a020e57f78427636d48512eaf90697))
+* format code ([fa10e99](https://10.1.2.7/visual-fe/swap-modules/commits/fa10e991f6c8e4e60296b09c883faeeb019755c5))
+* mege origin/master 合并主分支代码 ([0d78431](https://10.1.2.7/visual-fe/swap-modules/commits/0d78431b8914d20fd315b23b2ce4fa14bfe88021))
+* merge master into fix/SWHY3 ([92d4ec5](https://10.1.2.7/visual-fe/swap-modules/commits/92d4ec5319bd8460435a30813344155e4b74bdcd))
+* preserve 联动存在性能问题 ([983db3a](https://10.1.2.7/visual-fe/swap-modules/commits/983db3ab8b8c3a8546315fb13cc53686263a0b3d))
+* refine label ([0aab8c2](https://10.1.2.7/visual-fe/swap-modules/commits/0aab8c2573b3524bdb411c318a810309ac55a96b))
+* swhy3 170 ([1347237](https://10.1.2.7/visual-fe/swap-modules/commits/1347237413d4625a2f1a16bfeec516aa62eec480))
+
+
+### Features
+
+* 「前端」提前终止/到期结算/期间收支，增加「支付方式」 ([877808d](https://10.1.2.7/visual-fe/swap-modules/commits/877808dc7807bf38119c2cdb6b16d80f23238889))
+* 【前端】保证金管理界面改造，位置变更 ([904c241](https://10.1.2.7/visual-fe/swap-modules/commits/904c24121a8f7c006ac8e00854e5131507eb91d0))
+* 【前端】标的估值/互换合约信息改造 ([0b2403d](https://10.1.2.7/visual-fe/swap-modules/commits/0b2403da1e96be19d4341776ce8bb0af8e3aca05))
+* 【前端】查看生命周期事件详情改造-期间收支 ([469ff82](https://10.1.2.7/visual-fe/swap-modules/commits/469ff827b8c30edc4e58dfbe32f3b123875528e4))
+* 【前端】估值报告新增字段&顺序调整 ([8572456](https://10.1.2.7/visual-fe/swap-modules/commits/85724561467fa5975b30be10fa1939493a3eb657))
+* 【前端】互换簿记/持仓/修改生命周期事件页面-增加利率收益计息截止日 ([8fb42b0](https://10.1.2.7/visual-fe/swap-modules/commits/8fb42b06b8423d3ac28a4aa5691d9b20e8e30b27))
+* 【前端】互换簿记/修改/持仓页面要素修改 ([00915d3](https://10.1.2.7/visual-fe/swap-modules/commits/00915d3f0976234d040429727738a85c1e3f4aab))
+* 【前端】互换合约删除「交易对手资金账户代码」字段 & 查询交易对手接口变更 ([a8c15be](https://10.1.2.7/visual-fe/swap-modules/commits/a8c15be9793b28a27dbc8fabd7bae8b0828f1344))
+* 【前端】收益互换簿记改造（保证金相关保障比例校验） ([84c0ac4](https://10.1.2.7/visual-fe/swap-modules/commits/84c0ac4a40132bd7fd8840c489efe069d3e81196))
+* 【前端】提前终止、结算生命周期 [支付日期] 增加默认值 ([692815a](https://10.1.2.7/visual-fe/swap-modules/commits/692815a66ee2c58f2c5147d194b854c623ce6589))
+* 【前端】提前终止校验修改 ([41e2fcf](https://10.1.2.7/visual-fe/swap-modules/commits/41e2fcf0d4da16b6ae1e449e19e187898221ad42))
+* 百分比字段尾部增加单位 ([a8e770c](https://10.1.2.7/visual-fe/swap-modules/commits/a8e770cc8cfe27d3e01b1da3aaa310e76c5d712c))
+* 保证金参数校验修改 ([d27c39c](https://10.1.2.7/visual-fe/swap-modules/commits/d27c39c45f5be50386d88375d780ce44bf60259a))
+* 保证金管理页面 ([20d3ec4](https://10.1.2.7/visual-fe/swap-modules/commits/20d3ec4f494ea3bdb0922504bdaa6018de70efc3))
+* 保证金管理页面 ([61e0ebe](https://10.1.2.7/visual-fe/swap-modules/commits/61e0ebe4fe2a499e0d2352755727df6feaad207f))
+* 保证金页面修改&联调 ([511eb06](https://10.1.2.7/visual-fe/swap-modules/commits/511eb0698648544bf9ca73a69adf34a954b82873))
+* 保证金增加校验 & 默认值修改 ([76affa1](https://10.1.2.7/visual-fe/swap-modules/commits/76affa1238c67e72d18da05e15d9e61976fbe946))
+* 标的估值、合约信息金额展示支持跨境处理 ([0824765](https://10.1.2.7/visual-fe/swap-modules/commits/0824765863714da9071fe93679485f711a1389e9))
+* 标的估值字段修改 ([9fc370d](https://10.1.2.7/visual-fe/swap-modules/commits/9fc370dd5d24ef35c45e68a42638637f4b5d5f49))
+* 表格优化：调整表格间距，保持界面上下对齐，表格内一个字段一行 ([c32c47f](https://10.1.2.7/visual-fe/swap-modules/commits/c32c47f14a31a01129e9be778c0c1914fec3a216))
+* 表格UI优化 ([17db2c8](https://10.1.2.7/visual-fe/swap-modules/commits/17db2c87903220d4268fa64829c15e06fd86f9ca))
+* 簿记/持仓/修改交易要素 页面增加【业务类型】【初始预付金支付日】 ([84a3b0c](https://10.1.2.7/visual-fe/swap-modules/commits/84a3b0c3dc73175a31b097774dac403526598132))
+* 簿记模板开发 ([cf16f24](https://10.1.2.7/visual-fe/swap-modules/commits/cf16f246f269ea3e321545fc356c060ea6f55c98))
+* 初始预付金调整和查看页面 ([f2d90bd](https://10.1.2.7/visual-fe/swap-modules/commits/f2d90bd9345e677cddee7601d8cd7fe6b07dbd82))
+* 初始预付金率在修改交易要素中不与预付金支付方向、初始保障金联动 ([ee69f00](https://10.1.2.7/visual-fe/swap-modules/commits/ee69f0074bd2488c6f397293decdfb226ba604e2))
+* 估值报告 ui 调整 ([5af0a80](https://10.1.2.7/visual-fe/swap-modules/commits/5af0a80774370691b983dca91b148138a289b832))
+* 合并多头与空头的追加后/提取前/提取后保障比例 ([33d764c](https://10.1.2.7/visual-fe/swap-modules/commits/33d764ceaff3d10277ec3b1c7f412230901338ac))
+* 合约估值部分字段更改 ([20adf44](https://10.1.2.7/visual-fe/swap-modules/commits/20adf44e2c928b30418bc1c23352010141fd24ca))
+* 互换页面字段统一 ([2bad629](https://10.1.2.7/visual-fe/swap-modules/commits/2bad629639fc735b9f1d7116ac8022852c95f01b))
+* 结算生命周期-结算日期默认值为 期末观察日 & 平仓生命周期增加校验：总平仓数量需大于0 ([58e714a](https://10.1.2.7/visual-fe/swap-modules/commits/58e714ad71a8e1343f5e90ccee7d90347597f054))
+* 金额和百分比在报告中全部 向右靠齐 ([7e6f8d7](https://10.1.2.7/visual-fe/swap-modules/commits/7e6f8d7a5cfa67082f000952900ef449b46fa2f9))
+* 金额输入不限制（10位）展示两位，除支付金额、总利率收益金额/总权益收益金额/平仓金额/结算金额 ([a9a3696](https://10.1.2.7/visual-fe/swap-modules/commits/a9a3696038ab91b85ae46fd4ffab3ef4c51fa276))
+* 跨境货币功能开发 ([a38292b](https://10.1.2.7/visual-fe/swap-modules/commits/a38292bca3320df7a7d63c7730cdf57c55bc2dab))
+* 联调修改 ([108e3ec](https://10.1.2.7/visual-fe/swap-modules/commits/108e3ec766cd46ee39a701b6bd322ee010e8a37f))
+* 期间收支利率收益改为期间收支 & 期间收支字段增加浮窗 ([96c65e6](https://10.1.2.7/visual-fe/swap-modules/commits/96c65e6194b0cfa9fbaba395d034ea6c96869a66))
+* 生命周期改造- 提前终止 & 到期结算 - 查看 & 执行 ([ef79277](https://10.1.2.7/visual-fe/swap-modules/commits/ef79277049a6d4832522a36b640cb5077ada37ce))
+* 生命周期执行改造-期间收支 ([3071d72](https://10.1.2.7/visual-fe/swap-modules/commits/3071d72f9bf01eea1913942a1e6fdc5b782d2415))
+* 实现基本费率tip更改：365改为年化天数 ([cf4c0bb](https://10.1.2.7/visual-fe/swap-modules/commits/cf4c0bb6d26f76cef01abae0e146924395617589))
+* 数字输入输入不做四舍五入，金额输入不做，输出保留两位 ([a16c6a2](https://10.1.2.7/visual-fe/swap-modules/commits/a16c6a2f3bdb2ba4098cba37ceeceb4fa9b5aa3a))
+* 提前终止/到期结算-权益收益拆分为股息、浮动、增强 ([15726ec](https://10.1.2.7/visual-fe/swap-modules/commits/15726ecb30ded6750ca5180e432c51aad34dfa78))
+* 完善逻辑 ([b2287cb](https://10.1.2.7/visual-fe/swap-modules/commits/b2287cb58918aa505acf45a1e73f4430efbd37b6))
+* 行情字段改为显示四位小数 ([a806650](https://10.1.2.7/visual-fe/swap-modules/commits/a806650cf6a41e4411939562e543b0e56662dc32))
+* 修改保障金参数窗口，修改多头盯市基准时会清空空头盯市基准 ([e8cc752](https://10.1.2.7/visual-fe/swap-modules/commits/e8cc75200e25c43e0d56b867c846386616720331))
+* 增加期初合约初始保障金额 修复 提交未调用接口 ([45d07c7](https://10.1.2.7/visual-fe/swap-modules/commits/45d07c7478fa2fd9ef75b48cd42930b7913f4cfa))
+* 增加修改审批和结算审批 ([3f2ec38](https://10.1.2.7/visual-fe/swap-modules/commits/3f2ec382f39c4bdf98280ccf65d75552d213b979))
+* 增加一些功能 ([7089a0d](https://10.1.2.7/visual-fe/swap-modules/commits/7089a0deb6ef804e910de6fb05acc6f42f88a77d))
+* 折算率放到保证金参数中 & 页面标题 UI 优化 ([d8bcc5c](https://10.1.2.7/visual-fe/swap-modules/commits/d8bcc5c6294d3de921c69dd95a1b2bde4999b5d1))
+* ab款改造 ([eb21d36](https://10.1.2.7/visual-fe/swap-modules/commits/eb21d361945701fbc8d29ea167a0b0164a846567))
+* ab款下平仓数量跨行联动 ([ef76c80](https://10.1.2.7/visual-fe/swap-modules/commits/ef76c80e1ebb555ef6fd3da026cdd1640c2c22cb))
+* **io-container:** 支持表格多行之间的计算联动 ([a425928](https://10.1.2.7/visual-fe/swap-modules/commits/a425928bdd9519d7a09852a4a5beab7d749397ce))
+* 标的估值页面IOItem&容器集成 ([7ef7446](https://10.1.2.7/visual-fe/swap-modules/commits/7ef7446ed9c360e0716c5b7f0b82b17b83b198da))
+* 标的物信息联动相关内容 ([d9faeb7](https://10.1.2.7/visual-fe/swap-modules/commits/d9faeb71513cab52dabf15b34b67833a34b316dd))
+* 簿记页面添加 备注 删除一些console ([e7e2332](https://10.1.2.7/visual-fe/swap-modules/commits/e7e2332dd1e1701552095301ec7b5a6e159dae3a))
+* 除标的物代码联动 的1-30 ([64b53f2](https://10.1.2.7/visual-fe/swap-modules/commits/64b53f27ff8eec7461fad1af5723f564f17898db))
+* 除标的物代码联动 的30-64 ([f906838](https://10.1.2.7/visual-fe/swap-modules/commits/f906838b1fe8af28ca7623d5196ef8b0042ab408))
+* 多头浮动利率 增加批量生成 ([716dd29](https://10.1.2.7/visual-fe/swap-modules/commits/716dd297d5adfa8559ba80c0f57f95282448a786))
+* 根据字段名生成不同的valueType ([0b3571a](https://10.1.2.7/visual-fe/swap-modules/commits/0b3571ae27ed164f6439cae5cae54c2b11e7dbc0))
+* 观察生命周期 ([5cc1056](https://10.1.2.7/visual-fe/swap-modules/commits/5cc105612ebb40304b2893fc7fccc91eaef0da56))
+* 合约估值容器开发 ([4a6e000](https://10.1.2.7/visual-fe/swap-modules/commits/4a6e00002ea4570b3e634748761e76efecb03d0c))
+* 合约信息联调 ([fd62d0c](https://10.1.2.7/visual-fe/swap-modules/commits/fd62d0c157eccaf8e421471ce93fdde0afd40a61))
+* 互换合约详情初步提交 ([a330cbc](https://10.1.2.7/visual-fe/swap-modules/commits/a330cbc3316b133e5cdbc988bdb9cc2176ac277f))
+* 将5个观察生命周期 集成到一个组件中 ([61d51e1](https://10.1.2.7/visual-fe/swap-modules/commits/61d51e128462a04d3971cf5198fc32c67d8ad1df))
+* 接口联调 ([96af6ff](https://10.1.2.7/visual-fe/swap-modules/commits/96af6ff3c962d5aa68d5b59f2b0693c248fcd4ce))
+* 接口mock ([60a2e28](https://10.1.2.7/visual-fe/swap-modules/commits/60a2e28933c70d8ad632250bcedf2c0771bde1c2))
+* 结算&平仓集成到page，待联调 ([45de297](https://10.1.2.7/visual-fe/swap-modules/commits/45de297d7f4854cb62bb6a28871c4c83c148911c))
+* 类型定义使用枚举 ([5a42ce6](https://10.1.2.7/visual-fe/swap-modules/commits/5a42ce6f192e8a2c64956b6469bc537c148bd40a))
+* 列表增加表头固定 ([1be40e5](https://10.1.2.7/visual-fe/swap-modules/commits/1be40e568670a1f6a6832d4c52b314751b07aa7b))
+* 列表io-item width设置 ([037f414](https://10.1.2.7/visual-fe/swap-modules/commits/037f414d2eed1d90aba3c800be68a851afe9e8ee))
+* 平仓AB款计算之后决定是否弹框&其他设计修改 ([6c14d52](https://10.1.2.7/visual-fe/swap-modules/commits/6c14d520befb55205e63bc97bebc73a0634185c3))
+* 起始日 期末观察日 结算日 增加排序 ([1210b43](https://10.1.2.7/visual-fe/swap-modules/commits/1210b43824d256209698b5f490a1e5c054309eb3))
+* 删除 table 初始化方法 ([e9bc55d](https://10.1.2.7/visual-fe/swap-modules/commits/e9bc55d44a641535eeca4ac95490d5b7c95fafb2))
+* 生命周期demo ([4368ef0](https://10.1.2.7/visual-fe/swap-modules/commits/4368ef08f5e543156c59be6d8b9a8d91b7bf215b))
+* 添加跳转 ([61c635c](https://10.1.2.7/visual-fe/swap-modules/commits/61c635c9006bb1ca3d1494bd4585000f5364456e))
+* 完成标的物信息第一层字段的 demos 开发 ([21fc2bc](https://10.1.2.7/visual-fe/swap-modules/commits/21fc2bcc23bfe4eee15866e31d9e27dab6282e9a))
+* 限制&解除限制集成 ([14bf48a](https://10.1.2.7/visual-fe/swap-modules/commits/14bf48a11ae431a3bb48cef6535c950f3b150f85))
+* 小驼峰 ([f384b35](https://10.1.2.7/visual-fe/swap-modules/commits/f384b356b82deac129ad1dee27c074a6d0524db3))
+* 修复部分字段数据未展示 ([bef9db4](https://10.1.2.7/visual-fe/swap-modules/commits/bef9db47cac394f19cce00cf9d16965c82f1b386))
+* 修改代码 ([0d78b34](https://10.1.2.7/visual-fe/swap-modules/commits/0d78b345f027e2e1b40a406c4d2b8d0a10c0de3d))
+* 修改生命周期事件概览 ([5098681](https://10.1.2.7/visual-fe/swap-modules/commits/5098681c4c338261e344e73604b6a41fa9e6520e))
+* 增加 更改生命周期详情 ([78224c4](https://10.1.2.7/visual-fe/swap-modules/commits/78224c471a419230b35e4df67be04c49dc934caf))
+* 增加 生命周期详情 （除观察/修改） ([f0804dc](https://10.1.2.7/visual-fe/swap-modules/commits/f0804dc4078d3017c9d8a96ba14ada99fe2ac5dc))
+* 增加骨架屏 ([fe31a19](https://10.1.2.7/visual-fe/swap-modules/commits/fe31a1976a739a479f751901c2a51e24f0297092))
+* 增加观察生命周期详情 ([00cead7](https://10.1.2.7/visual-fe/swap-modules/commits/00cead73ed59875381561abb611bdaa23ae25144))
+* 增加集成期间收支生命周期 ([33b393e](https://10.1.2.7/visual-fe/swap-modules/commits/33b393eaee83282145be735ee90478e71c048803))
+* 增加删除提示 更改 swapFieldEnums 导出路径 ([2cf6572](https://10.1.2.7/visual-fe/swap-modules/commits/2cf65721a50adf1759afb7f27352e4aa55733062))
+* 增加修改生命周期 ([b2fe248](https://10.1.2.7/visual-fe/swap-modules/commits/b2fe2483ba4c095856f223daff3406ff1b72ffe1))
+* 增加修改生命周期 ([efcf3ee](https://10.1.2.7/visual-fe/swap-modules/commits/efcf3ee3e440c8217b652f4c91d33d32972b5669))
+* 支持 io-form-item-wrapper ([a71b74c](https://10.1.2.7/visual-fe/swap-modules/commits/a71b74c01fd98b9b708c03c67ed205545889516f))
+* 支持 io-item 组件 ([09e238c](https://10.1.2.7/visual-fe/swap-modules/commits/09e238ccc51922a90205a148b07ac4e19461100b))
+* 支持 IOTableItem option type 下可以自定义 编辑时的 actions ([c248ee4](https://10.1.2.7/visual-fe/swap-modules/commits/c248ee4c2366f5c27fad3ecf6208cba2bd7331ef))
+* 支持容器服务接口 ([2a6297b](https://10.1.2.7/visual-fe/swap-modules/commits/2a6297b05bb115821e1ee27e25ddd326f0b16238))
+* aaaa ([7152b59](https://10.1.2.7/visual-fe/swap-modules/commits/7152b597af083a93e5fdf8df92c41deb4241e345))
+* format ([5c9d6a2](https://10.1.2.7/visual-fe/swap-modules/commits/5c9d6a297cf0b07f56973f02c7d8267f371b4d78))
+* format ([2288372](https://10.1.2.7/visual-fe/swap-modules/commits/2288372566c48bf9ce5a8d7f72b3cc0730d5ce6c))
+* formatPercen改造 ([71adb3f](https://10.1.2.7/visual-fe/swap-modules/commits/71adb3fa60260e230d298ee98f55a167814c0d5c))
+* percent-raw改造 ([bebdaa1](https://10.1.2.7/visual-fe/swap-modules/commits/bebdaa106dacf1cae83133783565a1f5261c13eb))
+* service mock ([05d05a3](https://10.1.2.7/visual-fe/swap-modules/commits/05d05a39899e075b606f11f34781bc3b7b2e53f9))
+
+
+
+
+
+## [1.17.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.17.0...@ty-swap-modules/fields@1.17.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* 簿记模板设置，更新时间取值错误 ([6257331](https://10.1.2.7/visual-fe/swap-modules/commits/62573314b0dcb7e8ef5b9a6d852c9862bd4aac4e))
+* 另存为增加默认值 & 提交按钮增加 loading ([3f50684](https://10.1.2.7/visual-fe/swap-modules/commits/3f506846112ca42e63858a09aa956ae497f4678a))
+
+
+
+
+
+
+# [1.17.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.16.0...@ty-swap-modules/fields@1.17.0) (2021-06-10)
+
+
+### Features
+
+* 【前端】提前终止校验修改 ([41e2fcf](https://10.1.2.7/visual-fe/swap-modules/commits/41e2fcf0d4da16b6ae1e449e19e187898221ad42))
+
+
+
+
+
+
+# [1.16.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.15.1...@ty-swap-modules/fields@1.16.0) (2021-06-08)
+
+
+### Features
+
+* 簿记模板开发 ([cf16f24](https://10.1.2.7/visual-fe/swap-modules/commits/cf16f246f269ea3e321545fc356c060ea6f55c98))
+
+
+
+
+
+
+## [1.15.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.15.1...@ty-swap-modules/fields@1.15.2) (2021-06-04)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+## [1.15.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.15.0...@ty-swap-modules/fields@1.15.1) (2021-06-02)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+# [1.15.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.14.5...@ty-swap-modules/fields@1.15.0) (2021-06-01)
+
+
+### Features
+
+* 【前端】估值报告新增字段&顺序调整 ([8572456](https://10.1.2.7/visual-fe/swap-modules/commits/85724561467fa5975b30be10fa1939493a3eb657))
+
+
+
+
+
+
+## [1.14.5](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.14.4...@ty-swap-modules/fields@1.14.5) (2021-05-26)
+
+
+### Bug Fixes
+
+* ab互换/提前终止：合约平仓名义本金额,合约平仓后名义本金额有误 ([b785945](https://10.1.2.7/visual-fe/swap-modules/commits/b785945ccb6ec0ae5075e000f5a9aa6c3c0d4668))
+
+
+
+
+
+
+## [1.14.4](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.14.3...@ty-swap-modules/fields@1.14.4) (2021-05-26)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+## [1.14.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.14.2...@ty-swap-modules/fields@1.14.3) (2021-05-25)
+
+
+### Bug Fixes
+
+* 修改交易要素：不能影响到标的信息的支付/收取方向 && 不允许修改标的方向 ([a975ea6](https://10.1.2.7/visual-fe/swap-modules/commits/a975ea681f7d276a77551cde01f1ddbe47fe4564))
+
+
+
+
+
+
+## [1.14.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.14.1...@ty-swap-modules/fields@1.14.2) (2021-05-25)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+## [1.14.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.14.0...@ty-swap-modules/fields@1.14.1) (2021-05-24)
+
+
+### Bug Fixes
+
+* 批量导入标的：标的方向有误时，模板导入成功 && 优化导入传参类型 ([6ed968b](https://10.1.2.7/visual-fe/swap-modules/commits/6ed968b71a20e15c6976ebfda2ce94fd5c291770))
+* 提前终止/到期结算窗口单位股息字段、实现权益收益.股息字段小数位限制有误 ([26f64fd](https://10.1.2.7/visual-fe/swap-modules/commits/26f64fd306452d2df40d5e3c066dd9c910ff5388))
+
+
+
+
+
+
+# [1.14.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.13.0...@ty-swap-modules/fields@1.14.0) (2021-05-21)
+
+
+### Bug Fixes
+
+* 标的估值、合约信息字段 改造（2） ([f49cbe7](https://10.1.2.7/visual-fe/swap-modules/commits/f49cbe7b265ee74925b75b8ae0cb638dc8063645))
+* 删除【字段过长则自动收缩的提示】 ([4f0ae47](https://10.1.2.7/visual-fe/swap-modules/commits/4f0ae47b1e32810c0d415619e987abdcb74dbbaa))
+* 生命周期-多头非指增结构：结算实现权益收益.增强和结算实现合约权益收益.增强字段 ([fe602e3](https://10.1.2.7/visual-fe/swap-modules/commits/fe602e37b2141e76ffe9d2f988ebf15554c815cb))
+* 修改详情窗口未新增[修改日期]字段 & 修改初始预付金字段修改 ([4d4c4bf](https://10.1.2.7/visual-fe/swap-modules/commits/4d4c4bf9320f5bb05a7baf1eded388137301fe0e))
+
+
+### Features
+
+* 估值报告 ui 调整 ([5af0a80](https://10.1.2.7/visual-fe/swap-modules/commits/5af0a80774370691b983dca91b148138a289b832))
+* 实现基本费率tip更改：365改为年化天数 ([cf4c0bb](https://10.1.2.7/visual-fe/swap-modules/commits/cf4c0bb6d26f76cef01abae0e146924395617589))
+* 修改保障金参数窗口，修改多头盯市基准时会清空空头盯市基准 ([e8cc752](https://10.1.2.7/visual-fe/swap-modules/commits/e8cc75200e25c43e0d56b867c846386616720331))
+
+
+
+
+
+
+# [1.13.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.11.0...@ty-swap-modules/fields@1.13.0) (2021-05-20)
+
+
+### Features
+
+* 【前端】标的估值/互换合约信息改造 ([0b2403d](https://10.1.2.7/visual-fe/swap-modules/commits/0b2403da1e96be19d4341776ce8bb0af8e3aca05))
+
+
+
+
+
+
+# [1.12.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.11.0...@ty-swap-modules/fields@1.12.0) (2021-05-19)
+
+
+### Features
+
+* 【前端】标的估值/互换合约信息改造 ([0b2403d](https://10.1.2.7/visual-fe/swap-modules/commits/0b2403da1e96be19d4341776ce8bb0af8e3aca05))
+
+
+
+
+
+
+## [1.11.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.11.0...@ty-swap-modules/fields@1.11.1) (2021-05-18)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+# [1.11.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.10.0...@ty-swap-modules/fields@1.11.0) (2021-05-18)
+
+
+### Features
+
+* 初始预付金调整和查看页面 ([f2d90bd](https://10.1.2.7/visual-fe/swap-modules/commits/f2d90bd9345e677cddee7601d8cd7fe6b07dbd82))
+
+
+
+
+
+
+# [1.10.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.9.0...@ty-swap-modules/fields@1.10.0) (2021-05-13)
+
+
+### Features
+
+* 「前端」提前终止/到期结算/期间收支，增加「支付方式」 ([877808d](https://10.1.2.7/visual-fe/swap-modules/commits/877808dc7807bf38119c2cdb6b16d80f23238889))
+* 【前端】保证金管理界面改造，位置变更 ([904c241](https://10.1.2.7/visual-fe/swap-modules/commits/904c24121a8f7c006ac8e00854e5131507eb91d0))
+* 【前端】互换合约删除「交易对手资金账户代码」字段 & 查询交易对手接口变更 ([a8c15be](https://10.1.2.7/visual-fe/swap-modules/commits/a8c15be9793b28a27dbc8fabd7bae8b0828f1344))
+* 期间收支利率收益改为期间收支 & 期间收支字段增加浮窗 ([96c65e6](https://10.1.2.7/visual-fe/swap-modules/commits/96c65e6194b0cfa9fbaba395d034ea6c96869a66))
+
+
+
+
+
+
+# [1.9.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.8.0...@ty-swap-modules/fields@1.9.0) (2021-05-11)
+
+
+### Features
+
+* 提前终止/到期结算-权益收益拆分为股息、浮动、增强 ([15726ec](https://10.1.2.7/visual-fe/swap-modules/commits/15726ecb30ded6750ca5180e432c51aad34dfa78))
+
+
+
+
+
+
+# [1.8.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.7.1...@ty-swap-modules/fields@1.8.0) (2021-05-10)
+
+
+### Features
+
+* 表格UI优化 ([17db2c8](https://10.1.2.7/visual-fe/swap-modules/commits/17db2c87903220d4268fa64829c15e06fd86f9ca))
+* 簿记/持仓/修改交易要素 页面增加【业务类型】【初始预付金支付日】 ([84a3b0c](https://10.1.2.7/visual-fe/swap-modules/commits/84a3b0c3dc73175a31b097774dac403526598132))
+
+
+
+
+
+
+## [1.7.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.7.0...@ty-swap-modules/fields@1.7.1) (2021-05-06)
+
+
+### Bug Fixes
+
+* 互换标的估值报告：【当日平仓数量】展示为当日平仓价格 ([f0737d2](https://10.1.2.7/visual-fe/swap-modules/commits/f0737d228b61da5f9f7e35c249f10b174f488d79))
+
+
+
+
+
+
+# [1.7.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.6.5...@ty-swap-modules/fields@1.7.0) (2021-04-29)
+
+
+### Bug Fixes
+
+* 【前端】到期结算/提前终止/期间收支利率收益生命周期增加结算要素默认值 ([00de26c](https://10.1.2.7/visual-fe/swap-modules/commits/00de26cafb2ef5fba37dc50fa85fd06ff5edee50))
+
+
+### Features
+
+* 金额和百分比在报告中全部 向右靠齐 ([7e6f8d7](https://10.1.2.7/visual-fe/swap-modules/commits/7e6f8d7a5cfa67082f000952900ef449b46fa2f9))
+
+
+
+
+
+
+## [1.6.5](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.6.1...@ty-swap-modules/fields@1.6.5) (2021-04-27)
+
+
+### Bug Fixes
+
+* 互换持仓/交易详情：合约期初名义本金和录入页面位置展示不一致 ([b6918ae](https://10.1.2.7/visual-fe/swap-modules/commits/b6918ae90cfa1188e15586af7fbc8be8cd7d19e1))
+* 互换持仓/结算：结算日字段与prd实现不一致 ([d8c8b41](https://10.1.2.7/visual-fe/swap-modules/commits/d8c8b41baca6f195a8b8da3341ad1fb27a941834))
+* 互换持仓/结算/提前终止详情：UI问题 ([f7256bd](https://10.1.2.7/visual-fe/swap-modules/commits/f7256bd52b1c5c73cae73c166fb608e3d150e50e))
+* 互换持仓/提前终止/到期结算：基本费用为0时，系统校验为负数 ([2b8d467](https://10.1.2.7/visual-fe/swap-modules/commits/2b8d4672d4e7a545ffaa77c75b09fa909afc3827))
+* 互换持仓/修改保证金：AB互换的【空头盯市基准】缺少联动 & UI优化 ([2407b74](https://10.1.2.7/visual-fe/swap-modules/commits/2407b74afd2fa643abe35bb886c9498581fff846))
+* 金额字段保留两位小数错误 ([8e6349c](https://10.1.2.7/visual-fe/swap-modules/commits/8e6349cd0bb103a2d1ac88385af1cac9736909a9))
+
+
+
+
+
+
+## [1.6.4](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.6.1...@ty-swap-modules/fields@1.6.4) (2021-04-26)
+
+
+### Bug Fixes
+
+* 互换持仓/提前终止/到期结算：基本费用为0时，系统校验为负数 ([2b8d467](https://10.1.2.7/visual-fe/swap-modules/commits/2b8d4672d4e7a545ffaa77c75b09fa909afc3827))
+* 互换持仓/修改保证金：AB互换的【空头盯市基准】缺少联动 & UI优化 ([2407b74](https://10.1.2.7/visual-fe/swap-modules/commits/2407b74afd2fa643abe35bb886c9498581fff846))
+* 金额字段保留两位小数错误 ([8e6349c](https://10.1.2.7/visual-fe/swap-modules/commits/8e6349cd0bb103a2d1ac88385af1cac9736909a9))
+
+
+
+
+
+
+## [1.6.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.6.2...@ty-swap-modules/fields@1.6.3) (2021-04-26)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+## [1.6.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.6.1...@ty-swap-modules/fields@1.6.2) (2021-04-26)
+
+
+### Bug Fixes
+
+* 收益互换合约信息部分字段格式错误 ([2b9f433](https://10.1.2.7/visual-fe/swap-modules/commits/2b9f433d411481fc4319b630db1746f0b82a5875))
+
+
+
+
+
+
+## [1.6.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.6.0...@ty-swap-modules/fields@1.6.1) (2021-04-26)
+
+
+### Bug Fixes
+
+* 互换持仓/到期结算：结算日和支付日期默认值有误 ([690e0d8](https://10.1.2.7/visual-fe/swap-modules/commits/690e0d8adccc26f4cb0ee3b0edc77ce916c3ebb2))
+* 互换持仓/到期结算：结算实现基本费用可以输入负数值，并成功结算 ([c98a2b8](https://10.1.2.7/visual-fe/swap-modules/commits/c98a2b8b8ebe903717f5f57927c4fd9e9ff350c0))
+* 互换持仓/期间收支：期间收支实现合约利率收益(￥)没有乘以交易方向 ([9f689dd](https://10.1.2.7/visual-fe/swap-modules/commits/9f689ddb67e02ba4e1deff46f0f114c2cd878781))
+* 互换修改交易要素审批：修改交易要素详情中存在金额保留四位小数，且数值展示与单位不一致 ([c715305](https://10.1.2.7/visual-fe/swap-modules/commits/c715305c3dfd7b15b4fcb2cf3ca199735ca52be4))
+
+
+
+
+
+
+# [1.6.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.5.1...@ty-swap-modules/fields@1.6.0) (2021-04-23)
+
+
+### Features
+
+* 保证金管理页面 ([20d3ec4](https://10.1.2.7/visual-fe/swap-modules/commits/20d3ec4f494ea3bdb0922504bdaa6018de70efc3))
+* 结算生命周期-结算日期默认值为 期末观察日 & 平仓生命周期增加校验：总平仓数量需大于0 ([58e714a](https://10.1.2.7/visual-fe/swap-modules/commits/58e714ad71a8e1343f5e90ccee7d90347597f054))
+
+
+
+
+
+
+## [1.5.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.5.0...@ty-swap-modules/fields@1.5.1) (2021-04-22)
+
+
+### Bug Fixes
+
+* 互换持仓/到期结算：到期结算详情中缺少字段，且存在错误的事件名称 ([b49f7ee](https://10.1.2.7/visual-fe/swap-modules/commits/b49f7ee9c6bab53fb60e1375e97949a2d3536a2d))
+
+
+
+
+
+
+# [1.5.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.3.0...@ty-swap-modules/fields@1.5.0) (2021-04-21)
+
+
+### Features
+
+* 【前端】查看生命周期事件详情改造-期间收支 ([469ff82](https://10.1.2.7/visual-fe/swap-modules/commits/469ff827b8c30edc4e58dfbe32f3b123875528e4))
+* 保证金参数校验修改 ([d27c39c](https://10.1.2.7/visual-fe/swap-modules/commits/d27c39c45f5be50386d88375d780ce44bf60259a))
+* 生命周期改造- 提前终止 & 到期结算 - 查看 & 执行 ([ef79277](https://10.1.2.7/visual-fe/swap-modules/commits/ef79277049a6d4832522a36b640cb5077ada37ce))
+* 生命周期执行改造-期间收支 ([3071d72](https://10.1.2.7/visual-fe/swap-modules/commits/3071d72f9bf01eea1913942a1e6fdc5b782d2415))
+* 折算率放到保证金参数中 & 页面标题 UI 优化 ([d8bcc5c](https://10.1.2.7/visual-fe/swap-modules/commits/d8bcc5c6294d3de921c69dd95a1b2bde4999b5d1))
+
+
+
+
+
+
+## [1.4.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.4.1...@ty-swap-modules/fields@1.4.2) (2021-04-19)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+## [1.4.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.4.0...@ty-swap-modules/fields@1.4.1) (2021-04-19)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+# [1.4.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.3.0...@ty-swap-modules/fields@1.4.0) (2021-04-19)
+
+
+### Features
+
+* 【前端】查看生命周期事件详情改造-期间收支 ([469ff82](https://10.1.2.7/visual-fe/swap-modules/commits/469ff827b8c30edc4e58dfbe32f3b123875528e4))
+* 保证金参数校验修改 ([d27c39c](https://10.1.2.7/visual-fe/swap-modules/commits/d27c39c45f5be50386d88375d780ce44bf60259a))
+* 生命周期改造- 提前终止 & 到期结算 - 查看 & 执行 ([ef79277](https://10.1.2.7/visual-fe/swap-modules/commits/ef79277049a6d4832522a36b640cb5077ada37ce))
+* 生命周期执行改造-期间收支 ([3071d72](https://10.1.2.7/visual-fe/swap-modules/commits/3071d72f9bf01eea1913942a1e6fdc5b782d2415))
+
+
+
+
+
+
+# [1.3.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.2.3...@ty-swap-modules/fields@1.3.0) (2021-04-12)
+
+
+### Features
+
+* 互换页面字段统一 ([2bad629](https://10.1.2.7/visual-fe/swap-modules/commits/2bad629639fc735b9f1d7116ac8022852c95f01b))
+
+
+
+
+
+## [1.2.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.2.2...@ty-swap-modules/fields@1.2.3) (2021-04-09)
+
+
+### Bug Fixes
+
+* 多头初始预付金率 字段名&提示信息修复 ([affe733](https://10.1.2.7/visual-fe/swap-modules/commits/affe733f9c14fcd961d44e86e44a01bc1eb64880))
+* 约定浮动利率提示：计息截止日 改为 利率收益计息截止日 ([f9cbd5e](https://10.1.2.7/visual-fe/swap-modules/commits/f9cbd5ecb0e4def31d8981495730af8e9b651d10))
+
+
+
+
+
+## [1.2.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.2.1...@ty-swap-modules/fields@1.2.2) (2021-04-08)
+
+
+### Bug Fixes
+
+* 互换录入:多头初始保障比例参数大于100时，提示信息有误 ([3f59503](https://10.1.2.7/visual-fe/swap-modules/commits/3f59503192b38b87edc371d8e10ddf19c7e87dad))
+* 互换簿记：增强收益率未填写时，提示信息建议优化 ([c8d07fa](https://10.1.2.7/visual-fe/swap-modules/commits/c8d07fa7f5829f45b5b1c063272f871695f7f298))
+* 互换簿记：多头初始预付金率为负数值时，成功簿记交易 ([751bef5](https://10.1.2.7/visual-fe/swap-modules/commits/751bef5f32a04021538a02f7d561ce7494e52b18))
+* 互换簿记：未填写利率收益计息截止日时，批量生成观察日的提示信息有误 ([04738a6](https://10.1.2.7/visual-fe/swap-modules/commits/04738a6019fab4c3dc5cb9e3a3e41d9379612c71))
+
+
+
+
+
+## [1.2.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.2.0...@ty-swap-modules/fields@1.2.1) (2021-04-06)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+# [1.2.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.1.0...@ty-swap-modules/fields@1.2.0) (2021-03-31)
+
+
+### Features
+
+* 数字输入输入不做四舍五入，金额输入不做，输出保留两位 ([a16c6a2](https://10.1.2.7/visual-fe/swap-modules/commits/a16c6a2f3bdb2ba4098cba37ceeceb4fa9b5aa3a))
+* 行情字段改为显示四位小数 ([a806650](https://10.1.2.7/visual-fe/swap-modules/commits/a806650cf6a41e4411939562e543b0e56662dc32))
+
+
+
+
+
+## [1.0.4](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.3...@ty-swap-modules/fields@1.0.4) (2021-03-30)
+
+
+### Bug Fixes
+
+* 修复联动时会会设为一个 无效的值 （NaN） ([6d2b34f](https://10.1.2.7/visual-fe/bct-modules/commits/6d2b34f4ddc064dcb694279494d2e6402a125190))
+
+
+
+
+
+## [1.0.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.2...@ty-swap-modules/fields@1.0.3) (2021-03-30)
+
+
+### Bug Fixes
+
+* 修复保证金管理 明细无法根据交易编号过滤 ([e233cd1](https://10.1.2.7/visual-fe/bct-modules/commits/e233cd1cf77e31565603b096e8c497e2b9988e71))
+* 多头限制期限增加必填效验 ([77e0afa](https://10.1.2.7/visual-fe/bct-modules/commits/77e0afa17ab90686f3d0807cccbcb2b2e52ea8d5))
+
+
+
+
+
+## [1.0.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.1...@ty-swap-modules/fields@1.0.2) (2021-03-26)
+
+
+### Bug Fixes
+
+* 修复作用起始日 非交易日验证失效 ([d84e6e2](https://10.1.2.7/visual-fe/bct-modules/commits/d84e6e20cc287bafeddb6cd7ee6793ab1bb56b9d))
+* 增加ab款 第一行标的不可删除 ([29400a0](https://10.1.2.7/visual-fe/bct-modules/commits/29400a0b4424ac6964bd80c2cfb6b7e84be61cd3))
+* 部分选择框点击后没有默认选择第一个选择项 ([190092d](https://10.1.2.7/visual-fe/bct-modules/commits/190092dce9ebf6a541dfb9b5cb1d3567038ce391))
+
+
+
+
+
+# [1.0.0-beta.46](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.45...@ty-swap-modules/fields@1.0.0-beta.46) (2021-03-17)
+
+
+### Bug Fixes
+
+* 修复收益互换合约信息支持多选 ([7b3bbfb](https://10.1.2.7/visual-fe/swap-modules/commits/7b3bbfb8e9aa40f2273231b055c0b7a33a585844))
+
+
+### Features
+
+* ab款改造 ([eb21d36](https://10.1.2.7/visual-fe/swap-modules/commits/eb21d361945701fbc8d29ea167a0b0164a846567))
+
+
+
+
+
+# [1.0.0-beta.45](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.44...@ty-swap-modules/fields@1.0.0-beta.45) (2021-03-15)
+
+
+### Bug Fixes
+
+* 修改估值报告查询类型为数组 类型支持选择多个合约编号 ([841da44](https://10.1.2.7/visual-fe/swap-modules/commits/841da44b504e20d180054a2ac333c074575f662b))
+* 标的物白名单查询接口，在描述列表中报错 ([4b3b509](https://10.1.2.7/visual-fe/swap-modules/commits/4b3b509e48ac7a4b4e8fbf4c3094740f8933b790))
+
+
+
+
+
+# [1.0.0-beta.44](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.43...@ty-swap-modules/fields@1.0.0-beta.44) (2021-03-15)
+
+
+### Bug Fixes
+
+* 标的方向枚举修改 ([6550d40](https://10.1.2.7/visual-fe/swap-modules/commits/6550d40f0e34e19c87da8633c22809022120612d))
+
+
+
+
+
+# [1.0.0-beta.43](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.42...@ty-swap-modules/fields@1.0.0-beta.43) (2021-03-15)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+# [1.0.0-beta.42](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.41...@ty-swap-modules/fields@1.0.0-beta.42) (2021-03-15)
+
+
+### Bug Fixes
+
+* 修复合约编号空格没有 trim ([bbc816a](https://10.1.2.7/visual-fe/swap-modules/commits/bbc816a38b5545a68f75f47bedf9a4e05d29471b))
+* 收益互换保证金管理/查看明细：[合约编号]不支持排序功能 ([21170f1](https://10.1.2.7/visual-fe/swap-modules/commits/21170f1d04118368b2d3d4e394c3e5076cbec1f6))
+* 标的估值 合约编号支持多个搜索 ([4e5c0a3](https://10.1.2.7/visual-fe/swap-modules/commits/4e5c0a3436e693170ec2a2728c7e88c950c5373c))
+* 解决互换 book 时回车触发表单验证 ([1d71bcd](https://10.1.2.7/visual-fe/swap-modules/commits/1d71bcd055f4fb6bcd0749f348bcb2cee6089b6e))
+
+
+
+
+
+# [1.0.0-beta.41](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.40...@ty-swap-modules/fields@1.0.0-beta.41) (2021-03-11)
+
+
+### Bug Fixes
+
+* 修改交易要素是否指增不可修改 ([e25d463](https://10.1.2.7/visual-fe/swap-modules/commits/e25d4635e60f1ce3520d71fa94458adfb967bf08))
+
+
+
+
+
+# [1.0.0-beta.40](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.39...@ty-swap-modules/fields@1.0.0-beta.40) (2021-03-10)
+
+
+### Bug Fixes
+
+* 修复盯市基准展示为英文 ([65be383](https://10.1.2.7/visual-fe/swap-modules/commits/65be3836338e1bf776bf3fb41c331b17627a6c80))
+
+
+### Features
+
+* 增加一些功能 ([7089a0d](https://10.1.2.7/visual-fe/swap-modules/commits/7089a0deb6ef804e910de6fb05acc6f42f88a77d))
+* 完善逻辑 ([b2287cb](https://10.1.2.7/visual-fe/swap-modules/commits/b2287cb58918aa505acf45a1e73f4430efbd37b6))
+* 表格优化：调整表格间距，保持界面上下对齐，表格内一个字段一行 ([c32c47f](https://10.1.2.7/visual-fe/swap-modules/commits/c32c47f14a31a01129e9be778c0c1914fec3a216))
+
+
+
+
+
+# [1.0.0-beta.39](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.38...@ty-swap-modules/fields@1.0.0-beta.39) (2021-03-09)
+
+
+### Bug Fixes
+
+* 互换持仓/修改交易要素：ab款空头与多头的多行联动 ([c8bd8b5](https://10.1.2.7/visual-fe/swap-modules/commits/c8bd8b51134d9f6d101c10cf5ec1b65b633297d1))
+* 名义数量不跟期初名义数量保持联动 ([e729032](https://10.1.2.7/visual-fe/swap-modules/commits/e7290323912288195f653f1f81c203952b373346))
+
+
+
+
+
+# [1.0.0-beta.38](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.37...@ty-swap-modules/fields@1.0.0-beta.38) (2021-03-08)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+# [1.0.0-beta.37](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.36...@ty-swap-modules/fields@1.0.0-beta.37) (2021-03-08)
+
+
+### Bug Fixes
+
+* 互换簿记：重新生成观察日，未按修改后的起始日重新生成 ([0158c73](https://10.1.2.7/visual-fe/swap-modules/commits/0158c73429a58ed757f6f476569e9955c699ca63))
+
+
+
+
+
+# [1.0.0-beta.36](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.35...@ty-swap-modules/fields@1.0.0-beta.36) (2021-03-08)
+
+
+### Bug Fixes
+
+* 标的估值：选择部分列展示时，没有自适应列宽 ([37b0f5e](https://10.1.2.7/visual-fe/swap-modules/commits/37b0f5e805931cd5feb0492db51cb198cdfe6fb5))
+* 标的估值:部分列标题展示与设计文档不一致 ([f6a699c](https://10.1.2.7/visual-fe/swap-modules/commits/f6a699ccef60b26b13ff1bb1bd24cb0c935450f6))
+* 标的估值报告：交易确认书为空时，查询结果为空 ([a68ed5f](https://10.1.2.7/visual-fe/swap-modules/commits/a68ed5fc4b05dad1811b440eadb371c4bd0a380b))
+
+
+
+
+
+# [1.0.0-beta.35](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.34...@ty-swap-modules/fields@1.0.0-beta.35) (2021-03-05)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+
+# [1.0.0-beta.34](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.33...@ty-swap-modules/fields@1.0.0-beta.34) (2021-03-04)
+
+
+### Features
+
+* 保证金管理页面 ([61e0ebe](https://10.1.2.7/visual-fe/swap-modules/commits/61e0ebe4fe2a499e0d2352755727df6feaad207f))
+* 保证金页面修改&联调 ([511eb06](https://10.1.2.7/visual-fe/swap-modules/commits/511eb0698648544bf9ca73a69adf34a954b82873))
+* 标的估值字段修改 ([9fc370d](https://10.1.2.7/visual-fe/swap-modules/commits/9fc370dd5d24ef35c45e68a42638637f4b5d5f49))
+* 联调修改 ([108e3ec](https://10.1.2.7/visual-fe/swap-modules/commits/108e3ec766cd46ee39a701b6bd322ee010e8a37f))
+
+
+
+
+
+# [1.0.0-beta.33](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.32...@ty-swap-modules/fields@1.0.0-beta.33) (2021-03-03)
+
+
+### Features
+
+* 【前端】收益互换簿记改造（保证金相关保障比例校验） ([84c0ac4](https://10.1.2.7/visual-fe/swap-modules/commits/84c0ac4a40132bd7fd8840c489efe069d3e81196))
+* 增加期初合约初始保障金额 修复 提交未调用接口 ([45d07c7](https://10.1.2.7/visual-fe/swap-modules/commits/45d07c7478fa2fd9ef75b48cd42930b7913f4cfa))
+
+
+
+
+
+# [1.0.0-beta.32](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.31...@ty-swap-modules/fields@1.0.0-beta.32) (2021-03-01)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+# [1.0.0-beta.31](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.30...@ty-swap-modules/fields@1.0.0-beta.31) (2021-02-26)
+
+
+### Bug Fixes
+
+* 互换持仓/修改交易要素:编辑标的信息，标的乘数更新为1 ([1708af7](https://10.1.2.7/visual-fe/swap-modules/commits/1708af737ebe5674dd17e919c430007c9d4e46b5))
+
+
+
+
+
+# [1.0.0-beta.30](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.29...@ty-swap-modules/fields@1.0.0-beta.30) (2021-02-26)
+
+
+### Features
+
+* 合约估值部分字段更改 ([20adf44](https://10.1.2.7/visual-fe/swap-modules/commits/20adf44e2c928b30418bc1c23352010141fd24ca))
+
+
+
+
+
+# [1.0.0-beta.29](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.28...@ty-swap-modules/fields@1.0.0-beta.29) (2021-02-25)
+
+
+### Bug Fixes
+
+* 修复 修改交易要素 数据转换错误 ([b566742](https://10.1.2.7/visual-fe/swap-modules/commits/b566742ad05b0ad51883d0fb2ce0c4b60fc342c4))
+
+
+
+
+
+# [1.0.0-beta.28](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.27...@ty-swap-modules/fields@1.0.0-beta.28) (2021-02-25)
+
+
+### Bug Fixes
+
+* 互换持仓/ab互换/提前终止：空头标的平仓数量不允许修改 ([a473a3d](https://10.1.2.7/visual-fe/swap-modules/commits/a473a3dbab7aa17330ac44504382baafda54b646))
+* 完善判断逻辑 ([4b39e05](https://10.1.2.7/visual-fe/swap-modules/commits/4b39e05da30c1074607d712061102900dc284da1))
+
+
+### Features
+
+* ab款下平仓数量跨行联动 ([ef76c80](https://10.1.2.7/visual-fe/swap-modules/commits/ef76c80e1ebb555ef6fd3da026cdd1640c2c22cb))
+
+
+
+
+
+# [1.0.0-beta.27](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.26...@ty-swap-modules/fields@1.0.0-beta.27) (2021-02-24)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+# [1.0.0-beta.26](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.25...@ty-swap-modules/fields@1.0.0-beta.26) (2021-02-24)
+
+
+### Bug Fixes
+
+* preserve 联动存在性能问题 ([983db3a](https://10.1.2.7/visual-fe/swap-modules/commits/983db3ab8b8c3a8546315fb13cc53686263a0b3d))
+* 修复批量生成观察日的最后一行观察区间不可删除 ([829008c](https://10.1.2.7/visual-fe/swap-modules/commits/829008c64d914a300432fe1962d5cabe3d02550c))
+* 修复批量观察后新增观察区间，作用起始日不等于上一个作用截止日+1 ([0f454c9](https://10.1.2.7/visual-fe/swap-modules/commits/0f454c95ff7f9b28706c08f5058591688da2ad0a))
+
+
+### Features
+
+* **io-container:** 支持表格多行之间的计算联动 ([a425928](https://10.1.2.7/visual-fe/swap-modules/commits/a425928bdd9519d7a09852a4a5beab7d749397ce))
+* 合约估值容器开发 ([4a6e000](https://10.1.2.7/visual-fe/swap-modules/commits/4a6e00002ea4570b3e634748761e76efecb03d0c))
+* 合约信息联调 ([fd62d0c](https://10.1.2.7/visual-fe/swap-modules/commits/fd62d0c157eccaf8e421471ce93fdde0afd40a61))
+* 支持 io-form-item-wrapper ([a71b74c](https://10.1.2.7/visual-fe/swap-modules/commits/a71b74c01fd98b9b708c03c67ed205545889516f))
+
+
+
+
+
+# [1.0.0-beta.25](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.24...@ty-swap-modules/fields@1.0.0-beta.25) (2021-02-22)
+
+
+### Bug Fixes
+
+* 修改交易要素增加标的名义数量 ([e0f3c5d](https://10.1.2.7/visual-fe/swap-modules/commits/e0f3c5d772e00383ae938b972975f354be94d817))
+* 修改交易要素增加标的时 执行失败 ([ded3904](https://10.1.2.7/visual-fe/swap-modules/commits/ded3904fd326579997a504f1d6760bf7ef3d5e02))
+* 簿记修改字段 contractNotionalAmount(合约名义本金额)修改为 initNotionalAmount(合约期初名义本金额) 标的信息中 将 标的名义本金额notionalAmount 修改为 initNotionalAmount 标的期初名义本金额 修改交易要素 新增字段 标的名义数量 currentAmount  标的名义本金额 ([df92684](https://10.1.2.7/visual-fe/swap-modules/commits/df92684cf5d4e24078d91ad55c9a8290c10e27c5))
+
+
+
+
+
+# [1.0.0-beta.24](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.23...@ty-swap-modules/fields@1.0.0-beta.24) (2021-02-20)
+
+
+### Bug Fixes
+
+* 互换持仓：多个弹窗有删除等无效且多余的按钮 ([55d7537](https://10.1.2.7/visual-fe/swap-modules/commits/55d7537e5bd43370274d729af34e74be8507a092))
+
+
+
+
+
+# [1.0.0-beta.23](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.22...@ty-swap-modules/fields@1.0.0-beta.23) (2021-02-19)
+
+
+### Bug Fixes
+
+* 互换持仓/限制：限制事件详情中字段名称展示有误 ([42221f1](https://10.1.2.7/visual-fe/swap-modules/commits/42221f1a99949c7e3342c02d6c44bbea7dcbba27))
+* 互换簿记：切换互换类型时，清空数据 ([a0a4009](https://10.1.2.7/visual-fe/swap-modules/commits/a0a40097081e7a7eb36728714d53e263968fa5da))
+* 互换簿记/标的物信息，标的名义本金联动 ([1848c9a](https://10.1.2.7/visual-fe/swap-modules/commits/1848c9a83cf04b1618d4c0859a50a3d69ba3e41c))
+* 修复取消后 约定浮动利率依然显示之前的数据 ([41ad1c0](https://10.1.2.7/visual-fe/swap-modules/commits/41ad1c08021bc617c62f03df1d0b94ab4637995e))
+* 修复批量生成观察区间后新增观察区间作用截止日错误 ([b4c6674](https://10.1.2.7/visual-fe/swap-modules/commits/b4c66744b26926f027c341e04f7f7299a7fb306c))
+* 修改交易要素不修改时合约期初名义本金额变化 ([2483e9d](https://10.1.2.7/visual-fe/swap-modules/commits/2483e9d6426a22109123431893377d2a0de99e1b))
+* 修改多头指增缺失字段 ([3aefe37](https://10.1.2.7/visual-fe/swap-modules/commits/3aefe37e5db4ecaa8578b0459a431875aaab8663))
+* 增加key值 ([53ff82f](https://10.1.2.7/visual-fe/swap-modules/commits/53ff82fac2236face452daa1f3e3f92e0a06a7a0))
+* 生命周期-提前平仓增加名义数量字段 ([7600251](https://10.1.2.7/visual-fe/swap-modules/commits/7600251449289ab21c294f7376d97d3f3903f1a2))
+* 结算生命周期-总实现股息金额title修改 ([743776e](https://10.1.2.7/visual-fe/swap-modules/commits/743776e7d7aaa9d248718d57eed8641c8bf220bb))
+
+
+
+
+
+# [1.0.0-beta.22](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.21...@ty-swap-modules/fields@1.0.0-beta.22) (2021-02-08)
+
+
+### Bug Fixes
+
+* 修复空头和ab时 批量生成观察日失效 ([b1cb6ec](https://10.1.2.7/visual-fe/swap-modules/commits/b1cb6ec2f78bb34ab4a384f45ae79620feea3559))
+* 修改交易要素增加 生命周期备注 ([b05b036](https://10.1.2.7/visual-fe/swap-modules/commits/b05b0360610f12587bb4d631ee10b011351e3a42))
+
+
+
+
+
+# [1.0.0-beta.21](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.20...@ty-swap-modules/fields@1.0.0-beta.21) (2021-02-07)
+
+
+### Bug Fixes
+
+* mege origin/master 合并主分支代码 ([0d78431](https://10.1.2.7/visual-fe/swap-modules/commits/0d78431b8914d20fd315b23b2ce4fa14bfe88021))
+* 修复总权益收益 为负数时显示为0 ([f9c0871](https://10.1.2.7/visual-fe/swap-modules/commits/f9c0871ed6fc8b33d497aaaadff9419da3e232e3))
+
+
+
+
+
+# [1.0.0-beta.20](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.19...@ty-swap-modules/fields@1.0.0-beta.20) (2021-02-07)
+
+
+### Bug Fixes
+
+* 互换持仓/限制：多头限制期名义本金额(￥)与[新限制多头名义本金额(￥) ]保持联动 ([8b39fc2](https://10.1.2.7/visual-fe/swap-modules/commits/8b39fc216c5c651460e757f92f7b1419fe825e5d))
+* 互换簿记/标的物信息: 标的名义本金额为空 ([65443cd](https://10.1.2.7/visual-fe/swap-modules/commits/65443cd8684ffd72976a0b5bed9607bfe715aa8b))
+* 修改日期 添加默认值 ([888ca15](https://10.1.2.7/visual-fe/swap-modules/commits/888ca15ca4a5e46c808272f8f2641227cd75250a))
+* 去除修改交易浮动利率弹窗多余按钮 ([b233e9f](https://10.1.2.7/visual-fe/swap-modules/commits/b233e9fd04d5c63f404b4af1f27e2ec308fb6707))
+* 合并主分支代码 ([a916a37](https://10.1.2.7/visual-fe/swap-modules/commits/a916a37593ab5e164915b709ecb280f7be8a153b))
+* 提前终止结算等相关 bug ([89a7310](https://10.1.2.7/visual-fe/swap-modules/commits/89a7310f50166ae1f2c23ca697d4e7c0c25e5c06))
+
+
+### Features
+
+* 起始日 期末观察日 结算日 增加排序 ([1210b43](https://10.1.2.7/visual-fe/swap-modules/commits/1210b43824d256209698b5f490a1e5c054309eb3))
+
+
+
+
+
+# [1.0.0-beta.19](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.18...@ty-swap-modules/fields@1.0.0-beta.19) (2021-02-05)
+
+
+### Bug Fixes
+
+* 修复 修改交易要素 传值错误 ([a1d27ff](https://10.1.2.7/visual-fe/swap-modules/commits/a1d27ff9c7329b4c93c1b4132adc9c663287cb6b))
+
+
+
+
+
+# [1.0.0-beta.18](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.17...@ty-swap-modules/fields@1.0.0-beta.18) (2021-02-05)
+
+
+### Bug Fixes
+
+* 修复浮动利率 批量生成观察日后的bug ([bf6015c](https://10.1.2.7/visual-fe/swap-modules/commits/bf6015c779f5ecdd1549d5771c8655e9caa74871))
+* 批量生成观察日失败 ([fa223fc](https://10.1.2.7/visual-fe/swap-modules/commits/fa223fc907576ff77158f02a6cab01496a00f04f))
+
+
+
+
+
+# [1.0.0-beta.17](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.16...@ty-swap-modules/fields@1.0.0-beta.17) (2021-02-04)
+
+
+### Bug Fixes
+
+* 互换详情/ab互换/多空互换：标的信息中展示错误 ([ca686f4](https://10.1.2.7/visual-fe/swap-modules/commits/ca686f4b3b3e581a0bfec835de4e5d4a630e4906))
+
+
+
+
+
+# [1.0.0-beta.16](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.15...@ty-swap-modules/fields@1.0.0-beta.16) (2021-02-04)
+
+
+### Bug Fixes
+
+* 修复批量观察日后 添加数据 起始日为空 ([6fcfad9](https://10.1.2.7/visual-fe/swap-modules/commits/6fcfad995459fafa2f5babd58770c80c5b4a55f3))
+* 修复浮动利率生成观察日错误 ([a342446](https://10.1.2.7/visual-fe/swap-modules/commits/a3424464ae995fa1dea1d74c9c7fcda4f199e17f))
+* 增加增强收益率 警告 修改显示问题 ([71594ce](https://10.1.2.7/visual-fe/swap-modules/commits/71594cee475182330a7bd577ad00913a4b49208f))
+
+
+
+
+
+# [1.0.0-beta.15](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.14...@ty-swap-modules/fields@1.0.0-beta.15) (2021-02-04)
+
+
+### Bug Fixes
+
+* 重置事件触发多头约定浮动利率弹窗重置 ([ac98ecc](https://10.1.2.7/visual-fe/swap-modules/commits/ac98eccd39acadc764f31840e5aecdb8975b87df))
+
+
+
+
+
+# [1.0.0-beta.14](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.13...@ty-swap-modules/fields@1.0.0-beta.14) (2021-02-03)
+
+
+### Bug Fixes
+
+* 互换簿记：[空头追加后保障比例]输入框缺少字段名 ([c2e7363](https://10.1.2.7/visual-fe/swap-modules/commits/c2e73634dc2188788648a337d0bd8d0bb0e1e126))
+* 互换簿记/标的信息：标的代码不支持模糊搜索匹配 ([57eb01c](https://10.1.2.7/visual-fe/swap-modules/commits/57eb01c36cdb16444c55d67bbf2678f6e22bfc2a))
+* 修改观察生命周期 备注 ([d7fadc1](https://10.1.2.7/visual-fe/swap-modules/commits/d7fadc1dfd11344ef5fbf8bbfad13bc31bbf01e2))
+
+
+### Features
+
+* 列表io-item width设置 ([037f414](https://10.1.2.7/visual-fe/swap-modules/commits/037f414d2eed1d90aba3c800be68a851afe9e8ee))
+* 根据字段名生成不同的valueType ([0b3571a](https://10.1.2.7/visual-fe/swap-modules/commits/0b3571ae27ed164f6439cae5cae54c2b11e7dbc0))
+
+
+
+
+
+# [1.0.0-beta.13](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.12...@ty-swap-modules/fields@1.0.0-beta.13) (2021-02-03)
+
+
+### Bug Fixes
+
+* 持仓详情列表出现搜索项 ([170e57e](https://10.1.2.7/visual-fe/swap-modules/commits/170e57e0efacb16aab4f264e0064574d6b1982ae))
+
+
+### Features
+
+* 列表增加表头固定 ([1be40e5](https://10.1.2.7/visual-fe/swap-modules/commits/1be40e568670a1f6a6832d4c52b314751b07aa7b))
+
+
+
+
+
+# [1.0.0-beta.12](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.11...@ty-swap-modules/fields@1.0.0-beta.12) (2021-02-03)
+
+
+### Bug Fixes
+
+* 观察生命周期标的信息里的约定固定利率百分比显示错误 ([323b430](https://10.1.2.7/visual-fe/swap-modules/commits/323b430cfb20ea3257dac3a8c58c4203f7a2873d))
+
+
+### Features
+
+* 增加 更改生命周期详情 ([78224c4](https://10.1.2.7/visual-fe/swap-modules/commits/78224c471a419230b35e4df67be04c49dc934caf))
+
+
+
+
+
+# [1.0.0-beta.11](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.10...@ty-swap-modules/fields@1.0.0-beta.11) (2021-02-02)
+
+
+### Bug Fixes
+
+* 生命周期事件概览：缺少记录撤销状态的功能 ([9a76faa](https://10.1.2.7/visual-fe/swap-modules/commits/9a76faa206b0da2291886b1debdf708f42cd9636))
+
+
+### Features
+
+* percent-raw改造 ([bebdaa1](https://10.1.2.7/visual-fe/swap-modules/commits/bebdaa106dacf1cae83133783565a1f5261c13eb))
+* 支持 io-item 组件 ([09e238c](https://10.1.2.7/visual-fe/swap-modules/commits/09e238ccc51922a90205a148b07ac4e19461100b))
+
+
+
+
+
+# [1.0.0-beta.10](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.9...@ty-swap-modules/fields@1.0.0-beta.10) (2021-02-02)
+
+
+### Bug Fixes
+
+* 修改文案 ([a307c8b](https://10.1.2.7/visual-fe/swap-modules/commits/a307c8b64d62cf364bb553410ecb383ae51a190d))
+* 注释 ([fd99ab0](https://10.1.2.7/visual-fe/swap-modules/commits/fd99ab0c3cc8493cd91b126f124c31e1d3f7a06f))
+* 生命周期概率按照时间降序 ([612d0f9](https://10.1.2.7/visual-fe/swap-modules/commits/612d0f98d0cbe5f48c4b2726215056d2bfd26985))
+* 解决标的信息模块展示报错 ([ed9e904](https://10.1.2.7/visual-fe/swap-modules/commits/ed9e9049083ea34e1ae37c0337b1fdd695dbab96))
+
+
+
+
+
+# [1.0.0-beta.9](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.8...@ty-swap-modules/fields@1.0.0-beta.9) (2021-02-02)
+
+
+### Bug Fixes
+
+* 互换持仓/观察：观察弹窗有删除等无效且多余的按钮 ([42431ad](https://10.1.2.7/visual-fe/swap-modules/commits/42431adf35502ffb367a74b440aea3fdf578bed6))
+
+
+
+
+
+# [1.0.0-beta.8](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.7...@ty-swap-modules/fields@1.0.0-beta.8) (2021-02-01)
+
+
+### Bug Fixes
+
+* 更改只能同时新增一行的文本 ([4b76bde](https://10.1.2.7/visual-fe/swap-modules/commits/4b76bde35cd8c33805ac74c75407260c12d8f8ce))
+
+
+
+
+
+# [1.0.0-beta.7](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.6...@ty-swap-modules/fields@1.0.0-beta.7) (2021-02-01)
+
+
+### Bug Fixes
+
+* 浮动利率问题 ([83b96e0](https://10.1.2.7/visual-fe/swap-modules/commits/83b96e031580e45fd9db1e66e746da5e405c0e53))
+
+
+
+
+
+# [1.0.0-beta.6](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.5...@ty-swap-modules/fields@1.0.0-beta.6) (2021-02-01)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+
+
+
+
+# [1.0.0-beta.5](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.4...@ty-swap-modules/fields@1.0.0-beta.5) (2021-01-30)
+
+### Bug Fixes
+
+- format ([5fb8a3b](https://10.1.2.7/visual-fe/swap-modules/commits/5fb8a3b348705cbaf893837d79c75069eaef776e))
+- format code ([106963e](https://10.1.2.7/visual-fe/swap-modules/commits/106963e932a020e57f78427636d48512eaf90697))
+- merge master into fix/SWHY3 ([92d4ec5](https://10.1.2.7/visual-fe/swap-modules/commits/92d4ec5319bd8460435a30813344155e4b74bdcd))
+- 互换簿记：单位为百分比的数值，前端传值错误 ([4e8fc4b](https://10.1.2.7/visual-fe/swap-modules/commits/4e8fc4b38a9333215f2cbeeedd9c95ae43447642))
+- 互换簿记/多头指增：增强收益率首行[观察日]不可编辑 ([2434394](https://10.1.2.7/visual-fe/swap-modules/commits/2434394e71969f3044a80e70efe183836a70364d))
+- 互换簿记/多空互换：前端没传多头标的的 fixrate,簿记失败 ([0796c35](https://10.1.2.7/visual-fe/swap-modules/commits/0796c35c3826be8bb40615edf18350519e7ff623))
+- 互换类型/约定浮动费率：编辑编辑问题 ([7f8193f](https://10.1.2.7/visual-fe/swap-modules/commits/7f8193f8eafe737f5bc1aaeda5f9c1b3731532eb))
+- 互换详情/多头非指增：部分字段数据内容未展示 ([a10d2b2](https://10.1.2.7/visual-fe/swap-modules/commits/a10d2b2315d872e63e325faffe846fa0f2849907))
+- 修复互换持仓/提前终止：[平仓数量][平仓单位股息]不可填写 0，为空时提示信息有误 ([567d17a](https://10.1.2.7/visual-fe/swap-modules/commits/567d17a00df6b31d7907b8b3a8f6b9bc057b534a))
+- 修复互换持仓/提前终止：[平仓日期]可以选择当天之后的日期 ([dd3cd6c](https://10.1.2.7/visual-fe/swap-modules/commits/dd3cd6cce0d198c98cbc0a37e6da0c6e94c90b2d))
+- 修复互换持仓/结算/提前终止：[支付日期]缺少默认值，部分字段缺少必填标识 ([7b5e597](https://10.1.2.7/visual-fe/swap-modules/commits/7b5e5972fd143a2c6d8ec38985fceb5b82be5ef4))
+- 修复互换簿记：[多头约定固定利率]缺少前端必填校验和标识 ([f07f749](https://10.1.2.7/visual-fe/swap-modules/commits/f07f749eb48fb13701bf887da8ccd8cbd5a6148b))
+- 修复编辑标的物信息，部分字段为空和第一行标的方向变空头的问题 ([17e6d88](https://10.1.2.7/visual-fe/swap-modules/commits/17e6d88fc3ec8371740b297b866acec9001f57b2))
+- 增加生命周期详情 ([c79b680](https://10.1.2.7/visual-fe/swap-modules/commits/c79b6802def813b4a4f9a52dec7bce638db75dd7))
+- 多头约定浮动费率基准展示错误&标的信息中[标的乘数]列字段名未展示 ([fd9d75c](https://10.1.2.7/visual-fe/swap-modules/commits/fd9d75c3d46e5156733e6daed5e8f3e7f461a17f))
+- 多空结构特殊显示 format ([06ac461](https://10.1.2.7/visual-fe/swap-modules/commits/06ac461152a94f22f02897896eac9d53551f5cdc))
+- 获取支付金额 总是一样的值 ([f638f6e](https://10.1.2.7/visual-fe/swap-modules/commits/f638f6e09ac0643e3f02e378cab3c3bdafa8bfe9))
+- 观察弹窗问题 ([aae304a](https://10.1.2.7/visual-fe/swap-modules/commits/aae304a39d28692d18dcd9cc08a67ff157a00adf))
+
+### Features
+
+- formatPercen 改造 ([71adb3f](https://10.1.2.7/visual-fe/swap-modules/commits/71adb3fa60260e230d298ee98f55a167814c0d5c))
+- service mock ([05d05a3](https://10.1.2.7/visual-fe/swap-modules/commits/05d05a39899e075b606f11f34781bc3b7b2e53f9))
+- 互换合约详情初步提交 ([a330cbc](https://10.1.2.7/visual-fe/swap-modules/commits/a330cbc3316b133e5cdbc988bdb9cc2176ac277f))
+- 增加 生命周期详情 （除观察/修改） ([f0804dc](https://10.1.2.7/visual-fe/swap-modules/commits/f0804dc4078d3017c9d8a96ba14ada99fe2ac5dc))
+- 增加观察生命周期详情 ([00cead7](https://10.1.2.7/visual-fe/swap-modules/commits/00cead73ed59875381561abb611bdaa23ae25144))
+- 接口 mock ([60a2e28](https://10.1.2.7/visual-fe/swap-modules/commits/60a2e28933c70d8ad632250bcedf2c0771bde1c2))
+- 标的估值页面 IOItem&容器集成 ([7ef7446](https://10.1.2.7/visual-fe/swap-modules/commits/7ef7446ed9c360e0716c5b7f0b82b17b83b198da))
+
+# [1.0.0-beta.4](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.3...@ty-swap-modules/fields@1.0.0-beta.4) (2021-01-27)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+# [1.0.0-beta.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-swap-modules/fields@1.0.0-beta.2...@ty-swap-modules/fields@1.0.0-beta.3) (2021-01-27)
+
+**Note:** Version bump only for package @ty-swap-modules/fields
+
+# 1.0.0-beta.2 (2021-01-27)
+
+### Bug Fixes
+
+- 框架合约多头计息基准不可修改 ([a9c7d3a](https://10.1.2.7/visual-fe/swap-modules/commits/a9c7d3acbdada6248c0fd0c869d34b8d78e2a063))
+- format code ([fa10e99](https://10.1.2.7/visual-fe/swap-modules/commits/fa10e991f6c8e4e60296b09c883faeeb019755c5))
+- refine label ([0aab8c2](https://10.1.2.7/visual-fe/swap-modules/commits/0aab8c2573b3524bdb411c318a810309ac55a96b))
+- swhy3 170 ([1347237](https://10.1.2.7/visual-fe/swap-modules/commits/1347237413d4625a2f1a16bfeec516aa62eec480))
+- 互换列表：根据[交易达成日][结算日][期末观察日]查询，页面报错 ([02bb01a](https://10.1.2.7/visual-fe/swap-modules/commits/02bb01a4f81d97be4851d6652314ef03bbd9e935))
+- 互换持仓/交易详情：标的信息表格展示错乱 ([770c86e](https://10.1.2.7/visual-fe/swap-modules/commits/770c86e6688b65b5699a64cc0b995c0a2e30b25c))
+- 互换持仓/期间收支：[支付金额]缺少必填项标识 ([a418a64](https://10.1.2.7/visual-fe/swap-modules/commits/a418a6425f906995e953b9708697cdbb827be3e9))
+- 互换持仓/期间收支：不可编辑计息截止日 ([68f5171](https://10.1.2.7/visual-fe/swap-modules/commits/68f517174b095e21d9067d97b3fab8032712288e))
+- 互换持仓/生命周期事件：[生命周期事件]数据展示为英文字符 ([5c0f4e6](https://10.1.2.7/visual-fe/swap-modules/commits/5c0f4e6e3265fee4769e03674abab186bca19544))
+- 互换持仓/结构详情：结构详情字段显示与原型设计图有出入 ([ff0b2ec](https://10.1.2.7/visual-fe/swap-modules/commits/ff0b2ec723506b9dec42dbd1bebdaaaa3ca01b13))
+- 互换簿记：动态下拉框清空已选项后，加载下拉项失败 ([dd406e1](https://10.1.2.7/visual-fe/swap-modules/commits/dd406e108e7616422977ad98d1a9e7f768ec829d))
+- 互换簿记：基本费率改为必填项 ([773cfd4](https://10.1.2.7/visual-fe/swap-modules/commits/773cfd4af2da5d9a9196ea05ffa600956e126b6d))
+- 互换簿记/多空互换：标的信息中可以编辑多头约定浮动利率 ([cf91b5b](https://10.1.2.7/visual-fe/swap-modules/commits/cf91b5bb3ffed177c42fa9de0605aa28864e2b23))
+- 互换簿记/约定浮动利率：观察日与作用起始日间隔可以输入非整数值 ([e0a8dfb](https://10.1.2.7/visual-fe/swap-modules/commits/e0a8dfb9b7a8cf5950f54eeb4054b5f5f7917584))
+- 互换簿记/约定浮动利率：观察日校验与需求不一致 ([fbc4b10](https://10.1.2.7/visual-fe/swap-modules/commits/fbc4b1088b6c5e482b2a85fa46ce09ec9ac7ac98))
+- 互换详情/生命周期事件概览：操作时间展示不完整 ([9d545a2](https://10.1.2.7/visual-fe/swap-modules/commits/9d545a2d4ec8b61c2a122d399e981b5522b8cf65))
+- 修复 ab 框多头方向标的不支持编辑 ([3e4e4f0](https://10.1.2.7/visual-fe/swap-modules/commits/3e4e4f0aa5b370033082d7caffd5c293086eeb17))
+- 修复互换簿记/空头互换：查看约定浮动利率可以编辑数据 ([8b7c868](https://10.1.2.7/visual-fe/swap-modules/commits/8b7c8689ea79a41a1cfbf30f7f2a336ad850d149))
+- 修复互换簿记相关 bug ([583eec3](https://10.1.2.7/visual-fe/swap-modules/commits/583eec3d88b05f4755833dc785d518ed5ea8ae78))
+- 修复交易详情，交易对手名称和 SAC 编号缺失问题 ([dde83a2](https://10.1.2.7/visual-fe/swap-modules/commits/dde83a284467e580f5dde816b018972910cbadad))
+- 修复薄记[交易对手 SAC 编号]与客户的主协议编号不匹配 ([f3ef645](https://10.1.2.7/visual-fe/swap-modules/commits/f3ef645ea69a1f71a50217894f581c9701d36ae5))
+- 修改互换详情的标的物信息的 label ([e287f57](https://10.1.2.7/visual-fe/swap-modules/commits/e287f57aa6ae6fbb16a4d954c6a43803039c3ac5))
+- 修改细节 ([5526163](https://10.1.2.7/visual-fe/swap-modules/commits/55261635a8f9ea72f548af8950a5946d1c1d3813))
+- 增强收益率-首行观察日缺少默认值“等于起始日” ([f095927](https://10.1.2.7/visual-fe/swap-modules/commits/f095927dffff44e6bfb1d80582a65d334004307a))
+- 增强收益率在多头指增显示 ([264d85c](https://10.1.2.7/visual-fe/swap-modules/commits/264d85c6fe68c493231bd409f81dc8851b7a63d1))
+- 增强收益率在多头类型并且指增为否时显示 ([4edf489](https://10.1.2.7/visual-fe/swap-modules/commits/4edf489d8eb3a23ee8a51ff958765889cbab22b4))
+- 更新非交易日验证 ([d614061](https://10.1.2.7/visual-fe/swap-modules/commits/d614061eb85bbcef666105dcc2dcb3905c9542d2))
+- 生命周期事件概览,开仓事件有详情、撤销按钮 ([02e39c9](https://10.1.2.7/visual-fe/swap-modules/commits/02e39c918d8a88de8878e925524878e71e6bc27c))
+- 观察日置灰且不可编辑 ([c2d6129](https://10.1.2.7/visual-fe/swap-modules/commits/c2d612997407081db35a281bc2dd6ba67ea6b6f4))
+- 解决列表相关 bug ([56acfc6](https://10.1.2.7/visual-fe/swap-modules/commits/56acfc6bb32d871e4a4bb0c346eebd1797214e1c))
+- 解决批量生成卡死 ([6f32cc6](https://10.1.2.7/visual-fe/swap-modules/commits/6f32cc66da87b3757418c7c09802a5e7e4242bac))
+- 非首行不可保存 ([b71d1b4](https://10.1.2.7/visual-fe/swap-modules/commits/b71d1b4f69112f66cd53083992180cc98d7f851c))
+- 首行作用起始日固定为 起始日 ([7e1443d](https://10.1.2.7/visual-fe/swap-modules/commits/7e1443d7aea829420ea42d36b8278ed7eaae90d9))
+
+### Features
+
+- aaaa ([7152b59](https://10.1.2.7/visual-fe/swap-modules/commits/7152b597af083a93e5fdf8df92c41deb4241e345))
+- format ([5c9d6a2](https://10.1.2.7/visual-fe/swap-modules/commits/5c9d6a297cf0b07f56973f02c7d8267f371b4d78))
+- format ([2288372](https://10.1.2.7/visual-fe/swap-modules/commits/2288372566c48bf9ce5a8d7f72b3cc0730d5ce6c))
+- 修复部分字段数据未展示 ([bef9db4](https://10.1.2.7/visual-fe/swap-modules/commits/bef9db47cac394f19cce00cf9d16965c82f1b386))
+- 修改代码 ([0d78b34](https://10.1.2.7/visual-fe/swap-modules/commits/0d78b345f027e2e1b40a406c4d2b8d0a10c0de3d))
+- 修改生命周期事件概览 ([5098681](https://10.1.2.7/visual-fe/swap-modules/commits/5098681c4c338261e344e73604b6a41fa9e6520e))
+- 删除 table 初始化方法 ([e9bc55d](https://10.1.2.7/visual-fe/swap-modules/commits/e9bc55d44a641535eeca4ac95490d5b7c95fafb2))
+- 增加修改生命周期 ([b2fe248](https://10.1.2.7/visual-fe/swap-modules/commits/b2fe2483ba4c095856f223daff3406ff1b72ffe1))
+- 增加修改生命周期 ([efcf3ee](https://10.1.2.7/visual-fe/swap-modules/commits/efcf3ee3e440c8217b652f4c91d33d32972b5669))
+- 增加删除提示 更改 swapFieldEnums 导出路径 ([2cf6572](https://10.1.2.7/visual-fe/swap-modules/commits/2cf65721a50adf1759afb7f27352e4aa55733062))
+- 增加集成期间收支生命周期 ([33b393e](https://10.1.2.7/visual-fe/swap-modules/commits/33b393eaee83282145be735ee90478e71c048803))
+- 增加骨架屏 ([fe31a19](https://10.1.2.7/visual-fe/swap-modules/commits/fe31a1976a739a479f751901c2a51e24f0297092))
+- 多头浮动利率 增加批量生成 ([716dd29](https://10.1.2.7/visual-fe/swap-modules/commits/716dd297d5adfa8559ba80c0f57f95282448a786))
+- 完成标的物信息第一层字段的 demos 开发 ([21fc2bc](https://10.1.2.7/visual-fe/swap-modules/commits/21fc2bcc23bfe4eee15866e31d9e27dab6282e9a))
+- 将 5 个观察生命周期 集成到一个组件中 ([61d51e1](https://10.1.2.7/visual-fe/swap-modules/commits/61d51e128462a04d3971cf5198fc32c67d8ad1df))
+- 小驼峰 ([f384b35](https://10.1.2.7/visual-fe/swap-modules/commits/f384b356b82deac129ad1dee27c074a6d0524db3))
+- 平仓 框架合约计算之后决定是否弹框&其他设计修改 ([6c14d52](https://10.1.2.7/visual-fe/swap-modules/commits/6c14d520befb55205e63bc97bebc73a0634185c3))
+- 接口联调 ([96af6ff](https://10.1.2.7/visual-fe/swap-modules/commits/96af6ff3c962d5aa68d5b59f2b0693c248fcd4ce))
+- 支持 IOTableItem option type 下可以自定义 编辑时的 actions ([c248ee4](https://10.1.2.7/visual-fe/swap-modules/commits/c248ee4c2366f5c27fad3ecf6208cba2bd7331ef))
+- 支持容器服务接口 ([2a6297b](https://10.1.2.7/visual-fe/swap-modules/commits/2a6297b05bb115821e1ee27e25ddd326f0b16238))
+- 标的物信息联动相关内容 ([d9faeb7](https://10.1.2.7/visual-fe/swap-modules/commits/d9faeb71513cab52dabf15b34b67833a34b316dd))
+- 添加跳转 ([61c635c](https://10.1.2.7/visual-fe/swap-modules/commits/61c635c9006bb1ca3d1494bd4585000f5364456e))
+- 生命周期 demo ([4368ef0](https://10.1.2.7/visual-fe/swap-modules/commits/4368ef08f5e543156c59be6d8b9a8d91b7bf215b))
+- 簿记页面添加 备注 删除一些 console ([e7e2332](https://10.1.2.7/visual-fe/swap-modules/commits/e7e2332dd1e1701552095301ec7b5a6e159dae3a))
+- 类型定义使用枚举 ([5a42ce6](https://10.1.2.7/visual-fe/swap-modules/commits/5a42ce6f192e8a2c64956b6469bc537c148bd40a))
+- 结算&平仓集成到 page，待联调 ([45de297](https://10.1.2.7/visual-fe/swap-modules/commits/45de297d7f4854cb62bb6a28871c4c83c148911c))
+- 观察生命周期 ([5cc1056](https://10.1.2.7/visual-fe/swap-modules/commits/5cc105612ebb40304b2893fc7fccc91eaef0da56))
+- 限制&解除限制集成 ([14bf48a](https://10.1.2.7/visual-fe/swap-modules/commits/14bf48a11ae431a3bb48cef6535c950f3b150f85))
+- 除标的物代码联动 的 1-30 ([64b53f2](https://10.1.2.7/visual-fe/swap-modules/commits/64b53f27ff8eec7461fad1af5723f564f17898db))
+- 除标的物代码联动 的 30-64 ([f906838](https://10.1.2.7/visual-fe/swap-modules/commits/f906838b1fe8af28ca7623d5196ef8b0042ab408))

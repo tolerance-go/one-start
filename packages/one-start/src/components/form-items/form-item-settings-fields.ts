@@ -1,0 +1,17 @@
+export const formItemSettingsFields = [
+  'tooltip',
+  'rules',
+  'title',
+  'dataIndex',
+  'initialValue',
+  'labelCol',
+  'wrapperCol',
+  'hide',
+  'warningRules',
+  'styles',
+  'inlineError',
+  'linkagetip',
+  'valueLinkage',
+  'valueAsyncLinkage',
+  'validateFirst',
+];

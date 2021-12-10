@@ -1,0 +1,22 @@
+{
+  "headPkgs": [
+    "request",
+    "utils",
+    "one-start",
+    "one-proto"
+  ],
+  "scope": "ty-swap-pages",
+  "siteTitle": "Swap-Pages",
+  "requestLibPath": "import request from '@ty-one-start/request';",
+  "services": {
+    "/swap-service": {
+      "proxy": {
+        "host": "172.31.30.243"
+      },
+      "name": "swap",
+      "description": "互换服务",
+      "swaggerPort": 16020
+    }
+  },
+  "ignoreUsedPkgsCheck": ["rc-select/lib/interface/generator"]
+}

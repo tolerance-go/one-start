@@ -1,0 +1,50 @@
+{
+  "name": "@ty-one-start/one-proto",
+  "version": "6.0.0",
+  "description": "@ty-one-start/one-proto",
+  "module": "es/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "src",
+    "dist",
+    "es"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@10.1.2.7:visual-fe/swap-modules.git"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "keywords": [
+    "antd",
+    "admin",
+    "ant-design",
+    "pro-code",
+    "swap-pages"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "@ty/antd": "4.x",
+    "lodash": "4.x",
+    "react": "16.x",
+    "umi": "3.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.4.0",
+    "@ty-one-start/one-start": "6.0.0",
+    "classnames": "^2.3.1",
+    "immer": "^9.0.5",
+    "rc-tree": "^4.1.5",
+    "react-json-view": "^1.21.3",
+    "uuid": "^8.3.2"
+  }
+}

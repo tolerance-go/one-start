@@ -1,0 +1,34 @@
+@import (reference) '~@ty/antd/lib/style/themes/default.less';
+
+.one-proto {
+  &-playground {
+    &-node {
+      display: inline-flex;
+      padding: 2px;
+      border: 1px dashed @primary-color;
+    }
+    &-drawer {
+      .ty-ant-drawer-close {
+        padding: 10px;
+      }
+      &-trigger {
+        position: absolute;
+        top: 50%;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        color: #fff;
+        font-size: 16px;
+        text-align: center;
+        background: @primary-color;
+        border-radius: 4px 0 0 4px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        pointer-events: auto;
+      }
+    }
+  }
+}

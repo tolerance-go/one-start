@@ -1,0 +1,26 @@
+stages:
+  - install_ci
+  - install_cd
+
+before_script:
+  - whoami
+  - node -v
+  - yarn -v
+  - export
+
+install_ci:
+  stage: install_ci
+  script:
+    - yarn
+    - yarn ci
+  except:
+    - /master.*/
+
+install_cd:
+  stage: install_cd
+  script:
+    - yarn
+    - yarn cd
+  only:
+    - /master.*/
+  when: manual

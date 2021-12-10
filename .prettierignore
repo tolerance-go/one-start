@@ -1,0 +1,14 @@
+**/*.svg
+.umi
+.umi-production
+**/dist
+**/lib
+**/es
+**\__snapshots__\**
+**/__apis__
+*.min.*
+**/CHANGELOG.md
+scripts/tests/CHANGELOG.debug.md
+public
+coverage
+/.temp

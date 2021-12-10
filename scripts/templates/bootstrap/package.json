@@ -1,0 +1,41 @@
+{
+  "name": "<%= name %>",
+  "version": "<%= version %>",
+  "description": "<%= name %>",
+  "module": "es/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "src",
+    "dist",
+    "es"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "<%= repository %>"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "keywords": [
+    "antd",
+    "admin",
+    "ant-design",
+    "pro-code",
+    "swap-pages"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "umi": "3.x",
+    "@ty/antd": "4.x",
+    "react": "16.x",
+    "lodash": "4.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

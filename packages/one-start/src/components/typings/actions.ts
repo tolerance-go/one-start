@@ -1,0 +1,313 @@
+import type { AlertProps } from '@ty/antd';
+import type { RcFile } from '@ty/antd/lib/upload';
+import type { RequiredRecursion } from '../utils/typings';
+import type { OSCore, RecordType, RequestIO } from './core';
+import type {
+  OSCustomFieldPureFormFieldItemConfigsType,
+  OSCustomFieldPureTableFormFieldItemConfigsType,
+  OSCustomFieldStaticPureFormFieldItemConfigsType,
+} from './custom-fields';
+import type { OSDialogModalOperationType, OSDialogModalType } from './dialog';
+import type { OSFormAPI, _OSFormType } from './form';
+import type {
+  OSTableRequestDataSourceParams,
+  OSTableRequestDataSourceReturnType,
+  _OSTableFormFieldItemSettingsFnOption,
+  _OSTableType,
+} from './table';
+import type { OSTriggerButtonType, OSTriggerDropdownType } from './trigger';
+
+export type OSActionsCreateAPI = {};
+
+export interface _OSActionsCreateType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>
+  extends OSCore {
+  settings?: {
+    /** 创建触发器的配置 */
+    createTriggerSettings?: OSTriggerButtonType['settings'];
+    /** 资源id */
+    sourceId?: string;
+    /** modal 反馈配置 */
+    createModalDialogSettings?: OSDialogModalType['settings'];
+    /** 表单配置 */
+    createFormSettings?: _OSFormType<
+      OSCustomFieldPureFormFieldItemConfigsType,
+      OSCustomFieldStaticPureFormFieldItemConfigsType
+    >['settings'];
+    /**
+     * 是否启用表单模板
+     * @default false
+     */
+    enableTemplate?: boolean;
+    /**
+     * 是否启用编辑本地持久化
+     * @default false
+     */
+    enablePersistence?: boolean;
+    /** 创建模板的表单 */
+    templateCreateFormSettings?: _OSFormType<
+      OSCustomFieldPureFormFieldItemConfigsType,
+      OSCustomFieldStaticPureFormFieldItemConfigsType
+    >['settings'];
+    /** 创建模板 modal 的配置 */
+    templateCreateModalSettings?: OSDialogModalType['settings'];
+    /** 模板设置的表格 */
+    templateSearchTableSettings?: _OSTableType<
+      OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+      OSCustomFieldPureTableFormFieldItemConfigsType,
+      OSCustomFieldPureFormFieldItemConfigsType,
+      OSCustomFieldStaticPureFormFieldItemConfigsType
+    >['settings'];
+  };
+  requests?: {
+    /** 创建资源请求 */
+    requestCreateSource?: RequestIO<
+      {
+        values: RecordType;
+      },
+      undefined
+    >;
+    /** 创建模板时的请求 */
+    requestTemplateCreate?: RequestIO<{
+      values: RecordType;
+      createFormValues: RecordType;
+    }>;
+    /** 请求所有模版列表 */
+    requestTemplateList?: RequestIO<
+      OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      OSTableRequestDataSourceReturnType
+    >;
+    /** 更新模板信息的请求 */
+    requestUpdateTemplateInfo?: RequestIO<
+      {
+        values: RecordType;
+      } & _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      undefined
+    >;
+    /** 更新模板 values 内容 */
+    requestUpdateTemplateValues?: RequestIO<
+      {
+        values: RecordType;
+        templateId: string;
+      },
+      undefined
+    >;
+    /** 删除模板的请求 */
+    requestDeleteTemplate?: RequestIO<
+      _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      undefined
+    >;
+    /** 请求模板详情的接口 */
+    requestTemplateDataSource?: RequestIO<
+      _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      RecordType
+    >;
+    /** 应用模板数据的接口 */
+    requestApplayTemplateData?: RequestIO<
+      _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      {
+        values?: RecordType;
+        templateId: string;
+        templateName: string;
+      }
+    >;
+  };
+}
+
+export type OSActionsTemplateUploadAPI = {};
+
+export interface OSActionsTemplateUploadType extends OSCore {
+  settings?: {
+    /** 提示信息 */
+    tooltip?: string | string[];
+    /** 下载模板 */
+    templates?: {
+      /** 文件名称 */
+      fileName: string;
+      key?: string;
+    }[];
+    /** 允许的文件格式后缀 */
+    suffixs?: string[];
+    /** 按钮文案 */
+    buttonTriggerText?: string;
+  };
+  requests?: {
+    /** 上传模板数据 */
+    requestUploadReportData?: RequestIO<
+      {
+        file: RcFile;
+      },
+      void
+    >;
+    /** 下载模板数据 */
+    requestDownloadTemplateData?: RequestIO<
+      {
+        fileName: string;
+        key: string;
+      },
+      void
+    >;
+  };
+}
+
+export type OSActionsOperateAPI = Pick<OSFormAPI, 'setFieldsValue' | 'getFieldsValue'>;
+
+export interface OSActionsOperateType extends OSCore {
+  settings?: {
+    /** dialog 标题 */
+    modalTitle?: string;
+    /** 确认类型 */
+    modalType?: RequiredRecursion<OSDialogModalOperationType>['settings']['type'];
+    /** 确认按钮类型 */
+    triggerButtonType?: RequiredRecursion<OSTriggerButtonType>['settings']['type'];
+    /** 确认按钮危险提示 */
+    triggerButtonDanger?: RequiredRecursion<OSTriggerButtonType>['settings']['danger'];
+    /** 确认按钮危险提示 */
+    danger?: boolean;
+    /** 按钮文案 */
+    triggerButtonText?: string;
+    /** 按钮设置 */
+    triggerButtonSettings?: OSTriggerButtonType['settings'];
+    /** 表单字段 */
+    formSettings?: _OSFormType<
+      OSCustomFieldPureFormFieldItemConfigsType,
+      OSCustomFieldStaticPureFormFieldItemConfigsType
+    >['settings'];
+    /** 提示信息 */
+    alert?: {
+      type?: AlertProps['type'];
+      message: AlertProps['message'];
+    };
+    /** 确认拟态框配置 */
+    modalOperationSettings?: OSDialogModalOperationType['settings'];
+    /** 操作项 */
+    actions?:
+      | RequiredRecursion<OSDialogModalOperationType>['settings']['actions']
+      | ((options: {
+          formRef?: React.RefObject<OSFormAPI>;
+        }) => RequiredRecursion<OSDialogModalOperationType>['settings']['actions']);
+    /** 启动重置表单 */
+    resetForm?: boolean;
+  };
+  requests?: {
+    requestAfterConfirm?: RequestIO<
+      {
+        values?: RecordType;
+      },
+      undefined
+    >;
+    requestAfterCancel?: RequestIO<
+      {
+        values?: RecordType;
+      },
+      undefined
+    >;
+  } & _OSFormType<
+    OSCustomFieldPureFormFieldItemConfigsType,
+    OSCustomFieldStaticPureFormFieldItemConfigsType
+  >['requests'];
+}
+
+export type OSActionsRecountAPI = {};
+
+export interface OSActionsRecountType extends OSCore {
+  settings?: {
+    /**
+     * dialog 标题
+     * @default 重新计算
+     */
+    modalTitle?: string;
+    /** 确认按钮类型 */
+    triggerButtonType?: RequiredRecursion<OSTriggerButtonType>['settings']['type'];
+    /** 按钮文案 */
+    triggerButtonText?: string;
+    /** 按钮设置 */
+    triggerButtonSettings?: OSTriggerButtonType['settings'];
+    /** 表单字段 */
+    formSettings?: _OSFormType<
+      OSCustomFieldPureFormFieldItemConfigsType,
+      OSCustomFieldStaticPureFormFieldItemConfigsType
+    >['settings'];
+    /**
+     * 获取当前状态间隔时间 ms
+     * @default 5000
+     */
+    getCurrentStateInterval?: number;
+  };
+  requests?: {
+    /** 请求重新计算 */
+    requestRecount?: RequestIO<
+      {
+        values?: RecordType;
+      },
+      {
+        /** 成功打印消息内容 */
+        message?: string;
+      }
+    >;
+    /** 请求当前计算状态 */
+    requestCurrentStatus?: RequestIO<
+      void,
+      {
+        /**
+         * 是否计算中
+         * 0：运行结束 | 1：运行中 | 2：运行异常
+         */
+        recountingStatus?: number;
+        /** 触发时间 */
+        triggerDate?: string;
+        errorMessage?: string;
+      }
+    >;
+  };
+}
+
+export type OSActionsReportDownloadAPI = {};
+
+export interface OSActionsReportDownloadType extends OSCore {
+  settings?: {
+    /**
+     * dialog 标题
+     * @default 下载报告
+     */
+    modalTitle?: string;
+    /** 确认按钮类型 */
+    triggerButtonType?: RequiredRecursion<OSTriggerButtonType>['settings']['type'];
+    /** 按钮文案 */
+    triggerButtonText?: string;
+    /** 按钮设置 */
+    triggerButtonSettings?: OSTriggerButtonType['settings'];
+    /** 表单配置 */
+    formsSettings?: Record<
+      string,
+      _OSFormType<
+        OSCustomFieldPureFormFieldItemConfigsType,
+        OSCustomFieldStaticPureFormFieldItemConfigsType
+      >['settings']
+    >;
+    /** 报告列表 */
+    menu?: RequiredRecursion<OSTriggerDropdownType>['settings']['menu'];
+  };
+  requests?: {
+    /** 请求报告下载 */
+    requestReportDownload?: RequestIO<
+      {
+        key?: string;
+        values?: RecordType;
+      },
+      {
+        /** 成功打印消息内容 */
+        message?: string;
+        /** 文件内容 */
+        file: BlobPart;
+        /** 文件名称，包括后缀 */
+        fileName?: string;
+        /**
+         * char-stream 字符流
+         * byte-stream 字节流
+         * file-stream 文件流
+         */
+        fileType?: 'char-stream' | 'byte-stream' | 'file-stream';
+      }
+    >;
+  };
+}
