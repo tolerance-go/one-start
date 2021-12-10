@@ -233,7 +233,7 @@ export default () => {
                   text: 'text',
                   'editable-table': [
                     {
-                      id: '1',
+                      id: '1asdfasdf',
                       text: 'text',
                     },
                   ],

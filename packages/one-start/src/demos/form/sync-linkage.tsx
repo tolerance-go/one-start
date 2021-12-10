@@ -136,14 +136,14 @@ export default () => {
                 },
                 initialValue: [
                   {
-                    id: '1',
+                    id: '1asdfasdf',
                     company: '--',
                     swapRole: 'FIRST_PARTY_ROLE',
                     swapEquityDirection: 'PAY',
                     swapInterestDirection: 'RECEIVE',
                   },
                   {
-                    id: '2',
+                    id: '2asdfasdf',
                     company: '交易对手方',
                     swapRole: 'SECOND_PARTY_ROLE',
                     swapEquityDirection: 'RECEIVE',
@@ -211,14 +211,14 @@ export default () => {
                     error: false,
                     data: [
                       {
-                        id: '1',
+                        id: '1asdfasdf',
                         company: '安信证券' ?? '--',
                         swapRole: 'FIRST_PARTY_ROLE',
                         swapEquityDirection: 'PAY',
                         swapInterestDirection: 'RECEIVE',
                       },
                       {
-                        id: '2',
+                        id: '2asdfasdf',
                         company: '交易对手方',
                         swapRole: 'SECOND_PARTY_ROLE',
                         swapEquityDirection: 'RECEIVE',

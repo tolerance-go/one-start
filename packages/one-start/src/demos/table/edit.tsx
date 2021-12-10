@@ -84,7 +84,7 @@ export default () => {
               data: {
                 page: [
                   {
-                    id: '1',
+                    id: '1asdfasdf',
                     ...Mock.mock({
                       money: '@integer',
                       percent: '@integer',
@@ -93,7 +93,7 @@ export default () => {
                     }),
                   },
                   {
-                    id: '2',
+                    id: '2asdfasdf',
                     ...Mock.mock({
                       money: '@integer',
                       percent: '@integer',
