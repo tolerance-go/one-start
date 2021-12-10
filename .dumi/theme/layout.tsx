@@ -28,7 +28,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
 
   return (
     <ConfigProvider locale={zhCN}>
-      {props.location.pathname === '/one-proto' ? (
+      {location.pathname === '/one-proto' ? (
         children
       ) : (
         <>
