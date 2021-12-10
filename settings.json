@@ -1,10 +1,5 @@
 {
-  "headPkgs": [
-    "request",
-    "utils",
-    "one-start",
-    "one-proto"
-  ],
+  "headPkgs": ["utils", "request", "one-start", "one-proto"],
   "scope": "ty-swap-pages",
   "siteTitle": "Swap-Pages",
   "requestLibPath": "import request from '@ty-one-start/request';",
