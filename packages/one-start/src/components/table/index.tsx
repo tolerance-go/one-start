@@ -239,7 +239,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   };
 
   const setDataSourceAndFormData = useCallback(
-    (dataSource_?: OSTableValueType) => {
+    (dataSource_?: OSTableValueType, clearInputCachce: boolean = true) => {
       /** 更新选中状态 */
       const selectedRowKeys = selectionActionsRef.current?.getSelectedRowKeys?.();
 
@@ -260,7 +260,9 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
         }
       }
 
-      clearPrevUserCellInputs();
+      if (clearInputCachce) {
+        clearPrevUserCellInputs();
+      }
 
       setDataSource(dataSource_);
       setTableFormData(parseTableValue(dataSource_));
@@ -654,7 +656,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   useEffect(() => {
     const nextDataSource = parseTableValue(value);
 
-    tableCoreActionsRef.current.setDataSourceAndFormData(nextDataSource);
+    tableCoreActionsRef.current.setDataSourceAndFormData(nextDataSource, false);
 
     /**
      * table 内部存在 vitrual dataSource 提供前端搜索功能的数据展示，和 dataSource 是绑定关系
@@ -721,6 +723,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
           className={cls(clsPrefix, props.className)}
           ref={tableWrapFormRef}
           onValuesChange={(changedValues, values) => {
+            console.log('latestUserInputValueRef.current', changedValues, values);
             latestUserInputValueRef.current = changedValues;
 
             handleValueChangeWithDebounce(changedValues, values);

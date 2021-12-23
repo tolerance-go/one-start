@@ -42,7 +42,7 @@ import type { OSResMessage } from './message';
 export type TableCoreActions = {
   setTableFormData: (dataSource_?: RecordType[]) => void;
   setVisualDataSource: (dataSource_?: RecordType[]) => void;
-  setDataSourceAndFormData: (dataSource_?: OSTableValueType) => void;
+  setDataSourceAndFormData: (dataSource_?: OSTableValueType, clearInputCache?: boolean) => void;
   setHeaderFormValues: (values: RecordType) => void;
   setSearchHeadFormOverlayValues: (values: RecordType) => void;
   getHeaderFormValues: () => RecordType;
