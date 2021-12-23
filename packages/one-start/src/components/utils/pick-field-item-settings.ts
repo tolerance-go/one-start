@@ -1,4 +1,7 @@
-import type { OSFormFieldItemWithStaticPureConfigs } from '../typings';
+import type {
+  OSFormFieldItemWithStaticPureConfigs,
+  OSTableFormFieldItemWithStaticPureConfigs,
+} from '../typings';
 import utl from 'lodash';
 import { formItemSettingsFields } from '../form-items/form-item-settings-fields';
 
@@ -20,6 +23,12 @@ export const pickFieldRequests = (requests: OSFormFieldItemWithStaticPureConfigs
 
 export const pickFormItemRequests = (
   requests: OSFormFieldItemWithStaticPureConfigs['requests'],
+) => {
+  return utl.pick(requests, formItemRequestsFields);
+};
+
+export const pickTableFormItemRequests = (
+  requests: Required<OSTableFormFieldItemWithStaticPureConfigs>['requests'],
 ) => {
   return utl.pick(requests, formItemRequestsFields);
 };

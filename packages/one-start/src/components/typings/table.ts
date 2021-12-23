@@ -27,6 +27,7 @@ import type {
   OSTextareaFieldType,
   OSTextFieldType,
   OSTransferFieldType,
+  OSTreeSelectFieldType,
 } from './field';
 import type {
   CreatePureFormFieldItemConfigs,
@@ -188,6 +189,12 @@ export type _OSTableFormFieldItem<
     > &
       OSFormItemDependenciesConfigs)
   | (CreatePureFormFieldItemConfigs<
+      OSTreeSelectFieldType,
+      _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      OSTableFormFieldItemExtra
+    > &
+      OSFormItemDependenciesConfigs)
+  | (CreatePureFormFieldItemConfigs<
       OSImageFieldType,
       _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       OSTableFormFieldItemExtra
@@ -332,6 +339,8 @@ export type _OSTableFormFieldItemWithStaticPureConfigs<
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSCustomFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
+  | (CreateStaticPureFormFieldItemConfigs<OSTreeSelectFieldType, OSTableFormFieldItemExtra> &
+      OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSTransferFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs);
 
@@ -424,17 +433,16 @@ export interface _OSTableType<
   ChangeValue = OSTableChangeValueType,
 > extends OSCore {
   settings?: {
+    /**
+     * 触发 onChange 的 debounce 时间，单位毫秒
+     */
+    changeDebounceTimestamp?: number;
     /** 高亮徽章配置 */
     highlightBadge?: {
       warning?: HighlightBadgeItem;
       error?: HighlightBadgeItem;
     };
     loopRequest?: number;
-    /**
-     * 触发 onChange 的 debounce 时间，单位毫秒
-     * @default 400
-     */
-    changeDebounceTimestamp?: number;
     /**
      * 定义 table 唯一 key
      * 当 query 存在 tableKey 会进一步检查 searchValues 初始化搜索表单
@@ -580,6 +588,7 @@ export type _OSSourceTableSelfType<
   StaticCustomFormValueType,
 > = {
   settings?: {
+    rowTagKey?: string;
     /** 默认激活第一行数据 */
     defaultActiveFirstRow?: {
       type?: 'edit' | 'view';

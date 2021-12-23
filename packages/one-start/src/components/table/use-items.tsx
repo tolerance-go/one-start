@@ -22,6 +22,7 @@ import type {
   OSFormItemType,
   OSOpenableFieldBaseAPI,
   OSRule,
+  OSTextFieldType,
   OSSelectFieldType,
   OSTableAPI,
   OSTableFormFieldItemExtra,
@@ -36,7 +37,7 @@ import type {
   TableCoreActions,
 } from '../typings';
 import { renderField } from '../utils/render-field';
-import { renderTableFormItem } from '../utils/render-form-item';
+import { renderTableFormItem } from '../utils/render-table-form-item';
 import type { RequiredRecursion } from '../utils/typings';
 import type { ResizeableHeaderCellProps } from './components/resizeable-header-cell';
 import {
@@ -50,7 +51,7 @@ import {
   tdSelfClassTag,
   verticalRowCellWithKeyClsPrefix,
 } from './constants';
-import type { EventPayloads, SearchFormActions } from './typings';
+import type { EventPayloads, RequestDataSourceActions, SearchFormActions } from './typings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 import { getDataIndexId, runTableSettings } from './utils';
 
@@ -135,6 +136,7 @@ export const useItems = ({
   tableWrapRef,
   tableActionsRef,
   getFieldItems,
+  requestDataSourceActionsRef,
   fieldItemSettings,
   allColumnsIdRef: propsAllColumnsIdRef,
   columnsStaticPureConfigsIdMapsRef: propsColumnsStaticPureConfigsIdMapsRef,
@@ -155,6 +157,7 @@ export const useItems = ({
   extraValueTypes: Record<string, (options: RenderFieldOptions) => React.ReactNode>;
   searchFormActionsRef: React.MutableRefObject<Partial<SearchFormActions>>;
   tableCoreActionsRef: React.MutableRefObject<TableCoreActions>;
+  requestDataSourceActionsRef: React.MutableRefObject<RequestDataSourceActions>;
   tableWrapRef: React.MutableRefObject<HTMLDivElement | null>;
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
   getFieldItems?: OSTableType['getFieldItems'];
@@ -501,7 +504,7 @@ export const useItems = ({
               actions: tableActionsRef.current,
               dependencies,
               defaultSettings: fieldItemSettings,
-              getField: (staticFieldSettings, staticFieldRequests) => {
+              getField: (staticFieldSettings, staticFieldRequests, __, ___, options) => {
                 return renderField(
                   colEditable ? 'edit' : 'read',
                   valueType,
@@ -512,6 +515,8 @@ export const useItems = ({
                   staticFieldRequests,
                   {
                     types: extraValueTypes,
+                    props: options?.props,
+                    ref: options?.ref,
                   },
                 );
               },
@@ -538,16 +543,6 @@ export const useItems = ({
             actions: tableActionsRef.current,
           });
 
-          if (staticFieldSettings?.ellipsisTooltip) {
-            return val != null ? (
-              <Tooltip title={val} placement="topLeft">
-                {val}
-              </Tooltip>
-            ) : (
-              '--'
-            );
-          }
-
           const renderCellDom = () => {
             const dom = renderField(
               'read',
@@ -556,6 +551,37 @@ export const useItems = ({
                 ...fieldItemSettings,
                 ...staticFieldSettings,
                 bordered: false,
+                ...(() => {
+                  /**
+                   * 当字符串搜索字段存在，高亮显示
+                   */
+                  const isSearchAndShow = () => {
+                    if (staticFieldSettings?.search) {
+                      if (typeof staticFieldSettings?.search === 'object') {
+                        return staticFieldSettings?.search.type !== 'only';
+                      }
+                      return staticFieldSettings?.search !== 'only';
+                    }
+                    return false;
+                  };
+
+                  if (valueType === 'text' && isSearchAndShow()) {
+                    const searchs = searchFormActionsRef.current?.getSearchFormDataSource?.();
+                    return {
+                      searchValue: searchs?.[getDataIndexId(staticFieldSettings?.dataIndex)],
+                    } as OSTextFieldType['settings'];
+                  }
+
+                  if (valueType === 'select' && requests?.requestOptions) {
+                    const data = requestDataSourceActionsRef.current?.getFieldOptionsMapDataIndex();
+                    const id = getDataIndexId(staticFieldSettings?.dataIndex);
+                    return {
+                      valueEnums: data?.[id],
+                    } as OSSelectFieldType['settings'];
+                  }
+
+                  return {};
+                })(),
               },
               requests,
               {
@@ -609,7 +635,44 @@ export const useItems = ({
             return dom;
           };
 
-          const cellDom = renderCellDom();
+          let cellDom = renderCellDom();
+
+          if (staticFieldSettings?.ellipsisTooltip) {
+            cellDom =
+              val != null ? (
+                <Tooltip
+                  title={(() => {
+                    if (valueType === 'select' && requests?.requestOptions) {
+                      const data =
+                        requestDataSourceActionsRef.current?.getFieldOptionsMapDataIndex();
+                      const id = getDataIndexId(staticFieldSettings?.dataIndex);
+
+                      return val != null
+                        ? (Array.isArray(val) ? val : [val])
+                            .map((item: string) => data![id][item])
+                            .join(', ')
+                        : undefined;
+                    }
+
+                    return val;
+                  })()}
+                  placement="topLeft"
+                >
+                  <span
+                    style={{
+                      overflow: 'hidden',
+                      whiteSpace: 'nowrap',
+                      textOverflow: 'ellipsis',
+                      wordBreak: 'keep-all',
+                    }}
+                  >
+                    {cellDom}
+                  </span>
+                </Tooltip>
+              ) : (
+                '--'
+              );
+          }
 
           if (render) {
             return render({
@@ -645,7 +708,7 @@ export const useItems = ({
           if (['digit', 'money'].includes(valueType)) {
             return 'right';
           }
-          if (['select', 'date', 'date-range'].includes(valueType)) {
+          if (['select', 'date', 'date-range', 'switch'].includes(valueType)) {
             return 'center';
           }
         }

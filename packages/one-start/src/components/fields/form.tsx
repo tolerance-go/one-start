@@ -1,7 +1,7 @@
 import React from 'react';
+import OSForm from '../form';
 import type { OSFormAPI, OSFormFieldType } from '../typings';
 import type { OSFormFieldAPI } from '../typings/custom-fields';
-import OSForm from '../form';
 
 const OSFormField: React.ForwardRefRenderFunction<OSFormFieldAPI, OSFormFieldType> = (
   props,

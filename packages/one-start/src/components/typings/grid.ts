@@ -48,11 +48,6 @@ export type _OSGridType<
       valueKey?: string;
     };
     /**
-     * 触发 onChange 的 debounce 时间，单位毫秒
-     * @default 400
-     */
-    changeDebounceTimestamp?: number;
-    /**
      * 定义 table 唯一 key
      * 当 query 存在 tableKey 会进一步检查 searchValues 初始化搜索表单
      */
@@ -201,6 +196,7 @@ export type _OSSourceGridType<
   ChangeValue
 > & {
   settings?: {
+    rowTagKey?: string;
     /** 默认激活第一行数据 */
     defaultActiveFirstRow?: {
       type?: 'edit' | 'view';

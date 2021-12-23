@@ -5,7 +5,7 @@ import { Space, Tooltip } from '@ty/antd';
 import type { ColumnGroupType, ColumnType } from '@ty/antd/lib/table';
 import cls from 'classnames';
 import utl from 'lodash';
-import type { Rule } from 'rc-field-form/lib/interface';
+import type { Rule } from '@ty/antd/lib/form';
 import React, { useMemo, useRef } from 'react';
 import { mergeRuleToTooltip, normalizeTooltip } from '../form-items/utils';
 import { useActionsRef } from '../hooks/use-actions-ref';
@@ -27,7 +27,7 @@ import type {
   RenderFieldOptions,
 } from '../typings';
 import { renderField } from '../utils/render-field';
-import { renderTableFormItem } from '../utils/render-form-item';
+import { renderTableFormItem } from '../utils/render-table-form-item';
 import type { RequiredRecursion } from '../utils/typings';
 import {
   DEFAULT_WIDTH,

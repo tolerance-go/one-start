@@ -21,7 +21,7 @@ const OSSwitchField: React.ForwardRefRenderFunction<OSSwitchFieldAPI, OSSwitchFi
     const val = text ?? _value;
     const dom = (
       <span ref={ref as React.MutableRefObject<HTMLSpanElement>}>
-        {val ? zhMap[String(val)] : '--'}
+        {val != null ? zhMap[String(val)] : '--'}
       </span>
     );
     return dom;

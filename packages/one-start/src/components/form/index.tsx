@@ -1,21 +1,16 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import type { FormInstance } from '@ty/antd';
-import { Col, Divider, Form, Row, Space, Spin, Typography } from '@ty/antd';
+import { Col, Divider, Empty, Form, Row, Space, Spin, Typography } from '@ty/antd';
+import type { FormProps } from '@ty/antd/es/form/Form';
 import type { NamePath } from '@ty/antd/lib/form/interface';
 import cls from 'classnames';
+import EventEmitter from 'eventemitter3';
 import utl from 'lodash';
 import type { Moment } from 'moment';
 import { isMoment } from 'moment';
 import type { Meta } from 'rc-field-form/es/interface';
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
+import React, { useContext, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useActionsRef } from '../hooks/use-actions-ref';
 import { ExtraValueTypesContext } from '../providers/extra-value-types';
@@ -23,7 +18,9 @@ import { FormInstanceContext } from '../providers/form-context';
 import { OSReferencesCollectorDispatchContext } from '../providers/references';
 import { getDataIndexId, getKeyIndexId, runFormSettings } from '../table/utils';
 import type {
+  OSEditableTableAPI,
   OSField,
+  OSFieldAPI,
   OSFormAPI,
   OSFormFieldItemExtra,
   OSFormFieldItems,
@@ -34,12 +31,12 @@ import type {
   OSFormItemDependenciesConfigs,
   OSFormItemType,
   OSFormType,
+  OSLayoutModalFormAPI,
+  OSLayoutTabsFormAPI,
   OSTableAPI,
   RecordType,
   ValueAsyncLinkage,
   _OSFormFieldItems,
-  OSEditableTableAPI,
-  OSFieldAPI,
 } from '../typings';
 import { findParent } from '../utils/dom-tree';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
@@ -50,6 +47,7 @@ import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useLoading } from '../utils/use-loading';
 import GroupCollapse from './group-collapse';
 import { handleAsyncLinkage, valueLinkageHandler } from './linkage';
+import type { FormCoreActions } from './typings';
 
 const useAsyncInitialValues = ({
   actions,
@@ -98,8 +96,10 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     onValuesLinkageChange,
     onDataSourceLinkageChange,
     onDataSourceChange,
+    onFieldsChange,
   } = props;
   const {
+    changeDebounceTimestamp = 1000,
     fieldItems: _fieldItems,
     initialValues,
     valueLinkage,
@@ -107,16 +107,22 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     labelCol,
     wrapperCol,
     fieldItemSettings,
+    params: _params,
+    hideEmpty = false,
   } = settings ?? {};
   const formRef = useRef<FormInstance>(null);
   const [form] = Form.useForm();
   const clsPrefix = useClsPrefix('os-form');
   const [requestDataSourceLoading, setRequestDataSourceLoading] = useState(false);
+  const [asyncFieldItems, setAsyncFieldItems] = useState<
+    RequiredRecursion<OSFormType>['settings']['fieldItems'] | undefined
+  >();
   const formWrapperRef = useRef<HTMLDivElement>(null);
 
   const extraValueTypes = useContext(ExtraValueTypesContext);
   const referencesDispatch = useContext(OSReferencesCollectorDispatchContext);
   const asyncInitialValuesRef = useRef<RecordType>();
+  const [eventBus] = useState(new EventEmitter());
 
   const leafFieldItemComponentRefRefs = useRef<
     Record<
@@ -162,6 +168,10 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     }[]
   >([]);
 
+  const contextRef = useRef<RecordType>({});
+
+  const latestUserInputValueRef = useRef();
+
   /** 正常化 fields 的 value，比如 editable-table 的 value 可能为 { target: xxx } */
   const normalizeFieldsValue = (values: RecordType): RecordType => {
     return utl.mapValues(values, (fieldValue, dataIndexId) => {
@@ -185,11 +195,20 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
           fieldStaticPureConfigs.type === 'layout-tabs-form'
         ) {
           /** 内部会做 normalizeFieldItemValue */
-          return (
-            leafDataIndexIdToComponentRefRef.current[
-              getDataIndexId(fieldStaticPureConfigs.settings?.dataIndex)
-            ]?.current as OSFormAPI
-          )?.getDataSource();
+          const api = leafDataIndexIdToComponentRefRef.current[
+            getDataIndexId(fieldStaticPureConfigs.settings?.dataIndex)
+          ]?.current as OSFormAPI | OSLayoutModalFormAPI | undefined;
+
+          /** 如果 field-items 是异步获取，则序列化数据在 field-items 没有返回之前直接返回 values */
+          if (
+            fieldStaticPureConfigs.type === 'form' ||
+            fieldStaticPureConfigs.type === 'layout-modal-form'
+          ) {
+            if (api?.isFieldItemsReady() === false) {
+              return fieldValue;
+            }
+          }
+          return api?.getDataSource();
         }
         /**
          * 为什么不在 date 或者 date-range 内部设置 onChange 转换为 string，
@@ -230,6 +249,14 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     return values;
   };
 
+  /**
+   * 清空上一次单元格用户输入，原作用是避免数值联动冲掉当前输入
+   * 但是在手动设置的情况下，需要先清理，避免无效
+   */
+  const clearPrevUserCellInputs = () => {
+    latestUserInputValueRef.current = undefined;
+  };
+
   const validate = async (
     nameList?: NamePath[],
   ): Promise<
@@ -257,7 +284,35 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     }
   };
 
-  const contextRef = useRef<RecordType>({});
+  const validateRecursion = async (nameList?: NamePath[]) => {
+    await Promise.all(
+      Object.keys(leafFieldItemComponentRefRefs.current)
+        .map((key) => {
+          const meta = leafFieldItemComponentRefRefs.current[key];
+          if (['layout-modal-form', 'form', 'layout-tabs-form'].includes(meta.valueType)) {
+            return (
+              meta.ref.current as OSFormAPI | OSLayoutModalFormAPI | OSLayoutTabsFormAPI | null
+            )?.validate(nameList);
+          }
+          return null;
+        })
+        .filter(
+          (
+            item,
+          ): item is Promise<
+            | {
+                error: false;
+                data: RecordType;
+              }
+            | {
+                error: true;
+                data: ValidateErrorEntity;
+              }
+          > => Boolean(item),
+        ),
+    );
+    return validate(nameList);
+  };
 
   const updateContext = (data: RecordType) => {
     contextRef.current = {
@@ -283,9 +338,18 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
        */
       Object.keys(leafFieldItemComponentRefRefs.current).forEach((key) => {
         const meta = leafFieldItemComponentRefRefs.current[key];
-        if (meta.valueType === 'editable-table') {
+        if (
+          ['editable-table', 'form', 'layout-modal-form', 'layout-tabs-form'].includes(
+            meta.valueType,
+          )
+        ) {
           (
-            meta.ref.current as unknown as OSEditableTableAPI | undefined
+            meta.ref.current as unknown as
+              | OSEditableTableAPI
+              | OSFormAPI
+              | OSLayoutModalFormAPI
+              | OSLayoutTabsFormAPI
+              | undefined
           )?.clearPrevUserCellInputs();
         }
       });
@@ -303,7 +367,9 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     callback(next);
   };
 
-  const coreActionsRef = useActionsRef({
+  const coreActionsRef = useActionsRef<FormCoreActions>({
+    setFieldsValue,
+    onChange,
     onValuesLinkageChange,
     valueAsyncLinkage,
     valueLinkage,
@@ -317,96 +383,125 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
         handleDataSourceChange(dataSource, onDataSourceChange);
       }
     },
+    once(...args) {
+      return eventBus.once(...args);
+    },
+    on(...args) {
+      return eventBus.on(...args);
+    },
+    off(...args) {
+      return eventBus.off(...args);
+    },
+    emit(...args) {
+      return eventBus.emit(...args);
+    },
   });
 
-  const linkageChange = useCallback(
-    ({ values, changedValues }: Record<string, RecordType>) => {
-      const isRegistedValueAsyncLinkage =
-        coreActionsRef.current.valueAsyncLinkage || asyncValueLinkageSortedRef.current.length;
+  const asyncLinkCountRef = useRef(0);
 
-      const isRegisteValueSyncLinkage =
-        coreActionsRef.current.valueLinkage || syncValueLinkageSortedRef.current.length;
+  const linkageChange = ({
+    values,
+    changedValues,
+    scopeLinkCount,
+  }: {
+    values: RecordType;
+    changedValues: RecordType;
+    scopeLinkCount?: number;
+  }) => {
+    const isRegistedValueAsyncLinkage =
+      coreActionsRef.current.valueAsyncLinkage || asyncValueLinkageSortedRef.current.length;
 
-      const asyncLinkageCount = async (valuesData: {
-        changedValues: RecordType;
-        values: RecordType;
-      }) => {
-        if (isRegistedValueAsyncLinkage) {
-          handleAsyncLinkage(
-            valuesData.changedValues,
-            valuesData.values,
-            {
-              parallel: asyncValueLinkageSortedRef.current.reduce((merged, next) => {
-                if (next.linkage.parallel) {
-                  return {
-                    ...merged,
-                    [next.keyIndexId]: next.linkage.parallel,
-                  };
-                }
-                return merged;
-              }, coreActionsRef.current.valueAsyncLinkage?.parallel ?? {}),
-              serial: [
-                ...asyncValueLinkageSortedRef.current
-                  .map((item) => item.linkage.serial?.linkage)
-                  .filter((item): item is ValueAsyncLinkage => !!item),
-                ...(coreActionsRef.current.valueAsyncLinkage?.serial ?? []),
-              ],
-            },
-            (asyncLinkageResult) => {
-              formRef.current?.setFieldsValue(asyncLinkageResult.changedValues);
-              coreActionsRef.current.onValuesLinkageChange?.(
-                asyncLinkageResult.changedValues,
-                asyncLinkageResult.values,
-              );
-              coreActionsRef.current.onDataSourceLinkageChange(asyncLinkageResult.values);
-            },
-          );
-        }
-      };
+    const isRegisteValueSyncLinkage =
+      coreActionsRef.current.valueLinkage || syncValueLinkageSortedRef.current.length;
 
-      if (isRegisteValueSyncLinkage) {
-        const linkageResult = valueLinkageHandler(changedValues, values, [
-          ...syncValueLinkageSortedRef.current.map((item) => item.linkage.linkage),
-          ...(coreActionsRef.current.valueLinkage ?? []),
-        ]);
+    const syncValues = (meta: { values: RecordType; changedValues: RecordType }) => {
+      formRef.current?.setFieldsValue(meta.changedValues);
+      coreActionsRef.current.onChange?.(meta.values);
+      coreActionsRef.current.onValuesLinkageChange?.(meta.changedValues, meta.values);
+      coreActionsRef.current.onDataSourceLinkageChange(meta.values);
+    };
 
-        formRef.current?.setFieldsValue(linkageResult.changedValues);
+    const asyncLinkageCount = async (valuesData: {
+      changedValues: RecordType;
+      values: RecordType;
+    }) => {
+      if (isRegistedValueAsyncLinkage) {
+        handleAsyncLinkage(
+          valuesData.changedValues,
+          valuesData.values,
+          {
+            parallel: asyncValueLinkageSortedRef.current.reduce((merged, next) => {
+              if (next.linkage.parallel) {
+                return {
+                  ...merged,
+                  [next.keyIndexId]: next.linkage.parallel,
+                };
+              }
+              return merged;
+            }, coreActionsRef.current.valueAsyncLinkage?.parallel ?? {}),
+            serial: [
+              ...asyncValueLinkageSortedRef.current
+                .map((item) => item.linkage.serial?.linkage)
+                .filter((item): item is ValueAsyncLinkage => !!item),
+              ...(coreActionsRef.current.valueAsyncLinkage?.serial ?? []),
+            ],
+          },
+          (asyncLinkageResult) => {
+            if (scopeLinkCount != null) {
+              if (asyncLinkCountRef.current === scopeLinkCount) {
+                syncValues(asyncLinkageResult);
+                return;
+              }
+              /** 丢弃历史计算 */
+              return;
+            }
+            syncValues(asyncLinkageResult);
+          },
+        );
+      }
+    };
 
-        if (!isRegistedValueAsyncLinkage) {
-          coreActionsRef.current.onValuesLinkageChange?.(
-            linkageResult.changedValues,
-            linkageResult.values,
-          );
-          coreActionsRef.current.onDataSourceLinkageChange(linkageResult.values);
-        }
+    if (isRegisteValueSyncLinkage) {
+      const linkageResult = valueLinkageHandler(changedValues, values, [
+        ...syncValueLinkageSortedRef.current.map((item) => item.linkage.linkage),
+        ...(coreActionsRef.current.valueLinkage ?? []),
+      ]);
 
-        asyncLinkageCount(linkageResult);
-        return;
+      if (!isRegistedValueAsyncLinkage) {
+        syncValues(linkageResult);
       }
 
-      asyncLinkageCount({
-        values,
-        changedValues,
-      });
-    },
-    [coreActionsRef],
-  );
+      asyncLinkageCount(linkageResult);
+      return;
+    }
+
+    asyncLinkageCount({
+      values,
+      changedValues,
+    });
+  };
 
   const setFieldsValueAndTriggeLinkage = (changedValues?: RecordType) => {
     if (changedValues == null || Object.keys(changedValues).length === 0) return;
     form.setFieldsValue(changedValues);
 
     const values = form.getFieldsValue();
-    const normalizedValues = normalizeFieldsValue(values);
 
     linkageChange({
       values,
       changedValues,
-      normalizedValues,
     });
   };
 
   const formActionsRef = useActionsRef<OSFormAPI>({
+    clearPrevUserCellInputs,
+    validateRecursion,
+    isFieldItemsReady: () => {
+      if (requests?.requestFieldItems) {
+        return asyncFieldItems != null;
+      }
+      return true;
+    },
     normalizeFieldsValue,
     setDataSource,
     getDataSource,
@@ -425,6 +520,22 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     getContext,
     setFieldsValueAndTriggeLinkage,
   });
+
+  const requestFieldItems = utl.debounce(async (params?: RecordType) => {
+    if (!requests?.requestFieldItems) return;
+
+    // setLoading(true);
+    const { error, data } = await requests
+      .requestFieldItems({
+        actions: formActionsRef.current,
+        params,
+      })
+      .then(normalizeRequestOutputs);
+    // setLoading(false);
+    if (error) return;
+
+    setAsyncFieldItems(data?.fieldItems ?? []);
+  }, 400);
 
   const requestDataSource = async () => {
     if (!requests?.requestDataSource) {
@@ -500,6 +611,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
   const actionsRef = useActionsRef({
     hideFormGroupItemDom,
     showFormGroupItemDom,
+    requestFieldItems,
   });
 
   const { requestInitialValuesLoading } = useAsyncInitialValues({
@@ -507,28 +619,6 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     requestInitialValues: requests?.requestInitialValues,
     asyncInitialValuesRef,
   });
-
-  useEffect(() => {
-    const apis = formActionsRef.current;
-    if (props.refKey) {
-      referencesDispatch({
-        type: 'registe',
-        payload: {
-          type: 'forms',
-          key: props.refKey,
-          apis,
-        },
-      });
-    }
-  });
-
-  useEffect(() => {
-    requestDataSource();
-  }, []);
-
-  useEffect(() => {
-    formRef.current?.setFieldsValue(value);
-  }, [value]);
 
   const renderItems = (
     fieldItems?: OSFormFieldItems,
@@ -543,6 +633,9 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     syncValueLinkageSortedRef.current = [];
     asyncValueLinkageSortedRef.current = [];
 
+    if (!hideEmpty && (!fieldItems || fieldItems.length === 0)) {
+      return [<Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />];
+    }
     const renderItemsInner = (
       fieldItems_?: OSFormFieldItems,
       parentKeyIndexId_?: string,
@@ -719,7 +812,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
               staticFieldRequests,
               {
                 types: extraValueTypes,
-                props: options?.props,
+                props: { ...options?.props, eventBus, name: formItemSettings?.dataIndex },
                 ref: leafFieldItemComponentRefRefs.current[keyIndexId].ref,
               },
             );
@@ -842,6 +935,66 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     return items;
   };
 
+  const handleFormFieldsChange: FormProps['onFieldsChange'] = (changedFields, fields) => {
+    onFieldsChange?.(changedFields, fields);
+  };
+
+  const handleChange: FormProps['onValuesChange'] = (changedValues, values) => {
+    onChange?.(values);
+
+    asyncLinkCountRef.current += 1;
+
+    linkageChange({
+      values,
+      changedValues,
+      scopeLinkCount: asyncLinkCountRef.current,
+    });
+  };
+
+  const handleValueChangeWithDebounce = changeDebounceTimestamp
+    ? utl.debounce(handleChange, changeDebounceTimestamp)
+    : handleChange;
+
+  useEffect(() => {
+    actionsRef.current.requestFieldItems(_params);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [actionsRef, JSON.stringify(_params)]);
+
+  useEffect(() => {
+    const apis = formActionsRef.current;
+    if (props.refKey) {
+      referencesDispatch({
+        type: 'registe',
+        payload: {
+          type: 'forms',
+          key: props.refKey,
+          apis,
+        },
+      });
+    }
+  });
+
+  useEffect(() => {
+    requestDataSource();
+  }, []);
+
+  useEffect(() => {
+    const old = formRef.current?.getFieldsValue();
+    /** 对象形式的 val 会重置 errors，不管是否 diff */
+    const next = utl.omitBy(value, (val, key) => {
+      if (
+        old?.[key] !== val &&
+        typeof latestUserInputValueRef.current === 'object' &&
+        key in latestUserInputValueRef.current!
+      ) {
+        return true;
+      }
+
+      return val === old[key];
+    });
+    formRef.current?.setFieldsValue(next);
+  }, [value]);
+
   useEffect(() => {
     /** 解决初始化无法 hide 的问题 */
     currentHideLeafKeyIndexIdSetRef.current.forEach((keyIndexId) =>
@@ -865,19 +1018,17 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
             labelCol={labelCol ?? { span: 10 }}
             wrapperCol={wrapperCol ?? { span: 14 }}
             initialValues={initialValues}
+            onFieldsChange={handleFormFieldsChange}
             onValuesChange={(changedValues, values) => {
+              latestUserInputValueRef.current = changedValues;
+
               onValuesChange?.(changedValues, values);
-              onChange?.(changedValues);
+              handleValueChangeWithDebounce?.(changedValues, values);
 
               coreActionsRef.current.onDataSourceChange(values);
-
-              linkageChange({
-                values,
-                changedValues,
-              });
             }}
           >
-            {renderItems(_fieldItems)}
+            {renderItems(requests?.requestFieldItems ? asyncFieldItems : _fieldItems)}
           </Form>
         </div>
       </Spin>

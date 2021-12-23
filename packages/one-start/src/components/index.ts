@@ -45,6 +45,8 @@ import { formatter, parser } from './utils/format';
 import { normalizeRequestOutputs } from './utils/normalize-request-outputs';
 import OSSourceGrid from './source-grid';
 import OSSearchGrid from './search-grid';
+import OSTreeSelectField from './fields/tree-select';
+import OSGridLayout from './layout-grid';
 
 import './theme.less';
 
@@ -106,4 +108,6 @@ export {
   OSTimeLagField,
   OSTransferField,
   OSGrid,
+  OSTreeSelectField,
+  OSGridLayout,
 };

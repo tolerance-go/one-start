@@ -63,4 +63,5 @@ export interface OSFormItemType<Value = any> extends OSCore {
   noStyle?: boolean;
   renderFormItem?: (dom: React.ReactNode, props: Omit<OSFormItemType, 'renderFormItem'>) => void;
   className?: string;
+  validateTrigger?: string[];
 }

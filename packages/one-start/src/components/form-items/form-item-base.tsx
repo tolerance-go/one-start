@@ -15,7 +15,7 @@ import { getTradingDaysRule } from './rules/get-trading-days-rule';
 import { mergeRuleToTooltip, normalizeTooltip } from './utils';
 
 const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
-  const { settings, requests, noStyle, className } = props;
+  const { settings, requests, noStyle, className, validateTrigger } = props;
   const {
     tooltip,
     rules,
@@ -131,7 +131,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
         ?.map((item) => {
           return (form) => {
             const wrapRule = (item_: RuleObject): RuleObject => {
-              const { validator, validateTrigger } = item_;
+              const { validator, validateTrigger: validateTrigger_ } = item_;
               return {
                 validator: (rule, value, callback) => {
                   return new Promise((resolve, reject) => {
@@ -185,7 +185,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
                     resolve(true);
                   });
                 },
-                validateTrigger,
+                validateTrigger: validateTrigger_,
               };
             };
 
@@ -256,6 +256,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
       spinning={requestFormItemValueLoading || requestInitialValueLoading}
     >
       <FormItemType
+        validateTrigger={validateTrigger}
         validateFirst={validateFirst}
         preserve={settings?.preserve}
         className={className}

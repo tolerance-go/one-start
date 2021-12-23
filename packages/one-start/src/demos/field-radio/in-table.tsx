@@ -34,7 +34,7 @@ export default () => {
               data: {
                 page: [
                   {
-                    id: '1asdfasdf',
+                    id: '1',
                     radio: 'a',
                   },
                 ],

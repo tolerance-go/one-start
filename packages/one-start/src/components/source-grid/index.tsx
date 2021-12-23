@@ -359,7 +359,11 @@ const OSSourceGrid: React.ForwardRefRenderFunction<OSSourceGridAPI, OSSourceGrid
                               ref={editDrawerDialogRef}
                               type="modal"
                               settings={{
-                                title: '编辑数据',
+                                title: `编辑数据${
+                                  rowData[props.settings?.rowTagKey ?? '']
+                                    ? `(${rowData[props.settings?.rowTagKey ?? '']})`
+                                    : ''
+                                }`,
                                 width: rowEditable.modalWidth ?? '70%',
                                 body: editFormDom,
                                 footer: (

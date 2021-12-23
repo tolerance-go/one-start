@@ -5,8 +5,8 @@ import type { RecordType } from '../typings';
 export const tableCellErrorValidate = ({
   errorFields,
   dataSource,
-  title,
-}: {
+}: // title,
+{
   errorFields: FieldError[];
   dataSource?: RecordType[];
   title?: string;
@@ -30,7 +30,7 @@ export const tableCellErrorValidate = ({
   const message = Object.keys(groups)
     .map((rowIndex) => {
       const errorsArr = groups[rowIndex].map((item) => item.errors);
-      return `${title ?? ''}${rowIndex != null ? `第 ${Number(rowIndex) + 1} 行` : ''}${utl
+      return `${rowIndex != null ? `第 ${Number(rowIndex) + 1} 行内` : ''}${utl
         .flatten(errorsArr)
         .join(', ')}`;
     })

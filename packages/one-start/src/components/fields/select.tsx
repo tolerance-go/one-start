@@ -1,6 +1,6 @@
 import { InfoCircleOutlined, LoadingOutlined } from '@ant-design/icons';
 import { Col, Popover, Row, Select, Typography } from '@ty/antd';
-import { SelectProps } from '@ty/antd/lib/select';
+import type { SelectProps } from '@ty/antd/lib/select';
 import cls from 'classnames';
 import utl from 'lodash';
 import React, {
@@ -140,7 +140,6 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
       if (renderOnRead) {
         return renderOnRead(text, maps);
       }
-
       if (Array.isArray(text)) {
         if (text.length === 0) {
           return null;
@@ -241,7 +240,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
         mode={selectMode}
         onSearch={(() => {
           if (showSearch === 'local') {
-            return undefined;
+            return ((value) => setSearchValue(value)) as SelectProps<RecordType>['onSearch'];
           }
           return showSearch
             ? (((value) => {

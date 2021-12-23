@@ -1,12 +1,12 @@
+import type { FormProps } from '@ty/antd';
 import React, { useImperativeHandle, useRef, useState } from 'react';
 import OSDialogModal from '../dialog/modal';
 import OSForm from '../form';
 import OSTriggerButton from '../trigger/trigger-button';
+import type { OSLayoutModalFormAPI, OSLayoutModalFormType } from '../typings';
 import type { OSDialogModalAPI } from '../typings/dialog';
 // import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import type { OSFormAPI } from '../typings/form';
-import type { OSLayoutModalFormAPI, OSLayoutModalFormType } from '../typings';
-import utl from 'lodash';
 
 const OSLayoutModalForm: React.ForwardRefRenderFunction<
   OSLayoutModalFormAPI,
@@ -21,6 +21,7 @@ const OSLayoutModalForm: React.ForwardRefRenderFunction<
     modalDialogSettings,
     buttonTriggerSettings,
     formSettings,
+    params,
     formFieldItems: fieldItems,
   } = settings ?? {};
 
@@ -35,25 +36,34 @@ const OSLayoutModalForm: React.ForwardRefRenderFunction<
     return result;
   };
 
+  const triggerFieldValidate: FormProps['onFieldsChange'] = (changedFields, fields) => {
+    /**
+     * 字段除了本身的值变化外，校验也是其状态之一。因而在触发字段变化会经历以下几个阶段：
+     * Trigger value change
+     * Rule validating
+     * Rule validated
+     * 在触发过程中，调用 isFieldValidating 会经历 false > true > false 的变化过程。
+     * 非连续触发修改，只会 Trigger value change -> Rule validated
+     * onValuesChange 一定在 onFieldsChange 之前执行
+     */
+    const isValidating = fields.some((item) => item.validating);
+
+    if (!isValidating) {
+      const isError = fields.some((item) => item.errors?.length);
+      if (isError) {
+        setValidateError(true);
+      } else {
+        setValidateError(false);
+      }
+    }
+  };
+
   useImperativeHandle(ref, () => {
     return {
       ...osFormRef.current!,
       validate: validateForm,
     };
   });
-
-  const testValidateError = utl.debounce(() => {
-    setTimeout(() => {
-      if (osFormRef.current?.getFieldsError().some((item) => item.errors.length)) {
-        setValidateError(true);
-      } else {
-        setValidateError(false);
-      }
-    });
-  }, 200);
-
-  /** 避免在表单中存在的时候，高频的触发字段验证 */
-  const handleChangeValues = onChange ? utl.debounce(onChange, 400) : undefined;
 
   return (
     <>
@@ -68,16 +78,16 @@ const OSLayoutModalForm: React.ForwardRefRenderFunction<
               ref={osFormRef}
               settings={{
                 fieldItems,
+                params,
                 ...formSettings,
-              }}
-              onValuesChange={() => {
-                testValidateError();
               }}
               requests={{
                 requestDataSource: requests?.requestFormDataSource,
+                requestFieldItems: requests?.requestFieldItems,
               }}
               value={value}
-              onChange={handleChangeValues}
+              onChange={onChange}
+              onFieldsChange={triggerFieldValidate}
             />
           ),
         }}

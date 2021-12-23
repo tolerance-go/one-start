@@ -5,10 +5,10 @@ import type { RecordType } from './core';
 import type { _OSEditableTableAPI, _OSEditableTableType } from './editable-table';
 import type { OSField, OSFieldBaseConfigs, OSFieldBaseSettings } from './field';
 import type {
-  OSFormAPI,
-  _OSFormType,
   CreatePureFormFieldItemConfigsType,
   CreateStaticPureFormFieldItemConfigsType,
+  OSFormAPI,
+  _OSFormType,
 } from './form';
 import type { OSLayoutFormAPI, _OSLayoutModalFormType, _OSLayoutTabsFormType } from './layout-form';
 import type {

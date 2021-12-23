@@ -183,7 +183,7 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
   };
 
   const renderLoading = (style?: React.CSSProperties) => {
-    return requestAfterClickLoading ? (
+    return loading || requestAfterClickLoading ? (
       <LoadingOutlined
         style={{
           display: 'inline-flex',
@@ -246,7 +246,7 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
           marginRight: 5,
         })}
         block={block}
-        loading={icon ? false : requestAfterClickLoading}
+        loading={icon ? false : loading || requestAfterClickLoading}
       >
         {icon
           ? renderLoading({

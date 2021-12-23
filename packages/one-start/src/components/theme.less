@@ -54,6 +54,30 @@ body {
         background-color: transparent;
       }
     }
+
+    &-layouttabs-form {
+      .ty-ant-form-item:not(.ty-ant-form-item-has-error) {
+        .ty-ant-picker,
+        .ty-ant-input-number {
+          border-color: #d9d9d9;
+        }
+
+        .ty-ant-input-group-addon {
+          color: rgba(0, 0, 0, 0.85);
+          border-color: #d9d9d9;
+        }
+
+        .ty-ant-picker-focused,
+        .ty-ant-picker:focus,
+        .ty-ant-input-number-focused,
+        .ty-ant-input-number:focus {
+          border-color: #40a9ff;
+          border-right-width: 1px !important;
+          outline: 0;
+          box-shadow: ~'0 0 0 2px rgb(24 144 255 / 20%)';
+        }
+      }
+    }
   }
   // 表单内的表格搜索框不受字段错误影响样式
   .one-source-os-table-search-form {
@@ -239,6 +263,14 @@ body {
     }
   }
 
+  &-field-tree-select {
+    &-dropdown {
+      &.ty-ant-tree-select-dropdown {
+        padding: 4px !important;
+      }
+    }
+  }
+
   &-settings {
     &-drawer {
       .ty-ant-drawer-body {
@@ -383,7 +415,7 @@ body {
   &-digit-base {
     &-input-number-unit-item {
       .ty-ant-input {
-        display: none;
+        display: none !important;
       }
       &.no-border {
         &.disabled {
@@ -480,6 +512,16 @@ body {
       /** 表格内部的输入字端，隐藏 label **/
       .ty-ant-form-item-label {
         display: none;
+      }
+    }
+
+    &.editable {
+      .ty-ant-table-tbody {
+        .ty-ant-table-cell {
+          .ty-ant-form-item {
+            margin: 0;
+          }
+        }
       }
     }
 

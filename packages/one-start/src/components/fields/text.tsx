@@ -1,6 +1,8 @@
-import { Input, InputProps } from '@ty/antd';
+import type { InputProps } from '@ty/antd';
+import { Input } from '@ty/antd';
 import React from 'react';
-import { OSTextFieldAPI, OSTextFieldType } from '../typings';
+import type { OSTextFieldAPI, OSTextFieldType } from '../typings';
+import Highlighter from 'react-highlight-words';
 
 const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldType> = (
   props,
@@ -8,12 +10,28 @@ const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldTyp
 ) => {
   const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
 
-  const { bordered, autoFocus, disabled, placeholder } = settings ?? {};
+  const { bordered, autoFocus, disabled, placeholder, searchValue } = settings ?? {};
 
   if (mode === 'read') {
-    const dom = (
-      <span ref={ref as React.MutableRefObject<HTMLSpanElement>}>{text ?? _value ?? '--'}</span>
-    );
+    const render = () => {
+      const val = text ?? _value;
+      if (val != null) {
+        if (searchValue != null && searchValue !== val) {
+          return (
+            <Highlighter
+              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+              searchWords={searchValue == null ? [] : [searchValue]}
+              autoEscape
+              textToHighlight={val}
+            />
+          );
+        }
+        return val;
+      }
+      return '--';
+    };
+
+    const dom = <span ref={ref as React.MutableRefObject<HTMLSpanElement>}>{render()}</span>;
     return dom;
   }
   if (mode === 'edit' || mode === 'update') {

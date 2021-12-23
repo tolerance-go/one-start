@@ -1,11 +1,11 @@
+import utl from 'lodash';
 import React from 'react';
 import OSLayoutForm from '../layout-form';
 import type {
   OSLayoutTabsFormAPI,
-  OSLayoutTabsFormFieldType,
   OSLayoutTabsFormFieldAPI,
+  OSLayoutTabsFormFieldType,
 } from '../typings';
-import utl from 'lodash';
 
 const OSLayoutTabsFormField: React.ForwardRefRenderFunction<
   OSLayoutTabsFormFieldAPI,

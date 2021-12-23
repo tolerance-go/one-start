@@ -18,6 +18,7 @@ import OSChainSelectField from '../fields/chain-select';
 import OSRadioField from '../fields/radio';
 import OSTimeLagField from '../fields/time-lag';
 import OSTransferField from '../fields/transfer';
+import OSTreeSelectField from '../fields/tree-select';
 import type {
   OSCustomFieldValueType,
   OSDateRangeFieldValueType,
@@ -50,6 +51,8 @@ import type {
   OSMoneyFieldValueType,
   OSTransferFieldAPI,
   OSTransferFieldValueType,
+  OSTreeSelectFieldAPI,
+  OSTreeSelectFieldValueType,
 } from '../typings';
 import invariant from 'invariant';
 
@@ -315,6 +318,20 @@ export const renderField = (
         settings={fieldSettings}
         value={options?.value as OSTransferFieldValueType}
         text={options?.text as OSTransferFieldValueType}
+        requests={requests}
+      />
+    );
+  }
+
+  if (type === 'tree-select') {
+    return (
+      <OSTreeSelectField
+        ref={options?.ref as React.RefObject<OSTreeSelectFieldAPI>}
+        onChangeHook={options?.onChangeHook as any}
+        mode={mode}
+        settings={fieldSettings}
+        value={options?.value as OSTreeSelectFieldValueType}
+        text={options?.text as OSTreeSelectFieldValueType}
         requests={requests}
       />
     );

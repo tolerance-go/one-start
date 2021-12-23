@@ -9,6 +9,8 @@ import type { OSDialogModalOperationAPI, OSDialogModalOperationType } from '../t
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useConfirm } from './use-confirm';
 import { renderTrigger } from './utils';
+import Trigger from '../trigger';
+import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 
 const OSDialogModalOperation: React.ForwardRefRenderFunction<
   OSDialogModalOperationAPI,
@@ -16,13 +18,14 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
 > = (props, ref) => {
   const { settings, actionsRef: propActionsRef, requests } = props;
 
-  const { requestAfterCancel, requestAfterConfirm } = requests ?? {};
+  const { requestAfterCancel, requestAfterConfirm, requestBeforeUpload } = requests ?? {};
   const clsPrefix = useClsPrefix('os-modal');
 
-  const { content, danger, actions, type = 'confirm' } = settings ?? {};
+  const { content, danger, actions, type = 'confirm', confirmTriggerSettings } = settings ?? {};
   const [visible, setVisible] = useState(false);
 
   const {
+    resolvePromise,
     promiseRef,
     confirm,
     initPromise,
@@ -108,23 +111,42 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
             </Col>
             {type === 'confirm' ? (
               <Col>
-                <Button
-                  {...{
+                <Trigger
+                  type="button"
+                  settings={{
                     type: 'primary',
-                    size: 'small',
                     danger,
-                    loading: requestAfterConfirmLoading,
+                    text: '确认',
+                    ...confirmTriggerSettings,
                     disabled: confirmButtonDisabled,
                   }}
+                  requests={{
+                    requestBeforeUpload: async (params) => {
+                      const rsp = await requestBeforeUpload?.({
+                        type: 'confirm',
+                        ...params,
+                      }).then(normalizeRequestOutputs);
+
+                      if (rsp?.error === false) {
+                        resolvePromise(true);
+                        setVisible(false);
+                      }
+
+                      return rsp;
+                    },
+                  }}
                   onClick={async () => {
+                    if (confirmTriggerSettings?.upload) {
+                      return;
+                    }
+
                     const success = await confirm();
                     if (success) {
                       setVisible(false);
                     }
                   }}
-                >
-                  确认
-                </Button>
+                  loading={requestAfterConfirmLoading}
+                />
               </Col>
             ) : null}
           </Row>

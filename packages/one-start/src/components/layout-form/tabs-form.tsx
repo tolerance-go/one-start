@@ -1,7 +1,10 @@
-import { LoadingOutlined, RightOutlined, DownOutlined } from '@ant-design/icons';
+import { DownOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons';
+import type { FormProps } from '@ty/antd';
 import { Form, Spin, Tabs } from '@ty/antd';
+import cls from 'classnames';
 import invariant from 'invariant';
 import utl from 'lodash';
+import type { NamePath } from 'rc-field-form/lib/interface';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import OSForm from '../form';
 import type { OSLayoutTabsFormAPI, OSLayoutTabsFormType, RecordType } from '../typings';
@@ -10,8 +13,6 @@ import type { OSFormAPI } from '../typings/form';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useLoading } from '../utils/use-loading';
-import cls from 'classnames';
-import { NamePath } from 'rc-field-form/lib/interface';
 
 const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLayoutTabsFormType> =
   (props, ref) => {
@@ -20,11 +21,24 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
       return settings?.tabs?.[0].key ?? settings?.tabs?.[0].title ?? '';
     });
 
-    const clsPrefix = useClsPrefix('layouttabs-form');
-    const osFormsRef = useRef<Record<string, React.MutableRefObject<OSFormAPI | null>>>({});
     const { tabs, forms, collapsable } = settings ?? {};
 
     const [validateError, setValidateError] = useState<Record<string, boolean>>({});
+
+    const [collapse, setCollapse] = useState(false);
+
+    const clsPrefix = useClsPrefix('layouttabs-form');
+    const osFormsRef = useRef<Record<string, React.MutableRefObject<OSFormAPI | null>>>({});
+    const requestDataSourceLoading = useLoading();
+
+    const renderCollapse = () => {
+      if (collapsable == null) return undefined;
+      return React.createElement(collapse ? RightOutlined : DownOutlined, {
+        onClick: () => {
+          setCollapse((prev) => !prev);
+        },
+      });
+    };
 
     const resetFields = () => {
       Object.keys(osFormsRef.current).map((formKey) => [
@@ -77,30 +91,44 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
       );
     };
 
-    const validateForms = async () => {
+    const validateBase = async (recursion?: boolean) => {
       const results = await Promise.all(
         Object.keys(osFormsRef.current).map((formKey) =>
-          osFormsRef.current[formKey].current!.validate().then((result) => ({ formKey, result })),
+          osFormsRef.current[formKey]
+            .current![recursion ? 'validateRecursion' : 'validate']()
+            .then((result) => ({ formKey, result })),
         ),
       );
 
       const errors = results
         .map((item) => [item.formKey, item.result.error] as [string, boolean])
         .filter((item) => item[1]);
+
       if (errors.length) {
         setActiveKey(errors[0][0]);
         setValidateError(utl.fromPairs(errors));
       }
-      return results.reduce(
-        (obj, { formKey, result }) => ({
-          ...obj,
-          [formKey]: result,
-        }),
-        {},
-      );
+
+      const data = results.reduce((acc, next) => {
+        return {
+          ...acc,
+          [next.formKey]: next.result.data,
+        };
+      }, {});
+
+      return {
+        error: errors.length > 0,
+        data,
+      };
     };
 
-    const requestDataSourceLoading = useLoading();
+    const validate = async () => {
+      return validateBase();
+    };
+
+    const validateRecursion = async () => {
+      return validateBase(true);
+    };
 
     const requestDataSource = async () => {
       if (!requests?.requestTabsFormDataSource) {
@@ -121,25 +149,19 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
       setFieldsValue(data);
     };
 
-    const testValidateError = utl.debounce(() => {
-      setTimeout(() => {
-        const errors = Object.keys(osFormsRef.current).map((formKey) => {
-          return [
-            formKey,
-            osFormsRef.current[formKey]?.current
-              ?.getFieldsError()
-              .some((item) => item.errors.length),
-          ];
-        });
-        setValidateError(utl.fromPairs(errors));
-      });
-    }, 200);
+    const clearPrevUserCellInputs = () => {
+      Object.keys(osFormsRef.current).forEach((formKey) =>
+        osFormsRef.current[formKey].current!.clearPrevUserCellInputs(),
+      );
+    };
 
     useImperativeHandle(ref, () => {
       return {
+        clearPrevUserCellInputs,
+        validateRecursion,
         setDataSource,
         getDataSource,
-        validate: validateForms,
+        validate,
         getFieldsValue,
         setFieldsValue,
         resetFields,
@@ -155,27 +177,39 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
       requestDataSource();
     }, []);
 
-    const [collapse, setCollapse] = useState(false);
-
-    const renderCollapse = () => {
-      if (collapsable == null) return undefined;
-      return React.createElement(collapse ? RightOutlined : DownOutlined, {
-        onClick: () => {
-          setCollapse((prev) => !prev);
-        },
-      });
+    const onFieldsValidateError = (key: string) => {
+      setValidateError((prev) => ({ ...prev, [key]: true }));
     };
 
-    /** 避免在表单中存在的时候，高频的触发字段验证 */
-    const handleChangeValues = onChange ? utl.debounce(onChange, 400) : undefined;
+    const onFieldsValidatePassed = (key: string) => {
+      setValidateError((prev) => ({ ...prev, [key]: false }));
+    };
+
+    const triggerFieldValidate: (formKey: string) => FormProps['onFieldsChange'] =
+      (formKey) => (changedFields, fields) => {
+        /**
+         * 字段除了本身的值变化外，校验也是其状态之一。因而在触发字段变化会经历以下几个阶段：
+         * Trigger value change
+         * Rule validating
+         * Rule validated
+         * 在触发过程中，调用 isFieldValidating 会经历 false > true > false 的变化过程。
+         * 非连续触发修改，只会 Trigger value change -> Rule validated
+         * onValuesChange 一定在 onFieldsChange 之前执行
+         */
+        const isValidating = fields.some((item) => item.validating);
+
+        if (!isValidating) {
+          const isError = fields.some((item) => item.errors?.length);
+          if (isError) {
+            onFieldsValidateError?.(formKey);
+          } else {
+            onFieldsValidatePassed?.(formKey);
+          }
+        }
+      };
 
     return (
-      <Form.Provider
-        onFormChange={() => {
-          testValidateError();
-          handleChangeValues?.(getFieldsValue());
-        }}
-      >
+      <Form.Provider>
         <Spin spinning={requestDataSourceLoading.loading} indicator={<LoadingOutlined />}>
           <Tabs
             className={cls(clsPrefix, {
@@ -209,7 +243,17 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
                     </span>
                   }
                 >
-                  {formConfigs && <OSForm name={key} ref={formRef} {...formConfigs}></OSForm>}
+                  {formConfigs && (
+                    <OSForm
+                      name={key}
+                      ref={formRef}
+                      {...formConfigs}
+                      onChange={() => {
+                        onChange?.(getFieldsValue());
+                      }}
+                      onFieldsChange={triggerFieldValidate(key)}
+                    ></OSForm>
+                  )}
                 </Tabs.TabPane>
               );
             })}

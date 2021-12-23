@@ -9,7 +9,7 @@ import React, { useState } from 'react';
 export default () => {
   const [value, setValue] = useState<RecordType[] | undefined>([
     {
-      id: '1asdfasdf',
+      id: '1',
       text: 'text',
     },
   ]);

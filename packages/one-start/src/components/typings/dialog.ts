@@ -1,8 +1,10 @@
 import type { DrawerProps, ModalFuncProps, PopconfirmProps } from '@ty/antd';
 import type { ArgsProps } from '@ty/antd/lib/message';
-import React from 'react';
+import type React from 'react';
+import type { OSTriggerType } from './trigger';
 import type { OSCore, RecordType, RequestIO } from './core';
-import { OSResMessage } from './message';
+import type { OSResMessage } from './message';
+import type { RcFile } from '@ty/antd/lib/upload';
 
 export interface OSDialogAPIBase {
   push: (settings?: RecordType) => Promise<RecordType | void>;
@@ -10,7 +12,7 @@ export interface OSDialogAPIBase {
   update: (settings?: RecordType) => void;
 }
 
-export interface OSDialogBase extends OSCore {}
+export type OSDialogBase = OSCore;
 
 export interface OSDialogMessageAPI extends OSDialogAPIBase {
   push: (settings?: OSDialogMessageType['settings']) => Promise<void>;
@@ -127,6 +129,7 @@ export interface OSDialogModalOperationType extends OSDialogBase {
     danger?: boolean;
     type?: ModalFuncProps['type'];
     actions?: React.ReactElement[];
+    confirmTriggerSettings?: Required<OSTriggerType>['settings'];
   };
   requests?: {
     requestAfterConfirm?: RequestIO<
@@ -136,6 +139,15 @@ export interface OSDialogModalOperationType extends OSDialogBase {
       }
     >;
     requestAfterCancel?: RequestIO<void, undefined>;
+    requestBeforeUpload?: RequestIO<
+      {
+        type: 'confirm' | 'cancel';
+        files: RcFile[];
+      },
+      {
+        message?: OSResMessage;
+      }
+    >;
   };
   actionsRef?: React.MutableRefObject<OSDialogModalOperationActionsType | null>;
   onVisibleChange?: (visible: boolean) => void;

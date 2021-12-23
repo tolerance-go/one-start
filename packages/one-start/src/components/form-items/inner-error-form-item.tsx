@@ -118,7 +118,7 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
           setTimeout(() => {
             setVisible(isIntersecting && visible_);
             /** 解决 tooltip 定位闪烁的问题 */
-          }, 50);
+          }, 150);
 
           return (
             <Popover
@@ -133,6 +133,7 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
                 /** 解决弹窗内的表格关闭时候无法隐藏的问题 */
                 return tableWrapperRef.current ?? document.body;
               }}
+              zIndex={1}
             >
               <div ref={cellRef}>
                 {input}

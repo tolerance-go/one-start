@@ -5,6 +5,7 @@ import type {
   RadioChangeEvent,
   SelectProps,
   Transfer,
+  TreeSelectProps,
 } from '@ty/antd';
 import type { PickerProps, RangePickerDateProps } from '@ty/antd/lib/date-picker/generatePicker';
 import type { RefSelectProps } from '@ty/antd/lib/select';
@@ -23,6 +24,8 @@ export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
   text?: Value;
   value?: Value;
   onChange?: (value?: ChangeValue) => void;
+  /** 如果 field 存在于 form 内的 name 字段 */
+  name?: string;
 }
 
 export type OSFieldBaseConfigs<ValueType = any> = {
@@ -296,6 +299,41 @@ export interface OSSelectFieldType<ValueType = OSSelectFieldValueType>
   ) => React.ReactElement;
 }
 
+export type OSTreeSelectFieldAPI = HTMLSpanElement | (RefSelectProps & OSSelectBaseAPI);
+
+export type OSTreeSelectOptionItem = {
+  key?: string;
+  label?: string;
+  value: string;
+  children?: OSTreeSelectOptionItem[];
+};
+export type OSTreeSelectFieldValueType = string | string[];
+
+export interface OSTreeSelectFieldType<ValueType = OSTreeSelectFieldValueType>
+  extends OSField<ValueType>,
+    OSFieldBaseConfigs<ValueType> {
+  type?: 'tree-select';
+  settings?: {
+    treeOptions?: OSTreeSelectOptionItem[];
+    params?: RecordType;
+    allowClear?: boolean;
+    multiple?: TreeSelectProps<ValueType>['multiple'];
+    /** local 表示前端搜索 */
+    showSearch?: TreeSelectProps<ValueType>['showSearch'] | 'local';
+    // labelInValue?: TreeSelectProps<ValueType>['labelInValue'];
+    // dropdownMatchSelectWidth?: boolean;
+  } & OSFieldBaseSettings;
+  requests?: {
+    /** 请求下拉选项 */
+    requestOptions?: RequestIO<
+      { searchValue?: string; params?: RecordType },
+      OSTreeSelectOptionItem[]
+    >;
+  };
+  autoFetchSelectOptions?: boolean;
+  className?: string;
+}
+
 export type OSChainSelectBaseAPI = OSSelectBaseAPI;
 
 export type OSChainSelectFieldAPI = HTMLSpanElement | (RefSelectProps & OSChainSelectBaseAPI);
@@ -336,7 +374,9 @@ export interface OSTextFieldType
   extends OSField<OSTextFieldValueType, React.ChangeEvent<HTMLInputElement>>,
     OSFieldBaseConfigs<OSTextFieldValueType> {
   type?: 'text';
-  settings?: {} & OSFieldBaseSettings;
+  settings?: {
+    searchValue?: string;
+  } & OSFieldBaseSettings;
 }
 
 export type OSRadioOptionItem = { label: string; value: string; disabled?: boolean };

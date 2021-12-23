@@ -1,6 +1,7 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import type { FormInstance } from '@ty/antd';
 import { Form, Table } from '@ty/antd';
+import type { FormProps } from '@ty/antd/es/form/Form';
 import type { SorterResult } from '@ty/antd/es/table/interface';
 import type { NamePath } from '@ty/antd/lib/form/interface';
 import cls from 'classnames';
@@ -99,9 +100,9 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     searchFormItemChunkSize,
     rowSelection,
     tableMaxWidth,
-    changeDebounceTimestamp = 400,
     loopRequest,
     highlightBadge,
+    changeDebounceTimestamp = 450,
   } = settings ?? {};
 
   const clsPrefix = useClsPrefix('os-table');
@@ -134,11 +135,14 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
 
   const [tableWidth, setTableWidth] = useState(0);
 
+  // const isValuesChangeRef = useRef(false);
+
   /**
-   * 1. 为了表格在表单内输入顺畅不卡顿，设置 400 毫秒的间隔触发 onChange
-   * 2. 联动计算过程中用户不会停止输入，因此保存最新的一份数据，在下次 value 变化后进行合并
+   * 当前用户最新输入的 cell 值，当 linkage 计算完成后重新设置表单值
+   * 可能出现最新输入的值要比联动的 changed cell value 更新，导致变化当前 focus 的 cell
    */
-  const currentChangedValuesRef = useRef<RecordType>();
+  const latestUserInputValueRef = useRef();
+
   const columnSettingsActionsRef = useActionsRef<Partial<ColumnsSettingsActions>>({});
 
   const validate = async (
@@ -202,7 +206,24 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
         utl.groupBy(dataSource_, (item) => item[rowKey]),
         ([val]) => val,
       );
-      tableWrapForm.setFieldsValue(nextValues);
+      const old = tableWrapForm.getFieldsValue();
+      const next = utl.mapValues(nextValues, (record, rowId) => {
+        /** 对象形式的 val 会重置 errors，不管是否 diff */
+        return utl.omitBy(record, (val, key) => {
+          if (
+            old[rowId]?.[key] !== val &&
+            typeof latestUserInputValueRef.current === 'object' &&
+            typeof latestUserInputValueRef.current![rowId] === 'object' &&
+            key in latestUserInputValueRef.current![rowId]
+          ) {
+            return true;
+          }
+
+          return old[rowId]?.[key] === val;
+        });
+      });
+      latestUserInputValueRef.current = undefined;
+      tableWrapForm.setFieldsValue(next);
     },
     [rowKey, tableWrapForm],
   );
@@ -214,7 +235,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
    * 但是在手动设置的情况下，需要先清理，避免无效
    */
   const clearPrevUserCellInputs = () => {
-    currentChangedValuesRef.current = undefined;
+    latestUserInputValueRef.current = undefined;
   };
 
   const setDataSourceAndFormData = useCallback(
@@ -444,6 +465,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     enableColumnsSettings,
     enableCellHighlight,
   } = useItems({
+    requestDataSourceActionsRef,
     tableKey,
     fieldItemSettings,
     tableWrapRef,
@@ -630,20 +652,9 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   });
 
   useEffect(() => {
-    let next = parseTableValue(value);
+    const nextDataSource = parseTableValue(value);
 
-    if (currentChangedValuesRef.current) {
-      Object.keys(currentChangedValuesRef.current).forEach((key) => {
-        const rowData = currentChangedValuesRef.current?.[key];
-        const target = next?.find((item) => item[rowKey] === key);
-        if (target) {
-          Object.assign(target, rowData);
-        }
-      });
-      next = utl.merge(next, currentChangedValuesRef.current);
-    }
-
-    tableCoreActionsRef.current.setDataSourceAndFormData(next);
+    tableCoreActionsRef.current.setDataSourceAndFormData(nextDataSource);
 
     /**
      * table 内部存在 vitrual dataSource 提供前端搜索功能的数据展示，和 dataSource 是绑定关系
@@ -651,7 +662,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
      */
     setVisualDataSource((prev) =>
       prev?.filter((item) => {
-        return next?.find((it) => it[rowKey] === item[rowKey]) as RecordType;
+        return nextDataSource?.find((it) => it[rowKey] === item[rowKey]) as RecordType;
       }),
     );
   }, [tableCoreActionsRef, rowKey, value]);
@@ -681,7 +692,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     totalCount,
   });
 
-  const handleValueChange = utl.debounce((changedValues, values) => {
+  const handleValueChange: FormProps['onValuesChange'] = (changedValues, values) => {
     if (props.settings?.changedValueHasMeta) {
       onChange?.({
         target: convertValuesToDataSource(values),
@@ -693,8 +704,13 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
       });
       return;
     }
-    onChange?.(convertValuesToDataSource(values));
-  }, changeDebounceTimestamp);
+    const data = convertValuesToDataSource(values);
+    onChange?.(data);
+  };
+
+  const handleValueChangeWithDebounce: FormProps['onValuesChange'] = changeDebounceTimestamp
+    ? utl.debounce(handleValueChange, changeDebounceTimestamp)
+    : handleValueChange;
 
   return (
     <TableWrapperContext.Provider value={tableWrapRef}>
@@ -705,8 +721,9 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
           className={cls(clsPrefix, props.className)}
           ref={tableWrapFormRef}
           onValuesChange={(changedValues, values) => {
-            currentChangedValuesRef.current = changedValues;
-            handleValueChange(changedValues, values);
+            latestUserInputValueRef.current = changedValues;
+
+            handleValueChangeWithDebounce(changedValues, values);
           }}
         >
           <div

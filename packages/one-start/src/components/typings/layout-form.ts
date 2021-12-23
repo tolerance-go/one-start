@@ -1,26 +1,29 @@
-import { FormInstance } from '@ty/antd/es/form/Form';
-import { FieldError, NamePath, ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import { RequiredRecursion } from '../utils/typings';
+import type { FormInstance } from '@ty/antd/es/form/Form';
+import type { FieldError, NamePath, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import type { RequiredRecursion } from '../utils/typings';
 import type { OSCore, RecordType } from './core';
 import type { OSDialogModalType } from './dialog';
 import type {
+  CreatePureFormFieldItemConfigsType,
+  CreateStaticPureFormFieldItemConfigsType,
   OSFormAPI,
   _OSFormType,
-  CreateStaticPureFormFieldItemConfigsType,
-  CreatePureFormFieldItemConfigsType,
 } from './form';
 import type { OSTriggerButtonType } from './trigger';
 
-export interface OSLayoutFormAPIBase extends OSFormAPI {}
+export type OSLayoutFormAPIBase = OSFormAPI;
 
-export interface OSLayoutFormBase extends OSCore {}
-
-export interface OSLayoutModalFormAPI extends OSLayoutFormAPIBase {}
-
-export interface _OSLayoutModalFormType<
+export type OSLayoutFormBase<
   CustomValueType extends CreatePureFormFieldItemConfigsType,
   StaticCustomValueType extends CreateStaticPureFormFieldItemConfigsType,
-> extends OSLayoutFormBase {
+> = Pick<_OSFormType<CustomValueType, StaticCustomValueType>, 'value' | 'onChange'> & OSCore;
+
+export type OSLayoutModalFormAPI = OSLayoutFormAPIBase;
+
+export type _OSLayoutModalFormType<
+  CustomValueType extends CreatePureFormFieldItemConfigsType,
+  StaticCustomValueType extends CreateStaticPureFormFieldItemConfigsType,
+> = OSLayoutFormBase<CustomValueType, StaticCustomValueType> & {
   type?: 'modal-form';
   settings?: {
     /** 触发按钮文案 */
@@ -35,31 +38,43 @@ export interface _OSLayoutModalFormType<
     buttonTriggerSettings?: OSTriggerButtonType['settings'];
     /** 表单配置 */
     formSettings?: _OSFormType<CustomValueType, StaticCustomValueType>['settings'];
-  };
+  } & Pick<Required<_OSFormType<CustomValueType, StaticCustomValueType>>['settings'], 'params'>;
   requests?: {
     /** 请求表单初始化数据 */
     requestFormDataSource?: RequiredRecursion<
       _OSFormType<CustomValueType, StaticCustomValueType>
     >['requests']['requestDataSource'];
+    /** 获取自定义字段 */
+    requestFieldItems?: RequiredRecursion<
+      _OSFormType<CustomValueType, StaticCustomValueType>
+    >['requests']['requestFieldItems'];
   };
-  value?: RecordType;
-  onChange?: (value?: RecordType) => void;
   onVisibleChange?: (visible: boolean) => void;
-}
+};
 
-export type OSLayoutTabsFormAPI = Pick<OSLayoutFormAPIBase, 'setDataSource' | 'getDataSource'> & {
+export type OSLayoutTabsFormAPI = Pick<
+  OSLayoutFormAPIBase,
+  'setDataSource' | 'getDataSource' | 'clearPrevUserCellInputs'
+> & {
   validate: () => Promise<
-    Record<
-      string,
-      | {
-          error: false;
-          data: RecordType;
-        }
-      | {
-          error: true;
-          data: ValidateErrorEntity;
-        }
-    >
+    | {
+        error: false;
+        data: Record<string, RecordType>;
+      }
+    | {
+        error: true;
+        data: Record<string, ValidateErrorEntity | RecordType>;
+      }
+  >;
+  validateRecursion: () => Promise<
+    | {
+        error: false;
+        data: Record<string, RecordType>;
+      }
+    | {
+        error: true;
+        data: Record<string, ValidateErrorEntity | RecordType>;
+      }
   >;
   getFieldsError: (tabKey?: string, nameList?: NamePath[]) => Record<string, FieldError[]>;
 } & Pick<FormInstance, 'getFieldsValue' | 'setFieldsValue' | 'resetFields'>;
@@ -68,10 +83,10 @@ export interface OSTabsItemType {
   title?: string;
   key?: string;
 }
-export interface _OSLayoutTabsFormType<
+export type _OSLayoutTabsFormType<
   CustomValueType extends CreatePureFormFieldItemConfigsType,
   StaticCustomValueType extends CreateStaticPureFormFieldItemConfigsType,
-> extends OSLayoutFormBase {
+> = OSLayoutFormBase<CustomValueType, StaticCustomValueType> & {
   type?: 'tabs-form';
   settings?: {
     /** tab title */
@@ -87,9 +102,7 @@ export interface _OSLayoutTabsFormType<
       _OSFormType<CustomValueType, StaticCustomValueType>
     >['requests']['requestDataSource'];
   };
-  value?: RecordType;
-  onChange?: (value?: RecordType) => void;
-}
+};
 
 export type _OSLayoutFormType<
   CustomValueType extends CreatePureFormFieldItemConfigsType,

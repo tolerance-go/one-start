@@ -1,9 +1,5 @@
-import {
-  OSLayoutForm,
-  OSLayoutTabsFormAPI,
-  OSProviderWrapper,
-  RecordType,
-} from '@ty-one-start/one-start';
+import type { OSLayoutTabsFormAPI, RecordType } from '@ty-one-start/one-start';
+import { OSLayoutForm, OSProviderWrapper } from '@ty-one-start/one-start';
 import { Button, Space } from '@ty/antd';
 import delay from 'delay';
 import React, { useState, useRef } from 'react';

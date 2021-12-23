@@ -225,4 +225,5 @@ export * from './layout';
 export * from './attachment-table';
 export * from './linkage';
 export * from './grid';
+export * from './layout-grid';
 export { RequiredRecursion };

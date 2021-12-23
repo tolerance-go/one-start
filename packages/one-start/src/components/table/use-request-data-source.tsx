@@ -190,15 +190,23 @@ export const useRequestDataSource = ({
 
       fieldOptionsMapDataIndexRef.current = utl.fromPairs(dataIndexAndSelectOptions);
 
-      /** 请求所有枚举，设置 dataSource 显示 */
-      renderPages = renderPages?.map((item: [string, RecordType]) =>
-        Object.keys(fieldOptionsMapDataIndexRef.current!).reduce((dist, key) => {
-          return {
-            ...dist,
-            [key]: fieldOptionsMapDataIndexRef.current![key][dist[key]],
-          };
-        }, item),
-      );
+      // /** 请求所有枚举，设置 dataSource 显示 */
+      // renderPages = renderPages?.map((item: [string, RecordType]) =>
+      //   Object.keys(fieldOptionsMapDataIndexRef.current!).reduce((dist, key) => {
+      //     return {
+      //       ...dist,
+      //       /**
+      //        * TODO: 通过组件传下去
+      //        */
+      //       [key]:
+      //         dist[key] != null
+      //           ? (Array.isArray(dist[key]) ? dist[key] : [dist[key]])
+      //               .map((val: string) => fieldOptionsMapDataIndexRef.current![key][val])
+      //               .join(', ')
+      //           : undefined,
+      //     };
+      //   }, item),
+      // );
 
       renderPages = mapLevel(renderPages);
 
@@ -250,6 +258,7 @@ export const useRequestDataSource = ({
     {
       requestDataSource: requestTableDataSource,
       requestVisualDataSource: requestVisualDataSource_,
+      getFieldOptionsMapDataIndex: () => fieldOptionsMapDataIndexRef.current,
     },
     requestDataSourceActionsRef,
   );

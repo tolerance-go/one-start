@@ -1,6 +1,14 @@
+import type { ColumnGroupType, ColumnType } from '@ty/antd/es/table';
 import type { SorterResult } from '@ty/antd/lib/table/interface';
 import type { FixedType } from 'rc-table/lib/interface';
 import type { OSFormType, RecordType, SettingsDataNode } from '../typings';
+
+export type OSAntdColumnExtra = {};
+
+export type OSAntdColumnsType<RecordType = unknown> = (
+  | (ColumnGroupType<RecordType> & OSAntdColumnExtra)
+  | (ColumnType<RecordType> & OSAntdColumnExtra)
+)[];
 
 export type TreeSpreadActions = {
   clearExpandedRowKeys: () => void;
@@ -52,4 +60,5 @@ export type RequestDataSourceActions = {
     manualInitiate?: boolean;
   }) => Promise<void>;
   requestVisualDataSource: () => Promise<void>;
+  getFieldOptionsMapDataIndex: () => Record<string, Record<string, string>> | undefined;
 } | null;

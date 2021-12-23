@@ -20,6 +20,7 @@ import type {
   OSChainSelectFieldType,
   OSRadioFieldType,
   OSTransferFieldType,
+  OSTreeSelectFieldType,
 } from './field';
 import type { OSFormItemType } from './form-item';
 import type { NamePath } from '@ty/antd/lib/form/interface';
@@ -80,6 +81,8 @@ export type _OSFormFieldItemWithStaticPureConfigs<
 > =
   | CustomValueType
   | (CreateStaticPureFormFieldItemConfigs<OSDigitFieldType, OSFormFieldItemExtra> &
+      OSFormItemDependenciesConfigs)
+  | (CreateStaticPureFormFieldItemConfigs<OSTreeSelectFieldType, OSFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSRadioFieldType, OSFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
@@ -145,6 +148,12 @@ export type _OSFormFieldItem<CustomValueType extends CreatePureFormFieldItemConf
   | CustomValueType
   | (CreatePureFormFieldItemConfigs<
       OSDigitFieldType,
+      OSFormFieldItemSettingsFnOption,
+      OSFormFieldItemExtra
+    > &
+      OSFormItemDependenciesConfigs)
+  | (CreatePureFormFieldItemConfigs<
+      OSTreeSelectFieldType,
       OSFormFieldItemSettingsFnOption,
       OSFormFieldItemExtra
     > &
@@ -267,6 +276,10 @@ export type _OSFormFieldItems<CustomValueType extends CreatePureFormFieldItemCon
   (_OSFormFieldItem<CustomValueType> & OSFormGroupType<_OSFormFieldItems<CustomValueType>>)[];
 
 export type OSFormAPI = {
+  /** 清空用户输入最新的输入缓存 */
+  clearPrevUserCellInputs: () => void;
+  /** 异步获取 field-items 是否已经获取到数据 */
+  isFieldItemsReady: () => boolean;
   /** 转换表单数据为一般数据，日期，target 等 */
   normalizeFieldsValue: (values: RecordType) => RecordType;
   /** 会触发 onChange，值为一般值 */
@@ -276,6 +289,17 @@ export type OSFormAPI = {
   getContext: () => RecordType;
   /** 修改字段值并触发联动 */
   setFieldsValueAndTriggeLinkage: (changedValues: RecordType) => void;
+  /** 递归调用内部 forms 的 validate */
+  validateRecursion: (nameList?: NamePath[]) => Promise<
+    | {
+        error: false;
+        data: RecordType;
+      }
+    | {
+        error: true;
+        data: ValidateErrorEntity;
+      }
+  >;
   validate: (nameList?: NamePath[]) => Promise<
     | {
         error: false;
@@ -307,6 +331,7 @@ export interface _OSFormType<
   StaticCustomValueType extends CreateStaticPureFormFieldItemConfigsType,
 > extends OSCore {
   settings?: {
+    changeDebounceTimestamp?: number;
     /**
      * 按照数组顺序进行 value 的改变
      */
@@ -326,6 +351,12 @@ export interface _OSFormType<
     formItemSettimgs?: OSFormItemType['settings'];
     /** 公共的 fieldItems 配置，优先级比 fieldItems 低 */
     fieldItemSettings?: _OSFormFieldItemWithStaticPureConfigs<StaticCustomValueType>['settings'];
+    /** requeset接口传参 */
+    params?: {
+      requestFieldItems?: RecordType;
+    };
+    /** 是否隐藏占位符 */
+    hideEmpty?: boolean;
   };
   requests?: {
     /** 异步获取表单数据 */
@@ -342,10 +373,20 @@ export interface _OSFormType<
       },
       RecordType
     >;
+    requestFieldItems?: RequestIO<
+      {
+        actions: OSFormAPI;
+        params?: RecordType;
+      },
+      {
+        fieldItems: _OSFormFieldItems<CustomValueType>;
+      }
+    >;
   };
   name?: string;
   /** 值为原始值 */
   onValuesChange?: FormProps['onValuesChange'];
+  onFieldsChange?: FormProps['onFieldsChange'];
   value?: RecordType;
   /** 值为原始值 */
   onChange?: (value?: RecordType) => void;

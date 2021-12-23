@@ -17,12 +17,9 @@ import type {
   OSLayoutTabsFormAPI,
   OSLayoutTabsFormType,
   OSTableAPI,
-  OSTableFormFieldItems,
-  OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
   _OSFormFieldItemWithStaticPureConfigs,
 } from '../typings';
-import { normalizeDataIndex } from './normalize-data-index';
 import {
   pickFieldRequests,
   pickFieldSettings,
@@ -140,39 +137,13 @@ export const renderFormItem = (
       return (
         <OSFormItemBase
           className={options.className}
+          validateTrigger={['onChange']}
           settings={((): OSFormItemType['settings'] => {
             if (valueType === 'editable-table' || valueType === 'attachment-table') {
               return {
-                validateFirst: true,
                 ...formItemSettings,
                 rules: [
                   ...(formItemSettings.rules ?? []),
-                  {
-                    /**
-                     * 表格单元格修改的时候触发
-                     * 为了同步单元格的气泡错误验证
-                     * 将字段表格内部的错误上报上去
-                     */
-                    validateTrigger: ['onChange'],
-                    validator: async () => {
-                      const api = fieldRef.current as OSTableAPI | undefined;
-                      if (api) {
-                        const errorFields = api?.getFieldsError();
-                        if (errorFields) {
-                          const message = tableCellErrorValidate({
-                            errorFields,
-                            dataSource: api.getVisualDataSource() ?? api.getDataSource(),
-                            title: mergedSettings.title,
-                          });
-
-                          if (message.length) {
-                            return Promise.reject(new Error(message));
-                          }
-                        }
-                      }
-                      return Promise.resolve();
-                    },
-                  },
                   {
                     /**
                      * 手动提交的时候，主动触发验证
@@ -200,7 +171,8 @@ export const renderFormItem = (
                 ],
               };
             }
-            if (valueType === 'layout-modal-form' || valueType === 'layout-tabs-form') {
+
+            if (valueType === 'layout-modal-form' || valueType === 'form') {
               return {
                 ...formItemSettings,
                 rules: [
@@ -209,52 +181,76 @@ export const renderFormItem = (
                     /**
                      * 将内部表单字段表格内部的错误上报上去
                      */
-                    validateTrigger: ['onChange'],
+                    validateTrigger: [],
                     validator: async () => {
-                      return new Promise((resolve, reject) => {
-                        /** 强制晚于表单内部字段的验证 */
-                        setTimeout(() => {
-                          if (fieldRef.current?.getFieldsError) {
-                            const errorFields = (() => {
-                              if (valueType === 'layout-tabs-form') {
-                                const tabs = utl.fromPairs(
-                                  (mergedSettings as OSLayoutTabsFormType).settings?.tabs?.map(
-                                    (item) => [item.key, item.title],
-                                  ),
-                                );
-                                const errors = (
-                                  fieldRef.current as OSLayoutTabsFormAPI
-                                )?.getFieldsError();
-                                if (errors) {
-                                  return utl.flatten(
-                                    Object.keys(errors).map((tabKey) => {
-                                      return errors[tabKey].map((item) => ({
-                                        ...item,
-                                        errors: item.errors.map(
-                                          (err) => `${tabs[tabKey] ?? ''}${err}`,
-                                        ),
-                                      }));
-                                    }),
-                                  );
-                                }
-                              }
-                              return (fieldRef.current as OSLayoutModalFormAPI)?.getFieldsError();
-                            })();
-                            if (errorFields) {
-                              const message = errorFields
-                                .filter((item) => item.errors.length)
-                                .map((item) => {
-                                  return `${item.errors.join(', ')}`;
-                                })
-                                .join('; ');
-                              if (message.length) {
-                                return reject(new Error(message));
-                              }
-                            }
+                      const api = fieldRef.current as OSLayoutModalFormAPI | OSFormAPI | undefined;
+                      if (api?.validateRecursion) {
+                        const { data, error } = await api.validateRecursion();
+                        if (error) {
+                          const message = (data as ValidateErrorEntity).errorFields
+                            .filter((item) => item.errors.length)
+                            .map((item) => {
+                              return `${item.errors.join(', ')}`;
+                            })
+                            .join('; ');
+                          if (message.length) {
+                            return Promise.reject(new Error(message));
                           }
-                          return resolve(undefined);
-                        });
-                      });
+                        }
+                      }
+                      return Promise.resolve();
+                    },
+                  },
+                ],
+              };
+            }
+
+            if (valueType === 'layout-tabs-form') {
+              return {
+                ...formItemSettings,
+                rules: [
+                  ...(formItemSettings.rules ?? []),
+                  {
+                    /**
+                     * 将内部表单字段表格内部的错误上报上去
+                     */
+                    validateTrigger: [],
+                    validator: async () => {
+                      const api = fieldRef.current as OSLayoutTabsFormAPI | undefined;
+                      if (api?.validateRecursion) {
+                        const { data, error } = await api.validateRecursion();
+                        if (error) {
+                          const tabs = utl.fromPairs(
+                            (mergedSettings as OSLayoutTabsFormType['settings'])?.tabs?.map(
+                              (item) => [item.key ?? item.title, item.title],
+                            ),
+                          );
+
+                          const errorMsgs = Object.keys(
+                            data as Record<string, ValidateErrorEntity | RecordType>,
+                          )
+                            .map((tabKey) => {
+                              if (data[tabKey].errorFields) {
+                                return `${tabs[tabKey] ?? ''}内${(
+                                  data[tabKey] as ValidateErrorEntity
+                                ).errorFields
+                                  .map(
+                                    (errorField) =>
+                                      `${errorField.name}: ${errorField.errors.join(', ')}`,
+                                  )
+                                  .join(', ')}`;
+                              }
+                              return null;
+                            })
+                            .filter(Boolean);
+
+                          if (errorMsgs.length) {
+                            const message = errorMsgs.join('; ');
+                            return Promise.reject(new Error(message));
+                          }
+                        }
+                      }
+                      return Promise.resolve();
                     },
                   },
                 ],
@@ -283,89 +279,6 @@ export const renderFormItem = (
         >
           {(form: FormInstance) => {
             return renderInner(settings({ form, actions }));
-          }}
-        </Form.Item>
-      );
-    }
-    return renderInner(settings);
-  };
-
-  return renderContent();
-};
-
-export const renderTableFormItem = (
-  type: OSTableFormFieldItems[number]['type'],
-  settings: OSTableFormFieldItems[number]['settings'],
-  requests: RecordType,
-  options: {
-    formItemClassName?: string;
-    rowIndex?: number;
-    rowData?: Record<string, any>;
-    rowId?: string;
-    dependencies?: string[];
-    actions: OSTableAPI;
-    getField?: (
-      settings: OSTableFormFieldItemWithStaticPureConfigs['settings'],
-      requests: OSTableFormFieldItemWithStaticPureConfigs['requests'],
-    ) => ReactNode;
-    renderFormItem?: OSFormItemType['renderFormItem'];
-    defaultSettings?: OSTableFormFieldItemWithStaticPureConfigs['settings'];
-  },
-) => {
-  const {
-    rowIndex,
-    rowData,
-    rowId,
-    dependencies,
-    actions,
-    renderFormItem: _renderFormItem,
-    defaultSettings,
-    formItemClassName,
-  } = options;
-
-  const renderContent = () => {
-    const renderInner = (settings_: OSTableFormFieldItemWithStaticPureConfigs['settings']) => {
-      const mergedSettings = { ...defaultSettings, ...(settings_ ?? {}) };
-
-      const { dataIndex } = mergedSettings;
-      const formItemSettings = pickFormItemSettings(mergedSettings);
-      const formItemRequests = pickFormItemRequests(requests);
-      const fieldSettings = pickFieldSettings(mergedSettings);
-      const fieldRequests = pickFieldRequests(requests);
-
-      return (
-        <OSFormItemBase
-          className={formItemClassName}
-          settings={{
-            ...formItemSettings,
-            styles: {
-              ...formItemSettings.styles,
-              marginBottom: 0,
-            },
-            dataIndex: (rowId == null ? [] : [rowId]).concat(
-              normalizeDataIndex(dataIndex).join('.'),
-            ),
-          }}
-          requests={formItemRequests}
-          renderFormItem={_renderFormItem}
-        >
-          {options?.getField?.(fieldSettings, fieldRequests)}
-        </OSFormItemBase>
-      );
-    };
-
-    if (typeof settings === 'function') {
-      return (
-        <Form.Item
-          noStyle
-          shouldUpdate={(prevValues, curValues) =>
-            dependencies
-              ? dependencies.some((dependKey) => prevValues[dependKey] !== curValues[dependKey])
-              : false
-          }
-        >
-          {(form: FormInstance) => {
-            return renderInner(settings({ form, rowIndex, rowData, rowId, actions }));
           }}
         </Form.Item>
       );

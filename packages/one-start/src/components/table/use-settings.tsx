@@ -87,7 +87,8 @@ export const useSettings = ({
     const getTreeDataFromColumns = (columns_: ColumnsType<RecordType>): SettingsDataNode[] => {
       return (
         columns_.map((item) => {
-          const configable = columnsStaticPureConfigsIdMaps[item.key ?? '']?.settings?.configable;
+          const { configable, title } =
+            columnsStaticPureConfigsIdMaps[item.key ?? '']?.settings ?? {};
 
           const getSelectable = () => {
             if (typeof configable === 'boolean') {
@@ -106,7 +107,7 @@ export const useSettings = ({
               children: getTreeDataFromColumns(
                 (columnGroup as ColumnGroupType<RecordType>).children,
               ),
-              title: item.title,
+              title,
               disableCheckbox: !getSelectable(),
             };
           }
@@ -116,7 +117,7 @@ export const useSettings = ({
           const key = column.key!;
           return {
             key,
-            title: column.title,
+            title,
             disableCheckbox: !getSelectable(),
           };
         }) as (null | SettingsDataNode)[]
