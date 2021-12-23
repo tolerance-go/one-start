@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.2.1...@ty-one-start/one-start@0.2.2) (2021-12-23)
+
+
+### Bug Fixes
+
+* 修复编辑表格输入 cache 失效 ([6e64b52](https://10.1.2.7/visual-fe/swap-modules/commits/6e64b5251126a308c98bd7174d7b14119c045e9b))
+
+
+
+
+
 ## [0.2.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.2.0...@ty-one-start/one-start@0.2.1) (2021-12-23)
 
 
