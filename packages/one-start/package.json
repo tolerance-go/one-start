@@ -26,7 +26,7 @@
     "admin",
     "ant-design",
     "pro-code",
-    "swap-pages"
+    "one-start"
   ],
   "license": "MIT",
   "peerDependencies": {
@@ -50,10 +50,7 @@
     "@ty-ant-design/pro-list": "1.4.3",
     "@ty-ant-design/pro-provider": "1.5.0",
     "@ty-ant-design/pro-table": "2.30.3",
-    "@ty-swap-pages/request": "6.0.2",
-    "@ty-swap-pages/services": "6.2.0",
-    "@ty-swap-pages/services-swap": "6.2.0",
-    "@ty-swap-pages/utils": "6.2.0",
+    "@ty-one-start/request": "0.1.0",
     "ag-grid-enterprise": "26.1.0",
     "ahooks": "^2.10.9",
     "art-template": "^4.13.2",

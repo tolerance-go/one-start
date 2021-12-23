@@ -1,7 +1,7 @@
 {
   "headPkgs": ["utils", "request", "one-start", "one-proto"],
-  "scope": "ty-swap-pages",
-  "siteTitle": "Swap-Pages",
+  "scope": "ty-one-start",
+  "siteTitle": "One-Start",
   "requestLibPath": "import request from '@ty-one-start/request';",
   "services": {
     "/swap-service": {

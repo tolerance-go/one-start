@@ -1,4 +1,4 @@
-import { exportWebExcel } from '@ty-swap-pages/request';
+import { exportWebExcel } from '@ty-one-start/request';
 import React, { useContext, useRef, useState, useMemo } from 'react';
 import OSDialog from '../dialog';
 import { OSReferencesGlobalContext } from '../providers/provider';

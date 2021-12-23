@@ -3323,7 +3323,7 @@
     npmlog "^4.1.2"
     write-file-atomic "^2.3.0"
 
-"@mapbox/hast-util-to-jsx@^1.0.0":
+"@mapbox/hast-util-to-jsx@1.0.0":
   version "1.0.0"
   resolved "http://npm.tongyu.tech/@mapbox%2fhast-util-to-jsx/-/hast-util-to-jsx-1.0.0.tgz#90ce46b0d2dde42d5ea4d4a1e0b26b9ce2215013"
   integrity sha1-kM5GsNLd5C1epNSh4LJrnOIhUBM=
@@ -3784,7 +3784,7 @@
   resolved "http://npm.tongyu.tech/@tootallnate%2fonce/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha1-zLkURTYBeaBOf+av94wA/8Hur4I=
 
-"@ty-ant-design/pro-card@1.9.22", "@ty-ant-design/pro-card@^1.9.22":
+"@ty-ant-design/pro-card@^1.9.22":
   version "1.9.22"
   resolved "http://npm.tongyu.tech/@ty-ant-design%2fpro-card/-/pro-card-1.9.22.tgz#ab27573f003725ebf517ed23101f7e47a5450491"
   integrity sha512-v0qHeT/p8srpviCasm+9+bbsRP1hcBq4lKZm/NudM8mfj8sHsP5Uvit0pD4fTbzZLSxAnRR+aLB/gQ+uuZNUPA==
@@ -3909,7 +3909,7 @@
     use-url-search-params "^2.3.13"
     xlsx "^0.16.9"
 
-"@ty-ant-design/pro-utils@1.16.0", "@ty-ant-design/pro-utils@^1.16.0":
+"@ty-ant-design/pro-utils@^1.16.0":
   version "1.16.0"
   resolved "http://npm.tongyu.tech/@ty-ant-design%2fpro-utils/-/pro-utils-1.16.0.tgz#65218c8f38362ba93f518e22a67b554af0fd16f1"
   integrity sha512-QXuim3DhhFmLxres+0OBb93yuMDKc0gkctkhh2hnZYBnTBAUb8+fcHeRMW5i7FzR5WJhBYY0A5PINMx/Kneg7Q==
@@ -4051,111 +4051,6 @@
   integrity sha512-Xd8zYOPgobaiaBULxDgBtNINax0H3QwBWmMVZCzS5J1p+AY5sopCdQgC1wWTjqX4OiLnkKPp9bIZISOA38D/PA==
   dependencies:
     chalk "^4.1.0"
-
-"@ty-swap-pages/base@6.0.2":
-  version "6.0.2"
-  resolved "http://npm.tongyu.tech/@ty-swap-pages%2fbase/-/base-6.0.2.tgz#9b26ff4c589984d7e46a5c8dcd2c813fe6f6cd3a"
-  integrity sha512-BnBiAVW6Y8dWP/PBH6Xianjjq5GF/C52qt3FkTGT+pTxN+o7h/SgvnHa7tFTE2sopWGqZvt/xsn+ken++BX7XQ==
-  dependencies:
-    mockjs "^1.1.0"
-    store2 "^2.12.0"
-
-"@ty-swap-pages/core@6.0.2":
-  version "6.0.2"
-  resolved "http://npm.tongyu.tech/@ty-swap-pages%2fcore/-/core-6.0.2.tgz#7d39233696928e0bb374cb7d86d0787d1d626559"
-  integrity sha512-fv26G9OeFcoEKKrERwKjKni3JrSelfmEBaEwZVX4OkLexW2OfCWP41VJkAhAANM5r7V5DZdSqGKvOl4rjz4xzQ==
-  dependencies:
-    mockjs "1.1.0"
-    umi-request "^1.3.9"
-
-"@ty-swap-pages/io-component@6.0.2":
-  version "6.0.2"
-  resolved "http://npm.tongyu.tech/@ty-swap-pages%2fio-component/-/io-component-6.0.2.tgz#768a27769d216d96d3ecc6dec73f380c0728a3b9"
-  integrity sha512-vefmWqi92qW3JydSHVIfC+zjfTU7c0V+rQVRLNo1hA7szc1LO5/Bhhl2va8TUP8gn3h7cT8/k4Ogtt0i1HqB/Q==
-  dependencies:
-    "@ant-design/icons" "^4.4.0"
-    "@ty-ant-design/pro-card" "1.9.22"
-    "@ty-ant-design/pro-descriptions" "1.5.3"
-    "@ty-ant-design/pro-field" "1.13.1"
-    "@ty-ant-design/pro-form" "1.22.0"
-    "@ty-ant-design/pro-layout" "6.12.6"
-    "@ty-ant-design/pro-list" "1.4.3"
-    "@ty-ant-design/pro-provider" "1.5.0"
-    "@ty-ant-design/pro-skeleton" "1.0.1"
-    "@ty-ant-design/pro-table" "2.30.3"
-    "@ty-ant-design/pro-utils" "1.16.0"
-    "@ty-swap-pages/base" "6.0.2"
-    bignumber.js "^9.0.1"
-    classnames "^2.2.6"
-    lodash "^4.17.20"
-    moment "^2.29.1"
-    object-hash "^2.1.1"
-    rc-field-form "^1.18.1"
-    rc-util "^5.7.0"
-    uuid "^8.3.2"
-
-"@ty-swap-pages/request@6.0.2":
-  version "6.0.2"
-  resolved "http://npm.tongyu.tech/@ty-swap-pages%2frequest/-/request-6.0.2.tgz#5be1d7e408831b0f9f7095de39409e6069ff66b4"
-  integrity sha512-mYjGuzszTnl/dRKoUmz3+V8xyGOSjZcvE0GUflUSOVZlbkU/f7djyJJVaA2STD+nMfnfyKlHmvvSRCS7TOrUpQ==
-  dependencies:
-    umi-request "^1.3.9"
-
-"@ty-swap-pages/services-option@6.1.1":
-  version "6.1.1"
-  resolved "http://npm.tongyu.tech/@ty-swap-pages%2fservices-option/-/services-option-6.1.1.tgz#4392fd235c83f9ba66530cee8ed7c2029cffc003"
-  integrity sha512-rWvGF4FNS8DyM5/IQ1RVkPDZEN1xQnszHqZ/Czk5NVDZdtq7rWiXWL5ZlKlT0Q5ABmaO9oAf3z3gex+nFjiphw==
-  dependencies:
-    "@ty-swap-pages/request" "6.0.2"
-
-"@ty-swap-pages/services-swap@6.2.0":
-  version "6.2.0"
-  resolved "http://npm.tongyu.tech/@ty-swap-pages%2fservices-swap/-/services-swap-6.2.0.tgz#65cba132d98505eb7a1823980dbd59aa1cd29831"
-  integrity sha512-dTKS76V2KOruz3mYdeBCCwugk/gHx0VdDHCb9wS0mEINbG0P+8NM5tbvzpJLAzPyUsGLo5C6lC85ZweyRExRUw==
-  dependencies:
-    "@ty-swap-pages/core" "6.0.2"
-    "@ty-swap-pages/request" "6.0.2"
-
-"@ty-swap-pages/services@6.2.0":
-  version "6.2.0"
-  resolved "http://npm.tongyu.tech/@ty-swap-pages%2fservices/-/services-6.2.0.tgz#6281b8a4e20a813d204fae672c25652c06262261"
-  integrity sha512-bE4gOh+JrZoLkH6Y5VlaU5bfEUEoUC2S3nMI2OVcT7ndgRbKIE0/QFqJ6v+2wukX32beaBpui7zBSHmx+NR0Lg==
-  dependencies:
-    "@ty-common-modules/request" "^0.5.1"
-    "@ty-devops-tools/api-generator" "^1.4.0"
-    "@ty-swap-pages/core" "6.0.2"
-    "@ty-swap-pages/io-component" "6.0.2"
-    "@ty-swap-pages/request" "6.0.2"
-    "@ty-swap-pages/services-option" "6.1.1"
-    "@ty-swap-pages/services-swap" "6.2.0"
-    "@ty-swap-pages/utils" "6.2.0"
-    bignumber.js "^9.0.1"
-    lodash "^4.17.20"
-    moment "^2.29.1"
-    umi-request "^1.3.9"
-    uuid "^8.3.2"
-
-"@ty-swap-pages/utils@6.2.0":
-  version "6.2.0"
-  resolved "http://npm.tongyu.tech/@ty-swap-pages%2futils/-/utils-6.2.0.tgz#d842cf8f10a5cf68bf9e78e04d02946c353f10fb"
-  integrity sha512-uc/xVU4oa9cQU1COTqF8UVrfk3a8c1d6BOJLfbpIp7zHX7EQsPeiiprO02Ft4RCjIdfMJzHYckLTYSiccxsYnw==
-  dependencies:
-    "@ant-design/icons" "^4.4.0"
-    "@ty-ant-design/pro-field" "1.13.1"
-    "@ty-ant-design/pro-form" "1.22.0"
-    "@ty-ant-design/pro-provider" "1.5.0"
-    "@ty-swap-pages/base" "6.0.2"
-    "@ty-swap-pages/io-component" "6.0.2"
-    bignumber.js "^9.0.1"
-    classnames "^2.2.6"
-    json-schema "^0.3.0"
-    lodash "^4.17.20"
-    mockjs "^1.1.0"
-    moment "^2.29.1"
-    nprogress "^0.2.0"
-    rc-field-form "^1.18.1"
-    rc-util "^5.7.0"
-    umi-request "^1.3.5"
 
 "@ty-umijs/fabric@^2.5.13":
   version "2.5.14"
@@ -5446,17 +5341,17 @@
     regenerator-runtime "0.13.5"
     schema-utils "^3.0.0"
 
-"@umijs/preset-dumi@1.1.23":
-  version "1.1.23"
-  resolved "http://npm.tongyu.tech/@umijs%2fpreset-dumi/-/preset-dumi-1.1.23.tgz#dd72cc7c5381773e41b17dc96f56055c292cecdf"
-  integrity sha1-3XLMfFOBdz5BsX3Jb1YFXCks7N8=
+"@umijs/preset-dumi@1.1.37":
+  version "1.1.37"
+  resolved "http://npm.tongyu.tech/@umijs%2fpreset-dumi/-/preset-dumi-1.1.37.tgz#195f7ab812c493d479c606329bf43827ebc33218"
+  integrity sha512-DiRSZ0rtYY1JA4RHD7tfRN5sgvbt71nTMIYASwGFFqOWAUz1TP9LMUXMh0QTcmCjYpYt98lQsVX1S+BOkRifVA==
   dependencies:
     "@babel/core" "^7.7.2"
     "@babel/generator" "^7.7.2"
     "@babel/plugin-transform-modules-commonjs" "^7.7.2"
     "@babel/traverse" "^7.7.2"
     "@babel/types" "^7.7.2"
-    "@mapbox/hast-util-to-jsx" "^1.0.0"
+    "@mapbox/hast-util-to-jsx" "1.0.0"
     "@umijs/babel-preset-umi" "3.x"
     "@umijs/plugin-analytics" "^0.2.2"
     "@umijs/runtime" "^3.2.14"
@@ -5465,7 +5360,7 @@
     copy-text-to-clipboard "^2.2.0"
     deepmerge "^4.2.2"
     dumi-assets-types "1.0.0"
-    dumi-theme-default "1.1.6"
+    dumi-theme-default "1.1.20"
     enhanced-resolve "^4.1.1"
     github-slugger "^1.3.0"
     hast-util-has-property "^1.0.4"
@@ -5474,7 +5369,9 @@
     hast-util-to-html "^7.1.1"
     hast-util-to-string "^1.0.2"
     hosted-git-info "^3.0.2"
+    ignore "^5.1.8"
     js-yaml "^3.13.1"
+    lodash.throttle "^4.1.1"
     lz-string "^1.4.4"
     react-docgen-typescript-dumi-tmp "^1.22.1-0"
     rehype-autolink-headings "^4.0.0"
@@ -9303,21 +9200,24 @@ dumi-assets-types@1.0.0:
   resolved "http://npm.tongyu.tech/dumi-assets-types/-/dumi-assets-types-1.0.0.tgz#d5368cb11045b203bf1ef1080e553b2287a2ec81"
   integrity sha1-1TaMsRBFsgO/HvEIDlU7Ioei7IE=
 
-dumi-theme-default@1.1.6, dumi-theme-default@^1.1.6:
-  version "1.1.6"
-  resolved "http://npm.tongyu.tech/dumi-theme-default/-/dumi-theme-default-1.1.6.tgz#d758ccca0e5bd1952027ff992d82515e24814063"
-  integrity sha1-11jMyg5b0ZUgJ/+ZLYJRXiSBQGM=
+dumi-theme-default@1.1.20, dumi-theme-default@^1.1.20:
+  version "1.1.20"
+  resolved "http://npm.tongyu.tech/dumi-theme-default/-/dumi-theme-default-1.1.20.tgz#53bb44fa8b14d97a840ef9f9833f960e54c8ddaf"
+  integrity sha512-p6XuHQXpRmofD/TC59VvIMeC+6FMvdl9xb6X1cWtoLta1oH7lvSt1/4WPS8yRcsKMcWXM2Z1BSVMrztjCiTyvw==
   dependencies:
+    lodash.throttle "^4.1.1"
     prism-react-renderer "^1.1.1"
     prismjs "^1.21.0"
+    rc-motion "^2.4.1"
     rc-tabs "^11.7.1"
+    rc-tree "^5.2.0"
 
-dumi@^1.1.23:
-  version "1.1.23"
-  resolved "http://npm.tongyu.tech/dumi/-/dumi-1.1.23.tgz#fb329bc94ca335d051e0b68063b77c3873ca0865"
-  integrity sha1-+zKbyUyjNdBR4LaAY7d8OHPKCGU=
+dumi@^1.1.37:
+  version "1.1.37"
+  resolved "http://npm.tongyu.tech/dumi/-/dumi-1.1.37.tgz#3435e0b1742c4ff3c2453b1ccb41f97ad12f63cc"
+  integrity sha512-ph34F/PVKxd5KQsEvx5jLa6PmX+7wIRO60WkSi5LS030ZoAlapUyggP4YsWEHlhaBi1SZk7lD3dZvwJpv0DAKg==
   dependencies:
-    "@umijs/preset-dumi" "1.1.23"
+    "@umijs/preset-dumi" "1.1.37"
     umi "^3.0.0"
 
 duplexer2@0.0.2:
@@ -15995,7 +15895,7 @@ mockdate@^3.0.2:
   resolved "http://npm.tongyu.tech/mockdate/-/mockdate-3.0.5.tgz#789be686deb3149e7df2b663d2bc4392bc3284fb"
   integrity sha1-eJvmht6zFJ598rZj0rxDkrwyhPs=
 
-mockjs@1.1.0, mockjs@^1.1.0:
+mockjs@^1.1.0:
   version "1.1.0"
   resolved "http://npm.tongyu.tech/mockjs/-/mockjs-1.1.0.tgz#e6a0c378e91906dbaff20911cc0273b3c7d75b06"
   integrity sha1-5qDDeOkZBtuv8gkRzAJzs8fXWwY=
@@ -16697,11 +16597,6 @@ object-copy@^0.1.0:
     copy-descriptor "^0.1.0"
     define-property "^0.2.5"
     kind-of "^3.0.3"
-
-object-hash@^2.1.1:
-  version "2.2.0"
-  resolved "http://npm.tongyu.tech/object-hash/-/object-hash-2.2.0.tgz#5ad518581eefc443bd763472b8ff2e9c2c0d54a5"
-  integrity sha1-WtUYWB7vxEO9djRyuP8unCwNVKU=
 
 object-inspect@^1.10.3, object-inspect@^1.7.0, object-inspect@^1.9.0:
   version "1.10.3"
@@ -19038,7 +18933,7 @@ rc-menu@~9.0.12:
     rc-util "^5.12.0"
     shallowequal "^1.1.0"
 
-rc-motion@^2.0.0, rc-motion@^2.0.1, rc-motion@^2.2.0, rc-motion@^2.3.0, rc-motion@^2.3.4, rc-motion@^2.4.0, rc-motion@^2.4.3:
+rc-motion@^2.0.0, rc-motion@^2.0.1, rc-motion@^2.2.0, rc-motion@^2.3.0, rc-motion@^2.3.4, rc-motion@^2.4.0, rc-motion@^2.4.1, rc-motion@^2.4.3:
   version "2.4.4"
   resolved "http://npm.tongyu.tech/rc-motion/-/rc-motion-2.4.4.tgz#e995d5fa24fc93065c24f714857cf2677d655bb0"
   integrity sha1-6ZXV+iT8kwZcJPcUhXzyZ31lW7A=
@@ -19286,6 +19181,17 @@ rc-tree@^4.1.5, rc-tree@~4.2.1:
     rc-util "^5.0.0"
     rc-virtual-list "^3.0.1"
 
+rc-tree@^5.2.0:
+  version "5.3.5"
+  resolved "http://npm.tongyu.tech/rc-tree/-/rc-tree-5.3.5.tgz#99e5af72a619d2520961e16ee63049c67d27b894"
+  integrity sha512-nMlR7YArdL1m+FJXjl6Mt4n6S2+sVY6op2K3roB34YdVyq/Q4gDy5XT2cpiKGZrfCifX79N2LCihRrOGMO2UTw==
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+    classnames "2.x"
+    rc-motion "^2.0.1"
+    rc-util "^5.16.1"
+    rc-virtual-list "^3.4.1"
+
 rc-trigger@^5.0.0, rc-trigger@^5.0.4, rc-trigger@^5.1.2, rc-trigger@^5.2.1:
   version "5.2.9"
   resolved "http://npm.tongyu.tech/rc-trigger/-/rc-trigger-5.2.9.tgz#795a787d2b038347dcde27b89a4a5cec8fc40f3e"
@@ -19335,10 +19241,28 @@ rc-util@^5.13.0, rc-util@~5.13.1:
     react-is "^16.12.0"
     shallowequal "^1.1.0"
 
+rc-util@^5.16.1:
+  version "5.16.1"
+  resolved "http://npm.tongyu.tech/rc-util/-/rc-util-5.16.1.tgz#374db7cb735512f05165ddc3d6b2c61c21b8b4e3"
+  integrity sha512-kSCyytvdb3aRxQacS/71ta6c+kBWvM1v8/2h9d/HaNWauc3qB8pLnF20PJ8NajkNN8gb+rR1l0eWO+D4Pz+LLQ==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    react-is "^16.12.0"
+    shallowequal "^1.1.0"
+
 rc-virtual-list@^3.0.1, rc-virtual-list@^3.2.0:
   version "3.3.0"
   resolved "http://npm.tongyu.tech/rc-virtual-list/-/rc-virtual-list-3.3.0.tgz#2f95a6ddbbf63d78b28662b57f1e69f7472762fe"
   integrity sha1-L5Wm3bv2PXiyhmK1fx5p90cnYv4=
+  dependencies:
+    classnames "^2.2.6"
+    rc-resize-observer "^1.0.0"
+    rc-util "^5.0.7"
+
+rc-virtual-list@^3.4.1:
+  version "3.4.2"
+  resolved "http://npm.tongyu.tech/rc-virtual-list/-/rc-virtual-list-3.4.2.tgz#1078327aa7230b5e456d679ed2ce99f3c036ebd1"
+  integrity sha1-EHgyeqcjC15FbWee0s6Z88A269E=
   dependencies:
     classnames "^2.2.6"
     rc-resize-observer "^1.0.0"

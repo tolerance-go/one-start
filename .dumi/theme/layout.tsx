@@ -28,40 +28,7 @@ export default ({ children, ...props }: IRouteComponentProps) => {
 
   return (
     <ConfigProvider locale={zhCN}>
-      {location.pathname === '/one-proto' ? (
-        children
-      ) : (
-        <>
-          <Layout {...props}>{children}</Layout>
-          <Affix offsetBottom={10} style={{ position: 'absolute', right: 10 }}>
-            <Space direction="vertical">
-              <FormItem label="tongyu_USER_LOCAL_FIELD">
-                <Input.TextArea
-                  style={{ width: 90 }}
-                  size="small"
-                  value={token}
-                  onChange={(event) => {
-                    localStorage.setItem('tongyu_USER_LOCAL_FIELD', event.target.value);
-                    setToken(event.target.value);
-                  }}
-                ></Input.TextArea>
-              </FormItem>
-              <Switch
-                checkedChildren="开启 mock"
-                unCheckedChildren="关闭 mock"
-                defaultChecked={mock}
-                onChange={(checked) => {
-                  if (checked) {
-                    localStorage.setItem(MockTagCont, 'true');
-                  } else {
-                    localStorage.setItem(MockTagCont, '');
-                  }
-                }}
-              />
-            </Space>
-          </Affix>
-        </>
-      )}
+      {location.pathname === '/one-proto' ? children : <Layout {...props}>{children}</Layout>}
     </ConfigProvider>
   );
 };
