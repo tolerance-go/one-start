@@ -99,7 +99,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     onFieldsChange,
   } = props;
   const {
-    changeDebounceTimestamp = 1000,
+    changeDebounceTimestamp = 450,
     fieldItems: _fieldItems,
     initialValues,
     valueLinkage,
