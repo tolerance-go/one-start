@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.2.2...@ty-one-start/one-start@0.2.3) (2021-12-24)
+
+
+### Performance Improvements
+
+* 调整 form changeDebounceTimestamp 1000 -> 450 ([7b88de0](https://10.1.2.7/visual-fe/swap-modules/commits/7b88de0aa4948ad91d90b37b5bf7a2c0d292e9d9))
+
+
+
+
+
 ## [0.2.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.2.1...@ty-one-start/one-start@0.2.2) (2021-12-23)
 
 
