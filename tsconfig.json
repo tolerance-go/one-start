@@ -18,7 +18,7 @@
       "@ty-one-start/utils": ["./packages/utils/src/index"],
       "@ty-one-start/request": ["packages/request/src/index"],
       "@ty-one-start/one-start": ["packages/one-start/src/index"],
-      "@ty-one-start/one-proto": ["packages/one-proto/src/index"],
+      "@ty-one-start/one-proto": ["packages/one-proto/src/index"]
     }
   },
   "include": [
