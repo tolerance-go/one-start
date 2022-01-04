@@ -9,7 +9,7 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
 ) => {
   const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
 
-  const { bordered, autoFocus, disabled, placeholder } = settings ?? {};
+  const { bordered, autoFocus, disabled, placeholder, showCount, maxLength } = settings ?? {};
 
   if (mode === 'read') {
     const dom = (
@@ -25,6 +25,8 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
 
     return (
       <Input.TextArea
+        showCount={showCount}
+        maxLength={maxLength}
         allowClear
         disabled={disabled}
         bordered={bordered}

@@ -17,6 +17,10 @@ group:
 
 <code src="../demos/field-textarea/simple.tsx" />
 
+### 参数透出
+
+<code src="../demos/field-textarea/antd-params.tsx" />
+
 <API exports='["Settings"]' src="../components/fields/textarea.tsx"></API>
 
 ### API

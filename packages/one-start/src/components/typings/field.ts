@@ -357,7 +357,10 @@ export interface OSTextareaFieldType
   extends OSField<OSTextareaFieldValueType, React.ChangeEvent<HTMLTextAreaElement>>,
     OSFieldBaseConfigs<OSTextareaFieldValueType> {
   type?: 'textarea';
-  settings?: OSFieldBaseSettings;
+  settings?: {
+    showCount?: boolean;
+    maxLength?: number;
+  } & OSFieldBaseSettings;
 }
 
 export type OSOptionFieldAPI = HTMLInputElement;
