@@ -17,6 +17,10 @@ group:
 
 <code src="../demos/grid/search-form.tsx" />
 
+### 分页树形数据
+
+<code src="../demos/grid/tree-data-pagination.tsx" />
+
 ### 行操作
 
 <code src="../demos/grid/row-actions.tsx" />
