@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.3.0...@ty-one-start/one-start@0.4.0) (2022-01-04)
+
+
+### Features
+
+* os-textarea 增加下层配置参数：showCount, maxLength ([794e7dc](https://10.1.2.7/visual-fe/swap-modules/commits/794e7dc37e98885e2ec2348833c2df9b7a0a5215))
+
+
+
+
+
 # [0.3.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.2.4...@ty-one-start/one-start@0.3.0) (2022-01-04)
 
 
