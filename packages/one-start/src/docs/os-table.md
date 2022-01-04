@@ -65,6 +65,8 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 ### 行操作
 
+列为空的时候，默认不显示行操作
+
 <code src="../demos/table/row-actions.tsx" />
 
 ### 列提示信息
@@ -92,6 +94,18 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 传递 `tableKey` 自动开启搜索表单值与 URL search 参数同步，同步时机为手动执行搜索操作时
 
 <code src="../demos/table/state-query.tsx" />
+
+### 异步获取表头信息
+
+<code src="../demos/table/async-get-columns.tsx" />
+
+### 前端分页
+
+<code src="../demos/table/fe-pagination.tsx" />
+
+### 后端分页
+
+<code src="../demos/table/be-pagination.tsx" />
 
 ### API 接口
 

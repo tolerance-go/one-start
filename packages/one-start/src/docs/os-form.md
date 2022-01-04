@@ -104,6 +104,10 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 
 <code src="../demos/form/editable-table-auto-row-id.tsx" />
 
+### 表单布局
+
+<code src="../demos/form/layout.tsx" />
+
 <API exports='["FormSettings", "FormRequests", "FormAPI"]' src="../components/form/index.tsx"></API>
 
 ### FormFieldItems

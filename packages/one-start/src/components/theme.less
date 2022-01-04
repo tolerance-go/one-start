@@ -88,6 +88,15 @@ body {
 }
 
 .one-source {
+  &-os-form-item-base {
+    &.label-align-left {
+      > .ty-ant-form-item-label {
+        display: flex;
+        justify-content: flex-start;
+      }
+    }
+  }
+
   &-os-grid {
     .ag-react-container {
       line-height: 28px;
@@ -464,6 +473,15 @@ body {
   }
 
   &-os-form {
+    // 当 row 有 gutter 的时候，横向隐藏 marge -x 部分
+    overflow-x: hidden;
+
+    &-divider-item {
+      .ty-ant-divider-inner-text {
+        padding-left: 0;
+      }
+    }
+
     .ty-ant-divider-horizontal.ty-ant-divider-with-text-left::before {
       width: 0;
     }

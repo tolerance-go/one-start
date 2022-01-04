@@ -333,7 +333,7 @@ const OSSourceGrid: React.ForwardRefRenderFunction<OSSourceGridAPI, OSSourceGrid
                           type="button"
                           settings={{
                             type: 'link',
-                            text: '查看',
+                            text: '详情',
                             manualPush,
                           }}
                           onClick={() => {

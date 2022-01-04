@@ -36,6 +36,7 @@ const mapLevel = (
 };
 
 export const useRequestDataSource = ({
+  setFieldItemsState,
   requestDataSource,
   snapshotOfCurrentSearchParametersRef,
   searchTransfromMapDataIndexId,
@@ -53,6 +54,9 @@ export const useRequestDataSource = ({
   loopRequest,
   defaultPageSize,
 }: {
+  setFieldItemsState: React.Dispatch<
+    React.SetStateAction<Required<OSTableType>['settings']['fieldItems']>
+  >;
   treeSpreadActionsRef: React.RefObject<TreeSpreadActions>;
   searchFormRef: React.MutableRefObject<OSFormAPI | null>;
   defaultPageSize: number;
@@ -129,6 +133,9 @@ export const useRequestDataSource = ({
 
     /** 同步表格头部的 search form  */
     tableCoreActionsRef.current.setHeaderFormValues(search);
+
+    setCurrent(1);
+    setTotalCount(data?.length);
 
     syncSearchTimestamp();
   }, [
@@ -210,6 +217,7 @@ export const useRequestDataSource = ({
 
       renderPages = mapLevel(renderPages);
 
+      setFieldItemsState(data?.fieldItems);
       setTotalCount(data?.total);
       setCurrent(params.current);
 
@@ -239,6 +247,7 @@ export const useRequestDataSource = ({
       }
     },
     [
+      setFieldItemsState,
       getSearch,
       syncSearchTimestamp,
       tableActionsRef,
@@ -256,6 +265,7 @@ export const useRequestDataSource = ({
 
   const actionsRef = useActionsRef(
     {
+      setCurrent,
       requestDataSource: requestTableDataSource,
       requestVisualDataSource: requestVisualDataSource_,
       getFieldOptionsMapDataIndex: () => fieldOptionsMapDataIndexRef.current,

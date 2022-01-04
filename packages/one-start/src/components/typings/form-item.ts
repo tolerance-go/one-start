@@ -16,6 +16,8 @@ export type OSFormItemSimpleTooltip = string | string[] | OSFormItemTooltip;
 
 export interface OSFormItemType<Value = any> extends OSCore {
   settings?: {
+    /** label 对齐方式 */
+    labelAlign?: 'left' | 'right';
     tooltip?: OSFormItemSimpleTooltip;
     rules?: (OSRule | Rule)[];
     title?: string;

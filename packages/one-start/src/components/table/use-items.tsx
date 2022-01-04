@@ -498,6 +498,7 @@ export const useItems = ({
 
           if (colEditable) {
             const dom = renderTableFormItem(valueType, settings, requests ?? {}, {
+              dataSource: tableActionsRef.current.getDataSource(),
               rowData,
               rowIndex,
               rowId: rowData[rowKey],
@@ -821,6 +822,7 @@ export const useItems = ({
           const { type: valueType, requests: _requests, dependencies } = fieldItem;
 
           const _settings = runTableSettings(fieldItem.settings, {
+            dataSource: tableActionsRef.current.getDataSource(),
             form: tableWrapForm,
             rowData: {},
             rowIndex: -1,
@@ -878,13 +880,8 @@ export const useItems = ({
               searchTransfromMapDataIndexIdRef.current[dataIndexId] = search.transform;
             }
 
-            const tableExtraSettings: (keyof Required<OSTableFormFieldItemExtra>['settings'])[] = [
-              'editable',
-              'search',
-              'sorter',
-            ];
             searchFormFieldItemsRef.current.push({
-              settings: utl.omit(mergedSettings, tableExtraSettings),
+              settings: fieldItem.settings,
               requests: _requests,
               dependencies,
               type: valueType,

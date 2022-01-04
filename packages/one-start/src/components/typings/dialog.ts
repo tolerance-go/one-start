@@ -105,6 +105,7 @@ export interface OSDialogDrawerType extends OSDialogBase {
     width?: string | number;
     footer?: React.ReactNode;
     initialVisible?: boolean;
+    modalMask?: boolean | 'transparent';
   };
   onVisibleChange?: (visible: boolean) => void;
   forceRender?: boolean;

@@ -13,8 +13,11 @@ import { getNumberDigitsRule } from './rules/get-number-digits-rule';
 import { getNumberRangeRule } from './rules/get-number-range-rule';
 import { getTradingDaysRule } from './rules/get-trading-days-rule';
 import { mergeRuleToTooltip, normalizeTooltip } from './utils';
+import cls from 'classnames';
+import { useClsPrefix } from '../utils/use-cls-prefix';
 
 const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
+  const prefix = useClsPrefix('os-form-item-base');
   const { settings, requests, noStyle, className, validateTrigger } = props;
   const {
     tooltip,
@@ -27,6 +30,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     wrapperCol,
     linkagetip,
     validateFirst,
+    labelAlign,
   } = settings ?? {};
 
   const formInstaceRefCtx = useContext(FormInstanceContext);
@@ -259,7 +263,9 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
         validateTrigger={validateTrigger}
         validateFirst={validateFirst}
         preserve={settings?.preserve}
-        className={className}
+        className={cls(className, prefix, {
+          'label-align-left': labelAlign === 'left',
+        })}
         style={{
           ...settings?.styles,
           flexWrap: 'nowrap',

@@ -79,7 +79,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     settings,
     requests,
     value,
-    autoRequestWhenMounted = true,
+    autoRequestWhenMounted: propsAutoRequestWhenMounted = true,
     onChange,
     getFieldItems,
     __localkey,
@@ -88,7 +88,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     extraBatchOperation,
   } = props;
   const {
-    fieldItems: _fieldItems,
+    fieldItems: __fieldItems,
     editableRowKeys,
     pagination,
     actions,
@@ -103,7 +103,12 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     loopRequest,
     highlightBadge,
     changeDebounceTimestamp = 450,
+    autoRequestWhenMounted: userAutoRequestWhenMounted,
   } = settings ?? {};
+
+  const autoRequestWhenMounted = userAutoRequestWhenMounted ?? propsAutoRequestWhenMounted;
+
+  const [fieldItemsState, setFieldItemsState] = useState<typeof __fieldItems>();
 
   const clsPrefix = useClsPrefix('os-table');
   const rowKey = props.settings?.rowKey ?? 'id';
@@ -144,6 +149,8 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   const latestUserInputValueRef = useRef();
 
   const columnSettingsActionsRef = useActionsRef<Partial<ColumnsSettingsActions>>({});
+
+  const _fieldItems = fieldItemsState ?? __fieldItems;
 
   const validate = async (
     nameList?: NamePath[],
@@ -440,6 +447,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     },
     normalizeDataSource,
     getDataSource,
+    getOriginDataSource: () => dataSource,
     getAllColumnsId,
     getColumnsStaticPureConfigsIdMaps,
     getSearchFormCurrentValues,
@@ -499,6 +507,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     resetSerachFormValues,
     searchFormRef,
   } = useSearchForm({
+    dataSource,
     searchFormItemChunkSize,
     clsPrefix,
     __localkey,
@@ -540,6 +549,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   });
 
   const { loading, totalCount, current } = useRequestDataSource({
+    setFieldItemsState,
     loopRequest,
     tableKey,
     tableActionsRef,
@@ -559,6 +569,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   });
 
   const { dom: searchSwitchDom, actionsRef: searchSwitchActionsRef } = useSearchSwitch({
+    fieldItems: _fieldItems,
     searchFormVisible,
     resetSerachFormValues,
     setSearchFormVisible,
@@ -566,6 +577,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     tableCoreActionsRef,
     enable: enableSearchForm,
     tableWrapRef,
+    isExistPropsRequestVisualDataSource: typeof requests?.requestVisualDataSource === 'function',
   });
 
   const {
@@ -767,6 +779,20 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
                 columns={mergedColumns}
                 dataSource={visualDataSource ?? dataSource}
                 onChange={(pagination_, filters, sorter) => {
+                  const isFePagination = () => {
+                    const originDataSource = tableActionsRef.current.getOriginDataSource();
+                    const visualDataSource_ = tableActionsRef.current.getVisualDataSource();
+
+                    const viewData = visualDataSource_ ?? originDataSource;
+
+                    return totalCount != null && viewData != null && totalCount === viewData.length;
+                  };
+
+                  if (isFePagination()) {
+                    requestDataSourceActionsRef.current?.setCurrent(pagination_.current);
+                    return;
+                  }
+
                   requestDataSourceActionsRef.current?.requestDataSource({
                     current: pagination_.current ?? 1,
                     pageSize: pagination_.pageSize ?? defaultPageSize,

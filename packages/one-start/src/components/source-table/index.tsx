@@ -141,12 +141,19 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
   }) => {
     if (!rowViewable) return null;
 
+    const formSettingsMeta = (() => {
+      if (typeof rowViewable.formSettings === 'function') {
+        return rowViewable.formSettings(options);
+      }
+      return rowViewable.formSettings;
+    })();
+
     return (
       <OSForm
         settings={{
-          ...rowViewable.formSettings,
+          ...formSettingsMeta,
           fieldItemSettings: {
-            ...rowViewable.formSettings?.fieldItemSettings,
+            ...formSettingsMeta?.fieldItemSettings,
             readonly: true,
           },
         }}
@@ -325,8 +332,9 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
                         ref={viewDrawerDialogRef}
                         type="drawer"
                         settings={{
-                          title: '详情展示',
-                          width: '70%',
+                          modalMask: rowViewable.modalMask,
+                          title: rowViewable.modalTitle ?? '详情展示',
+                          width: rowViewable.modalWidth ?? '80%',
                           body: renderViewForm({ rowData, rowId, rowIndex, actions }),
                         }}
                       >
@@ -334,7 +342,7 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
                           type="button"
                           settings={{
                             type: 'link',
-                            text: '查看',
+                            text: '详情',
                             manualPush,
                           }}
                           onClick={() => {

@@ -109,6 +109,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     fieldItemSettings,
     params: _params,
     hideEmpty = false,
+    groupItemSettings,
   } = settings ?? {};
   const formRef = useRef<FormInstance>(null);
   const [form] = Form.useForm();
@@ -719,6 +720,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
                 className={cls(groupRowClass, {
                   hide: isChildrenAllHiden(),
                 })}
+                gutter={groupItemSettings?.gutter}
               >
                 {items.map((item, _index) => {
                   const renderCol = (child?: React.ReactNode) => {

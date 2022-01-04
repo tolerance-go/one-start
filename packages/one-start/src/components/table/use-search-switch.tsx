@@ -3,11 +3,12 @@ import { Button, Space } from '@ty/antd';
 import type { MutableRefObject } from 'react';
 import { useCallback, useEffect } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { TableCoreActions } from '../typings';
+import type { TableCoreActions, OSTableFormFieldItems } from '../typings';
 import { eventNames, searchFixedIconCls } from './constants';
 import type { RequestDataSourceActions } from './typings';
 
 export const useSearchSwitch = ({
+  fieldItems,
   searchFormVisible,
   resetSerachFormValues,
   setSearchFormVisible,
@@ -15,7 +16,10 @@ export const useSearchSwitch = ({
   tableCoreActionsRef,
   enable,
   tableWrapRef,
+  isExistPropsRequestVisualDataSource,
 }: {
+  isExistPropsRequestVisualDataSource: boolean;
+  fieldItems?: OSTableFormFieldItems;
   searchFormVisible?: boolean;
   resetSerachFormValues: () => void;
   setSearchFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,6 +29,7 @@ export const useSearchSwitch = ({
   tableWrapRef: React.RefObject<HTMLDivElement>;
 }) => {
   const toggleTableHeaderSearchDom = useCallback(() => {
+    /** 保证可以获取到 dom 存在 */
     setTimeout(() => {
       const searchFilterBtnDom = Array.from(
         tableWrapRef.current?.querySelectorAll(`.${searchFixedIconCls}`) ?? [],
@@ -46,9 +51,9 @@ export const useSearchSwitch = ({
   }, [tableCoreActionsRef, searchFormVisible]);
 
   useEffect(() => {
-    /** 保证可以获取到 dom 存在 */
-    toggleTableHeaderSearchDom();
-  }, [searchFormVisible, tableWrapRef, toggleTableHeaderSearchDom]);
+    actionsRef.current.toggleTableHeaderSearchDom();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchFormVisible, fieldItems === undefined, actionsRef]);
 
   const resetButtonDom = searchFormVisible ? (
     <Button
@@ -57,12 +62,14 @@ export const useSearchSwitch = ({
       onClick={() => {
         resetSerachFormValues();
 
-        requestDataSourceActionsRef.current?.requestDataSource({
-          current: 1,
-          manualInitiate: true,
-        });
-
-        requestDataSourceActionsRef.current?.requestVisualDataSource();
+        if (isExistPropsRequestVisualDataSource) {
+          requestDataSourceActionsRef.current?.requestVisualDataSource();
+        } else {
+          requestDataSourceActionsRef.current?.requestDataSource({
+            current: 1,
+            manualInitiate: true,
+          });
+        }
 
         tableCoreActionsRef.current.emit(eventNames.onSearchFormReset);
       }}
@@ -77,11 +84,14 @@ export const useSearchSwitch = ({
       type="primary"
       key="search-btn"
       onClick={() => {
-        requestDataSourceActionsRef.current?.requestDataSource({
-          current: 1,
-          manualInitiate: true,
-        });
-        requestDataSourceActionsRef.current?.requestVisualDataSource();
+        if (isExistPropsRequestVisualDataSource) {
+          requestDataSourceActionsRef.current?.requestVisualDataSource();
+        } else {
+          requestDataSourceActionsRef.current?.requestDataSource({
+            current: 1,
+            manualInitiate: true,
+          });
+        }
       }}
     >
       搜索
