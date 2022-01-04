@@ -221,9 +221,9 @@ export * from './rules';
 // eslint-disable-next-line import/export
 export * from './table';
 export * from './trigger';
-export * from './layout';
+export * from './frame';
 export * from './attachment-table';
 export * from './linkage';
 export * from './grid';
-export * from './layout-grid';
+export * from './layout';
 export { RequiredRecursion };

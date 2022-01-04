@@ -2,7 +2,7 @@
  * iframe: 350
  */
 import { BarChartOutlined } from '@ant-design/icons';
-import { OSLayout, OSProviderWrapper } from '@ty-one-start/one-start';
+import { OSFrame, OSProviderWrapper } from '@ty-one-start/one-start';
 import delay from 'delay';
 import { mock } from 'mockjs';
 import React from 'react';
@@ -10,7 +10,7 @@ import React from 'react';
 export default () => {
   return (
     <OSProviderWrapper>
-      <OSLayout
+      <OSFrame
         settings={{}}
         requests={{
           requestNavData: async () => {
@@ -34,7 +34,7 @@ export default () => {
             });
           },
         }}
-      ></OSLayout>
+      ></OSFrame>
     </OSProviderWrapper>
   );
 };

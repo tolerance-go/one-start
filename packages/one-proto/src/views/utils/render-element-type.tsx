@@ -1,15 +1,15 @@
 import type {
-  OSLayoutType,
+  OSFrameType,
   OSTableType,
   OSTextFieldType,
   OSTriggerType,
 } from '@ty-one-start/one-start';
 import { OSTable } from '@ty-one-start/one-start';
-import { OSLayout, OSTextField, OSTrigger } from '@ty-one-start/one-start';
+import { OSFrame, OSTextField, OSTrigger } from '@ty-one-start/one-start';
 import type { LayoutNodeChildren, NodeDataType } from '../typings';
 import { renderNode } from './render-node';
 import { renderNodeSelectorModal } from './render-node-selector-modal';
-import { RenderElementType } from './typings';
+import type { RenderElementType } from './typings';
 
 export const renderElementType: RenderElementType = (
   item: NodeDataType,
@@ -32,7 +32,7 @@ export const renderElementType: RenderElementType = (
     return <OSTable {...(configs as OSTableType)}></OSTable>;
   }
   if (type === 'layout') {
-    const layoutConfigs = configs as OSLayoutType;
+    const layoutConfigs = configs as OSFrameType;
     const pageMaps = {
       ...(layoutConfigs?.settings?.navData?.reduce((obj, next) => {
         const key = next.key ?? next.title;
@@ -77,13 +77,13 @@ export const renderElementType: RenderElementType = (
     };
 
     return (
-      <OSLayout
-        {...(layoutConfigs as OSLayoutType)}
+      <OSFrame
+        {...(layoutConfigs as OSFrameType)}
         settings={{
           ...layoutConfigs?.settings,
           pageMaps,
         }}
-      ></OSLayout>
+      ></OSFrame>
     );
   }
   return null;

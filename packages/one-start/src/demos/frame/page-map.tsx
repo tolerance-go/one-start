@@ -5,7 +5,7 @@
 import {
   OSDateField,
   OSDigitField,
-  OSLayout,
+  OSFrame,
   OSMoneyField,
   OSProviderWrapper,
 } from '@ty-one-start/one-start';
@@ -14,7 +14,7 @@ import React from 'react';
 export default () => {
   return (
     <OSProviderWrapper>
-      <OSLayout
+      <OSFrame
         settings={{
           pageMaps: {
             page1: (
@@ -48,7 +48,7 @@ export default () => {
             },
           ],
         }}
-      ></OSLayout>
+      ></OSFrame>
     </OSProviderWrapper>
   );
 };
