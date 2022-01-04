@@ -20,7 +20,7 @@ export const useRowActions = ({
   clsPrefix: string;
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
 }) => {
-  if (rowActions || extraRowActions) {
+  if (columns.length && (rowActions || extraRowActions)) {
     const getWidth = () => {
       if (
         typeof rowActions !== 'function' &&

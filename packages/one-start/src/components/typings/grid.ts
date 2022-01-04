@@ -131,7 +131,10 @@ export type _OSGridType<
   requests?: {
     requestDataSource?: RequestIO<
       OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
-      OSTableRequestDataSourceReturnType
+      OSTableRequestDataSourceReturnType<
+        OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+        CustomTableValueType
+      >
     >;
     /** 前端分页的搜索请求 */
     requestVisualDataSource?: RequestIO<

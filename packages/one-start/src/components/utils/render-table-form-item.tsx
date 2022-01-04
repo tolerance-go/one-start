@@ -26,6 +26,7 @@ export const renderTableFormItem = (
   settings: OSTableFormFieldItems[number]['settings'],
   requests: RecordType,
   options: {
+    dataSource?: RecordType[];
     formItemClassName?: string;
     rowIndex?: number;
     rowData?: Record<string, any>;
@@ -47,6 +48,7 @@ export const renderTableFormItem = (
   },
 ) => {
   const {
+    dataSource,
     rowIndex,
     rowData,
     rowId,
@@ -147,7 +149,7 @@ export const renderTableFormItem = (
           }
         >
           {(form: FormInstance) => {
-            return renderInner(settings({ form, rowIndex, rowData, rowId, actions }));
+            return renderInner(settings({ dataSource, form, rowIndex, rowData, rowId, actions }));
           }}
         </Form.Item>
       );

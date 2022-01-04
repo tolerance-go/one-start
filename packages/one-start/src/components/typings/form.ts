@@ -32,6 +32,7 @@ export interface OSFormGroupFieldType extends OSField {
   settings?: {
     title?: string;
     dataIndex?: NamePath;
+    gutter?: number;
     actions?: React.ReactElement[];
   };
 }
@@ -351,6 +352,8 @@ export interface _OSFormType<
     formItemSettimgs?: OSFormItemType['settings'];
     /** 公共的 fieldItems 配置，优先级比 fieldItems 低 */
     fieldItemSettings?: _OSFormFieldItemWithStaticPureConfigs<StaticCustomValueType>['settings'];
+    /** 分组公共配置 */
+    groupItemSettings?: OSFormGroupFieldType['settings'];
     /** requeset接口传参 */
     params?: {
       requestFieldItems?: RecordType;

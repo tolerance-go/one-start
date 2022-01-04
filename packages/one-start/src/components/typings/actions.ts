@@ -74,7 +74,10 @@ export interface _OSActionsCreateType<OSCustomFieldStaticPureTableFormFieldItemC
     /** 请求所有模版列表 */
     requestTemplateList?: RequestIO<
       OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
-      OSTableRequestDataSourceReturnType
+      OSTableRequestDataSourceReturnType<
+        OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+        OSCustomFieldPureTableFormFieldItemConfigsType
+      >
     >;
     /** 更新模板信息的请求 */
     requestUpdateTemplateInfo?: RequestIO<

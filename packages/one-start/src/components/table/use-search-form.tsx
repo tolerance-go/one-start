@@ -19,6 +19,7 @@ import type { SearchFormActions } from './typings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 
 export const useSearchForm = ({
+  dataSource,
   snapshotOfCurrentSearchParametersRef,
   searchFormFieldItems,
   tableCoreActionsRef,
@@ -31,6 +32,7 @@ export const useSearchForm = ({
   clsPrefix,
   searchFormItemChunkSize,
 }: {
+  dataSource?: RecordType[];
   clsPrefix: string;
   __localkey?: string;
   tableKey?: string;
@@ -100,17 +102,28 @@ export const useSearchForm = ({
           key: `${tableKey}-search-group`,
         },
         children: searchFormFieldItems?.map((item) => {
+          const injectSearchFormItemSettings = {
+            dataSource,
+          };
+
           return {
             ...item,
-            settings: {
-              ...item.settings,
-              colSpan: Math.round(24 / size),
+            settings: (options) => {
+              let { settings } = item;
+              if (typeof item.settings === 'function') {
+                settings = item.settings({ ...options, ...injectSearchFormItemSettings });
+              }
+
+              return {
+                ...settings,
+                colSpan: Math.round(24 / size),
+              };
             },
           };
         }),
       },
     ] as OSFormFieldItems;
-  }, [searchFormItemChunkSize, tableKey, searchFormFieldItems]);
+  }, [searchFormItemChunkSize, dataSource, tableKey, searchFormFieldItems]);
 
   const dom = searchFormVisible ? (
     <div key="search" className={`${clsPrefix}-search-form`}>

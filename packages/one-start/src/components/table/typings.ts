@@ -52,6 +52,7 @@ export type EventPayloads = {
 };
 
 export type RequestDataSourceActions = {
+  setCurrent: React.Dispatch<React.SetStateAction<number | undefined>>;
   requestDataSource: (options: {
     current?: number;
     pageSize?: number;

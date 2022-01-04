@@ -67,6 +67,7 @@ export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = 
   getSearchFormDataSource: () => RecordType | undefined;
   normalizeDataSource: (dataSource_?: RecordType[]) => RecordType[] | undefined;
   getDataSource: () => OSTableValueType;
+  getOriginDataSource: () => OSTableValueType;
   getVisualDataSource: () => OSTableValueType;
   reload: () => void;
   setDataSource: (dataSource?: RecordType[]) => void;
@@ -112,6 +113,7 @@ export type _OSTableFormFieldItemSettingsFnOption<
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
 > = {
   form: FormInstance;
+  dataSource?: RecordType[];
   rowData?: Record<string, any>;
   rowIndex?: number;
   rowId?: string;
@@ -370,7 +372,14 @@ export type OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormField
   actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
 };
 
-export type OSTableRequestDataSourceReturnType = {
+export type OSTableRequestDataSourceReturnType<
+  OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+  CustomTableValueType,
+> = {
+  fieldItems?: _OSTableFormFieldItems<
+    OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+    CustomTableValueType
+  >;
   page?: OSTableValueType;
   total?: number;
 };
@@ -433,6 +442,7 @@ export interface _OSTableType<
   ChangeValue = OSTableChangeValueType,
 > extends OSCore {
   settings?: {
+    autoRequestWhenMounted?: boolean;
     /**
      * 触发 onChange 的 debounce 时间，单位毫秒
      */
@@ -532,7 +542,10 @@ export interface _OSTableType<
   requests?: {
     requestDataSource?: RequestIO<
       OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
-      OSTableRequestDataSourceReturnType
+      OSTableRequestDataSourceReturnType<
+        OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+        CustomTableValueType
+      >
     >;
     /** 前端分页的搜索请求 */
     requestVisualDataSource?: RequestIO<
@@ -607,7 +620,21 @@ export type _OSSourceTableSelfType<
     /** 启动行查看 */
     rowViewable?:
       | {
+          modalTitle?: string;
+          modalMask?: boolean | 'transparent';
+          modalWidth?: string | number;
           formSettings?: _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
+        }
+      | {
+          modalTitle?: string;
+          modalMask?: boolean | 'transparent';
+          modalWidth?: string | number;
+          formSettings?: (options: {
+            rowData: RecordType;
+            rowIndex: number;
+            rowId: string;
+            actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
+          }) => _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
         }
       | false;
     /** 启动行编辑 */

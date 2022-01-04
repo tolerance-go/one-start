@@ -15,7 +15,7 @@ const OSDialogDrawer: React.ForwardRefRenderFunction<
   const { settings, actionsRef: propActionsRef, forceRender, destroyOnClose = true } = props;
   const clsPrefix = useClsPrefix('os-drawer');
 
-  const { footer, body } = settings ?? {};
+  const { footer, body, modalMask } = settings ?? {};
 
   const { visible, close, setVisible, initPromise, promiseRef } = useVisible({
     onVisibleChange: props.onVisibleChange,
@@ -43,9 +43,27 @@ const OSDialogDrawer: React.ForwardRefRenderFunction<
     propActionsRef,
   );
 
+  const mask = (() => {
+    if (modalMask === 'transparent') {
+      return true;
+    }
+    return modalMask;
+  })();
+
+  const maskStyle = (() => {
+    if (modalMask === 'transparent') {
+      return {
+        backgroundColor: 'rgba(0, 0, 0, 0)',
+      };
+    }
+    return undefined;
+  })();
+
   return (
     <>
       <Drawer
+        mask={mask}
+        maskStyle={maskStyle}
         forceRender={forceRender}
         className={clsPrefix}
         width={settings?.width}
