@@ -306,7 +306,7 @@ const OSGrid: React.ForwardRefRenderFunction<OSGridAPI, OSGridType> = (props, re
             return [
               {
                 ...item,
-                paths: parents?.map(getName),
+                paths: [...(parents ?? []), item]?.map(getName),
               },
               ...item.children,
             ];
