@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.4.1...@ty-one-start/one-start@0.4.2) (2022-01-04)
+
+
+### Bug Fixes
+
+* os-grid 树形数据分页的时，group 层数据 path 计算错误 ([13ae0da](https://10.1.2.7/visual-fe/swap-modules/commits/13ae0da8451fdc290e4c3bcd3fc1e2d802f53dd8))
+
+
+
+
+
 ## [0.4.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.4.0...@ty-one-start/one-start@0.4.1) (2022-01-04)
 
 **Note:** Version bump only for package @ty-one-start/one-start
