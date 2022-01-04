@@ -1,4 +1,4 @@
-import { OSGrid, OSGridLayout, OSProviderWrapper } from '@ty-one-start/one-start';
+import { OSGrid, OSLayout, OSProviderWrapper } from '@ty-one-start/one-start';
 import Mock, { Random } from 'mockjs';
 
 const Order = () => {
@@ -165,7 +165,7 @@ const Position = () => {
 const Demo = () => {
   return (
     <div style={{ backgroundColor: '#fafafa', padding: 10 }}>
-      <OSGridLayout
+      <OSLayout
         settings={{
           type: 'simple',
           layout: [

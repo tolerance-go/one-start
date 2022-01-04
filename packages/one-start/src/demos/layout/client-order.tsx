@@ -1,4 +1,4 @@
-import { OSGrid, OSGridLayout, OSProviderWrapper, OSForm } from '@ty-one-start/one-start';
+import { OSGrid, OSLayout, OSProviderWrapper, OSForm } from '@ty-one-start/one-start';
 import Mock, { Random } from 'mockjs';
 import { Row, Col } from '@ty/antd';
 
@@ -302,7 +302,7 @@ const DataShow = () => {
 const ClientOrderDemo = () => {
   return (
     <div style={{ backgroundColor: '#fafafa', padding: 10 }}>
-      <OSGridLayout
+      <OSLayout
         settings={{
           type: 'simple',
           layout: [

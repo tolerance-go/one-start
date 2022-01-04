@@ -1,6 +1,6 @@
 import type {
   OSCore,
-  OSLayoutType,
+  OSFrameType,
   OSTableType,
   OSTextFieldType,
   OSTriggerType,
@@ -35,7 +35,7 @@ export type NodeDataType =
     }>
   | CreateNodeData<{
       elementType: 'layout';
-      configs?: PickPureConfigs<OSLayoutType>;
+      configs?: PickPureConfigs<OSFrameType>;
       children?: LayoutNodeChildren;
     }>
   | CreateNodeData<{

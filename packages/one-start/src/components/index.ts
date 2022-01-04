@@ -31,7 +31,7 @@ import OSTimeLagField from './fields/time-lag';
 import OSTransferField from './fields/transfer';
 import OSForm from './form';
 import OSGrid from './grid';
-import OSLayout from './layout';
+import OSFrame from './frame';
 import OSLayoutForm from './layout-form';
 import OSPage from './page';
 import { OSConfigProviderWrapper } from './providers/config';
@@ -46,7 +46,7 @@ import { normalizeRequestOutputs } from './utils/normalize-request-outputs';
 import OSSourceGrid from './source-grid';
 import OSSearchGrid from './search-grid';
 import OSTreeSelectField from './fields/tree-select';
-import OSGridLayout from './layout-grid';
+import OSLayout from './layout';
 
 import './theme.less';
 
@@ -99,7 +99,7 @@ export {
   OSAttachmentTableField,
   OSActionsOperate,
   OSActionsReportDownload,
-  OSLayout,
+  OSFrame,
   OSLayoutTabsFormField,
   OSSourceTable,
   OSRadioField,
@@ -109,5 +109,5 @@ export {
   OSTransferField,
   OSGrid,
   OSTreeSelectField,
-  OSGridLayout,
+  OSLayout,
 };

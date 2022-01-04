@@ -1,8 +1,8 @@
-import { OSGridLayout } from '@ty-one-start/one-start';
+import { OSLayout } from '@ty-one-start/one-start';
 import './index.less';
 
 export default () => (
-  <OSGridLayout
+  <OSLayout
     settings={{
       type: 'responsive',
       layouts: {
