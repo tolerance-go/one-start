@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.2.4...@ty-one-start/one-start@0.3.0) (2022-01-04)
+
+
+### Features
+
+* os-table 支持前端分页下的搜索功能 ([c2db878](https://10.1.2.7/visual-fe/swap-modules/commits/c2db878167dbbba9fd70073385bb3989fb0e56d3))
+
+
+
+
+
 ## [0.2.4](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.2.3...@ty-one-start/one-start@0.2.4) (2021-12-24)
 
 
