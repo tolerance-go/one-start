@@ -1,12 +1,16 @@
 /* eslint-disable consistent-return */
 import { Col, Row, Space } from '@ty/antd';
 import React, { useMemo, useRef, useState } from 'react';
-import OSDialog from '../../dialog';
-import OSForm from '../../form';
-import { globalRefKeys } from '../../providers/provider';
-import OSReferencesCollectorProviderWrapper, { useRefsRef } from '../../providers/references';
-import OSTable from '../../table';
-import OSTrigger from '../../trigger';
+import {
+  OSDialog,
+  OSForm,
+  globalRefKeys,
+  OSTable,
+  OSTrigger,
+  OSReferencesCollectorProviderWrapper,
+  useRefsRef,
+  normalizeRequestOutputs,
+} from '../../components';
 import type {
   OSActionsCreateAPI,
   OSActionsCreateType,
@@ -15,7 +19,6 @@ import type {
   OSFormAPI,
   OSTableRequestDataSourceParams,
 } from '../../typings';
-import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
 import type { ApplyingTemplateAPI } from './applying-template';
 import ApplyingTemplate from './applying-template';
 import type { FormUpdateTimestampAPI } from './form-update-timestamp';

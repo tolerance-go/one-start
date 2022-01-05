@@ -4,7 +4,7 @@ import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle, useRef } from 'react';
 import { v4 as uuid } from 'uuid';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSDialogModalAPI, OSDialogModalType } from '../typings';
+import type { OSDialogModalAPI, OSDialogModalType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useVisible } from './use-visible';
 import cls from 'classnames';

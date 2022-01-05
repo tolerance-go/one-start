@@ -1,7 +1,7 @@
 import type { ColumnGroupType, ColumnType } from '@ty/antd/es/table';
 import type { SorterResult } from '@ty/antd/lib/table/interface';
 import type { FixedType } from 'rc-table/lib/interface';
-import type { OSFormType, RecordType, SettingsDataNode } from '../typings';
+import type { OSFormType, RecordType, SettingsDataNode } from '../../typings';
 
 export type OSAntdColumnExtra = {};
 

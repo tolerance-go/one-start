@@ -17,4 +17,4 @@ group:
 
 <code src="../demos/actions/recount/simple.tsx" />
 
-<API exports='["ActionsRecountSettings", "ActionsRecountRequests"]' src="../components/actions/recount.tsx"></API>
+<API exports='["ActionsRecountSettings", "ActionsRecountRequests"]' src="../actions/recount.tsx"></API>

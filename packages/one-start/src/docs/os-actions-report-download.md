@@ -21,4 +21,4 @@ group:
 
 <code src="../demos/actions/report-download/modal-form.tsx" />
 
-<API exports='["ActionsReportDownloadSettings", "ActionsReportDownloadRequests"]' src="../components/actions/report-download.tsx"></API>
+<API exports='["ActionsReportDownloadSettings", "ActionsReportDownloadRequests"]' src="../actions/report-download.tsx"></API>

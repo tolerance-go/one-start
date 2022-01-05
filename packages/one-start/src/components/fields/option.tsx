@@ -1,5 +1,5 @@
 import React from 'react';
-import { OSOptionFieldAPI, OSOptionFieldType } from '../typings';
+import type { OSOptionFieldAPI, OSOptionFieldType } from '../../typings';
 
 const OSOptionField: React.ForwardRefRenderFunction<OSOptionFieldAPI, OSOptionFieldType> = () => {
   return null;

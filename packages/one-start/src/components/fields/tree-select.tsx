@@ -1,5 +1,6 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import { Col, Row, TreeSelect, TreeSelectProps, Typography } from '@ty/antd';
+import type { TreeSelectProps } from '@ty/antd';
+import { Col, Row, TreeSelect, Typography } from '@ty/antd';
 import cls from 'classnames';
 import utl from 'lodash';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
@@ -12,7 +13,7 @@ import type {
   OSTreeSelectFieldValueType,
   OSTreeSelectOptionItem,
   RecordType,
-} from '../typings';
+} from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { mapTreeNode } from '../utils/tree-utils';
 import { useClsPrefix } from '../utils/use-cls-prefix';

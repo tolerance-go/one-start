@@ -53,7 +53,7 @@ import type {
   OSTransferFieldValueType,
   OSTreeSelectFieldAPI,
   OSTreeSelectFieldValueType,
-} from '../typings';
+} from '../../typings';
 import invariant from 'invariant';
 
 export const renderField = (

@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import type React from 'react';
 import { useRef } from 'react';
-import type { RecordType } from '../typings/core';
+import type { RecordType } from '../../typings';
 
 export const useActionsRef = <API extends RecordType>(
   api: API,

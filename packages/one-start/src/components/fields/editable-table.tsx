@@ -7,9 +7,9 @@ import type {
   OSEditableTableFieldType,
   OSEditableTableType,
   OSTableType,
-} from '../typings';
+  RequiredRecursion,
+} from '../../typings';
 import { parseTableValue } from '../utils/parse-table-value';
-import type { RequiredRecursion } from '../utils/typings';
 
 const OSEditableTableField: React.ForwardRefRenderFunction<
   OSEditableTableFieldAPI,

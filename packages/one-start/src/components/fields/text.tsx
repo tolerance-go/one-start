@@ -1,7 +1,7 @@
 import type { InputProps } from '@ty/antd';
 import { Input } from '@ty/antd';
 import React from 'react';
-import type { OSTextFieldAPI, OSTextFieldType } from '../typings';
+import type { OSTextFieldAPI, OSTextFieldType } from '../../typings';
 import Highlighter from 'react-highlight-words';
 
 const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldType> = (

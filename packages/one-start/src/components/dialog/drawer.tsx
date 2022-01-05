@@ -3,7 +3,7 @@ import { Drawer } from '@ty/antd';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSDialogDrawerAPI, OSDialogDrawerType } from '../typings';
+import type { OSDialogDrawerAPI, OSDialogDrawerType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useVisible } from './use-visible';
 import { renderTrigger } from './utils';

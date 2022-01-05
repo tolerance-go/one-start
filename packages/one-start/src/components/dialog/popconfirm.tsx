@@ -1,8 +1,9 @@
 import { Popconfirm } from '@ty/antd';
 import { useClickAway } from 'ahooks';
-import React, { PropsWithChildren, useImperativeHandle, useRef, useState } from 'react';
+import type { PropsWithChildren } from 'react';
+import React, { useImperativeHandle, useRef, useState } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSDialogPopconfirmAPI, OSDialogPopconfirmType } from '../typings';
+import type { OSDialogPopconfirmAPI, OSDialogPopconfirmType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useConfirm } from './use-confirm';
 import { renderTrigger } from './utils';

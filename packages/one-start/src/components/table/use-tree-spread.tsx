@@ -1,5 +1,5 @@
 import { MinusSquareOutlined } from '@ant-design/icons';
-import type { OSTableValueType } from '../typings';
+import type { OSTableValueType } from '../../typings';
 import { Button } from '@ty/antd';
 import { useMemo, useState } from 'react';
 import type { TreeSpreadActions } from './typings';

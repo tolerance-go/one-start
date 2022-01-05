@@ -1,5 +1,5 @@
 import type EventEmitter from 'eventemitter3';
-import type { RecordType, ValueAsyncLinkage, ValueLinkage } from '../typings';
+import type { RecordType, ValueAsyncLinkage, ValueLinkage } from '../../typings';
 
 export type FormCoreActions = {
   setFieldsValue: (dataSource_?: RecordType) => void;

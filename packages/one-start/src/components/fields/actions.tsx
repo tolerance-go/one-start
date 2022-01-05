@@ -1,6 +1,6 @@
 import { Space } from '@ty/antd';
 import React from 'react';
-import { OSActionsFieldType } from '../typings';
+import type { OSActionsFieldType } from '../../typings';
 
 const OSActionsField: React.FC<OSActionsFieldType> = (props) => {
   const { settings } = props;

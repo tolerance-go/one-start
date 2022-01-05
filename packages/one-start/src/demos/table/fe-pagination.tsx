@@ -7,7 +7,7 @@ import delay from 'delay';
 import Mock, { Random } from 'mockjs';
 import React from 'react';
 import utl from 'lodash';
-import { RecordType } from '../../components';
+import type { RecordType } from '../../typings';
 
 export default () => {
   return (

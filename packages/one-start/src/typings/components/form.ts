@@ -1,7 +1,8 @@
 import type { OSSwitchFieldType, OSTimeLagFieldType } from './field';
 import type { FormInstance, FormItemProps, FormProps } from '@ty/antd/lib/form';
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import type { OSCore, RecordType, RequestIO } from './core';
+import type { OSCore, RequestIO } from './core';
+import type { RecordType } from '../core';
 import type {
   OSActionsFieldType,
   OSDateFieldType,

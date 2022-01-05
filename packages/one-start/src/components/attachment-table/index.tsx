@@ -8,7 +8,7 @@ import type {
   OSAttachmentTableAPI,
   OSAttachmentTableSelfType,
   OSAttachmentTableType,
-} from '../typings';
+} from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 

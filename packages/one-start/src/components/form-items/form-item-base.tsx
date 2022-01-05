@@ -4,7 +4,7 @@ import type { Rule, RuleObject } from '@ty/antd/lib/form';
 import type { ValidateStatus } from '@ty/antd/lib/form/FormItem';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { FormInstanceContext } from '../providers/form-context';
-import type { OSFormItemTooltip, OSFormItemType, OSRule } from '../typings';
+import type { OSFormItemTooltip, OSFormItemType, OSRule } from '../../typings';
 import { normalizeDataIndex } from '../utils/normalize-data-index';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import InlineErrorFormItem from './inner-error-form-item';

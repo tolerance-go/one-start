@@ -1,5 +1,5 @@
 import React from 'react';
-import { OSTriggerType } from '../typings';
+import type { OSTriggerType } from '../../typings';
 
 export const renderTrigger = (item: React.ReactNode) => {
   if (React.isValidElement(item)) {

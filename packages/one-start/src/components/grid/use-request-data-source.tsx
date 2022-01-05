@@ -15,7 +15,7 @@ import type {
   OSTableType,
   RecordType,
   RequestIO,
-} from '../typings';
+} from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { unstateHistory } from '../utils/unstate-history';
 import { defaultPageSize } from './constants';

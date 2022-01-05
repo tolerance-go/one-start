@@ -17,4 +17,4 @@ group:
 
 <code src="../demos/actions/template-upload/simple.tsx" />
 
-<API exports='["ActionsTemplateUploadSettings", "ActionsTemplateUploadRequests", "ActionsTemplateUploadAPI"]' src="../components/actions/template-upload.tsx"></API>
+<API exports='["ActionsTemplateUploadSettings", "ActionsTemplateUploadRequests", "ActionsTemplateUploadAPI"]' src="../actions/template-upload.tsx"></API>

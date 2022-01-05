@@ -1,7 +1,7 @@
 import type { Rule } from '@ty/antd/lib/form';
 import type { Moment } from 'moment';
 import type { FormInstance } from 'rc-field-form/lib/interface';
-import type { RequestIO } from '../../typings';
+import type { RequestIO } from '../../../typings';
 import { momentify } from '../../utils/momentify';
 import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
 

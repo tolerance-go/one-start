@@ -1,8 +1,9 @@
 import { Popover } from '@ty/antd';
 import { useClickAway } from 'ahooks';
-import React, { PropsWithChildren, useImperativeHandle, useRef, useState } from 'react';
+import type { PropsWithChildren } from 'react';
+import React, { useImperativeHandle, useRef, useState } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSDialogPopoverAPI, OSDialogPopoverType } from '../typings';
+import type { OSDialogPopoverAPI, OSDialogPopoverType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useVisible } from './use-visible';
 import { renderTrigger } from './utils';

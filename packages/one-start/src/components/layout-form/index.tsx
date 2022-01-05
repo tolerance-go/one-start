@@ -8,7 +8,7 @@ import type {
   OSLayoutFormAPI,
   OSLayoutModalFormAPI,
   OSLayoutTabsFormAPI,
-} from '../typings';
+} from '../../typings';
 import { OSLayoutFormAPIContext } from './contexts';
 import OSLayoutModalForm from './modal-form';
 import OSLayoutTabsForm from './tabs-form';

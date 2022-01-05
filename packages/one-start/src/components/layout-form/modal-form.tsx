@@ -3,10 +3,10 @@ import React, { useImperativeHandle, useRef, useState } from 'react';
 import OSDialogModal from '../dialog/modal';
 import OSForm from '../form';
 import OSTriggerButton from '../trigger/trigger-button';
-import type { OSLayoutModalFormAPI, OSLayoutModalFormType } from '../typings';
-import type { OSDialogModalAPI } from '../typings/dialog';
+import type { OSLayoutModalFormAPI, OSLayoutModalFormType } from '../../typings';
+import type { OSDialogModalAPI } from '../../typings';
 // import useMergedState from 'rc-util/lib/hooks/useMergedState';
-import type { OSFormAPI } from '../typings/form';
+import type { OSFormAPI } from '../../typings';
 
 const OSLayoutModalForm: React.ForwardRefRenderFunction<
   OSLayoutModalFormAPI,

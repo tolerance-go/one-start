@@ -7,7 +7,7 @@ import type {
   OSTriggerDropdownAPI,
   OSTriggerDropdownType,
   OSTriggerType,
-} from '../typings';
+} from '../../typings';
 import OSTriggerButton from './trigger-button';
 import OSTriggerDropdown from './trigger-dropdown';
 

@@ -1,4 +1,4 @@
-import { OSTableChangeValueType } from '../typings';
+import { OSTableChangeValueType } from '../../typings';
 
 export const parseTableValue = (value: OSTableChangeValueType) => {
   if (Array.isArray(value)) {

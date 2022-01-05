@@ -13,10 +13,10 @@ import type {
   OSMenuItem,
   OSSearchGridType,
   OSSourceGridAPI,
-} from '../typings';
+} from '../../typings';
 import { logRequestMessage } from '../utils/log-request-message';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import type { RequiredRecursion } from '../utils/typings';
+import type { RequiredRecursion } from '../../typings';
 
 export const useSearchTemplate = ({
   requestUpdateSearchTempldate,

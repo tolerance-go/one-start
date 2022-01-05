@@ -1,7 +1,7 @@
 import { Input } from '@ty/antd';
 import type { TextAreaProps } from '@ty/antd/lib/input';
 import React from 'react';
-import type { OSTextareaFieldType, OSTextareaFieldAPI } from '../typings';
+import type { OSTextareaFieldType, OSTextareaFieldAPI } from '../../typings';
 
 const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSTextareaFieldType> = (
   props,

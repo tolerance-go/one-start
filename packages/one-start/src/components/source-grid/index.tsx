@@ -15,10 +15,10 @@ import type {
   OSTriggerAPI,
   RecordType,
   OSGridType,
-} from '../typings';
+} from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { useClsPrefix } from '../utils/use-cls-prefix';
-import type { RequiredRecursion } from '../utils/typings';
+import type { RequiredRecursion } from '../../typings';
 
 const OSSourceGrid: React.ForwardRefRenderFunction<OSSourceGridAPI, OSSourceGridType> = (
   props,

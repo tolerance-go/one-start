@@ -1,6 +1,6 @@
 import type { ColumnProps } from '@ty/antd/es/table';
 import type { ICellRendererParams } from '@ag-grid-enterprise/all-modules';
-import type { RecordType } from '../../typings';
+import type { RecordType } from '../../../typings';
 
 export type FieldRendererProps = ICellRendererParams & {
   columnConfigs?: ColumnProps<RecordType>;

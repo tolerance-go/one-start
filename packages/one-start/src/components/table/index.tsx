@@ -37,7 +37,7 @@ import type {
   RecordType,
   SettingsDataNode,
   TableCoreActions,
-} from '../typings';
+} from '../../typings';
 import { parseTableValue } from '../utils/parse-table-value';
 import { mapTreeNode } from '../utils/tree-utils';
 import { useClsPrefix } from '../utils/use-cls-prefix';
@@ -88,6 +88,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     extraBatchOperation,
   } = props;
   const {
+    enableColumnsSettings: propsEnableColumnsSettings,
     fieldItems: __fieldItems,
     editableRowKeys,
     pagination,
@@ -589,7 +590,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     allColumnsId,
     columnsPropsIdMaps: allColumnsIdMaps,
     columnsStaticPureConfigsIdMaps,
-    enable: enableColumnsSettings,
+    enable: propsEnableColumnsSettings ?? enableColumnsSettings,
     tableWrapRef,
     searchSwitchActionsRef,
     ref: columnSettingsActionsRef,

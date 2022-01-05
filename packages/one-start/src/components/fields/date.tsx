@@ -5,7 +5,7 @@ import type { Moment } from 'moment';
 import moment from 'moment';
 import type { Component } from 'react';
 import React, { useState, useImperativeHandle, useRef } from 'react';
-import type { OSDateFieldAPI, OSDateFieldType, OSDateFieldValueType } from '../typings';
+import type { OSDateFieldAPI, OSDateFieldType, OSDateFieldValueType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 
 const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldType> = (

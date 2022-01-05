@@ -1,12 +1,9 @@
 import { Alert } from '@ty/antd';
-import React, { useImperativeHandle, useMemo, useRef } from 'react';
-import OSDialog from '../dialog';
-import OSForm from '../form';
-import { OSConfigProviderWrapper } from '../providers/config';
-import OSTrigger from '../trigger';
-import type { OSActionsOperateAPI, OSActionsOperateType, OSFormAPI } from '../typings';
 import type { NamePath } from '@ty/antd/lib/form/interface';
 import type { Meta } from 'rc-field-form/es/interface';
+import React, { useImperativeHandle, useMemo, useRef } from 'react';
+import { OSConfigProviderWrapper, OSDialog, OSForm, OSTrigger } from '../components';
+import type { OSActionsOperateAPI, OSActionsOperateType, OSFormAPI } from '../typings';
 
 const OSActionsOperate: React.ForwardRefRenderFunction<OSActionsOperateAPI, OSActionsOperateType> =
   (props, ref) => {

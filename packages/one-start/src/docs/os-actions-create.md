@@ -27,4 +27,4 @@ group:
 
 <code src="../demos/actions/create/template.tsx" />
 
-<API exports='["ActionsCreateSettings", "ActionsCreateRequests"]' src="../components/actions/create/index.tsx"></API>
+<API exports='["ActionsCreateSettings", "ActionsCreateRequests"]' src="../actions/create/index.tsx"></API>

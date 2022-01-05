@@ -1,14 +1,13 @@
 import { FileTextOutlined } from '@ant-design/icons';
+import { message, Upload } from '@ty/antd';
+import type { RcFile } from '@ty/antd/es/upload/interface';
+import React, { useMemo, useRef } from 'react';
+import { normalizeRequestOutputs, OSTrigger } from '../components';
 import type {
   OSActionsTemplateUploadAPI,
   OSActionsTemplateUploadType,
   OSTriggerAPI,
 } from '../typings';
-import { message, Upload } from '@ty/antd';
-import type { RcFile } from '@ty/antd/es/upload/interface';
-import React, { useMemo, useRef } from 'react';
-import OSTrigger from '../trigger';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 
 const OSActionsTemplateUpload: React.ForwardRefRenderFunction<
   OSActionsTemplateUploadAPI,

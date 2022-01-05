@@ -16,10 +16,10 @@ import type {
   OSTriggerAPI,
   RecordType,
   OSTableType,
-} from '../typings';
+} from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { useClsPrefix } from '../utils/use-cls-prefix';
-import type { RequiredRecursion } from '../utils/typings';
+import type { RequiredRecursion } from '../../typings';
 
 const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTableType> = (
   props,

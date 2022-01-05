@@ -6,7 +6,7 @@ import type {
   OSSearchTableSelfType,
   OSSearchTableType,
   OSSourceTableAPI,
-} from '../typings';
+} from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useSearchTemplate } from './use-search-template';
 

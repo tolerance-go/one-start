@@ -3,8 +3,8 @@ import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 're
 import store from 'store2';
 import OSForm from '../form';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSFormAPI, OSFormFieldItems, OSTableType, RecordType } from '../typings';
-import type { RequiredRecursion } from '../utils/typings';
+import type { OSFormAPI, OSFormFieldItems, OSTableType, RecordType } from '../../typings';
+import type { RequiredRecursion } from '../../typings';
 import {
   DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW,
   searchFormVisibleLocalField,

@@ -13,14 +13,14 @@ import type {
   OSTableAPI,
   OSTableRequestDataSourceParams,
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-} from '../typings';
+} from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import type { TableCoreActions } from '../typings';
+import type { TableCoreActions } from '../../typings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 import moment from 'moment';
 import { unstateHistory } from '../utils/unstate-history';
 import type { RequestDataSourceActions, TreeSpreadActions } from './typings';
-import type { OSFormAPI } from '../typings';
+import type { OSFormAPI } from '../../typings';
 
 const mapLevel = (
   rowData?: Record<string, any>[],

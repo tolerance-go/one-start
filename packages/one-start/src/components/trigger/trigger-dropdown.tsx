@@ -13,7 +13,7 @@ import type {
   OSTriggerDropdownType,
   OSTriggerTooltip,
   OSTriggerUpload,
-} from '../typings';
+} from '../../typings';
 import { logRequestMessage } from '../utils/log-request-message';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { renderTooltip as renderTooltipUtl } from './utils/render-tooltip';

@@ -1,8 +1,9 @@
 import type { FormInstance } from '@ty/antd/es/form/Form';
 import type { FieldError, NamePath, ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import type { RequiredRecursion } from '../utils/typings';
-import type { OSCore, RecordType } from './core';
+import type { RequiredRecursion } from '../utils';
+import type { OSCore } from './core';
 import type { OSDialogModalType } from './dialog';
+import type { RecordType } from '../core';
 import type {
   CreatePureFormFieldItemConfigsType,
   CreateStaticPureFormFieldItemConfigsType,

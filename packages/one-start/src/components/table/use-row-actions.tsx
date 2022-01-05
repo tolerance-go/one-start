@@ -1,8 +1,8 @@
 import type { ColumnsType } from '@ty/antd/lib/table';
 import React from 'react';
 import OSActionsField from '../fields/actions';
-import type { OSTableType, RecordType, OSTableAPI } from '../typings';
-import type { RequiredRecursion } from '../utils/typings';
+import type { OSTableType, RecordType, OSTableAPI } from '../../typings';
+import type { RequiredRecursion } from '../../typings';
 import { DEFAULT_WIDTH } from './constants';
 
 export const useRowActions = ({

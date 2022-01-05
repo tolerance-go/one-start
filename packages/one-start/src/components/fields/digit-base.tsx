@@ -3,7 +3,7 @@ import { Col, Input, InputNumber, Row } from '@ty/antd';
 import cls from 'classnames';
 import numeral from 'numeral';
 import React from 'react';
-import type { OSDigitFieldBaseAPI, OSDigitFieldBaseType } from '../typings';
+import type { OSDigitFieldBaseAPI, OSDigitFieldBaseType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 
 const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDigitFieldBaseType> =
