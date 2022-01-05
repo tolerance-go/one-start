@@ -2,7 +2,8 @@ import type { DrawerProps, ModalFuncProps, PopconfirmProps } from '@ty/antd';
 import type { ArgsProps } from '@ty/antd/lib/message';
 import type React from 'react';
 import type { OSTriggerType } from './trigger';
-import type { OSCore, RecordType, RequestIO } from './core';
+import type { OSCore, RequestIO } from './core';
+import type { RecordType } from '../core';
 import type { OSResMessage } from './message';
 import type { RcFile } from '@ty/antd/lib/upload';
 
@@ -131,6 +132,7 @@ export interface OSDialogModalOperationType extends OSDialogBase {
     type?: ModalFuncProps['type'];
     actions?: React.ReactElement[];
     confirmTriggerSettings?: Required<OSTriggerType>['settings'];
+    confirmTriggerWrapper?: React.ReactElement;
   };
   requests?: {
     requestAfterConfirm?: RequestIO<

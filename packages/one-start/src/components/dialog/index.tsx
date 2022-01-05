@@ -1,4 +1,5 @@
-import { PropsWithChildren, useEffect } from 'react';
+import type { PropsWithChildren } from 'react';
+import { useEffect } from 'react';
 import React, { useContext, useImperativeHandle, useRef } from 'react';
 import { OSReferencesCollectorDispatchContext } from '../providers/references';
 import type {
@@ -17,7 +18,7 @@ import type {
   OSDialogModalOperationType,
   OSDialogAPIBase,
   OSDialogDrawerAPI,
-} from '../typings';
+} from '../../typings';
 import { OSDialogAPIContext } from './contexts';
 import OSDialogMessage from './message';
 import OSDialogModal from './modal';

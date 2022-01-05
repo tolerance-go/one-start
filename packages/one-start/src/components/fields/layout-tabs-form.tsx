@@ -5,7 +5,7 @@ import type {
   OSLayoutTabsFormAPI,
   OSLayoutTabsFormFieldAPI,
   OSLayoutTabsFormFieldType,
-} from '../typings';
+} from '../../typings';
 
 const OSLayoutTabsFormField: React.ForwardRefRenderFunction<
   OSLayoutTabsFormFieldAPI,

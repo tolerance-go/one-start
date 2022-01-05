@@ -1,11 +1,12 @@
 import type { ButtonProps, UploadProps } from '@ty/antd';
 import type { DropdownButtonProps } from '@ty/antd/lib/dropdown';
-import { RcFile } from '@ty/antd/lib/upload';
+import type { RcFile } from '@ty/antd/lib/upload';
 import type React from 'react';
-import type { OSCore, RecordType, RequestIO } from './core';
-import { OSResMessage } from './message';
+import type { RecordType } from '../core';
+import type { OSCore, RequestIO } from './core';
+import type { OSResMessage } from './message';
 
-export interface OSTriggerBase extends OSCore {}
+export type OSTriggerBase = OSCore;
 
 export type OSTriggerAPIBase = {
   update: (settings?: RecordType) => void;

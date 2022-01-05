@@ -10,12 +10,16 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import OSDialog from '../dialog';
-import OSForm from '../form';
-import { useActionsRef } from '../hooks/use-actions-ref';
-import { OSConfigProviderWrapper } from '../providers/config';
-import { OSReferencesGlobalContext } from '../providers/provider';
-import OSTrigger from '../trigger';
+import {
+  normalizeRequestOutputs,
+  OSConfigProviderWrapper,
+  OSDialog,
+  OSForm,
+  OSReferencesGlobalContext,
+  useActionsRef,
+  OSTrigger,
+  useLoading,
+} from '../components';
 import type {
   OSActionsRecountAPI,
   OSActionsRecountType,
@@ -23,8 +27,6 @@ import type {
   OSDialogModalOperationAPI,
   OSFormAPI,
 } from '../typings';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { useLoading } from '../utils/use-loading';
 
 const OSActionsRecount: React.ForwardRefRenderFunction<OSActionsRecountAPI, OSActionsRecountType> =
   (props) => {

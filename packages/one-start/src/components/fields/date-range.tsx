@@ -9,7 +9,7 @@ import type {
   OSDateRangeFieldAPI,
   OSDateRangeFieldType,
   OSDateRangeFieldValueType,
-} from '../typings';
+} from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 
 const OSDateRangeField: React.ForwardRefRenderFunction<OSDateRangeFieldAPI, OSDateRangeFieldType> =

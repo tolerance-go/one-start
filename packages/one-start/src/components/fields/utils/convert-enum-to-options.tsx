@@ -1,5 +1,5 @@
 import utl from 'lodash';
-import type { OSRadioOptionItem, OSSelectOptionItem } from '../../typings';
+import type { OSRadioOptionItem, OSSelectOptionItem } from '../../../typings';
 
 export const convertEnumsToOptions = (
   valueEnums_?: Record<string, string>,

@@ -24,7 +24,7 @@ import type {
   OSSelectFieldValueType,
   OSSelectOptionItem,
   RecordType,
-} from '../typings';
+} from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { convertEnumsToOptions } from './utils/convert-enum-to-options';

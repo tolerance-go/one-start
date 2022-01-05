@@ -1,8 +1,8 @@
 import { message } from '@ty/antd';
-import { ArgsProps } from '@ty/antd/lib/message';
+import type { ArgsProps } from '@ty/antd/lib/message';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle } from 'react';
-import type { OSDialogMessageAPI, OSDialogMessageType } from '../typings';
+import type { OSDialogMessageAPI, OSDialogMessageType } from '../../typings';
 
 const OSDialogMessage: React.ForwardRefRenderFunction<
   OSDialogMessageAPI,

@@ -1,6 +1,7 @@
 import type { RcFile } from '@ty/antd/lib/upload';
-import type { RequiredRecursion } from '../utils/typings';
-import type { RecordType, RequestIO } from './core';
+import type { RequiredRecursion } from '../utils';
+import type { RequestIO } from './core';
+import type { RecordType } from '../core';
 import type {
   CreatePureFormFieldItemConfigsType,
   CreateStaticPureFormFieldItemConfigsType,

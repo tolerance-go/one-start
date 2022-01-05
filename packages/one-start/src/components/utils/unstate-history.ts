@@ -1,4 +1,4 @@
-import type { RecordType } from '../typings';
+import type { RecordType } from '../../typings';
 import qs from 'qs';
 
 export const unstateHistory = {

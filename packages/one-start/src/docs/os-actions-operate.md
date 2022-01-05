@@ -29,4 +29,4 @@ group:
 
 <code src="../demos/actions/operate/actions.tsx" />
 
-<API exports='["ActionsOperateSettings", "ActionsOperateRequests"]' src="../components/actions/operate.tsx"></API>
+<API exports='["ActionsOperateSettings", "ActionsOperateRequests"]' src="../actions/operate.tsx"></API>

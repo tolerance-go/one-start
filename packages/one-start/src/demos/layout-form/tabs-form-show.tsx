@@ -1,4 +1,5 @@
-import { OSLayoutForm, OSProviderWrapper, RecordType } from '@ty-one-start/one-start';
+import type { RecordType } from '@ty-one-start/one-start';
+import { OSLayoutForm, OSProviderWrapper } from '@ty-one-start/one-start';
 import delay from 'delay';
 import React, { useState } from 'react';
 

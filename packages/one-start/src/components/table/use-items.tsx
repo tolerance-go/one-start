@@ -35,10 +35,10 @@ import type {
   RecordType,
   RenderFieldOptions,
   TableCoreActions,
-} from '../typings';
+} from '../../typings';
 import { renderField } from '../utils/render-field';
 import { renderTableFormItem } from '../utils/render-table-form-item';
-import type { RequiredRecursion } from '../utils/typings';
+import type { RequiredRecursion } from '../../typings';
 import type { ResizeableHeaderCellProps } from './components/resizeable-header-cell';
 import {
   DEFAULT_WIDTH,

@@ -1,7 +1,7 @@
 import type { FormInstance } from '@ty/antd/es/form/Form';
-import type { RequiredRecursion } from '../utils/typings';
+import type { RequiredRecursion } from '../utils';
 import type { _OSAttachmentTableAPI, _OSAttachmentTableType } from './attachment-table';
-import type { RecordType } from './core';
+import type { RecordType } from '../core';
 import type { _OSEditableTableAPI, _OSEditableTableType } from './editable-table';
 import type { OSField, OSFieldBaseConfigs, OSFieldBaseSettings } from './field';
 import type {

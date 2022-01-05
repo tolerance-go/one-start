@@ -9,7 +9,7 @@ import type { CustomizeScrollBody } from 'rc-table/lib/interface';
 import type { MutableRefObject } from 'react';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { VariableSizeGrid as Grid } from 'react-window';
-import type { OSFormFieldItemWithStaticPureConfigs, RecordType } from '../typings';
+import type { OSFormFieldItemWithStaticPureConfigs, RecordType } from '../../typings';
 import { renderField } from '../utils/render-field';
 import {
   DEFAULT_ROW_HEIGHT,
@@ -18,7 +18,7 @@ import {
   eventNames,
   headerCellWithKeyClsPrefix,
 } from './constants';
-import type { TableCoreActions } from '../typings';
+import type { TableCoreActions } from '../../typings';
 import { getDataIndexId } from './utils';
 
 export type TreeRecordType = {

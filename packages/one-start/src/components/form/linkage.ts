@@ -1,4 +1,4 @@
-import type { OSFormType, RecordType } from '../typings';
+import type { OSFormType, RecordType } from '../../typings';
 
 export const valueLinkageHandler = (
   changedValues: Record<string, any>,

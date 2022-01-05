@@ -12,7 +12,7 @@ import type {
   OSTableFormFieldItems,
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
-} from '../typings';
+} from '../../typings';
 import { normalizeDataIndex } from './normalize-data-index';
 import {
   pickFieldRequests,

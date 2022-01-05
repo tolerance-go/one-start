@@ -25,10 +25,10 @@ import type {
   OSTableType,
   RecordType,
   RenderFieldOptions,
-} from '../typings';
+} from '../../typings';
 import { renderField } from '../utils/render-field';
 import { renderTableFormItem } from '../utils/render-table-form-item';
-import type { RequiredRecursion } from '../utils/typings';
+import type { RequiredRecursion } from '../../typings';
 import {
   DEFAULT_WIDTH,
   searchHeadFormFieldRowId,

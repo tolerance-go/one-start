@@ -1,7 +1,7 @@
 import type { SwitchProps } from '@ty/antd';
 import { Switch } from '@ty/antd';
 import React from 'react';
-import type { OSSwitchFieldAPI, OSSwitchFieldType } from '../typings';
+import type { OSSwitchFieldAPI, OSSwitchFieldType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 
 const OSSwitchField: React.ForwardRefRenderFunction<OSSwitchFieldAPI, OSSwitchFieldType> = (

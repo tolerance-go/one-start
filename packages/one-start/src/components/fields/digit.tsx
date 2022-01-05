@@ -1,5 +1,5 @@
 import React, { useImperativeHandle, useRef } from 'react';
-import type { OSDigitFieldAPI, OSDigitFieldBaseAPI, OSDigitFieldType } from '../typings';
+import type { OSDigitFieldAPI, OSDigitFieldBaseAPI, OSDigitFieldType } from '../../typings';
 import DigitBase from './digit-base';
 
 const OSDigitField: React.ForwardRefRenderFunction<OSDigitFieldAPI, OSDigitFieldType> = (

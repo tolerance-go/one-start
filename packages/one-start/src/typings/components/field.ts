@@ -14,7 +14,8 @@ import type { NamePath } from 'rc-field-form/lib/interface';
 import type Picker from 'rc-picker/lib/Picker';
 import type { Component } from 'react';
 import type React from 'react';
-import type { OSCore, RecordType, RequestIO } from './core';
+import type { OSCore, RequestIO } from './core';
+import type { RecordType } from '../core';
 
 export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
   type?: string;

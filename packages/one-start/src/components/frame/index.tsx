@@ -4,7 +4,7 @@ import { Col, Layout, Menu, Row, Skeleton, Space, Tabs } from '@ty/antd';
 import cls from 'classnames';
 import produce from 'immer';
 import React, { useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import type { OSFrameAPI, OSFrameType, OSNavItem } from '../typings/frame';
+import type { OSFrameAPI, OSFrameType, OSNavItem } from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useLoading } from '../utils/use-loading';

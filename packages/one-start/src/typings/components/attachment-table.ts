@@ -7,7 +7,7 @@ import type { CreatePureTableFormFieldItemConfigsType, _OSTableAPI } from './tab
 import type { OSEditableTableAddable } from './editable-table';
 import type { RequestIO } from './core';
 import type { RcFile } from '@ty/antd/lib/upload';
-import type { RecordType } from './core';
+import type { RecordType } from '../core';
 
 export type _OSAttachmentTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> =
   _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { OSCustomFieldType } from '../typings';
+import type { OSCustomFieldType } from '../../typings';
 
 const OSActionsField: React.FC<OSCustomFieldType> = (props) => {
   const { settings } = props;

@@ -9,8 +9,8 @@ import type {
   OSTableType,
   RecordType,
   TableCoreActions,
-} from '../typings';
-import type { RequiredRecursion } from '../utils/typings';
+} from '../../typings';
+import type { RequiredRecursion } from '../../typings';
 import {
   DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW,
   searchFormVisibleLocalField,

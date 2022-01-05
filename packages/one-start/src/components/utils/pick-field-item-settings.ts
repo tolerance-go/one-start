@@ -1,7 +1,7 @@
 import type {
   OSFormFieldItemWithStaticPureConfigs,
   OSTableFormFieldItemWithStaticPureConfigs,
-} from '../typings';
+} from '../../typings';
 import utl from 'lodash';
 import { formItemSettingsFields } from '../form-items/form-item-settings-fields';
 

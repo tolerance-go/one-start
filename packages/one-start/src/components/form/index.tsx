@@ -37,12 +37,12 @@ import type {
   RecordType,
   ValueAsyncLinkage,
   _OSFormFieldItems,
-} from '../typings';
+} from '../../typings';
 import { findParent } from '../utils/dom-tree';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { renderField } from '../utils/render-field';
 import { renderFormItem } from '../utils/render-form-item';
-import type { RequiredRecursion } from '../utils/typings';
+import type { RequiredRecursion } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useLoading } from '../utils/use-loading';
 import GroupCollapse from './group-collapse';

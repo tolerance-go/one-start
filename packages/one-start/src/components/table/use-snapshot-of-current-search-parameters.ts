@@ -1,7 +1,7 @@
 /** 当前搜索参数的快照 */
 
 import { useRef } from 'react';
-import { RecordType } from '../typings';
+import type { RecordType } from '../../typings';
 
 export type SnapshotOfCurrentSearchParametersType = {
   current?: number | undefined;

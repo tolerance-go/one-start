@@ -8,7 +8,7 @@ import type { ReactNode } from 'react';
 import React, { useContext, useImperativeHandle, useState } from 'react';
 import { OSDialogAPIContext } from '../dialog/contexts';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSTriggerButtonAPI, OSTriggerButtonType } from '../typings';
+import type { OSTriggerButtonAPI, OSTriggerButtonType } from '../../typings';
 import { logRequestMessage } from '../utils/log-request-message';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { useClsPrefix } from '../utils/use-cls-prefix';

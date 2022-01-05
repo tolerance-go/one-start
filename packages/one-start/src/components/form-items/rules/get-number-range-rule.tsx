@@ -1,6 +1,6 @@
 import type { Rule } from '@ty/antd/lib/form';
 import { BigNumber as BN } from 'bignumber.js';
-import type { NumberDigitsRuleDefaults } from '../../typings';
+import type { NumberDigitsRuleDefaults } from '../../../typings';
 
 export const numberDigitsRuleDefaults: Pick<
   Required<NumberDigitsRuleDefaults>,

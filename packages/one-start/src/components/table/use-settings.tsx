@@ -14,9 +14,9 @@ import utl from 'lodash';
 import type { FixedType } from 'rc-table/lib/interface';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSTableFormFieldItemWithStaticPureConfigs, RecordType } from '../typings';
+import type { OSTableFormFieldItemWithStaticPureConfigs, RecordType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
-import type { SettingsDataNode } from '../typings';
+import type { SettingsDataNode } from '../../typings';
 import type { ColumnsSettingsActions } from './typings';
 import { findTreeNodeMeta, mapTreeNode } from '../utils/tree-utils';
 

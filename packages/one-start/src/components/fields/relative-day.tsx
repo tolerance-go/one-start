@@ -4,7 +4,7 @@ import type {
   OSDigitFieldBaseAPI,
   OSRelativeDayFieldAPI,
   OSRelativeDayFieldType,
-} from '../typings';
+} from '../../typings';
 import DigitBase from './digit-base';
 
 const OSRelativeDayField: React.ForwardRefRenderFunction<

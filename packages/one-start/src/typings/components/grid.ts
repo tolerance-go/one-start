@@ -2,7 +2,8 @@ import type { ColumnState } from '@ag-grid-enterprise/all-modules';
 import type { PaginationProps } from '@ty/antd';
 import type { ColumnApi, GridApi, GridOptions } from '@ag-grid-enterprise/all-modules';
 import type React from 'react';
-import type { RecordType, RequestIO } from './core';
+import type { RequestIO } from './core';
+import type { RecordType } from '../core';
 import type {
   CreatePureFormFieldItemConfigsType,
   CreateStaticPureFormFieldItemConfigsType,

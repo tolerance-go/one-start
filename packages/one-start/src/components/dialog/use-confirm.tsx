@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { RequestIO } from '../typings';
-import type { OSResMessage } from '../typings/message';
+import type { RequestIO, OSResMessage } from '../../typings';
 import { logRequestMessage } from '../utils/log-request-message';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 

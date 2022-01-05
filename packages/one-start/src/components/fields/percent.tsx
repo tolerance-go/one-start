@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 import React, { useCallback } from 'react';
-import type { OSDigitFieldBaseType, OSPercentFieldAPI, OSPercentFieldType } from '../typings';
+import type { OSDigitFieldBaseType, OSPercentFieldAPI, OSPercentFieldType } from '../../typings';
 import DigitBase from './digit-base';
 
 const OSPercentField: React.ForwardRefRenderFunction<OSPercentFieldAPI, OSPercentFieldType> = (

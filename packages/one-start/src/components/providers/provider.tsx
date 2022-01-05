@@ -7,7 +7,7 @@ import OSLayoutModalFormField from '../fields/layout-modal-form';
 import OSLayoutTabsFormField from '../fields/layout-tabs-form';
 import OSFormField from '../fields/form';
 
-import type { RenderFieldOptions } from '../typings';
+import type { RenderFieldOptions } from '../../typings';
 import { OSConfigProviderWrapper } from './config';
 import type { OSReferencesCollectorType } from './references';
 import OSReferencesCollectorProviderWrapper from './references';
@@ -22,7 +22,7 @@ import type {
   OSAttachmentTableFieldValueType,
   OSFormFieldAPI,
   OSFormFieldValueType,
-} from '../typings';
+} from '../../typings';
 import OSDialog from '../dialog';
 import { useRefsRef } from './references';
 

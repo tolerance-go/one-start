@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from 'react';
-import type { OSDigitFieldBaseType, OSMoneyFieldAPI, OSMoneyFieldType } from '../typings';
+import type { OSDigitFieldBaseType, OSMoneyFieldAPI, OSMoneyFieldType } from '../../typings';
 import { formatter, parser } from '../utils/format';
 import DigitBase from './digit-base';
 

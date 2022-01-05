@@ -32,7 +32,7 @@ import type {
   OSTableValueType,
   RecordType,
   TableCoreActions,
-} from '../typings';
+} from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import FieldRenderer from './components/field-renderer';
 import { AgGridLocalZhCN, searchHeadFormSwitchIsOpenMarkId } from './constants';

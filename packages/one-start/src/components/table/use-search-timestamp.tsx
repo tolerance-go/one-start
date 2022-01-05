@@ -1,7 +1,7 @@
 import { Typography } from '@ty/antd';
 import { useState, useMemo } from 'react';
-import type { RequiredRecursion } from '../utils/typings';
-import type { OSTableType, OSTableAPI } from '../typings';
+import type { RequiredRecursion } from '../../typings';
+import type { OSTableType, OSTableAPI } from '../../typings';
 
 export const useSearchTimestamp = ({
   pagination,

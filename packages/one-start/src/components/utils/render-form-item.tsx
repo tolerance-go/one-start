@@ -19,7 +19,7 @@ import type {
   OSTableAPI,
   RecordType,
   _OSFormFieldItemWithStaticPureConfigs,
-} from '../typings';
+} from '../../typings';
 import {
   pickFieldRequests,
   pickFieldSettings,

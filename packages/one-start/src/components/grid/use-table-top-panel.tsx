@@ -1,7 +1,7 @@
 import { Col, Row, Space } from '@ty/antd';
 import React from 'react';
-import type { OSFormFieldItem, OSGridAPI, OSGridType } from '../typings';
-import type { RequiredRecursion } from '../utils/typings';
+import type { OSFormFieldItem, OSGridAPI, OSGridType } from '../../typings';
+import type { RequiredRecursion } from '../../typings';
 import { useMemo } from 'react';
 import { DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW } from './constants';
 

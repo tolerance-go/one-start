@@ -1,4 +1,4 @@
-export type RecordType = Record<string, any>;
+import type { RecordType } from '../core';
 
 export type RequestOutputs<Outputs = any> = {
   error: boolean;

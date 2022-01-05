@@ -5,7 +5,7 @@ import cls from 'classnames';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle, useState } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSDialogModalOperationAPI, OSDialogModalOperationType } from '../typings';
+import type { OSDialogModalOperationAPI, OSDialogModalOperationType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useConfirm } from './use-confirm';
 import { renderTrigger } from './utils';
@@ -21,7 +21,14 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
   const { requestAfterCancel, requestAfterConfirm, requestBeforeUpload } = requests ?? {};
   const clsPrefix = useClsPrefix('os-modal');
 
-  const { content, danger, actions, type = 'confirm', confirmTriggerSettings } = settings ?? {};
+  const {
+    content,
+    danger,
+    actions,
+    type = 'confirm',
+    confirmTriggerSettings,
+    confirmTriggerWrapper: ConfirmTriggerWrapper,
+  } = settings ?? {};
   const [visible, setVisible] = useState(false);
 
   const {
@@ -72,6 +79,45 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
     }
   };
 
+  const confirmTriggerDOM = (
+    <Trigger
+      type="button"
+      settings={{
+        type: 'primary',
+        danger,
+        text: '确认',
+        disabled: confirmButtonDisabled,
+        ...confirmTriggerSettings,
+      }}
+      requests={{
+        requestBeforeUpload: async (params) => {
+          const rsp = await requestBeforeUpload?.({
+            type: 'confirm',
+            ...params,
+          }).then(normalizeRequestOutputs);
+
+          if (rsp?.error === false) {
+            resolvePromise(true);
+            setVisible(false);
+          }
+
+          return rsp;
+        },
+      }}
+      onClick={async () => {
+        if (ConfirmTriggerWrapper || confirmTriggerSettings?.upload) {
+          return;
+        }
+
+        const success = await confirm();
+        if (success) {
+          setVisible(false);
+        }
+      }}
+      loading={requestAfterConfirmLoading}
+    />
+  );
+
   return (
     <>
       <Modal
@@ -111,42 +157,11 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
             </Col>
             {type === 'confirm' ? (
               <Col>
-                <Trigger
-                  type="button"
-                  settings={{
-                    type: 'primary',
-                    danger,
-                    text: '确认',
-                    ...confirmTriggerSettings,
-                    disabled: confirmButtonDisabled,
-                  }}
-                  requests={{
-                    requestBeforeUpload: async (params) => {
-                      const rsp = await requestBeforeUpload?.({
-                        type: 'confirm',
-                        ...params,
-                      }).then(normalizeRequestOutputs);
-
-                      if (rsp?.error === false) {
-                        resolvePromise(true);
-                        setVisible(false);
-                      }
-
-                      return rsp;
-                    },
-                  }}
-                  onClick={async () => {
-                    if (confirmTriggerSettings?.upload) {
-                      return;
-                    }
-
-                    const success = await confirm();
-                    if (success) {
-                      setVisible(false);
-                    }
-                  }}
-                  loading={requestAfterConfirmLoading}
-                />
+                {ConfirmTriggerWrapper
+                  ? React.cloneElement(ConfirmTriggerWrapper, {
+                      children: confirmTriggerDOM,
+                    })
+                  : confirmTriggerDOM}
               </Col>
             ) : null}
           </Row>

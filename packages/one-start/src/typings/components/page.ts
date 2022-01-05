@@ -1,4 +1,5 @@
-import type { OSCore, RecordType } from './core';
+import type { OSCore } from './core';
+import type { RecordType } from '../core';
 
 export interface OSPageAPI {
   /** 打开指定 tab 页面 */

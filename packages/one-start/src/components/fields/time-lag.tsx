@@ -1,6 +1,6 @@
 import { InputNumber, Space } from '@ty/antd';
 import React, { useImperativeHandle, useRef } from 'react';
-import type { OSTimeLagFieldAPI, OSTimeLagFieldType } from '../typings';
+import type { OSTimeLagFieldAPI, OSTimeLagFieldType } from '../../typings';
 
 const OSTimeLagField: React.ForwardRefRenderFunction<OSTimeLagFieldAPI, OSTimeLagFieldType> = (
   props,

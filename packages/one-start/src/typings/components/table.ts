@@ -7,7 +7,8 @@ import type EventEmitter from 'eventemitter3';
 import type { FieldError, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { CustomizeComponent, FixedType } from 'rc-table/lib/interface';
 import type React from 'react';
-import type { OSCore, RecordType, RequestIO, SettingsDataNode } from './core';
+import type { OSCore, RequestIO, SettingsDataNode } from './core';
+import type { RecordType } from '../core';
 import type {
   OSActionsFieldType,
   OSChainSelectFieldType,
@@ -442,6 +443,8 @@ export interface _OSTableType<
   ChangeValue = OSTableChangeValueType,
 > extends OSCore {
   settings?: {
+    /** 启用列设置 */
+    enableColumnsSettings?: boolean;
     autoRequestWhenMounted?: boolean;
     /**
      * 触发 onChange 的 debounce 时间，单位毫秒

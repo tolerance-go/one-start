@@ -1,6 +1,10 @@
 import { Transfer } from '@ty/antd';
 import React from 'react';
-import type { OSTransferFieldAPI, OSTransferFieldType, OSTransferFieldValueType } from '../typings';
+import type {
+  OSTransferFieldAPI,
+  OSTransferFieldType,
+  OSTransferFieldValueType,
+} from '../../typings';
 import utl from 'lodash';
 
 const OSTransferField: React.ForwardRefRenderFunction<OSTransferFieldAPI, OSTransferFieldType> = (

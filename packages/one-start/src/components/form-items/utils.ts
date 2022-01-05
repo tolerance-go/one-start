@@ -1,4 +1,4 @@
-import type { OSRule, OSFormItemTooltip, OSFormItemSimpleTooltip } from '../typings';
+import type { OSRule, OSFormItemTooltip, OSFormItemSimpleTooltip } from '../../typings';
 import type { Rule, RuleObject } from 'rc-field-form/lib/interface';
 import { getRuleTooltip } from './rules/tooltips';
 

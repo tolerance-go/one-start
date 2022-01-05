@@ -18,7 +18,7 @@ import type {
   OSTriggerButtonType,
   OSTriggerDropdownType,
   RecordType,
-} from '../typings';
+} from '../../typings';
 import { logRequestMessage } from '../utils/log-request-message';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { parseTableValue } from '../utils/parse-table-value';

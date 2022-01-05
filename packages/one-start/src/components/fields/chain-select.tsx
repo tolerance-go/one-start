@@ -8,7 +8,7 @@ import type {
   OSChainSelectFieldAPI,
   OSChainSelectFieldType,
   OSChainSelectFieldValueType,
-} from '../typings';
+} from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import OSSelect from './select';
 

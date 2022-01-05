@@ -1,21 +1,29 @@
+/** actions 可以直接引用 index 内容 */
 import type { AlertProps } from '@ty/antd';
+import type { UploadFile } from '@ty/antd/es/upload/interface';
 import type { RcFile } from '@ty/antd/lib/upload';
-import type { RequiredRecursion } from '../utils/typings';
-import type { OSCore, RecordType, RequestIO } from './core';
 import type {
+  OSCore,
   OSCustomFieldPureFormFieldItemConfigsType,
   OSCustomFieldPureTableFormFieldItemConfigsType,
   OSCustomFieldStaticPureFormFieldItemConfigsType,
-} from './custom-fields';
-import type { OSDialogModalOperationType, OSDialogModalType } from './dialog';
-import type { OSFormAPI, _OSFormType } from './form';
-import type {
+  OSDialogModalOperationType,
+  OSDialogModalType,
+  OSFormAPI,
+  OSFormType,
   OSTableRequestDataSourceParams,
   OSTableRequestDataSourceReturnType,
+  OSTableType,
+  OSTriggerButtonType,
+  OSTriggerDropdownType,
+  OSTriggerType,
+  RequestIO,
+  _OSFormType,
   _OSTableFormFieldItemSettingsFnOption,
   _OSTableType,
-} from './table';
-import type { OSTriggerButtonType, OSTriggerDropdownType } from './trigger';
+} from './components';
+import type { RecordType } from './core';
+import type { RequiredRecursion } from './utils';
 
 export type OSActionsCreateAPI = {};
 
@@ -314,3 +322,85 @@ export interface OSActionsReportDownloadType extends OSCore {
     >;
   };
 }
+
+export type OSBattleTableUploadFileType = {
+  file: UploadFile;
+  /** 附件 id = attachmentKey + rowId */
+  attachmentId: string;
+  /** 上传错误信息 */
+  errorMessages?: {
+    title?: string;
+    desc?: string;
+  }[];
+  /** 是否已上传 */
+  uploaded?: boolean;
+  /** 匹配的文件名称 */
+  name?: string;
+};
+
+export type OSBattleTableUploadAPI = {};
+
+export type OSBattleTableUploadType = {
+  settings?: {
+    triggerText?: string;
+    /**
+     * 弹窗和 trigge 的 title
+     * @default 批量上传
+     */
+    modalTitle?: string;
+    modalWidth?: number | string;
+    /** trigger disabled */
+    triggerSettings?: OSTriggerType['settings'];
+    /** 表格列定义 */
+    fieldItems?: Required<OSTableType>['settings']['fieldItems'];
+    /** 定义附件列，和 fieldItems 的 key 对应 */
+    attachmentFieldKeys?: Record<
+      string,
+      {
+        /** 匹配后缀 */
+        suffix: string;
+        /** 匹配的文件名称字段 */
+        baseDataIndex: string;
+      }
+    >;
+    /** 表单字段定义 */
+    extraFormFieldItems?: Required<OSFormType>['settings']['fieldItems'];
+    /** 表单初始值 */
+    extraFormInitialValues?: RecordType;
+    // request?: RequestServiceAgreement<
+    //   {
+    //     extraFormData: Record<string, any>;
+    //     originFile: RcFile;
+    //     handlerTitle?: string;
+    //     appendixKey: string;
+    //   },
+    //   {
+    //     errorMessages?: Record<string, string>;
+    //   }
+    // >;
+  };
+  requests?: {
+    /** 请求表格数据 */
+    requestDataSource?: Required<OSTableType>['requests']['requestDataSource'];
+    /** 请求额外表单数据 */
+    requestExtraFormDataSource?: Required<OSFormType>['requests']['requestDataSource'];
+    /** 上传请求 */
+    requestWhenUpload?: RequestIO<
+      {
+        values?: RecordType;
+        files?: OSBattleTableUploadFileType[];
+        fullFiles?: OSBattleTableUploadFileType[];
+      },
+      {
+        errorMessages?: Record<
+          /** key 为 attachmentId */
+          string,
+          {
+            title?: string;
+            desc?: string;
+          }[]
+        >;
+      }
+    >;
+  };
+};

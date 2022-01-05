@@ -1,9 +1,7 @@
 import { Space, Typography } from '@ty/antd';
 import React, { useImperativeHandle, useState } from 'react';
-import OSTrigger from '../../trigger';
-import type { OSActionsCreateType, OSFormAPI } from '../../typings';
-import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
-import type { RequiredRecursion } from '../../utils/typings';
+import { normalizeRequestOutputs, OSTrigger } from '../../components';
+import type { OSActionsCreateType, OSFormAPI, RequiredRecursion } from '../../typings';
 
 type TemplateData = { id: string; name: string };
 
