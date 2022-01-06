@@ -1,6 +1,7 @@
 import { OSBattleTableUpload, OSProviderWrapper } from '@ty-one-start/one-start';
 import delay from 'delay';
 import { mock, Random } from 'mockjs';
+import moment from 'moment';
 
 export default () => {
   return (
@@ -9,6 +10,10 @@ export default () => {
         settings={{
           modalTitle: '估值表',
           triggerText: '估值表',
+          triggerSettings: {
+            type: 'text',
+            plain: true,
+          },
           fieldItems: [
             {
               type: 'text',
@@ -53,6 +58,9 @@ export default () => {
               },
             },
           ],
+          extraFormInitialValues: {
+            date: moment(),
+          },
         }}
         requests={{
           requestDataSource: async () => {
@@ -70,6 +78,7 @@ export default () => {
             });
           },
           requestWhenUpload: async (options) => {
+            console.log(options);
             await delay(1000);
 
             return {
@@ -89,8 +98,6 @@ export default () => {
             };
           },
         }}
-        // buttonDisabled={selectedRowKeys.length === 0}
-        // selectedRows={selectedRows}
       />
     </OSProviderWrapper>
   );
