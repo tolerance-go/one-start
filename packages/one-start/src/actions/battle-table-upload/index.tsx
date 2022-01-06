@@ -21,17 +21,6 @@ const { TabPane } = Tabs;
 
 const { Dragger } = Upload;
 
-export type RequestServiceAgreement<
-  Inputs,
-  Outputs,
-  Extra extends Record<string, any> = Record<string, any>,
-> = (options: Inputs) => Promise<
-  {
-    error: boolean;
-    data?: Outputs;
-  } & Extra
->;
-
 export type MatchType = 'file-base' | 'suffix' | 'file-name';
 
 const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
@@ -110,7 +99,8 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
                 title: '状态信息',
               },
               render: ({ rowId, rowData }) => {
-                const attachmentId = getAttachmentId(item.key!, rowId);
+                const attachmentKey = item.key!;
+                const attachmentId = getAttachmentId(attachmentKey, rowId);
                 const file = fullFileList.find((it) => it.attachmentId === attachmentId);
                 const getStatus = () => {
                   if (file == null) {
@@ -165,6 +155,8 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
                             const index = prev.findIndex((it) => it.attachmentId === attachmentId);
                             const newOne = {
                               file: file_,
+                              rowData,
+                              attachmentKey,
                               attachmentId,
                               name: `${rowData[meta.baseDataIndex]}${meta.suffix}`,
                             };
@@ -287,6 +279,8 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
                         return Object.keys(attachmentFieldKeys ?? {}).map((key) => {
                           const meta = attachmentFieldKeys![key];
                           return {
+                            rowData,
+                            attachmentKey: key,
                             attachmentId: getAttachmentId(key, rowData.id),
                             name: `${rowData[meta.baseDataIndex]}${meta.suffix}`,
                           };

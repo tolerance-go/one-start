@@ -327,6 +327,9 @@ export type OSBattleTableUploadFileType = {
   file: UploadFile;
   /** 附件 id = attachmentKey + rowId */
   attachmentId: string;
+  attachmentKey: string;
+  /** file 所在的行数据 */
+  rowData: RecordType;
   /** 上传错误信息 */
   errorMessages?: {
     title?: string;
@@ -367,17 +370,6 @@ export type OSBattleTableUploadType = {
     extraFormFieldItems?: Required<OSFormType>['settings']['fieldItems'];
     /** 表单初始值 */
     extraFormInitialValues?: RecordType;
-    // request?: RequestServiceAgreement<
-    //   {
-    //     extraFormData: Record<string, any>;
-    //     originFile: RcFile;
-    //     handlerTitle?: string;
-    //     appendixKey: string;
-    //   },
-    //   {
-    //     errorMessages?: Record<string, string>;
-    //   }
-    // >;
   };
   requests?: {
     /** 请求表格数据 */
