@@ -29,6 +29,7 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
     type = 'confirm',
     confirmTriggerSettings,
     confirmTriggerWrapper: ConfirmTriggerWrapper,
+    corner,
   } = settings ?? {};
 
   const { visible, close, open, setVisible, pending } = useVisible({
@@ -135,37 +136,42 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
         }
         closeIcon={<CloseSquareOutlined />}
         footer={
-          <Row justify="end" gutter={5}>
+          <Row justify="space-between">
+            <Col>{corner}</Col>
             <Col>
-              <Space size={5}>
-                {actions?.map((item, index) =>
-                  React.cloneElement(item, {
-                    key: item.key ?? index,
-                  }),
-                )}
-              </Space>
+              <Row justify="end" gutter={5}>
+                <Col>
+                  <Space size={5}>
+                    {actions?.map((item, index) =>
+                      React.cloneElement(item, {
+                        key: item.key ?? index,
+                      }),
+                    )}
+                  </Space>
+                </Col>
+                <Col>
+                  <Button
+                    {...{
+                      size: 'small',
+                      loading: requestAfterCancelLoading,
+                      disabled: cancelButtonDisabled,
+                    }}
+                    onClick={handleCancel}
+                  >
+                    取消
+                  </Button>
+                </Col>
+                {type === 'confirm' ? (
+                  <Col>
+                    {ConfirmTriggerWrapper
+                      ? React.cloneElement(ConfirmTriggerWrapper, {
+                          children: confirmTriggerDOM,
+                        })
+                      : confirmTriggerDOM}
+                  </Col>
+                ) : null}
+              </Row>
             </Col>
-            <Col>
-              <Button
-                {...{
-                  size: 'small',
-                  loading: requestAfterCancelLoading,
-                  disabled: cancelButtonDisabled,
-                }}
-                onClick={handleCancel}
-              >
-                取消
-              </Button>
-            </Col>
-            {type === 'confirm' ? (
-              <Col>
-                {ConfirmTriggerWrapper
-                  ? React.cloneElement(ConfirmTriggerWrapper, {
-                      children: confirmTriggerDOM,
-                    })
-                  : confirmTriggerDOM}
-              </Col>
-            ) : null}
           </Row>
         }
         destroyOnClose

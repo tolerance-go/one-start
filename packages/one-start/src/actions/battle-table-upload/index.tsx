@@ -335,6 +335,20 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
                     requests={{
                       requestDataSource: requestExtraFormDataSource,
                     }}
+                    onChange={() => {
+                      setFullFileList((prev) =>
+                        prev.map((item) => {
+                          if (item.errorMessages) {
+                            return {
+                              ...item,
+                              uploaded: false,
+                              errorMessages: undefined,
+                            };
+                          }
+                          return item;
+                        }),
+                      );
+                    }}
                   />
                 </div>
               ) : null}
@@ -350,6 +364,11 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
               />
             </div>
           ),
+          corner: extraFormFieldItems ? (
+            <Typography.Text type="secondary">
+              修改表单信息后，将重置错误附件状态为等待上传
+            </Typography.Text>
+          ) : null,
         }}
         onVisibleChange={(visible) => {
           if (visible === false) {
