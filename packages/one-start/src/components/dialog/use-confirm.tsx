@@ -1,3 +1,4 @@
+/** confirm hooks 中没有 visible，也没有 promise */
 import { useEffect, useRef, useState } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
 import type { RequestIO, OSResMessage } from '../../typings';

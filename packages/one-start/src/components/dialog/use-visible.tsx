@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import type { RecordType } from '../../typings';
 import { useActionsRef } from '../hooks/use-actions-ref';
 
 export const useVisible = ({
@@ -12,32 +13,41 @@ export const useVisible = ({
   const mountedRef = useRef(false);
 
   const promiseActionsRef = useRef<{
-    resolve: (result: boolean | PromiseLike<boolean>) => void;
+    resolve: (result: RecordType | PromiseLike<RecordType | void> | void) => void;
     reject: () => void;
   }>({
     resolve: () => {},
     reject: () => {},
   });
-  const createPromise = (): Promise<boolean> => {
+  const createPromise = (): Promise<RecordType | void> => {
     return new Promise((resolve, reject) => {
       promiseActionsRef.current.reject = reject;
       promiseActionsRef.current.resolve = resolve;
     });
   };
-  const promiseRef = useRef<Promise<boolean>>();
+  const promiseRef = useRef<Promise<RecordType | void>>();
   const initPromise = () => {
     if (promiseRef.current) return;
     promiseRef.current = createPromise();
   };
 
-  const resolvePromise = (result: boolean) => {
+  const resolvePromise = (result?: RecordType) => {
     promiseActionsRef.current.resolve(result);
     promiseRef.current = undefined;
   };
 
-  const close = async () => {
+  const close = async (result?: RecordType) => {
     setVisible(false);
-    resolvePromise(false);
+    resolvePromise(result);
+  };
+
+  const open = async () => {
+    initPromise();
+    setVisible(true);
+  };
+
+  const pending = <T extends RecordType | void>(): Promise<T> | undefined => {
+    return promiseRef.current as Promise<T> | undefined;
   };
 
   const actionsRef = useActionsRef({
@@ -60,6 +70,8 @@ export const useVisible = ({
     createPromise,
     initPromise,
     close,
+    open,
     setVisible,
+    pending,
   };
 };

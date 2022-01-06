@@ -258,8 +258,12 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
                     }),
                   );
 
-                  errorDialogRef.current?.push();
-                  setErrorTabActiveKey(firstErrorFileMeta?.name ?? '');
+                  if (firstErrorFileMeta) {
+                    errorDialogRef.current?.push();
+                    setErrorTabActiveKey(firstErrorFileMeta?.name ?? '');
+                  } else {
+                    message.success('批量上传成功');
+                  }
 
                   return false;
                 },

@@ -2,8 +2,8 @@ import { Popover } from '@ty/antd';
 import { useClickAway } from 'ahooks';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle, useRef, useState } from 'react';
-import { useActionsRef } from '../hooks/use-actions-ref';
 import type { OSDialogPopoverAPI, OSDialogPopoverType } from '../../typings';
+import { useActionsRef } from '../hooks/use-actions-ref';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useVisible } from './use-visible';
 import { renderTrigger } from './utils';
@@ -17,13 +17,7 @@ const OSDialogPopover: React.ForwardRefRenderFunction<
 
   const { content, title, align, placement, arrowPointAtCenter } = settings ?? {};
 
-  const {
-    visible,
-    promiseRef,
-    close,
-    setVisible,
-    initPromise: resetPromise,
-  } = useVisible({
+  const { visible, close, setVisible, open, pending } = useVisible({
     onVisibleChange: props.onVisibleChange,
     initialVisible: props.settings?.initialVisible,
   });
@@ -31,9 +25,8 @@ const OSDialogPopover: React.ForwardRefRenderFunction<
   useImperativeHandle(ref, () => {
     return {
       push: async () => {
-        setVisible(true);
-        resetPromise();
-        await promiseRef.current;
+        open();
+        await pending();
       },
       pop: () => {
         close();

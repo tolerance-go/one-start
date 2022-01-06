@@ -19,7 +19,7 @@ const OSDialogModal: React.ForwardRefRenderFunction<
 
   const { footer, body } = settings ?? {};
 
-  const { visible, close, setVisible, initPromise, promiseRef } = useVisible({
+  const { visible, close, setVisible, open, pending } = useVisible({
     onVisibleChange: props.onVisibleChange,
     initialVisible: props.settings?.initialVisible,
   });
@@ -29,9 +29,8 @@ const OSDialogModal: React.ForwardRefRenderFunction<
   useImperativeHandle(ref, () => {
     return {
       push: async () => {
-        setVisible(true);
-        initPromise();
-        await promiseRef.current;
+        open();
+        await pending();
       },
       pop: () => {
         close();

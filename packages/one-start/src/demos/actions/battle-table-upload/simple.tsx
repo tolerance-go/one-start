@@ -1,11 +1,31 @@
-import { OSBattleTableUpload, OSProviderWrapper } from '@ty-one-start/one-start';
+import type { RecordType } from '@ty-one-start/one-start';
+import { OSBattleTableUpload, OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
+import { Divider } from '@ty/antd';
 import delay from 'delay';
 import { mock, Random } from 'mockjs';
 import moment from 'moment';
+import { useState } from 'react';
 
 export default () => {
+  const [values, setValues] = useState<RecordType | undefined>({});
   return (
     <OSProviderWrapper>
+      <OSForm
+        settings={{
+          layout: 'inline',
+          fieldItems: [
+            {
+              type: 'switch',
+              settings: {
+                title: '是否一定上传成功',
+                dataIndex: 'uploadSuccess',
+              },
+            },
+          ],
+        }}
+        onChange={setValues}
+      ></OSForm>
+      <Divider />
       <OSBattleTableUpload
         settings={{
           modalTitle: '估值表',
@@ -80,6 +100,12 @@ export default () => {
           requestWhenUpload: async (options) => {
             console.log(options);
             await delay(1000);
+
+            if (values?.uploadSuccess) {
+              return {
+                error: false,
+              };
+            }
 
             return {
               error: false,
