@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.5.1...@ty-one-start/one-start@0.5.2) (2022-01-06)
+
+
+### Bug Fixes
+
+* 修复 os-dialog-modal-operate pop 和 push api 失效问题 ([9fde3c8](https://10.1.2.7/visual-fe/swap-modules/commits/9fde3c8635f72a55415f9d2cd493562a5076a583))
+
+
+
+
+
 ## [0.5.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.5.0...@ty-one-start/one-start@0.5.1) (2022-01-06)
 
 **Note:** Version bump only for package @ty-one-start/one-start
