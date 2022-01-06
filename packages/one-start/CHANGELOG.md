@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.4.2...@ty-one-start/one-start@0.5.0) (2022-01-06)
+
+
+### Features
+
+* 新增 os-actions-battle-table-upload 组件，支持批量样板文件上传预览 ([d305bae](https://10.1.2.7/visual-fe/swap-modules/commits/d305baebcd69bdc4e98b7c757eedf91aac817214))
+
+
+
+
+
 ## [0.4.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.4.1...@ty-one-start/one-start@0.4.2) (2022-01-04)
 
 
