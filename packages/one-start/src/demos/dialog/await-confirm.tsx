@@ -1,4 +1,5 @@
-import { OSDialog, OSDialogModalOperationAPI, OSProviderWrapper } from '@ty-one-start/one-start';
+import type { OSDialogModalOperationAPI } from '@ty-one-start/one-start';
+import { OSDialog, OSProviderWrapper } from '@ty-one-start/one-start';
 import { Button, Space } from '@ty/antd';
 import delay from 'delay';
 import React, { useRef, useState } from 'react';
@@ -37,7 +38,8 @@ export default () => {
             loading={loading2}
             onClick={async () => {
               setLoading2(true);
-              await dialogRef2.current?.push();
+              const results = await dialogRef2.current?.push();
+              alert(JSON.stringify(results));
               setLoading2(false);
             }}
           >
@@ -70,7 +72,8 @@ export default () => {
             loading={loading}
             onClick={async () => {
               setLoading(true);
-              await dialogRef.current?.push();
+              const results = await dialogRef.current?.push();
+              alert(JSON.stringify(results));
               setLoading(false);
             }}
           >

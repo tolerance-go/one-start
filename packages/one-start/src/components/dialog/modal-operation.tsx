@@ -3,14 +3,15 @@ import { CloseSquareOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { Button, Col, Modal, Row, Space } from '@ty/antd';
 import cls from 'classnames';
 import type { PropsWithChildren } from 'react';
-import React, { useImperativeHandle, useState } from 'react';
-import { useActionsRef } from '../hooks/use-actions-ref';
+import React, { useImperativeHandle } from 'react';
 import type { OSDialogModalOperationAPI, OSDialogModalOperationType } from '../../typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
-import { useConfirm } from './use-confirm';
-import { renderTrigger } from './utils';
+import { useActionsRef } from '../hooks/use-actions-ref';
 import Trigger from '../trigger';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useConfirm } from './use-confirm';
+import { useVisible } from './use-visible';
+import { renderTrigger } from './utils';
 
 const OSDialogModalOperation: React.ForwardRefRenderFunction<
   OSDialogModalOperationAPI,
@@ -29,21 +30,19 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
     confirmTriggerSettings,
     confirmTriggerWrapper: ConfirmTriggerWrapper,
   } = settings ?? {};
-  const [visible, setVisible] = useState(false);
+
+  const { visible, close, open, setVisible, pending } = useVisible({
+    onVisibleChange: props.onVisibleChange,
+  });
 
   const {
-    resolvePromise,
-    promiseRef,
     confirm,
-    initPromise,
     cancel,
-    close,
     requestAfterConfirmLoading,
     requestAfterCancelLoading,
     cancelButtonDisabled,
     confirmButtonDisabled,
   } = useConfirm({
-    onVisibleChange: props.onVisibleChange,
     requestAfterCancel,
     requestAfterConfirm,
   });
@@ -51,15 +50,13 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
   useImperativeHandle(ref, () => {
     return {
       push: async () => {
-        setVisible(true);
-        initPromise();
-        const confirmed = await promiseRef.current!;
-        return {
-          confirmed,
-        };
+        open();
+        return (await pending()) ?? { confirmed: false };
       },
       pop: () => {
-        close();
+        close({
+          confirmed: false,
+        });
       },
       update: () => {},
     };
@@ -75,7 +72,9 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
   const handleCancel = async () => {
     const success = await cancel();
     if (success) {
-      setVisible(false);
+      close({
+        confirmed: false,
+      });
     }
   };
 
@@ -97,8 +96,9 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
           }).then(normalizeRequestOutputs);
 
           if (rsp?.error === false) {
-            resolvePromise(true);
-            setVisible(false);
+            close({
+              confirmed: true,
+            });
           }
 
           return rsp;
@@ -111,7 +111,9 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
 
         const success = await confirm();
         if (success) {
-          setVisible(false);
+          close({
+            confirmed: true,
+          });
         }
       }}
       loading={requestAfterConfirmLoading}

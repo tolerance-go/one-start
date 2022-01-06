@@ -1,6 +1,5 @@
 /** actions 可以直接引用 index 内容 */
 import type { AlertProps } from '@ty/antd';
-import type { UploadFile } from '@ty/antd/es/upload/interface';
 import type { RcFile } from '@ty/antd/lib/upload';
 import type {
   OSCore,
@@ -324,7 +323,7 @@ export interface OSActionsReportDownloadType extends OSCore {
 }
 
 export type OSBattleTableUploadFileType = {
-  file: UploadFile;
+  file: RcFile;
   /** 附件 id = attachmentKey + rowId */
   attachmentId: string;
   attachmentKey: string;
