@@ -124,6 +124,8 @@ export interface OSDialogModalOperationAPI extends OSDialogAPIBase {
 export interface OSDialogModalOperationType extends OSDialogBase {
   type?: 'modal-operation';
   settings?: {
+    /** 弹窗左下角 */
+    corner?: React.ReactNode;
     width?: string | number;
     icon?: React.ReactNode;
     title?: string | React.ReactNode;
