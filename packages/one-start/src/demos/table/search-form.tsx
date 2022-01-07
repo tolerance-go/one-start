@@ -5,6 +5,7 @@ import { OSForm, OSProviderWrapper, OSTable } from '@ty-one-start/one-start';
 import { Divider } from '@ty/antd';
 import delay from 'delay';
 import Mock, { Random } from 'mockjs';
+import moment from 'moment';
 import React, { useState } from 'react';
 
 export default () => {
@@ -74,6 +75,22 @@ export default () => {
             },
           },
           fieldItems: [
+            {
+              type: 'text',
+              settings: {
+                title: 'field:only-in-table',
+                dataIndex: 'field',
+              },
+            },
+            {
+              type: 'date-range',
+              settings: {
+                title: 'field:only-in-search',
+                dataIndex: 'field',
+                search: 'only',
+                initialValue: [moment().subtract(7, 'd'), moment()],
+              },
+            },
             {
               type: 'money',
               settings: {
@@ -199,6 +216,7 @@ export default () => {
                 'page|20': [
                   {
                     id: '@id',
+                    field: () => Random.word(),
                     money: () => Random.integer(),
                     percent: () => Random.integer(),
                     text: () => Random.word(),
