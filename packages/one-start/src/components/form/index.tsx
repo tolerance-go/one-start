@@ -108,7 +108,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     wrapperCol,
     fieldItemSettings,
     params: _params,
-    hideEmpty = false,
+    hideEmpty = true,
     groupItemSettings,
   } = settings ?? {};
   const formRef = useRef<FormInstance>(null);
