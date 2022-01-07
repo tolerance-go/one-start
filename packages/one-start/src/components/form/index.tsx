@@ -125,6 +125,15 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
   const asyncInitialValuesRef = useRef<RecordType>();
   const [eventBus] = useState(new EventEmitter());
 
+  const defaultLayout = 'horizontal';
+  const defaultLabelCol = { span: 10 };
+  const defaultWrapperCol = { span: 14 };
+
+  const formLayoutMode = settings?.layout ?? defaultLayout;
+
+  const formLabelCol = labelCol ?? defaultLabelCol;
+  const formWrapperCol = wrapperCol ?? defaultWrapperCol;
+
   const leafFieldItemComponentRefRefs = useRef<
     Record<
       string,
@@ -752,6 +761,10 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
                       <Col
                         className={cls(clsId, `${clsPrefix}-group-col-item`)}
                         span={(() => {
+                          if (formLayoutMode === 'inline') {
+                            return undefined;
+                          }
+
                           if (currentFieldItemStaticSettings?.colSpan) {
                             return currentFieldItemStaticSettings?.colSpan;
                           }
@@ -1004,6 +1017,17 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     );
   }, []);
 
+  const finalWrapperCol = (() => {
+    if (formLayoutMode === 'inline') {
+      return undefined;
+    }
+    /** 垂直显示，wrapper 会另起一行，这里占满整行 */
+    if (formLayoutMode === 'vertical') {
+      return { span: 24 };
+    }
+    return formWrapperCol;
+  })();
+
   return (
     <FormInstanceContext.Provider value={formRef}>
       <Spin
@@ -1015,10 +1039,10 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
             name={name}
             ref={formRef}
             form={form}
-            layout={settings?.layout ?? 'horizontal'}
+            layout={formLayoutMode}
             className={clsPrefix}
-            labelCol={labelCol ?? { span: 10 }}
-            wrapperCol={wrapperCol ?? { span: 14 }}
+            labelCol={formLayoutMode === 'inline' ? undefined : formLabelCol}
+            wrapperCol={finalWrapperCol}
             initialValues={initialValues}
             onFieldsChange={handleFormFieldsChange}
             onValuesChange={(changedValues, values) => {

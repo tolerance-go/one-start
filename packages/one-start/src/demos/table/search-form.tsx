@@ -1,19 +1,162 @@
+/* eslint-disable no-param-reassign */
 /**
  * transform: true
  */
+import type {
+  OSTableFormFieldItemExtra,
+  OSTableType,
+  RequiredRecursion,
+} from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper, OSTable } from '@ty-one-start/one-start';
 import { Divider } from '@ty/antd';
 import delay from 'delay';
+import produce from 'immer';
 import Mock, { Random } from 'mockjs';
 import moment from 'moment';
 import React, { useState } from 'react';
 
 export default () => {
   const [values, setValues] = useState({
-    searchFormItemChunkSize: 1,
+    leftSideSearchForm: false,
+    searchFormItemChunkSize: 3,
     searchFormSettingsLabelColSpan: 4,
     searchFormSettingsWrapperColSpan: 20,
+    gutter: 10,
+    labelAlign: 'right',
+    readonly: false,
+    colSpan: 8,
   });
+
+  const fieldItems: Required<OSTableType>['settings']['fieldItems'] = [
+    {
+      type: 'money',
+      settings: {
+        title: 'money',
+        dataIndex: 'money',
+        rules: [
+          {
+            required: true,
+          },
+        ],
+        search: true,
+        sorter: true,
+      },
+    },
+    {
+      type: 'percent',
+      settings: {
+        title: 'percent',
+        dataIndex: 'percent',
+        search: true,
+      },
+    },
+    {
+      type: 'text',
+      settings: {
+        title: 'text',
+        dataIndex: 'text',
+        search: true,
+      },
+    },
+    {
+      type: 'textarea',
+      settings: {
+        title: 'textarea',
+        dataIndex: 'textarea',
+        search: true,
+      },
+    },
+    {
+      type: 'date-range',
+      settings: {
+        title: 'field:only-in-search',
+        dataIndex: 'field',
+        search: 'only',
+        initialValue: [moment().subtract(7, 'd'), moment()],
+      },
+    },
+    {
+      type: 'text',
+      settings: {
+        title: 'field:only-in-table',
+        dataIndex: 'field',
+      },
+    },
+    {
+      type: 'group',
+      settings: {
+        title: '分组1',
+      },
+      children: [
+        {
+          type: 'digit',
+          settings: {
+            title: 'digit',
+            dataIndex: 'digit',
+            search: true,
+            rules: [
+              {
+                required: true,
+              },
+            ],
+          },
+        },
+        {
+          type: 'date',
+          settings: {
+            title: 'date',
+            dataIndex: 'date',
+            search: true,
+          },
+        },
+        {
+          type: 'date-range',
+          settings: {
+            title: 'date-range',
+            dataIndex: 'date-range',
+            search: true,
+          },
+        },
+        {
+          type: 'select',
+          settings: {
+            search: true,
+            title: 'select',
+            dataIndex: 'select',
+            valueEnums: {
+              a: 'A',
+              b: 'B',
+              c: 'C',
+            },
+          },
+        },
+        {
+          type: 'select',
+          settings: {
+            search: true,
+            title: 'select-search',
+            dataIndex: 'select-search',
+            showSearch: true,
+            mode: 'multiple',
+          },
+          requests: {
+            requestOptions: async () => {
+              await delay(1000);
+              return Promise.resolve({
+                error: false,
+                data: [
+                  { value: 'a', label: 'A' },
+                  { value: 'b', label: 'B' },
+                  { value: 'c', label: 'C' },
+                ],
+              });
+            },
+          },
+        },
+      ],
+    },
+  ];
+
   return (
     <OSProviderWrapper>
       <OSForm
@@ -26,10 +169,8 @@ export default () => {
             {
               type: 'switch',
               settings: {
-                dataIndex: 'left-side-search-form',
-                title: '左侧相对操作栏显示搜索表单',
-                tooltip:
-                  '当 fieldItems 的 length <= searchFormItemChunkSize 时候，将左右显示搜索表单',
+                dataIndex: 'leftSideSearchForm',
+                title: '和操作栏对称显示搜索表单',
               },
             },
             {
@@ -38,7 +179,7 @@ export default () => {
                 dataIndex: 'searchFormItemChunkSize',
                 title: 'searchFormItemChunkSize',
                 min: 1,
-                max: 10,
+                max: 5,
               },
             },
             {
@@ -59,6 +200,38 @@ export default () => {
                 max: 24,
               },
             },
+            {
+              type: 'digit',
+              settings: {
+                title: 'groupItemSettings.gutter',
+                dataIndex: 'gutter',
+              },
+            },
+            {
+              type: 'radio',
+              settings: {
+                title: 'fieldItemSettings.labelAlign',
+                dataIndex: 'labelAlign',
+                valueEnums: {
+                  left: 'left',
+                  right: 'right',
+                },
+              },
+            },
+            {
+              type: 'switch',
+              settings: {
+                title: 'fieldItemSettings.readonly',
+                dataIndex: 'readonly',
+              },
+            },
+            {
+              type: 'digit',
+              settings: {
+                title: 'fieldItemSettings.colSpan',
+                dataIndex: 'colSpan',
+              },
+            },
           ],
         }}
       />
@@ -67,142 +240,41 @@ export default () => {
         settings={{
           searchFormItemChunkSize: values.searchFormItemChunkSize,
           searchFormSettings: {
-            labelCol: {
-              span: values.searchFormSettingsLabelColSpan,
+            groupItemSettings: {
+              gutter: values.gutter,
             },
-            wrapperCol: {
-              span: values.searchFormSettingsWrapperColSpan,
+            fieldItemSettings: {
+              labelCol: {
+                span: values.searchFormSettingsLabelColSpan,
+              },
+              wrapperCol: {
+                span: values.searchFormSettingsWrapperColSpan,
+              },
+              labelAlign: values.labelAlign as 'left' | 'right',
+              readonly: values.readonly,
+              colSpan: values.colSpan,
             },
           },
-          fieldItems: [
-            {
-              type: 'text',
-              settings: {
-                title: 'field:only-in-table',
-                dataIndex: 'field',
-              },
-            },
-            {
-              type: 'date-range',
-              settings: {
-                title: 'field:only-in-search',
-                dataIndex: 'field',
-                search: 'only',
-                initialValue: [moment().subtract(7, 'd'), moment()],
-              },
-            },
-            {
-              type: 'money',
-              settings: {
-                title: 'money',
-                dataIndex: 'money',
-                rules: [
-                  {
-                    required: true,
-                  },
-                ],
-                search: true,
-                sorter: true,
-              },
-            },
-            {
-              type: 'percent',
-              settings: {
-                title: 'percent',
-                dataIndex: 'percent',
-                search: !values['left-side-search-form'],
-              },
-            },
-            {
-              type: 'text',
-              settings: {
-                title: 'text',
-                dataIndex: 'text',
-                search: !values['left-side-search-form'],
-              },
-            },
-            {
-              type: 'textarea',
-              settings: {
-                title: 'textarea',
-                dataIndex: 'textarea',
-                search: !values['left-side-search-form'],
-              },
-            },
-            {
-              type: 'group',
-              settings: {
-                title: '分组1',
-              },
-              children: [
-                {
-                  type: 'digit',
-                  settings: {
-                    title: 'digit',
-                    dataIndex: 'digit',
-                    search: !values['left-side-search-form'],
-                    rules: [
-                      {
-                        required: true,
-                      },
-                    ],
-                  },
-                },
-                {
-                  type: 'date',
-                  settings: {
-                    title: 'date',
-                    dataIndex: 'date',
-                    search: !values['left-side-search-form'],
-                  },
-                },
-                {
-                  type: 'date-range',
-                  settings: {
-                    title: 'date-range',
-                    dataIndex: 'date-range',
-                    search: !values['left-side-search-form'],
-                  },
-                },
-                {
-                  type: 'select',
-                  settings: {
-                    search: !values['left-side-search-form'],
-                    title: 'select',
-                    dataIndex: 'select',
-                    valueEnums: {
-                      a: 'A',
-                      b: 'B',
-                      c: 'C',
-                    },
-                  },
-                },
-                {
-                  type: 'select',
-                  settings: {
-                    search: !values['left-side-search-form'],
-                    title: 'select-search',
-                    dataIndex: 'select-search',
-                    showSearch: true,
-                    mode: 'multiple',
-                  },
-                  requests: {
-                    requestOptions: async () => {
-                      await delay(1000);
-                      return Promise.resolve({
-                        error: false,
-                        data: [
-                          { value: 'a', label: 'A' },
-                          { value: 'b', label: 'B' },
-                          { value: 'c', label: 'C' },
-                        ],
-                      });
-                    },
-                  },
-                },
-              ],
-            },
-          ],
+          fieldItems: values?.leftSideSearchForm
+            ? fieldItems.slice(0, values.searchFormItemChunkSize).concat(
+                fieldItems.slice(values.searchFormItemChunkSize).map((item) =>
+                  produce(item, (draft) => {
+                    if (draft.children) {
+                      draft.children = draft.children.map((it) =>
+                        produce(it, (draftIt) => {
+                          (
+                            draftIt as RequiredRecursion<OSTableFormFieldItemExtra>
+                          ).settings.search = false;
+                        }),
+                      );
+                    } else {
+                      (draft as RequiredRecursion<OSTableFormFieldItemExtra>).settings.search =
+                        false;
+                    }
+                  }),
+                ),
+              )
+            : fieldItems,
         }}
         requests={{
           requestDataSource: async (options) => {

@@ -1,7 +1,7 @@
 ---
 nav:
   title: one-start
-  order: 2
+  order: 1
   path: /one-start
 title: os-search-grid
 group:

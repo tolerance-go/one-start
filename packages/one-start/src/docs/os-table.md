@@ -1,7 +1,7 @@
 ---
 nav:
   title: one-start
-  order: 2
+  order: 1
   path: /one-start
 title: os-table
 group:
@@ -39,6 +39,8 @@ group:
   },
 ];
 ```
+
+当 `fieldItems.length <= searchFormItemChunkSize` 时候，将会把搜索表单放置在左侧和操作栏对称显示
 
 <code src="../demos/table/search-form.tsx" />
 
