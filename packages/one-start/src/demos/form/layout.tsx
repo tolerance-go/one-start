@@ -7,6 +7,7 @@ import React, { useState } from 'react';
 
 export default () => {
   const [settings, setSettings] = useState<RecordType | undefined>({
+    layout: 'horizontal',
     gutter: 200,
     labelAlign: 'left',
     readonly: true,
@@ -51,6 +52,18 @@ export default () => {
                 dataIndex: 'colSpan',
               },
             },
+            {
+              type: 'radio',
+              settings: {
+                title: 'layout',
+                dataIndex: 'layout',
+                valueEnums: {
+                  horizontal: 'horizontal',
+                  inline: 'inline',
+                  vertical: 'vertical',
+                },
+              },
+            },
           ],
         }}
       ></OSForm>
@@ -81,6 +94,7 @@ export default () => {
             readonly: settings?.readonly,
             colSpan: settings?.colSpan,
           },
+          layout: settings?.layout,
           fieldItems: [
             {
               type: 'group',
