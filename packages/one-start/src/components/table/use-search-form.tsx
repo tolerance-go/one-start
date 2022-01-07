@@ -93,8 +93,10 @@ export const useSearchForm = ({
     });
   };
 
+  const singleLineFieldItemSize =
+    searchFormItemChunkSize ?? DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW;
+
   const groupedSearchFormFieldItems = useMemo(() => {
-    const size = searchFormItemChunkSize ?? DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW;
     return [
       {
         type: 'group',
@@ -116,14 +118,14 @@ export const useSearchForm = ({
 
               return {
                 ...settings,
-                colSpan: Math.round(24 / size),
+                colSpan: Math.round(24 / singleLineFieldItemSize),
               };
             },
           };
         }),
       },
     ] as OSFormFieldItems;
-  }, [searchFormItemChunkSize, dataSource, tableKey, searchFormFieldItems]);
+  }, [singleLineFieldItemSize, dataSource, tableKey, searchFormFieldItems]);
 
   const dom = searchFormVisible ? (
     <div key="search" className={`${clsPrefix}-search-form`}>
@@ -133,6 +135,10 @@ export const useSearchForm = ({
           setSearchFormValues(values, { update: false });
         }}
         settings={{
+          layout:
+            (searchFormFieldItems ?? []).length <= singleLineFieldItemSize
+              ? 'inline'
+              : 'horizontal',
           ...searchFormSettings,
           fieldItems: groupedSearchFormFieldItems,
         }}

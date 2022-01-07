@@ -134,6 +134,46 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
   const formLabelCol = labelCol ?? defaultLabelCol;
   const formWrapperCol = wrapperCol ?? defaultWrapperCol;
 
+  /**
+   * TODO: 删除 form 级别的 labelCol 和 wrapperCol 使用 fieldItemsSettings 代替
+   */
+  const finalFormWrapperCol = (() => {
+    if (formLayoutMode === 'inline') {
+      return undefined;
+    }
+    /** 垂直显示，wrapper 会另起一行，这里占满整行 */
+    if (formLayoutMode === 'vertical') {
+      return { span: 24 };
+    }
+    return formWrapperCol;
+  })();
+
+  const finalFormLabelCol = (() => {
+    return formLayoutMode === 'inline' ? undefined : formLabelCol;
+  })();
+
+  const finalFieldItemSettings = (() => {
+    if (fieldItemSettings) {
+      return {
+        ...fieldItemSettings,
+        wrapperCol: (() => {
+          if (formLayoutMode === 'inline') {
+            return undefined;
+          }
+          /** 垂直显示，wrapper 会另起一行，这里占满整行 */
+          if (formLayoutMode === 'vertical') {
+            return { span: 24 };
+          }
+          return fieldItemSettings.wrapperCol;
+        })(),
+        labelCol: (() => {
+          return formLayoutMode === 'inline' ? undefined : fieldItemSettings.labelCol;
+        })(),
+      };
+    }
+    return fieldItemSettings;
+  })();
+
   const leafFieldItemComponentRefRefs = useRef<
     Record<
       string,
@@ -664,7 +704,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
         });
 
         const mergedStaticSettings: OSFormFieldItemWithStaticPureConfigs['settings'] = {
-          ...fieldItemSettings,
+          ...finalFieldItemSettings,
           ...staticSettings,
         };
 
@@ -832,7 +872,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
               },
             );
           },
-          fieldItemSettings,
+          fieldItemSettings: finalFieldItemSettings,
           baseFormItemSettings: settings?.formItemSettimgs,
           className: cls(
             mergedStaticSettings?.readonly ? 'readonly-form-item' : undefined,
@@ -1017,17 +1057,6 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     );
   }, []);
 
-  const finalWrapperCol = (() => {
-    if (formLayoutMode === 'inline') {
-      return undefined;
-    }
-    /** 垂直显示，wrapper 会另起一行，这里占满整行 */
-    if (formLayoutMode === 'vertical') {
-      return { span: 24 };
-    }
-    return formWrapperCol;
-  })();
-
   return (
     <FormInstanceContext.Provider value={formRef}>
       <Spin
@@ -1041,8 +1070,8 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
             form={form}
             layout={formLayoutMode}
             className={clsPrefix}
-            labelCol={formLayoutMode === 'inline' ? undefined : formLabelCol}
-            wrapperCol={finalWrapperCol}
+            labelCol={finalFormLabelCol}
+            wrapperCol={finalFormWrapperCol}
             initialValues={initialValues}
             onFieldsChange={handleFormFieldsChange}
             onValuesChange={(changedValues, values) => {

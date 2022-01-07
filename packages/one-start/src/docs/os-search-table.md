@@ -4,6 +4,7 @@ nav:
   order: 1
   path: /one-start
 title: os-search-table
+order: 1
 group:
   title: tables
   path: /one-start/tables

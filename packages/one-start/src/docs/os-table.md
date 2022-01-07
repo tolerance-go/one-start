@@ -4,6 +4,7 @@ nav:
   order: 1
   path: /one-start
 title: os-table
+order: -1
 group:
   title: tables
   path: /one-start/tables
@@ -40,7 +41,7 @@ group:
 ];
 ```
 
-当 `fieldItems.length <= searchFormItemChunkSize` 时候，将会把搜索表单放置在左侧和操作栏对称显示
+当 `fieldItems.length <= searchFormItemChunkSize` 时候，将会把搜索表单放置在左侧和操作栏对称显示，并且默认以 `inline layout` 展示表单
 
 <code src="../demos/table/search-form.tsx" />
 
