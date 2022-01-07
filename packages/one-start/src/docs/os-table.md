@@ -17,6 +17,29 @@ group:
 
 收起后，隐藏表头搜索控件，并在表头顶部显示搜索控件
 
+有时，搜索控件和表格展示控件是有较大差异的，此时可以通过 `search: 'only'` 区分字段；可以通过 `initialValue` 设置搜索表单初始值
+
+```tsx | pure
+[
+  {
+    type: 'text',
+    settings: {
+      title: 'field:only-in-table',
+      dataIndex: 'field',
+    },
+  },
+  {
+    type: 'date-range',
+    settings: {
+      title: 'field:only-in-search',
+      dataIndex: 'field',
+      search: 'only',
+      initialValue: [moment().subtract(7, 'd'), moment()],
+    },
+  },
+];
+```
+
 <code src="../demos/table/search-form.tsx" />
 
 ### 下拉选项映射
