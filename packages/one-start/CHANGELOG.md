@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.5.2...@ty-one-start/one-start@0.6.0) (2022-01-07)
+
+
+### Features
+
+* 支持 os-table 的搜索表单的 layout inline 模式 ([38a1c23](https://10.1.2.7/visual-fe/swap-modules/commits/38a1c236bcbda62d019c0470e2bdbe23be848a26))
+
+
+
+
+
 ## [0.5.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.5.1...@ty-one-start/one-start@0.5.2) (2022-01-06)
 
 
