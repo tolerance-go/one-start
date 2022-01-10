@@ -349,8 +349,6 @@ export interface _OSFormType<
     labelCol?: FormItemProps['labelCol'];
     wrapperCol?: FormItemProps['wrapperCol'];
     layout?: FormProps['layout'];
-    /** 统一设置 formItem 配置 */
-    formItemSettimgs?: OSFormItemType['settings'];
     /** 公共的 fieldItems 配置，优先级比 fieldItems 低 */
     fieldItemSettings?: _OSFormFieldItemWithStaticPureConfigs<StaticCustomValueType>['settings'];
     /** 分组公共配置 */

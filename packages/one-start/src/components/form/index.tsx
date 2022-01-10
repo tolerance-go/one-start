@@ -873,7 +873,6 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
             );
           },
           fieldItemSettings: finalFieldItemSettings,
-          baseFormItemSettings: settings?.formItemSettimgs,
           className: cls(
             mergedStaticSettings?.readonly ? 'readonly-form-item' : undefined,
             parentKeyIndexId_ == null && index === fieldItems_!.length - 1

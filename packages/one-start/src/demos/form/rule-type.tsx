@@ -11,7 +11,7 @@ export default () => {
       <OSForm
         ref={formRef}
         settings={{
-          formItemSettimgs: {
+          fieldItemSettings: {
             labelCol: {
               span: 7,
             },
