@@ -84,6 +84,8 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 
 ### 公共 field-item 配置
 
+`fieldItem` 包含 `formItem` 及 `inputItem`，后者全部的配置打平到了一起方便使用
+
 <code src="../demos/form/field-item-settings.tsx" />
 
 ### 显示联动

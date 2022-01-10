@@ -45,7 +45,6 @@ export const renderFormItem = (
         ref?: React.MutableRefObject<any>;
       },
     ) => ReactNode;
-    baseFormItemSettings?: OSFormItemType['settings'];
     className?: string;
     fieldItemSettings?: _OSFormFieldItemWithStaticPureConfigs<OSEditableTableFieldType>['settings'];
     hideFormGroupItemDom?: (keyIndexId?: string) => void;
@@ -84,7 +83,6 @@ export const renderFormItem = (
 
       const formItemSettings = pickFormItemSettings({
         ...options.fieldItemSettings,
-        ...options.baseFormItemSettings,
         ...settings_,
       });
       const formItemRequests = pickFormItemRequests(requests);
