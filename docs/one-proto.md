@@ -1,7 +1,7 @@
 ---
 sidemenu: false
 nav:
-  order: 1
+  order: 3
   title: one-proto(beta)
 ---
 
