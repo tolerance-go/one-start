@@ -508,6 +508,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     resetSerachFormValues,
     searchFormRef,
   } = useSearchForm({
+    singleSearchForm,
     dataSource,
     searchFormItemChunkSize,
     clsPrefix,
