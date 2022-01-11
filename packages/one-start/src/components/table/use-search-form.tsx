@@ -31,7 +31,9 @@ export const useSearchForm = ({
   tableKey,
   clsPrefix,
   searchFormItemChunkSize,
+  singleSearchForm,
 }: {
+  singleSearchForm?: boolean;
   dataSource?: RecordType[];
   clsPrefix: string;
   __localkey?: string;
@@ -136,6 +138,7 @@ export const useSearchForm = ({
         }}
         settings={{
           layout:
+            singleSearchForm !== false &&
             (searchFormFieldItems ?? []).length <= singleLineFieldItemSize
               ? 'inline'
               : 'horizontal',

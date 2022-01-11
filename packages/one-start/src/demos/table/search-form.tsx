@@ -25,6 +25,7 @@ export default () => {
     labelAlign: 'right',
     readonly: false,
     colSpan: 8,
+    singleSearchForm: true,
   });
 
   const fieldItems: Required<OSTableType>['settings']['fieldItems'] = [
@@ -174,6 +175,13 @@ export default () => {
               },
             },
             {
+              type: 'switch',
+              settings: {
+                dataIndex: 'singleSearchForm',
+                title: '单行搜索表单始终对称显示',
+              },
+            },
+            {
               type: 'digit',
               settings: {
                 dataIndex: 'searchFormItemChunkSize',
@@ -238,6 +246,7 @@ export default () => {
       <Divider />
       <OSTable
         settings={{
+          singleSearchForm: values.singleSearchForm,
           searchFormItemChunkSize: values.searchFormItemChunkSize,
           searchFormSettings: {
             groupItemSettings: {

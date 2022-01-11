@@ -41,7 +41,7 @@ group:
 ];
 ```
 
-当 `fieldItems.length <= searchFormItemChunkSize` 时候，将会把搜索表单放置在左侧和操作栏对称显示，并且默认以 `inline layout` 展示表单
+当 `fieldItems.length <= searchFormItemChunkSize` 时候，将会把搜索表单放置在左侧和操作栏对称显示，并且默认以 `inline layout` 展示表单；可以 `singleSearchForm: false` 强制单行搜索表单在顶部显示
 
 <code src="../demos/table/search-form.tsx" />
 
@@ -71,11 +71,11 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 <code src="../demos/table/column-settings.tsx" />
 
-### tree grid
+<!-- ### tree grid
 
 大数据量展示，同时渲染 10 万条数据
 
-<code src="../demos/table/grid-tree.tsx" />
+<code src="../demos/table/grid-tree.tsx" /> -->
 
 ### 树形表格联动选择
 
