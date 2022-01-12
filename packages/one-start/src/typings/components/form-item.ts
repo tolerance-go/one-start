@@ -12,6 +12,13 @@ export type OSFormItemTooltip = {
   color?: AbstractTooltipProps['color'];
 };
 
+export type OSFormItemInputHistoryData = {
+  // author?: string;
+  // dateTime?: string;
+  // history: any;
+  current: any;
+};
+
 export type OSFormItemSimpleTooltip = string | string[] | OSFormItemTooltip;
 
 export interface OSFormItemType<Value = any> extends OSCore {
@@ -66,4 +73,6 @@ export interface OSFormItemType<Value = any> extends OSCore {
   renderFormItem?: (dom: React.ReactNode, props: Omit<OSFormItemType, 'renderFormItem'>) => void;
   className?: string;
   validateTrigger?: string[];
+  /** 字段的历史修改数据 */
+  historyData?: OSFormItemInputHistoryData[];
 }

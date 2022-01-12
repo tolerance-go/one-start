@@ -68,7 +68,7 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
     const setDataSource = (values?: RecordType) => {
       if (!values) return;
       Object.keys(osFormsRef.current).forEach((formKey) => {
-        osFormsRef.current[formKey].current!.setFieldsValue(values[formKey]);
+        osFormsRef.current[formKey].current?.setFieldsValue(values[formKey]);
       });
       onChange?.(values);
     };
@@ -76,7 +76,7 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
     const setFieldsValue = (values?: RecordType) => {
       if (!values) return;
       Object.keys(osFormsRef.current).forEach((formKey) => {
-        osFormsRef.current[formKey].current!.setFieldsValue(values[formKey]);
+        osFormsRef.current[formKey].current?.setFieldsValue(values[formKey]);
       });
     };
 

@@ -4,7 +4,7 @@ import Layout from 'dumi-theme-default/src/layout';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
 import React from 'react';
-import { IRouteComponentProps } from 'umi';
+import { IRouteComponentProps, useLocation } from 'umi';
 import './layout.less';
 
 moment.locale('zh-cn');
@@ -14,14 +14,11 @@ moment.fn.toISOString = function () {
   return this.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
 };
 
-export default ({ children, ...props }: IRouteComponentProps) => {
+export default (props: IRouteComponentProps) => {
+  const { children, ...rest } = props;
   return (
     <ConfigProvider locale={zhCN}>
-      {window.location.pathname === '/one-proto' ? (
-        children
-      ) : (
-        <Layout {...props}>{children}</Layout>
-      )}
+      {rest.location.pathname === '/one-proto' ? children : <Layout {...rest}>{children}</Layout>}
     </ConfigProvider>
   );
 };

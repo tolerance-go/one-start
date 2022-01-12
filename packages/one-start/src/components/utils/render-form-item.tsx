@@ -11,6 +11,7 @@ import type {
   OSFormAPI,
   OSFormFieldItem,
   OSFormFieldItemWithStaticPureConfigs,
+  OSFormItemInputHistoryData,
   OSFormItemType,
   OSLayoutFormAPI,
   OSLayoutModalFormAPI,
@@ -35,6 +36,7 @@ export const renderFormItem = (
   options: {
     formRef: React.MutableRefObject<FormInstance | null>;
     dependencies?: string[];
+    historyData?: OSFormItemInputHistoryData[];
     getField?: (
       settings: OSFormFieldItemWithStaticPureConfigs['settings'],
       requests: OSFormFieldItemWithStaticPureConfigs['requests'],
@@ -134,6 +136,7 @@ export const renderFormItem = (
 
       return (
         <OSFormItemBase
+          historyData={options.historyData}
           className={options.className}
           validateTrigger={['onChange']}
           settings={((): OSFormItemType['settings'] => {

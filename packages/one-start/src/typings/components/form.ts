@@ -27,6 +27,7 @@ import type { OSFormItemType } from './form-item';
 import type { NamePath } from '@ty/antd/lib/form/interface';
 import type { Meta } from 'rc-field-form/es/interface';
 import type { ValueAsyncLinkage, ValueLinkage } from './linkage';
+import { OSFormItemInputHistoryData } from '.';
 
 export interface OSFormGroupFieldType extends OSField {
   type?: 'group';
@@ -367,6 +368,17 @@ export interface _OSFormType<
         actions: OSFormAPI;
       },
       RecordType
+    >;
+    /** 获取历史修改数据等额外信息，和 requestDataSource 一起只触发一次，优先级 requestRichDataSource 更高 */
+    requestRichDataSource?: RequestIO<
+      {
+        actions: OSFormAPI;
+      },
+      {
+        values?: RecordType;
+        /** 历史修改数据 */
+        history?: Record<string, OSFormItemInputHistoryData[]>;
+      }
     >;
     /** 异步请求初始化数据 */
     requestInitialValues?: RequestIO<

@@ -1,24 +1,112 @@
-import { LoadingOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import { Form, Spin, Tooltip } from '@ty/antd';
+import { HistoryOutlined, LoadingOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { Form, Popover, Spin, Timeline, Tooltip } from '@ty/antd';
 import type { Rule, RuleObject } from '@ty/antd/lib/form';
 import type { ValidateStatus } from '@ty/antd/lib/form/FormItem';
+import cls from 'classnames';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import type {
+  OSFormItemInputHistoryData,
+  OSFormItemTooltip,
+  OSFormItemType,
+  OSRule,
+  RecordType,
+} from '../../typings';
 import { FormInstanceContext } from '../providers/form-context';
-import type { OSFormItemTooltip, OSFormItemType, OSRule } from '../../typings';
 import { normalizeDataIndex } from '../utils/normalize-data-index';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { useClsPrefix } from '../utils/use-cls-prefix';
 import InlineErrorFormItem from './inner-error-form-item';
 import { getDateCheckRule } from './rules/get-date-check-rule';
 import { getNumberDigitsRule } from './rules/get-number-digits-rule';
 import { getNumberRangeRule } from './rules/get-number-range-rule';
 import { getTradingDaysRule } from './rules/get-trading-days-rule';
 import { mergeRuleToTooltip, normalizeTooltip } from './utils';
-import cls from 'classnames';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+
+const useHistoryTimeline = ({
+  title,
+  historyData,
+  inputEl,
+  inputProps,
+}: {
+  title?: React.ReactNode;
+  historyData?: OSFormItemInputHistoryData[];
+  inputEl?: React.ReactNode;
+  inputProps?: RecordType;
+}) => {
+  const prefix = useClsPrefix('os-form-item-history');
+  if (historyData?.length) {
+    if (React.isValidElement(inputEl)) {
+      return (
+        <Popover
+          overlayInnerStyle={{
+            maxWidth: 1000,
+          }}
+          className={`${prefix}-popover`}
+          overlayClassName={`${prefix}-popover-overlay`}
+          title={`${title ? `${title}的` : ''}历史修改记录`}
+          content={
+            <Timeline mode="left" className={`${prefix}-timeline`}>
+              {historyData?.map((item) => {
+                return (
+                  <Timeline.Item>
+                    <div>
+                      {React.cloneElement(inputEl, {
+                        ...inputProps,
+                        onChange: undefined,
+                        mode: 'read',
+                        value: item.current,
+                      })}
+                    </div>
+                  </Timeline.Item>
+                );
+              })}
+            </Timeline>
+          }
+        >
+          <HistoryOutlined
+            style={{ marginLeft: 4, cursor: 'pointer', color: 'rgba(0, 0, 0, 0.45)', fontSize: 12 }}
+          />
+        </Popover>
+      );
+    }
+  }
+
+  return null;
+};
+
+const OSFormItemInput: React.ForwardRefRenderFunction<
+  {},
+  {
+    title?: React.ReactNode;
+    historyData?: OSFormItemInputHistoryData[];
+  }
+> = (props) => {
+  const { children, historyData, title, ...restProps } = props;
+
+  if (React.isValidElement(children)) {
+    if (historyData?.length) {
+      return (
+        <div>
+          <div style={{ color: '#00000073' }}>
+            {React.cloneElement(children, {
+              ...restProps,
+              onChange: undefined,
+              mode: 'read',
+              value: historyData[historyData.length - 1].current,
+            })}
+          </div>
+          <div>{React.cloneElement(children, restProps)}</div>
+        </div>
+      );
+    }
+    return React.cloneElement(children, restProps);
+  }
+  return <>{children}</>;
+};
 
 const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
   const prefix = useClsPrefix('os-form-item-base');
-  const { settings, requests, noStyle, className, validateTrigger } = props;
+  const { settings, requests, noStyle, className, historyData, validateTrigger } = props;
   const {
     tooltip,
     rules,
@@ -213,38 +301,45 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     return mergeRuleToTooltip(rules, normalizedTooltip);
   }, [rules, normalizedTooltip]);
 
+  const historyTimeLineEl = useHistoryTimeline({
+    title,
+    inputEl: props.children,
+    historyData,
+  });
+
   if (settings?.hide) {
     return null;
   }
 
-  const label = linkagetip ? (
-    <span>
+  const label = (
+    <>
       {title}
-      <Tooltip
-        title={
-          Array.isArray(linkagetip) ? (
-            <div>
-              {linkagetip.map((item) => (
-                <div>{item}</div>
-              ))}
-            </div>
-          ) : (
-            linkagetip
-          )
-        }
-      >
-        <ThunderboltOutlined
-          style={{
-            marginLeft: 4,
-            color: 'rgba(0, 0, 0, 0.45)',
-            fontSize: 12,
-            cursor: 'help',
-          }}
-        />
-      </Tooltip>
-    </span>
-  ) : (
-    title
+      {historyTimeLineEl}
+      {linkagetip ? (
+        <Tooltip
+          title={
+            Array.isArray(linkagetip) ? (
+              <div>
+                {linkagetip.map((item) => (
+                  <div>{item}</div>
+                ))}
+              </div>
+            ) : (
+              linkagetip
+            )
+          }
+        >
+          <ThunderboltOutlined
+            style={{
+              marginLeft: 4,
+              color: 'rgba(0, 0, 0, 0.45)',
+              fontSize: 12,
+              cursor: 'help',
+            }}
+          />
+        </Tooltip>
+      ) : null}
+    </>
   );
 
   /** React.ReactNode 类型的 title 不会自动出现在 rule 提示中，提供一个特殊的 title */
@@ -297,7 +392,9 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
         wrapperCol={wrapperCol}
         messageVariables={messageVariables}
       >
-        {props.children}
+        <OSFormItemInput title={title} historyData={historyData}>
+          {props.children}
+        </OSFormItemInput>
       </FormItemType>
     </Spin>
   );
