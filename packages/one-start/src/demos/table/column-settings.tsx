@@ -2,8 +2,20 @@ import { OSProviderWrapper, OSTable } from '@ty-one-start/one-start';
 import delay from 'delay';
 import Mock from 'mockjs';
 import React from 'react';
+import type { OSTableType } from '../../typings';
 
 export default () => {
+  const percents = Array(30)
+    .fill(null)
+    .map((item, index) => ({
+      type: 'percent',
+      settings: {
+        title: `percent${index}`,
+        dataIndex: `percent${index}`,
+        configable: true,
+      },
+    })) as Required<OSTableType>['settings']['fieldItems'];
+
   return (
     <OSProviderWrapper>
       <OSTable
@@ -31,6 +43,7 @@ export default () => {
                 configable: true,
               },
             },
+            ...(percents ?? []),
             {
               type: 'text',
               settings: {
@@ -139,6 +152,36 @@ export default () => {
                     id: '@id',
                     money: () => Mock.Random.integer(),
                     percent: () => Mock.Random.integer(),
+                    percent1: () => Mock.Random.integer(),
+                    percent2: () => Mock.Random.integer(),
+                    percent3: () => Mock.Random.integer(),
+                    percent4: () => Mock.Random.integer(),
+                    percent5: () => Mock.Random.integer(),
+                    percent6: () => Mock.Random.integer(),
+                    percent7: () => Mock.Random.integer(),
+                    percent8: () => Mock.Random.integer(),
+                    percent9: () => Mock.Random.integer(),
+                    percent10: () => Mock.Random.integer(),
+                    percent11: () => Mock.Random.integer(),
+                    percent12: () => Mock.Random.integer(),
+                    percent13: () => Mock.Random.integer(),
+                    percent14: () => Mock.Random.integer(),
+                    percent15: () => Mock.Random.integer(),
+                    percent16: () => Mock.Random.integer(),
+                    percent17: () => Mock.Random.integer(),
+                    percent18: () => Mock.Random.integer(),
+                    percent19: () => Mock.Random.integer(),
+                    percent20: () => Mock.Random.integer(),
+                    percent21: () => Mock.Random.integer(),
+                    percent22: () => Mock.Random.integer(),
+                    percent23: () => Mock.Random.integer(),
+                    percent24: () => Mock.Random.integer(),
+                    percent25: () => Mock.Random.integer(),
+                    percent26: () => Mock.Random.integer(),
+                    percent27: () => Mock.Random.integer(),
+                    percent28: () => Mock.Random.integer(),
+                    percent29: () => Mock.Random.integer(),
+                    percent30: () => Mock.Random.integer(),
                     text: () => Mock.Random.word(),
                     textarea: () => Mock.Random.paragraph(),
                     digit: () => Mock.Random.integer(),

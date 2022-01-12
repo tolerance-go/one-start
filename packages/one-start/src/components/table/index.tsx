@@ -66,7 +66,7 @@ import { useSearchForm } from './use-search-form';
 import { useSearchSwitch } from './use-search-switch';
 import { useSearchTimestamp } from './use-search-timestamp';
 import { useSelection } from './use-selection';
-import { useSettings } from './use-settings';
+import { useSettings } from './use-columns-settings';
 import { useSnapshotOfCurrentSearchParameters } from './use-snapshot-of-current-search-parameters';
 import { useTableTopPanel } from './use-table-top-panel';
 import { useTreeSpread } from './use-tree-spread';
@@ -467,6 +467,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     columns,
     searchRequestOptionsMapDataIndexId,
     searchTransfromMapDataIndexId,
+    staticPureConfigsFieldItems,
     totalTableWidth,
     allColumnsId,
     allColumnsIdMaps,
@@ -589,6 +590,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   } = useSettings({
     columns,
     allColumnsId,
+    staticPureConfigsFieldItems,
     columnsPropsIdMaps: allColumnsIdMaps,
     columnsStaticPureConfigsIdMaps,
     enable: propsEnableColumnsSettings ?? enableColumnsSettings,

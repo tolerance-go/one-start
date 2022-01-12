@@ -1,5 +1,6 @@
 /**
  * transform: true
+ * iframe: 600
  */
 import { OSProviderWrapper, OSTable } from '@ty-one-start/one-start';
 import delay from 'delay';

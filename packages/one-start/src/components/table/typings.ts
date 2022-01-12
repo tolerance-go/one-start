@@ -1,9 +1,20 @@
 import type { ColumnGroupType, ColumnType } from '@ty/antd/es/table';
 import type { SorterResult } from '@ty/antd/lib/table/interface';
 import type { FixedType } from 'rc-table/lib/interface';
-import type { OSFormType, RecordType, SettingsDataNode } from '../../typings';
+import type {
+  OSFormType,
+  OSTableFormFieldItemWithStaticPureConfigs,
+  RecordType,
+  SettingsDataNode,
+} from '../../typings';
 
 export type OSAntdColumnExtra = {};
+
+/** TODO: 临时的 children 递归类型 */
+export type OSTableFormFieldItemWithStaticPureConfigsWithChildren =
+  (OSTableFormFieldItemWithStaticPureConfigs & {
+    children: OSTableFormFieldItemWithStaticPureConfigsWithChildren;
+  })[];
 
 export type OSAntdColumnsType<RecordType = unknown> = (
   | (ColumnGroupType<RecordType> & OSAntdColumnExtra)

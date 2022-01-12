@@ -51,7 +51,12 @@ import {
   tdSelfClassTag,
   verticalRowCellWithKeyClsPrefix,
 } from './constants';
-import type { EventPayloads, RequestDataSourceActions, SearchFormActions } from './typings';
+import type {
+  EventPayloads,
+  OSTableFormFieldItemWithStaticPureConfigsWithChildren,
+  RequestDataSourceActions,
+  SearchFormActions,
+} from './typings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 import { getDataIndexId, runTableSettings } from './utils';
 
@@ -84,6 +89,10 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
     Record<string, OSTableFormFieldItemWithStaticPureConfigs>
   >({});
 
+  /** 保留 fieldItems 树形结构的静态 fieldItems */
+  const staticPureConfigsFieldItemsRef =
+    useRef<OSTableFormFieldItemWithStaticPureConfigsWithChildren>([]);
+
   /** 是否启用了表单搜索 */
   const enableSearchFormRef = useRef<boolean>(false);
 
@@ -104,6 +113,7 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
     enableSearchFormRef.current = false;
     enableColumnsSettingsRef.current = false;
     enableCellHighlightRef.current = false;
+    staticPureConfigsFieldItemsRef.current = [];
 
     reset?.();
   };
@@ -120,6 +130,7 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
     enableSearchFormRef,
     enableColumnsSettingsRef,
     enableCellHighlightRef,
+    staticPureConfigsFieldItemsRef,
   };
 };
 
@@ -173,6 +184,7 @@ export const useItems = ({
     enableSearchFormRef,
     enableColumnsSettingsRef,
     enableCellHighlightRef,
+    staticPureConfigsFieldItemsRef,
     resetIntermediateProducts,
   } = useIntermediateProducts({
     reset: () => {
@@ -813,6 +825,9 @@ export const useItems = ({
       parentFieldItems?: OSTableFormFieldItems;
       /** 父节点是不是同级别最后一个节点 */
       parentIsLast: boolean;
+      parentStaticPureConfigsFieldItem?: OSTableFormFieldItemWithStaticPureConfigs & {
+        children: OSTableFormFieldItemWithStaticPureConfigs[];
+      };
     },
   ): ColumnsType<RecordType> => {
     const { parentIsLast, parentFieldItems } = options ?? {};
@@ -912,6 +927,24 @@ export const useItems = ({
               } as OSTableFormFieldItemWithStaticPureConfigs;
           }
 
+          const staticPureConfigsFieldItem = {
+            type: valueType,
+            settings: mergedSettings,
+            requests: _requests,
+          } as OSTableFormFieldItemWithStaticPureConfigsWithChildren[number];
+
+          /** 如果存在父级静态配置，则往父级 children 里面塞，否则就是第一层 */
+          if (options?.parentStaticPureConfigsFieldItem) {
+            if (options.parentStaticPureConfigsFieldItem.children) {
+              options.parentStaticPureConfigsFieldItem.children.push(staticPureConfigsFieldItem);
+            } else {
+              // eslint-disable-next-line no-param-reassign
+              options.parentStaticPureConfigsFieldItem.children = [staticPureConfigsFieldItem];
+            }
+          } else {
+            staticPureConfigsFieldItemsRef.current.push(staticPureConfigsFieldItem);
+          }
+
           if (hide) {
             return null;
           }
@@ -931,6 +964,7 @@ export const useItems = ({
               children: renderItems(fieldItem.children, {
                 parentFieldItems: fieldItems_,
                 parentIsLast: fieldItemIndex === fieldItems_.length - 1,
+                parentStaticPureConfigsFieldItem: staticPureConfigsFieldItem,
               }),
             } as ColumnGroupType<RecordType>;
 
@@ -1086,5 +1120,6 @@ export const useItems = ({
     searchFormFieldItems: searchFormFieldItemsRef.current,
     enableSearchForm: enableSearchFormRef.current,
     enableColumnsSettings: enableColumnsSettingsRef.current,
+    staticPureConfigsFieldItems: staticPureConfigsFieldItemsRef.current,
   };
 };

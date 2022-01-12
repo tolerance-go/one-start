@@ -216,9 +216,9 @@ export * from './grid';
 export * from './layout';
 export * from './layout-form';
 export * from './linkage';
+export * from './message';
 export * from './page';
 export * from './rules';
 // eslint-disable-next-line import/export
 export * from './table';
 export * from './trigger';
-export * from './message';
