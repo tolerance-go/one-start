@@ -14,8 +14,8 @@ group:
 
 ## 代码演示
 
-### 基础使用
+### 视图管理
 
-<code src="../demos/search-table/simple.tsx" />
+<code src="../demos/search-table/visual-manage.tsx" />
 
 <API exports='["Settings", "Requests"]' src="../components/search-table/index.tsx"></API>

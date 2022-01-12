@@ -65,9 +65,9 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 ### 列设置
 
-切换复选框可以控制列（组）的显示和隐藏
+支持通过列设置看板操作，实现控制列（组）的显示和隐藏，重新排序，固定列头列尾
 
-拖动列树可以进行重新排序和分组
+因为 table 的 DOM 渲染机制，删除或者新增列时，列数量越多，pageSize 越大，则预渲染时间越长，因此这里使用了代理操作的方式，也就是说需要最终点击确认或者重置才会真正开始渲染表格
 
 <code src="../demos/table/column-settings.tsx" />
 
@@ -102,10 +102,6 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 ### 单元格浮窗展示全文
 
 <code src="../demos/table/ellipsis-tooltip.tsx" />
-
-### 配置持久化
-
-<code src="../demos/table/local.tsx" />
 
 ### 列配置隐藏
 
