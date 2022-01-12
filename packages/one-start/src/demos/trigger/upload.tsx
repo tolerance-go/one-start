@@ -77,7 +77,6 @@ export default () => {
           type="dropdown"
           settings={{
             text: '下拉',
-            trigger: ['click'],
             menu: [
               {
                 text: '上传',

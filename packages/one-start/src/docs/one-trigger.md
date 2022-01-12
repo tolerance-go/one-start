@@ -23,6 +23,8 @@ group:
 
 ### 菜单项嵌套
 
+因为提供了默认下拉的 UI 语言，所以将 `trigger` 内敛为单一 `click` 模式，这样不仅对 `Dialog` 嵌套交互更加友好，也不会对我们的客户操作造成直觉困惑，同时 `contextMenu` 也不适用于 trigger 组件
+
 <code src="../demos/trigger/in-menu.tsx" />
 
 ### 自动弹出外层 dialog

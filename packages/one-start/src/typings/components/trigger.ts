@@ -49,9 +49,7 @@ export type OSTriggerDropdownSettingsCore = {
   menu?: OSMenuItem[];
   plain?: boolean;
   block?: boolean;
-  trigger?: ('click' | 'hover' | 'contextMenu')[];
   upload?: OSTriggerUpload;
-  menuVisible?: boolean;
 } & OSButtonCore;
 
 export interface OSTriggerDropdownType extends OSTriggerBase {
