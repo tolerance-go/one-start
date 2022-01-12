@@ -1,5 +1,4 @@
 import type { ColumnGroupType, ColumnType } from '@ty/antd/es/table';
-import type { SorterResult } from '@ty/antd/lib/table/interface';
 import type { FixedType } from 'rc-table/lib/interface';
 import type {
   ColumnOrdersMetaType,
@@ -7,6 +6,7 @@ import type {
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
   SettingsDataNode,
+  RequestOptions,
 } from '../../typings';
 
 export type OSAntdColumnExtra = {};
@@ -65,16 +65,9 @@ export type EventPayloads = {
     open: boolean;
   };
 };
-
 export type RequestDataSourceActions = {
   setCurrent: React.Dispatch<React.SetStateAction<number | undefined>>;
-  requestDataSource: (options: {
-    current?: number;
-    pageSize?: number;
-    order?: SorterResult<RecordType>['order'];
-    orderBy?: SorterResult<RecordType>['field'];
-    manualInitiate?: boolean;
-  }) => Promise<void>;
+  requestDataSource: (options: RequestOptions) => Promise<void>;
   requestVisualDataSource: () => Promise<void>;
   getFieldOptionsMapDataIndex: () => Record<string, Record<string, string>> | undefined;
 } | null;

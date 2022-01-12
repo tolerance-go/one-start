@@ -278,6 +278,11 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
         };
         setActiveMeta(firstRowMeta);
       }
+      /** 返回无数据并且页码大于1 跳转至前一页请求 */
+      if (!result?.data?.page?.length && params.current > 1) {
+        params.actions.reload({ current: params.current - 1 });
+        return result;
+      }
       return result;
     };
 

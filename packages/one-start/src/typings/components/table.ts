@@ -40,6 +40,14 @@ import type {
 } from './form';
 import type { OSResMessage } from './message';
 
+export type RequestOptions = {
+  current?: number;
+  pageSize?: number;
+  order?: SorterResult<RecordType>['order'];
+  orderBy?: SorterResult<RecordType>['field'];
+  manualInitiate?: boolean;
+};
+
 export type ColumnOrdersItemMetaType = {
   order: number;
   children?: ColumnOrdersMetaType;
@@ -84,7 +92,7 @@ export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = 
   getDataSource: () => OSTableValueType;
   getOriginDataSource: () => OSTableValueType;
   getVisualDataSource: () => OSTableValueType;
-  reload: () => void;
+  reload: (options?: { current?: number }) => void;
   setDataSource: (dataSource?: RecordType[]) => void;
   getAllColumnsId: () => string[];
   getColumnsStaticPureConfigsIdMaps: () => Record<
