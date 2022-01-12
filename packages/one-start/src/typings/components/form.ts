@@ -27,7 +27,7 @@ import type { OSFormItemType } from './form-item';
 import type { NamePath } from '@ty/antd/lib/form/interface';
 import type { Meta } from 'rc-field-form/es/interface';
 import type { ValueAsyncLinkage, ValueLinkage } from './linkage';
-import { OSFormItemInputHistoryData } from '.';
+import type { OSFormItemInputHistoryData } from './form-item';
 
 export interface OSFormGroupFieldType extends OSField {
   type?: 'group';

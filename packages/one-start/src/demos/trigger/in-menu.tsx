@@ -1,4 +1,4 @@
-import { OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
+import { OSProviderWrapper, OSTrigger, OSDialog } from '@ty-one-start/one-start';
 import { Space } from '@ty/antd';
 import delay from 'delay';
 import React from 'react';
@@ -128,7 +128,38 @@ export default () => {
                 ],
               },
               {
-                text: 'menu6',
+                text: (
+                  <OSDialog
+                    type="modal-operation"
+                    settings={{
+                      title: '确认标题',
+                    }}
+                    requests={{
+                      requestAfterCancel: async () => {
+                        await delay(1000);
+                        return {
+                          error: false,
+                        };
+                      },
+                      requestAfterConfirm: async () => {
+                        await delay(1000);
+                        return {
+                          error: false,
+                        };
+                      },
+                    }}
+                  >
+                    <OSTrigger
+                      type="button"
+                      settings={{
+                        type: 'text',
+                        plain: true,
+                        block: true,
+                        text: 'menu6-with-dialog',
+                      }}
+                    ></OSTrigger>
+                  </OSDialog>
+                ),
               },
             ],
           }}

@@ -1,4 +1,5 @@
 import { DownOutlined, LoadingOutlined } from '@ant-design/icons';
+import type { DropDownProps } from '@ty/antd';
 import { Button, Dropdown, Menu, Space, Typography, Upload } from '@ty/antd';
 import type { RcFile } from '@ty/antd/lib/upload';
 import utl from 'lodash';
@@ -32,6 +33,8 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     __disabled,
   } = props;
 
+  const trigger: DropDownProps['trigger'] = ['click'];
+
   const {
     text,
     danger,
@@ -41,9 +44,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     manualPush = false,
     plain,
     block,
-    trigger,
     upload,
-    menuVisible,
   } = settings ?? {};
 
   const [requestAfterMenuClickLoading, setRequestAfterMenuClickLoading] = useState<
@@ -423,7 +424,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
           type={settings?.type}
           disabled={disabled}
           overlay={renderMenu(menuItems)}
-          visible={menuVisible ?? visible}
+          visible={visible}
           onVisibleChange={setVisible}
         >
           <Space size={5}>
@@ -442,7 +443,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     return (
       <Dropdown
         onVisibleChange={setVisible}
-        visible={menuVisible ?? visible}
+        visible={visible}
         overlay={renderMenu(menuItems)}
         trigger={trigger}
         disabled={disabled}
