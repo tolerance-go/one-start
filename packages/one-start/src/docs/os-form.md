@@ -114,6 +114,12 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 
 <code src="../demos/form/empty-state.tsx" />
 
+### 修改历史 <Badge>beta</Badge>
+
+获取历史修改数据等额外信息，和 `requestDataSource` 一起只触发一次，优先级 `requestRichDataSource` 更高
+
+<code src="../demos/form/history-field.tsx" />
+
 <API exports='["FormSettings", "FormRequests", "FormAPI"]' src="../components/form/index.tsx"></API>
 
 ### FormFieldItems

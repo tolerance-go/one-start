@@ -1,9 +1,5 @@
-import {
-  OSEditableTable,
-  OSProviderWrapper,
-  RecordType,
-  parseTableValue,
-} from '@ty-one-start/one-start';
+import type { RecordType } from '@ty-one-start/one-start';
+import { OSEditableTable, OSProviderWrapper, parseTableValue } from '@ty-one-start/one-start';
 import React, { useState } from 'react';
 
 export default () => {

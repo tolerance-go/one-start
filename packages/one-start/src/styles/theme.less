@@ -88,6 +88,29 @@ body {
 }
 
 .one-source {
+  &-os-form-item-history {
+    &-popover-overlay {
+      .ty-ant-popover-inner-content {
+        max-height: 700px;
+        padding: 17px 10px 10px 10px;
+        overflow-y: scroll;
+      }
+    }
+    &-timeline {
+      .ty-ant-timeline-item {
+        padding-bottom: 10px;
+      }
+      .ty-ant-timeline-item-last {
+        > .ty-ant-timeline-item-content {
+          min-height: inherit;
+        }
+        &.ty-ant-timeline-item {
+          margin-bottom: -7px;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
   &-os-form-item-base {
     &.label-align-left {
       > .ty-ant-form-item-label {

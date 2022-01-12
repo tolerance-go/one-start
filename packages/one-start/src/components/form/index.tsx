@@ -29,6 +29,7 @@ import type {
   OSFormGroupFieldType,
   OSFormGroupType,
   OSFormItemDependenciesConfigs,
+  OSFormItemInputHistoryData,
   OSFormItemType,
   OSFormType,
   OSLayoutModalFormAPI,
@@ -124,6 +125,9 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
   const referencesDispatch = useContext(OSReferencesCollectorDispatchContext);
   const asyncInitialValuesRef = useRef<RecordType>();
   const [eventBus] = useState(new EventEmitter());
+
+  const [historyDataMaps, setHistoryDataMaps] =
+    useState<Record<string, OSFormItemInputHistoryData[]>>();
 
   const defaultLayout = 'horizontal';
   const defaultLabelCol = { span: 10 };
@@ -571,7 +575,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     setFieldsValueAndTriggeLinkage,
   });
 
-  const requestFieldItems = utl.debounce(async (params?: RecordType) => {
+  const requestFieldItems = async (params?: RecordType) => {
     if (!requests?.requestFieldItems) return;
 
     // setLoading(true);
@@ -585,7 +589,30 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     if (error) return;
 
     setAsyncFieldItems(data?.fieldItems ?? []);
-  }, 400);
+  };
+
+  const requestRichDataSource = async () => {
+    if (!requests?.requestRichDataSource) {
+      return;
+    }
+
+    setRequestDataSourceLoading(true);
+    const { error, data } = await requests
+      .requestRichDataSource({
+        actions: formActionsRef.current,
+      })
+      .then(normalizeRequestOutputs);
+    setRequestDataSourceLoading(false);
+
+    if (error) return;
+
+    form.setFieldsValue(data?.values);
+    onChange?.(data?.values);
+
+    if (data?.history) {
+      setHistoryDataMaps(data.history);
+    }
+  };
 
   const requestDataSource = async () => {
     if (!requests?.requestDataSource) {
@@ -708,6 +735,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
           ...staticSettings,
         };
 
+        const dataIndexId = getDataIndexId(mergedStaticSettings.dataIndex);
         const keyIndexId =
           valueType === 'group'
             ? getKeyIndexId(
@@ -843,8 +871,8 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
             ]);
           }
         }
-
         const dom = renderFormItem(valueType, _settings, _requests, {
+          historyData: historyDataMaps?.[dataIndexId],
           formRef,
           actions: formActionsRef.current,
           dependencies,
@@ -1029,7 +1057,11 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
   });
 
   useEffect(() => {
-    requestDataSource();
+    if (requests?.requestRichDataSource) {
+      requestRichDataSource();
+    } else {
+      requestDataSource();
+    }
   }, []);
 
   useEffect(() => {
