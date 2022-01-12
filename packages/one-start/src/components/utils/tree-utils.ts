@@ -43,9 +43,17 @@ export const mapTreeNode = <
   B = T[number],
 >(
   items: T,
-  callback: (item: T[number], parent?: T[number], paths?: T[number][]) => B,
+  callback: (
+    item: T[number],
+    parent?: T[number],
+    parents?: T[number][],
+    options?: {
+      index?: number;
+    },
+  ) => B,
   parent?: T[number],
   parents: T[number][] = [],
+  indexInParentSubs?: number,
 ): (B & {
   [key: string]: any;
   children?: B[];
@@ -58,12 +66,14 @@ export const mapTreeNode = <
       // eslint-disable-next-line no-param-reassign
       nextItems[index] = {
         ...nextItems[index],
-        children: mapTreeNode(item.children, callback, item, [...parents, item]),
+        children: mapTreeNode(item.children, callback, item, [...parents, item], index),
       };
       item = nextItems[index];
     }
 
-    const newItem = callback(item, parent, parents);
+    const newItem = callback(item, parent, parents, {
+      index: indexInParentSubs,
+    });
     // eslint-disable-next-line no-param-reassign
     nextItems[index] = newItem;
   }

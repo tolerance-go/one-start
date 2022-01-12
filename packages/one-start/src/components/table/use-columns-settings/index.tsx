@@ -6,6 +6,7 @@ import utl from 'lodash';
 import type { FixedType } from 'rc-table/lib/interface';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import type {
+  ColumnOrdersMetaType,
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
   SettingsDataNode,
@@ -13,13 +14,14 @@ import type {
 import { useActionsRef } from '../../hooks/use-actions-ref';
 import { mapTreeNode } from '../../utils/tree-utils';
 import { useClsPrefix } from '../../utils/use-cls-prefix';
-import type { ColumnsSettingsActions } from '../typings';
+import type {
+  ColumnsSettingsActions,
+  OSTableFormFieldItemWithStaticPureConfigsWithChildren,
+} from '../typings';
 import { getKeyIndexId } from '../utils';
 import { ImmediateLoadingButton } from './components/immediate-loading-button';
 import { TreeNodeActions } from './components/tree-node-actions';
-import { COLUMN_SORDERS_OUTERMOST_KEY } from './constants';
 import { findTreeItem, sortTreeWithOrder } from './utils';
-import type { OSTableFormFieldItemWithStaticPureConfigsWithChildren } from '../typings';
 
 export const useSettings = ({
   columnsPropsIdMaps,
@@ -46,6 +48,9 @@ export const useSettings = ({
   const clsPrefix = useClsPrefix('settings');
   const [visible, setVisible] = useState(false);
 
+  /** 记录距离上次应用设置是否用户修改了配置 */
+  const [isUserChangeSettings, setIsUserChangeSettings] = useState(false);
+
   const [checkedKeys, setCheckedKeys] = useState<
     | React.Key[]
     | {
@@ -60,7 +65,7 @@ export const useSettings = ({
   /**
    * 记录列在每个层级的排序 order 顺序，key 为父级组件所在路径
    */
-  const [columnOrders, setColumnOrders] = useState<Record<string, Record<string, number>>>({});
+  const [columnOrders, setColumnOrders] = useState<ColumnOrdersMetaType>({});
   /** 代理列配置，用户确认后传递给 antd table */
   const [antdColumns, setAntdColumns] = useState<ColumnsType<RecordType>>([]);
 
@@ -127,6 +132,7 @@ export const useSettings = ({
         }
       }
 
+      setIsUserChangeSettings(true);
       setTreeData(data);
     },
     [columnsPropsIdMaps, treeData],
@@ -177,15 +183,59 @@ export const useSettings = ({
     ).filter((item): item is SettingsDataNode => item != null);
   };
 
+  /**
+   * treeData 的排序操作不会修改 columnsOrders，而是直接操作的 treeData 本身，
+   * 因此这里需要通过 treeData 实时计算最新排序
+   */
+  const getColumnsSettingsOrders = () => {
+    const initalColumnOrders = {};
+
+    /** 先计算第一层，否则数据会被覆盖 */
+    Object.assign(
+      initalColumnOrders,
+      treeData.reduce(
+        (dist, next, index) => ({
+          ...dist,
+          [[next]?.map((it) => getKeyIndexId(it?.key)).join('.')]: index,
+        }),
+        {},
+      ),
+    );
+
+    mapTreeNode(treeData, (item, __, ___, options) => {
+      const fieldItemId = getKeyIndexId(item?.key);
+      const { children } = item;
+      if (children) {
+        initalColumnOrders[fieldItemId] = {
+          order: initalColumnOrders[fieldItemId] ?? options?.index,
+          children: children.reduce(
+            (dist, next, index) => ({
+              ...dist,
+              [getKeyIndexId(next?.key)]: index,
+            }),
+            {},
+          ),
+        };
+      }
+
+      return item;
+    });
+
+    return initalColumnOrders;
+  };
+
   const convertTreeDataToColumns = (options?: {
     initalTreeData?: SettingsDataNode[];
     initalColumnVisibleMap?: Record<string, boolean>;
     initalColumnFixedMap?: Record<string, boolean>;
   }) => {
+    const isVisible = (item: SettingsDataNode) =>
+      (options?.initalColumnVisibleMap ?? columnVisibleMap)[item.key!] !== false;
+
     setAntdColumns(
       mapTreeNode(
-        (options?.initalTreeData ?? treeData).filter((it) => {
-          return (options?.initalColumnVisibleMap ?? columnVisibleMap)[it.key!] !== false;
+        (options?.initalTreeData ?? treeData).filter((item) => {
+          return isVisible(item) || item.children?.some(isVisible);
         }),
         (item) => {
           if (item.children) {
@@ -193,7 +243,7 @@ export const useSettings = ({
               ...columnsPropsIdMaps[item.key],
               fixed: (options?.initalColumnFixedMap ?? columnFixedMap)[item.key],
               children: item.children.filter((it) => {
-                return (options?.initalColumnVisibleMap ?? columnVisibleMap)[it.key!] !== false;
+                return isVisible(it) || it.children?.some(isVisible);
               }),
             };
           }
@@ -205,6 +255,54 @@ export const useSettings = ({
         },
       ),
     );
+  };
+
+  const setColumnsSettingsFixedMap = (fixed?: Record<string, FixedType | undefined>) => {
+    if (fixed == null) return;
+
+    setColumnFixedMap(fixed);
+
+    /** --- 将 fixed 的列重新排序，置顶/尾 --- */
+    const removed = {};
+
+    const filter = (treeData_: SettingsDataNode[]) => {
+      return treeData_.filter((it) => {
+        if (it.key in fixed) {
+          removed[it.key] = it;
+          return false;
+        }
+        return true;
+      });
+    };
+
+    setTreeData((prev) =>
+      mapTreeNode(filter(prev), (item) => {
+        if (item.children) {
+          return {
+            ...item,
+            children: filter(item.children),
+          };
+        }
+        return item;
+      }),
+    );
+
+    const pairs = utl.toPairs(fixed);
+    const fixedLeft = pairs.filter(([, fixedType]) => fixedType === 'left' || fixedType === true);
+    const fixedRight = pairs.filter(([, fixedType]) => fixedType === 'right');
+
+    setTreeData((prev) => [
+      ...fixedLeft.map(([key]) => removed[key]),
+      ...prev,
+      ...fixedRight.map(([key]) => removed[key]),
+    ]);
+  };
+
+  /** 应用当前配置数据到表格 */
+  const applyColumnSettings = () => {
+    convertTreeDataToColumns();
+    searchSwitchActionsRef.current?.toggleTableHeaderSearchDom();
+    setVisible(false);
   };
 
   const visualTreeData = useMemo(() => {
@@ -239,6 +337,7 @@ export const useSettings = ({
             draggable={draggable}
             isFixed={!!columnFixedMap[item.key]}
             title={title}
+            onFixedChange={() => setIsUserChangeSettings(true)}
           />
         );
       };
@@ -274,10 +373,11 @@ export const useSettings = ({
         }}
         onDrop={handleDrop}
         onCheck={(checked) => {
+          setIsUserChangeSettings(true);
           /** 未设置 checkStrictly checked 为数组类型 */
           if (Array.isArray(checked)) {
             setColumnVisibleMap((prev) =>
-              checked.reduce(
+              [...checked].reduce(
                 (obj, key) => {
                   return {
                     ...obj,
@@ -296,74 +396,75 @@ export const useSettings = ({
   const coreActionsRef = useActionsRef({
     convertTreeDataToColumns,
     getTreeDataFromColumns,
+    applyColumnSettings,
   });
 
-  const resetBtnDom = useMemo(() => {
-    return (
-      <ImmediateLoadingButton
-        onClick={() => {
-          const initalColumnVisibleMap = {};
-          const initalColumnFixedMap = {};
-          const initalColumnOrders = {};
+  const handleReset = useCallback(() => {
+    const initalColumnVisibleMap = {};
+    const initalColumnFixedMap = {};
+    const initalColumnOrders = {};
 
-          mapTreeNode(staticPureConfigsFieldItems, (item) => {
-            const fieldItemId = getKeyIndexId(
-              item.settings?.key ?? item.settings?.dataIndex ?? item.settings?.title,
-            );
-            initalColumnVisibleMap[fieldItemId] = true;
-            if (item.settings?.fixed) {
-              initalColumnFixedMap[fieldItemId] = true;
-            }
-            const { children } = item;
-            if (children) {
-              initalColumnOrders[fieldItemId] = children.reduce(
-                (dist, next, index) => ({
-                  ...dist,
-                  [getKeyIndexId(
-                    next.settings?.key ?? next.settings?.dataIndex ?? next.settings?.title,
-                  )]: index,
-                }),
-                {},
-              );
-            }
+    /** 先计算第一层，否则数据会被覆盖 */
+    Object.assign(
+      initalColumnOrders,
+      staticPureConfigsFieldItems.reduce(
+        (dist, next, index) => ({
+          ...dist,
+          [[next]
+            ?.map((it) =>
+              getKeyIndexId(it.settings?.key ?? it.settings?.dataIndex ?? it.settings?.title),
+            )
+            .join('.')]: index,
+        }),
+        {},
+      ),
+    );
 
-            return item;
-          });
-
-          initalColumnOrders[COLUMN_SORDERS_OUTERMOST_KEY] = staticPureConfigsFieldItems.reduce(
+    mapTreeNode(staticPureConfigsFieldItems, (item, parent, parents, options) => {
+      const fieldItemId = getKeyIndexId(
+        item.settings?.key ?? item.settings?.dataIndex ?? item.settings?.title,
+      );
+      initalColumnVisibleMap[fieldItemId] = true;
+      if (item.settings?.fixed) {
+        initalColumnFixedMap[fieldItemId] = true;
+      }
+      const { children } = item;
+      if (children) {
+        initalColumnOrders[fieldItemId] = {
+          order: initalColumnOrders[fieldItemId] ?? options?.index,
+          children: children.reduce(
             (dist, next, index) => ({
               ...dist,
-              [[next]
-                ?.map((it) =>
-                  getKeyIndexId(it.settings?.key ?? it.settings?.dataIndex ?? it.settings?.title),
-                )
-                .join('.')]: index,
+              [getKeyIndexId(
+                next.settings?.key ?? next.settings?.dataIndex ?? next.settings?.title,
+              )]: index,
             }),
             {},
-          );
+          ),
+        };
+      }
 
-          const initalTreeData = coreActionsRef.current.getTreeDataFromColumns(
-            staticPureConfigsFieldItems,
-          );
+      return item;
+    });
 
-          setTreeData(initalTreeData);
-          setColumnVisibleMap(initalColumnVisibleMap);
-          setColumnFixedMap(initalColumnFixedMap);
-          setColumnOrders(initalColumnOrders);
-
-          /** 状态更新后执行 */
-          coreActionsRef.current.convertTreeDataToColumns({
-            initalTreeData,
-            initalColumnVisibleMap,
-            initalColumnFixedMap,
-          });
-          searchSwitchActionsRef.current?.toggleTableHeaderSearchDom();
-          setVisible(false);
-        }}
-      >
-        重置
-      </ImmediateLoadingButton>
+    const initalTreeData = coreActionsRef.current.getTreeDataFromColumns(
+      staticPureConfigsFieldItems,
     );
+
+    setTreeData(initalTreeData);
+    setColumnVisibleMap(initalColumnVisibleMap);
+    setColumnFixedMap(initalColumnFixedMap);
+    setColumnOrders(initalColumnOrders);
+
+    /** 状态更新后执行 */
+    coreActionsRef.current.convertTreeDataToColumns({
+      initalTreeData,
+      initalColumnVisibleMap,
+      initalColumnFixedMap,
+    });
+    searchSwitchActionsRef.current?.toggleTableHeaderSearchDom();
+    setVisible(false);
+    setIsUserChangeSettings(false);
   }, [coreActionsRef, searchSwitchActionsRef, staticPureConfigsFieldItems]);
 
   const drawerDom = useMemo(() => {
@@ -372,19 +473,23 @@ export const useSettings = ({
         className={`${clsPrefix}-drawer`}
         placement="right"
         closable={false}
-        onClose={() => setVisible(false)}
+        onClose={() => {
+          setVisible(false);
+        }}
         visible={visible}
         width={350}
         footer={
           <Row justify="center" className={`${clsPrefix}-tree-wrapper-toolbar`}>
-            <Col span={12}>{resetBtnDom}</Col>
+            <Col span={12}>
+              <ImmediateLoadingButton onClick={handleReset}>重置</ImmediateLoadingButton>
+            </Col>
             <Col span={12}>
               <ImmediateLoadingButton
                 type={'primary'}
+                disabled={!isUserChangeSettings}
                 onClick={() => {
-                  coreActionsRef.current.convertTreeDataToColumns();
-                  searchSwitchActionsRef.current?.toggleTableHeaderSearchDom();
-                  setVisible(false);
+                  coreActionsRef.current.applyColumnSettings();
+                  setIsUserChangeSettings(false);
                 }}
               >
                 确认
@@ -401,12 +506,12 @@ export const useSettings = ({
       </Drawer>
     );
   }, [
+    handleReset,
     clsPrefix,
     visible,
-    resetBtnDom,
+    isUserChangeSettings,
     treeDom,
     coreActionsRef,
-    searchSwitchActionsRef,
     tableWrapRef,
   ]);
 
@@ -427,9 +532,17 @@ export const useSettings = ({
       getColumnsSettingsTreeData: () => treeData,
       getColumnsSettingsVisibleMap: () => columnVisibleMap,
       getColumnsSettingsFixedMap: () => columnFixedMap,
-      setColumnsSettingsVisibleMap: (visibles) => visibles && setColumnVisibleMap(visibles),
-      setColumnsSettingsFixedMap: (fixeds) => fixeds && setColumnFixedMap(fixeds),
+      getColumnsSettingsOrders,
+      setColumnsSettingsVisibleMap: (visibles) =>
+        visibles &&
+        setColumnVisibleMap({
+          ...utl.mapValues(columnsStaticPureConfigsIdMaps, () => true),
+          ...visibles,
+        }),
+      setColumnsSettingsFixedMap,
       setColumnsSettingsTreeData: (treeData_) => treeData_ && setTreeData(treeData_),
+      setColumnsSettingsOrders: (orders) => orders && setColumnOrders(orders),
+      applyColumnSettings,
     },
     ref,
   );
@@ -465,7 +578,10 @@ export const useSettings = ({
 
   /** 根据 columnOrders 重新排序 treeData */
   useEffect(() => {
-    setTreeData((prev) => sortTreeWithOrder(prev, columnOrders));
+    setTreeData((prev) => {
+      const next = sortTreeWithOrder(prev, columnOrders);
+      return next;
+    });
   }, [columnOrders]);
 
   if (enable) {

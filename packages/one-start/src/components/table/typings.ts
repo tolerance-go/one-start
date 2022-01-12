@@ -2,6 +2,7 @@ import type { ColumnGroupType, ColumnType } from '@ty/antd/es/table';
 import type { SorterResult } from '@ty/antd/lib/table/interface';
 import type { FixedType } from 'rc-table/lib/interface';
 import type {
+  ColumnOrdersMetaType,
   OSFormType,
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
@@ -54,6 +55,9 @@ export type ColumnsSettingsActions = {
   setColumnsSettingsVisibleMap: (visibles?: Record<string, boolean>) => void;
   setColumnsSettingsFixedMap: (fixeds?: Record<string, FixedType | undefined>) => void;
   setColumnsSettingsTreeData: (data?: SettingsDataNode[]) => void;
+  getColumnsSettingsOrders: () => ColumnOrdersMetaType;
+  setColumnsSettingsOrders: (orders?: ColumnOrdersMetaType) => void;
+  applyColumnSettings: () => void;
 };
 
 export type EventPayloads = {

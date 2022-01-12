@@ -307,6 +307,28 @@ export default () => {
                   percent: () => Random.integer(),
                   text: () => Random.word(),
                 }),
+                columnsVisibleMap: {
+                  money: false,
+                },
+                columnsFixedsMap: {
+                  text: true,
+                  digit: true,
+                },
+                columnsOrders: {
+                  textarea: 1,
+                  text: 2,
+                  money: 3,
+                  percent: 4,
+                  分组1: {
+                    order: 0,
+                    children: {
+                      select: 0,
+                      'date-range': 1,
+                      digit: 2,
+                      date: 3,
+                    },
+                  },
+                },
               },
             };
           },

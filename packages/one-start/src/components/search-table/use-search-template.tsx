@@ -77,7 +77,7 @@ export const useSearchTemplate = ({
               searchValues: sourceTableRef.current?.getSearchFormDataSource(),
               columnsVisibleMap: sourceTableRef.current?.getColumnsSettingsVisibleMap(),
               columnsFixedsMap: sourceTableRef.current?.getColumnsSettingsFixedMap(),
-              columnsTreeData: sourceTableRef.current?.getColumnsSettingsTreeData(),
+              columnsOrders: sourceTableRef.current?.getColumnsSettingsOrders(),
             })
               .then(normalizeRequestOutputs)
               .then(logRequestMessage('视图更新成功'));
@@ -142,38 +142,15 @@ export const useSearchTemplate = ({
                           sourceTableRef.current?.setColumnsSettingsVisibleMap(
                             data?.columnsVisibleMap,
                           );
+
+                          sourceTableRef.current?.setColumnsSettingsOrders(data?.columnsOrders);
+
+                          /** fixedMap 调用必须在最后，因为内部会改变 treeData 顺序 */
                           sourceTableRef.current?.setColumnsSettingsFixedMap(
                             data?.columnsFixedsMap,
                           );
-                          sourceTableRef.current?.setColumnsSettingsTreeData(data?.columnsTreeData);
 
-                          /** TODO: 处理新增和删除的 keys */
-                          // const currentTreeData =
-                          //   sourceTableRef.current?.getColumnsSettingsTreeData();
-                          // const currentTreeList = currentTreeData
-                          //   ? utl.flattenDeep(
-                          //       mapTreeNode(currentTreeData, (item) => {
-                          //         if (item.children) {
-                          //           return item.children;
-                          //         }
-                          //         return item;
-                          //       }) as SettingsDataNode[],
-                          //     )
-                          //   : [];
-                          // const nextTreeData = data?.columnsTreeData;
-                          // const nextTreeList = nextTreeData
-                          //   ? utl.flattenDeep(
-                          //       mapTreeNode(nextTreeData, (item) => {
-                          //         if (item.children) {
-                          //           return item.children;
-                          //         }
-                          //         return item;
-                          //       }) as SettingsDataNode[],
-                          //     )
-                          //   : [];
-                          // const addedList =
-                          //   utl.differenceBy(nextTreeList, currentTreeList, )
-                          //   const removedList = utl.differenceBy()
+                          sourceTableRef.current?.applyColumnSettings();
 
                           setCurrentTplId(rowId);
                           if (templateNameKey) {
@@ -294,7 +271,7 @@ export const useSearchTemplate = ({
                         searchDataSource: sourceTableRef.current?.getSearchFormDataSource(),
                         columnsVisibleMap: sourceTableRef.current?.getColumnsSettingsVisibleMap(),
                         columnsFixedsMap: sourceTableRef.current?.getColumnsSettingsFixedMap(),
-                        columnsTreeData: sourceTableRef.current?.getColumnsSettingsTreeData(),
+                        columnsOrders: sourceTableRef.current?.getColumnsSettingsOrders(),
                       })
                         .then(normalizeRequestOutputs)
                         .then(logRequestMessage('创建视图成功'));

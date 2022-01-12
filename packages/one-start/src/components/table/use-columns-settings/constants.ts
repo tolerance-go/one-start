@@ -1,2 +1,0 @@
-/** 列排序最外层的 key */
-export const COLUMN_SORDERS_OUTERMOST_KEY = 'COLUMN_SORDERS_OUTERMOST_KEY';
