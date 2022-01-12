@@ -18,6 +18,7 @@ export const TreeNodeActions = ({
   clsPrefix,
   columnFixedMap,
   isFixed,
+  onFixedChange,
 }: {
   draggable: boolean;
   fixedable: boolean;
@@ -28,6 +29,7 @@ export const TreeNodeActions = ({
   clsPrefix: string;
   columnFixedMap: Record<string, FixedType | undefined>;
   isFixed: boolean;
+  onFixedChange?: () => void;
 }) => {
   const fixedIconCommonStyle = { fontSize: 14, color: '#1890ff' };
   const [mouseHovering, setMouseHovering] = useState(false);
@@ -52,7 +54,10 @@ export const TreeNodeActions = ({
         <Space size={gutter} align="center">
           {mouseHovering && fixedable && (
             <FixableActions
-              onFixedChange={() => setMouseHovering(false)}
+              onFixedChange={() => {
+                onFixedChange?.();
+                setMouseHovering(false);
+              }}
               treeNode={treeNode}
               setColumnFixedMap={setColumnFixedMap}
               setTreeData={setTreeData}

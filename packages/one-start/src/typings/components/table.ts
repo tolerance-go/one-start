@@ -40,6 +40,20 @@ import type {
 } from './form';
 import type { OSResMessage } from './message';
 
+export type ColumnOrdersItemMetaType = {
+  order: number;
+  children?: ColumnOrdersMetaType;
+};
+
+export type ColumnOrdersMetaType = Record<
+  string,
+  | {
+      order: number;
+      children?: ColumnOrdersMetaType;
+    }
+  | number
+>;
+
 export type TableCoreActions = {
   setTableFormData: (dataSource_?: RecordType[]) => void;
   setVisualDataSource: (dataSource_?: RecordType[]) => void;
@@ -98,6 +112,9 @@ export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = 
   setColumnsSettingsVisibleMap: (visibles?: Record<string, boolean>) => void;
   setColumnsSettingsFixedMap: (fixeds?: Record<string, FixedType | undefined>) => void;
   setColumnsSettingsTreeData: (data?: SettingsDataNode[]) => void;
+  getColumnsSettingsOrders: () => ColumnOrdersMetaType | undefined;
+  setColumnsSettingsOrders: (orders?: ColumnOrdersMetaType) => void;
+  applyColumnSettings: () => void;
   /** TODO: 修改此处类型 */
   getCurrentSearchFormFieldItems: () => Required<_OSFormType<any, any>>['settings']['fieldItems'];
   core: TableCoreActions;
@@ -771,7 +788,7 @@ export type _OSSearchTableSelfType<
         searchValues?: RecordType;
         columnsVisibleMap?: Record<string, boolean>;
         columnsFixedsMap?: Record<string, FixedType | undefined>;
-        columnsTreeData?: SettingsDataNode[];
+        columnsOrders?: ColumnOrdersMetaType;
       },
       {
         message?: OSResMessage;
@@ -787,7 +804,7 @@ export type _OSSearchTableSelfType<
         message?: OSResMessage;
         columnsVisibleMap?: Record<string, boolean>;
         columnsFixedsMap?: Record<string, FixedType | undefined>;
-        columnsTreeData?: SettingsDataNode[];
+        columnsOrders?: ColumnOrdersMetaType;
       }
     >;
     /** 请求创建搜索模板 */
@@ -797,7 +814,7 @@ export type _OSSearchTableSelfType<
         searchDataSource?: RecordType;
         columnsVisibleMap?: Record<string, boolean>;
         columnsFixedsMap?: Record<string, FixedType | undefined>;
-        columnsTreeData?: SettingsDataNode[];
+        columnsOrders?: ColumnOrdersMetaType;
       },
       {
         message?: OSResMessage;

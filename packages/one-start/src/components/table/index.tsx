@@ -22,11 +22,8 @@ import React, {
 } from 'react';
 import store from 'store2';
 import UAParser from 'ua-parser-js';
-import { useActionsRef } from '../hooks/use-actions-ref';
-import { ExtraValueTypesContext } from '../providers/extra-value-types';
-import { OSReferencesCollectorDispatchContext } from '../providers/references';
-import { TableWrapperContext } from '../providers/table-context';
 import type {
+  ColumnOrdersMetaType,
   OSTableAPI,
   OSTableFormFieldItemExtra,
   OSTableFormFieldItemSettingsFnOption,
@@ -38,6 +35,10 @@ import type {
   SettingsDataNode,
   TableCoreActions,
 } from '../../typings';
+import { useActionsRef } from '../hooks/use-actions-ref';
+import { ExtraValueTypesContext } from '../providers/extra-value-types';
+import { OSReferencesCollectorDispatchContext } from '../providers/references';
+import { TableWrapperContext } from '../providers/table-context';
 import { parseTableValue } from '../utils/parse-table-value';
 import { mapTreeNode } from '../utils/tree-utils';
 import { useClsPrefix } from '../utils/use-cls-prefix';
@@ -56,6 +57,7 @@ import type {
   SelectionsActions,
   TreeSpreadActions,
 } from './typings';
+import { useSettings } from './use-columns-settings';
 import { useHighlight } from './use-highlight';
 import { useHighLightHeader } from './use-highlight-header';
 import { useItems } from './use-items';
@@ -66,7 +68,6 @@ import { useSearchForm } from './use-search-form';
 import { useSearchSwitch } from './use-search-switch';
 import { useSearchTimestamp } from './use-search-timestamp';
 import { useSelection } from './use-selection';
-import { useSettings } from './use-columns-settings';
 import { useSnapshotOfCurrentSearchParameters } from './use-snapshot-of-current-search-parameters';
 import { useTableTopPanel } from './use-table-top-panel';
 import { useTreeSpread } from './use-tree-spread';
@@ -426,6 +427,10 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
 
   const tableActionsRef = useActionsRef<OSTableAPI>({
     clearPrevUserCellInputs,
+    getColumnsSettingsOrders: () => columnSettingsActionsRef.current.getColumnsSettingsOrders?.(),
+    setColumnsSettingsOrders: (orders?: ColumnOrdersMetaType) =>
+      columnSettingsActionsRef.current.setColumnsSettingsOrders?.(orders),
+    applyColumnSettings: () => columnSettingsActionsRef.current.applyColumnSettings?.(),
     setColumnsSettingsTreeData: (data?: SettingsDataNode[]) =>
       columnSettingsActionsRef.current.setColumnsSettingsTreeData?.(data),
     getColumnsSettingsFixedMap: () =>

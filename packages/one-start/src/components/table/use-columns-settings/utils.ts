@@ -1,4 +1,5 @@
-import { COLUMN_SORDERS_OUTERMOST_KEY } from './constants';
+import utl from 'lodash';
+import type { ColumnOrdersItemMetaType, ColumnOrdersMetaType } from '../../../typings';
 
 /**
  * 找到树结构中 key 一致的节点，返回结构如下
@@ -36,6 +37,19 @@ export const findTreeItem = <T extends { children?: any[]; key?: React.Key }>(
   return null;
 };
 
+const parseOrder = (orderMeta?: ColumnOrdersItemMetaType | number): ColumnOrdersItemMetaType => {
+  if (orderMeta == null) {
+    return {
+      order: -1,
+    };
+  }
+  return typeof orderMeta === 'number'
+    ? {
+        order: orderMeta,
+      }
+    : orderMeta;
+};
+
 export const sortTreeWithOrder = <
   T extends {
     children?: T;
@@ -43,12 +57,19 @@ export const sortTreeWithOrder = <
   }[],
 >(
   treeData: T,
-  columnOrders: Record<string, Record<string, number>>,
-  pathKey: string[] = [COLUMN_SORDERS_OUTERMOST_KEY],
+  columnOrders?: ColumnOrdersMetaType,
 ): T => {
-  const orders = columnOrders[pathKey.join('.')];
-  if (orders) {
-    const next = treeData.sort((l, r) => orders[l.key] ?? 0 - orders[r.key] ?? 0);
+  if (columnOrders == null || Object.keys(columnOrders).length === 0) {
+    return treeData;
+  }
+  const orders = utl.mapValues(columnOrders, (val) => {
+    if (typeof val === 'number') {
+      return val;
+    }
+    return val.order;
+  });
+  if (!utl.isEmpty(orders)) {
+    const next = [...treeData].sort((l, r) => (orders[l.key] ?? -1) - (orders[r.key] ?? -1));
 
     return next.map((item) =>
       item.children
@@ -56,8 +77,7 @@ export const sortTreeWithOrder = <
             ...item,
             children: sortTreeWithOrder(
               item.children,
-              columnOrders,
-              pathKey.concat(item.key.toString()),
+              parseOrder(columnOrders[item.key.toString()]).children,
             ),
           }
         : item,
