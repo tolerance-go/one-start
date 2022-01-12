@@ -367,8 +367,8 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
 
   const requestDataSourceActionsRef = useRef<RequestDataSourceActions>(null);
 
-  const reload = () => {
-    requestDataSourceActionsRef.current?.requestDataSource({});
+  const reload = (options?: { current?: number }) => {
+    requestDataSourceActionsRef.current?.requestDataSource({ ...options });
   };
 
   const getChangedValuesMeta = (changedValues?: RecordType) => {

@@ -22,6 +22,12 @@ group:
 
 <code src="../demos/source-table/removeable.tsx" />
 
+#### 删除尾行后自动翻页
+
+<code src="../demos/source-table/remove-check.tsx" />
+
+<!-- remove-check -->
+
 ### 双栏模式展示
 
 <code src="../demos/source-table/panelable.tsx" />
