@@ -61,6 +61,7 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
     rowId: string;
     actions: OSTableAPI;
   }) => {
+    const { actions } = options;
     if (!requests?.requestRemoveRow) return false;
 
     const { error, data } = await requests.requestRemoveRow(options).then(normalizeRequestOutputs);
@@ -69,7 +70,18 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
       globalRefsRef.current?.dialogs?.messages?.globalMessage?.push({
         title: data?.message ?? '删除行数据成功',
       });
-      options.actions.reload();
+
+      /** 返回无数据并且页码大于1 跳转至前一页请求 */
+
+      const current = actions.getPagination()?.current ?? 0;
+
+      if (actions.getOriginDataSource()?.length === 1 && current > 1) {
+        actions.reload({
+          current: current - 1,
+        });
+      } else {
+        actions.reload();
+      }
     }
 
     return error;
@@ -277,11 +289,6 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
           type: defaultActiveFirstRow.type ?? 'edit',
         };
         setActiveMeta(firstRowMeta);
-      }
-      /** 返回无数据并且页码大于1 跳转至前一页请求 */
-      if (!result?.data?.page?.length && params.current > 1) {
-        params.actions.reload({ current: params.current - 1 });
-        return result;
       }
       return result;
     };

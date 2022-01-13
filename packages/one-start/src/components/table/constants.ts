@@ -12,7 +12,8 @@ export const verticalRowCellWithKeyClsPrefix = 'vertical-cell-with-key';
 
 export const headerCellWithKeyClsPrefix = 'header-cell-with-key';
 
-export const defaultPageSize = 20;
+export const DEFAULT_PAGE_SIZE = 20;
+export const DEFAULT_CURRENT = 1;
 
 /** 搜索表单是否展开的本地存储 key */
 export const searchFormVisibleLocalField = 'LOCAL_SEARCH_FORM_VISIBLE';

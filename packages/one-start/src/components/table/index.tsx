@@ -1,5 +1,5 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import type { FormInstance } from '@ty/antd';
+import type { FormInstance, TableProps } from '@ty/antd';
 import { Form, Table } from '@ty/antd';
 import type { FormProps } from '@ty/antd/es/form/Form';
 import type { SorterResult } from '@ty/antd/es/table/interface';
@@ -44,7 +44,7 @@ import { mapTreeNode } from '../utils/tree-utils';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { ResizeableHeaderCell } from './components/resizeable-header-cell';
 import {
-  defaultPageSize,
+  DEFAULT_PAGE_SIZE,
   DEFAULT_TABLE_HEIGHT,
   searchHeadFormFieldRowId,
   searchHeadFormFieldRowIdOverlay,
@@ -181,12 +181,43 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     const fieldsError = tableWrapFormRef.current?.getFieldsError() ?? [];
     return fieldsError;
   };
-  const currentDefaultPageSize = useMemo(() => {
+
+  const getRowClassName = (
+    row: { level?: number; [key: string]: any },
+    index?: number,
+    options?: {
+      suffix?: string;
+    },
+  ) => {
+    const withSuffix = (item: string) => {
+      return [item, options?.suffix].filter(Boolean).join('-');
+    };
+    if (index == null) return undefined;
+    const base = withSuffix(`${clsPrefix}-row`);
+    if (row.level != null && row.level > 0)
+      return cls(base, withSuffix(`${clsPrefix}-blue-level-${row.level}`));
+    return cls(
+      base,
+      index % 2 ? withSuffix(`${clsPrefix}-row-odd`) : withSuffix(`${clsPrefix}-row-even`),
+    );
+  };
+
+  /**
+   * 用户配置的正常化 pagination
+   * 这个配置内容完全为用户传输进来的样子，单纯做了格式规范
+   */
+  const normalizedPaginationParams = (() => {
     if (typeof pagination === 'object') {
-      return pagination.defaultPageSize ?? defaultPageSize;
+      return {
+        enable: true,
+        configs: pagination,
+      };
     }
-    return defaultPageSize;
-  }, [pagination]);
+    return {
+      enable: false,
+      configs: {},
+    };
+  })();
 
   const convertValuesToDataSource = useCallback(
     (values: RecordType) => {
@@ -427,6 +458,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
 
   const tableActionsRef = useActionsRef<OSTableAPI>({
     clearPrevUserCellInputs,
+    getPagination: () => requestDataSourceActionsRef.current?.getPagination(),
     getColumnsSettingsOrders: () => columnSettingsActionsRef.current.getColumnsSettingsOrders?.(),
     setColumnsSettingsOrders: (orders?: ColumnOrdersMetaType) =>
       columnSettingsActionsRef.current.setColumnsSettingsOrders?.(orders),
@@ -573,7 +605,8 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     autoRequestWhenMounted,
     searchFormRef,
     treeSpreadActionsRef,
-    defaultPageSize: currentDefaultPageSize,
+    defaultPageSize: normalizedPaginationParams.configs.defaultPageSize,
+    defaultCurrent: normalizedPaginationParams.configs.defaultCurrent,
   });
 
   const { dom: searchSwitchDom, actionsRef: searchSwitchActionsRef } = useSearchSwitch({
@@ -632,26 +665,6 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     }
   });
 
-  const getRowClassName = (
-    row: { level?: number; [key: string]: any },
-    index?: number,
-    options?: {
-      suffix?: string;
-    },
-  ) => {
-    const withSuffix = (item: string) => {
-      return [item, options?.suffix].filter(Boolean).join('-');
-    };
-    if (index == null) return undefined;
-    const base = withSuffix(`${clsPrefix}-row`);
-    if (row.level != null && row.level > 0)
-      return cls(base, withSuffix(`${clsPrefix}-blue-level-${row.level}`));
-    return cls(
-      base,
-      index % 2 ? withSuffix(`${clsPrefix}-row-odd`) : withSuffix(`${clsPrefix}-row-even`),
-    );
-  };
-
   const {
     renderVirtualGrid,
     // tableHeight: _tableHeight,
@@ -708,7 +721,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     highlightTag,
   });
 
-  const normalizedPagination = usePagination({
+  const finalPagination = usePagination({
     enableGridTree: settings?.enableGridTree,
     current,
     pagination,
@@ -735,6 +748,52 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     ? utl.debounce(handleValueChange, changeDebounceTimestamp)
     : handleValueChange;
 
+  const handleTableChange = useCallback(
+    (pagination_, filters, sorter) => {
+      const isFePagination = () => {
+        const originDataSource = tableActionsRef.current.getOriginDataSource();
+        const visualDataSource_ = tableActionsRef.current.getVisualDataSource();
+
+        const viewData = visualDataSource_ ?? originDataSource;
+
+        return totalCount != null && viewData != null && totalCount === viewData.length;
+      };
+
+      if (isFePagination()) {
+        requestDataSourceActionsRef.current?.setCurrent(pagination_.current);
+        return;
+      }
+
+      requestDataSourceActionsRef.current?.requestDataSource({
+        current: pagination_.current ?? 1,
+        pageSize: pagination_.pageSize ?? DEFAULT_PAGE_SIZE,
+        order: (sorter as SorterResult<RecordType>).order,
+        orderBy: (sorter as SorterResult<RecordType>).field,
+      });
+    },
+    [tableActionsRef, totalCount],
+  );
+
+  const finalRowSelection: TableProps<RecordType>['rowSelection'] = useMemo(() => {
+    return selectionDom
+      ? {
+          type: 'checkbox',
+          onChange: (selectedRowKeys_: React.Key[], selectedRows_: RecordType[]) => {
+            setSelectedRowKeys(selectedRowKeys_);
+            setSelectedRows(selectedRows_);
+          },
+          selectedRowKeys,
+          checkStrictly: rowSelection?.checkStrictly,
+        }
+      : undefined;
+  }, [
+    rowSelection?.checkStrictly,
+    selectedRowKeys,
+    selectionDom,
+    setSelectedRowKeys,
+    setSelectedRows,
+  ]);
+
   return (
     <TableWrapperContext.Provider value={tableWrapRef}>
       <div ref={tableWrapRef}>
@@ -744,7 +803,6 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
           className={cls(clsPrefix, props.className)}
           ref={tableWrapFormRef}
           onValuesChange={(changedValues, values) => {
-            console.log('latestUserInputValueRef.current', changedValues, values);
             latestUserInputValueRef.current = changedValues;
 
             handleValueChangeWithDebounce(changedValues, values);
@@ -771,44 +829,11 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
                   indicator: <LoadingOutlined />,
                   spinning: loading,
                 }}
-                rowSelection={
-                  selectionDom
-                    ? {
-                        type: 'checkbox',
-                        onChange: (selectedRowKeys_: React.Key[], selectedRows_: RecordType[]) => {
-                          setSelectedRowKeys(selectedRowKeys_);
-                          setSelectedRows(selectedRows_);
-                        },
-                        selectedRowKeys,
-                        checkStrictly: rowSelection?.checkStrictly,
-                      }
-                    : undefined
-                }
+                rowSelection={finalRowSelection}
                 rowKey={rowKey}
                 columns={mergedColumns}
                 dataSource={visualDataSource ?? dataSource}
-                onChange={(pagination_, filters, sorter) => {
-                  const isFePagination = () => {
-                    const originDataSource = tableActionsRef.current.getOriginDataSource();
-                    const visualDataSource_ = tableActionsRef.current.getVisualDataSource();
-
-                    const viewData = visualDataSource_ ?? originDataSource;
-
-                    return totalCount != null && viewData != null && totalCount === viewData.length;
-                  };
-
-                  if (isFePagination()) {
-                    requestDataSourceActionsRef.current?.setCurrent(pagination_.current);
-                    return;
-                  }
-
-                  requestDataSourceActionsRef.current?.requestDataSource({
-                    current: pagination_.current ?? 1,
-                    pageSize: pagination_.pageSize ?? defaultPageSize,
-                    order: (sorter as SorterResult<RecordType>).order,
-                    orderBy: (sorter as SorterResult<RecordType>).field,
-                  });
-                }}
+                onChange={handleTableChange}
                 onRow={(row, index) => {
                   return {
                     className: getRowClassName(row, index),
@@ -820,7 +845,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
                     setExpandedRowKeys(_expandedRowKeys);
                   },
                 }}
-                pagination={normalizedPagination}
+                pagination={finalPagination}
                 scroll={{
                   x: totalTableWidth,
                   y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,

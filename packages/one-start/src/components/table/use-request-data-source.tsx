@@ -21,6 +21,7 @@ import moment from 'moment';
 import { unstateHistory } from '../utils/unstate-history';
 import type { RequestDataSourceActions, TreeSpreadActions } from './typings';
 import type { OSFormAPI } from '../../typings';
+import { DEFAULT_CURRENT, DEFAULT_PAGE_SIZE } from './constants';
 
 const mapLevel = (
   rowData?: Record<string, any>[],
@@ -52,14 +53,16 @@ export const useRequestDataSource = ({
   searchFormRef,
   treeSpreadActionsRef,
   loopRequest,
-  defaultPageSize,
+  defaultPageSize = DEFAULT_PAGE_SIZE,
+  defaultCurrent = DEFAULT_CURRENT,
 }: {
+  defaultCurrent?: number;
   setFieldItemsState: React.Dispatch<
     React.SetStateAction<Required<OSTableType>['settings']['fieldItems']>
   >;
   treeSpreadActionsRef: React.RefObject<TreeSpreadActions>;
   searchFormRef: React.MutableRefObject<OSFormAPI | null>;
-  defaultPageSize: number;
+  defaultPageSize?: number;
   loopRequest?: number;
   tableKey?: string;
   autoRequestWhenMounted?: boolean;
@@ -82,7 +85,7 @@ export const useRequestDataSource = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState<number>();
-  const [current, setCurrent] = useState<number>();
+  const [current, setCurrent] = useState<number | undefined>(defaultCurrent);
 
   /**
    * {
@@ -194,28 +197,9 @@ export const useRequestDataSource = ({
       if (error) return;
 
       let renderPages = data?.page;
+      renderPages = mapLevel(renderPages);
 
       fieldOptionsMapDataIndexRef.current = utl.fromPairs(dataIndexAndSelectOptions);
-
-      // /** 请求所有枚举，设置 dataSource 显示 */
-      // renderPages = renderPages?.map((item: [string, RecordType]) =>
-      //   Object.keys(fieldOptionsMapDataIndexRef.current!).reduce((dist, key) => {
-      //     return {
-      //       ...dist,
-      //       /**
-      //        * TODO: 通过组件传下去
-      //        */
-      //       [key]:
-      //         dist[key] != null
-      //           ? (Array.isArray(dist[key]) ? dist[key] : [dist[key]])
-      //               .map((val: string) => fieldOptionsMapDataIndexRef.current![key][val])
-      //               .join(', ')
-      //           : undefined,
-      //     };
-      //   }, item),
-      // );
-
-      renderPages = mapLevel(renderPages);
 
       setFieldItemsState(data?.fieldItems);
       setTotalCount(data?.total);
@@ -269,6 +253,7 @@ export const useRequestDataSource = ({
       requestDataSource: requestTableDataSource,
       requestVisualDataSource: requestVisualDataSource_,
       getFieldOptionsMapDataIndex: () => fieldOptionsMapDataIndexRef.current,
+      getPagination: () => ({ current, total: totalCount }),
     },
     requestDataSourceActionsRef,
   );
@@ -276,7 +261,7 @@ export const useRequestDataSource = ({
   useEffect(() => {
     if (autoRequestWhenMounted) {
       requestTableDataSource({
-        current: 1,
+        current: defaultCurrent,
         pageSize: defaultPageSize,
       });
     }

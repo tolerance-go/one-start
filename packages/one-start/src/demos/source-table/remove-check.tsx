@@ -1,14 +1,53 @@
+import React from 'react';
 import { OSProviderWrapper, OSSourceTable } from '@ty-one-start/one-start';
 import delay from 'delay';
 import Mock from 'mockjs';
-import React, { useState } from 'react';
+
+const apis = {
+  allData: Mock.mock({
+    'page|21': [
+      {
+        id: '@id',
+        text: () => Mock.Random.word(),
+        textarea: () => Mock.Random.paragraph(),
+        digit: () => Mock.Random.integer(),
+        date: () => Mock.Random.date(),
+        'date-range': () => [Mock.Random.date(), Mock.Random.date()],
+        money: '@integer',
+        percent: '@integer',
+        money2: '@integer',
+        percent2: '@integer',
+        select: () => 'a',
+        select2: () => 'a',
+      },
+    ],
+  }).page,
+  deleteItem(id: string) {
+    this.allData = this.allData.filter((item: { id: string }) => item.id !== id);
+  },
+  search(props: { current: number; pageSize: number }) {
+    const currData = [...this.allData].slice(
+      (props.current - 1) * props.pageSize,
+      (props.current - 1) * props.pageSize + props.pageSize,
+    );
+    return {
+      error: false,
+      data: {
+        page: currData,
+        total: this.allData.length,
+      },
+    };
+  },
+};
 
 export default () => {
-  const [times, setTimes] = useState(0);
   return (
     <OSProviderWrapper>
       <OSSourceTable
         settings={{
+          pagination: {
+            defaultCurrent: 2,
+          },
           rowRemoveable: {},
           fieldItems: [
             {
@@ -64,43 +103,11 @@ export default () => {
         }}
         requests={{
           requestDataSource: async (options) => {
-            console.log(options);
             await delay(1000);
-            if (times > 0) {
-              setTimes(0);
-              return {
-                data: {
-                  page: [],
-                },
-                error: false,
-              };
-            }
-            return Mock.mock({
-              error: false,
-              data: {
-                'page|20': [
-                  {
-                    id: '@id',
-                    text: () => Mock.Random.word(),
-                    textarea: () => Mock.Random.paragraph(),
-                    digit: () => Mock.Random.integer(),
-                    date: () => Mock.Random.date(),
-                    'date-range': () => [Mock.Random.date(), Mock.Random.date()],
-                    money: '@integer',
-                    percent: '@integer',
-                    money2: '@integer',
-                    percent2: '@integer',
-                    select: () => 'a',
-                    select2: () => 'a',
-                  },
-                ],
-                total: () => Mock.Random.integer(50, 100),
-              },
-            });
+            return { ...apis.search(options) };
           },
-          requestRemoveRow: async (options) => {
-            console.log(options);
-            setTimes(1);
+          requestRemoveRow: async ({ rowData }) => {
+            apis.deleteItem(rowData.id);
             await delay(1000);
             return {
               error: false,

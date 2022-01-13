@@ -1,3 +1,4 @@
+import type { PaginationProps } from '@ty/antd';
 import type { ColumnGroupType, ColumnType } from '@ty/antd/es/table';
 import type { FixedType } from 'rc-table/lib/interface';
 import type {
@@ -70,4 +71,5 @@ export type RequestDataSourceActions = {
   requestDataSource: (options: RequestOptions) => Promise<void>;
   requestVisualDataSource: () => Promise<void>;
   getFieldOptionsMapDataIndex: () => Record<string, Record<string, string>> | undefined;
+  getPagination: () => Pick<PaginationProps, 'current' | 'total'>;
 } | null;
