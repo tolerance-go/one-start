@@ -1,24 +1,52 @@
-import {
-  OSProviderWrapper,
-  OSTable,
-  OSTableValueType,
-  parseTableValue,
-} from '@ty-one-start/one-start';
+import type { OSTableValueType, RecordType, OSTableChangeValueType } from '@ty-one-start/one-start';
+import { OSForm, OSProviderWrapper, OSTable, parseTableValue } from '@ty-one-start/one-start';
+import { Divider } from '@ty/antd';
 import delay from 'delay';
 import Mock from 'mockjs';
 import React, { useState } from 'react';
-import {} from '../../components/utils/parse-table-value';
 
 export default () => {
   const [value, setValue] = useState<OSTableValueType>();
+  const [event, setEvent] = useState<OSTableChangeValueType>();
+  const [configs, setConfigs] = useState<undefined | RecordType>({
+    changeDebounceTimestamp: 450,
+  });
 
   return (
     <OSProviderWrapper>
-      {JSON.stringify(value)}
+      <OSForm
+        value={configs}
+        onChange={setConfigs}
+        settings={{
+          fieldItems: [
+            {
+              type: 'switch',
+              settings: {
+                title: 'changedValuehasMeta',
+                dataIndex: 'changedValuehasMeta',
+              },
+            },
+            {
+              type: 'digit',
+              settings: {
+                title: 'changeDebounceTimestamp',
+                dataIndex: 'changeDebounceTimestamp',
+              },
+            },
+          ],
+        }}
+      />
+      <Divider />
+      <pre>{JSON.stringify(event, null, 2)}</pre>
       <OSTable
-        onChange={(e) => setValue(parseTableValue(e))}
+        onChange={(e) => {
+          setEvent(e);
+          setValue(parseTableValue(e));
+        }}
         value={value}
         settings={{
+          changeDebounceTimestamp: configs?.changeDebounceTimestamp,
+          changedValueHasMeta: configs?.changedValuehasMeta,
           editableRowKeys: ['1'],
           fieldItems: [
             {
@@ -94,15 +122,6 @@ export default () => {
                   },
                   {
                     id: '2',
-                    ...Mock.mock({
-                      money: '@integer',
-                      percent: '@integer',
-                      money2: '@integer',
-                      percent2: '@integer',
-                    }),
-                  },
-                  {
-                    id: '3',
                     ...Mock.mock({
                       money: '@integer',
                       percent: '@integer',

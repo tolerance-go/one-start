@@ -55,6 +55,10 @@ group:
 
 editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单元格是否可以编辑
 
+当设置了 `changedValueHasMeta: true`，onChange 的 event 会携带更多编辑相关信息，比如当前编辑的行和列
+
+注意：当 `changeDebounceTimestamp > 0` 的时候，用户输入可能触发 onChange 多个单元格变化
+
 <code src="../demos/table/edit.tsx" />
 
 ### 列宽调整

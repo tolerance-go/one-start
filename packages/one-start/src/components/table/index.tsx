@@ -728,25 +728,34 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     totalCount,
   });
 
-  const handleValueChange: FormProps['onValuesChange'] = (changedValues, values) => {
+  const changedvaluesCacheRef = useRef<RecordType>();
+
+  const handleValueChangeCore = (values: RecordType) => {
+    const data = convertValuesToDataSource(values);
     if (props.settings?.changedValueHasMeta) {
       onChange?.({
-        target: convertValuesToDataSource(values),
+        target: data,
         origin: dataSource,
         changedMeta: {
           type: 'modify',
-          data: getChangedValuesMeta(changedValues),
+          data: getChangedValuesMeta(changedvaluesCacheRef.current),
         },
       });
-      return;
+    } else {
+      onChange?.(data);
     }
-    const data = convertValuesToDataSource(values);
-    onChange?.(data);
+    changedvaluesCacheRef.current = undefined;
   };
 
-  const handleValueChangeWithDebounce: FormProps['onValuesChange'] = changeDebounceTimestamp
-    ? utl.debounce(handleValueChange, changeDebounceTimestamp)
-    : handleValueChange;
+  const handleValueChangeCoreWithDebounce = changeDebounceTimestamp
+    ? utl.debounce(handleValueChangeCore, changeDebounceTimestamp)
+    : handleValueChangeCore;
+
+  const handleValueChange: FormProps['onValuesChange'] = (changedValues, values) => {
+    changedvaluesCacheRef.current = utl.merge(changedvaluesCacheRef.current, changedValues);
+
+    handleValueChangeCoreWithDebounce(values);
+  };
 
   const handleTableChange = useCallback(
     (pagination_, filters, sorter) => {
@@ -805,7 +814,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
           onValuesChange={(changedValues, values) => {
             latestUserInputValueRef.current = changedValues;
 
-            handleValueChangeWithDebounce(changedValues, values);
+            handleValueChange(changedValues, values);
           }}
         >
           <div
