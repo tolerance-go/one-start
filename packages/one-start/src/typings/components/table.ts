@@ -89,7 +89,9 @@ export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = 
   clearPrevUserCellInputs: () => void;
   getSearchFormDataSource: () => RecordType | undefined;
   normalizeDataSource: (dataSource_?: RecordType[]) => RecordType[] | undefined;
+  getPagination: () => Pick<PaginationProps, 'current' | 'total'> | undefined;
   getDataSource: () => OSTableValueType;
+  /** 相较于 getDataSource 会更快，比如如果只是想判断 length 建议用这个  */
   getOriginDataSource: () => OSTableValueType;
   getVisualDataSource: () => OSTableValueType;
   reload: (options?: { current?: number }) => void;
