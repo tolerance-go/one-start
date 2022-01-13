@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.6.0...@ty-one-start/one-start@0.7.0) (2022-01-13)
+
+
+### Bug Fixes
+
+* 表格搜索表单布局缺少对 singleSearchForm 的判断 ([0bfb656](https://10.1.2.7/visual-fe/swap-modules/commits/0bfb65686e48ec4b9e9355a27e36f3a59373b07e))
+* os-grid 视图切换时，columns 应该是合并，而不是覆盖 ([db4af61](https://10.1.2.7/visual-fe/swap-modules/commits/db4af6192e609133efa64de62041ecff4d8771f3))
+
+
+### Features
+
+* os-form 支持 history 数据对比查看 ([d51bc6d](https://10.1.2.7/visual-fe/swap-modules/commits/d51bc6d43d57570a7d446090de7a77f23593942e))
+
+
+
+
+
 # [0.6.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.5.2...@ty-one-start/one-start@0.6.0) (2022-01-07)
 
 
