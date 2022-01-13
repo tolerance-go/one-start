@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.7.0...@ty-one-start/one-start@0.8.0) (2022-01-13)
+
+
+### Bug Fixes
+
+* os-table 一次 debounce onChange 中可能触发多个字段修改 ([f299717](https://10.1.2.7/visual-fe/swap-modules/commits/f2997170a9c40bba76b708100c920c0499552bea))
+
+
+### Features
+
+* fieldItem title不设置时 lableCol 默认为 0 并且不展示冒号 ([eec7bed](https://10.1.2.7/visual-fe/swap-modules/commits/eec7bed63d1a291b0da835ba3c83251a155fcaa7))
+
+
+
+
+
 # [0.7.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.6.0...@ty-one-start/one-start@0.7.0) (2022-01-13)
 
 
