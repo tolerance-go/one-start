@@ -99,6 +99,44 @@ export default () => {
                 },
               ],
             },
+            {
+              type: 'editable-table',
+              settings: {
+                labelCol: {
+                  span: 0,
+                },
+                wrapperCol: {
+                  span: 24,
+                },
+                fieldItems: [
+                  {
+                    type: 'text',
+                    settings: {
+                      dataIndex: 'text',
+                      title: 'text',
+                      editable: true,
+                      autoFocus: true,
+                    },
+                  },
+                  {
+                    type: 'date',
+                    settings: {
+                      title: 'date',
+                      dataIndex: 'date',
+                      editable: true,
+                    },
+                  },
+                  {
+                    type: 'digit',
+                    settings: {
+                      title: 'digit',
+                      dataIndex: 'digit',
+                      editable: true,
+                    },
+                  },
+                ],
+              },
+            },
           ],
         }}
       ></OSForm>

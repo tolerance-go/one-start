@@ -15,6 +15,8 @@ group:
 
 ### 基础使用
 
+1. 展示编辑表格字段时，设置 `fieldItem.title` 为空，则不会出现 label，同时设置 `labelCol: { span: 0, }`，`wrapperCol: { span: 24, }` 可以完整一行展示
+
 <code src="../demos/form/simple.tsx" />
 
 ### 分组

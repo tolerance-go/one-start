@@ -311,7 +311,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     return null;
   }
 
-  const label = (
+  const label = title ? (
     <>
       {title}
       {historyTimeLineEl}
@@ -340,7 +340,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
         </Tooltip>
       ) : null}
     </>
-  );
+  ) : undefined;
 
   /** React.ReactNode 类型的 title 不会自动出现在 rule 提示中，提供一个特殊的 title */
   const messageVariables = title
