@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./es",
+    "declaration": true,
+    "target": "ES2015",
+    "module": "CommonJS",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "baseUrl": "."
+  },
+  "include": ["./src/**/*.*"]
+}
