@@ -1,0 +1,59 @@
+{
+  "name": "@ty-one-start/scripts",
+  "version": "0.0.0",
+  "description": "@ty-one-start/scripts",
+  "module": "es/index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "src",
+    "dist",
+    "es",
+    "bin"
+  ],
+  "bin": {
+    "one-scripts": "./bin/prompts.js",
+    "one-scripts:yargs": "./bin/yargs.js"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "build:watch": "yarn clean && tsc --build --watch ./tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@10.1.2.7:visual-fe/swap-modules.git"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "keywords": [
+    "antd",
+    "admin",
+    "ant-design",
+    "pro-code",
+    "one-start"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "umi": "3.x",
+    "@ty/antd": "4.x",
+    "react": "16.x",
+    "lodash": "4.x",
+    "prettier": "2.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "prompts": "^2.4.2",
+    "yargs": "^17.3.1"
+  },
+  "engines": {
+    "node": ">=14.x"
+  }
+}
