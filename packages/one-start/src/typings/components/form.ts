@@ -22,6 +22,7 @@ import type {
   OSRadioFieldType,
   OSTransferFieldType,
   OSTreeSelectFieldType,
+  OSPlaceholderInputFieldType,
 } from './field';
 import type { OSFormItemType } from './form-item';
 import type { NamePath } from '@ty/antd/lib/form/interface';
@@ -122,6 +123,8 @@ export type _OSFormFieldItemWithStaticPureConfigs<
   | (CreateStaticPureFormFieldItemConfigs<OSTimeLagFieldType, OSFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSTransferFieldType, OSFormFieldItemExtra> &
+      OSFormItemDependenciesConfigs)
+  | (CreateStaticPureFormFieldItemConfigs<OSPlaceholderInputFieldType, OSFormFieldItemExtra> &
       OSFormItemDependenciesConfigs);
 
 export type OSFormFieldItemSettingsFnOption = {
@@ -265,6 +268,12 @@ export type _OSFormFieldItem<CustomValueType extends CreatePureFormFieldItemConf
       OSFormItemDependenciesConfigs)
   | (CreatePureFormFieldItemConfigs<
       OSTransferFieldType,
+      OSFormFieldItemSettingsFnOption,
+      OSFormFieldItemExtra
+    > &
+      OSFormItemDependenciesConfigs)
+  | (CreatePureFormFieldItemConfigs<
+      OSPlaceholderInputFieldType,
       OSFormFieldItemSettingsFnOption,
       OSFormFieldItemExtra
     > &

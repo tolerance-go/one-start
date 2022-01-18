@@ -11,6 +11,27 @@ export default () => {
         settings={{
           fieldItems: [
             {
+              type: 'placeholder-input',
+              settings: {
+                title: 'placeholder-input',
+                dataIndex: 'placeholderInput',
+                placeholders: [
+                  {
+                    label: 'label1',
+                    value: 'label1',
+                  },
+                  {
+                    label: 'label2',
+                    value: 'label2',
+                  },
+                  {
+                    label: 'label3',
+                    value: 'label3',
+                  },
+                ],
+              },
+            },
+            {
               type: 'time-lag',
               settings: {
                 title: '互换起始日',

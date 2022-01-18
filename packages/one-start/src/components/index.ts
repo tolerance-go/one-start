@@ -22,6 +22,7 @@ import OSSelectField from './fields/select';
 import OSSwitchField from './fields/switch';
 import OSTextField from './fields/text';
 import OSTextareaField from './fields/textarea';
+import OSPlaceholderInputField from './fields/placeholder-input';
 import OSTimeLagField from './fields/time-lag';
 import OSTransferField from './fields/transfer';
 import OSForm from './form';
@@ -104,4 +105,5 @@ export {
   OSTreeSelectField,
   OSLayout,
   normalizeRequestOutputs,
+  OSPlaceholderInputField,
 };

@@ -7,8 +7,8 @@ import type EventEmitter from 'eventemitter3';
 import type { FieldError, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { CustomizeComponent, FixedType } from 'rc-table/lib/interface';
 import type React from 'react';
-import type { OSCore, RequestIO, SettingsDataNode } from './core';
 import type { RecordType } from '../core';
+import type { OSCore, RequestIO, SettingsDataNode } from './core';
 import type {
   OSActionsFieldType,
   OSChainSelectFieldType,
@@ -21,6 +21,7 @@ import type {
   OSMoneyFieldType,
   OSOptionFieldType,
   OSPercentFieldType,
+  OSPlaceholderInputFieldType,
   OSRadioFieldType,
   OSRelativeDayFieldType,
   OSSelectFieldType,
@@ -325,6 +326,12 @@ export type _OSTableFormFieldItem<
       _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       OSTableFormFieldItemExtra
     > &
+      OSFormItemDependenciesConfigs)
+  | (CreatePureFormFieldItemConfigs<
+      OSPlaceholderInputFieldType,
+      _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      OSTableFormFieldItemExtra
+    > &
       OSFormItemDependenciesConfigs);
 
 export type CreateStaticPureTableFormFieldItemConfigsType<T extends OSCore = OSCore> =
@@ -372,6 +379,8 @@ export type _OSTableFormFieldItemWithStaticPureConfigs<
   | (CreateStaticPureFormFieldItemConfigs<OSTreeSelectFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSTransferFieldType, OSTableFormFieldItemExtra> &
+      OSFormItemDependenciesConfigs)
+  | (CreateStaticPureFormFieldItemConfigs<OSPlaceholderInputFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs);
 
 export type _OSTableFormGroupType<

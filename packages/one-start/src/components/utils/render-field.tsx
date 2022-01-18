@@ -1,60 +1,63 @@
+import invariant from 'invariant';
 import type { ReactNode } from 'react';
 import React from 'react';
-import OSActionsField from '../fields/actions';
-import OSSwitchField from '../fields/switch';
-import OSDateField from '../fields/date';
-import OSDateRangeField from '../fields/date-range';
-import OSDigitField from '../fields/digit';
-import OSMoneyField from '../fields/money';
-import OSOptionField from '../fields/option';
-import OSPercentField from '../fields/percent';
-import OSSelectField from '../fields/select';
-import OSTextField from '../fields/text';
-import OSTextareaField from '../fields/textarea';
-import OSCustomField from '../fields/custom';
-import OSRelativeDayField from '../fields/relative-day';
-import OSImageField from '../fields/image';
-import OSChainSelectField from '../fields/chain-select';
-import OSRadioField from '../fields/radio';
-import OSTimeLagField from '../fields/time-lag';
-import OSTransferField from '../fields/transfer';
-import OSTreeSelectField from '../fields/tree-select';
 import type {
-  OSCustomFieldValueType,
-  OSDateRangeFieldValueType,
+  OSChainSelectFieldAPI,
+  OSChainSelectFieldValueType,
   OSCore,
-  OSImageFieldValueType,
-  OSImageFieldAPI,
+  OSCustomFieldValueType,
   OSDateFieldAPI,
   OSDateRangeFieldAPI,
+  OSDateRangeFieldValueType,
   OSDigitFieldAPI,
   OSFormFieldItems,
+  OSImageFieldAPI,
+  OSImageFieldValueType,
   OSMoneyFieldAPI,
+  OSMoneyFieldValueType,
   OSOptionFieldAPI,
   OSPercentFieldAPI,
-  OSSelectFieldAPI,
-  OSTextareaFieldAPI,
-  OSTextFieldAPI,
-  RenderFieldOptions,
-  OSTextareaFieldValueType,
-  OSTextFieldValueType,
-  OSSwitchFieldValueType,
-  OSSwitchFieldAPI,
-  OSRelativeDayFieldAPI,
-  OSRelativeDayFieldType,
-  OSChainSelectFieldValueType,
-  OSSelectFieldValueType,
-  OSChainSelectFieldAPI,
+  OSPlaceholderInputFieldAPI,
+  OSPlaceholderInputFieldValueType,
   OSRadioFieldAPI,
   OSRadioFieldValueType,
+  OSRelativeDayFieldAPI,
+  OSRelativeDayFieldType,
+  OSSelectFieldAPI,
+  OSSelectFieldValueType,
+  OSSwitchFieldAPI,
+  OSSwitchFieldValueType,
+  OSTextareaFieldAPI,
+  OSTextareaFieldValueType,
+  OSTextFieldAPI,
+  OSTextFieldValueType,
   OSTimeLagFieldAPI,
-  OSMoneyFieldValueType,
   OSTransferFieldAPI,
   OSTransferFieldValueType,
   OSTreeSelectFieldAPI,
   OSTreeSelectFieldValueType,
+  RenderFieldOptions,
 } from '../../typings';
-import invariant from 'invariant';
+import OSActionsField from '../fields/actions';
+import OSChainSelectField from '../fields/chain-select';
+import OSCustomField from '../fields/custom';
+import OSDateField from '../fields/date';
+import OSDateRangeField from '../fields/date-range';
+import OSDigitField from '../fields/digit';
+import OSImageField from '../fields/image';
+import OSMoneyField from '../fields/money';
+import OSOptionField from '../fields/option';
+import OSPercentField from '../fields/percent';
+import OSPlaceholderInputField from '../fields/placeholder-input';
+import OSRadioField from '../fields/radio';
+import OSRelativeDayField from '../fields/relative-day';
+import OSSelectField from '../fields/select';
+import OSSwitchField from '../fields/switch';
+import OSTextField from '../fields/text';
+import OSTextareaField from '../fields/textarea';
+import OSTimeLagField from '../fields/time-lag';
+import OSTransferField from '../fields/transfer';
+import OSTreeSelectField from '../fields/tree-select';
 
 export const renderField = (
   mode: 'edit' | 'read' | 'update',
@@ -332,6 +335,20 @@ export const renderField = (
         settings={fieldSettings}
         value={options?.value as OSTreeSelectFieldValueType}
         text={options?.text as OSTreeSelectFieldValueType}
+        requests={requests}
+      />
+    );
+  }
+
+  if (type === 'placeholder-input') {
+    return (
+      <OSPlaceholderInputField
+        ref={options?.ref as React.RefObject<OSPlaceholderInputFieldAPI>}
+        onChangeHook={options?.onChangeHook as any}
+        mode={mode}
+        settings={fieldSettings}
+        value={options?.value as OSPlaceholderInputFieldValueType}
+        text={options?.text as OSPlaceholderInputFieldValueType}
         requests={requests}
       />
     );

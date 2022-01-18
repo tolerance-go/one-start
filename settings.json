@@ -13,5 +13,5 @@
       "swaggerPort": 16020
     }
   },
-  "ignoreUsedPkgsCheck": ["rc-select/lib/interface/generator"]
+  "ignoreUsedPkgsCheck": ["rc-select/lib/interface/generator", "path", "fs", "(.*)"]
 }
