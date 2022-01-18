@@ -37,6 +37,7 @@ import type {
   _OSLayoutFormType,
   _OSLayoutModalFormType,
   _OSLayoutTabsFormType,
+  _OSLayoutStepsFormType,
 } from './layout-form';
 import type {
   _OSSearchTableAPI,
@@ -144,6 +145,11 @@ export type OSLayoutModalFormType = _OSLayoutModalFormType<
   OSCustomFieldStaticPureFormFieldItemConfigsType
 >;
 export type OSLayoutTabsFormType = _OSLayoutTabsFormType<
+  OSCustomFieldPureFormFieldItemConfigsType,
+  OSCustomFieldStaticPureFormFieldItemConfigsType
+>;
+
+export type OSLayoutStepsFormType = _OSLayoutStepsFormType<
   OSCustomFieldPureFormFieldItemConfigsType,
   OSCustomFieldStaticPureFormFieldItemConfigsType
 >;
