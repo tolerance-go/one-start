@@ -16,6 +16,7 @@ import type { Component } from 'react';
 import type React from 'react';
 import type { OSCore, RequestIO } from './core';
 import type { RecordType } from '../core';
+import { TextAreaRef } from '@ty/antd/lib/input/TextArea';
 
 export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
   type?: string;
@@ -383,6 +384,22 @@ export interface OSTextFieldType
   } & OSFieldBaseSettings;
 }
 
+export type OSPlaceholderInputFieldValueType = string;
+
+export type OSPlaceholderInputFieldAPI = TextAreaRef | Input;
+export interface OSPlaceholderInputFieldType
+  extends OSField<OSPlaceholderInputFieldValueType>,
+    OSFieldBaseConfigs<OSPlaceholderInputFieldValueType> {
+  type?: 'placeholder-input';
+  settings?: {
+    /** 定义占位标示 */
+    placeholders?: {
+      label: string;
+      value: string;
+    }[];
+  } & OSFieldBaseSettings;
+}
+
 export type OSRadioOptionItem = { label: string; value: string; disabled?: boolean };
 
 export type OSRadioFieldValueType = string;
@@ -489,7 +506,8 @@ export type OSFieldValueType =
   | OSCustomFieldType
   | OSImageFieldType
   | OSChainSelectFieldType
-  | OSRadioFieldType;
+  | OSRadioFieldType
+  | OSPlaceholderInputFieldType;
 
 export type OSFieldAPI =
   | OSTextFieldAPI
@@ -501,4 +519,5 @@ export type OSFieldAPI =
   | OSImageFieldAPI
   | OSChainSelectFieldAPI
   | OSRadioFieldAPI
-  | OSTimeLagFieldAPI;
+  | OSTimeLagFieldAPI
+  | OSPlaceholderInputFieldAPI;
