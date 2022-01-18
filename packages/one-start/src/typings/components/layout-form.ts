@@ -11,6 +11,8 @@ import type {
   _OSFormType,
 } from './form';
 import type { OSTriggerButtonType } from './trigger';
+import type { RequestIO } from './core';
+import type { OSResMessage } from './message';
 
 export type OSLayoutFormAPIBase = OSFormAPI;
 
@@ -105,11 +107,72 @@ export type _OSLayoutTabsFormType<
   };
 };
 
+export type OSLayoutStepsFormAPI = Pick<
+  OSLayoutFormAPIBase,
+  'setDataSource' | 'getDataSource' | 'clearPrevUserCellInputs'
+> & {
+  validate: () => Promise<
+    | {
+        error: false;
+        data: RecordType;
+      }
+    | {
+        error: true;
+        data: ValidateErrorEntity;
+      }
+  >;
+  validateRecursion: () => Promise<
+    | {
+        error: false;
+        data: RecordType;
+      }
+    | {
+        error: true;
+        data: ValidateErrorEntity;
+      }
+  >;
+  getFieldsError: (tabKey?: string, nameList?: NamePath[]) => Record<string, FieldError[]>;
+} & Pick<FormInstance, 'getFieldsValue' | 'setFieldsValue' | 'resetFields'>;
+
+export interface OSStepsItemType {
+  title?: string;
+  key?: string;
+}
+
+export type _OSLayoutStepsFormType<
+  CustomValueType extends CreatePureFormFieldItemConfigsType,
+  StaticCustomValueType extends CreateStaticPureFormFieldItemConfigsType,
+> = OSLayoutFormBase<CustomValueType, StaticCustomValueType> & {
+  type?: 'steps-form';
+  settings?: {
+    /** tab title */
+    steps?: OSStepsItemType[];
+    /** 表单设置和 steps 映射 */
+    forms?: Record<string, _OSFormType<CustomValueType, StaticCustomValueType>>;
+  };
+  requests?: {
+    /** 请求表单初始化数据 */
+    requestStepsFormDataSource?: RequiredRecursion<
+      _OSFormType<CustomValueType, StaticCustomValueType>
+    >['requests']['requestDataSource'];
+    /** 当步骤表单完成，触发最后提交 */
+    requestWhenSubmit?: RequestIO<
+      {
+        values: RecordType;
+      },
+      {
+        message?: OSResMessage;
+      }
+    >;
+  };
+};
+
 export type _OSLayoutFormType<
   CustomValueType extends CreatePureFormFieldItemConfigsType,
   StaticCustomValueType extends CreateStaticPureFormFieldItemConfigsType,
 > =
   | _OSLayoutModalFormType<CustomValueType, StaticCustomValueType>
-  | _OSLayoutTabsFormType<CustomValueType, StaticCustomValueType>;
+  | _OSLayoutTabsFormType<CustomValueType, StaticCustomValueType>
+  | _OSLayoutStepsFormType<CustomValueType, StaticCustomValueType>;
 
 export type OSLayoutFormAPI = OSLayoutModalFormAPI | OSLayoutTabsFormAPI;

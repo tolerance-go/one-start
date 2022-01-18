@@ -8,10 +8,12 @@ import type {
   OSLayoutFormAPI,
   OSLayoutModalFormAPI,
   OSLayoutTabsFormAPI,
+  OSLayoutStepsFormAPI,
 } from '../../typings';
 import { OSLayoutFormAPIContext } from './contexts';
 import OSLayoutModalForm from './modal-form';
 import OSLayoutTabsForm from './tabs-form';
+import OSLayoutStepsForm from './steps-form';
 
 const OSLayoutForm: React.ForwardRefRenderFunction<OSLayoutFormAPI, OSLayoutFormType> = (
   props,
@@ -69,6 +71,15 @@ const OSLayoutForm: React.ForwardRefRenderFunction<OSLayoutFormAPI, OSLayoutForm
           ref={innerRef as React.RefObject<OSLayoutTabsFormAPI>}
           {...props}
         ></OSLayoutTabsForm>
+      );
+    }
+
+    if (props.type === 'steps-form') {
+      return (
+        <OSLayoutStepsForm
+          ref={innerRef as React.RefObject<OSLayoutStepsFormAPI>}
+          {...props}
+        ></OSLayoutStepsForm>
       );
     }
 

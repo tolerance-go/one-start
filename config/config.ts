@@ -112,7 +112,7 @@ const configs = (
         ],
         webpack5: {},
         // 暂时关闭，该功能在 dumi 中存在性能 bug
-        mfsu: {},
+        // mfsu: {},
         fastRefresh: {},
       })
 ) as BaseIConfig;

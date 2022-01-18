@@ -43,3 +43,8 @@ export type SettingsDataNode = {
   title?: string;
   selectable?: boolean;
 };
+
+export type AbstractItem = {
+  title?: string;
+  key?: string;
+};
