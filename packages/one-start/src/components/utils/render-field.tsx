@@ -36,6 +36,8 @@ import type {
   OSTransferFieldValueType,
   OSTreeSelectFieldAPI,
   OSTreeSelectFieldValueType,
+  OSUploadFieldAPI,
+  OSUploadFieldValueType,
   RenderFieldOptions,
 } from '../../typings';
 import OSActionsField from '../fields/actions';
@@ -58,6 +60,7 @@ import OSTextareaField from '../fields/textarea';
 import OSTimeLagField from '../fields/time-lag';
 import OSTransferField from '../fields/transfer';
 import OSTreeSelectField from '../fields/tree-select';
+import OSUploadField from '../fields/upload';
 
 export const renderField = (
   mode: 'edit' | 'read' | 'update',
@@ -349,6 +352,20 @@ export const renderField = (
         settings={fieldSettings}
         value={options?.value as OSPlaceholderInputFieldValueType}
         text={options?.text as OSPlaceholderInputFieldValueType}
+        requests={requests}
+      />
+    );
+  }
+
+  if (type === 'upload') {
+    return (
+      <OSUploadField
+        ref={options?.ref as React.RefObject<OSUploadFieldAPI>}
+        onChangeHook={options?.onChangeHook as any}
+        mode={mode}
+        settings={fieldSettings}
+        value={options?.value as OSUploadFieldValueType}
+        text={options?.text as OSUploadFieldValueType}
         requests={requests}
       />
     );

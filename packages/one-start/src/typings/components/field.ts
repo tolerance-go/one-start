@@ -6,6 +6,7 @@ import type {
   SelectProps,
   Transfer,
   TreeSelectProps,
+  UploadProps,
 } from '@ty/antd';
 import type { PickerProps, RangePickerDateProps } from '@ty/antd/lib/date-picker/generatePicker';
 import type { RefSelectProps } from '@ty/antd/lib/select';
@@ -17,6 +18,7 @@ import type React from 'react';
 import type { OSCore, RequestIO } from './core';
 import type { RecordType } from '../core';
 import { TextAreaRef } from '@ty/antd/lib/input/TextArea';
+import { UploadChangeParam, UploadFile } from '@ty/antd/es/upload/interface';
 
 export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
   type?: string;
@@ -400,6 +402,21 @@ export interface OSPlaceholderInputFieldType
   } & OSFieldBaseSettings;
 }
 
+export type OSUploadFieldValueType = UploadFile[];
+
+export type OSUploadFieldAPI = HTMLSpanElement;
+
+export interface OSUploadFieldType
+  extends OSField<OSUploadFieldValueType, UploadChangeParam>,
+    OSFieldBaseConfigs<OSUploadFieldValueType> {
+  type?: 'upload';
+  settings?: {
+    /** 最大文件数量 */
+    maxNumber?: number;
+  } & Pick<UploadProps, 'accept' | 'action' | 'headers' | 'name'> &
+    OSFieldBaseSettings;
+}
+
 export type OSRadioOptionItem = { label: string; value: string; disabled?: boolean };
 
 export type OSRadioFieldValueType = string;
@@ -507,7 +524,8 @@ export type OSFieldValueType =
   | OSImageFieldType
   | OSChainSelectFieldType
   | OSRadioFieldType
-  | OSPlaceholderInputFieldType;
+  | OSPlaceholderInputFieldType
+  | OSUploadFieldType;
 
 export type OSFieldAPI =
   | OSTextFieldAPI
@@ -520,4 +538,5 @@ export type OSFieldAPI =
   | OSChainSelectFieldAPI
   | OSRadioFieldAPI
   | OSTimeLagFieldAPI
-  | OSPlaceholderInputFieldAPI;
+  | OSPlaceholderInputFieldAPI
+  | OSUploadFieldAPI;

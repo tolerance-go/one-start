@@ -15,6 +15,7 @@ import OSLayoutModalFormField from './fields/layout-modal-form';
 import OSLayoutTabsFormField from './fields/layout-tabs-form';
 import OSMoneyField from './fields/money';
 import OSOptionField from './fields/option';
+import OSUploadField from './fields/upload';
 import OSPercentField from './fields/percent';
 import OSRadioField from './fields/radio';
 import OSRelativeDayField from './fields/relative-day';
@@ -101,6 +102,7 @@ export {
   OSSearchTable,
   OSTimeLagField,
   OSTransferField,
+  OSUploadField,
   OSGrid,
   OSTreeSelectField,
   OSLayout,
