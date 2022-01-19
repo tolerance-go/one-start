@@ -226,7 +226,7 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
         </div>
         {steps?.length ? (
           <Row
-            gutter={10}
+            gutter={5}
             style={{
               marginTop: 15,
             }}
