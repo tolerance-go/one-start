@@ -63,7 +63,7 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
     };
 
     /** 向当前输入内容中插入占位 */
-    const insertPlaceholderInInput = (placeholderItem: string) => {
+    const insertPlaceholderInInput = (placeholderItem: string, raw: boolean = false) => {
       if (focus === false) {
         return;
       }
@@ -76,7 +76,7 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
           : textareaEl?.selectionEnd;
 
       if (typeof pos === 'number') {
-        const marked = `{${placeholderItem}}`;
+        const marked = raw ? placeholderItem : `{${placeholderItem}}`;
 
         const next =
           _value == null ? marked : `${_value.slice(0, pos)}${marked}${_value.slice(pos)}`;
@@ -90,6 +90,7 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
     return (
       <div>
         <Popover
+          placement="topLeft"
           title={
             <Space>
               <Typography.Text>模板变量</Typography.Text>
@@ -122,7 +123,7 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
                       event.preventDefault();
                       event.stopPropagation();
 
-                      insertPlaceholderInInput(item.value);
+                      insertPlaceholderInInput(item.value, item.raw);
 
                       return false;
                     }}

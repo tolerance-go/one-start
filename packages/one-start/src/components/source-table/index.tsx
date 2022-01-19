@@ -2,6 +2,7 @@ import { Col, Row } from '@ty/antd';
 import React, { useContext, useState, useImperativeHandle, useRef } from 'react';
 import OSDialog from '../dialog';
 import OSForm from '../form';
+import OSLayoutForm from '../layout-form';
 import { OSReferencesGlobalContext } from '../providers/provider';
 import OSTable from '../table';
 import OSEmpty from '../table/components/empty';
@@ -16,6 +17,8 @@ import type {
   OSTriggerAPI,
   RecordType,
   OSTableType,
+  OSFormType,
+  OSLayoutFormAPI,
 } from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { useClsPrefix } from '../utils/use-cls-prefix';
@@ -185,26 +188,70 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
   }) => {
     if (!rowEditable) return {};
 
-    const editFormRef = React.createRef<OSFormAPI>();
+    const editFormRef = React.createRef<OSFormAPI | OSLayoutFormAPI>();
     const saveButtonTriggerRef = React.createRef<OSTriggerAPI>();
     const resetButtonTriggerRef = React.createRef<OSTriggerAPI>();
 
     const { editDrawerDialogRef, ...params } = options;
 
-    const editFormDom = (
-      <OSForm
-        ref={editFormRef}
-        settings={rowEditable.formSettings}
-        requests={{
-          requestInitialValues: () =>
-            requestRowEditData({
-              ...params,
-              saveButtonTriggerRef,
-              resetButtonTriggerRef,
-            }),
-        }}
-      />
-    );
+    const handleSaveForm = async () => {
+      if (!editFormRef.current) return false;
+
+      const data = await editFormRef.current?.getDataSource();
+
+      const saveError = await requestSaveRowData({
+        values: data as RecordType,
+        ...params,
+      });
+
+      if (!saveError) {
+        editDrawerDialogRef?.current?.pop();
+        options.actions.reload();
+      }
+
+      return saveError;
+    };
+
+    const editFormDom = (() => {
+      if (rowEditable.formType === 'steps-form') {
+        return (
+          <OSLayoutForm
+            ref={editFormRef}
+            type="steps-form"
+            settings={{
+              ...rowEditable.formSettings,
+              submitTriggerText: '确认保存',
+            }}
+            requests={{
+              requestInitialValues: () =>
+                requestRowEditData({
+                  ...params,
+                  saveButtonTriggerRef,
+                  resetButtonTriggerRef,
+                }),
+              requestWhenSubmit: async () => {
+                return handleSaveForm();
+              },
+            }}
+          />
+        );
+      }
+
+      return (
+        <OSForm
+          ref={editFormRef as React.MutableRefObject<OSFormAPI>}
+          settings={rowEditable.formSettings as OSFormType['settings']}
+          requests={{
+            requestInitialValues: () =>
+              requestRowEditData({
+                ...params,
+                saveButtonTriggerRef,
+                resetButtonTriggerRef,
+              }),
+          }}
+        />
+      );
+    })();
 
     const saveButtonDom = (
       <OSDialog
@@ -215,21 +262,7 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
         }}
         requests={{
           requestAfterConfirm: async () => {
-            if (!editFormRef.current) return false;
-
-            const data = await editFormRef.current?.getDataSource();
-
-            const saveError = await requestSaveRowData({
-              values: data as RecordType,
-              ...params,
-            });
-
-            if (!saveError) {
-              editDrawerDialogRef?.current?.pop();
-              options.actions.reload();
-            }
-
-            return saveError;
+            return handleSaveForm();
           },
         }}
       >
@@ -387,12 +420,15 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
                                 }`,
                                 width: rowEditable.modalWidth ?? '70%',
                                 body: editFormDom,
-                                footer: (
-                                  <Row justify="end" gutter={5}>
-                                    <Col>{resetButtonDom}</Col>
-                                    <Col>{saveButtonDom}</Col>
-                                  </Row>
-                                ),
+                                footer:
+                                  rowEditable.formType === 'steps-form' ? (
+                                    false
+                                  ) : (
+                                    <Row justify="end" gutter={5}>
+                                      <Col>{resetButtonDom}</Col>
+                                      <Col>{saveButtonDom}</Col>
+                                    </Row>
+                                  ),
                               }}
                             >
                               <OSTrigger

@@ -8,17 +8,17 @@ import type {
   TreeSelectProps,
   UploadProps,
 } from '@ty/antd';
+import type { UploadFile } from '@ty/antd/es/upload/interface';
 import type { PickerProps, RangePickerDateProps } from '@ty/antd/lib/date-picker/generatePicker';
+import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
 import type { RefSelectProps } from '@ty/antd/lib/select';
 import type { Moment } from 'moment';
 import type { NamePath } from 'rc-field-form/lib/interface';
 import type Picker from 'rc-picker/lib/Picker';
-import type { Component } from 'react';
 import type React from 'react';
-import type { OSCore, RequestIO } from './core';
+import type { Component } from 'react';
 import type { RecordType } from '../core';
-import { TextAreaRef } from '@ty/antd/lib/input/TextArea';
-import { UploadChangeParam, UploadFile } from '@ty/antd/es/upload/interface';
+import type { OSCore, RequestIO } from './core';
 
 export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
   type?: string;
@@ -398,6 +398,8 @@ export interface OSPlaceholderInputFieldType
     placeholders?: {
       label: string;
       value: string;
+      /** 是否使用原始值插入 */
+      raw?: boolean;
     }[];
   } & OSFieldBaseSettings;
 }
@@ -407,7 +409,7 @@ export type OSUploadFieldValueType = UploadFile[];
 export type OSUploadFieldAPI = HTMLSpanElement;
 
 export interface OSUploadFieldType
-  extends OSField<OSUploadFieldValueType, UploadChangeParam>,
+  extends OSField<OSUploadFieldValueType>,
     OSFieldBaseConfigs<OSUploadFieldValueType> {
   type?: 'upload';
   settings?: {
