@@ -149,6 +149,10 @@ export type _OSLayoutStepsFormType<
     steps?: OSStepsItemType[];
     /** 表单设置和 steps 映射 */
     forms?: Record<string, _OSFormType<CustomValueType, StaticCustomValueType>>;
+    /** 确认提交的按钮文案 */
+    submitTriggerText?: string;
+    /** 默认 step 起点 */
+    defaultCurrent?: number;
   };
   requests?: {
     /** 请求表单初始化数据 */
@@ -164,6 +168,20 @@ export type _OSLayoutStepsFormType<
         message?: OSResMessage;
       }
     >;
+    /** 当准备进入下一步时触发 */
+    requestWhenNext?: RequestIO<
+      {
+        values: RecordType;
+        current: number;
+        currentValues: RecordType;
+        formsRef: React.RefObject<React.MutableRefObject<OSFormAPI | null>[]>;
+      },
+      {
+        message?: OSResMessage;
+      }
+    >;
+    /** 异步请求初始化数据 */
+    requestInitialValues?: RequestIO<void, RecordType>;
   };
 };
 

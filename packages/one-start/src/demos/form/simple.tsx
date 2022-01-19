@@ -11,6 +11,13 @@ export default () => {
         settings={{
           fieldItems: [
             {
+              type: 'upload',
+              settings: {
+                title: 'upload',
+                dataIndex: 'upload',
+              },
+            },
+            {
               type: 'placeholder-input',
               settings: {
                 title: 'placeholder-input',

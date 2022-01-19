@@ -198,6 +198,18 @@ export default () => {
                 },
               };
             },
+            requestWhenNext: async (options) => {
+              console.log('requestWhenNext', options);
+
+              await delay(1000);
+
+              return {
+                error: true,
+                data: {
+                  message: '自定义成功消息',
+                },
+              };
+            },
           }}
           value={values}
           onChange={setValues}
