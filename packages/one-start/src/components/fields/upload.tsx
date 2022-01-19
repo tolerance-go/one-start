@@ -56,11 +56,10 @@ const OSUploadField: React.ForwardRefRenderFunction<OSUploadFieldAPI, OSUploadFi
         return fileList;
       };
 
-      onChangeHook?.(maxFiles(params.fileList));
-      return _onChange?.({
-        ...params,
-        fileList: maxFiles(params.fileList),
-      });
+      const nextValue = maxFiles(params.fileList);
+
+      onChangeHook?.(nextValue);
+      return _onChange?.(nextValue);
     };
 
     return (
