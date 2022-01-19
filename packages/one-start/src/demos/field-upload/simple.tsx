@@ -9,11 +9,7 @@ export default () => {
   return (
     <OSProviderWrapper>
       <Space split="|">
-        <OSUploadField
-          value={value}
-          onChange={(e) => setValue(e?.fileList)}
-          mode="edit"
-        ></OSUploadField>
+        <OSUploadField value={value} onChange={setValue} mode="edit"></OSUploadField>
         <OSUploadField value={value} mode="read"></OSUploadField>
       </Space>
     </OSProviderWrapper>
