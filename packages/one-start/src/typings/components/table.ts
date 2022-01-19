@@ -40,6 +40,7 @@ import type {
   OSFormItemDependenciesConfigs,
   _OSFormType,
 } from './form';
+import type { _OSLayoutStepsFormType } from './layout-form';
 import type { OSResMessage } from './message';
 
 export type RequestOptions = {
@@ -687,10 +688,24 @@ export type _OSSourceTableSelfType<
       | false;
     /** 启动行编辑 */
     rowEditable?:
-      | {
+      | ({
           modalWidth?: string | number;
-          formSettings?: _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
-        }
+        } & (
+          | {
+              formSettings?: _OSFormType<
+                CustomFormValueType,
+                StaticCustomFormValueType
+              >['settings'];
+              formType?: 'form';
+            }
+          | {
+              formSettings?: _OSLayoutStepsFormType<
+                CustomFormValueType,
+                StaticCustomFormValueType
+              >['settings'];
+              formType?: 'steps-form';
+            }
+        ))
       | false;
   };
   requests?: {
