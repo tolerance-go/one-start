@@ -25,6 +25,8 @@ group:
 
 因为提供了默认下拉的 UI 语言，所以将 `trigger` 内敛为单一 `click` 模式，这样不仅对 `Dialog` 嵌套交互更加友好，也不会对我们的客户操作造成直觉困惑，同时 `contextMenu` 也不适用于 trigger 组件
 
+下拉框 `overlay` 的 `zIndex` 默认比常用 `modal`, `drawer` 要高，所以会形成遮挡，我们可以调整 `overlayZIndex` 来调整
+
 <code src="../demos/trigger/in-menu.tsx" />
 
 ### 自动弹出外层 dialog

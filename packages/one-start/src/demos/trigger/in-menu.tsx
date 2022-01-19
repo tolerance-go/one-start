@@ -12,6 +12,7 @@ export default () => {
           settings={{
             text: '按钮1',
             tooltip: 'tooltip',
+            overlayZIndex: 950,
             menu: [
               {
                 disabled: true,
@@ -133,6 +134,16 @@ export default () => {
                     type="modal-operation"
                     settings={{
                       title: '确认标题',
+                      width: 1000,
+                      content: (
+                        <div
+                          style={{
+                            width: '100%',
+                            height: 800,
+                            background: '#ccc',
+                          }}
+                        ></div>
+                      ),
                     }}
                     requests={{
                       requestAfterCancel: async () => {

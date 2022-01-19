@@ -50,6 +50,7 @@ export type OSTriggerDropdownSettingsCore = {
   plain?: boolean;
   block?: boolean;
   upload?: OSTriggerUpload;
+  overlayZIndex?: number;
 } & OSButtonCore;
 
 export interface OSTriggerDropdownType extends OSTriggerBase {

@@ -1,11 +1,5 @@
-import type { OSFormAPI } from '@ty-one-start/one-start';
-import {
-  OSLayoutForm,
-  OSProviderWrapper,
-  OSTrigger,
-  OSForm,
-  RecordType,
-} from '@ty-one-start/one-start';
+import type { OSFormAPI, RecordType } from '@ty-one-start/one-start';
+import { OSLayoutForm, OSProviderWrapper, OSTrigger, OSForm } from '@ty-one-start/one-start';
 import React, { useRef, useState } from 'react';
 import { Divider, Space } from '@ty/antd';
 
