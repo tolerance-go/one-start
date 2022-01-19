@@ -45,6 +45,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     plain,
     block,
     upload,
+    overlayZIndex,
   } = settings ?? {};
 
   const [requestAfterMenuClickLoading, setRequestAfterMenuClickLoading] = useState<
@@ -426,6 +427,9 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
           overlay={renderMenu(menuItems)}
           visible={visible}
           onVisibleChange={setVisible}
+          overlayStyle={{
+            zIndex: overlayZIndex,
+          }}
         >
           <Space size={5}>
             {renderLoading()}
@@ -447,6 +451,9 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
         overlay={renderMenu(menuItems)}
         trigger={trigger}
         disabled={disabled}
+        overlayStyle={{
+          zIndex: overlayZIndex,
+        }}
       >
         {renderButton(_text)}
       </Dropdown>
