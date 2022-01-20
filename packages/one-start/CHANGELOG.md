@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.10.0...@ty-one-start/one-start@0.11.0) (2022-01-20)
+
+
+### Documentation
+
+* 增加 table 高亮单元格子定义类型文档内容 ([37d4c7c](https://10.1.2.7/visual-fe/swap-modules/commits/37d4c7c9c63fe85f36029efae831812d98e98fa2))
+
+
+### BREAKING CHANGES
+
+* table 高亮徽章默认值添加 success；source-table 的 rowEditable.formType 设置为 required
+
+
+
+
+
 # [0.10.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.9.0...@ty-one-start/one-start@0.10.0) (2022-01-20)
 
 
