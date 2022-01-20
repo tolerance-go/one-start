@@ -3,26 +3,19 @@ import { useMemo } from 'react';
 import type { OSTableType } from '../../typings';
 import type { RequiredRecursion } from '../../typings';
 
-const meta = {
+const badgeMeta = {
   warning: {
     color: '#faad14',
-    bgColor: '#ffd666',
-    frontColor: '#000000',
     label: '预警',
   },
   error: {
-    color: '#f5222d',
-    bgColor: '#f5222d',
-    frontColor: '#ffffff',
+    color: '#ff4d4f',
     label: '触发',
   },
-  // success: {
-  //   color: '#52c41a',
-  //   bgColor: '#52c41a',
-  //   frontColor: '#ffffff',
-  //   label: '完成',
-  //   tooltipTitle: '完成提示颜色',
-  // },
+  success: {
+    color: '#52c41a',
+    label: '完成',
+  },
 };
 
 export const useHighlight = ({
@@ -33,11 +26,11 @@ export const useHighlight = ({
   highlightBadge?: RequiredRecursion<OSTableType>['settings']['highlightBadge'];
 }) => {
   const mergedMeta = useMemo(() => {
-    return Object.keys(highlightBadge ?? meta).reduce((merged, key) => {
+    return Object.keys(highlightBadge ?? badgeMeta).reduce((merged, key) => {
       return {
         ...merged,
         [key]: {
-          ...meta[key],
+          ...badgeMeta[key],
           ...highlightBadge?.[key],
         },
       };

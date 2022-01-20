@@ -473,9 +473,6 @@ export type OSTableValueType = RecordType[] | undefined;
 export type OSTableChangeValueType = RecordType[] | OSTableChangedValueType | undefined;
 
 export type HighlightBadgeItem = {
-  color?: string;
-  bgColor?: string;
-  frontColor?: string;
   label?: string;
   tooltipTitle?: string;
 };
@@ -500,6 +497,7 @@ export interface _OSTableType<
     highlightBadge?: {
       warning?: HighlightBadgeItem;
       error?: HighlightBadgeItem;
+      success?: HighlightBadgeItem;
     };
     loopRequest?: number;
     /**
@@ -691,14 +689,14 @@ export type _OSSourceTableSelfType<
                 CustomFormValueType,
                 StaticCustomFormValueType
               >['settings'];
-              formType?: 'form';
+              formType: 'form';
             }
           | {
               formSettings?: _OSLayoutStepsFormType<
                 CustomFormValueType,
                 StaticCustomFormValueType
               >['settings'];
-              formType?: 'steps-form';
+              formType: 'steps-form';
             }
         ))
       | false;

@@ -11,6 +11,13 @@ export default () => {
     <OSProviderWrapper>
       <OSTable
         settings={{
+          highlightBadge: {
+            warning: {},
+            error: {},
+            success: {
+              label: '自定义',
+            },
+          },
           fieldItems: [
             {
               type: 'money',
@@ -97,6 +104,14 @@ export default () => {
                         required: true,
                       },
                     ],
+                    highlight: (rorData_) => ({
+                      type: (() => {
+                        if (rorData_?.money > 0) {
+                          return 'success';
+                        }
+                        return undefined;
+                      })(),
+                    }),
                   },
                 },
                 {
