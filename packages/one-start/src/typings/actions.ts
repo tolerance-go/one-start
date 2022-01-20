@@ -29,6 +29,11 @@ export type OSActionsCreateAPI = {};
 export interface _OSActionsCreateType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>
   extends OSCore {
   settings?: {
+    /**
+     * 弹出框和直接展示
+     * @default modal
+     */
+    type?: 'modal' | 'plain';
     /** 创建触发器的配置 */
     createTriggerSettings?: OSTriggerButtonType['settings'];
     /** 资源id */

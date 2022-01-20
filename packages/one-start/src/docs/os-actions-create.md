@@ -31,4 +31,10 @@ group:
 
 <code src="../demos/actions/create/template.tsx" />
 
+### 平铺展示
+
+设置 `type: plain` 将直接展示表单，默认为弹出形式
+
+<code src="../demos/actions/create/plain.tsx" />
+
 <API exports='["ActionsCreateSettings", "ActionsCreateRequests"]' src="../actions/create/index.tsx"></API>
