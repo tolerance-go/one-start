@@ -9,7 +9,6 @@ import EventEmitter from 'eventemitter3';
 import utl from 'lodash';
 import { isMoment } from 'moment';
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
-import ResizeObserver from 'rc-resize-observer';
 import type { FixedType } from 'rc-table/lib/interface';
 import React, {
   useCallback,
@@ -71,7 +70,6 @@ import { useSelection } from './use-selection';
 import { useSnapshotOfCurrentSearchParameters } from './use-snapshot-of-current-search-parameters';
 import { useTableTopPanel } from './use-table-top-panel';
 import { useTreeSpread } from './use-tree-spread';
-import { useVirtualGrid } from './use-virtual-grid';
 
 const uaparser = new UAParser();
 
@@ -97,7 +95,6 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     rowActions,
     fieldItemSettings,
     highlightVerticalRow = false,
-    singleSearchForm = true,
     tableKey,
     searchFormItemChunkSize,
     rowSelection,
@@ -139,8 +136,6 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   const referencesDispatch = useContext(OSReferencesCollectorDispatchContext);
 
   const [eventBus] = useState(new EventEmitter());
-
-  const [tableWidth, setTableWidth] = useState(0);
 
   // const isValuesChangeRef = useRef(false);
 
@@ -546,7 +541,6 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     resetSerachFormValues,
     searchFormRef,
   } = useSearchForm({
-    singleSearchForm,
     dataSource,
     searchFormItemChunkSize,
     clsPrefix,
@@ -665,23 +659,6 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     }
   });
 
-  const {
-    renderVirtualGrid,
-    // tableHeight: _tableHeight,
-    spreadBtnDom,
-  } = useVirtualGrid({
-    tableWidth,
-    columns: mergedColumns,
-    tableHeight: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
-    dataSource,
-    enable: settings?.enableGridTree,
-    tableWrapRef,
-    columnsSettingsIdMaps: columnsStaticPureConfigsIdMaps,
-    rowKey,
-    getRowClassName,
-    tableCoreActionsRef,
-  });
-
   const { expandBtn, expandedRowKeys, setExpandedRowKeys } = useTreeSpread({
     dataSource,
     ref: treeSpreadActionsRef,
@@ -704,9 +681,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   }, [tableCoreActionsRef, rowKey, value]);
 
   const tableTopPanel = useTableTopPanel({
-    spreadBtnDom,
     selectionDom,
-    singleSearchForm,
     searchFormFieldItems,
     searchFormItemChunkSize,
     drawerDom,
@@ -722,7 +697,6 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   });
 
   const finalPagination = usePagination({
-    enableGridTree: settings?.enableGridTree,
     current,
     pagination,
     totalCount,
@@ -827,47 +801,40 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
                   : undefined,
             }}
           >
-            <ResizeObserver
-              onResize={({ width }) => {
-                setTableWidth(width);
+            <Table
+              tableLayout="fixed"
+              loading={{
+                indicator: <LoadingOutlined />,
+                spinning: loading,
               }}
-            >
-              <Table
-                tableLayout="fixed"
-                loading={{
-                  indicator: <LoadingOutlined />,
-                  spinning: loading,
-                }}
-                rowSelection={finalRowSelection}
-                rowKey={rowKey}
-                columns={mergedColumns}
-                dataSource={visualDataSource ?? dataSource}
-                onChange={handleTableChange}
-                onRow={(row, index) => {
-                  return {
-                    className: getRowClassName(row, index),
-                  };
-                }}
-                expandable={{
-                  expandedRowKeys,
-                  onExpandedRowsChange: (_expandedRowKeys) => {
-                    setExpandedRowKeys(_expandedRowKeys);
-                  },
-                }}
-                pagination={finalPagination}
-                scroll={{
-                  x: totalTableWidth,
-                  y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
-                }}
-                components={{
-                  header: {
-                    wrapper: props.headerWrapper,
-                    cell: ResizeableHeaderCell,
-                  },
-                  body: settings?.enableGridTree ? renderVirtualGrid : undefined,
-                }}
-              />
-            </ResizeObserver>
+              rowSelection={finalRowSelection}
+              rowKey={rowKey}
+              columns={mergedColumns}
+              dataSource={visualDataSource ?? dataSource}
+              onChange={handleTableChange}
+              onRow={(row, index) => {
+                return {
+                  className: getRowClassName(row, index),
+                };
+              }}
+              expandable={{
+                expandedRowKeys,
+                onExpandedRowsChange: (_expandedRowKeys) => {
+                  setExpandedRowKeys(_expandedRowKeys);
+                },
+              }}
+              pagination={finalPagination}
+              scroll={{
+                x: totalTableWidth,
+                y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
+              }}
+              components={{
+                header: {
+                  wrapper: props.headerWrapper,
+                  cell: ResizeableHeaderCell,
+                },
+              }}
+            />
             {searchTimestampDom}
           </div>
         </Form>

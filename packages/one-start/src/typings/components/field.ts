@@ -288,6 +288,7 @@ export interface OSSelectFieldType<ValueType = OSSelectFieldValueType>
           popoverWidth?: string | number;
           fieldItems: OSSimpleFormFields;
         };
+    maxWidth?: number;
   } & OSFieldBaseSettings;
   requests?: {
     /** 请求下拉选项 */

@@ -175,7 +175,6 @@ export default () => {
               ],
             },
           ],
-          singleSearchForm: false,
         }}
         requests={{
           requestDataSource: async (options) => {

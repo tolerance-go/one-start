@@ -563,11 +563,6 @@ export interface _OSTableType<
      * @default 4
      */
     searchFormItemChunkSize?: number;
-    /**
-     * 当搜索控件数量小于 searchFormItemChunkSize 时候是否在工具栏同一行显示
-     * @default true
-     */
-    singleSearchForm?: boolean;
     rowSelection?: {
       checkStrictly?: boolean;
     };

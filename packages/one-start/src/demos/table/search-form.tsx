@@ -7,7 +7,7 @@ import type {
   OSTableType,
   RequiredRecursion,
 } from '@ty-one-start/one-start';
-import { OSForm, OSProviderWrapper, OSTable } from '@ty-one-start/one-start';
+import { OSDialog, OSForm, OSProviderWrapper, OSTable, OSTrigger } from '@ty-one-start/one-start';
 import { Divider } from '@ty/antd';
 import delay from 'delay';
 import produce from 'immer';
@@ -25,7 +25,6 @@ export default () => {
     labelAlign: 'right',
     readonly: false,
     colSpan: 8,
-    singleSearchForm: true,
   });
 
   const fieldItems: Required<OSTableType>['settings']['fieldItems'] = [
@@ -175,13 +174,6 @@ export default () => {
               },
             },
             {
-              type: 'switch',
-              settings: {
-                dataIndex: 'singleSearchForm',
-                title: '单行搜索表单始终对称显示',
-              },
-            },
-            {
               type: 'digit',
               settings: {
                 dataIndex: 'searchFormItemChunkSize',
@@ -246,7 +238,6 @@ export default () => {
       <Divider />
       <OSTable
         settings={{
-          singleSearchForm: values.singleSearchForm,
           searchFormItemChunkSize: values.searchFormItemChunkSize,
           searchFormSettings: {
             groupItemSettings: {
@@ -263,6 +254,25 @@ export default () => {
               readonly: values.readonly,
               colSpan: values.colSpan,
             },
+          },
+          batchOperation: ({ selectedRowKeys }) => {
+            return [
+              <OSDialog
+                type="popconfirm"
+                settings={{
+                  title: '是否执行实时同步?',
+                }}
+              >
+                <OSTrigger
+                  type="button"
+                  settings={{
+                    text: '实时同步',
+                    type: 'primary',
+                    disabled: !selectedRowKeys.length,
+                  }}
+                />
+              </OSDialog>,
+            ];
           },
           fieldItems: values?.leftSideSearchForm
             ? fieldItems.slice(0, values.searchFormItemChunkSize).concat(

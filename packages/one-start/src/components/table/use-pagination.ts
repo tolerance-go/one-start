@@ -6,17 +6,12 @@ export const usePagination = ({
   pagination,
   current,
   totalCount,
-  enableGridTree,
 }: {
   pagination?: Required<OSTableType>['settings']['pagination'];
   current?: number;
   totalCount?: number;
-  enableGridTree?: boolean;
 }) => {
   const normalizedPagination = useMemo(() => {
-    if (enableGridTree) {
-      return false;
-    }
     if (pagination !== false) {
       return {
         defaultPageSize: pagination?.defaultPageSize ?? 20,
@@ -29,7 +24,7 @@ export const usePagination = ({
       } as PaginationProps;
     }
     return pagination;
-  }, [current, enableGridTree, pagination, totalCount]);
+  }, [current, pagination, totalCount]);
 
   return normalizedPagination;
 };
