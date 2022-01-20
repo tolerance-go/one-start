@@ -296,7 +296,13 @@ export type OSFormGroupType<Children = _OSFormFieldItems<OSField>> = {
 export type _OSFormFieldItems<CustomValueType extends CreatePureFormFieldItemConfigsType> =
   (_OSFormFieldItem<CustomValueType> & OSFormGroupType<_OSFormFieldItems<CustomValueType>>)[];
 
-export type OSFormAPI = {
+export type OSFormRefObjectAPIS = {
+  setRefObject: (param: RecordType | ((prev: RecordType) => RecordType)) => RecordType;
+  getRefObject: () => RecordType;
+  mergeRefObject: (param: RecordType) => RecordType;
+};
+
+export type OSFormAPI = OSFormRefObjectAPIS & {
   /** 清空用户输入最新的输入缓存 */
   clearPrevUserCellInputs: () => void;
   /** 异步获取 field-items 是否已经获取到数据 */

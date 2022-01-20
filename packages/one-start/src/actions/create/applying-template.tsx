@@ -44,6 +44,7 @@ const ApplyingTemplate: React.ForwardRefRenderFunction<ApplyingTemplateAPI, Appl
               const { error } = await requestUpdateTemplateValues({
                 values: props.createFormRef.current?.getDataSource() ?? {},
                 templateId: applyingTemplate.id,
+                apis: props.createFormRef.current!,
               }).then(normalizeRequestOutputs);
 
               if (error) return;

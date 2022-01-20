@@ -122,6 +122,12 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 
 <code src="../demos/form/history-field.tsx" />
 
+### 组件内部共享数据
+
+表单数据可以设置字段以外的数据，比如示例中的 `max`, `valueEnums`，字段的验证规则等配置可以直接使用，但是调用 `getDataSource` 或者 `validate` 只能拿到声明字段的数据集合，因此表单提供了 `setRefObject` 和 `getRefObject` 帮助用户拿到声明字段以外的数据
+
+<code src="../demos/form/ref-object.tsx" />
+
 <API exports='["FormSettings", "FormRequests", "FormAPI"]' src="../components/form/index.tsx"></API>
 
 ### FormFieldItems

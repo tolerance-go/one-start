@@ -49,6 +49,7 @@ import { useLoading } from '../utils/use-loading';
 import GroupCollapse from './group-collapse';
 import { handleAsyncLinkage, valueLinkageHandler } from './linkage';
 import type { FormCoreActions } from './typings';
+import { useRefObject } from './use-ref-object';
 
 const useAsyncInitialValues = ({
   actions,
@@ -137,6 +138,8 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
 
   const formLabelCol = labelCol ?? defaultLabelCol;
   const formWrapperCol = wrapperCol ?? defaultWrapperCol;
+
+  const refObectApis = useRefObject();
 
   /**
    * TODO: 删除 form 级别的 labelCol 和 wrapperCol 使用 fieldItemsSettings 代替
@@ -548,6 +551,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
   };
 
   const formActionsRef = useActionsRef<OSFormAPI>({
+    ...refObectApis,
     clearPrevUserCellInputs,
     validateRecursion,
     isFieldItemsReady: () => {
