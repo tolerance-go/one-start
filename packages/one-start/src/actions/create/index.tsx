@@ -1,15 +1,15 @@
 /* eslint-disable consistent-return */
-import { Col, Row, Space } from '@ty/antd';
+import { Affix, Col, Row, Space } from '@ty/antd';
 import React, { useMemo, useRef, useState } from 'react';
 import {
+  globalRefKeys,
+  normalizeRequestOutputs,
   OSDialog,
   OSForm,
-  globalRefKeys,
+  OSReferencesCollectorProviderWrapper,
   OSTable,
   OSTrigger,
-  OSReferencesCollectorProviderWrapper,
   useRefsRef,
-  normalizeRequestOutputs,
 } from '../../components';
 import type {
   OSActionsCreateAPI,
@@ -44,6 +44,7 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
     templateSearchTableSettings,
     enablePersistence = false,
     enableTemplate = false,
+    type = 'modal',
   } = settings ?? {};
 
   const [dialogVisible, setDialogVisible] = useState(false);
@@ -472,8 +473,33 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
     </Row>
   );
 
-  return (
-    <OSReferencesCollectorProviderWrapper ref={refsRef}>
+  const renderInner = () => {
+    if (type === 'plain') {
+      return (
+        <div>
+          <div
+            style={{
+              marginBottom: 15,
+            }}
+          >
+            {createFormDom}
+          </div>
+          <Affix offsetBottom={0}>
+            <div
+              style={{
+                padding: '10px 0',
+                background: '#fff',
+                borderTop: '1px solid #f0f0f0',
+              }}
+            >
+              {footerDom}
+            </div>
+          </Affix>
+        </div>
+      );
+    }
+
+    return (
       <OSDialog
         refKey={refKeys.dialogs.modals.createModal}
         type="modal"
@@ -495,6 +521,12 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
           }}
         />
       </OSDialog>
+    );
+  };
+
+  return (
+    <OSReferencesCollectorProviderWrapper ref={refsRef}>
+      {renderInner()}
     </OSReferencesCollectorProviderWrapper>
   );
 };
