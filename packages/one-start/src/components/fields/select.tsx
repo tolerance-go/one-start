@@ -60,6 +60,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     dropdownMatchSelectWidth,
     labelInValue,
     showInfo,
+    maxWidth,
   } = settings ?? {};
 
   const [loading, setLoading] = useState(false);
@@ -281,6 +282,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
         style={{
           width: '100%',
           minWidth: 120,
+          maxWidth,
         }}
         placeholder="请选择选项"
         optionLabelProp="label"

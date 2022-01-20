@@ -77,7 +77,7 @@ export default () => {
               settings: {
                 title: 'textarea',
                 dataIndex: 'textarea',
-                search: true,
+                // search: true,
               },
             },
             {
@@ -91,7 +91,7 @@ export default () => {
                   settings: {
                     title: 'digit',
                     dataIndex: 'digit',
-                    search: true,
+                    // search: true,
                     rules: [
                       {
                         required: true,
@@ -104,7 +104,7 @@ export default () => {
                   settings: {
                     title: 'date',
                     dataIndex: 'date',
-                    search: true,
+                    // search: true,
                   },
                 },
                 {
@@ -112,13 +112,13 @@ export default () => {
                   settings: {
                     title: 'date-range',
                     dataIndex: 'date-range',
-                    search: true,
+                    // search: true,
                   },
                 },
                 {
                   type: 'select',
                   settings: {
-                    search: true,
+                    // search: true,
                     title: 'select',
                     dataIndex: 'select',
                     valueEnums: {
@@ -131,7 +131,7 @@ export default () => {
                 {
                   type: 'select',
                   settings: {
-                    search: true,
+                    // search: true,
                     title: 'select-search',
                     dataIndex: 'select-search',
                     showSearch: true,

@@ -6,9 +6,7 @@ import { useMemo } from 'react';
 import { DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW } from './constants';
 
 export const useTableTopPanel = ({
-  spreadBtnDom,
   selectionDom,
-  singleSearchForm,
   searchFormFieldItems,
   searchFormItemChunkSize,
   drawerDom,
@@ -22,9 +20,7 @@ export const useTableTopPanel = ({
   clsPrefix,
   highlightTag,
 }: {
-  spreadBtnDom?: React.ReactNode;
   selectionDom?: React.ReactNode;
-  singleSearchForm?: boolean;
   searchFormFieldItems: OSFormFieldItem[];
   searchFormItemChunkSize?: RequiredRecursion<OSTableType>['settings']['searchFormItemChunkSize'];
   drawerDom?: React.ReactNode;
@@ -38,12 +34,8 @@ export const useTableTopPanel = ({
   clsPrefix?: string;
   highlightTag?: React.ReactNode;
 }) => {
-  const leftPanelHasDom = spreadBtnDom || selectionDom;
-
-  const isLeftShowSearchForm =
+  const searchFormIsInline =
     searchFormDom &&
-    singleSearchForm &&
-    !leftPanelHasDom &&
     searchFormFieldItems.length <=
       (searchFormItemChunkSize ?? DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW);
 
@@ -67,37 +59,31 @@ export const useTableTopPanel = ({
   return (
     <>
       {drawerDom}
-      {isLeftShowSearchForm ? null : searchFormDom}
-      {(spreadBtnDom || selectionDom || searchSwitchDom || settingDom || actions || expandBtn) && (
+      {searchFormIsInline ? null : searchFormDom}
+      {(selectionDom || searchSwitchDom || settingDom || actions || expandBtn) && (
         /** 设置 gutter 会引起 margin-left/right 负数的情况，引起页面滚动 */
         <Row style={{ marginBottom: 8 }} justify="space-between">
-          {isLeftShowSearchForm ? (
-            <Col flex="auto" className={`${clsPrefix}-inline-search-form-wrapper`}>
-              {searchFormDom}
-            </Col>
-          ) : (
-            <Col>
-              <Space size={5}>
-                {expandBtn}
-                {spreadBtnDom}
-                {selectionDom}
-                {highlightTag}
-                {normalizedActions.left?.map((item, index) =>
-                  React.cloneElement(item, {
-                    ...item.props,
-                    key: item.key ?? index,
-                  }),
-                )}
-              </Space>
-            </Col>
-          )}
+          <Col flex="auto" className={`${clsPrefix}-inline-search-form-wrapper`}>
+            <Row gutter={10}>
+              <Col>
+                <Space size={5}>
+                  {selectionDom}
+                  {expandBtn}
+                  {highlightTag}
+                  {normalizedActions.left?.map((item, index) =>
+                    React.cloneElement(item, {
+                      ...item.props,
+                      key: item.key ?? index,
+                    }),
+                  )}
+                </Space>
+              </Col>
+              {searchFormIsInline ? <Col>{searchFormDom}</Col> : null}
+            </Row>
+          </Col>
           <Col>
             <Space size={5}>
-              {isLeftShowSearchForm && highlightTag && (
-                <span style={{ marginRight: 10 }}>{highlightTag}</span>
-              )}
               {[
-                ...(isLeftShowSearchForm ? normalizedActions.left ?? [] : []),
                 ...(normalizedActions.right ?? []),
                 ...(extraActions?.({
                   actions: tableActionsRef.current,
@@ -110,10 +96,6 @@ export const useTableTopPanel = ({
                     key: item.key ?? index,
                   }),
                 )}
-              {isLeftShowSearchForm && expandBtn}
-              {isLeftShowSearchForm && spreadBtnDom}
-              {isLeftShowSearchForm && selectionDom}
-
               {searchSwitchDom}
               {settingDom}
             </Space>

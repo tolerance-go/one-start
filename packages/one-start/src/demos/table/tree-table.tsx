@@ -1,18 +1,32 @@
-import {
-  OSProviderWrapper,
-  OSTable,
-  OSTrigger,
-  OSSwitchField,
-  OSTextField,
-} from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import type { RecordType } from '@ty-one-start/one-start';
+import { OSForm, OSProviderWrapper, OSTable, OSTrigger } from '@ty-one-start/one-start';
+import { Divider } from '@ty/antd';
 import delay from 'delay';
 import React, { useState } from 'react';
 
 export default () => {
-  const [value, setValue] = useState<boolean>(false);
+  const [settings, setSettings] = useState<RecordType | undefined>({
+    checkStrictly: false,
+  });
+
   return (
     <OSProviderWrapper>
+      <OSForm
+        onChange={setSettings}
+        settings={{
+          initialValues: settings,
+          fieldItems: [
+            {
+              type: 'switch',
+              settings: {
+                dataIndex: 'checkStrictly',
+                title: '是否关闭联动选择',
+              },
+            },
+          ],
+        }}
+      />
+      <Divider />
       <OSTable
         settings={{
           batchOperation: () => {
@@ -24,16 +38,6 @@ export default () => {
                   type: 'primary',
                 }}
               ></OSTrigger>,
-              <Space split="|">
-                <OSSwitchField
-                  value={value}
-                  onChange={(data) => {
-                    setValue(data!);
-                  }}
-                  mode="edit"
-                ></OSSwitchField>
-                <OSTextField value={`${value ? '开启' : '关闭'}联动选择`} mode="read"></OSTextField>
-              </Space>,
             ];
           },
           fieldItems: [
@@ -83,9 +87,8 @@ export default () => {
               },
             },
           ],
-
           rowSelection: {
-            checkStrictly: !value,
+            checkStrictly: settings?.checkStrictly,
           },
         }}
         requests={{
