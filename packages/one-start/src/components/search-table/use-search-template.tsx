@@ -101,6 +101,7 @@ export const useSearchTemplate = ({
             <OSSourceTable
               settings={{
                 rowEditable: {
+                  formType: 'form',
                   modalWidth: 500,
                   formSettings: {
                     fieldItemSettings: {

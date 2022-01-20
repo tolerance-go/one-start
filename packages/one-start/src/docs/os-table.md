@@ -113,6 +113,8 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 ### 单元格高亮
 
+表格预设了 3 种高亮颜色和文案：`warning`, `error`, `success`，通过设置 `highlightBadge` 可以控制工具栏高亮徽章的类型数量和文案等信息；通过设置 `fieldItems[number].settings.highlight` 控制选中单元格高亮类型
+
 <code src="../demos/table/highlight.tsx" />
 
 ### 搜索表单值 URL 持久化

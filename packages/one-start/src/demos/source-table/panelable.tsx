@@ -95,6 +95,7 @@ export default () => {
             },
           },
           rowEditable: {
+            formType: 'form',
             formSettings: {
               labelCol: { span: 4 },
               wrapperCol: { span: 20 },
