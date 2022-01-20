@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { Affix, Col, Row, Space } from '@ty/antd';
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useImperativeHandle, useMemo, useRef, useState } from 'react';
 import {
   globalRefKeys,
   normalizeRequestOutputs,
@@ -26,6 +26,7 @@ import FormUpdateTimestamp from './form-update-timestamp';
 
 const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActionsCreateType> = (
   props,
+  ref,
 ) => {
   const { settings, requests } = props;
   const {
@@ -36,6 +37,7 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
     requestDeleteTemplate,
     requestApplayTemplateData,
     requestUpdateTemplateValues,
+    requestCreateFormInitialValues,
   } = requests ?? {};
 
   const {
@@ -80,6 +82,8 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
     },
   });
 
+  useImperativeHandle(ref, () => createFormRef.current!);
+
   const formUpdateTimestampRef = useRef<FormUpdateTimestampAPI>(null);
   const applyingTemplateRef = useRef<ApplyingTemplateAPI>(null);
 
@@ -93,6 +97,17 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
       }}
       onDataSourceLinkageChange={(normalizedValues) => {
         formUpdateTimestampRef.current?.updateLocalData?.(normalizedValues);
+      }}
+      requests={{
+        requestInitialValues: async (params) => {
+          if (requestCreateFormInitialValues) {
+            return requestCreateFormInitialValues({
+              ...params,
+              apis: createFormRef.current!,
+            });
+          }
+          return false;
+        },
       }}
     ></OSForm>
   );
@@ -146,9 +161,10 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                             requests={{
                               requestAfterClick: async () => {
                                 if (!requestApplayTemplateData) return;
-                                const { error, data } = await requestApplayTemplateData(
-                                  params,
-                                ).then(normalizeRequestOutputs);
+                                const { error, data } = await requestApplayTemplateData({
+                                  ...params,
+                                  apis: createFormRef.current!,
+                                }).then(normalizeRequestOutputs);
                                 if (error || !data) return;
 
                                 refsRef.current?.dialogs?.messages?.globalMessage?.push({
@@ -184,9 +200,10 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                                       refsRef.current?.triggers?.buttons?.saveBtn?.update({
                                         disabled: true,
                                       });
-                                      const { error, data } = await requestTemplateDataSource(
-                                        params,
-                                      ).then(normalizeRequestOutputs);
+                                      const { error, data } = await requestTemplateDataSource({
+                                        ...params,
+                                        apis: createFormRef.current!,
+                                      }).then(normalizeRequestOutputs);
                                       refsRef.current?.triggers?.buttons?.saveBtn?.update({
                                         disabled: false,
                                       });
@@ -219,6 +236,7 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                                       const { error } = await requestUpdateTemplateInfo({
                                         ...params,
                                         values,
+                                        apis: createFormRef.current!,
                                       }).then(normalizeRequestOutputs);
 
                                       if (error) {
@@ -253,9 +271,10 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                             requests={{
                               requestAfterConfirm: async () => {
                                 if (!requestDeleteTemplate) return;
-                                const { error } = await requestDeleteTemplate(params).then(
-                                  normalizeRequestOutputs,
-                                );
+                                const { error } = await requestDeleteTemplate({
+                                  ...params,
+                                  apis: createFormRef.current!,
+                                }).then(normalizeRequestOutputs);
 
                                 if (error) return;
 
@@ -288,9 +307,10 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                 ) => {
                   if (!requestTemplateList) return false;
 
-                  const { error, data } = await requestTemplateList(params).then(
-                    normalizeRequestOutputs,
-                  );
+                  const { error, data } = await requestTemplateList({
+                    ...params,
+                    apis: createFormRef.current!,
+                  }).then(normalizeRequestOutputs);
 
                   if (error) return true;
 
@@ -374,6 +394,7 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                           values: results.data,
                           createFormValues:
                             refsRef.current?.forms?.createForm?.getDataSource() ?? {},
+                          apis: createFormRef.current!,
                         }).then(normalizeRequestOutputs);
 
                         if (error) return;
@@ -436,6 +457,7 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                 const { error } = await requests
                   .requestCreateSource({
                     values: result.data,
+                    apis: createFormRef.current!,
                   })
                   .then(normalizeRequestOutputs);
 

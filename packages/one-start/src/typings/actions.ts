@@ -24,7 +24,7 @@ import type {
 import type { RecordType } from './core';
 import type { RequiredRecursion } from './utils';
 
-export type OSActionsCreateAPI = {};
+export type OSActionsCreateAPI = OSFormAPI;
 
 export interface _OSActionsCreateType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>
   extends OSCore {
@@ -75,6 +75,7 @@ export interface _OSActionsCreateType<OSCustomFieldStaticPureTableFormFieldItemC
     requestCreateSource?: RequestIO<
       {
         values: RecordType;
+        apis: OSActionsCreateAPI;
       },
       undefined
     >;
@@ -82,10 +83,13 @@ export interface _OSActionsCreateType<OSCustomFieldStaticPureTableFormFieldItemC
     requestTemplateCreate?: RequestIO<{
       values: RecordType;
       createFormValues: RecordType;
+      apis: OSActionsCreateAPI;
     }>;
     /** 请求所有模版列表 */
     requestTemplateList?: RequestIO<
-      OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      {
+        apis: OSActionsCreateAPI;
+      } & OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       OSTableRequestDataSourceReturnType<
         OSCustomFieldStaticPureTableFormFieldItemConfigsType,
         OSCustomFieldPureTableFormFieldItemConfigsType
@@ -95,6 +99,7 @@ export interface _OSActionsCreateType<OSCustomFieldStaticPureTableFormFieldItemC
     requestUpdateTemplateInfo?: RequestIO<
       {
         values: RecordType;
+        apis: OSActionsCreateAPI;
       } & _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       undefined
     >;
@@ -103,27 +108,40 @@ export interface _OSActionsCreateType<OSCustomFieldStaticPureTableFormFieldItemC
       {
         values: RecordType;
         templateId: string;
+        apis: OSActionsCreateAPI;
       },
       undefined
     >;
     /** 删除模板的请求 */
     requestDeleteTemplate?: RequestIO<
-      _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      {
+        apis: OSActionsCreateAPI;
+      } & _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       undefined
     >;
     /** 请求模板详情的接口 */
     requestTemplateDataSource?: RequestIO<
-      _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      {
+        apis: OSActionsCreateAPI;
+      } & _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       RecordType
     >;
     /** 应用模板数据的接口 */
     requestApplayTemplateData?: RequestIO<
-      _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      {
+        apis: OSActionsCreateAPI;
+      } & _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       {
         values?: RecordType;
         templateId: string;
         templateName: string;
       }
+    >;
+    requestCreateFormInitialValues?: RequestIO<
+      {
+        apis: OSActionsCreateAPI;
+      } & Parameters<RequiredRecursion<OSFormType>['requests']['requestInitialValues']>[0],
+      RecordType
     >;
   };
 }

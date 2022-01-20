@@ -15,6 +15,10 @@ group:
 
 ### 基础使用
 
+创建操作，内部包含了一个表单组件，部分表单 api 接口选择性透出
+
+根据通用场景，默认状态封装为一个拟态框，可以通过设置 `type: plain` 进行切换
+
 <code src="../demos/actions/create/simple.tsx" />
 
 ### 编辑记录本地持久化
