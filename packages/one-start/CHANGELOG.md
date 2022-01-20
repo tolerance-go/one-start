@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.10.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.9.0...@ty-one-start/one-start@0.10.0) (2022-01-20)
+
+
+### Features
+
+* os-create 新增 type 参数，支持弹出框和 plain 直接展示 ([1abb197](https://10.1.2.7/visual-fe/swap-modules/commits/1abb1973ab20c2b6ad97bfaee09fb4a7049e99ce))
+* os-form 增加 set/get RefObject 方法，支持组件作用域内存储全局数据 ([637458c](https://10.1.2.7/visual-fe/swap-modules/commits/637458c31c02abf5c97f822e7b863a9a192ca263))
+
+
+
+
+
 # [0.9.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.8.0...@ty-one-start/one-start@0.9.0) (2022-01-20)
 
 
