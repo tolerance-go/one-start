@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.11.0...@ty-one-start/one-start@0.12.0) (2022-01-24)
+
+
+### Features
+
+* os-source-table 的编辑配置支持表单自身 requests 接口 ([3408125](https://10.1.2.7/visual-fe/swap-modules/commits/3408125abafc057e83c2983805d8610615d79aa0))
+
+
+
+
+
 # [0.11.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.10.0...@ty-one-start/one-start@0.11.0) (2022-01-20)
 
 
