@@ -689,6 +689,10 @@ export type _OSSourceTableSelfType<
                 CustomFormValueType,
                 StaticCustomFormValueType
               >['settings'];
+              formRequests?: _OSFormType<
+                CustomFormValueType,
+                StaticCustomFormValueType
+              >['requests'];
               formType: 'form';
             }
           | {
@@ -696,6 +700,9 @@ export type _OSSourceTableSelfType<
                 CustomFormValueType,
                 StaticCustomFormValueType
               >['settings'];
+              formRequests?: Required<
+                _OSLayoutStepsFormType<CustomFormValueType, StaticCustomFormValueType>
+              >['requests'];
               formType: 'steps-form';
             }
         ))
