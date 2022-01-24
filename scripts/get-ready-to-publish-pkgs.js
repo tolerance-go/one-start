@@ -8,7 +8,7 @@ const main = ({ headPkgs = [] }) => {
   const headPkgNames = headPkgs.map((item) => `@${settings.scope}/${item}`);
   const { stdout } = utils.execa.sync(
     `${path.join(process.cwd(), 'node_modules', '.bin', 'lerna')}`,
-    ['changed'],
+    ['changed', '--include-merged-tags'],
   );
   const releasePkgNames = stdout.split('\n').filter(Boolean);
 
