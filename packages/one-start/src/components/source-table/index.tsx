@@ -223,6 +223,7 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
               submitTriggerText: '确认保存',
             }}
             requests={{
+              ...rowEditable.formRequests,
               requestInitialValues: () =>
                 requestRowEditData({
                   ...params,
@@ -242,6 +243,7 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
           ref={editFormRef as React.MutableRefObject<OSFormAPI>}
           settings={rowEditable.formSettings as OSFormType['settings']}
           requests={{
+            ...rowEditable.formRequests,
             requestInitialValues: () =>
               requestRowEditData({
                 ...params,

@@ -32,6 +32,10 @@ group:
 
 <code src="../demos/source-table/panelable.tsx" />
 
+### 特殊布局的表单
+
+<code src="../demos/source-table/layout-forms.tsx" />
+
 基于 os-table，扩展了以下接口
 
 <API exports='["Settings", "Requests"]' src="../components/source-table/index.tsx"></API>
