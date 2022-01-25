@@ -11,7 +11,15 @@ const OSUploadField: React.ForwardRefRenderFunction<OSUploadFieldAPI, OSUploadFi
 ) => {
   const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
 
-  const { disabled, maxNumber } = settings ?? {};
+  const {
+    disabled,
+    maxNumber,
+    immediately = false,
+    accept,
+    action,
+    headers,
+    name,
+  } = settings ?? {};
 
   if (mode === 'read') {
     const render = () => {
@@ -64,10 +72,20 @@ const OSUploadField: React.ForwardRefRenderFunction<OSUploadFieldAPI, OSUploadFi
 
     return (
       <Upload
+        accept={accept}
+        action={action}
+        headers={headers}
+        name={name}
         disabled={disabled}
         ref={ref as React.MutableRefObject<any>}
         fileList={_value}
         onChange={onChange}
+        beforeUpload={() => {
+          if (immediately === false) {
+            return false;
+          }
+          return true;
+        }}
       >
         <Button
           size="small"
