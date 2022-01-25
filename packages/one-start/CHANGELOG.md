@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.12.0...@ty-one-start/one-start@0.12.1) (2022-01-25)
+
+
+### Bug Fixes
+
+* 表格如果 dataIndex 为数组形式，列配置打开报错 ([5bf44b7](https://10.1.2.7/visual-fe/swap-modules/commits/5bf44b7e1035d3a60a9b521612cd2deb825c8f36))
+* upload-field 不设置 action 清空下，会默认进行一次上上传 ([0209265](https://10.1.2.7/visual-fe/swap-modules/commits/020926517c8c5fef08a3acc68bb1eee3ecd29e30))
+* **os-editable-table:** 编辑表格翻页按钮失效 ([1058d95](https://10.1.2.7/visual-fe/swap-modules/commits/1058d950180942a3526636199bf3605c364571c9))
+
+
+
+
+
 # [0.12.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.11.0...@ty-one-start/one-start@0.12.0) (2022-01-24)
 
 
