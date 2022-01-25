@@ -188,7 +188,13 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
           </Row>
         );
       }
-      return null;
+      return (
+        <Row justify="center">
+          <Col>
+            <Typography.Text type="secondary">暂无选项</Typography.Text>
+          </Col>
+        </Row>
+      );
     };
 
     return (
@@ -281,7 +287,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
         }}
         style={{
           width: '100%',
-          minWidth: 120,
+          minWidth: 125,
           maxWidth,
         }}
         placeholder="请选择选项"
