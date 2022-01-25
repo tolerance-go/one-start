@@ -58,7 +58,7 @@ import type {
   SearchFormActions,
 } from './typings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
-import { getDataIndexId, runTableSettings } from './utils';
+import { getDataIndexId, getKeyIndexId, runTableSettings } from './utils';
 
 /** 中间产物 */
 const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
@@ -76,11 +76,15 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
   /** 表格的总宽度 */
   const totalTableWidthRef = useRef<number>(0);
 
-  /** 所有 column 的 id */
+  // @TODO: allColumnsIdRef 删除，staticPureConfigsFieldItemsRef 改为 id 结构数组，只保留 fieldItem 和 antd 2个静态 maps
+
+  /**
+   * 所有 column 的 id
+   */
   const allColumnsIdRef = useRef<string[]>([]);
 
-  /** 所有 column 的 antd 配置和 id 的 map */
-  const allColumnsIdMapsRef = useRef<
+  /** 所有 column 的 antd 静态配置和 id 的 map */
+  const columnsPropsIdMapsRef = useRef<
     Record<string, ColumnGroupType<RecordType> | ColumnType<RecordType>>
   >({});
 
@@ -108,7 +112,7 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
     searchFormFieldItemsRef.current = [];
     totalTableWidthRef.current = 0;
     allColumnsIdRef.current = [];
-    allColumnsIdMapsRef.current = {};
+    columnsPropsIdMapsRef.current = {};
     columnsStaticPureConfigsIdMapsRef.current = {};
     enableSearchFormRef.current = false;
     enableColumnsSettingsRef.current = false;
@@ -124,7 +128,7 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
     searchFormFieldItemsRef,
     totalTableWidthRef,
     allColumnsIdRef,
-    allColumnsIdMapsRef,
+    columnsPropsIdMapsRef,
     columnsStaticPureConfigsIdMapsRef,
     resetIntermediateProducts,
     enableSearchFormRef,
@@ -179,7 +183,7 @@ export const useItems = ({
     searchFormFieldItemsRef,
     totalTableWidthRef,
     allColumnsIdRef,
-    allColumnsIdMapsRef,
+    columnsPropsIdMapsRef,
     columnsStaticPureConfigsIdMapsRef,
     enableSearchFormRef,
     enableColumnsSettingsRef,
@@ -915,7 +919,9 @@ export const useItems = ({
               _requests.requestOptions as RequiredRecursion<OSSelectFieldType>['requests']['requestOptions'];
           }
 
-          const colId = fieldItem.key || dataIndexId || mergedSettings?.title;
+          const colId = getKeyIndexId(
+            fieldItem.key || mergedSettings.dataIndex || mergedSettings?.title,
+          );
 
           if (colId) {
             columnsStaticPureConfigsIdMapsRef.current[colId] =
@@ -950,12 +956,10 @@ export const useItems = ({
           }
 
           if (valueType === 'group' && fieldItem.children) {
-            const key = fieldItem.key || mergedSettings?.title;
-
             const columnGroup = {
               title: mergedSettings?.title,
               align: 'left',
-              key,
+              key: colId,
               onHeaderCell: () => {
                 return {
                   className: `${clsPrefix}-group-header`,
@@ -968,10 +972,10 @@ export const useItems = ({
               }),
             } as ColumnGroupType<RecordType>;
 
-            if (key) {
-              allColumnsIdRef.current.push(key);
-              propsAllColumnsIdRef.current.push(key);
-              allColumnsIdMapsRef.current[key] = columnGroup;
+            if (colId) {
+              allColumnsIdRef.current.push(colId);
+              propsAllColumnsIdRef.current.push(colId);
+              columnsPropsIdMapsRef.current[colId] = columnGroup;
             }
 
             return columnGroup;
@@ -998,7 +1002,7 @@ export const useItems = ({
             },
             fixed,
             defaultSortOrder,
-            key: dataIndexId,
+            key: colId,
             width: defaultWidth,
             /** 排序的话增加 5 px 右距 */
             title,
@@ -1089,7 +1093,7 @@ export const useItems = ({
             }),
           ])(defaultCol);
 
-          allColumnsIdMapsRef.current[dataIndexId] = column;
+          columnsPropsIdMapsRef.current[colId] = column;
 
           return column;
         })
@@ -1115,7 +1119,7 @@ export const useItems = ({
     searchTransfromMapDataIndexId: searchTransfromMapDataIndexIdRef.current,
     totalTableWidth: totalTableWidthRef.current,
     allColumnsId: allColumnsIdRef.current,
-    allColumnsIdMaps: allColumnsIdMapsRef.current,
+    columnsPropsIdMaps: columnsPropsIdMapsRef.current,
     columnsStaticPureConfigsIdMaps: columnsStaticPureConfigsIdMapsRef.current,
     searchFormFieldItems: searchFormFieldItemsRef.current,
     enableSearchForm: enableSearchFormRef.current,

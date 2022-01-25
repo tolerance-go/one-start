@@ -135,6 +135,12 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 <code src="../demos/table/be-pagination.tsx" />
 
+### 层级 dataIndex
+
+可以使用数组形式取 `rowData` 对象中任意层级的值进行列渲染，但是编辑形态下，暂时限制为 `string` 类型
+
+<code src="../demos/table/data-index-level.tsx" />
+
 ### API 接口
 
 <code src="../demos/table/apis.tsx" />
