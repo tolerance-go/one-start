@@ -733,13 +733,18 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
 
   const handleTableChange = useCallback(
     (pagination_, filters, sorter) => {
+      /**
+       * 此方法判断是否开启前端分页
+       * 1. total === data.length
+       * 2. total == null
+       */
       const isFePagination = () => {
         const originDataSource = tableActionsRef.current.getOriginDataSource();
         const visualDataSource_ = tableActionsRef.current.getVisualDataSource();
 
         const viewData = visualDataSource_ ?? originDataSource;
 
-        return totalCount != null && viewData != null && totalCount === viewData.length;
+        return totalCount == null || (viewData != null && totalCount === viewData.length);
       };
 
       if (isFePagination()) {
