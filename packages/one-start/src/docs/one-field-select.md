@@ -49,6 +49,10 @@ group:
 
 <code src="../demos/field-select/show-info.tsx" />
 
+### 占位信息
+
+<code src="../demos/field-select/placeholder.tsx" />
+
 <code src="../demos/field-select/dev.tsx" />
 
 <API exports='["Settings", "Requests"]' src="../components/fields/select.tsx"></API>
