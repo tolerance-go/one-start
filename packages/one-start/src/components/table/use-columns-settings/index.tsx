@@ -365,7 +365,7 @@ export const useSettings = ({
           showLeafIcon: false,
         }}
         draggable={(item) => {
-          const configable = columnsStaticPureConfigsIdMaps[item.key].settings?.configable;
+          const configable = columnsStaticPureConfigsIdMaps[item.key ?? '']?.settings?.configable;
           if (typeof configable === 'boolean') {
             return configable;
           }
