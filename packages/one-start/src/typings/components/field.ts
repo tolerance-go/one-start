@@ -416,6 +416,11 @@ export interface OSUploadFieldType
   settings?: {
     /** 最大文件数量 */
     maxNumber?: number;
+    /**
+     * 是否立即上传
+     * @default false
+     */
+    immediately?: boolean;
   } & Pick<UploadProps, 'accept' | 'action' | 'headers' | 'name'> &
     OSFieldBaseSettings;
 }
