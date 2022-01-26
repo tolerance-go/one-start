@@ -59,6 +59,7 @@ import type {
 } from './typings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 import { getDataIndexId, getKeyIndexId, runTableSettings } from './utils';
+import { getColEditable } from './utils/get-col-editable';
 
 /** 中间产物 */
 const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
@@ -482,24 +483,16 @@ export const useItems = ({
       dataIndex?: RequiredRecursion<OSFormItemType>['settings']['dataIndex'];
     }) =>
     (col_: ColumnType<RecordType>): ColumnType<RecordType> => {
-      const getColEditable = (rowData: RecordType, rowIndex: number) => {
-        const colEditable = (() => {
-          if (editable == null) {
-            return false;
-          }
-          if (typeof editable === 'function') {
-            return editable(rowData, rowIndex);
-          }
-          return !!editable;
-        })();
-
-        return colEditable && (editableRowKeys ? editableRowKeys.includes(rowData[rowKey]) : true);
-      };
-
       return {
         ...col_,
         onCell: (data, index) => {
-          const colEditable = getColEditable(data, index ?? -1);
+          const colEditable = getColEditable({
+            rowData: data,
+            rowIndex: index ?? -1,
+            editable,
+            editableRowKeys,
+            rowKey,
+          });
           const prev = col_.onCell?.(data, index);
           return {
             ...prev,
@@ -510,7 +503,13 @@ export const useItems = ({
           };
         },
         render: (val, rowData, rowIndex) => {
-          const colEditable = getColEditable(rowData, rowIndex);
+          const colEditable = getColEditable({
+            rowData,
+            rowIndex,
+            editable,
+            editableRowKeys,
+            rowKey,
+          });
 
           if (colEditable) {
             const dom = renderTableFormItem(valueType, settings, requests ?? {}, {
@@ -520,7 +519,10 @@ export const useItems = ({
               rowId: rowData[rowKey],
               actions: tableActionsRef.current,
               dependencies,
-              defaultSettings: fieldItemSettings,
+              defaultSettings: {
+                ...fieldItemSettings,
+                inlineError: true,
+              },
               getField: (staticFieldSettings, staticFieldRequests, __, ___, options) => {
                 return renderField(
                   colEditable ? 'edit' : 'read',
@@ -711,13 +713,24 @@ export const useItems = ({
       valueType,
       align,
       title,
+      editable,
     }: {
+      editable?: RequiredRecursion<OSTableFormFieldItemExtra>['settings']['editable'];
       valueType?: OSTableFormFieldItems[number]['type'];
       align?: RequiredRecursion<OSTableFormFieldItemExtra>['settings']['align'];
       title?: React.ReactNode;
     }) =>
     (col_: ColumnType<RecordType>): ColumnType<RecordType> => {
+      const colEditable = getColEditable({
+        editable,
+        editableRowKeys,
+        rowKey,
+      });
+
       const align_ = (() => {
+        if (colEditable) {
+          return 'left';
+        }
         if (align) {
           return align;
         }
@@ -1066,6 +1079,7 @@ export const useItems = ({
               valueType,
               align: mergedSettings?.align,
               title,
+              editable: mergedSettings.editable,
             }),
             handleHighlight({
               highlight: mergedSettings?.highlight,

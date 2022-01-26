@@ -171,7 +171,8 @@ export interface OSTableFormFieldItemExtra extends OSCore {
   settings?: {
     defaultSortOrder?: ColumnType<RecordType>['defaultSortOrder'];
     sorter?: ColumnType<RecordType>['sorter'];
-    editable?: ((rowData: RecordType, rowIndex?: number) => boolean) | boolean;
+    /** align 计算的时候会传空 rowData */
+    editable?: ((rowData?: RecordType, rowIndex?: number) => boolean) | boolean;
     search?: boolean | 'only' | OSTableFormFieldItemSearchType;
     defaultWidth?: number;
     minWidth?: number;

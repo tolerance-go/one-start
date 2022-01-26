@@ -1,13 +1,12 @@
-import type { OSFormAPI } from '@ty-one-start/one-start';
+import type { RecordType } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
-import React, { useRef } from 'react';
+import utlFp from 'lodash/fp';
+import React from 'react';
 
 export default () => {
-  const formRef = useRef<OSFormAPI>(null);
   return (
     <OSProviderWrapper>
       <OSForm
-        ref={formRef}
         settings={{
           fieldItems: [
             {
@@ -136,7 +135,51 @@ export default () => {
                 wrapperCol: {
                   span: 24,
                 },
+                addable: {},
                 fieldItems: [
+                  {
+                    type: 'select',
+                    settings: ({ rowId }) => ({
+                      title: 'select',
+                      dataIndex: 'select',
+                      rules: [
+                        {
+                          required: true,
+                        },
+                        ({ getFieldValue, getFieldsValue }) => ({
+                          validator(rule, val?: string) {
+                            if (val == null) {
+                              return Promise.resolve();
+                            }
+
+                            const currentSelectVal = getFieldValue([rowId!, 'select']);
+
+                            const tableValues = getFieldsValue();
+
+                            const otherSelectValues = utlFp.flow(
+                              utlFp.omit([rowId!]),
+                              utlFp.mapValues((rowData: RecordType) => rowData.select),
+                              utlFp.values,
+                              /** 过滤空值 */
+                              utlFp.filter(Boolean),
+                            )(tableValues);
+
+                            if (otherSelectValues.includes(currentSelectVal)) {
+                              return Promise.reject(new Error('不能有重复的选项'));
+                            }
+
+                            return Promise.resolve();
+                          },
+                        }),
+                      ],
+                      valueEnums: {
+                        a: 'A',
+                        b: 'B',
+                        c: 'C',
+                      },
+                      editable: true,
+                    }),
+                  },
                   {
                     type: 'text',
                     settings: {
@@ -168,7 +211,6 @@ export default () => {
           ],
         }}
       ></OSForm>
-      values: {formRef.current}
     </OSProviderWrapper>
   );
 };
