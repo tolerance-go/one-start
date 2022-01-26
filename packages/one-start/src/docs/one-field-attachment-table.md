@@ -5,8 +5,8 @@ nav:
   path: /one-start
 title: os-field-attachment-table
 group:
-  title: tables
-  path: /one-start/tables
+  title: fields
+  path: /one-start/fields
 ---
 
 # os-field-attachment-table

@@ -5,8 +5,8 @@ nav:
   path: /one-start
 title: os-field-editable-table
 group:
-  title: tables
-  path: /one-start/tables
+  title: fields
+  path: /one-start/fields
 ---
 
 # os-field-editable-table
