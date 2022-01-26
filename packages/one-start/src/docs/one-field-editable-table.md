@@ -19,7 +19,7 @@ group:
 
 ### 联动获取修改的行和列
 
-`changedValueHasMeta` 可以改变 Table onChange 的值
+`changedValueHasMeta` 可以改变表格 onChange 回调注入的参数内容
 
 <code src="../demos/field-editable-table/linkage-changed-value.tsx" />
 
