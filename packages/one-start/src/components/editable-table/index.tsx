@@ -313,7 +313,6 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
             configable: false,
             align: 'left',
             ...settings?.fieldItemSettings,
-            inlineError: true,
           },
           rowKey,
         }}
