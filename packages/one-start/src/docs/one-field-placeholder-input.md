@@ -17,6 +17,8 @@ group:
 
 ### 基础使用
 
+弹出框宽度随输入框大小变化
+
 <code src="../demos/field-placeholder-input/simple.tsx" />
 
 ### 光标控制
