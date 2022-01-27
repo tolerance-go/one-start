@@ -12,22 +12,24 @@ import React, {
   useState,
 } from 'react';
 import Highlighter from 'react-highlight-words';
-import { useActionsRef } from '../hooks/use-actions-ref';
-import { ExtraValueTypesContext } from '../providers/extra-value-types';
 import type {
   OSFormType,
   OSSelectBaseAPI,
   OSSelectFieldAPI,
+  OSSelectFieldShowInfo,
   OSSelectFieldType,
   OSSelectFieldValueArrayType,
   OSSelectFieldValueItemType,
   OSSelectFieldValueType,
   OSSelectOptionItem,
   RecordType,
-} from '../../typings';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { useClsPrefix } from '../utils/use-cls-prefix';
-import { convertEnumsToOptions } from './utils/convert-enum-to-options';
+} from '../../../typings';
+import { useActionsRef } from '../../hooks/use-actions-ref';
+import { ExtraValueTypesContext } from '../../providers/extra-value-types';
+import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
+import { useClsPrefix } from '../../utils/use-cls-prefix';
+import { convertEnumsToOptions } from '../utils/convert-enum-to-options';
+import { ShowInfoLabel } from './show-info-label';
 
 const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFieldType> = (
   props,
@@ -197,6 +199,75 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
       );
     };
 
+    const renderOptions = () => {
+      return (options || asyncOptions)?.map((item: OSSelectOptionItem) => {
+        const labelStr = item.label?.toString();
+
+        const highlightDom = (
+          <Highlighter
+            highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
+            searchWords={searchValue == null ? [] : [searchValue]}
+            autoEscape
+            textToHighlight={labelStr ?? ''}
+          />
+        );
+
+        const renderInfoOption = (showInfoSetting: OSSelectFieldShowInfo) => {
+          return (
+            <Row gutter={5} justify="space-between" align="middle" wrap={false}>
+              <ShowInfoLabel hoverTitle={labelStr}>{highlightDom}</ShowInfoLabel>
+              <Col flex="none">
+                <Popover
+                  destroyTooltipOnHide
+                  overlayStyle={{
+                    minWidth: showInfoSetting.popoverWidth ?? 200,
+                  }}
+                  placement="right"
+                  content={extraValueTypes.form({
+                    mode: 'read',
+                    type: 'form',
+                    text: item.data,
+                    fieldSettings: {
+                      labelCol: { span: 12 },
+                      wrapperCol: { span: 12 },
+                      fieldItems: showInfoSetting.fieldItems?.map((it) => ({
+                        type: it.valueType,
+                        settings: {
+                          dataIndex: it.dataIndex,
+                          title: it.title,
+                        },
+                      })),
+                    } as OSFormType['settings'],
+                  })}
+                  getPopupContainer={() => dropWrapRef.current ?? document.body}
+                >
+                  <InfoCircleOutlined
+                    style={{
+                      color: 'rgba(0, 0, 0, 0.45)',
+                    }}
+                  />
+                </Popover>
+              </Col>
+            </Row>
+          );
+        };
+
+        return (
+          <Select.Option
+            key={item.key ?? item.value}
+            value={item.value}
+            label={highlightDom}
+            /**
+             * 鼠标持续悬停显示更多信息，当 showInfo 时，悬停位置在内部
+             */
+            title={normalizedShowInfo ? undefined : labelStr}
+          >
+            {normalizedShowInfo ? renderInfoOption(normalizedShowInfo) : highlightDom}
+          </Select.Option>
+        );
+      });
+    };
+
     return (
       <Select<OSSelectFieldValueType>
         labelInValue={labelInValue}
@@ -279,12 +350,10 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
         tagRender={tagRender}
         showSearch={showSearch == null ? undefined : !!showSearch}
         optionFilterProp={'label'}
-        {...{
-          bordered,
-          disabled,
-          autoFocus,
-          loading,
-        }}
+        bordered={bordered}
+        disabled={disabled}
+        autoFocus={autoFocus}
+        loading={loading}
         style={{
           width: '100%',
           minWidth: 125,
@@ -310,61 +379,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
             : undefined
         }
       >
-        {(options || asyncOptions)?.map((item: OSSelectOptionItem) => {
-          const highlightDom = (
-            <Highlighter
-              highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
-              searchWords={searchValue == null ? [] : [searchValue]}
-              autoEscape
-              textToHighlight={item.label?.toString() ?? ''}
-            />
-          );
-          return (
-            <Select.Option key={item.key ?? item.value} value={item.value} label={highlightDom}>
-              {normalizedShowInfo
-                ? (() => {
-                    return (
-                      <Row gutter={5} justify="space-between" align="middle">
-                        <Col>{highlightDom}</Col>
-                        <Col>
-                          <Popover
-                            destroyTooltipOnHide
-                            overlayStyle={{
-                              minWidth: normalizedShowInfo.popoverWidth ?? 200,
-                            }}
-                            placement="right"
-                            content={extraValueTypes.form({
-                              mode: 'read',
-                              type: 'form',
-                              text: item.data,
-                              fieldSettings: {
-                                labelCol: { span: 12 },
-                                wrapperCol: { span: 12 },
-                                fieldItems: normalizedShowInfo.fieldItems?.map((it) => ({
-                                  type: it.valueType,
-                                  settings: {
-                                    dataIndex: it.dataIndex,
-                                    title: it.title,
-                                  },
-                                })),
-                              } as OSFormType['settings'],
-                            })}
-                            getPopupContainer={() => dropWrapRef.current ?? document.body}
-                          >
-                            <InfoCircleOutlined
-                              style={{
-                                color: 'rgba(0, 0, 0, 0.45)',
-                              }}
-                            />
-                          </Popover>
-                        </Col>
-                      </Row>
-                    );
-                  })()
-                : highlightDom}
-            </Select.Option>
-          );
-        })}
+        {renderOptions()}
       </Select>
     );
   }

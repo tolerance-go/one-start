@@ -259,6 +259,12 @@ export type OSSimpleFormFields = {
     | 'switch';
   title?: string;
 }[];
+
+export type OSSelectFieldShowInfo = {
+  popoverWidth?: string | number;
+  fieldItems: OSSimpleFormFields;
+};
+
 export interface OSSelectFieldType<ValueType = OSSelectFieldValueType>
   extends OSField<ValueType>,
     OSFieldBaseConfigs<ValueType> {
@@ -282,12 +288,7 @@ export interface OSSelectFieldType<ValueType = OSSelectFieldValueType>
      *    },
      * }
      */
-    showInfo?:
-      | OSSimpleFormFields
-      | {
-          popoverWidth?: string | number;
-          fieldItems: OSSimpleFormFields;
-        };
+    showInfo?: OSSimpleFormFields | OSSelectFieldShowInfo;
     maxWidth?: number;
   } & OSFieldBaseSettings;
   requests?: {
