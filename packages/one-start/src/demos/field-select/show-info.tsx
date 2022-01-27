@@ -41,7 +41,7 @@ export default () => {
                       name: '@word',
                       value: Random.integer(),
                     },
-                    label: '@word',
+                    label: () => Random.word(5, 20),
                     value: '@word',
                   },
                 ],
