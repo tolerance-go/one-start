@@ -181,6 +181,13 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     requestMenuData();
   }, []);
 
+  /** 当禁用状态下，且下拉框可见，则自动关闭下拉框 */
+  useEffect(() => {
+    if (disabled === true && visible === true) {
+      setVisible(false);
+    }
+  }, [disabled, visible]);
+
   const renderTooltip = (_tooltip?: OSTriggerTooltip, style?: React.CSSProperties) => {
     return renderTooltipUtl(_tooltip, style);
   };
