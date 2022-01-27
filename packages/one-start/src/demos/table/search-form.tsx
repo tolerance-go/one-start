@@ -16,7 +16,7 @@ import moment from 'moment';
 import React, { useState } from 'react';
 
 export default () => {
-  const [values, setValues] = useState({
+  const [settings, setSettings] = useState({
     leftSideSearchForm: false,
     searchFormItemChunkSize: 3,
     searchFormSettingsLabelColSpan: 4,
@@ -161,10 +161,10 @@ export default () => {
     <OSProviderWrapper>
       <OSForm
         onValuesChange={(_, values_) => {
-          setValues(values_);
+          setSettings(values_);
         }}
         settings={{
-          initialValues: values,
+          initialValues: settings,
           fieldItems: [
             {
               type: 'switch',
@@ -238,21 +238,21 @@ export default () => {
       <Divider />
       <OSTable
         settings={{
-          searchFormItemChunkSize: values.searchFormItemChunkSize,
+          searchFormItemChunkSize: settings.searchFormItemChunkSize,
           searchFormSettings: {
             groupItemSettings: {
-              gutter: values.gutter,
+              gutter: settings.gutter,
             },
             fieldItemSettings: {
               labelCol: {
-                span: values.searchFormSettingsLabelColSpan,
+                span: settings.searchFormSettingsLabelColSpan,
               },
               wrapperCol: {
-                span: values.searchFormSettingsWrapperColSpan,
+                span: settings.searchFormSettingsWrapperColSpan,
               },
-              labelAlign: values.labelAlign as 'left' | 'right',
-              readonly: values.readonly,
-              colSpan: values.colSpan,
+              labelAlign: settings.labelAlign as 'left' | 'right',
+              readonly: settings.readonly,
+              colSpan: settings.colSpan,
             },
           },
           batchOperation: ({ selectedRowKeys }) => {
@@ -274,9 +274,9 @@ export default () => {
               </OSDialog>,
             ];
           },
-          fieldItems: values?.leftSideSearchForm
-            ? fieldItems.slice(0, values.searchFormItemChunkSize).concat(
-                fieldItems.slice(values.searchFormItemChunkSize).map((item) =>
+          fieldItems: settings?.leftSideSearchForm
+            ? fieldItems.slice(0, settings.searchFormItemChunkSize).concat(
+                fieldItems.slice(settings.searchFormItemChunkSize).map((item) =>
                   produce(item, (draft) => {
                     if (draft.children) {
                       draft.children = draft.children.map((it) =>
