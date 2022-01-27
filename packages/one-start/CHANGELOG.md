@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.12.1...@ty-one-start/one-start@0.12.2) (2022-01-27)
+
+
+### Bug Fixes
+
+* 修复 os-table 列自定义校验提示被遮挡，出现动画闪烁等问题 ([ba016c1](https://10.1.2.7/visual-fe/swap-modules/commits/ba016c14288d5c0191b65cdb887ee1b104b3be5c))
+* trigger 当 disabled 状态下，自动收起可能的下拉框 ([d40f020](https://10.1.2.7/visual-fe/swap-modules/commits/d40f02015bf59b158cc5914f4be03107b7177849))
+
+
+
+
+
 ## [0.12.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.12.0...@ty-one-start/one-start@0.12.1) (2022-01-25)
 
 
