@@ -3,6 +3,8 @@ import type { TextAreaProps } from '@ty/antd/lib/input';
 import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type { OSPlaceholderInputFieldAPI, OSPlaceholderInputFieldType } from '../../typings';
+import ResizeObserver from 'rc-resize-observer';
+import { useRenderTooltip } from '../utils/use-render-tooltip';
 
 const OSPlaceholderInputField: React.ForwardRefRenderFunction<
   OSPlaceholderInputFieldAPI,
@@ -18,7 +20,13 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
 
   const { bordered, autoFocus, disabled, placeholder, placeholders } = settings ?? {};
 
+  const [inputWidth, setInputWidth] = useState<number>();
+
   const innerRef = useRef<TextAreaRef>(null);
+
+  const tooltipDom = useRenderTooltip({
+    title: '点击下方标签进行插入',
+  });
 
   useImperativeHandle(ref, () => innerRef.current!);
 
@@ -88,23 +96,23 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
     };
 
     return (
-      <div>
+      <ResizeObserver
+        onResize={({ width }) => {
+          setInputWidth(width);
+        }}
+      >
         <Popover
           placement="topLeft"
           title={
-            <Space>
+            <Space size={5}>
               <Typography.Text>模板变量</Typography.Text>
-              <Typography.Text
-                style={{
-                  fontSize: 12,
-                }}
-                type="secondary"
-              >
-                点击下方标签进行插入
-              </Typography.Text>
+              {tooltipDom}
             </Space>
           }
           visible={focus}
+          overlayStyle={{
+            maxWidth: inputWidth,
+          }}
           content={
             <div
               style={{
@@ -192,7 +200,7 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
             }}
           />
         </Popover>
-      </div>
+      </ResizeObserver>
     );
   }
 

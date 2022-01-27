@@ -1,6 +1,18 @@
 import { OSPlaceholderInputField, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Divider, Space } from '@ty/antd';
+import { mock, Random } from 'mockjs';
 import React, { useState } from 'react';
+
+const placeholders = mock({
+  'list|20': [
+    {
+      label: () => Random.word(),
+      value() {
+        return this.label;
+      },
+    },
+  ],
+}).list;
 
 export default () => {
   const [value, setValue] = useState<string>();
@@ -13,24 +25,20 @@ export default () => {
           onChange={setValue}
           mode="edit"
           settings={{
-            placeholders: [
-              {
-                label: 'label1',
-                value: 'label1',
-              },
-              {
-                label: 'label2',
-                value: 'label2',
-              },
-              {
-                label: 'label3',
-                value: 'label3',
-              },
-            ],
+            placeholders,
           }}
         ></OSPlaceholderInputField>
         <OSPlaceholderInputField value={value} mode="read"></OSPlaceholderInputField>
       </Space>
+      <Divider />
+      <OSPlaceholderInputField
+        value={value}
+        onChange={setValue}
+        mode="edit"
+        settings={{
+          placeholders,
+        }}
+      ></OSPlaceholderInputField>
     </OSProviderWrapper>
   );
 };
