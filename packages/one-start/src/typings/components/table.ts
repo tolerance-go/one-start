@@ -15,6 +15,7 @@ import type {
   OSCustomFieldType,
   OSDateFieldType,
   OSDateRangeFieldType,
+  OSSelectFieldValueType,
   OSDigitFieldType,
   OSField,
   OSImageFieldType,
@@ -307,7 +308,12 @@ export type _OSTableFormFieldItem<
     > &
       OSFormItemDependenciesConfigs)
   | (CreatePureFormFieldItemConfigs<
-      OSSelectFieldType,
+      OSSelectFieldType<
+        OSSelectFieldValueType,
+        {
+          form?: FormInstance;
+        } & OSTableCellMeta
+      >,
       _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       OSTableFormFieldItemExtra
     > &
@@ -377,7 +383,15 @@ export type _OSTableFormFieldItemWithStaticPureConfigs<
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSActionsFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
-  | (CreateStaticPureFormFieldItemConfigs<OSSelectFieldType, OSTableFormFieldItemExtra> &
+  | (CreateStaticPureFormFieldItemConfigs<
+      OSSelectFieldType<
+        OSSelectFieldValueType,
+        {
+          form?: FormInstance;
+        } & OSTableCellMeta
+      >,
+      OSTableFormFieldItemExtra
+    > &
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSTableFormGroupFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
@@ -432,12 +446,14 @@ export type OSTableRequestDataSourceReturnType<
   total?: number;
 };
 
-export type OSTableChangedValuesMeta = {
+export type OSTableCellMeta = {
   rowId: string;
   rowIndex?: number;
+  dataIndex?: NamePath;
   rowData: RecordType;
-  dataIndex: string;
 };
+
+export type OSTableChangedValuesMeta = OSTableCellMeta;
 
 export type OSTableChangedValueType = {
   /** 当前的数据源 */

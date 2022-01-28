@@ -13,6 +13,7 @@ import type {
   OSOptionFieldType,
   OSPercentFieldType,
   OSSelectFieldType,
+  OSSelectFieldValueType,
   OSTextareaFieldType,
   OSTextFieldType,
   OSCustomFieldType,
@@ -112,6 +113,16 @@ export type _OSFormFieldItemWithStaticPureConfigs<
   | (CreateStaticPureFormFieldItemConfigs<OSSwitchFieldType, OSFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSActionsFieldType, OSFormFieldItemExtra> &
+      OSFormItemDependenciesConfigs)
+  | (CreateStaticPureFormFieldItemConfigs<
+      OSSelectFieldType<
+        OSSelectFieldValueType,
+        {
+          form?: FormInstance;
+        }
+      >,
+      OSFormFieldItemExtra
+    > &
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSSelectFieldType, OSFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
@@ -234,7 +245,12 @@ export type _OSFormFieldItem<CustomValueType extends CreatePureFormFieldItemConf
     > &
       OSFormItemDependenciesConfigs)
   | (CreatePureFormFieldItemConfigs<
-      OSSelectFieldType,
+      OSSelectFieldType<
+        OSSelectFieldValueType,
+        {
+          form?: FormInstance;
+        }
+      >,
       OSFormFieldItemSettingsFnOption,
       OSFormFieldItemExtra
     > &

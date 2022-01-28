@@ -10,17 +10,11 @@ export default () => {
         // value="a"
         mode="edit"
         settings={{
-          showSearch: true,
+          showSearch: 'local',
         }}
         requests={{
           requestOptions: async ({ searchValue }) => {
-            if (searchValue == null) {
-              return {
-                error: false,
-                data: [],
-              };
-            }
-
+            console.log('searchValue', searchValue);
             await delay(1000);
             return mock({
               error: false,

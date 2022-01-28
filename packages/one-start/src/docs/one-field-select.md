@@ -23,13 +23,22 @@ group:
 
 ### 远程搜索
 
+注意：如果 `options` 太多导致请求响应慢，可以根据 `searchValue` 值判断请求数量
+
 <code src="../demos/field-select/remote-search.tsx" />
+
+### 本地搜索
+
+<code src="../demos/field-select/local-search.tsx" />
 
 ### 枚举类型选项
 
 <code src="../demos/field-select/value-enums.tsx" />
 
 ### 异步获取下拉选项
+
+1. 默认会进行一次 `options` 拉取，避免 `value` 无对应 label 展示
+2. 打开下拉框时，会进行一次 `options` 拉取，保证最新
 
 <code src="../demos/field-select/async-options.tsx" />
 
@@ -52,6 +61,12 @@ group:
 ### 占位信息
 
 <code src="../demos/field-select/placeholder.tsx" />
+
+### 表单联动
+
+当 `options` 更新时，如果 `value` 不在选项范围内，注意添加验证通知用户
+
+<code src="../demos/field-select/form-async.tsx" />
 
 <code src="../demos/field-select/dev.tsx" />
 

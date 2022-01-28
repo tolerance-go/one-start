@@ -527,6 +527,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     tableCoreActionsRef,
     tableActionsRef,
     getFieldItems,
+    tableWrapFormRef,
   });
 
   const { highlightTag } = useHighlight({

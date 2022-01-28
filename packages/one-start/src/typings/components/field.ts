@@ -33,7 +33,7 @@ export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
 }
 
 export type OSFieldBaseConfigs<ValueType = any> = {
-  onChangeHook?: (value: ValueType) => void;
+  onChangeHook?: (value?: ValueType) => void;
 };
 
 export type OSFieldBaseSettings = {
@@ -265,8 +265,10 @@ export type OSSelectFieldShowInfo = {
   fieldItems: OSSimpleFormFields;
 };
 
-export interface OSSelectFieldType<ValueType = OSSelectFieldValueType>
-  extends OSField<ValueType>,
+export interface OSSelectFieldType<
+  ValueType = OSSelectFieldValueType,
+  ExtraRequestOptions = RecordType,
+> extends OSField<ValueType>,
     OSFieldBaseConfigs<ValueType> {
   type?: 'select';
   settings?: {
@@ -293,7 +295,10 @@ export interface OSSelectFieldType<ValueType = OSSelectFieldValueType>
   } & OSFieldBaseSettings;
   requests?: {
     /** 请求下拉选项 */
-    requestOptions?: RequestIO<{ searchValue?: string; params?: RecordType }, OSSelectOptionItem[]>;
+    requestOptions?: RequestIO<
+      { searchValue?: string; params?: RecordType } & ExtraRequestOptions,
+      OSSelectOptionItem[]
+    >;
   };
   tagRender?: SelectProps<ValueType>['tagRender'];
   autoFetchSelectOptions?: boolean;
@@ -303,6 +308,8 @@ export interface OSSelectFieldType<ValueType = OSSelectFieldValueType>
     text?: OSSelectFieldValueType,
     optionMaps?: Record<string, React.ReactNode>,
   ) => React.ReactElement;
+  /** 请求注入的额外参数 */
+  requestExtra?: () => ExtraRequestOptions;
 }
 
 export type OSTreeSelectFieldAPI = HTMLSpanElement | (RefSelectProps & OSSelectBaseAPI);

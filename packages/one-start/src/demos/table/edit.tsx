@@ -8,15 +8,15 @@ import React, { useState } from 'react';
 export default () => {
   const [value, setValue] = useState<OSTableValueType>();
   const [event, setEvent] = useState<OSTableChangeValueType>();
-  const [configs, setConfigs] = useState<undefined | RecordType>({
+  const [settings, setSettings] = useState<undefined | RecordType>({
     changeDebounceTimestamp: 450,
   });
 
   return (
     <OSProviderWrapper>
       <OSForm
-        value={configs}
-        onChange={setConfigs}
+        value={settings}
+        onChange={setSettings}
         settings={{
           fieldItems: [
             {
@@ -45,8 +45,8 @@ export default () => {
         }}
         value={value}
         settings={{
-          changeDebounceTimestamp: configs?.changeDebounceTimestamp,
-          changedValueHasMeta: configs?.changedValuehasMeta,
+          changeDebounceTimestamp: settings?.changeDebounceTimestamp,
+          changedValueHasMeta: settings?.changedValuehasMeta,
           editableRowKeys: ['1'],
           fieldItems: [
             {
