@@ -1,5 +1,5 @@
 import { InfoCircleOutlined, LoadingOutlined } from '@ant-design/icons';
-import { Col, Popover, Row, Select, Typography } from '@ty/antd';
+import { Col, Popover, Row, Select, Spin, Typography } from '@ty/antd';
 import type { SelectProps } from '@ty/antd/lib/select';
 import cls from 'classnames';
 import utl from 'lodash';
@@ -24,7 +24,6 @@ import type {
   OSSelectOptionItem,
   RecordType,
 } from '../../../typings';
-import { useActionsRef } from '../../hooks/use-actions-ref';
 import { ExtraValueTypesContext } from '../../providers/extra-value-types';
 import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
 import { useClsPrefix } from '../../utils/use-cls-prefix';
@@ -46,6 +45,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     tagRender,
     renderOnRead,
     autoFetchSelectOptions = true,
+    requestExtra,
   } = props;
 
   const clsPrefix = useClsPrefix('field-select');
@@ -66,20 +66,29 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
   } = settings ?? {};
 
   const [loading, setLoading] = useState(false);
-
   const [asyncOptions, setAsyncOptions] = useState<OSSelectOptionItem[]>();
-
   const [searchValue, setSearchValue] = useState<string>();
   const dropWrapRef = useRef<HTMLDivElement>(null);
-
   const extraValueTypes = useContext(ExtraValueTypesContext);
+  const OSSelectRef = useRef<OSSelectFieldAPI>(null);
+  const [open, setOpen] = useState<boolean>();
 
-  const requestOptions = utl.debounce(async (searchValue_?: string, params_?: RecordType) => {
+  /** 映射字符串的 label */
+  const asyncValueEnums = useMemo(() => {
+    return utl.fromPairs(asyncOptions?.map((item) => [item.key ?? item.value, item]));
+  }, [asyncOptions]);
+
+  const options = useMemo(() => {
+    return valueEnums ? convertEnumsToOptions(valueEnums) : undefined;
+  }, [valueEnums]);
+
+  const requestOptions = async (searchValue_?: string, params_?: RecordType) => {
     if (!requests?.requestOptions) return;
 
     setLoading(true);
     const { error, data } = await requests
       .requestOptions({
+        ...requestExtra?.(),
         searchValue: searchValue_,
         params: params_,
       })
@@ -89,31 +98,9 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
 
     setAsyncOptions(data);
     setSearchValue(searchValue_);
-  }, 400);
+  };
 
-  /** 映射字符串的 label */
-  const valueToOptionMaps = useMemo(() => {
-    return utl.fromPairs(asyncOptions?.map((item) => [item.key ?? item.value, item]));
-  }, [asyncOptions]);
-
-  const actionsRef = useActionsRef({
-    requestOptions,
-  });
-
-  useEffect(() => {
-    if (autoFetchSelectOptions) {
-      actionsRef.current.requestOptions(undefined, params);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [actionsRef, JSON.stringify(params), mode]);
-
-  const options = useMemo(() => {
-    return valueEnums ? convertEnumsToOptions(valueEnums) : undefined;
-  }, [valueEnums]);
-
-  const OSSelectRef = useRef<OSSelectFieldAPI>(null);
-
-  const [open, setOpen] = useState<boolean>();
+  const requestOptionsWithDebounce = utl.debounce(requestOptions, 400);
 
   const normalizedShowInfo = useMemo(() => {
     if (Array.isArray(showInfo)) {
@@ -124,6 +111,25 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     return showInfo;
   }, [showInfo]);
 
+  const mergedDataInValue = (val: OSSelectFieldValueType): OSSelectFieldValueType => {
+    if (val == null || utl.isEmpty(asyncValueEnums)) {
+      return val;
+    }
+    if (labelInValue) {
+      if (Array.isArray(val)) {
+        return val.map(mergedDataInValue) as OSSelectFieldValueArrayType;
+      }
+      if (typeof val === 'object') {
+        return {
+          ...val,
+          data: asyncValueEnums[val.key ?? val.value].data,
+          label: asyncValueEnums[val.key ?? val.value].label,
+        };
+      }
+    }
+    return val;
+  };
+
   useImperativeHandle(ref, () => {
     return {
       ...OSSelectRef.current!,
@@ -132,6 +138,12 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
       },
     };
   });
+
+  useEffect(() => {
+    if (autoFetchSelectOptions) {
+      requestOptions(undefined, params);
+    }
+  }, []);
 
   if (mode === 'read') {
     const maps =
@@ -169,34 +181,90 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
       </span>
     );
   }
+
   if (mode === 'edit' || mode === 'update') {
+    const handleDropdownVisibleChange: SelectProps<OSSelectFieldValueType>['onDropdownVisibleChange'] =
+      (visible) => {
+        if (visible) {
+          requestOptions(undefined, params);
+        }
+        setOpen(visible);
+      };
+
+    const handleDropdownRender: SelectProps<OSSelectFieldValueType>['dropdownRender'] = (
+      menuDom,
+    ) => {
+      return (
+        <Spin size="small" indicator={<LoadingOutlined />} spinning={loading}>
+          <div ref={dropWrapRef} style={{ overflow: 'visible' }}>
+            {menuDom}
+          </div>
+        </Spin>
+      );
+    };
+    const handleSelect = (() => {
+      if (showSearch === 'local') {
+        return ((value) =>
+          setSearchValue(value)) as SelectProps<OSSelectFieldValueType>['onSearch'];
+      }
+      return showSearch
+        ? (((value) => {
+            requestOptionsWithDebounce(value, params);
+          }) as SelectProps<OSSelectFieldValueType>['onSearch'])
+        : undefined;
+    })();
+
+    const handleFilterOption: SelectProps<OSSelectFieldValueType>['filterOption'] = (
+      inputValue,
+      option,
+    ) => {
+      if (showSearch === 'local') {
+        const text =
+          // eslint-disable-next-line no-nested-ternary
+          typeof option?.label === 'string'
+            ? option.label
+            : typeof option?.value === 'string' || typeof option?.value === 'number'
+            ? String(option.value)
+            : '';
+        return text.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0;
+      }
+      return true;
+    };
+
+    const handleChange: SelectProps<OSSelectFieldValueType>['onChange'] = (
+      value: OSSelectFieldValueType,
+    ) => {
+      /** 清空 searchValue，否则选择的项会高亮 */
+      setSearchValue(undefined);
+
+      onChangeHook?.(mergedDataInValue(value));
+      return _onChange?.(
+        allowClear && Array.isArray(value) && value.length === 0
+          ? undefined
+          : mergedDataInValue(value),
+      );
+    };
+
     const renderNotFoundContent = () => {
-      if (loading) {
+      const renderWrapper = (text: string) => {
         return (
           <Row justify="center">
             <Col>
-              <Typography.Text type="secondary">数据请求中</Typography.Text>
+              <Typography.Text type="secondary">{text}</Typography.Text>
             </Col>
           </Row>
         );
+      };
+
+      if (loading) {
+        return renderWrapper('选项请求中');
       }
 
       if (requests?.requestOptions) {
-        return (
-          <Row justify="center">
-            <Col>
-              <Typography.Text type="secondary">未查询到匹配项</Typography.Text>
-            </Col>
-          </Row>
-        );
+        return renderWrapper('未查询到匹配项');
       }
-      return (
-        <Row justify="center">
-          <Col>
-            <Typography.Text type="secondary">暂无选项</Typography.Text>
-          </Col>
-        </Row>
-      );
+
+      return renderWrapper('暂无选项');
     };
 
     const renderOptions = () => {
@@ -276,78 +344,9 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
         className={cls(clsPrefix, {
           noborder: bordered === false,
         })}
-        onChange={(value: OSSelectFieldValueType) => {
-          /** 清空 searchValue，否则选择的项会高亮 */
-          setSearchValue(undefined);
-
-          const mergedDataInValue = (val: OSSelectFieldValueType) => {
-            if (val == null || utl.isEmpty(valueToOptionMaps)) {
-              return val;
-            }
-            if (labelInValue) {
-              if (Array.isArray(val)) {
-                return val.map((item: OSSelectFieldValueItemType) => {
-                  if (typeof item === 'object') {
-                    return {
-                      ...item,
-                      data: valueToOptionMaps[item.key ?? item.value].data,
-                      label: valueToOptionMaps[item.key ?? item.value].label,
-                    };
-                  }
-                  return item;
-                }) as OSSelectFieldValueArrayType;
-              }
-              if (typeof val === 'object') {
-                return {
-                  ...val,
-                  data: valueToOptionMaps[val.key ?? val.value].data,
-                  label: valueToOptionMaps[val.key ?? val.value].label,
-                };
-              }
-            }
-            return val;
-          };
-
-          onChangeHook?.(mergedDataInValue(value));
-          return _onChange?.(
-            allowClear && Array.isArray(value) && value.length === 0
-              ? undefined
-              : mergedDataInValue(value),
-          );
-        }}
         mode={selectMode}
-        onSearch={(() => {
-          if (showSearch === 'local') {
-            return ((value) => setSearchValue(value)) as SelectProps<RecordType>['onSearch'];
-          }
-          return showSearch
-            ? (((value) => {
-                requestOptions(value, params);
-              }) as SelectProps<RecordType>['onSearch'])
-            : undefined;
-        })()}
-        /**
-         * 后端实现模糊搜索，应该返回所有 options
-         * 前端实现，需要进行 label 设置
-         */
-        filterOption={(inputValue, option) => {
-          if (showSearch === 'local') {
-            const text =
-              // eslint-disable-next-line no-nested-ternary
-              typeof option?.label === 'string'
-                ? option.label
-                : typeof option?.value === 'string' || typeof option?.value === 'number'
-                ? String(option.value)
-                : '';
-            return text.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0;
-          }
-          return true;
-        }}
         open={open}
-        onDropdownVisibleChange={setOpen}
-        notFoundContent={renderNotFoundContent()}
         allowClear={allowClear}
-        tagRender={tagRender}
         showSearch={showSearch == null ? undefined : !!showSearch}
         optionFilterProp={'label'}
         bordered={bordered}
@@ -359,15 +358,14 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
           minWidth: 125,
           maxWidth,
         }}
-        placeholder="请选择选项"
+        placeholder={(() => {
+          if (showSearch) {
+            return '请搜索后选择';
+          }
+
+          return '请选择选项';
+        })()}
         optionLabelProp="label"
-        dropdownRender={(menuDom) => {
-          return (
-            <div ref={dropWrapRef} style={{ overflow: 'visible' }}>
-              {menuDom}
-            </div>
-          );
-        }}
         /** 损失虚拟滚动，配合后端显示更多内容 */
         dropdownMatchSelectWidth={dropdownMatchSelectWidth}
         /** 显示 tooltip 内容 */
@@ -378,6 +376,17 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
               }
             : undefined
         }
+        dropdownRender={handleDropdownRender}
+        onSearch={handleSelect}
+        onChange={handleChange}
+        /**
+         * 后端实现模糊搜索，应该返回所有 options
+         * 前端实现，需要进行 label 设置
+         */
+        filterOption={handleFilterOption}
+        onDropdownVisibleChange={handleDropdownVisibleChange}
+        notFoundContent={renderNotFoundContent()}
+        tagRender={tagRender}
       >
         {renderOptions()}
       </Select>

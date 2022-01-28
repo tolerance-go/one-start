@@ -901,6 +901,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
                 types: extraValueTypes,
                 props: { ...options?.props, eventBus, name: formItemSettings?.dataIndex },
                 ref: leafFieldItemComponentRefRefs.current[keyIndexId].ref,
+                formRef,
               },
             );
           },

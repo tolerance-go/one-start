@@ -12,7 +12,7 @@ export default () => {
           mode="edit"
           requests={{
             requestOptions: async () => {
-              await delay(5000);
+              await delay(1000);
               return mock({
                 error: false,
                 'data|1-100': [

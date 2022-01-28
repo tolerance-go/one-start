@@ -35,6 +35,7 @@ import type {
   RecordType,
   RenderFieldOptions,
   TableCoreActions,
+  OSTableCellMeta,
 } from '../../typings';
 import { renderField } from '../utils/render-field';
 import { renderTableFormItem } from '../utils/render-table-form-item';
@@ -150,6 +151,7 @@ export const useItems = ({
   searchFormActionsRef,
   tableCoreActionsRef,
   tableWrapRef,
+  tableWrapFormRef,
   tableActionsRef,
   getFieldItems,
   requestDataSourceActionsRef,
@@ -157,6 +159,7 @@ export const useItems = ({
   allColumnsIdRef: propsAllColumnsIdRef,
   columnsStaticPureConfigsIdMapsRef: propsColumnsStaticPureConfigsIdMapsRef,
 }: {
+  tableWrapFormRef: React.RefObject<FormInstance>;
   tableKey?: string;
   fieldItems?: OSTableFormFieldItems;
   fieldItemSettings?: RequiredRecursion<OSTableType>['settings']['fieldItemSettings'];
@@ -270,6 +273,7 @@ export const useItems = ({
                       staticFieldRequests,
                       {
                         types: extraValueTypes,
+                        formRef: tableWrapFormRef,
                       },
                     );
                   },
@@ -397,6 +401,7 @@ export const useItems = ({
               getField: (staticFieldSettings, staticFieldRequests) => {
                 return renderField('edit', valueType, staticFieldSettings, staticFieldRequests, {
                   ref: inputRef,
+                  formRef: tableWrapFormRef,
                   onChangeHook: (value_) => {
                     searchFormActionsRef.current.setSearchFormValues?.(
                       {
@@ -503,6 +508,13 @@ export const useItems = ({
           };
         },
         render: (val, rowData, rowIndex) => {
+          const cellMeta: OSTableCellMeta = {
+            rowId: rowData[rowKey],
+            rowIndex,
+            rowData,
+            dataIndex,
+          };
+
           const colEditable = getColEditable({
             rowData,
             rowIndex,
@@ -536,6 +548,8 @@ export const useItems = ({
                     types: extraValueTypes,
                     props: options?.props,
                     ref: options?.ref,
+                    formRef: tableWrapFormRef,
+                    cellMeta,
                   },
                 );
               },
@@ -607,6 +621,8 @@ export const useItems = ({
                 types: extraValueTypes,
                 text: dataIndex ? utl.get(rowData, dataIndex) : undefined,
                 autoFetchSelectOptions: false,
+                formRef: tableWrapFormRef,
+                cellMeta,
               },
             );
 

@@ -1,3 +1,4 @@
+import type { FormInstance } from '@ty/antd';
 import invariant from 'invariant';
 import type { ReactNode } from 'react';
 import React from 'react';
@@ -27,6 +28,7 @@ import type {
   OSSelectFieldValueType,
   OSSwitchFieldAPI,
   OSSwitchFieldValueType,
+  OSTableCellMeta,
   OSTextareaFieldAPI,
   OSTextareaFieldValueType,
   OSTextFieldAPI,
@@ -70,6 +72,8 @@ export const renderField = (
   options?: Omit<RenderFieldOptions, 'mode' | 'type' | 'fieldSettings' | 'requests'> & {
     types?: Record<string, (options: RenderFieldOptions) => ReactNode>;
     autoFetchSelectOptions?: boolean;
+    formRef?: React.RefObject<FormInstance>;
+    cellMeta?: OSTableCellMeta;
   },
 ) => {
   if (type === 'digit') {
@@ -126,6 +130,10 @@ export const renderField = (
         text={options?.text as OSSelectFieldValueType}
         requests={requests}
         autoFetchSelectOptions={options?.autoFetchSelectOptions}
+        requestExtra={() => ({
+          form: options?.formRef?.current,
+          ...options?.cellMeta,
+        })}
       />
     );
   }
@@ -149,7 +157,7 @@ export const renderField = (
     return (
       <OSSwitchField
         {...options?.props}
-        onChangeHook={options?.onChangeHook as (value: OSSwitchFieldValueType) => void}
+        onChangeHook={options?.onChangeHook as (value?: OSSwitchFieldValueType) => void}
         ref={options?.ref as React.RefObject<OSSwitchFieldAPI>}
         mode={mode}
         settings={fieldSettings}
