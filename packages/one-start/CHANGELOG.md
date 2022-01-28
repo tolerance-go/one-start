@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.13.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.12.2...@ty-one-start/one-start@0.13.0) (2022-01-28)
+
+
+### Bug Fixes
+
+* os-select 当 showInfo 状态下，title 显示不全支持查看更多 ([47c02c9](https://10.1.2.7/visual-fe/swap-modules/commits/47c02c9d40d283e7465ebd218ea6f012273c0632))
+
+
+### Features
+
+* os-select 支持在 form 或者 editable-table 中注入表单和单元格信息到 requests 相关请求方法 ([d635db5](https://10.1.2.7/visual-fe/swap-modules/commits/d635db5f31a7d1ea410bcecd5bbfaf0515bd6795))
+
+
+
+
+
 ## [0.12.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.12.1...@ty-one-start/one-start@0.12.2) (2022-01-27)
 
 
