@@ -21,4 +21,8 @@ group:
 
 <code src="../demos/field-layout-modal-form/in-table.tsx" />
 
+### 不同容器中的错误提示定位
+
+<code src="../demos/field-layout-modal-form/error-position.tsx" />
+
 其他接口参考 os-layout-modal-form

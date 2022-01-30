@@ -12,7 +12,7 @@ import { useClsPrefix } from '../utils/use-cls-prefix';
 /** 找到最近的父级元素 */
 const findClosestParentElement = (
   target: HTMLElement | undefined,
-  predicate: (current: HTMLElement | undefined) => boolean,
+  predicate: (current: HTMLElement) => boolean,
 ): HTMLElement | undefined => {
   if (target == null) return undefined;
 
@@ -189,10 +189,19 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
               autoAdjustOverflow
               getPopupContainer={() => {
                 /** 解决弹窗内的表格关闭时候无法隐藏的问题 */
-                return tableWrapperRef.current ?? document.body;
+                return (
+                  (cellRef.current
+                    ? findClosestParentElement(
+                        cellRef.current,
+                        (item) =>
+                          item.classList.contains('ty-ant-modal-content') ||
+                          item.classList.contains('ty-ant-drawer-content'),
+                      )
+                    : null) ?? document.body
+                );
               }}
             >
-              <div ref={cellRef} className="asldfjalsdjflajsdf">
+              <div ref={cellRef}>
                 {input}
                 {extra}
               </div>
