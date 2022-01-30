@@ -1,7 +1,8 @@
 /**
  * desc: 表单下的编辑表格字段会自动填充 rowId（使用数据下标）
  */
-import { OSForm, OSProviderWrapper, RecordType } from '@ty-one-start/one-start';
+import type { RecordType } from '@ty-one-start/one-start';
+import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
 import React, { useState } from 'react';
 
 export default () => {
