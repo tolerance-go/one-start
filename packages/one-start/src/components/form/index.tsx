@@ -50,6 +50,7 @@ import GroupCollapse from './group-collapse';
 import { handleAsyncLinkage, valueLinkageHandler } from './linkage';
 import type { FormCoreActions } from './typings';
 import { useRefObject } from './use-ref-object';
+import { countLinkageLevel } from './utils/count-linkage-level';
 
 const useAsyncInitialValues = ({
   actions,
@@ -928,56 +929,15 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
 
     const items = renderItemsInner(fieldItems, parentKeyIndexId);
 
-    /** 通过计数器进行 field-item 注册的联动规则排序 */
-    const syncCounts = {};
-    const asyncCounts = {};
-
-    const statistic = (
-      _settings: OSFormFieldItemWithStaticPureConfigs['settings'],
-      keyIndexId: string,
-      keyName: 'valueLinkage' | 'valueAsyncLinkage',
-      counts: Record<string, number>,
-    ) => {
-      /** 这里即使是 asyncValueLinkage 没有定义 serical 也会初始化一次 key，后续以 count 便利是不会丢失的 */
-      if (_settings?.[keyName]) {
-        if (counts[keyIndexId] == null) {
-          // eslint-disable-next-line no-param-reassign
-          counts[keyIndexId] = 0;
-        }
-
-        const afterIndexId = (() => {
-          if (keyName === 'valueLinkage') {
-            return _settings?.[keyName]?.afterIndexIdRegisted;
-          }
-          return _settings?.[keyName]?.serial?.afterIndexIdRegisted;
-        })();
-        const afterIndexIds = (() => {
-          if (Array.isArray(afterIndexId)) {
-            return afterIndexId;
-          }
-          if (afterIndexId != null) {
-            return [afterIndexId];
-          }
-          return [];
-        })();
-
-        afterIndexIds.forEach((afterKey) => {
-          if (counts[afterKey] == null) {
-            // eslint-disable-next-line no-param-reassign
-            counts[afterKey] = 1;
-          } else {
-            // eslint-disable-next-line no-param-reassign
-            counts[afterKey] += 1;
-          }
-        });
-      }
-    };
-
-    Object.keys(keyIndexIdToStaticSettingsMapRef.current).forEach((keyIndexId) => {
-      const _settings = keyIndexIdToStaticSettingsMapRef.current[keyIndexId];
-      statistic(_settings, keyIndexId, 'valueAsyncLinkage', asyncCounts);
-      statistic(_settings, keyIndexId, 'valueLinkage', syncCounts);
-    });
+    const syncCounts = countLinkageLevel(keyIndexIdToStaticSettingsMapRef.current, [
+      'valueLinkage',
+      'afterIndexIdRegisted',
+    ]);
+    const asyncCounts = countLinkageLevel(keyIndexIdToStaticSettingsMapRef.current, [
+      'valueAsyncLinkage',
+      'serial',
+      'afterIndexIdRegisted',
+    ]);
 
     const sortLinkges = (
       refItem: React.MutableRefObject<

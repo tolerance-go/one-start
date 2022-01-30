@@ -29,23 +29,19 @@ group:
 
 <code src="../demos/form/attrs-linkage.tsx" />
 
-### 同步计算联动
+### 计算联动
 
-当 a，b，c 中前者字段变化，清空所有排在后面的字段
-
-当修改 d 中表格行数据，另外一行数据和他联动，保证相反
+#### 同步计算联动
 
 <code src="../demos/form/sync-linkage.tsx" />
 
-### 异步计算联动
-
-串行异步配置中，当 a 变化后，1s 后，b 的值会放大 10 倍，再过 1s，c 的值会根据 b 的值放大 10 倍
-
-并行异步配置中，当 a 变化后，2s 后，b 的值会设置为 a 的变化值，3s 后，b 的值会设置为 a 的变化值的 2 倍
-
-串行也被作为一个并行线，当所有并行线有结果后返回，根据返回时间进行 merge，b 的值最晚被 `a-b-long` 修改，因此最终 b 的结果为 a 的变化值的 2 倍
+#### 异步计算联动
 
 <code src="../demos/form/async-linkage.tsx" />
+
+#### 去中心化
+
+<code src="../demos/form/linkage-remove-center.tsx" />
 
 ### 表单异步验证
 
