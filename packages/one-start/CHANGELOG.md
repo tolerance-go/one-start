@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.13.1...@ty-one-start/one-start@0.13.2) (2022-01-30)
+
+
+### Bug Fixes
+
+* 表格 onChange 回调类型调整，编辑表格的 dataIndex 一定为 string，不会出现级联 ([80d0d24](https://10.1.2.7/visual-fe/swap-modules/commits/80d0d2463233ed74cde19a55d49aa8281c25f86b))
+
+
+
+
+
 ## [0.13.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.13.0...@ty-one-start/one-start@0.13.1) (2022-01-30)
 
 
