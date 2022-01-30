@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.13.0...@ty-one-start/one-start@0.13.1) (2022-01-30)
+
+
+### Bug Fixes
+
+* 修复 os-form 非中心化注册联动规则的排序问题 ([4baa489](https://10.1.2.7/visual-fe/swap-modules/commits/4baa4895374c6dc1cb95e64b6dafc819790d8df8))
+* 修复表单错误提示在不同容器中定位的异常的问题 ([663e30b](https://10.1.2.7/visual-fe/swap-modules/commits/663e30b58dbe88e4771d0585a957d2fe7c5cef35))
+
+
+
+
+
 # [0.13.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.12.2...@ty-one-start/one-start@0.13.0) (2022-01-28)
 
 
