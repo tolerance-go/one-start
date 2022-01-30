@@ -453,7 +453,13 @@ export type OSTableCellMeta = {
   rowData: RecordType;
 };
 
-export type OSTableChangedValuesMeta = OSTableCellMeta;
+/** 编辑表格的 dataIndex 一定为 string，不会出现级联 */
+export type OSTableChangedValuesMeta = {
+  rowId: string;
+  rowIndex?: number;
+  dataIndex: string;
+  rowData: RecordType;
+};
 
 export type OSTableChangedValueType = {
   /** 当前的数据源 */
