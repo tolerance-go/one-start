@@ -63,6 +63,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     labelInValue,
     showInfo,
     maxWidth,
+    maxTagCount = 5,
   } = settings ?? {};
 
   const [loading, setLoading] = useState(false);
@@ -353,6 +354,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
         disabled={disabled}
         autoFocus={autoFocus}
         loading={loading}
+        maxTagCount={maxTagCount}
         style={{
           width: '100%',
           minWidth: 125,
