@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.13.2...@ty-one-start/one-start@0.14.0) (2022-02-08)
+
+
+### Bug Fixes
+
+* battle-table-upload 没有关闭立即上传功能，导致选择后依然发送请求 ([f7de7bf](https://10.1.2.7/visual-fe/swap-modules/commits/f7de7bff0e3875b788487adf39498f074e3f35e8))
+
+
+### enhance
+
+* **os-source-table:** 支持动态设置各行操作状态 ([7932628](https://10.1.2.7/visual-fe/swap-modules/commits/79326289651980709c2586bfc26b6ad744a501dd))
+
+
+### Features
+
+* **os-placeholder-input:** 支持 transform，触发 onChange 前支持修改 value，增加相应 demo ([e12aea0](https://10.1.2.7/visual-fe/swap-modules/commits/e12aea091d4fa5cade6baece1269d39464cdb57f))
+
+
+### BREAKING CHANGES
+
+* **os-source-table:** 移除 rowViewable formSettings 函数形式
+
+
+
+
+
 ## [0.13.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.13.1...@ty-one-start/one-start@0.13.2) (2022-01-30)
 
 
