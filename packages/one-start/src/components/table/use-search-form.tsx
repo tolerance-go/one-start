@@ -96,6 +96,10 @@ export const useSearchForm = ({
   const singleLineFieldItemSize =
     searchFormItemChunkSize ?? DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW;
 
+  const searchFormIsOneLine = searchFormFieldItems
+    ? searchFormFieldItems.length <= singleLineFieldItemSize
+    : false;
+
   const groupedSearchFormFieldItems = useMemo(() => {
     return [
       {
@@ -117,7 +121,13 @@ export const useSearchForm = ({
               }
 
               return {
-                maxWidth: item.type === 'select' ? 400 : undefined,
+                maxWidth: (() => {
+                  /** 单行搜索表单 */
+                  if (searchFormIsOneLine) {
+                    return item.type === 'select' ? 400 : undefined;
+                  }
+                  return undefined;
+                })(),
                 ...settings,
                 colSpan: Math.round(24 / singleLineFieldItemSize),
               };
@@ -126,7 +136,7 @@ export const useSearchForm = ({
         }),
       },
     ] as OSFormFieldItems;
-  }, [singleLineFieldItemSize, dataSource, tableKey, searchFormFieldItems]);
+  }, [singleLineFieldItemSize, dataSource, tableKey, searchFormIsOneLine, searchFormFieldItems]);
 
   const dom = searchFormVisible ? (
     <div key="search" className={`${clsPrefix}-search-form`}>
@@ -136,10 +146,7 @@ export const useSearchForm = ({
           setSearchFormValues(values, { update: false });
         }}
         settings={{
-          layout:
-            (searchFormFieldItems ?? []).length <= singleLineFieldItemSize
-              ? 'inline'
-              : 'horizontal',
+          layout: searchFormIsOneLine ? 'inline' : 'horizontal',
           ...searchFormSettings,
           fieldItems: groupedSearchFormFieldItems,
         }}

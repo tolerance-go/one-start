@@ -272,6 +272,7 @@ export interface OSSelectFieldType<
     OSFieldBaseConfigs<ValueType> {
   type?: 'select';
   settings?: {
+    maxTagCount?: number;
     valueEnums?: RecordType;
     params?: RecordType;
     allowClear?: boolean;
