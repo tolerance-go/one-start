@@ -7,6 +7,7 @@ import type EventEmitter from 'eventemitter3';
 import type { FieldError, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { CustomizeComponent, FixedType } from 'rc-table/lib/interface';
 import type React from 'react';
+import type { OSTriggerType } from './trigger';
 import type { RecordType } from '../core';
 import type { OSCore, RequestIO, SettingsDataNode } from './core';
 import type {
@@ -681,7 +682,20 @@ export type _OSSourceTableSelfType<
         }
       | false;
     /** 启动行删除 */
-    rowRemoveable?: {} | false;
+    rowRemoveable?:
+      | {
+          /** 删除按钮的配置 */
+          triggerSettings?: OSTriggerType['settings'];
+        }
+      | false
+      | ((options: {
+          rowData: RecordType;
+          rowIndex: number;
+          rowId: string;
+          actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
+        }) => {
+          triggerSettings?: OSTriggerType['settings'];
+        });
     /** 启动行查看 */
     rowViewable?:
       | {
@@ -690,18 +704,19 @@ export type _OSSourceTableSelfType<
           modalWidth?: string | number;
           formSettings?: _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
         }
-      | {
+      | false
+      | ((options: {
+          rowData: RecordType;
+          rowIndex: number;
+          rowId: string;
+          actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
+        }) => {
           modalTitle?: string;
           modalMask?: boolean | 'transparent';
           modalWidth?: string | number;
-          formSettings?: (options: {
-            rowData: RecordType;
-            rowIndex: number;
-            rowId: string;
-            actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
-          }) => _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
-        }
-      | false;
+          formSettings?: _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
+          triggerSettings?: OSTriggerType['settings'];
+        });
     /** 启动行编辑 */
     rowEditable?:
       | ({
@@ -729,7 +744,38 @@ export type _OSSourceTableSelfType<
               formType: 'steps-form';
             }
         ))
-      | false;
+      | false
+      | ((options: {
+          rowData: RecordType;
+          rowIndex: number;
+          rowId: string;
+          actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
+        }) => {
+          modalWidth?: string | number;
+          triggerSettings?: OSTriggerType['settings'];
+        } & (
+          | {
+              formSettings?: _OSFormType<
+                CustomFormValueType,
+                StaticCustomFormValueType
+              >['settings'];
+              formRequests?: _OSFormType<
+                CustomFormValueType,
+                StaticCustomFormValueType
+              >['requests'];
+              formType: 'form';
+            }
+          | {
+              formSettings?: _OSLayoutStepsFormType<
+                CustomFormValueType,
+                StaticCustomFormValueType
+              >['settings'];
+              formRequests?: Required<
+                _OSLayoutStepsFormType<CustomFormValueType, StaticCustomFormValueType>
+              >['requests'];
+              formType: 'steps-form';
+            }
+        ));
   };
   requests?: {
     /** 行删除请求 */

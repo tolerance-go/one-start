@@ -22,6 +22,10 @@ group:
 
 <code src="../demos/source-table/removeable.tsx" />
 
+### 行自定义显示
+
+<code src="../demos/source-table/row-custom.tsx" />
+
 #### 删除尾行后自动翻页
 
 <code src="../demos/source-table/remove-check.tsx" />
