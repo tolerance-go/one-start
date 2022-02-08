@@ -124,6 +124,14 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 
 <code src="../demos/form/ref-object.tsx" />
 
+### 修改前拦截数据
+
+值的联动属于 `post change`，会触发额外的修改事件，如果要在修改事件之前处理 `value`，可以通过 `valueTransform`
+
+> 其他原因，暂时只在 `placeholder-input` 上实现，后续有需求再迁移到 `form` 级别
+
+<code src="../demos/form/value-transform.tsx" />
+
 <API exports='["FormSettings", "FormRequests", "FormAPI"]' src="../components/form/index.tsx"></API>
 
 ### FormFieldItems

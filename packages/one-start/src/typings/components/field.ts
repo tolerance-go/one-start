@@ -410,6 +410,8 @@ export interface OSPlaceholderInputFieldType
       /** 是否使用原始值插入 */
       raw?: boolean;
     }[];
+    /** 触发表单 onChange 前，允许修改其 value */
+    valueTransform?: (value: OSPlaceholderInputFieldValueType) => OSPlaceholderInputFieldValueType;
   } & OSFieldBaseSettings;
 }
 
