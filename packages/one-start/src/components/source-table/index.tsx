@@ -19,6 +19,8 @@ import type {
   OSTableType,
   OSFormType,
   OSLayoutFormAPI,
+  OSTriggerType,
+  OSLayoutStepsFormType,
 } from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { useClsPrefix } from '../utils/use-cls-prefix';
@@ -148,32 +150,38 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
     return error;
   };
 
-  const renderViewForm = (options: {
+  const renderViewForm = ({
+    rowData,
+    rowIndex,
+    rowId,
+    actions,
+    formSettings,
+  }: {
     rowData: RecordType;
     rowIndex: number;
     rowId: string;
     actions: OSTableAPI;
+    formSettings?: OSFormType['settings'];
   }) => {
     if (!rowViewable) return null;
-
-    const formSettingsMeta = (() => {
-      if (typeof rowViewable.formSettings === 'function') {
-        return rowViewable.formSettings(options);
-      }
-      return rowViewable.formSettings;
-    })();
 
     return (
       <OSForm
         settings={{
-          ...formSettingsMeta,
+          ...formSettings,
           fieldItemSettings: {
-            ...formSettingsMeta?.fieldItemSettings,
+            ...formSettings?.fieldItemSettings,
             readonly: true,
           },
         }}
         requests={{
-          requestDataSource: () => requestViewRowData(options),
+          requestDataSource: () =>
+            requestViewRowData({
+              rowData,
+              rowIndex,
+              rowId,
+              actions,
+            }),
         }}
       />
     );
@@ -185,6 +193,9 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
     rowId: string;
     actions: OSTableAPI;
     editDrawerDialogRef?: React.RefObject<OSDialogDrawerAPI>;
+    formSettings?: OSFormType['settings'] | OSLayoutStepsFormType['settings'];
+    formRequests?: OSFormType['requests'] | OSLayoutStepsFormType['requests'];
+    formType?: 'form' | 'steps-form';
   }) => {
     if (!rowEditable) return {};
 
@@ -213,17 +224,17 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
     };
 
     const editFormDom = (() => {
-      if (rowEditable.formType === 'steps-form') {
+      if (options.formType === 'steps-form') {
         return (
           <OSLayoutForm
             ref={editFormRef}
             type="steps-form"
             settings={{
-              ...rowEditable.formSettings,
+              ...options.formSettings,
               submitTriggerText: '确认保存',
             }}
             requests={{
-              ...rowEditable.formRequests,
+              ...options.formRequests,
               requestInitialValues: () =>
                 requestRowEditData({
                   ...params,
@@ -241,9 +252,9 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
       return (
         <OSForm
           ref={editFormRef as React.MutableRefObject<OSFormAPI>}
-          settings={rowEditable.formSettings as OSFormType['settings']}
+          settings={options.formSettings as OSFormType['settings']}
           requests={{
-            ...rowEditable.formRequests,
+            ...options.formRequests,
             requestInitialValues: () =>
               requestRowEditData({
                 ...params,
@@ -374,40 +385,101 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
 
                   return [
                     ...renderUserRowActions(),
-                    rowViewable ? (
-                      <OSDialog
-                        ref={viewDrawerDialogRef}
-                        type="drawer"
-                        settings={{
-                          modalMask: rowViewable.modalMask,
-                          title: rowViewable.modalTitle ?? '详情展示',
-                          width: rowViewable.modalWidth ?? '80%',
-                          body: renderViewForm({ rowData, rowId, rowIndex, actions }),
-                        }}
-                      >
-                        <OSTrigger
-                          type="button"
-                          settings={{
-                            type: 'link',
-                            text: '详情',
-                            manualPush,
-                          }}
-                          onClick={() => {
-                            if (panelable) {
-                              setActiveMeta({ rowData, rowId, rowIndex, actions, type: 'view' });
-                            }
-                          }}
-                        ></OSTrigger>
-                      </OSDialog>
-                    ) : null,
-                    rowEditable
-                      ? (() => {
+                    (() => {
+                      if (rowViewable) {
+                        const renderTrigger = ({
+                          modalTitle,
+                          modalMask,
+                          modalWidth,
+                          formSettings,
+                          triggerSettings,
+                        }: {
+                          modalTitle?: string;
+                          modalMask?: boolean | 'transparent';
+                          modalWidth?: string | number;
+                          formSettings?: OSFormType['settings'];
+                          triggerSettings?: OSTriggerType['settings'];
+                        }) => {
+                          return (
+                            <OSDialog
+                              ref={viewDrawerDialogRef}
+                              type="drawer"
+                              settings={{
+                                modalMask,
+                                title: modalTitle ?? '详情展示',
+                                width: modalWidth ?? '80%',
+                                body: renderViewForm({
+                                  rowData,
+                                  rowId,
+                                  rowIndex,
+                                  actions,
+                                  formSettings,
+                                }),
+                              }}
+                            >
+                              <OSTrigger
+                                type="button"
+                                settings={{
+                                  type: 'link',
+                                  text: '详情',
+                                  ...triggerSettings,
+                                  manualPush,
+                                }}
+                                onClick={() => {
+                                  if (panelable) {
+                                    setActiveMeta({
+                                      rowData,
+                                      rowId,
+                                      rowIndex,
+                                      actions,
+                                      type: 'view',
+                                    });
+                                  }
+                                }}
+                              ></OSTrigger>
+                            </OSDialog>
+                          );
+                        };
+
+                        if (typeof rowViewable === 'function') {
+                          const options = rowViewable({
+                            rowData,
+                            rowId,
+                            rowIndex,
+                            actions,
+                          });
+                          return renderTrigger(options);
+                        }
+
+                        return renderTrigger({});
+                      }
+
+                      return null;
+                    })(),
+                    (() => {
+                      if (rowEditable) {
+                        const renderTrigger = ({
+                          formSettings,
+                          formRequests,
+                          formType,
+                          triggerSettings,
+                          modalWidth,
+                        }: {
+                          modalWidth?: string | number;
+                          triggerSettings?: OSTriggerType['settings'];
+                          formSettings?: OSFormType['settings'] | OSLayoutStepsFormType['settings'];
+                          formRequests?: OSFormType['requests'] | OSLayoutStepsFormType['requests'];
+                          formType: 'form' | 'steps-form';
+                        }) => {
                           const { editFormDom, saveButtonDom, resetButtonDom } = renderEditForm({
                             rowData,
                             rowId,
                             rowIndex,
                             actions,
                             editDrawerDialogRef,
+                            formSettings,
+                            formRequests,
+                            formType,
                           });
 
                           return (
@@ -420,10 +492,10 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
                                     ? `(${rowData[props.settings?.rowTagKey ?? '']})`
                                     : ''
                                 }`,
-                                width: rowEditable.modalWidth ?? '70%',
+                                width: modalWidth ?? '70%',
                                 body: editFormDom,
                                 footer:
-                                  rowEditable.formType === 'steps-form' ? (
+                                  formType === 'steps-form' ? (
                                     false
                                   ) : (
                                     <Row justify="end" gutter={5}>
@@ -438,6 +510,7 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
                                 settings={{
                                   type: 'link',
                                   text: '编辑',
+                                  ...triggerSettings,
                                   manualPush,
                                 }}
                                 onClick={() => {
@@ -454,34 +527,82 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
                               ></OSTrigger>
                             </OSDialog>
                           );
-                        })()
-                      : null,
-                    rowRemoveable ? (
-                      <OSDialog
-                        type="popconfirm"
-                        settings={{
-                          title: '确认删除此行数据吗？',
-                        }}
-                        requests={{
-                          requestAfterConfirm: () =>
-                            requestRemoveRow({
-                              rowData,
-                              rowId,
-                              rowIndex,
-                              actions,
-                            }),
-                        }}
-                      >
-                        <OSTrigger
-                          type="button"
-                          settings={{
-                            type: 'link',
-                            text: '删除',
-                            danger: true,
-                          }}
-                        ></OSTrigger>
-                      </OSDialog>
-                    ) : null,
+                        };
+
+                        if (typeof rowEditable === 'function') {
+                          const {
+                            triggerSettings,
+                            modalWidth,
+                            formSettings,
+                            formRequests,
+                            formType,
+                          } = rowEditable({
+                            rowData,
+                            rowId,
+                            rowIndex,
+                            actions,
+                          });
+                          return renderTrigger({
+                            triggerSettings,
+                            formSettings,
+                            formRequests,
+                            formType,
+                            modalWidth,
+                          });
+                        }
+
+                        return renderTrigger(rowEditable);
+                      }
+
+                      return null;
+                    })(),
+                    (() => {
+                      if (rowRemoveable) {
+                        const renderTrigger = (settingsWithTrigger?: OSTriggerType['settings']) => {
+                          return (
+                            <OSDialog
+                              type="popconfirm"
+                              settings={{
+                                title: '确认删除此行数据吗？',
+                              }}
+                              requests={{
+                                requestAfterConfirm: () =>
+                                  requestRemoveRow({
+                                    rowData,
+                                    rowId,
+                                    rowIndex,
+                                    actions,
+                                  }),
+                              }}
+                            >
+                              <OSTrigger
+                                type="button"
+                                settings={{
+                                  type: 'link',
+                                  text: '删除',
+                                  danger: true,
+                                  ...settingsWithTrigger,
+                                }}
+                              ></OSTrigger>
+                            </OSDialog>
+                          );
+                        };
+
+                        if (typeof rowRemoveable === 'function') {
+                          const { triggerSettings } = rowRemoveable({
+                            rowData,
+                            rowId,
+                            rowIndex,
+                            actions,
+                          });
+                          return renderTrigger(triggerSettings);
+                        }
+
+                        return renderTrigger();
+                      }
+
+                      return null;
+                    })(),
                   ];
                 },
               }
