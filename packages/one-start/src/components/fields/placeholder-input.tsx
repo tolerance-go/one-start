@@ -18,7 +18,8 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
     offset: null,
   });
 
-  const { bordered, autoFocus, disabled, placeholder, placeholders } = settings ?? {};
+  const { bordered, autoFocus, disabled, placeholder, placeholders, valueTransform } =
+    settings ?? {};
 
   const [inputWidth, setInputWidth] = useState<number>();
 
@@ -62,11 +63,12 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
 
   if (mode === 'edit' || mode === 'update') {
     const triggerChange = (value: string) => {
-      onChangeHook?.(value);
-      return _onChange?.(value);
+      const next = valueTransform ? valueTransform(value) : value;
+      onChangeHook?.(next);
+      return _onChange?.(next);
     };
 
-    const onChange: TextAreaProps['onChange'] = (event) => {
+    const handleChange: TextAreaProps['onChange'] = (event) => {
       triggerChange(event.target.value);
     };
 
@@ -150,7 +152,7 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
             autoFocus={autoFocus}
             ref={innerRef}
             value={_value}
-            onChange={onChange}
+            onChange={handleChange}
             onKeyDown={(event) => {
               if (event.key.toLowerCase() === 'backspace') {
                 const textareaEl = getTextareaEl();
