@@ -203,6 +203,40 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
     setFullFileList([]);
   };
 
+  const handleBeforeUpload = utl.debounce((file: RcFile, fileList: RcFile[]) => {
+    const list = utl.flattenDeep(
+      tableRef.current?.getDataSource()?.map((rowData) => {
+        return Object.keys(attachmentFieldKeys ?? {}).map((key) => {
+          const meta = attachmentFieldKeys![key];
+          return {
+            rowData,
+            attachmentKey: key,
+            attachmentId: getAttachmentId(key, rowData.id),
+            name: `${rowData[meta.baseDataIndex]}${meta.suffix}`,
+          };
+        });
+      }),
+    );
+    const matchList = utl.intersectionBy(list, fileList, (item) => item.name);
+    const notMatchList = utl.differenceBy(fileList, matchList, (item) => item.name);
+
+    message.info(
+      `本次批量导入成功匹配 ${matchList.length} 个文件，失败 ${notMatchList.length} 个文件`,
+    );
+
+    setFullFileList((prev) => {
+      const leftList = utl.differenceBy(prev, matchList, (item) => item.name);
+      return [
+        ...leftList,
+        ...matchList.map((item) => ({
+          ...item,
+          file: fileList.find((it) => it.name === item.name)!,
+        })),
+      ];
+    });
+    return false;
+  }, 400);
+
   return (
     <>
       <OSDialog
@@ -277,39 +311,10 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
                   name: 'file',
                   multiple: true,
                   fileList: [],
-                  beforeUpload: utl.debounce((file, fileList: RcFile[]) => {
-                    const list = utl.flattenDeep(
-                      tableRef.current?.getDataSource()?.map((rowData) => {
-                        return Object.keys(attachmentFieldKeys ?? {}).map((key) => {
-                          const meta = attachmentFieldKeys![key];
-                          return {
-                            rowData,
-                            attachmentKey: key,
-                            attachmentId: getAttachmentId(key, rowData.id),
-                            name: `${rowData[meta.baseDataIndex]}${meta.suffix}`,
-                          };
-                        });
-                      }),
-                    );
-                    const matchList = utl.intersectionBy(list, fileList, (item) => item.name);
-                    const notMatchList = utl.differenceBy(fileList, matchList, (item) => item.name);
-
-                    message.info(
-                      `本次批量导入成功匹配 ${matchList.length} 个文件，失败 ${notMatchList.length} 个文件`,
-                    );
-
-                    setFullFileList((prev) => {
-                      const leftList = utl.differenceBy(prev, matchList, (item) => item.name);
-                      return [
-                        ...leftList,
-                        ...matchList.map((item) => ({
-                          ...item,
-                          file: fileList.find((it) => it.name === item.name)!,
-                        })),
-                      ];
-                    });
+                  beforeUpload: (file, fileList) => {
+                    handleBeforeUpload(file, fileList);
                     return false;
-                  }, 400),
+                  },
                 }}
               >
                 <p>
