@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.15.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.14.0...@ty-one-start/one-start@0.15.0) (2022-02-09)
+
+
+### Bug Fixes
+
+* editable-table 修改操作栏宽度失效 ([d50eb51](https://10.1.2.7/visual-fe/swap-modules/commits/d50eb51f80c530a11f41b06e51182faacb6225c1))
+
+
+### Features
+
+* **os-text-field:** 支持获取异步 value，同时支持 params 触发调用 ([e3571a5](https://10.1.2.7/visual-fe/swap-modules/commits/e3571a5cd96128bceeb43047cab5337eec285f0e))
+
+
+
+
+
 # [0.14.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.13.2...@ty-one-start/one-start@0.14.0) (2022-02-08)
 
 
