@@ -111,6 +111,8 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 列为空的时候，默认不显示行操作
 
+通过 `rowActions.width` 可以控制操作列宽度
+
 <code src="../demos/table/row-actions.tsx" />
 
 ### 列提示信息

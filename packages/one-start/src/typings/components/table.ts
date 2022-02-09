@@ -541,8 +541,10 @@ export interface _OSTableType<
           actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
         }) => (React.ReactElement | null)[])
       | {
+          /** 列标题 */
+          columnTitle?: string;
           width?: number | string;
-          render: (options: {
+          render?: (options: {
             rowData: RecordType;
             rowIndex: number;
             rowId: string;

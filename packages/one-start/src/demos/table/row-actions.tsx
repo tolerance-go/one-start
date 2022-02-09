@@ -11,6 +11,7 @@ export default () => {
         settings={{
           rowActions: {
             width: 200,
+            columnTitle: '自定义操作',
             render: (options) => {
               console.log(options);
               return [

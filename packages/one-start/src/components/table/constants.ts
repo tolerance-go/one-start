@@ -31,6 +31,8 @@ export const eventNames = {
 
 export const DEFAULT_WIDTH = 160;
 
+export const DEFAULT_ACTION_COLUMN_TITLE = '操作';
+
 /** 默认表格高度 */
 export const DEFAULT_TABLE_HEIGHT = 750;
 

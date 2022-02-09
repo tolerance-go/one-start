@@ -3,7 +3,7 @@ import React from 'react';
 import OSActionsField from '../fields/actions';
 import type { OSTableType, RecordType, OSTableAPI } from '../../typings';
 import type { RequiredRecursion } from '../../typings';
-import { DEFAULT_WIDTH } from './constants';
+import { DEFAULT_ACTION_COLUMN_TITLE, DEFAULT_WIDTH } from './constants';
 
 export const useRowActions = ({
   columns,
@@ -22,14 +22,17 @@ export const useRowActions = ({
 }) => {
   if (columns.length && (rowActions || extraRowActions)) {
     const getWidth = () => {
-      if (
-        typeof rowActions !== 'function' &&
-        !Array.isArray(rowActions) &&
-        typeof rowActions === 'object'
-      ) {
+      if (!Array.isArray(rowActions) && typeof rowActions === 'object') {
         return rowActions.width ?? DEFAULT_WIDTH;
       }
       return DEFAULT_WIDTH;
+    };
+
+    const getColTitle = () => {
+      if (!Array.isArray(rowActions) && typeof rowActions === 'object') {
+        return rowActions.columnTitle ?? DEFAULT_ACTION_COLUMN_TITLE;
+      }
+      return DEFAULT_ACTION_COLUMN_TITLE;
     };
 
     return {
@@ -41,7 +44,7 @@ export const useRowActions = ({
         },
         align: 'center',
         fixed: 'right',
-        title: '操作',
+        title: getColTitle(),
         key: 'row-actions',
         width: getWidth(),
         render: (value, record, index) => {
@@ -62,7 +65,7 @@ export const useRowActions = ({
 
             if (typeof rowActions === 'object') {
               const { render } = rowActions;
-              return render({
+              return render?.({
                 rowData: record,
                 rowIndex: index,
                 rowId: record[rowKey],
@@ -73,7 +76,7 @@ export const useRowActions = ({
             return [];
           };
 
-          const getMergeActions = (actions: (React.ReactElement | null)[]) => {
+          const getMergeActions = (actions?: (React.ReactElement | null)[]) => {
             return [
               ...(
                 extraRowActions?.({
@@ -83,7 +86,7 @@ export const useRowActions = ({
                   rowData: record,
                 }) ?? []
               ).filter(Boolean),
-              ...actions,
+              ...(actions ?? []),
             ];
           };
 

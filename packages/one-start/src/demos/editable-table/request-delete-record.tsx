@@ -12,6 +12,10 @@ export default () => {
         value={value}
         onChange={(e) => setValue(parseTableValue(e))}
         settings={{
+          rowActions: {
+            width: 80,
+            columnTitle: '自定义操作',
+          },
           fieldItems: [
             {
               type: 'text',

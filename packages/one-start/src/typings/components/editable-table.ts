@@ -47,12 +47,8 @@ export type _OSEditableTableSelfType<OSCustomFieldStaticPureTableFormFieldItemCo
       | false;
     removeable?:
       | {
-          /** 列标题 */
-          columnTitle?: string;
           /** 删除按钮文案 */
           removeButtonText?: string;
-          /** 列宽度 */
-          columnDefaultWidth?: number;
         }
       | false;
     /**
