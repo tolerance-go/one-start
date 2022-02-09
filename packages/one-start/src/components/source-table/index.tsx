@@ -370,12 +370,14 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
                       }
 
                       if (typeof rowActions === 'object') {
-                        return rowActions.render({
-                          rowData,
-                          rowId,
-                          rowIndex,
-                          actions,
-                        });
+                        return (
+                          rowActions.render?.({
+                            rowData,
+                            rowId,
+                            rowIndex,
+                            actions,
+                          }) ?? []
+                        );
                       }
                       return [];
                     };

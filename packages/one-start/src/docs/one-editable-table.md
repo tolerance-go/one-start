@@ -35,6 +35,8 @@ group:
 
 ### 删除行内容
 
+`editable` 继承自 `table`，因此可以使用 `rowActions` 进行操作列的定义
+
 <code src="../demos/editable-table/request-delete-record.tsx" />
 
 ### 单元格验证
