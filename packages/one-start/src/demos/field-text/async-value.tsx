@@ -33,6 +33,11 @@ export default () => {
               settings: ({ form }) => ({
                 title: 'text',
                 dataIndex: 'text',
+                rules: [
+                  {
+                    required: true,
+                  },
+                ],
                 requestParams: {
                   requestTextValue: {
                     select: form.getFieldValue('select'),
@@ -44,7 +49,15 @@ export default () => {
                   return {
                     error: false,
                     data: {
-                      text: params?.select,
+                      text: (() => {
+                        if (params?.select === 'a') {
+                          return undefined;
+                        }
+                        if (params?.select === 'b') {
+                          return '';
+                        }
+                        return params?.select;
+                      })(),
                     },
                   };
                 },

@@ -19,6 +19,8 @@ group:
 
 ### 异步获取值
 
+如果 `text == null` 则不会触发 `onChange`，值不会修改，验证也不会触发
+
 <code src="../demos/field-text/async-value.tsx" />
 
 <API exports='["Settings"]' src="../components/fields/text.tsx"></API>
