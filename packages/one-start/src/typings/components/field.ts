@@ -401,7 +401,7 @@ export interface OSTextFieldType
     requestTextValue?: RequestIO<
       { params?: RecordType },
       {
-        text: string;
+        text?: OSTextFieldValueType;
         message?: OSResMessage;
       }
     >;

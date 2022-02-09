@@ -51,7 +51,7 @@ const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldTyp
 
     if (error) return;
 
-    if (data?.text !== _value) {
+    if (data?.text != null && data?.text !== _value) {
       triggerChange(data?.text);
     }
   };
