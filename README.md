@@ -99,3 +99,7 @@ common
 9. 表格联动上报修改
 
 <!-- 10. digit money -> BigNumber value type -->
+
+### 实现注意
+
+1. form resetFields 不会触发 form 的 onChange
