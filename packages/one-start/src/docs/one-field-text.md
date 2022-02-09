@@ -17,6 +17,10 @@ group:
 
 <code src="../demos/field-text/simple.tsx" />
 
+### 异步获取值
+
+<code src="../demos/field-text/async-value.tsx" />
+
 <API exports='["Settings"]' src="../components/fields/text.tsx"></API>
 
 ### API

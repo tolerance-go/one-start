@@ -17,6 +17,7 @@ import type { NamePath } from 'rc-field-form/lib/interface';
 import type Picker from 'rc-picker/lib/Picker';
 import type React from 'react';
 import type { Component } from 'react';
+import type { OSResMessage } from './message';
 import type { RecordType } from '../core';
 import type { OSCore, RequestIO } from './core';
 
@@ -393,7 +394,18 @@ export interface OSTextFieldType
   type?: 'text';
   settings?: {
     searchValue?: string;
+    requestParams?: RecordType;
   } & OSFieldBaseSettings;
+  requests?: {
+    /** 异步获取 value */
+    requestTextValue?: RequestIO<
+      { params?: RecordType },
+      {
+        text: string;
+        message?: OSResMessage;
+      }
+    >;
+  };
 }
 
 export type OSPlaceholderInputFieldValueType = string;
