@@ -3,7 +3,7 @@ import { Form } from '@ty/antd';
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { ReactNode } from 'react';
 import React from 'react';
-import OSFormItemBase from '../form-items/form-item-base';
+import OSFormItemBase from '../form-items/form-item';
 import type {
   OSFormItemType,
   OSLayoutFormAPI,

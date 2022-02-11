@@ -4,7 +4,7 @@ import utl from 'lodash';
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { ReactNode } from 'react';
 import React from 'react';
-import OSFormItemBase from '../form-items/form-item-base';
+import OSFormItemBase from '../form-items/form-item';
 import { getDataIndexId, getKeyIndexId } from '../table/utils';
 import type {
   OSEditableTableFieldType,
@@ -37,6 +37,7 @@ export const renderFormItem = (
     formRef: React.MutableRefObject<FormInstance | null>;
     dependencies?: string[];
     historyData?: OSFormItemInputHistoryData[];
+    readonly?: boolean;
     getField?: (
       settings: OSFormFieldItemWithStaticPureConfigs['settings'],
       requests: OSFormFieldItemWithStaticPureConfigs['requests'],
@@ -138,6 +139,7 @@ export const renderFormItem = (
         <OSFormItemBase
           historyData={options.historyData}
           className={options.className}
+          readonly={options.readonly}
           validateTrigger={['onChange']}
           settings={((): OSFormItemType['settings'] => {
             if (valueType === 'editable-table' || valueType === 'attachment-table') {

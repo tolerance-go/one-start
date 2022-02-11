@@ -1,112 +1,26 @@
-import { HistoryOutlined, LoadingOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import { Form, Popover, Spin, Timeline, Tooltip } from '@ty/antd';
+import { LoadingOutlined, ThunderboltOutlined } from '@ant-design/icons';
+import { Form, Spin, Tooltip } from '@ty/antd';
 import type { Rule, RuleObject } from '@ty/antd/lib/form';
 import type { ValidateStatus } from '@ty/antd/lib/form/FormItem';
 import cls from 'classnames';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import type {
-  OSFormItemInputHistoryData,
-  OSFormItemTooltip,
-  OSFormItemType,
-  OSRule,
-  RecordType,
-} from '../../typings';
-import { FormInstanceContext } from '../providers/form-context';
-import { normalizeDataIndex } from '../utils/normalize-data-index';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { useClsPrefix } from '../utils/use-cls-prefix';
-import InlineErrorFormItem from './inner-error-form-item';
-import { getDateCheckRule } from './rules/get-date-check-rule';
-import { getNumberDigitsRule } from './rules/get-number-digits-rule';
-import { getNumberRangeRule } from './rules/get-number-range-rule';
-import { getTradingDaysRule } from './rules/get-trading-days-rule';
-import { mergeRuleToTooltip, normalizeTooltip } from './utils';
-
-const useHistoryTimeline = ({
-  title,
-  historyData,
-  inputEl,
-  inputProps,
-}: {
-  title?: React.ReactNode;
-  historyData?: OSFormItemInputHistoryData[];
-  inputEl?: React.ReactNode;
-  inputProps?: RecordType;
-}) => {
-  const prefix = useClsPrefix('os-form-item-history');
-  if (historyData?.length) {
-    if (React.isValidElement(inputEl)) {
-      return (
-        <Popover
-          overlayInnerStyle={{
-            maxWidth: 1000,
-          }}
-          className={`${prefix}-popover`}
-          overlayClassName={`${prefix}-popover-overlay`}
-          title={`${title ? `${title}的` : ''}历史修改记录`}
-          content={
-            <Timeline mode="left" className={`${prefix}-timeline`}>
-              {historyData?.map((item) => {
-                return (
-                  <Timeline.Item>
-                    <div>
-                      {React.cloneElement(inputEl, {
-                        ...inputProps,
-                        onChange: undefined,
-                        mode: 'read',
-                        value: item.current,
-                      })}
-                    </div>
-                  </Timeline.Item>
-                );
-              })}
-            </Timeline>
-          }
-        >
-          <HistoryOutlined
-            style={{ marginLeft: 4, cursor: 'pointer', color: 'rgba(0, 0, 0, 0.45)', fontSize: 12 }}
-          />
-        </Popover>
-      );
-    }
-  }
-
-  return null;
-};
-
-const OSFormItemInput: React.ForwardRefRenderFunction<
-  {},
-  {
-    title?: React.ReactNode;
-    historyData?: OSFormItemInputHistoryData[];
-  }
-> = (props) => {
-  const { children, historyData, title, ...restProps } = props;
-
-  if (React.isValidElement(children)) {
-    if (historyData?.length) {
-      return (
-        <div>
-          <div style={{ color: '#00000073' }}>
-            {React.cloneElement(children, {
-              ...restProps,
-              onChange: undefined,
-              mode: 'read',
-              value: historyData[historyData.length - 1].current,
-            })}
-          </div>
-          <div>{React.cloneElement(children, restProps)}</div>
-        </div>
-      );
-    }
-    return React.cloneElement(children, restProps);
-  }
-  return <>{children}</>;
-};
+import type { OSFormItemTooltip, OSFormItemType, OSRule } from '../../../typings';
+import { FormInstanceContext } from '../../providers/form-context';
+import { normalizeDataIndex } from '../../utils/normalize-data-index';
+import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
+import { useClsPrefix } from '../../utils/use-cls-prefix';
+import FormItemInlineError from '../form-item-inner-error';
+import { getDateCheckRule } from '../rules/get-date-check-rule';
+import { getNumberDigitsRule } from '../rules/get-number-digits-rule';
+import { getNumberRangeRule } from '../rules/get-number-range-rule';
+import { getTradingDaysRule } from '../rules/get-trading-days-rule';
+import { mergeRuleToTooltip, normalizeTooltip } from '../utils';
+import { OSFormItemInput } from './form-item-input';
+import { useHistoryTimeline } from './use-history-timeline';
 
 const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
   const prefix = useClsPrefix('os-form-item-base');
-  const { settings, requests, noStyle, className, historyData, validateTrigger } = props;
+  const { settings, requests, noStyle, className, historyData, validateTrigger, readonly } = props;
   const {
     tooltip,
     rules,
@@ -291,7 +205,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     );
   };
 
-  const FormItemType = settings?.inlineError ? InlineErrorFormItem : Form.Item;
+  const FormItemType = settings?.inlineError ? FormItemInlineError : Form.Item;
 
   const normalizedTooltip = useMemo((): OSFormItemTooltip | undefined => {
     return normalizeTooltip(tooltip);
@@ -360,6 +274,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
         preserve={settings?.preserve}
         className={cls(className, prefix, {
           'label-align-left': labelAlign === 'left',
+          'readonly-form-item': readonly,
         })}
         style={{
           ...settings?.styles,
