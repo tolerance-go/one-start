@@ -276,11 +276,14 @@ export interface OSSelectFieldType<
     maxTagCount?: number;
     valueEnums?: RecordType;
     params?: RecordType;
+    requestParams?: RecordType;
     allowClear?: boolean;
     mode?: SelectProps<ValueType>['mode'];
     /** local 表示前端搜索 */
     showSearch?: SelectProps<ValueType>['showSearch'] | 'local';
     labelInValue?: SelectProps<ValueType>['labelInValue'];
+    /** 是否关闭下拉请求 */
+    disabledRequestOptionsWhenOpen?: boolean;
     dropdownMatchSelectWidth?: boolean;
     /**
      * 展示更多字段信息
@@ -303,7 +306,8 @@ export interface OSSelectFieldType<
     >;
   };
   tagRender?: SelectProps<ValueType>['tagRender'];
-  autoFetchSelectOptions?: boolean;
+  /** 自动请求 */
+  autoFetchSelectOptionsWhenMounted?: boolean;
   className?: string;
   /** 自定义编辑状态下的渲染逻辑 */
   renderOnRead?: (
