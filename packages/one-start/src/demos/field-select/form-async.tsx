@@ -17,7 +17,19 @@ export default () => {
               type: 'select',
               settings: {
                 title: '下拉框1',
-                dataIndex: 'select',
+                dataIndex: 'select1',
+                valueEnums: {
+                  a: 'A',
+                  b: 'B',
+                  c: 'C',
+                },
+              },
+            },
+            {
+              type: 'select',
+              settings: {
+                title: '下拉框2',
+                dataIndex: 'select2',
                 showSearch: true,
                 rules: [
                   ({ getFieldValue }) => ({
@@ -26,9 +38,9 @@ export default () => {
                       if (val == null) {
                         return Promise.resolve();
                       }
-                      const select2Val = getFieldValue('select2');
-                      if (select2Val === val) {
-                        return Promise.reject(new Error('和 select2 重复了'));
+                      const select1Val = getFieldValue('select1');
+                      if (select1Val === val) {
+                        return Promise.reject(new Error('和 select1 重复了'));
                       }
                       return Promise.resolve();
                     },
@@ -57,20 +69,8 @@ export default () => {
                         label: 'C',
                         value: 'c',
                       },
-                    ].filter((item) => form?.getFieldValue('select2') !== item.value),
+                    ].filter((item) => form?.getFieldValue('select1') !== item.value),
                   });
-                },
-              },
-            },
-            {
-              type: 'select',
-              settings: {
-                title: '下拉框2',
-                dataIndex: 'select2',
-                valueEnums: {
-                  a: 'A',
-                  b: 'B',
-                  c: 'C',
                 },
               },
             },
@@ -82,9 +82,21 @@ export default () => {
                 fieldItems: [
                   {
                     type: 'select',
-                    settings: ({ rowId }) => ({
+                    settings: {
                       title: '下拉框1',
-                      dataIndex: 'select',
+                      dataIndex: 'select1',
+                      valueEnums: {
+                        a: 'A',
+                        b: 'B',
+                        c: 'C',
+                      },
+                    },
+                  },
+                  {
+                    type: 'select',
+                    settings: ({ rowId }) => ({
+                      title: '下拉框2',
+                      dataIndex: 'select2',
                       showSearch: true,
                       rules: [
                         ({ getFieldValue }) => ({
@@ -93,9 +105,9 @@ export default () => {
                             if (val == null) {
                               return Promise.resolve();
                             }
-                            const select2Val = getFieldValue([rowId!, 'select2']);
-                            if (select2Val === val) {
-                              return Promise.reject(new Error('和 select2 重复了'));
+                            const select1Val = getFieldValue([rowId!, 'select1']);
+                            if (select1Val === val) {
+                              return Promise.reject(new Error('和 select1 重复了'));
                             }
                             return Promise.resolve();
                           },
@@ -113,7 +125,7 @@ export default () => {
 
                         const otherRowSelect1 = utlFp.flow(
                           utlFp.omit([rowId!]),
-                          utlFp.mapValues((item: RecordType) => item.select),
+                          utlFp.mapValues((item: RecordType) => item.select1),
                           utlFp.values,
                           utlFp.filter(Boolean),
                         )(form?.getFieldsValue());
@@ -139,27 +151,72 @@ export default () => {
                             },
                           ].filter(
                             (item) =>
-                              form?.getFieldValue([rowId, 'select2']) !== item.value &&
+                              form?.getFieldValue([rowId, 'select1']) !== item.value &&
                               !otherRowSelect1.includes(item.value),
                           ),
                         });
                       },
                     },
                   },
-                  {
-                    type: 'select',
-                    settings: {
-                      title: '下拉框2',
-                      dataIndex: 'select2',
-                      valueEnums: {
-                        a: 'A',
-                        b: 'B',
-                        c: 'C',
-                      },
-                    },
-                  },
                 ],
                 addable: {},
+              },
+            },
+            {
+              type: 'select',
+              settings: {
+                title: '下拉框3',
+                dataIndex: 'select3',
+                valueEnums: {
+                  a: 'A',
+                  b: 'B',
+                  c: 'C',
+                },
+              },
+            },
+            {
+              type: 'select',
+              dependencies: ['select3'],
+              settings: ({ form }) => ({
+                title: '下拉框4',
+                dataIndex: 'select4',
+                showSearch: true,
+                params: {
+                  select3: form.getFieldValue('select3'),
+                },
+                readonly: true,
+                valueLinkage: {
+                  linkage: (changedValues) => {
+                    if ('select3' in changedValues) {
+                      return {
+                        select4: changedValues.select3,
+                      };
+                    }
+                    return {};
+                  },
+                },
+              }),
+              requests: {
+                requestOptions: async ({ params }) => {
+                  await delay(1000);
+                  return mock({
+                    error: false,
+                    data: [
+                      {
+                        label: 'A',
+                        value: 'a',
+                      },
+                      {
+                        label: 'B',
+                        value: 'b',
+                      },
+                      {
+                        label: 'C',
+                        value: 'c',
+                      },
+                    ].filter((item) => params?.select3 === item.value),
+                  });
+                },
               },
             },
           ],

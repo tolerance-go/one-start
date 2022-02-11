@@ -64,7 +64,13 @@ group:
 
 ### 表单联动
 
-当 `options` 更新时，如果 `value` 不在选项范围内，注意添加验证通知用户
+通过 `params` 或者 `requestParams.requestOptions` 可以主动触发请求 hook，这是最常使用的方式，而且只读模式下必须用到它
+
+当 `requestOptions` 依赖表单其他内部数据时候，可以通过注入的 `form` 获取后进行查询
+
+打开下拉的时候会默认进行一次搜索，以保证选项最新，可以通过 `disabledRequestOptionsWhenOpen: true` 关闭
+
+注意：当 `options` 更新时，如果 `value` 不在选项范围内，注意添加验证通知用户
 
 <code src="../demos/field-select/form-async.tsx" />
 

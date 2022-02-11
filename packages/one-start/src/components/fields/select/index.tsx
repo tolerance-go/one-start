@@ -27,6 +27,7 @@ import type {
 import { ExtraValueTypesContext } from '../../providers/extra-value-types';
 import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
 import { useClsPrefix } from '../../utils/use-cls-prefix';
+import { useUpdateEffect } from '../../utils/use-update-effect';
 import { convertEnumsToOptions } from '../utils/convert-enum-to-options';
 import { ShowInfoLabel } from './show-info-label';
 
@@ -44,7 +45,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     requests,
     tagRender,
     renderOnRead,
-    autoFetchSelectOptions = true,
+    autoFetchSelectOptionsWhenMounted: autoFetchSelectOptions = true,
     requestExtra,
   } = props;
 
@@ -56,6 +57,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     autoFocus,
     valueEnums,
     params,
+    requestParams,
     mode: selectMode,
     showSearch,
     allowClear = true,
@@ -64,6 +66,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     showInfo,
     maxWidth,
     maxTagCount = 5,
+    disabledRequestOptionsWhenOpen = false,
   } = settings ?? {};
 
   const [loading, setLoading] = useState(false);
@@ -112,6 +115,8 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     return showInfo;
   }, [showInfo]);
 
+  const requestOptionsParams = requestParams?.requestOptions ?? params;
+
   const mergedDataInValue = (val: OSSelectFieldValueType): OSSelectFieldValueType => {
     if (val == null || utl.isEmpty(asyncValueEnums)) {
       return val;
@@ -142,9 +147,13 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
 
   useEffect(() => {
     if (autoFetchSelectOptions) {
-      requestOptions(undefined, params);
+      requestOptions(undefined, requestOptionsParams);
     }
   }, []);
+
+  useUpdateEffect(() => {
+    requestOptions(undefined, requestOptionsParams);
+  }, [JSON.stringify(requestOptionsParams)]);
 
   if (mode === 'read') {
     const maps =
@@ -186,8 +195,8 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
   if (mode === 'edit' || mode === 'update') {
     const handleDropdownVisibleChange: SelectProps<OSSelectFieldValueType>['onDropdownVisibleChange'] =
       (visible) => {
-        if (visible) {
-          requestOptions(undefined, params);
+        if (!disabledRequestOptionsWhenOpen && visible) {
+          requestOptions(undefined, requestOptionsParams);
         }
         setOpen(visible);
       };
@@ -210,7 +219,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
       }
       return showSearch
         ? (((value) => {
-            requestOptionsWithDebounce(value, params);
+            requestOptionsWithDebounce(value, requestOptionsParams);
           }) as SelectProps<OSSelectFieldValueType>['onSearch'])
         : undefined;
     })();

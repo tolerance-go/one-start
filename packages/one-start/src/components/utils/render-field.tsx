@@ -129,7 +129,7 @@ export const renderField = (
         value={options?.value as OSSelectFieldValueType}
         text={options?.text as OSSelectFieldValueType}
         requests={requests}
-        autoFetchSelectOptions={options?.autoFetchSelectOptions}
+        autoFetchSelectOptionsWhenMounted={options?.autoFetchSelectOptions}
         requestExtra={() => ({
           form: options?.formRef?.current,
           ...options?.cellMeta,
@@ -148,7 +148,7 @@ export const renderField = (
         value={options?.value as OSChainSelectFieldValueType}
         text={options?.text as OSChainSelectFieldValueType}
         requests={requests}
-        autoFetchSelectOptions={options?.autoFetchSelectOptions}
+        autoFetchSelectOptionsWhenMounted={options?.autoFetchSelectOptions}
       />
     );
   }
