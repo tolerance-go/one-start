@@ -26,6 +26,7 @@ const OSFormField: React.ForwardRefRenderFunction<OSFormFieldAPI, OSFormFieldTyp
           ...formSettings,
           fieldItemSettings: {
             readonly: true,
+            labelAlign: 'left' as 'left',
             ...formSettings?.fieldItemSettings,
           },
         }}

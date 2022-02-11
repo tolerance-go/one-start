@@ -20,7 +20,16 @@ import { useHistoryTimeline } from './use-history-timeline';
 
 const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
   const prefix = useClsPrefix('os-form-item-base');
-  const { settings, requests, noStyle, className, historyData, validateTrigger, readonly } = props;
+  const {
+    settings,
+    requests,
+    noStyle,
+    className,
+    historyData,
+    validateTrigger,
+    readonly,
+    hideItemControlLine,
+  } = props;
   const {
     tooltip,
     rules,
@@ -275,6 +284,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
         className={cls(className, prefix, {
           'label-align-left': labelAlign === 'left',
           'readonly-form-item': readonly,
+          'hiden-item-control-line': hideItemControlLine,
         })}
         style={{
           ...settings?.styles,

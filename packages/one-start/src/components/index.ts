@@ -13,6 +13,7 @@ import OSEditableTableField from './fields/editable-table';
 import OSImageField from './fields/image';
 import OSLayoutModalFormField from './fields/layout-modal-form';
 import OSLayoutTabsFormField from './fields/layout-tabs-form';
+import OSFormField from './fields/form';
 import OSMoneyField from './fields/money';
 import OSOptionField from './fields/option';
 import OSUploadField from './fields/upload';
@@ -57,6 +58,7 @@ const utils = {
 export * from './utils/parse-table-value';
 export * from './utils/tree-utils';
 export {
+  OSFormField,
   useLoading,
   useActionsRef,
   OSReferencesGlobalContext,

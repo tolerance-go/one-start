@@ -77,4 +77,6 @@ export interface OSFormItemType<Value = any> extends OSCore {
   historyData?: OSFormItemInputHistoryData[];
   /** 是否只读展示 */
   readonly?: boolean;
+  /** 是否隐藏 formItem control 部分下面的线 */
+  hideItemControlLine?: boolean;
 }

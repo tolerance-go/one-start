@@ -91,12 +91,14 @@
     .ty-ant-form-item {
       margin-bottom: 10px;
 
-      /** 只读状态下的样式 */
-      &.readonly-form-item {
+      &.readonly-form-item:not(.hiden-item-control-line) {
         .ty-ant-form-item-control {
           border-bottom: 1px solid hsv(0, 0, 95%);
         }
+      }
 
+      /** 只读状态下的样式 */
+      &.readonly-form-item {
         .ty-ant-form-item-label {
           label {
             font-weight: bold;
