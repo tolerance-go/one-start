@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.16.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.15.1...@ty-one-start/one-start@0.16.0) (2022-02-11)
+
+
+### Features
+
+* **os-select:** 支持 params 及 requestsParams 触发对应请求 hook ([5381460](https://10.1.2.7/visual-fe/swap-modules/commits/53814607f79f4eabb493311a260ebf0de4c5b524))
+
+
+
+
+
 ## [0.15.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.15.0...@ty-one-start/one-start@0.15.1) (2022-02-09)
 
 **Note:** Version bump only for package @ty-one-start/one-start
