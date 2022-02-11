@@ -1,3 +1,6 @@
+@import './form-item.less';
+@import './layout-tabs-form.less';
+@import './layout-modal-form.less';
 @import (reference) '~@ty/antd/lib/style/themes/default.less';
 
 body {
@@ -26,12 +29,6 @@ body {
   padding-right: 5px;
 }
 
-.ty-ant-form-item-has-error
-  .ty-ant-select:not(.ty-ant-select-disabled):not(.ty-ant-select-customize-input).ty-ant-select-borderless
-  .ty-ant-select-selector {
-  border-color: transparent !important;
-}
-
 .template-icon-base {
   color: @text-color-secondary;
   cursor: pointer;
@@ -41,85 +38,7 @@ body {
   }
 }
 
-.ty-ant-form-item-has-error {
-  .one-source {
-    &-os-table {
-      .ty-ant-input-group-wrapper:not(.disabled) {
-        .ty-ant-input-group-addon {
-          color: rgba(0, 0, 0, 0.85) !important;
-        }
-      }
-      // 行悬停样式会有冲突
-      .ty-ant-input-number {
-        background-color: transparent;
-      }
-    }
-
-    &-layouttabs-form {
-      .ty-ant-form-item:not(.ty-ant-form-item-has-error) {
-        .ty-ant-picker,
-        .ty-ant-input-number {
-          border-color: #d9d9d9;
-        }
-
-        .ty-ant-input-group-addon {
-          color: rgba(0, 0, 0, 0.85);
-          border-color: #d9d9d9;
-        }
-
-        .ty-ant-picker-focused,
-        .ty-ant-picker:focus,
-        .ty-ant-input-number-focused,
-        .ty-ant-input-number:focus {
-          border-color: #40a9ff;
-          border-right-width: 1px !important;
-          outline: 0;
-          box-shadow: ~'0 0 0 2px rgb(24 144 255 / 20%)';
-        }
-      }
-    }
-  }
-  // 表单内的表格搜索框不受字段错误影响样式
-  .one-source-os-table-search-form {
-    .ty-ant-input-affix-wrapper {
-      border: 1px solid #d9d9d9 !important;
-    }
-  }
-}
-
 .one-source {
-  &-os-form-item-history {
-    &-popover-overlay {
-      .ty-ant-popover-inner-content {
-        max-height: 700px;
-        padding: 17px 10px 10px 10px;
-        overflow-y: scroll;
-      }
-    }
-    &-timeline {
-      .ty-ant-timeline-item {
-        padding-bottom: 10px;
-      }
-      .ty-ant-timeline-item-last {
-        > .ty-ant-timeline-item-content {
-          min-height: inherit;
-        }
-        &.ty-ant-timeline-item {
-          margin-bottom: -7px;
-          padding-bottom: 0;
-        }
-      }
-    }
-  }
-  &-os-form-item-base {
-    &.label-align-left {
-      > .ty-ant-form-item-label {
-        display: flex;
-        justify-content: flex-start;
-      }
-    }
-  }
-
   &-os-grid {
     .ag-react-container {
       line-height: 28px;
@@ -254,14 +173,6 @@ body {
             }
           }
         }
-      }
-    }
-  }
-
-  &-layouttabs-form {
-    &.collapse {
-      .ty-ant-tabs-content {
-        display: none;
       }
     }
   }
@@ -496,19 +407,6 @@ body {
       width: 0;
     }
 
-    .ty-ant-form-item {
-      margin-bottom: 10px;
-
-      &.readonly-form-item {
-        .ty-ant-form-item-control {
-          border-bottom: 1px solid hsv(0, 0, 95%);
-        }
-      }
-      &.is-lastest-row-item {
-        margin-bottom: 0;
-      }
-    }
-
     &-group-col-item {
       &.hide {
         display: none;
@@ -523,34 +421,8 @@ body {
   }
 
   &-os-table {
-    &-inline-error-form-item {
-      &-popover-overlay {
-        .ty-ant-popover-inner-content {
-          min-width: 100px;
-          padding: 2px 8px;
-        }
-      }
-    }
-
     .ty-ant-table-footer {
       padding: 2px 8px !important;
-    }
-
-    &-filter-dropdown-form-item {
-      /** 表格内部的输入字端，隐藏 label **/
-      .ty-ant-form-item-label {
-        display: none;
-      }
-    }
-
-    &.editable {
-      .ty-ant-table-tbody {
-        .ty-ant-table-cell {
-          .ty-ant-form-item {
-            margin: 0;
-          }
-        }
-      }
     }
 
     &:not(.editable) {
@@ -576,11 +448,6 @@ body {
       overflow: hidden;
       border: 1px solid #babfc7;
 
-      /** 表格内部的输入字端，隐藏 label **/
-      .ty-ant-form-item-label {
-        display: none;
-      }
-
       .ty-ant-table-tbody {
         .ty-ant-table-row:last-child {
           > td {
@@ -599,13 +466,6 @@ body {
             background-color: #f8f8f8;
           }
         }
-      }
-    }
-
-    /** 左侧工具栏出现的 搜索表单 **/
-    &-inline-search-form-wrapper {
-      .ty-ant-form-item {
-        margin-bottom: 0;
       }
     }
 

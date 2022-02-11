@@ -14,7 +14,13 @@ const OSDialogModal: React.ForwardRefRenderFunction<
   OSDialogModalAPI,
   PropsWithChildren<OSDialogModalType>
 > = (props, ref) => {
-  const { settings, actionsRef: propActionsRef, forceRender, destroyOnClose = true } = props;
+  const {
+    settings,
+    actionsRef: propActionsRef,
+    forceRender,
+    destroyOnClose = true,
+    className,
+  } = props;
   const clsPrefix = useClsPrefix('os-modal');
 
   const { footer, body } = settings ?? {};
@@ -52,7 +58,7 @@ const OSDialogModal: React.ForwardRefRenderFunction<
         destroyOnClose={destroyOnClose}
         forceRender={forceRender}
         /** 操作 modal 为 operation */
-        className={cls(clsPrefix, 'normal')}
+        className={cls(clsPrefix, className, 'normal')}
         width={settings?.width}
         visible={visible}
         onCancel={close}

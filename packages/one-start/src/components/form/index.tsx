@@ -908,11 +908,11 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
           },
           fieldItemSettings: finalFieldItemSettings,
           className: cls(
-            mergedStaticSettings?.readonly ? 'readonly-form-item' : undefined,
             parentKeyIndexId_ == null && index === fieldItems_!.length - 1
               ? 'is-lastest-row-item'
               : undefined,
           ),
+          readonly: mergedStaticSettings?.readonly,
           hideFormGroupItemDom: actionsRef.current.hideFormGroupItemDom,
           showFormGroupItemDom: actionsRef.current.showFormGroupItemDom,
           currentHideLeafKeyIndexIdSetRef,

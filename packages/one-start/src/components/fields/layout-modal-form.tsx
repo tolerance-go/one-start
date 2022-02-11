@@ -29,8 +29,9 @@ const OSLayoutModalFormField: React.ForwardRefRenderFunction<
           formSettings: {
             ...layoutFormSettings.formSettings,
             fieldItemSettings: {
-              ...layoutFormSettings.formSettings?.fieldItemSettings,
               readonly: true,
+              labelAlign: 'left' as 'left',
+              ...layoutFormSettings.formSettings?.fieldItemSettings,
             },
           },
         }}
@@ -39,6 +40,7 @@ const OSLayoutModalFormField: React.ForwardRefRenderFunction<
         value={text ?? _value}
         onChange={_onChange}
         onVisibleChange={onVisibleChange}
+        formWrapperClassName="readonly-modal-form-field"
       />
     );
   }

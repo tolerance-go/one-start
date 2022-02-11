@@ -35,6 +35,7 @@ const OSLayoutTabsFormField: React.ForwardRefRenderFunction<
               ...item.settings,
               fieldItemSettings: {
                 readonly: true,
+                labelAlign: 'left' as 'left',
                 ...item.settings?.fieldItemSettings,
               },
             },
@@ -44,6 +45,7 @@ const OSLayoutTabsFormField: React.ForwardRefRenderFunction<
         ref={ref as React.MutableRefObject<OSLayoutTabsFormAPI>}
         value={text ?? _value}
         onChange={_onChange}
+        tabClassName="readonly-tab-form-field"
       />
     );
   }

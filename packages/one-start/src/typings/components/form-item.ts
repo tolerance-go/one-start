@@ -75,4 +75,6 @@ export interface OSFormItemType<Value = any> extends OSCore {
   validateTrigger?: string[];
   /** 字段的历史修改数据 */
   historyData?: OSFormItemInputHistoryData[];
+  /** 是否只读展示 */
+  readonly?: boolean;
 }

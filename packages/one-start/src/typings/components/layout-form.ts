@@ -53,6 +53,7 @@ export type _OSLayoutModalFormType<
     >['requests']['requestFieldItems'];
   };
   onVisibleChange?: (visible: boolean) => void;
+  formWrapperClassName?: string;
 };
 
 export type OSLayoutTabsFormAPI = Pick<
@@ -105,6 +106,7 @@ export type _OSLayoutTabsFormType<
       _OSFormType<CustomValueType, StaticCustomValueType>
     >['requests']['requestDataSource'];
   };
+  tabClassName?: string;
 };
 
 export type OSLayoutStepsFormAPI = Pick<

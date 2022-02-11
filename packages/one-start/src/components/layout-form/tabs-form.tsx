@@ -16,7 +16,7 @@ import { useLoading } from '../utils/use-loading';
 
 const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLayoutTabsFormType> =
   (props, ref) => {
-    const { settings, requests, value, onChange } = props;
+    const { settings, requests, value, onChange, tabClassName } = props;
     const [activeKey, setActiveKey] = useState(() => {
       return settings?.tabs?.[0].key ?? settings?.tabs?.[0].title ?? '';
     });
@@ -212,7 +212,7 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
       <Form.Provider>
         <Spin spinning={requestDataSourceLoading.loading} indicator={<LoadingOutlined />}>
           <Tabs
-            className={cls(clsPrefix, {
+            className={cls(clsPrefix, tabClassName, {
               collapse,
             })}
             tabBarExtraContent={renderCollapse()}

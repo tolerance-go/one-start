@@ -94,6 +94,7 @@ export interface OSDialogModalType extends OSDialogBase {
   onVisibleChange?: (visible: boolean) => void;
   forceRender?: boolean;
   actionsRef?: React.MutableRefObject<OSDialogModalActionsType | null>;
+  className?: string;
 }
 
 export type OSDialogDrawerAPI = OSDialogAPIBase;
