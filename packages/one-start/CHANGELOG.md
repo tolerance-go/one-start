@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.1...@ty-one-start/one-start@0.16.2) (2022-02-14)
+
+**Note:** Version bump only for package @ty-one-start/one-start
+
+
+
+
+
 ## [0.16.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.0...@ty-one-start/one-start@0.16.1) (2022-02-14)
 
 

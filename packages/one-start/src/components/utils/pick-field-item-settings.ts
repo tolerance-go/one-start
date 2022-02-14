@@ -1,17 +1,24 @@
 import type {
   OSFormFieldItemWithStaticPureConfigs,
   OSTableFormFieldItemWithStaticPureConfigs,
+  RecordType,
 } from '../../typings';
 import utl from 'lodash';
 import { formItemSettingsFields } from '../form-items/form-item-settings-fields';
 
-export const pickFieldSettings = (settings: OSFormFieldItemWithStaticPureConfigs['settings']) => {
+/**
+ * to fix 此节点的推断类型超出编译器将序列化的最大长度。需要显式类型注释。ts(7056)
+ * 所以写出 recordType 和函数返回类型的形式
+ */
+export const pickFieldSettings = (
+  settings: RecordType,
+): Required<OSFormFieldItemWithStaticPureConfigs>['settings'] => {
   return utl.omit(settings, formItemSettingsFields);
 };
 
 export const pickFormItemSettings = (
-  settings: OSFormFieldItemWithStaticPureConfigs['settings'],
-) => {
+  settings: RecordType,
+): Required<OSFormFieldItemWithStaticPureConfigs>['settings'] => {
   return utl.pick(settings, formItemSettingsFields);
 };
 
