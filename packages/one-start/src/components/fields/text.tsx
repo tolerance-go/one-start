@@ -1,6 +1,6 @@
 import type { InputProps } from '@ty/antd';
 import { Input } from '@ty/antd';
-import React, { useEffect } from 'react';
+import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import type {
   OSTextFieldAPI,
   OSTextFieldType,
@@ -11,6 +11,7 @@ import Highlighter from 'react-highlight-words';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { logRequestMessage } from '../utils/log-request-message';
 import { useActionsRef } from '../hooks/use-actions-ref';
+import utl from 'lodash';
 
 const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldType> = (
   props,
@@ -26,8 +27,18 @@ const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldTyp
     requests,
   } = props;
 
-  const { bordered, autoFocus, disabled, placeholder, searchValue, requestParams } = settings ?? {};
+  const {
+    bordered,
+    autoFocus,
+    disabled,
+    placeholder,
+    searchValue,
+    requestParams,
+    autoTrim = true,
+  } = settings ?? {};
   const { requestTextValue } = requests ?? {};
+
+  const inputRef = useRef<Input>(null);
 
   const triggerChange = (value?: OSTextFieldValueType) => {
     onChangeHook?.(value);
@@ -65,6 +76,8 @@ const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldTyp
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(requestParams?.requestTextValue)]);
 
+  useImperativeHandle(ref, () => inputRef.current!);
+
   if (mode === 'read') {
     const render = () => {
       const val = text ?? _value;
@@ -88,9 +101,14 @@ const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldTyp
     return dom;
   }
   if (mode === 'edit' || mode === 'update') {
-    const onChange: InputProps['onChange'] = (value) => {
-      onChangeHook?.(value.target.value);
-      return _onChange?.(value);
+    const onChange: InputProps['onChange'] = (event) => {
+      if (autoTrim && event.target.value && inputRef.current?.input) {
+        /** onChange 提前修改 value，会同步修改 event 对象 */
+        inputRef.current.input.value = utl.trim(event.target.value);
+      }
+
+      onChangeHook?.(event.target.value);
+      return _onChange?.(event);
     };
 
     return (
@@ -99,7 +117,7 @@ const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldTyp
         disabled={disabled}
         bordered={bordered}
         autoFocus={autoFocus}
-        ref={ref as React.MutableRefObject<Input>}
+        ref={inputRef}
         value={_value}
         onChange={onChange}
         placeholder={placeholder ?? '请输入文本'}

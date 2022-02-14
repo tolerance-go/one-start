@@ -23,6 +23,10 @@ group:
 
 <code src="../demos/field-text/async-value.tsx" />
 
+### 前后空格自动 trim
+
+<code src="../demos/field-text/auto-trim.tsx" />
+
 <API exports='["Settings"]' src="../components/fields/text.tsx"></API>
 
 ### API
