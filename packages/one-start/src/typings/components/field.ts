@@ -20,6 +20,7 @@ import type { Component } from 'react';
 import type { OSResMessage } from './message';
 import type { RecordType } from '../core';
 import type { OSCore, RequestIO } from './core';
+import { OSTriggerButtonType } from './trigger';
 
 export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
   type?: string;
@@ -441,15 +442,31 @@ export interface OSUploadFieldType
     OSFieldBaseConfigs<OSUploadFieldValueType> {
   type?: 'upload';
   settings?: {
-    /** 最大文件数量 */
-    maxNumber?: number;
     /**
      * 是否立即上传
      * @default false
      */
     immediately?: boolean;
-  } & Pick<UploadProps, 'accept' | 'action' | 'headers' | 'name'> &
+    /** 最大文件大小 单位: M */
+    maxSize?: number;
+    /** 重复校验 */
+    duplicationCheck?: boolean;
+    /** 上传按钮文案 */
+    triggerButtonText?: string;
+    /** 触发按钮配置 */
+    triggetButtonSettings?: OSTriggerButtonType['settings'];
+  } & Pick<
+    UploadProps,
+    'accept' | 'action' | 'headers' | 'name' | 'data' | 'multiple' | 'maxCount'
+  > &
     OSFieldBaseSettings;
+  requests?: {
+    /** 可根据文件上传接口返回结果反馈一些报错信息或进行操作 */
+    requestAfterUpload?: RequestIO<
+      { fileList: UploadFile<any>[]; file: UploadFile<any> },
+      UploadFile<any>[]
+    >;
+  };
 }
 
 export type OSRadioOptionItem = { label: string; value: string; disabled?: boolean };
