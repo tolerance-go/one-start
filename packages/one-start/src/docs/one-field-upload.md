@@ -29,4 +29,12 @@ group:
 
 <code src="../demos/field-upload/simple.tsx" />
 
+### 重复校验
+
+<code src="../demos/field-upload/duplication-check.tsx" />
+
+### 尺寸限制
+
+<code src="../demos/field-upload/size-check.tsx" />
+
 <API exports='["Settings"]' src="../components/fields/upload.tsx"></API>
