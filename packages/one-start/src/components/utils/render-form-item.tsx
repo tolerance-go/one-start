@@ -141,7 +141,11 @@ export const renderFormItem = (
           className={options.className}
           readonly={options.readonly}
           validateTrigger={['onChange']}
-          hideItemControlLine={valueType === 'form' || valueType === 'editable-table'}
+          hideItemControlLine={
+            valueType === 'form' ||
+            valueType === 'editable-table' ||
+            valueType === 'layout-tabs-form'
+          }
           settings={((): OSFormItemType['settings'] => {
             if (valueType === 'editable-table' || valueType === 'attachment-table') {
               return {

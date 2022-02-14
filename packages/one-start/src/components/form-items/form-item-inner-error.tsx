@@ -6,6 +6,11 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
 import type { RecordType } from '../../typings';
 import { useActionsRef } from '../hooks/use-actions-ref';
+import {
+  LayoutModalFormEventBusContext,
+  LayoutTabsFormEventBusContext,
+  LayoutTabsFormTabMetaContext,
+} from '../layout-form/layout-form-event-context';
 import { TableWrapperContext } from '../providers/table-context';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 
@@ -29,6 +34,10 @@ const findClosestParentElement = (
 
 const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
   const clsPrefix = useClsPrefix('os-table-inline-error-form-item');
+
+  const layoutModalFormEvent = useContext(LayoutModalFormEventBusContext);
+  const layoutTabsFormEvent = useContext(LayoutTabsFormEventBusContext);
+  const layoutTabsFormTabMeta = useContext(LayoutTabsFormTabMetaContext);
 
   const tableWrapperRef = useContext(TableWrapperContext);
 
@@ -111,9 +120,20 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
     setCellIsInCenterView(getCellIsInCenterTableView(cellRef.current!));
   };
 
-  const actionsRef = useActionsRef({
+  const updatePositionState = () => {
+    updateCenterState();
+    updateFixedState();
+  };
+
+  const getCurrentActiveTabKey = () => {
+    return layoutTabsFormTabMeta.formKey;
+  };
+
+  const apisRef = useActionsRef({
     updateCenterState,
     updateFixedState,
+    updatePositionState,
+    getCurrentActiveTabKey,
   });
 
   useEffect(() => {
@@ -123,7 +143,7 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
       () => {
         unstable_batchedUpdates(() => {
           setIsScrolling((prev) => !prev);
-          actionsRef.current.updateCenterState();
+          apisRef.current.updateCenterState();
         });
       },
       400,
@@ -140,8 +160,26 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    actionsRef.current.updateCenterState();
-    actionsRef.current.updateFixedState();
+    apisRef.current.updatePositionState();
+  }, []);
+
+  useEffect(() => {
+    const handleLayoutFormAppear = () => {
+      apisRef.current.updatePositionState();
+    };
+
+    const handleLayoutTabsFormAppear = (activeKey: string) => {
+      if (activeKey === apisRef.current.getCurrentActiveTabKey()) {
+        apisRef.current.updatePositionState();
+      }
+    };
+
+    layoutModalFormEvent?.addListener('layout-modal-form-appear', handleLayoutFormAppear);
+    layoutTabsFormEvent?.addListener('layout-tabs-form-appear', handleLayoutTabsFormAppear);
+    return () => {
+      layoutModalFormEvent?.removeListener('layout-modal-form-appear', handleLayoutFormAppear);
+      layoutTabsFormEvent?.removeListener('layout-tabs-form-appear', handleLayoutTabsFormAppear);
+    };
   }, []);
 
   return (

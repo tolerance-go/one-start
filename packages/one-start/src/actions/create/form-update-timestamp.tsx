@@ -2,14 +2,22 @@
 import { CloseOutlined } from '@ant-design/icons';
 import { Tag, Tooltip, Typography } from '@ty/antd';
 import utl from 'lodash';
-import React, { useImperativeHandle, useLayoutEffect, useMemo, useState } from 'react';
+import React, { useEffect, useImperativeHandle, useLayoutEffect } from 'react';
 import store from 'store2';
-import type { OSFormAPI, RecordType } from '../../typings';
+import type { OSActionsCreateType, OSFormAPI, RecordType } from '../../typings';
 
 export type FormUpdateTimestampProps = {
-  unionId: string;
   formRef: React.RefObject<OSFormAPI>;
   dialogVisible: boolean;
+  type?: Required<OSActionsCreateType>['settings']['type'];
+  removeLocalData: () => void;
+  removeData: () => void;
+  latestSaveTime: string | null | undefined;
+  setLatestSaveTime: React.Dispatch<any>;
+  visible: boolean;
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  formSaveKey: string;
+  formSaveTimeKey: string;
 };
 
 export type FormUpdateTimestampAPI = {
@@ -21,20 +29,22 @@ export type FormUpdateTimestampAPI = {
 const FormUpdateTimestamp: React.ForwardRefRenderFunction<
   FormUpdateTimestampAPI,
   FormUpdateTimestampProps
-> = ({ unionId, formRef, dialogVisible }, ref) => {
-  const formSaveKey = useMemo(() => {
-    return `${unionId}_save_form_values`;
-  }, [unionId]);
-
-  const formSaveTimeKey = useMemo(() => {
-    return `${unionId}_save_form_values_time`;
-  }, [unionId]);
-
-  const [visible, setVisible] = useState(
-    !!(store.get(formSaveKey, false) && store.get(formSaveTimeKey, false)),
-  );
-  const [latestSaveTime, setLatestSaveTime] = useState(store.get(formSaveTimeKey));
-
+> = (
+  {
+    formRef,
+    dialogVisible,
+    type,
+    setLatestSaveTime,
+    setVisible,
+    formSaveKey,
+    formSaveTimeKey,
+    removeLocalData,
+    removeData,
+    visible,
+    latestSaveTime,
+  },
+  ref,
+) => {
   const updateLocalData = utl.debounce((values?: RecordType) => {
     const saveTimeStr = new Date().toLocaleTimeString();
     setLatestSaveTime(saveTimeStr);
@@ -43,19 +53,6 @@ const FormUpdateTimestamp: React.ForwardRefRenderFunction<
     store.set(formSaveTimeKey, saveTimeStr);
   }, 450);
 
-  const removeLocalData = () => {
-    setLatestSaveTime(undefined);
-    store.remove(formSaveKey);
-    store.remove(formSaveTimeKey);
-  };
-
-  const removeData = () => {
-    removeLocalData();
-
-    setVisible(false);
-    formRef.current?.resetFields();
-  };
-
   useImperativeHandle(ref, () => ({
     updateLocalData,
     removeLocalData,
@@ -63,13 +60,22 @@ const FormUpdateTimestamp: React.ForwardRefRenderFunction<
   }));
 
   useLayoutEffect(() => {
-    if (dialogVisible) {
+    if (type === 'modal' && dialogVisible) {
       const localValues = store.get(formSaveKey);
       if (localValues) {
         formRef.current?.setFieldsValue(localValues);
       }
     }
-  }, [dialogVisible, formRef, formSaveKey]);
+  }, [dialogVisible, formRef, type, formSaveKey]);
+
+  useEffect(() => {
+    if (type === 'plain') {
+      const localValues = store.get(formSaveKey);
+      if (localValues) {
+        formRef.current?.setFieldsValue(localValues);
+      }
+    }
+  }, [type, formSaveKey, formRef]);
 
   return (
     <Tag

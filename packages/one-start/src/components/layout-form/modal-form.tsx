@@ -1,19 +1,24 @@
 import type { FormProps } from '@ty/antd';
 import React, { useImperativeHandle, useRef, useState } from 'react';
+import type {
+  OSDialogModalAPI,
+  OSFormAPI,
+  OSLayoutModalFormAPI,
+  OSLayoutModalFormType,
+} from '../../typings';
 import OSDialogModal from '../dialog/modal';
 import OSForm from '../form';
 import OSTriggerButton from '../trigger/trigger-button';
-import type { OSLayoutModalFormAPI, OSLayoutModalFormType } from '../../typings';
-import type { OSDialogModalAPI } from '../../typings';
-// import useMergedState from 'rc-util/lib/hooks/useMergedState';
-import type { OSFormAPI } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
+import EventEmitter from 'eventemitter3';
+import { LayoutModalFormEventBusContext } from './layout-form-event-context';
 
 const OSLayoutModalForm: React.ForwardRefRenderFunction<
   OSLayoutModalFormAPI,
   OSLayoutModalFormType
 > = (props, ref) => {
   const { settings, requests, value, onChange, onVisibleChange, formWrapperClassName } = props;
+  const [eventBus] = useState(new EventEmitter());
 
   const osFormRef = useRef<OSFormAPI>(null);
   const osModalDialogRef = useRef<OSDialogModalAPI>(null);
@@ -68,7 +73,7 @@ const OSLayoutModalForm: React.ForwardRefRenderFunction<
   });
 
   return (
-    <>
+    <LayoutModalFormEventBusContext.Provider value={eventBus}>
       <OSDialogModal
         ref={osModalDialogRef}
         forceRender
@@ -96,7 +101,16 @@ const OSLayoutModalForm: React.ForwardRefRenderFunction<
             </div>
           ),
         }}
-        onVisibleChange={onVisibleChange}
+        onVisibleChange={(visible) => {
+          if (visible) {
+            setTimeout(() => {
+              eventBus?.emit('layout-modal-form-appear', visible);
+              /** modal animation duration */
+            }, 300);
+          }
+
+          onVisibleChange?.(visible);
+        }}
       />
       <OSTriggerButton
         settings={{
@@ -109,7 +123,7 @@ const OSLayoutModalForm: React.ForwardRefRenderFunction<
           osModalDialogRef.current?.push();
         }}
       />
-    </>
+    </LayoutModalFormEventBusContext.Provider>
   );
 };
 
