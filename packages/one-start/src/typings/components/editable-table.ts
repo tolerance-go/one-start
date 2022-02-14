@@ -47,10 +47,19 @@ export type _OSEditableTableSelfType<OSCustomFieldStaticPureTableFormFieldItemCo
       | false;
     removeable?:
       | {
-          /** 删除按钮文案 */
-          removeButtonText?: string;
+          /** 删除按钮的配置 */
+          triggerSettings?: OSTriggerType['settings'];
         }
-      | false;
+      | false
+      | ((options: {
+          rowData: RecordType;
+          rowIndex: number;
+          rowId: string;
+          actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
+        }) => {
+          /** 删除按钮的配置 */
+          triggerSettings?: OSTriggerType['settings'];
+        });
     /**
      * 对应 request 的 params 参数
      * @example

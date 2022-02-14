@@ -82,7 +82,7 @@ export const CreateTemplate = () => {
                         settings: {
                           title: '模板文件',
                           dataIndex: '模板文件',
-                          maxNumber: 1,
+                          maxCount: 1,
                           rules: [
                             {
                               required: true,
