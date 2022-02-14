@@ -184,6 +184,153 @@ export default () => {
                 },
               },
             },
+            {
+              type: 'layout-tabs-form',
+              settings: {
+                title: 'layout-tabs-form',
+                dataIndex: 'layout-tabs-form',
+                readonly: true,
+                tabs: [
+                  {
+                    title: 'tab1',
+                  },
+                  {
+                    title: 'tab2',
+                  },
+                ],
+                forms: {
+                  tab1: {
+                    settings: {
+                      initialValues: {
+                        money: 0,
+                        digit: 234234,
+                      },
+                      fieldItems: [
+                        {
+                          type: 'money',
+                          settings: {
+                            title: 'money',
+                            dataIndex: 'money',
+                          },
+                        },
+                        {
+                          type: 'digit',
+                          settings: {
+                            title: 'digit',
+                            dataIndex: 'digit',
+                          },
+                        },
+                        {
+                          type: 'percent',
+                          settings: {
+                            title: 'percent',
+                            dataIndex: 'percent',
+                          },
+                        },
+                        {
+                          type: 'date',
+                          settings: {
+                            title: 'date',
+                            dataIndex: 'date',
+                          },
+                        },
+                        {
+                          type: 'date-range',
+                          settings: {
+                            title: 'date-range',
+                            dataIndex: 'date-range',
+                          },
+                        },
+                        {
+                          type: 'select',
+                          settings: {
+                            title: 'select',
+                            dataIndex: 'select',
+                            valueEnums: {
+                              a: 'A',
+                              b: 'B',
+                              c: 'C',
+                            },
+                          },
+                        },
+                        {
+                          type: 'select',
+                          settings: {
+                            title: 'selectMultiple',
+                            dataIndex: 'selectMultiple',
+                            valueEnums: {
+                              a: 'A',
+                              b: 'B',
+                              c: 'C',
+                            },
+                            mode: 'multiple',
+                          },
+                        },
+                        {
+                          type: 'text',
+                          settings: {
+                            title: 'text',
+                            dataIndex: 'text',
+                          },
+                        },
+                        {
+                          type: 'textarea',
+                          settings: {
+                            title: 'textarea',
+                            dataIndex: 'textarea',
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  tab2: {
+                    settings: {
+                      initialValues: {
+                        money: 0,
+                        digit: 234234,
+                      },
+                      fieldItems: [
+                        {
+                          type: 'money',
+                          settings: {
+                            title: 'money',
+                            dataIndex: 'money',
+                          },
+                        },
+                        {
+                          type: 'digit',
+                          settings: {
+                            title: 'digit',
+                            dataIndex: 'digit',
+                          },
+                        },
+                        {
+                          type: 'percent',
+                          settings: {
+                            title: 'percent',
+                            dataIndex: 'percent',
+                          },
+                        },
+                        {
+                          type: 'date',
+                          settings: {
+                            title: 'date',
+                            dataIndex: 'date',
+                          },
+                        },
+                        {
+                          type: 'date-range',
+                          settings: {
+                            title: 'date-range',
+                            dataIndex: 'date-range',
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              },
+            },
           ],
         }}
       ></OSForm>

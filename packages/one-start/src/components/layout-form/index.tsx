@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useImperativeHandle, useRef } from 'react';
-import { OSReferencesCollectorDispatchContext } from '../providers/references';
 import type {
+  OSLayoutFormAPI,
   OSLayoutFormAPIBase,
   OSLayoutFormType,
-  OSLayoutModalFormType,
-  OSLayoutTabsFormType,
-  OSLayoutFormAPI,
   OSLayoutModalFormAPI,
-  OSLayoutTabsFormAPI,
+  OSLayoutModalFormType,
   OSLayoutStepsFormAPI,
+  OSLayoutTabsFormAPI,
+  OSLayoutTabsFormType,
 } from '../../typings';
+import { OSReferencesCollectorDispatchContext } from '../providers/references';
 import { OSLayoutFormAPIContext } from './contexts';
 import OSLayoutModalForm from './modal-form';
-import OSLayoutTabsForm from './tabs-form';
 import OSLayoutStepsForm from './steps-form';
+import OSLayoutTabsForm from './tabs-form';
 
 const OSLayoutForm: React.ForwardRefRenderFunction<OSLayoutFormAPI, OSLayoutFormType> = (
   props,

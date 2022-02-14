@@ -1,5 +1,6 @@
 import { OSActionsCreate, OSProviderWrapper } from '@ty-one-start/one-start';
 import { mock } from 'mockjs';
+import type { Moment } from 'moment';
 import moment from 'moment';
 import React from 'react';
 
@@ -183,6 +184,314 @@ export default () => {
                   },
                   wrapperCol: {
                     flex: '1 1',
+                  },
+                },
+              },
+              {
+                type: 'layout-modal-form',
+                settings: {
+                  title: 'layout-modal-form',
+                  dataIndex: 'layout-modal-form',
+                  buttonTriggerText: 'layout-modal-form',
+                  formSettings: {
+                    fieldItems: [
+                      {
+                        type: 'text',
+                        settings: {
+                          title: 'text',
+                          dataIndex: 'text',
+                          rules: [
+                            {
+                              required: true,
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        type: 'date',
+                        settings: {
+                          dataIndex: 'date',
+                          title: 'date',
+                          rules: [
+                            {
+                              required: true,
+                            },
+                            {
+                              validator: (rule, curVal: Moment | string) => {
+                                if (curVal) {
+                                  if (moment(curVal).isAfter(moment(), 'd')) {
+                                    return Promise.reject(new Error(`不可晚于期末观察日`));
+                                  }
+                                }
+                                return Promise.resolve();
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        type: 'editable-table',
+                        settings: {
+                          dataIndex: 'editable-table',
+                          title: 'editable-table',
+                          addable: {},
+                          fieldItems: [
+                            {
+                              type: 'date',
+                              settings: {
+                                dataIndex: 'date',
+                                title: 'date',
+                                rules: [
+                                  {
+                                    required: true,
+                                  },
+                                  {
+                                    validator: (rule, curVal: Moment | string) => {
+                                      if (curVal) {
+                                        if (moment(curVal).isAfter(moment(), 'd')) {
+                                          return Promise.reject(new Error(`不可晚于期末观察日`));
+                                        }
+                                      }
+                                      return Promise.resolve();
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        type: 'layout-tabs-form',
+                        settings: {
+                          title: 'layout-tabs-form',
+                          dataIndex: 'layut-tabs-form',
+                          tabs: [
+                            {
+                              title: 'tab1',
+                            },
+                            {
+                              title: 'tab2',
+                            },
+                          ],
+                          forms: {
+                            tab1: {
+                              settings: {
+                                fieldItems: [
+                                  {
+                                    type: 'money',
+                                    settings: {
+                                      title: 'money',
+                                      dataIndex: 'money',
+                                    },
+                                  },
+                                  {
+                                    type: 'editable-table',
+                                    settings: {
+                                      dataIndex: 'editable-table',
+                                      title: 'editable-table',
+                                      addable: {},
+                                      fieldItems: [
+                                        {
+                                          type: 'date',
+                                          settings: {
+                                            dataIndex: 'date',
+                                            title: 'date',
+                                            rules: [
+                                              {
+                                                required: true,
+                                              },
+                                              {
+                                                validator: (rule, curVal: Moment | string) => {
+                                                  if (curVal) {
+                                                    if (moment(curVal).isAfter(moment(), 'd')) {
+                                                      return Promise.reject(
+                                                        new Error(`不可晚于期末观察日`),
+                                                      );
+                                                    }
+                                                  }
+                                                  return Promise.resolve();
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            tab2: {
+                              settings: {
+                                initialValues: {
+                                  money: 0,
+                                  digit: 234234,
+                                },
+                                fieldItems: [
+                                  {
+                                    type: 'money',
+                                    settings: {
+                                      title: 'money',
+                                      dataIndex: 'money',
+                                    },
+                                  },
+                                  {
+                                    type: 'editable-table',
+                                    settings: {
+                                      dataIndex: 'editable-table',
+                                      title: 'editable-table',
+                                      addable: {},
+                                      fieldItems: [
+                                        {
+                                          type: 'date',
+                                          settings: {
+                                            dataIndex: 'date',
+                                            title: 'date',
+                                            rules: [
+                                              {
+                                                required: true,
+                                              },
+                                              {
+                                                validator: (rule, curVal: Moment | string) => {
+                                                  if (curVal) {
+                                                    if (moment(curVal).isAfter(moment(), 'd')) {
+                                                      return Promise.reject(
+                                                        new Error(`不可晚于期末观察日`),
+                                                      );
+                                                    }
+                                                  }
+                                                  return Promise.resolve();
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          },
+                        },
+                      },
+                    ],
+                  },
+                },
+              },
+              {
+                type: 'layout-tabs-form',
+                settings: {
+                  title: 'layout-tabs-form',
+                  dataIndex: 'layut-tabs-form',
+                  tabs: [
+                    {
+                      title: 'tab1',
+                    },
+                    {
+                      title: 'tab2',
+                    },
+                  ],
+                  forms: {
+                    tab1: {
+                      settings: {
+                        fieldItems: [
+                          {
+                            type: 'money',
+                            settings: {
+                              title: 'money',
+                              dataIndex: 'money',
+                            },
+                          },
+                          {
+                            type: 'editable-table',
+                            settings: {
+                              dataIndex: 'editable-table',
+                              title: 'editable-table',
+                              addable: {},
+                              fieldItems: [
+                                {
+                                  type: 'date',
+                                  settings: {
+                                    dataIndex: 'date',
+                                    title: 'date',
+                                    rules: [
+                                      {
+                                        required: true,
+                                      },
+                                      {
+                                        validator: (rule, curVal: Moment | string) => {
+                                          if (curVal) {
+                                            if (moment(curVal).isAfter(moment(), 'd')) {
+                                              return Promise.reject(
+                                                new Error(`不可晚于期末观察日`),
+                                              );
+                                            }
+                                          }
+                                          return Promise.resolve();
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
+                    tab2: {
+                      settings: {
+                        initialValues: {
+                          money: 0,
+                          digit: 234234,
+                        },
+                        fieldItems: [
+                          {
+                            type: 'money',
+                            settings: {
+                              title: 'money',
+                              dataIndex: 'money',
+                            },
+                          },
+                          {
+                            type: 'editable-table',
+                            settings: {
+                              dataIndex: 'editable-table',
+                              title: 'editable-table',
+                              addable: {},
+                              fieldItems: [
+                                {
+                                  type: 'date',
+                                  settings: {
+                                    dataIndex: 'date',
+                                    title: 'date',
+                                    rules: [
+                                      {
+                                        required: true,
+                                      },
+                                      {
+                                        validator: (rule, curVal: Moment | string) => {
+                                          if (curVal) {
+                                            if (moment(curVal).isAfter(moment(), 'd')) {
+                                              return Promise.reject(
+                                                new Error(`不可晚于期末观察日`),
+                                              );
+                                            }
+                                          }
+                                          return Promise.resolve();
+                                        },
+                                      },
+                                    ],
+                                  },
+                                },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    },
                   },
                 },
               },

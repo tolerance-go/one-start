@@ -1,7 +1,10 @@
 import React from 'react';
+import type {
+  OSLayoutModalFormAPI,
+  OSLayoutModalFormFieldAPI,
+  OSLayoutModalFormFieldType,
+} from '../../typings';
 import OSLayoutForm from '../layout-form';
-import type { OSLayoutModalFormAPI, OSLayoutModalFormFieldType } from '../../typings';
-import type { OSLayoutModalFormFieldAPI } from '../../typings';
 
 const OSLayoutModalFormField: React.ForwardRefRenderFunction<
   OSLayoutModalFormFieldAPI,

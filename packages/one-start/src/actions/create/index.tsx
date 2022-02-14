@@ -23,6 +23,7 @@ import type { ApplyingTemplateAPI } from './applying-template';
 import ApplyingTemplate from './applying-template';
 import type { FormUpdateTimestampAPI } from './form-update-timestamp';
 import FormUpdateTimestamp from './form-update-timestamp';
+import { useLocalData } from './use-local-data';
 
 const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActionsCreateType> = (
   props,
@@ -52,6 +53,22 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
   const [dialogVisible, setDialogVisible] = useState(false);
 
   const createFormRef = useRef<OSFormAPI>(null);
+
+  const unionId = settings?.sourceId ?? window.location.pathname;
+
+  const {
+    setLatestSaveTime,
+    setVisible,
+    formSaveKey,
+    formSaveTimeKey,
+    removeLocalData,
+    removeData,
+    visible,
+    latestSaveTime,
+  } = useLocalData({
+    unionId,
+    formRef: createFormRef,
+  });
 
   const { refKeys, refsRef } = useRefsRef({
     dialogs: {
@@ -116,15 +133,35 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
     if (enablePersistence) {
       return (
         <FormUpdateTimestamp
+          type={type}
           dialogVisible={dialogVisible}
           ref={formUpdateTimestampRef}
           formRef={createFormRef}
-          unionId={settings?.sourceId ?? window.location.pathname}
+          setLatestSaveTime={setLatestSaveTime}
+          setVisible={setVisible}
+          formSaveKey={formSaveKey}
+          formSaveTimeKey={formSaveTimeKey}
+          removeLocalData={removeLocalData}
+          removeData={removeData}
+          visible={visible}
+          latestSaveTime={latestSaveTime}
         />
       );
     }
     return null;
-  }, [dialogVisible, enablePersistence, settings?.sourceId]);
+  }, [
+    enablePersistence,
+    type,
+    dialogVisible,
+    setLatestSaveTime,
+    setVisible,
+    formSaveKey,
+    formSaveTimeKey,
+    removeLocalData,
+    removeData,
+    visible,
+    latestSaveTime,
+  ]);
 
   const templateSettingDom = useMemo(() => {
     return (
@@ -440,6 +477,15 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
       <Col>
         <Space>
           {templateDom}
+          <OSTrigger
+            type="button"
+            settings={{
+              text: '重置',
+            }}
+            onClick={() => {
+              removeData();
+            }}
+          />
           <OSDialog
             refKey={refKeys.dialogs.popconfirms.createConfirm}
             type="popconfirm"
@@ -525,8 +571,8 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
       <OSDialog
         refKey={refKeys.dialogs.modals.createModal}
         type="modal"
-        onVisibleChange={(visible) => {
-          setDialogVisible(visible);
+        onVisibleChange={(next) => {
+          setDialogVisible(next);
         }}
         settings={{
           ...settings?.createModalDialogSettings,

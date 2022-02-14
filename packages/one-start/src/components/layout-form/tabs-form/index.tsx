@@ -2,17 +2,23 @@ import { DownOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons'
 import type { FormProps } from '@ty/antd';
 import { Form, Spin, Tabs } from '@ty/antd';
 import cls from 'classnames';
+import EventEmitter from 'eventemitter3';
 import invariant from 'invariant';
 import utl from 'lodash';
 import type { NamePath } from 'rc-field-form/lib/interface';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
-import OSForm from '../form';
-import type { OSLayoutTabsFormAPI, OSLayoutTabsFormType, RecordType } from '../../typings';
-// import useMergedState from 'rc-util/lib/hooks/useMergedState';
-import type { OSFormAPI } from '../../typings';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { useClsPrefix } from '../utils/use-cls-prefix';
-import { useLoading } from '../utils/use-loading';
+import type {
+  OSFormAPI,
+  OSLayoutTabsFormAPI,
+  OSLayoutTabsFormType,
+  RecordType,
+} from '../../../typings';
+import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
+import { useClsPrefix } from '../../utils/use-cls-prefix';
+import { useLoading } from '../../utils/use-loading';
+import { useUpdateEffect } from '../../utils/use-update-effect';
+import { LayoutTabsFormEventBusContext } from '../layout-form-event-context';
+import { FormItem } from './form-item';
 
 const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLayoutTabsFormType> =
   (props, ref) => {
@@ -20,6 +26,7 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
     const [activeKey, setActiveKey] = useState(() => {
       return settings?.tabs?.[0].key ?? settings?.tabs?.[0].title ?? '';
     });
+    const [eventBus] = useState(new EventEmitter());
 
     const { tabs, forms, collapsable } = settings ?? {};
 
@@ -208,58 +215,66 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
         }
       };
 
+    useUpdateEffect(() => {
+      eventBus?.emit('layout-tabs-form-appear', activeKey);
+    }, [activeKey]);
+
     return (
-      <Form.Provider>
-        <Spin spinning={requestDataSourceLoading.loading} indicator={<LoadingOutlined />}>
-          <Tabs
-            className={cls(clsPrefix, tabClassName, {
-              collapse,
-            })}
-            tabBarExtraContent={renderCollapse()}
-            activeKey={activeKey}
-            onChange={setActiveKey}
-          >
-            {tabs?.map((item) => {
-              const key = item.key ?? item.title;
+      <LayoutTabsFormEventBusContext.Provider value={eventBus}>
+        <Form.Provider>
+          <Spin spinning={requestDataSourceLoading.loading} indicator={<LoadingOutlined />}>
+            <Tabs
+              className={cls(clsPrefix, tabClassName, {
+                collapse,
+              })}
+              tabBarExtraContent={renderCollapse()}
+              activeKey={activeKey}
+              onChange={setActiveKey}
+            >
+              {tabs?.map((item) => {
+                const key = item.key ?? item.title;
 
-              invariant(key, 'key 必须提供');
+                invariant(key, 'key 必须提供');
 
-              const formConfigs = forms?.[key];
-              const formRef = React.createRef<OSFormAPI>();
-              osFormsRef.current[key] = formRef;
+                const formConfigs = forms?.[key];
+                const formRef = React.createRef<OSFormAPI>();
+                osFormsRef.current[key] = formRef;
 
-              return (
-                <Tabs.TabPane
-                  forceRender
-                  destroyInactiveTabPane={false}
-                  key={key}
-                  tab={
-                    <span
-                      style={{
-                        color: validateError[key] ? '#ff4d4f' : undefined,
-                      }}
-                    >
-                      {item.title}
-                    </span>
-                  }
-                >
-                  {formConfigs && (
-                    <OSForm
-                      name={key}
-                      ref={formRef}
-                      {...formConfigs}
-                      onChange={() => {
-                        onChange?.(getFieldsValue());
-                      }}
-                      onFieldsChange={triggerFieldValidate(key)}
-                    ></OSForm>
-                  )}
-                </Tabs.TabPane>
-              );
-            })}
-          </Tabs>
-        </Spin>
-      </Form.Provider>
+                return (
+                  <Tabs.TabPane
+                    forceRender
+                    destroyInactiveTabPane={false}
+                    key={key}
+                    tab={
+                      <span
+                        style={{
+                          color: validateError[key] ? '#ff4d4f' : undefined,
+                        }}
+                      >
+                        {item.title}
+                      </span>
+                    }
+                  >
+                    {formConfigs && (
+                      <FormItem
+                        formKey={key}
+                        formRef={formRef}
+                        formConfigs={{
+                          ...formConfigs,
+                          onChange: () => {
+                            onChange?.(getFieldsValue());
+                          },
+                          onFieldsChange: triggerFieldValidate(key),
+                        }}
+                      />
+                    )}
+                  </Tabs.TabPane>
+                );
+              })}
+            </Tabs>
+          </Spin>
+        </Form.Provider>
+      </LayoutTabsFormEventBusContext.Provider>
     );
   };
 
