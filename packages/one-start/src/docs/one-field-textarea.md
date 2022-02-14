@@ -21,6 +21,10 @@ group:
 
 <code src="../demos/field-textarea/antd-params.tsx" />
 
+### 前后空格自动 trim
+
+<code src="../demos/field-textarea/auto-trim.tsx" />
+
 <API exports='["Settings"]' src="../components/fields/textarea.tsx"></API>
 
 ### API

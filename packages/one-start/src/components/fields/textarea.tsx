@@ -1,7 +1,9 @@
 import { Input } from '@ty/antd';
 import type { TextAreaProps } from '@ty/antd/lib/input';
-import React from 'react';
-import type { OSTextareaFieldType, OSTextareaFieldAPI } from '../../typings';
+import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
+import utl from 'lodash';
+import React, { useImperativeHandle, useRef } from 'react';
+import type { OSTextareaFieldAPI, OSTextareaFieldType } from '../../typings';
 
 const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSTextareaFieldType> = (
   props,
@@ -9,7 +11,19 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
 ) => {
   const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
 
-  const { bordered, autoFocus, disabled, placeholder, showCount, maxLength } = settings ?? {};
+  const {
+    bordered,
+    autoFocus,
+    disabled,
+    placeholder,
+    showCount,
+    maxLength,
+    autoTrim = true,
+  } = settings ?? {};
+
+  const inputRef = useRef<TextAreaRef>(null);
+
+  useImperativeHandle(ref, () => inputRef.current!);
 
   if (mode === 'read') {
     const dom = (
@@ -18,9 +32,14 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
     return dom;
   }
   if (mode === 'edit' || mode === 'update') {
-    const onChange: TextAreaProps['onChange'] = (value) => {
-      onChangeHook?.(value.target.value);
-      return _onChange?.(value);
+    const onChange: TextAreaProps['onChange'] = (event) => {
+      if (autoTrim && event.target.value && inputRef.current?.resizableTextArea?.textArea) {
+        /** onChange 提前修改 value，会同步修改 event 对象 */
+        inputRef.current.resizableTextArea.textArea.value = utl.trim(event.target.value);
+      }
+
+      onChangeHook?.(event.target.value);
+      return _onChange?.(event);
     };
 
     return (
@@ -31,7 +50,7 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
         disabled={disabled}
         bordered={bordered}
         autoFocus={autoFocus}
-        ref={ref as React.MutableRefObject<HTMLTextAreaElement>}
+        ref={inputRef}
         value={_value}
         onChange={onChange}
         placeholder={placeholder ?? '请输入文本'}

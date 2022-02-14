@@ -371,7 +371,7 @@ export type OSChainSelectFieldType = Omit<
 
 export type OSTextareaFieldValueType = string;
 
-export type OSTextareaFieldAPI = HTMLTextAreaElement | HTMLSpanElement;
+export type OSTextareaFieldAPI = TextAreaRef | HTMLSpanElement;
 
 export interface OSTextareaFieldType
   extends OSField<OSTextareaFieldValueType, React.ChangeEvent<HTMLTextAreaElement>>,
@@ -380,6 +380,8 @@ export interface OSTextareaFieldType
   settings?: {
     showCount?: boolean;
     maxLength?: number;
+    /** 自动 trim */
+    autoTrim?: boolean;
   } & OSFieldBaseSettings;
 }
 
@@ -400,6 +402,8 @@ export interface OSTextFieldType
   settings?: {
     searchValue?: string;
     requestParams?: RecordType;
+    /** 自动 trim */
+    autoTrim?: boolean;
   } & OSFieldBaseSettings;
   requests?: {
     /** 异步获取 value */
