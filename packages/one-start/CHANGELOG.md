@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.0...@ty-one-start/one-start@0.16.1) (2022-02-14)
+
+
+### Bug Fixes
+
+* os-create 本地持久化，editable-table 嵌套 modal-form 验证信息提示异常 ([7aa3084](https://10.1.2.7/visual-fe/swap-modules/commits/7aa3084f1a9cbad418159c66d2f8452ada1a34bb))
+
+
+
+
+
 # [0.16.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.15.1...@ty-one-start/one-start@0.16.0) (2022-02-11)
 
 
