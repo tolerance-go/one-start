@@ -17,6 +17,7 @@ import type {
   OSTableValueType,
   OSTriggerButtonType,
   OSTriggerDropdownType,
+  OSTriggerType,
   RecordType,
 } from '../../typings';
 import { logRequestMessage } from '../utils/log-request-message';
@@ -346,9 +347,8 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
           removeable
             ? (options) => {
                 const { actions, rowId, rowData, rowIndex } = options;
-                return [
-                  ...(extraRowActions?.(options) ?? []),
-                  removeable ? (
+                const renderTrigger = (settingsWithTrigger?: OSTriggerType['settings']) => {
+                  return (
                     <OSDialog
                       type="popconfirm"
                       settings={{
@@ -417,11 +417,29 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
                           text: '删除',
                           danger: true,
                           type: 'link',
+                          ...settingsWithTrigger,
                         }}
                       ></OSTrigger>
                     </OSDialog>
-                  ) : null,
-                ];
+                  );
+                };
+                const removeActions = () => {
+                  if (!removeable) {
+                    return null;
+                  }
+                  if (typeof removeable === 'function') {
+                    const { triggerSettings } = removeable({
+                      rowData,
+                      rowId,
+                      rowIndex,
+                      actions,
+                    });
+                    return renderTrigger(triggerSettings);
+                  }
+
+                  return renderTrigger();
+                };
+                return [...(extraRowActions?.(options) ?? []), removeActions()];
               }
             : extraRowActions
         }
