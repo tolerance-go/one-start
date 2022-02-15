@@ -1,12 +1,10 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Row } from '@ty/antd';
+import invariant from 'invariant';
 import utl from 'lodash';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import React, { useCallback, useImperativeHandle, useMemo, useRef } from 'react';
 import { v4 as uuid } from 'uuid';
-import OSDialog from '../dialog';
-import OSTable from '../table';
-import OSTrigger from '../trigger';
 import type {
   OSEditableTableAddable,
   OSEditableTableAPI,
@@ -14,12 +12,14 @@ import type {
   OSEditableTableType,
   OSTableAPI,
   OSTableFormFieldItemWithStaticPureConfigs,
-  OSTableValueType,
   OSTriggerButtonType,
   OSTriggerDropdownType,
   OSTriggerType,
   RecordType,
 } from '../../typings';
+import OSDialog from '../dialog';
+import OSTable from '../table';
+import OSTrigger from '../trigger';
 import { logRequestMessage } from '../utils/log-request-message';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { parseTableValue } from '../utils/parse-table-value';
@@ -356,20 +356,30 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
                       }}
                       requests={{
                         requestAfterConfirm: async () => {
-                          const normalizedDataSource = parseTableValue(dataSource);
+                          const normalizedDataSource = parseTableValue(dataSource) ?? [];
+                          const index = normalizedDataSource.findIndex(
+                            (item) => item[rowKey] === rowId,
+                          );
+
+                          invariant(
+                            index > -1,
+                            '删除的行 id 不在表格数据中，请检查 rowKey 是否正确',
+                          );
 
                           const remove = () => {
-                            const removeItem = (dataSource_: OSTableValueType) => {
-                              if (!dataSource_) return dataSource_;
-                              const next = [...dataSource_];
-                              next.splice(rowIndex, 1);
+                            const removeTargetItem = () => {
+                              const next = [...normalizedDataSource];
+
+                              next.splice(index, 1);
+                              /** 删除当前行的选择状态 */
                               tableRef.current?.removeSelection(rowId);
+
                               return next;
                             };
 
                             if (settings?.changedValueHasMeta) {
                               setDataSource({
-                                target: removeItem(normalizedDataSource),
+                                target: removeTargetItem(),
                                 origin: normalizedDataSource,
                                 changedMeta: {
                                   type: 'remove',
@@ -377,13 +387,13 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
                                     {
                                       rowData: rowData!,
                                       rowId: rowId!,
-                                      rowIndex: rowIndex!,
+                                      rowIndex: index,
                                     },
                                   ],
                                 },
                               });
                             } else {
-                              setDataSource(removeItem(normalizedDataSource));
+                              setDataSource(removeTargetItem());
                             }
                           };
 
@@ -396,7 +406,7 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
                             .requestRemoveRecord({
                               rowData,
                               rowId,
-                              rowIndex,
+                              rowIndex: index,
                               actions,
                               dataSource: normalizedDataSource,
                             })

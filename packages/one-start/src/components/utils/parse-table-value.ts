@@ -1,6 +1,6 @@
-import { OSTableChangeValueType } from '../../typings';
+import type { OSTableChangeValueType, OSTableValueType } from '../../typings';
 
-export const parseTableValue = (value: OSTableChangeValueType) => {
+export const parseTableValue = (value: OSTableChangeValueType): OSTableValueType => {
   if (Array.isArray(value)) {
     return value;
   }
