@@ -67,12 +67,13 @@ export default () => {
                 removeable: {},
               },
               requests: {
-                requestNewRecordData: async ({ dataSource, form }) => {
+                requestNewRecordData: async ({ rowData, dataSource, form }) => {
                   console.log(dataSource);
                   await delay(1000);
                   return {
                     error: false,
                     data: {
+                      ...rowData,
                       text: form?.getFieldValue('text'),
                       date: '1994-2-13',
                       digit: 10000,
