@@ -63,42 +63,50 @@ export const useTableTopPanel = ({
       {(selectionDom || searchSwitchDom || settingDom || actions || expandBtn) && (
         /** 设置 gutter 会引起 margin-left/right 负数的情况，引起页面滚动 */
         <Row style={{ marginBottom: 8 }} justify="space-between">
-          <Col flex="auto" className={`${clsPrefix}-inline-search-form-wrapper`}>
-            <Row gutter={10}>
-              <Col>
-                <Space size={5}>
-                  {selectionDom}
-                  {expandBtn}
-                  {highlightTag}
-                  {normalizedActions.left?.map((item, index) =>
-                    React.cloneElement(item, {
-                      ...item.props,
-                      key: item.key ?? index,
-                    }),
-                  )}
-                </Space>
-              </Col>
-              {searchFormIsInline ? <Col>{searchFormDom}</Col> : null}
-            </Row>
-          </Col>
           <Col>
             <Space size={5}>
-              {[
-                ...(normalizedActions.right ?? []),
-                ...(extraActions?.({
-                  actions: tableActionsRef.current,
-                }) ?? []),
-              ]
-                .filter((item): item is React.ReactElement => !!item)
-                .map((item, index) =>
-                  React.cloneElement(item, {
-                    ...item.props,
-                    key: item.key ?? index,
-                  }),
-                )}
-              {searchSwitchDom}
-              {settingDom}
+              {selectionDom}
+              {expandBtn}
+              {highlightTag}
+              {normalizedActions.left?.map((item, index) =>
+                React.cloneElement(item, {
+                  ...item.props,
+                  key: item.key ?? index,
+                }),
+              )}
             </Space>
+          </Col>
+          <Col className={`${clsPrefix}-inline-search-form-wrapper`}>
+            <Row>
+              {searchFormIsInline ? (
+                <Col
+                  style={{
+                    marginRight: -10,
+                  }}
+                >
+                  {searchFormDom}
+                </Col>
+              ) : null}
+              <Col>
+                <Space size={5}>
+                  {[
+                    ...(normalizedActions.right ?? []),
+                    ...(extraActions?.({
+                      actions: tableActionsRef.current,
+                    }) ?? []),
+                  ]
+                    .filter((item): item is React.ReactElement => !!item)
+                    .map((item, index) =>
+                      React.cloneElement(item, {
+                        ...item.props,
+                        key: item.key ?? index,
+                      }),
+                    )}
+                  {searchSwitchDom}
+                  {settingDom}
+                </Space>
+              </Col>
+            </Row>
           </Col>
         </Row>
       )}
