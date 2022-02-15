@@ -94,9 +94,7 @@ export const renderEditForm = (options: {
 
     const data = await editFormRef.current?.getDataSource();
 
-    const saveError = await requestSaveRowDataFn({
-      values: data as RecordType,
-    });
+    const saveError = await requestSaveRowDataFn(data as RecordType);
 
     if (!saveError) {
       editDrawerDialogRef?.current?.pop();
