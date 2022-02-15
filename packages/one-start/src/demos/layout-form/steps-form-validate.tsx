@@ -204,7 +204,7 @@ export default () => {
               await delay(1000);
 
               return {
-                error: true,
+                error: false,
                 data: {
                   message: '自定义成功消息',
                 },

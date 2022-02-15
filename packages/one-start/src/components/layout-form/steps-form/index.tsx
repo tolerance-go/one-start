@@ -60,8 +60,9 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
   const resetTargetFormFields = (formInstance: OSFormAPI | null, index: number) => {
     const formKey = indexKeysMap[index];
 
+    formInstance?.resetFields();
+
     if (asyncInitialValuesRef.current?.[formKey]) {
-      formInstance?.resetFields();
       formInstance?.setFieldsValue(asyncInitialValuesRef.current?.[formKey]);
     }
   };
