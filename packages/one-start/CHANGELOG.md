@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.1...@ty-one-start/one-start@0.16.3) (2022-02-15)
+
+
+### Bug Fixes
+
+* **os-editable-table:** 删除行下标对应错误 ([3f0a252](https://10.1.2.7/visual-fe/swap-modules/commits/3f0a2528261c4a9020c07699c48c14c56a70078d))
+* **os-layout-steps-form:** 分步表单重置按钮失效 ([9d20ad0](https://10.1.2.7/visual-fe/swap-modules/commits/9d20ad0eb8d6c0708db1f7cb82aeedbbb5349121))
+
+
+
+
+
 ## [0.16.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.1...@ty-one-start/one-start@0.16.2) (2022-02-14)
 
 **Note:** Version bump only for package @ty-one-start/one-start
