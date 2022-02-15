@@ -53,9 +53,13 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
     );
   }, [steps]);
 
-  const currentFormInstance = (() => {
+  /**
+   * 函数形式获取，避免 formsRef 为空
+   * 比如表单是单独放在 dialog 内部存在
+   */
+  const getCurrentFormInstance = () => {
     return formsRef.current[current]?.current;
-  })();
+  };
 
   const resetTargetFormFields = (formInstance: OSFormAPI | null, index: number) => {
     const formKey = indexKeysMap[index];
@@ -68,7 +72,7 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
   };
 
   const resetFields = () => {
-    resetTargetFormFields(currentFormInstance, current);
+    resetTargetFormFields(getCurrentFormInstance(), current);
   };
 
   const resetFormsFields = () => {
