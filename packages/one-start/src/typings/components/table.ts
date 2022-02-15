@@ -677,19 +677,16 @@ export type _OSSourceTableSelfType<
     /** 操作列宽度 */
     rowActionsColWidth?: number | string;
     /** 表格展示模式，panelable 将展示双栏信息 */
-    panelable?:
-      | {
-          /** 表格宽度占比 */
-          tableSpan?: number;
-        }
-      | false;
+    panelable?: {
+      /** 表格宽度占比 */
+      tableSpan?: number;
+    };
     /** 启动行删除 */
     rowRemoveable?:
       | {
           /** 删除按钮的配置 */
           triggerSettings?: OSTriggerType['settings'];
         }
-      | false
       | ((options: {
           rowData: RecordType;
           rowIndex: number;
@@ -705,8 +702,8 @@ export type _OSSourceTableSelfType<
           modalMask?: boolean | 'transparent';
           modalWidth?: string | number;
           formSettings?: _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
+          triggerSettings?: OSTriggerType['settings'];
         }
-      | false
       | ((options: {
           rowData: RecordType;
           rowIndex: number;
@@ -746,7 +743,6 @@ export type _OSSourceTableSelfType<
               formType: 'steps-form';
             }
         ))
-      | false
       | ((options: {
           rowData: RecordType;
           rowIndex: number;

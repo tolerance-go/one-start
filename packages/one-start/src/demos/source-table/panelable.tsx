@@ -1,8 +1,50 @@
+import type { RecordType } from '@ty-one-start/one-start';
 import { OSProviderWrapper, OSSourceTable } from '@ty-one-start/one-start';
 import delay from 'delay';
 import Mock, { mock, Random } from 'mockjs';
 import moment from 'moment';
 import React from 'react';
+import produce from 'immer';
+
+const createRowData = () => {
+  return Mock.mock({
+    id: () => Mock.Random.id(),
+    text: () => Mock.Random.word(),
+    textarea: () => Mock.Random.paragraph(),
+    digit: () => Mock.Random.integer(),
+    date: () => Mock.Random.date(),
+    'date-range': () => [Mock.Random.date(), Mock.Random.date()],
+    money: '@integer',
+    percent: '@integer',
+    money2: '@integer',
+    percent2: '@integer',
+    select: () => 'a',
+    select2: () => 'a',
+  });
+};
+
+let pageData = Mock.mock({
+  error: false,
+  data: {
+    'page|20': [
+      {
+        id: () => Mock.Random.id(),
+        text: () => Mock.Random.word(),
+        textarea: () => Mock.Random.paragraph(),
+        digit: () => Mock.Random.integer(),
+        date: () => Mock.Random.date(),
+        'date-range': () => [Mock.Random.date(), Mock.Random.date()],
+        money: '@integer',
+        percent: '@integer',
+        money2: '@integer',
+        percent2: '@integer',
+        select: () => 'a',
+        select2: () => 'a',
+      },
+    ],
+    total: 100,
+  },
+});
 
 export default () => {
   return (
@@ -234,6 +276,9 @@ export default () => {
               },
             },
           ],
+          defaultActiveFirstRow: {
+            type: 'view',
+          },
         }}
         requests={{
           requestDataSource: async (options) => {
@@ -241,32 +286,19 @@ export default () => {
 
             await delay(1000);
 
-            return Mock.mock({
-              error: false,
-              data: {
-                'page|20': [
-                  {
-                    id: '@id',
-                    text: () => Mock.Random.word(),
-                    textarea: () => Mock.Random.paragraph(),
-                    digit: () => Mock.Random.integer(),
-                    date: () => Mock.Random.date(),
-                    'date-range': () => [Mock.Random.date(), Mock.Random.date()],
-                    money: '@integer',
-                    percent: '@integer',
-                    money2: '@integer',
-                    percent2: '@integer',
-                    select: () => 'a',
-                    select2: () => 'a',
-                  },
-                ],
-                total: () => Mock.Random.integer(50, 100),
-              },
-            });
+            return {
+              ...pageData,
+            };
           },
           requestRemoveRow: async (options) => {
             console.log('requestRemoveRow', options);
             await delay(1000);
+
+            pageData = produce(pageData, (draft: RecordType) => {
+              draft.data.page.splice(options.rowIndex, 1);
+              draft.data.page.push(createRowData());
+            });
+
             return {
               error: false,
               data: {
