@@ -40,6 +40,132 @@ export default () => {
               },
             },
             {
+              type: 'layout-modal-form',
+              settings: {
+                title: 'layout-modal-form',
+                dataIndex: 'layoutModalForm',
+                buttonTriggerText: '按钮1',
+                modalDialogSettings: {
+                  title: '标题',
+                },
+                formFieldItems: [
+                  {
+                    type: 'money',
+                    settings: {
+                      title: 'asyncValidate',
+                      dataIndex: 'asyncValidate',
+                      rules: [
+                        { required: true },
+                        {
+                          validator: async (_, val) => {
+                            // await delay(1000);
+                            if (val < 10) {
+                              return Promise.resolve();
+                            }
+                            return Promise.reject(new Error('error'));
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    type: 'layout-modal-form',
+                    settings: {
+                      title: 'layout-modal-form',
+                      dataIndex: 'layoutModalForm',
+                      buttonTriggerText: '按钮1',
+                      modalDialogSettings: {
+                        title: '标题',
+                      },
+                      formFieldItems: [
+                        {
+                          type: 'money',
+                          settings: {
+                            title: 'asyncValidate',
+                            dataIndex: 'asyncValidate',
+                            rules: [
+                              { required: true },
+                              {
+                                validator: async (_, val) => {
+                                  // await delay(1000);
+                                  if (val < 10) {
+                                    return Promise.resolve();
+                                  }
+                                  return Promise.reject(new Error('error'));
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    type: 'editable-table',
+                    settings: {
+                      title: 'editable-table',
+                      dataIndex: 'editableTable',
+                      addable: {},
+                      removeable: {},
+                      fieldItems: [
+                        {
+                          type: 'money',
+                          settings: {
+                            title: 'asyncValidate',
+                            dataIndex: 'asyncValidate',
+                            rules: [
+                              { required: true },
+                              {
+                                validator: async (_, val) => {
+                                  // await delay(1000);
+                                  if (val < 10) {
+                                    return Promise.resolve();
+                                  }
+                                  return Promise.reject(new Error('error'));
+                                },
+                              },
+                            ],
+                          },
+                        },
+                        {
+                          type: 'layout-modal-form',
+                          settings: {
+                            title: 'layout-modal-form',
+                            dataIndex: 'layoutModalForm',
+                            buttonTriggerText: '按钮1',
+                            modalDialogSettings: {
+                              title: '标题',
+                            },
+                            formFieldItems: [
+                              {
+                                type: 'money',
+                                settings: {
+                                  title: 'asyncValidate',
+                                  dataIndex: 'asyncValidate',
+                                  rules: [
+                                    { required: true },
+                                    {
+                                      validator: async (_, val) => {
+                                        // await delay(1000);
+                                        if (val < 10) {
+                                          return Promise.resolve();
+                                        }
+                                        return Promise.reject(new Error('error'));
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+            },
+            {
               type: 'placeholder-input',
               settings: {
                 title: 'placeholder-input',
