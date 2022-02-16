@@ -62,11 +62,11 @@ export default () => {
           attachmentFieldKeys: {
             stock: {
               baseDataIndex: 'frameContractNumber',
-              suffix: '.xlsx',
+              suffix: ['.xlsx', '.xls'],
             },
             stockIndexFutures: {
               baseDataIndex: 'frameContractNumber',
-              suffix: '.DBF',
+              suffix: '.gif',
             },
           },
           extraFormFieldItems: [

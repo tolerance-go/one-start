@@ -12,6 +12,8 @@ import utl from 'lodash';
 import React, { useRef, useState } from 'react';
 import { OSDialog, OSForm, OSTable, OSTrigger } from '../../components';
 import { normalizeRequestOutputs } from '../../components';
+import { normalizeArray } from '../../components/utils/normalize-array';
+import type { RecordType } from '../../typings';
 import type { OSBattleTableUploadFileType, OSBattleTableUploadType } from '../../typings/actions';
 import type { OSDialogAPI, OSFormAPI, OSTableAPI, OSTableType } from '../../typings/components';
 import CloseIconAction from './close-icon-action';
@@ -86,7 +88,12 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
                 const file = fullFileList.find((it) => it.attachmentId === attachmentId);
                 return (
                   <Typography.Text type={file ? undefined : 'secondary'}>
-                    {`${rowData[meta.baseDataIndex]}${meta.suffix}`}
+                    {`${rowData[meta.baseDataIndex]}${(() => {
+                      if (Array.isArray(meta.suffix) && meta.suffix.length) {
+                        return `[${meta.suffix.sort().join(', ')}]`;
+                      }
+                      return meta.suffix;
+                    })()}`}
                     {file ? `(${file.file.name})` : null}
                   </Typography.Text>
                 );
@@ -153,7 +160,7 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
                         onSelectedFile={(file_) => {
                           setFullFileList((prev) => {
                             const index = prev.findIndex((it) => it.attachmentId === attachmentId);
-                            const newOne = {
+                            const newOne: OSBattleTableUploadFileType = {
                               file: file_,
                               rowData,
                               attachmentKey,
@@ -204,16 +211,42 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
   };
 
   const handleBeforeUpload = utl.debounce((file: RcFile, fileList: RcFile[]) => {
-    const list = utl.flattenDeep(
+    const pickFileName = (fileName: string) => {
+      return fileName.split('.').slice(0, -1).join('');
+    };
+
+    const unionFileNameList = utl.unionBy(fileList, (fileItem) => pickFileName(fileItem.name));
+    if (unionFileNameList.length !== fileList.length) {
+      const matchList = utl.intersectionBy(unionFileNameList, fileList, (item) => item.name);
+      const notMatchList = utl.differenceBy(fileList, matchList, (item) => item.name);
+
+      message.warn(
+        `存在同名文件(${utl
+          .union(notMatchList.map((item) => pickFileName(item.name)))
+          .join(', ')})，请重新选择文件`,
+      );
+      return false;
+    }
+
+    const list: {
+      rowData: RecordType;
+      attachmentKey: string;
+      attachmentId: string;
+      name: string;
+    }[] = utl.flattenDeep(
       tableRef.current?.getDataSource()?.map((rowData) => {
         return Object.keys(attachmentFieldKeys ?? {}).map((key) => {
           const meta = attachmentFieldKeys![key];
-          return {
-            rowData,
-            attachmentKey: key,
-            attachmentId: getAttachmentId(key, rowData.id),
-            name: `${rowData[meta.baseDataIndex]}${meta.suffix}`,
-          };
+
+          const suffixs = normalizeArray(meta.suffix);
+          return suffixs.map((suffix) => {
+            return {
+              rowData,
+              attachmentKey: key,
+              attachmentId: getAttachmentId(key, rowData.id),
+              name: `${rowData[meta.baseDataIndex]}${suffix}`,
+            };
+          });
         });
       }),
     );
@@ -225,7 +258,9 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
     );
 
     setFullFileList((prev) => {
-      const leftList = utl.differenceBy(prev, matchList, (item) => item.name);
+      const leftList = utl.differenceBy(prev, matchList, (item) => {
+        return item.attachmentId;
+      });
       return [
         ...leftList,
         ...matchList.map((item) => ({

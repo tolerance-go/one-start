@@ -360,7 +360,7 @@ export type OSBattleTableUploadFileType = {
   /** 是否已上传 */
   uploaded?: boolean;
   /** 匹配的文件名称 */
-  name?: string;
+  name: string;
 };
 
 export type OSBattleTableUploadAPI = {};
@@ -383,7 +383,7 @@ export type OSBattleTableUploadType = {
       string,
       {
         /** 匹配后缀 */
-        suffix: string;
+        suffix: string | string[];
         /** 匹配的文件名称字段 */
         baseDataIndex: string;
       }
