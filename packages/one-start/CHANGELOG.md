@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.16.6](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.5...@ty-one-start/one-start@0.16.6) (2022-02-16)
+
+
+### Bug Fixes
+
+* numeral 格式化大数时产生 NAN ([01a9e6b](https://10.1.2.7/visual-fe/swap-modules/commits/01a9e6b0bad460f413f2cc2692d17e6a13818ced))
+
+
+
+
+
 ## [0.16.5](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.4...@ty-one-start/one-start@0.16.5) (2022-02-15)
 
 **Note:** Version bump only for package @ty-one-start/one-start

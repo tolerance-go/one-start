@@ -1,6 +1,6 @@
 {
   "name": "@ty-one-start/one-start",
-  "version": "0.16.5",
+  "version": "0.16.6",
   "description": "@ty-one-start/one-start",
   "module": "es/index.js",
   "types": "es/index.d.ts",
