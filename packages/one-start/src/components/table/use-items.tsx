@@ -162,7 +162,7 @@ export const useItems = ({
   tableWrapFormRef: React.RefObject<FormInstance>;
   tableKey?: string;
   fieldItems?: OSTableFormFieldItems;
-  fieldItemSettings?: RequiredRecursion<OSTableType>['settings']['fieldItemSettings'];
+  fieldItemSettings?: Required<OSTableType>['settings']['fieldItemSettings'];
   tableWrapForm: FormInstance;
   clsPrefix: string;
   allColumnsIdRef: React.MutableRefObject<string[]>;
