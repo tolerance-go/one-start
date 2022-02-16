@@ -56,6 +56,7 @@ export type _OSEditableTableSelfType<OSCustomFieldStaticPureTableFormFieldItemCo
           rowIndex: number;
           rowId: string;
           actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
+          dataSource?: OSTableValueType;
         }) => {
           /** 删除按钮的配置 */
           triggerSettings?: OSTriggerType['settings'];

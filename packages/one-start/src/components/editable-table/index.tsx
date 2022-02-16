@@ -438,11 +438,13 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
                     return null;
                   }
                   if (typeof removeable === 'function') {
+                    const normalizedDataSource = parseTableValue(dataSource) ?? [];
                     const { triggerSettings } = removeable({
                       rowData,
                       rowId,
                       rowIndex,
                       actions,
+                      dataSource: normalizedDataSource,
                     });
                     return renderTrigger(triggerSettings);
                   }
