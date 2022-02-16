@@ -56,6 +56,9 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
               if (formatter) {
                 return formatter(text);
               }
+              /*  numeral 版本需固定 2.0.4, 否则格式化大数和小数会出现 NaN
+               *   github: https://github.com/adamwdraper/Numeral-js/issues/682#issuecomment-678529290
+               */
               return numeral(text).format(format);
             })()
           : '--';
