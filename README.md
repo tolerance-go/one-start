@@ -103,4 +103,5 @@ common
 ### 实现注意
 
 1. form resetFields 不会触发 form 的 onChange
+
 2. 只读状态分别单独影响 form-item，layut-form（表单中）
