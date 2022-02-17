@@ -1,11 +1,6 @@
 import { Col, Row, Typography } from '@ty/antd';
 import utl from 'lodash';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import OSDialog from '../dialog';
-import OSForm from '../form';
-import OSSourceTable from '../source-table';
-import { eventNames } from '../table/constants';
-import OSTrigger from '../trigger';
 import type {
   OSDialogAPI,
   OSFormAPI,
@@ -13,10 +8,15 @@ import type {
   OSMenuItem,
   OSSearchTableType,
   OSSourceTableAPI,
+  RequiredRecursion,
 } from '../../typings';
+import OSDialog from '../dialog';
+import OSForm from '../form';
+import OSSourceTable from '../source-table';
+import { eventNames } from '../table/constants';
+import OSTrigger from '../trigger';
 import { logRequestMessage } from '../utils/log-request-message';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import type { RequiredRecursion } from '../../typings';
 
 export const useSearchTemplate = ({
   requestUpdateSearchTempldate,
@@ -307,18 +307,32 @@ export const useSearchTemplate = ({
                 key: 'management',
               },
             ].filter((item): item is OSMenuItem => !!item),
+            badge: currentTplId
+              ? {
+                  type: 'ribbon',
+                  settings: {
+                    text: currentTplName,
+                  },
+                }
+              : undefined,
+            badgeWrapperStyle: currentTplId
+              ? {
+                  marginRight: 7,
+                }
+              : undefined,
           }}
         />
       </OSDialog>
     );
   }, [
-    sourceTableRef,
-    createFormFieldItems,
-    currentTplId,
     enable,
-    requestCreateTemplate,
-    tplManagementDom,
+    currentTplId,
+    createFormFieldItems,
     updateMenuDom,
+    tplManagementDom,
+    currentTplName,
+    requestCreateTemplate,
+    sourceTableRef,
   ]);
 
   useEffect(() => {

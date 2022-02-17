@@ -1,4 +1,5 @@
-import type { ButtonProps, UploadProps } from '@ty/antd';
+import type { BadgeProps, ButtonProps, UploadProps } from '@ty/antd';
+import type { RibbonProps } from '@ty/antd/lib/badge/Ribbon';
 import type { DropdownButtonProps } from '@ty/antd/lib/dropdown';
 import type { RcFile } from '@ty/antd/lib/upload';
 import type React from 'react';
@@ -28,6 +29,16 @@ export interface OSMenuItem {
 }
 
 export type OSButtonCore = {
+  badge?:
+    | {
+        type: 'count';
+        settings?: BadgeProps;
+      }
+    | {
+        type: 'ribbon';
+        settings?: RibbonProps;
+      };
+  badgeWrapperStyle?: React.CSSProperties;
   text?: string | React.ReactNode;
   disabled?: boolean;
   initialDisabled?: boolean;
