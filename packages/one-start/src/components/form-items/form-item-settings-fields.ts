@@ -15,4 +15,5 @@ export const formItemSettingsFields = [
   'valueAsyncLinkage',
   'validateFirst',
   'labelAlign',
+  'required',
 ];

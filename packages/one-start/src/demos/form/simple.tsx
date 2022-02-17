@@ -357,6 +357,16 @@ export default () => {
                 ],
               },
             },
+            {
+              type: 'text',
+              settings: {
+                title: '表单必填样式单独控制',
+                dataIndex: 'requiredStyle',
+                required: true,
+                colSpan: 6,
+                linkagetip: ['通过required参数控制：true或false'],
+              },
+            },
           ],
         }}
       ></OSForm>
