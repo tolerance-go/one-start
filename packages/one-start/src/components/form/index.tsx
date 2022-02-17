@@ -47,10 +47,11 @@ import type { RequiredRecursion } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useLoading } from '../utils/use-loading';
 import GroupCollapse from './group-collapse';
-import { handleAsyncLinkage, valueLinkageHandler } from './linkage';
+import { execValueAsyncLinkage, execValueSyncLinkage } from './linkage';
 import type { FormCoreActions } from './typings';
 import { useRefObject } from './use-ref-object';
 import { countLinkageLevel } from './utils/count-linkage-level';
+import { withDebounce } from '../utils/with-debounce';
 
 const useAsyncInitialValues = ({
   actions,
@@ -466,77 +467,62 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     changedValues: RecordType;
     scopeLinkCount?: number;
   }) => {
-    const isRegistedValueAsyncLinkage =
-      coreActionsRef.current.valueAsyncLinkage || asyncValueLinkageSortedRef.current.length;
-
-    const isRegisteValueSyncLinkage =
-      coreActionsRef.current.valueLinkage || syncValueLinkageSortedRef.current.length;
-
     const syncValues = (meta: { values: RecordType; changedValues: RecordType }) => {
-      formRef.current?.setFieldsValue(meta.changedValues);
-      coreActionsRef.current.onChange?.(meta.values);
-      coreActionsRef.current.onValuesLinkageChange?.(meta.changedValues, meta.values);
-      coreActionsRef.current.onDataSourceLinkageChange(meta.values);
+      /** 如果最终 changedValues 和传入 values 有 diff，则执行更新 */
+      if (
+        Object.keys(meta.changedValues).some((changedField) => {
+          return meta.changedValues[changedField] !== values[changedField];
+        })
+      ) {
+        console.log('🚀 ~ file: index.tsx ~ line 475 ~ triggerChange', meta, {
+          values,
+          changedValues,
+        });
+        formRef.current?.setFieldsValue(meta.changedValues);
+        coreActionsRef.current.onChange?.(meta.values);
+        coreActionsRef.current.onValuesLinkageChange?.(meta.changedValues, meta.values);
+        coreActionsRef.current.onDataSourceLinkageChange(meta.values);
+      }
     };
 
-    const asyncLinkageCount = async (valuesData: {
-      changedValues: RecordType;
-      values: RecordType;
-    }) => {
-      if (isRegistedValueAsyncLinkage) {
-        handleAsyncLinkage(
-          valuesData.changedValues,
-          valuesData.values,
-          {
-            parallel: asyncValueLinkageSortedRef.current.reduce((merged, next) => {
-              if (next.linkage.parallel) {
-                return {
-                  ...merged,
-                  [next.keyIndexId]: next.linkage.parallel,
-                };
-              }
-              return merged;
-            }, coreActionsRef.current.valueAsyncLinkage?.parallel ?? {}),
-            serial: [
-              ...asyncValueLinkageSortedRef.current
-                .map((item) => item.linkage.serial?.linkage)
-                .filter((item): item is ValueAsyncLinkage => !!item),
-              ...(coreActionsRef.current.valueAsyncLinkage?.serial ?? []),
-            ],
-          },
-          (asyncLinkageResult) => {
-            if (scopeLinkCount != null) {
-              if (asyncLinkCountRef.current === scopeLinkCount) {
-                syncValues(asyncLinkageResult);
-                return;
-              }
-              /** 丢弃历史计算 */
-              return;
-            }
+    const linkageResult = execValueSyncLinkage(changedValues, values, [
+      ...syncValueLinkageSortedRef.current.map((item) => item.linkage.linkage),
+      ...(coreActionsRef.current.valueLinkage ?? []),
+    ]);
+
+    execValueAsyncLinkage(
+      linkageResult.changedValues,
+      linkageResult.values,
+      {
+        parallel: asyncValueLinkageSortedRef.current.reduce((merged, next) => {
+          if (next.linkage.parallel) {
+            return {
+              ...merged,
+              [next.keyIndexId]: next.linkage.parallel,
+            };
+          }
+          return merged;
+        }, coreActionsRef.current.valueAsyncLinkage?.parallel ?? {}),
+        serial: [
+          ...asyncValueLinkageSortedRef.current
+            .map((item) => item.linkage.serial?.linkage)
+            .filter((item): item is ValueAsyncLinkage => !!item),
+          ...(coreActionsRef.current.valueAsyncLinkage?.serial ?? []),
+        ],
+      },
+      (asyncLinkageResult) => {
+        if (scopeLinkCount != null) {
+          if (asyncLinkCountRef.current === scopeLinkCount) {
+            console.log('🚀 ~ file: index.tsx ~ line 503 ~ asyncLinkageResult', asyncLinkageResult);
             syncValues(asyncLinkageResult);
-          },
-        );
-      }
-    };
-
-    if (isRegisteValueSyncLinkage) {
-      const linkageResult = valueLinkageHandler(changedValues, values, [
-        ...syncValueLinkageSortedRef.current.map((item) => item.linkage.linkage),
-        ...(coreActionsRef.current.valueLinkage ?? []),
-      ]);
-
-      if (!isRegistedValueAsyncLinkage) {
-        syncValues(linkageResult);
-      }
-
-      asyncLinkageCount(linkageResult);
-      return;
-    }
-
-    asyncLinkageCount({
-      values,
-      changedValues,
-    });
+            return;
+          }
+          /** 丢弃历史计算 */
+          return;
+        }
+        syncValues(asyncLinkageResult);
+      },
+    );
   };
 
   const setFieldsValueAndTriggeLinkage = (changedValues?: RecordType) => {
@@ -986,21 +972,38 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     onFieldsChange?.(changedFields, fields);
   };
 
+  const changedMetaCacheRef = useRef<{
+    changedValues?: RecordType;
+    values?: RecordType;
+  }>({});
+
+  const handleAccChange: FormProps['onValuesChange'] = withDebounce(changeDebounceTimestamp)(
+    (changedValues, values) => {
+      changedMetaCacheRef.current = {};
+      console.log('🚀 ~ file: index.tsx ~ line 972 ~ current', {
+        changedValues,
+        values,
+      });
+
+      onChange?.(values);
+
+      asyncLinkCountRef.current += 1;
+
+      linkageChange({
+        values,
+        changedValues,
+        scopeLinkCount: asyncLinkCountRef.current,
+      });
+    },
+  );
+
   const handleChange: FormProps['onValuesChange'] = (changedValues, values) => {
-    onChange?.(values);
-
-    asyncLinkCountRef.current += 1;
-
-    linkageChange({
-      values,
+    utl.merge(changedMetaCacheRef.current, {
       changedValues,
-      scopeLinkCount: asyncLinkCountRef.current,
+      values,
     });
+    handleAccChange(changedMetaCacheRef.current.changedValues, changedMetaCacheRef.current.values);
   };
-
-  const handleValueChangeWithDebounce = changeDebounceTimestamp
-    ? utl.debounce(handleChange, changeDebounceTimestamp)
-    : handleChange;
 
   useEffect(() => {
     actionsRef.current.requestFieldItems(_params);
@@ -1074,7 +1077,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
               latestUserInputValueRef.current = changedValues;
 
               onValuesChange?.(changedValues, values);
-              handleValueChangeWithDebounce?.(changedValues, values);
+              handleChange?.(changedValues, values);
 
               coreActionsRef.current.onDataSourceChange(values);
             }}

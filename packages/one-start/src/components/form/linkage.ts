@@ -1,11 +1,18 @@
 import type { OSFormType, RecordType } from '../../typings';
 
-export const valueLinkageHandler = (
+export const execValueSyncLinkage = (
   changedValues: Record<string, any>,
   values: Record<string, any>,
   linkage: Required<Required<OSFormType>['settings']>['valueLinkage'],
   // onChange?: OSFormType['onChange'],
 ) => {
+  if (linkage.length === 0) {
+    return {
+      changedValues,
+      values,
+    };
+  }
+
   const linkagedData = linkage.reduce(
     (data, next) => {
       const nextChangedValues = next(data.changedValues, data.values);
@@ -37,7 +44,7 @@ export const valueLinkageHandler = (
   };
 };
 
-export const handleAsyncLinkage = async (
+export const execValueAsyncLinkage = async (
   changedValues: Record<string, any>,
   values: Record<string, any>,
   valueAsyncLinkage: Required<Required<OSFormType>['settings']>['valueAsyncLinkage'],
