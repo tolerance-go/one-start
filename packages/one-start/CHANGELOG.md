@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.17.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.5...@ty-one-start/one-start@0.17.0) (2022-02-17)
+
+
+### Bug Fixes
+
+* numeral 格式化大数时产生 NAN ([01a9e6b](https://10.1.2.7/visual-fe/swap-modules/commits/01a9e6b0bad460f413f2cc2692d17e6a13818ced))
+
+
+### Features
+
+* **os-editable-table:** 表格内部报错气泡框信息支持用户手动关闭 ([f19bdca](https://10.1.2.7/visual-fe/swap-modules/commits/f19bdcaa392fd02001c21ba04cebd7139e854b0b))
+* **os-form:** 表单必填样式单独控制 ([9a5ae5c](https://10.1.2.7/visual-fe/swap-modules/commits/9a5ae5c325a6a8762f5077dd300ca1d092431b9b))
+
+
+
+
+
 ## [0.16.6](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.5...@ty-one-start/one-start@0.16.6) (2022-02-16)
 
 
