@@ -10,12 +10,19 @@ import type {
 } from '../../typings';
 import OSTriggerButton from './trigger-button';
 import OSTriggerDropdown from './trigger-dropdown';
+import { Badge } from '@ty/antd';
+import { useClsPrefix } from '../utils/use-cls-prefix';
+import cls from 'classnames';
 
 const OSTrigger: React.ForwardRefRenderFunction<OSTriggerAPI, OSTriggerType> = (props, ref) => {
   const { type, refKey, ...rest } = props;
 
+  const { badge, badgeWrapperStyle, ...resetSettings } = rest.settings ?? {};
+
   const inlineRef = useRef<OSTriggerAPI>(null);
   const referencesDispatch = useContext(OSReferencesCollectorDispatchContext);
+
+  const clsPrefix = useClsPrefix('os-trigger');
 
   useImperativeHandle(ref, () => {
     const apis: OSTriggerAPI = inlineRef.current!;
@@ -49,12 +56,51 @@ const OSTrigger: React.ForwardRefRenderFunction<OSTriggerAPI, OSTriggerType> = (
     }
   });
 
+  const renderTriggerWrapBadge = (trigger: React.ReactElement) => {
+    if (badge) {
+      const baseCls = `${clsPrefix}-badge`;
+      if (badge.type === 'count') {
+        return (
+          <Badge
+            {...badge.settings}
+            className={cls(baseCls, badge.settings?.className, `${baseCls}-count`)}
+          >
+            {trigger}
+          </Badge>
+        );
+      }
+      if (badge.type === 'ribbon') {
+        return (
+          /** Ribbon 暂时不支持 wrapper style 参数 */
+          <div
+            style={{
+              position: 'relative',
+              ...badgeWrapperStyle,
+            }}
+          >
+            <Badge.Ribbon
+              {...badge.settings}
+              className={cls(baseCls, badge.settings?.className, `${baseCls}-ribbon`)}
+            >
+              {trigger}
+            </Badge.Ribbon>
+          </div>
+        );
+      }
+    }
+    return trigger;
+  };
+
   if (type === 'button') {
-    return <OSTriggerButton ref={inlineRef} {...rest} />;
+    return renderTriggerWrapBadge(
+      <OSTriggerButton ref={inlineRef} {...rest} settings={resetSettings} />,
+    );
   }
 
   if (type === 'dropdown') {
-    return <OSTriggerDropdown ref={inlineRef} {...rest} />;
+    return renderTriggerWrapBadge(
+      <OSTriggerDropdown ref={inlineRef} {...rest} settings={resetSettings} />,
+    );
   }
 
   return null;
