@@ -1,5 +1,5 @@
 /* eslint-disable no-bitwise */
-import { Form, Popover } from '@ty/antd';
+import { Col, Form, Popover, Row } from '@ty/antd';
 import type { FormItemProps } from '@ty/antd/lib/form';
 import utl from 'lodash';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -12,6 +12,7 @@ import {
   LayoutTabsFormTabMetaContext,
 } from '../layout-form/layout-form-event-context';
 import { TableWrapperContext } from '../providers/table-context';
+import CloseIconAction from '../utils/components/close-icon-action';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 
 /** 找到最近的父级元素 */
@@ -34,6 +35,15 @@ const findClosestParentElement = (
 
 const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
   const clsPrefix = useClsPrefix('os-table-inline-error-form-item');
+
+  /** 是否手动关闭 */
+  const [, setCount] = useState(0);
+
+  const forceUpdate = () => {
+    setCount((prev) => prev + 1);
+  };
+
+  const shouldCloseRef = useRef<boolean>();
 
   const layoutModalFormEvent = useContext(LayoutModalFormEventBusContext);
   const layoutTabsFormEvent = useContext(LayoutTabsFormEventBusContext);
@@ -211,6 +221,11 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
           const { errors } = inputProps;
 
           const visible = (() => {
+            if (shouldCloseRef.current) {
+              shouldCloseRef.current = undefined;
+              return false;
+            }
+
             if (cellIsFixed) {
               return errors.length > 0;
             }
@@ -223,7 +238,23 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
               trigger={props.trigger}
               placement="topLeft"
               visible={visible}
-              content={<div>{errorList}</div>}
+              content={
+                <Row align="top" justify="space-between">
+                  <Col>{errorList}</Col>
+                  <Col>
+                    <CloseIconAction
+                      style={{
+                        marginLeft: 4,
+                        fontSize: 10,
+                      }}
+                      onClick={() => {
+                        shouldCloseRef.current = true;
+                        forceUpdate();
+                      }}
+                    />
+                  </Col>
+                </Row>
+              }
               autoAdjustOverflow
               getPopupContainer={() => {
                 /** 解决弹窗内的表格关闭时候无法隐藏的问题 */
