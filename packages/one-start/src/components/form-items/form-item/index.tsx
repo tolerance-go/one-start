@@ -42,6 +42,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     linkagetip,
     validateFirst,
     labelAlign,
+    required,
   } = settings ?? {};
 
   const formInstaceRefCtx = useContext(FormInstanceContext);
@@ -310,6 +311,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
             : undefined
         }
         rules={wrapWarningRules()}
+        required={required}
         label={label}
         name={dataIndex}
         initialValue={asyncInitialValue ?? initialValue}

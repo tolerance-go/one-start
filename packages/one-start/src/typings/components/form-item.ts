@@ -41,6 +41,8 @@ export interface OSFormItemType<Value = any> extends OSCore {
     styles?: CSSProperties;
     /** 内联错误格式 */
     inlineError?: boolean;
+    /** 表单必填样式显示或隐藏 */
+    required?: boolean;
     key?: string;
     /** 联动信息 */
     linkagetip?: string | string[];
