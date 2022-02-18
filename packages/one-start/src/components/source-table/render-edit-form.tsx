@@ -56,13 +56,9 @@ export const renderEditForm = (options: {
       actions,
     };
 
-    saveButtonTriggerRef.current?.update({ disabled: true });
-    resetButtonTriggerRef.current?.update({ disabled: true });
     const { error, data } = await requestRowEditData(requestRowEditDataParams).then(
       normalizeRequestOutputs,
     );
-    saveButtonTriggerRef.current?.update({ disabled: false });
-    resetButtonTriggerRef.current?.update({ disabled: false });
 
     return { error, data };
   };
@@ -156,7 +152,6 @@ export const renderEditForm = (options: {
         settings={{
           type: 'primary',
           text: '保存',
-          initialDisabled: true,
         }}
         requests={{
           requestAfterClick: async () => {
@@ -176,7 +171,6 @@ export const renderEditForm = (options: {
       type="button"
       settings={{
         text: '重置',
-        initialDisabled: true,
       }}
       onClick={() => {
         editFormRef.current?.resetFields();
