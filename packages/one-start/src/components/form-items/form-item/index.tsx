@@ -311,7 +311,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
             : undefined
         }
         rules={wrapWarningRules()}
-        required={required}
+        {...(required ? { required: true } : {})}
         label={label}
         name={dataIndex}
         initialValue={asyncInitialValue ?? initialValue}
