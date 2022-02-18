@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.17.1...@ty-one-start/one-start@0.17.2) (2022-02-18)
+
+
+### Bug Fixes
+
+* 修复 form-item required 优先级的问题 ([509c57c](https://10.1.2.7/visual-fe/swap-modules/commits/509c57c6dfd695b21049ccf3a45edc5c358287d3))
+
+
+
+
+
 ## [0.17.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.17.0...@ty-one-start/one-start@0.17.1) (2022-02-18)
 
 
