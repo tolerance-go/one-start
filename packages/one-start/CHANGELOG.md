@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.17.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.17.0...@ty-one-start/one-start@0.17.1) (2022-02-18)
+
+
+### Bug Fixes
+
+* 提高 trigger.less badge 样式优先级 ([910143d](https://10.1.2.7/visual-fe/swap-modules/commits/910143db8ac0469a5f9b5c672b19facf82935bf3))
+
+
+
+
+
 # [0.17.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.16.5...@ty-one-start/one-start@0.17.0) (2022-02-17)
 
 
