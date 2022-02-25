@@ -2,11 +2,11 @@
 nav:
   order: 99
   title: 更新日志
-title: one-proto
+title: proto
 group:
-  title: one-proto
-  path: /changelogs/one-proto
+  title: proto
+  path: /changelogs/proto
   order: 2
 ---
 
-<embed src="../../packages/one-proto/CHANGELOG.md"></embed>
+<embed src="../../packages/proto/CHANGELOG.md"></embed>
