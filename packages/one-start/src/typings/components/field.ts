@@ -334,6 +334,8 @@ export interface OSTreeSelectFieldType<ValueType = OSTreeSelectFieldValueType>
     OSFieldBaseConfigs<ValueType> {
   type?: 'tree-select';
   settings?: {
+    /** 是否在展示状态下使用树形展示 */
+    readonlyWithTree?: boolean;
     treeOptions?: OSTreeSelectOptionItem[];
     params?: RecordType;
     allowClear?: boolean;

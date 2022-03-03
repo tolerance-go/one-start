@@ -25,4 +25,10 @@ group:
 
 <code src="../demos/field-tree-select/search.tsx" />
 
+### 树形状态展示
+
+通过 `readonlyWithTree` 参数使展示状态下的组件从默认字符形式，改为树形形式
+
+<code src="../demos/field-tree-select/readonly-with-tree.tsx" />
+
 <API exports='["Settings", "Requests"]' src="../components/fields/tree-select.tsx"></API>

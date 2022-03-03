@@ -1,6 +1,6 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import type { TreeSelectProps } from '@ty/antd';
-import { Col, Row, TreeSelect, Typography } from '@ty/antd';
+import { Col, Row, TreeSelect, Typography, Tree } from '@ty/antd';
 import cls from 'classnames';
 import utl from 'lodash';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
@@ -17,6 +17,7 @@ import type {
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { mapTreeNode } from '../utils/tree-utils';
 import { useClsPrefix } from '../utils/use-cls-prefix';
+import { DataNode } from '@ty/antd/lib/tree';
 
 const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTreeSelectFieldType> = (
   props,
@@ -44,6 +45,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     showSearch,
     allowClear = true,
     multiple,
+    readonlyWithTree,
   } = settings ?? {};
 
   const [loading, setLoading] = useState(false);
@@ -134,6 +136,48 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
 
       return maps[text ?? ''] ?? text;
     };
+
+    if (readonlyWithTree) {
+      const arrayValue = typeof _value === 'string' ? [_value] : _value;
+      return (
+        <div
+          style={{
+            maxHeight: 500,
+            overflowY: 'auto',
+          }}
+        >
+          <Tree
+            showLine={{
+              showLeafIcon: false,
+            }}
+            checkable
+            defaultExpandAll
+            checkedKeys={arrayValue}
+            treeData={mapTreeNode(
+              (treeOptions || asyncOptions) ?? [],
+              (item: OSTreeSelectOptionItem) => {
+                if (item.children) {
+                  return {
+                    title: `${item.label}(${
+                      utl.intersection(
+                        item.children.map((it) => it.key),
+                        arrayValue,
+                      ).length
+                    }/${item.children.length})`,
+                    key: item.value,
+                    children: item.children,
+                  } as DataNode;
+                }
+                return {
+                  title: item.label,
+                  key: item.value,
+                } as DataNode;
+              },
+            )}
+          ></Tree>
+        </div>
+      );
+    }
 
     return (
       <span ref={OSSelectRef as React.RefObject<HTMLSpanElement>}>

@@ -5,4 +5,4 @@ nav:
   title: proto(beta)
 ---
 
-<code src="../packages/proto/src/demos/basic.tsx" />
+<code src="../packages/one-proto/src/demos/basic.tsx" />

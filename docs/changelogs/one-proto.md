@@ -9,4 +9,4 @@ group:
   order: 2
 ---
 
-<embed src="../../packages/proto/CHANGELOG.md"></embed>
+<embed src="../../packages/one-proto/CHANGELOG.md"></embed>
