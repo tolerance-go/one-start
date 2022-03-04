@@ -427,6 +427,7 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
                           text: '删除',
                           danger: true,
                           type: 'link',
+                          size: 'small',
                           ...settingsWithTrigger,
                         }}
                       ></OSTrigger>

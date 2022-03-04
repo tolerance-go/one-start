@@ -194,6 +194,7 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                             settings={{
                               text: '应用',
                               type: 'link',
+                              size: 'small',
                             }}
                             requests={{
                               requestAfterClick: async () => {
@@ -297,6 +298,7 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                               settings={{
                                 text: '编辑',
                                 type: 'link',
+                                size: 'small',
                               }}
                             />
                           </OSDialog>,
@@ -329,6 +331,7 @@ const OSActionsCreate: React.ForwardRefRenderFunction<OSActionsCreateAPI, OSActi
                                 text: '删除',
                                 type: 'link',
                                 danger: true,
+                                size: 'small',
                               }}
                             />
                           </OSDialog>,
