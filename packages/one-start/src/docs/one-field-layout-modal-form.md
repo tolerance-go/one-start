@@ -1,12 +1,12 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-field-layout-modal-form
 group:
   title: forms
-  path: /one-start/forms
+  path: /components/forms
 ---
 
 # os-field-layout-modal-form

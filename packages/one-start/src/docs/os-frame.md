@@ -1,12 +1,12 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-frame
 group:
   title: general
-  path: /one-start/general
+  path: /components/general
 ---
 
 # os-frame

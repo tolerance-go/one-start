@@ -1,13 +1,13 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-table
 order: -1
 group:
   title: tables
-  path: /one-start/tables
+  path: /components/tables
 ---
 
 # os-table
@@ -156,6 +156,12 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 可以使用数组形式取 `rowData` 对象中任意层级的值进行列渲染，但是编辑形态下，暂时限制为 `string` 类型
 
 <code src="../demos/table/data-index-level.tsx" />
+
+### 轮询查询
+
+开启轮询后，默认显示左下角搜索时间戳，使用户感觉到数据在实时更新
+
+<code src="../demos/table/poll-the-query.tsx" />
 
 ### API 接口
 

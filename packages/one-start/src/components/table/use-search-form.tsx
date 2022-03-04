@@ -1,16 +1,19 @@
+import { Row, Typography } from '@ty/antd';
+import cls from 'classnames';
 import qs from 'qs';
-import React, { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import store from 'store2';
-import OSForm from '../form';
-import { useActionsRef } from '../hooks/use-actions-ref';
 import type {
   OSFormAPI,
   OSFormFieldItems,
   OSTableType,
   RecordType,
+  RequiredRecursion,
   TableCoreActions,
 } from '../../typings';
-import type { RequiredRecursion } from '../../typings';
+import OSForm from '../form';
+import { DEFAULT_LABEL_COL, DEFAULT_WRAPPER_COL } from '../form/constants';
+import { useActionsRef } from '../hooks/use-actions-ref';
 import {
   DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW,
   searchFormVisibleLocalField,
@@ -101,45 +104,106 @@ export const useSearchForm = ({
     : false;
 
   const groupedSearchFormFieldItems = useMemo(() => {
+    const shownLatestIndex =
+      (searchFormFieldItems?.length ?? 0) > singleLineFieldItemSize * 2
+        ? singleLineFieldItemSize * 2 - 2
+        : (searchFormFieldItems?.length ?? 0) - 1;
     return [
       {
         type: 'group',
         settings: {
           key: `${tableKey}-search-group`,
         },
-        children: searchFormFieldItems?.map((item) => {
-          const injectSearchFormItemSettings = {
-            dataSource,
-          };
+        children: (
+          searchFormFieldItems?.map((item, index) => {
+            const injectSearchFormItemSettings = {
+              dataSource,
+            };
 
-          return {
-            ...item,
-            settings: (options) => {
-              let { settings } = item;
-              if (typeof item.settings === 'function') {
-                settings = item.settings({ ...options, ...injectSearchFormItemSettings });
+            return {
+              ...item,
+              dependencies: ['showMore'],
+              settings: (options) => {
+                let { settings } = item;
+                if (typeof item.settings === 'function') {
+                  settings = item.settings({ ...options, ...injectSearchFormItemSettings });
+                }
+
+                const showMore = options.form.getFieldValue('showMore');
+
+                return {
+                  maxWidth: (() => {
+                    /** 单行搜索表单 */
+                    if (searchFormIsOneLine) {
+                      return item.type === 'select' ? 400 : undefined;
+                    }
+                    return undefined;
+                  })(),
+                  ...settings,
+                  colSpan: Math.round(24 / singleLineFieldItemSize),
+                  hide: !showMore && index > shownLatestIndex,
+                };
+              },
+            };
+          }) as OSFormFieldItems
+        ).concat(
+          (searchFormFieldItems?.length ?? 0) - 1 > shownLatestIndex
+            ? {
+                type: 'custom',
+                dependencies: ['showMore'],
+                settings: ({ form }) => {
+                  return {
+                    dataIndex: 'showMore',
+                    element: (
+                      <Row justify="start">
+                        <Typography.Link
+                          onClick={() => {
+                            form.setFieldsValue({
+                              showMore: !form.getFieldValue('showMore'),
+                            });
+                          }}
+                        >
+                          {form.getFieldValue('showMore') ? '收起更多' : '展开更多'}
+                        </Typography.Link>
+                      </Row>
+                    ),
+                    colSpan: Math.round(24 / singleLineFieldItemSize),
+                    wrapperCol: {
+                      span:
+                        searchFormSettings?.fieldItemSettings?.wrapperCol?.span ??
+                        searchFormSettings?.wrapperCol?.span ??
+                        DEFAULT_WRAPPER_COL.span,
+                      offset:
+                        searchFormSettings?.fieldItemSettings?.labelCol?.span ??
+                        searchFormSettings?.labelCol?.span ??
+                        DEFAULT_LABEL_COL.span,
+                    },
+                  };
+                },
               }
-
-              return {
-                maxWidth: (() => {
-                  /** 单行搜索表单 */
-                  if (searchFormIsOneLine) {
-                    return item.type === 'select' ? 400 : undefined;
-                  }
-                  return undefined;
-                })(),
-                ...settings,
-                colSpan: Math.round(24 / singleLineFieldItemSize),
-              };
-            },
-          };
-        }),
+            : [],
+        ),
       },
     ] as OSFormFieldItems;
-  }, [singleLineFieldItemSize, dataSource, tableKey, searchFormIsOneLine, searchFormFieldItems]);
+  }, [
+    searchFormFieldItems,
+    singleLineFieldItemSize,
+    tableKey,
+    dataSource,
+    searchFormIsOneLine,
+    searchFormSettings?.wrapperCol?.span,
+    searchFormSettings?.fieldItemSettings?.wrapperCol?.span,
+    searchFormSettings?.fieldItemSettings?.labelCol?.span,
+    searchFormSettings?.labelCol?.span,
+  ]);
 
   const dom = searchFormVisible ? (
-    <div key="search" className={`${clsPrefix}-search-form`}>
+    <div
+      key="search"
+      className={cls(`${clsPrefix}-search-form`, {
+        inline: searchFormIsOneLine,
+      })}
+    >
       <OSForm
         ref={searchFormRef}
         onValuesChange={(changedValues, values) => {

@@ -1,12 +1,12 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-field-upload
 group:
   title: fields
-  path: /one-start/fields
+  path: /components/fields
 ---
 
 # os-field-upload
@@ -17,7 +17,7 @@ group:
 
 默认只做文件选择，不会进行上传操作，可以通过 `immediately` 控制
 
-```tsx | pure
+```jsx | pure
 <OSUploadField
   ...
   settings={{

@@ -1,5 +1,14 @@
 .one-source {
   &-os-trigger {
+    &.over-badge {
+      &.badge-type-ribbon {
+        /** 当 ribbon 存在时候，按钮 hover 时飘带显示层级后移，突出按钮内容 **/
+        &:hover {
+          z-index: 999;
+        }
+      }
+    }
+
     &.link-type {
       .ty-ant-upload-select-text {
         span {

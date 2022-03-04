@@ -29,6 +29,8 @@ export type OSCore = {
   type?: string;
   settings?: Record<string, SettingsValue | OSCore>;
   requests?: Record<string, RequestIO | Record<string, RequestIO>>;
+  hooks?: Record<string, Function>;
+  slots?: Record<string, React.ReactNode>;
   actionsRef?: React.MutableRefObject<Record<string, Function> | null>;
   refKey?: string;
 };

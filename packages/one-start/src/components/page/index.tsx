@@ -16,7 +16,7 @@ const getTagKey = (
 const OSPage: React.ForwardRefRenderFunction<OSPageAPI, OSPageType> = (props, ref) => {
   const prefixCls = useClsPrefix('page');
   const { settings } = props;
-  const { tabs, breadcrumb, title, content, actions } = settings ?? {};
+  const { tabs, breadcrumb, title, content, actions, size } = settings ?? {};
   const [activeKey, setActiveKey] = useState(() => {
     const query = qs.parse(window.location.search, { ignoreQueryPrefix: true });
 
@@ -94,8 +94,8 @@ const OSPage: React.ForwardRefRenderFunction<OSPageAPI, OSPageType> = (props, re
       </Row>
       {tabs ? (
         <Tabs
-          type="card"
-          size="small"
+          type="line"
+          size={size ?? 'large'}
           className={`${prefixCls}-tabs`}
           activeKey={activeKey}
           onChange={(_type) => {

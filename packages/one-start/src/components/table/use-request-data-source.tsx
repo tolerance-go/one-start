@@ -1,27 +1,26 @@
 import type { SelectProps } from '@ty/antd';
-import type { SorterResult } from '@ty/antd/lib/table/interface';
 import utl from 'lodash';
+import moment from 'moment';
 import type { MutableRefObject } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useActionsRef } from '../hooks/use-actions-ref';
 import type {
-  OSSelectFieldValueType,
-  OSTableFormFieldItemSearchType,
-  OSTableType,
-  RecordType,
-  RequestIO,
-  OSTableAPI,
-  OSTableRequestDataSourceParams,
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+  OSFormAPI,
+  OSSelectFieldValueType,
+  OSTableAPI,
+  OSTableFormFieldItemSearchType,
+  OSTableRequestDataSourceParams,
+  OSTableType,
+  RequestIO,
+  RequestOptions,
+  TableCoreActions,
 } from '../../typings';
+import { useActionsRef } from '../hooks/use-actions-ref';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import type { TableCoreActions } from '../../typings';
-import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
-import moment from 'moment';
 import { unstateHistory } from '../utils/unstate-history';
-import type { RequestDataSourceActions, TreeSpreadActions } from './typings';
-import type { OSFormAPI } from '../../typings';
 import { DEFAULT_CURRENT, DEFAULT_PAGE_SIZE } from './constants';
+import type { RequestDataSourceActions, TreeSpreadActions } from './typings';
+import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 
 const mapLevel = (
   rowData?: Record<string, any>[],
@@ -37,6 +36,7 @@ const mapLevel = (
 };
 
 export const useRequestDataSource = ({
+  afterSearch,
   setFieldItemsState,
   requestDataSource,
   snapshotOfCurrentSearchParametersRef,
@@ -56,6 +56,7 @@ export const useRequestDataSource = ({
   defaultPageSize = DEFAULT_PAGE_SIZE,
   defaultCurrent = DEFAULT_CURRENT,
 }: {
+  afterSearch?: Required<OSTableType>['hooks']['afterSearch'];
   defaultCurrent?: number;
   setFieldItemsState: React.Dispatch<
     React.SetStateAction<Required<OSTableType>['settings']['fieldItems']>
@@ -118,6 +119,10 @@ export const useRequestDataSource = ({
     return searchFormRef.current?.normalizeFieldsValue(search) ?? search;
   }, [searchFormRef, searchTransfromMapDataIndexId, snapshotOfCurrentSearchParametersRef]);
 
+  const inlineAPIRef = useActionsRef({
+    afterSearch,
+  });
+
   const syncSearchTimestamp = useCallback(() => {
     setSarchTimeStr(moment().format('YYYY-MM-DD HH:mm:ss'));
   }, [setSarchTimeStr]);
@@ -150,21 +155,14 @@ export const useRequestDataSource = ({
   ]);
 
   const requestTableDataSource = useCallback(
-    async (options: {
-      current?: number;
-      pageSize?: number;
-      order?: SorterResult<RecordType>['order'];
-      orderBy?: SorterResult<RecordType>['field'];
-      /** 手动发起 */
-      manualInitiate?: boolean;
-    }) => {
+    async (options: RequestOptions) => {
       if (!requestDataSource) return;
 
       if (loopRequest == null) {
         setLoading(true);
       }
 
-      const { manualInitiate, ...seachOptions } = options;
+      const { manualInitiate, mode, ...seachOptions } = options;
       const search = getSearch();
 
       const params: OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType> =
@@ -219,6 +217,12 @@ export const useRequestDataSource = ({
       clearSelection();
       treeSpreadActionsRef.current?.clearExpandedRowKeys();
 
+      /** 执行相关 hooks */
+      inlineAPIRef.current.afterSearch?.({
+        manualInitiate,
+        mode,
+      });
+
       if (manualInitiate && tableKey) {
         unstateHistory.push({
           pathname: window.location.pathname,
@@ -231,6 +235,7 @@ export const useRequestDataSource = ({
       }
     },
     [
+      inlineAPIRef,
       setFieldItemsState,
       getSearch,
       syncSearchTimestamp,
@@ -263,6 +268,7 @@ export const useRequestDataSource = ({
       requestTableDataSource({
         current: defaultCurrent,
         pageSize: defaultPageSize,
+        mode: 'search',
       });
     }
   }, []);

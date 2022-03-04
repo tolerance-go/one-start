@@ -38,7 +38,13 @@ export const useHighlight = ({
   }, [highlightBadge]);
 
   const highlightTag = enableHighlight ? (
-    <Space size={5}>
+    <Space
+      size={5}
+      align="center"
+      style={{
+        height: '100%',
+      }}
+    >
       {Object.keys(mergedMeta).map((key) => {
         const config = mergedMeta[key];
         return (

@@ -1,5 +1,5 @@
 import { LoadingOutlined, SyncOutlined } from '@ant-design/icons';
-import { Badge, Button, Typography, Upload } from '@ty/antd';
+import { Badge, Button, Space, Typography, Upload } from '@ty/antd';
 import type { RcFile } from '@ty/antd/lib/upload';
 import cls from 'classnames';
 import utl from 'lodash';
@@ -27,9 +27,20 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
     actionsRef: propActionsRef,
     __shouldPush,
     __disabled,
+    className: propClassName,
   } = props;
 
-  const { text, danger, icon, tooltip, manualPush = false, block, plain, upload } = settings ?? {};
+  const {
+    text,
+    danger,
+    icon,
+    tooltip,
+    manualPush = false,
+    block,
+    plain,
+    upload,
+    size,
+  } = settings ?? {};
 
   const requestAfterSyncLoading = useLoading();
 
@@ -209,7 +220,7 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
 
       return (
         <Component
-          className={className}
+          className={cls(className, propClassName)}
           style={{
             display: block ? 'block' : undefined,
             cursor: disabled ? 'not-allowed' : 'pointer',
@@ -218,26 +229,21 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
           disabled={disabled}
           type={danger ? 'danger' : undefined}
         >
-          {renderIcon({
-            marginRight: 5,
-          })}
-          {renderProcessing({
-            marginRight: 5,
-          })}
-          {renderLoading({
-            marginRight: 5,
-          })}
-          {renderTooltip({
-            marginRight: 5,
-          })}
-          {renderText(content)}
+          <Space size={5}>
+            {renderIcon()}
+            {renderProcessing()}
+            {renderLoading()}
+            {renderTooltip()}
+            {renderText(content)}
+          </Space>
         </Component>
       );
     }
 
     return (
       <Button
-        className={className}
+        size={size}
+        className={cls(className, propClassName)}
         onClick={handleClick}
         type={settings?.type}
         disabled={disabled}

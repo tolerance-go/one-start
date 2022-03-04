@@ -246,7 +246,6 @@ export const useVirtualGrid = ({
 
   const spreadBtnDom = (
     <Button
-      size="small"
       type="text"
       onClick={() => {
         setIsSpreadAll((prev) => !prev);

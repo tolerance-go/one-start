@@ -1,12 +1,12 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-field-attachment-table
 group:
   title: fields
-  path: /one-start/fields
+  path: /components/fields
 ---
 
 # os-field-attachment-table

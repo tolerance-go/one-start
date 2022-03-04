@@ -1,12 +1,12 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-actions-operate
 group:
   title: actions
-  path: /one-start/actions
+  path: /components/actions
 ---
 
 # os-actions-operate

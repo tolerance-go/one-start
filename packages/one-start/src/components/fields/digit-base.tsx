@@ -1,8 +1,9 @@
 import type { InputNumberProps } from '@ty/antd';
+import { ConfigProvider } from '@ty/antd';
 import { Col, Input, InputNumber, Row } from '@ty/antd';
 import cls from 'classnames';
 import numeral from 'numeral';
-import React from 'react';
+import React, { useContext } from 'react';
 import type { OSDigitFieldBaseAPI, OSDigitFieldBaseType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 
@@ -21,7 +22,12 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
       onFocus,
       onBlur,
       formatter,
+      size,
     } = props;
+
+    const globalSize = useContext(ConfigProvider.SizeContext);
+
+    const accSize = size ?? globalSize;
 
     const {
       autoFocus,
@@ -102,7 +108,7 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
                 {...{
                   [addonPlacement === 'before' ? 'addonBefore' : 'addonAfter']: addon,
                 }}
-                className={cls(`${prefixCls}-input-number-unit-item`, {
+                className={cls(`${prefixCls}-input-number-unit-item`, accSize, {
                   'no-border': bordered === false,
                   'before-unit': addonPlacement === 'before',
                   'after-unit': addonPlacement === 'after',
@@ -138,6 +144,7 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
                 placeholder="请输入数值"
                 precision={precision}
                 disabled={disabled}
+                size={accSize}
               />
             </Col>
           );
@@ -194,6 +201,7 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
             placeholder={placeholder ?? '请输入数值'}
             precision={precision}
             disabled={disabled}
+            size={accSize}
           />
         );
       };

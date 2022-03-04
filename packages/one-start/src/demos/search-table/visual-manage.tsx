@@ -3,7 +3,7 @@
  */
 import { OSProviderWrapper, OSSearchTable } from '@ty-one-start/one-start';
 import delay from 'delay';
-import Mock, { Random } from 'mockjs';
+import Mock, { mock, Random } from 'mockjs';
 import React from 'react';
 
 export default () => {
@@ -240,7 +240,13 @@ export default () => {
 
             await delay(1000);
 
-            return false;
+            return mock({
+              error: false,
+              data: {
+                tplId: '@id',
+                tplName: options.values?.templateName,
+              },
+            });
           },
           requestTemplateDataSource: async (options) => {
             console.log(options);

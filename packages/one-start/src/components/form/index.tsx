@@ -52,6 +52,8 @@ import type { FormCoreActions } from './typings';
 import { useRefObject } from './use-ref-object';
 import { countLinkageLevel } from './utils/count-linkage-level';
 import { withDebounce } from '../utils/with-debounce';
+import { DEFAULT_LABEL_COL, DEFAULT_WRAPPER_COL } from './constants';
+import { PrioritizedComponentSizeContext } from '../providers/prioritized-component-size';
 
 const useAsyncInitialValues = ({
   actions,
@@ -114,6 +116,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     params: _params,
     hideEmpty = true,
     groupItemSettings,
+    size,
   } = settings ?? {};
   const formRef = useRef<FormInstance>(null);
   const [form] = Form.useForm();
@@ -133,15 +136,14 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     useState<Record<string, OSFormItemInputHistoryData[]>>();
 
   const defaultLayout = 'horizontal';
-  const defaultLabelCol = { span: 10 };
-  const defaultWrapperCol = { span: 14 };
-
   const formLayoutMode = settings?.layout ?? defaultLayout;
 
-  const formLabelCol = labelCol ?? defaultLabelCol;
-  const formWrapperCol = wrapperCol ?? defaultWrapperCol;
+  const formLabelCol = labelCol ?? DEFAULT_LABEL_COL;
+  const formWrapperCol = wrapperCol ?? DEFAULT_WRAPPER_COL;
 
   const refObectApis = useRefObject();
+
+  const pcs = useContext(PrioritizedComponentSizeContext);
 
   /**
    * TODO: 删除 form 级别的 labelCol 和 wrapperCol 使用 fieldItemsSettings 代替
@@ -1064,6 +1066,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
       >
         <div ref={formWrapperRef}>
           <Form
+            size={size ?? pcs.size}
             name={name}
             ref={formRef}
             form={form}

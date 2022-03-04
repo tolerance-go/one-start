@@ -51,6 +51,7 @@ export type RequestOptions = {
   order?: SorterResult<RecordType>['order'];
   orderBy?: SorterResult<RecordType>['field'];
   manualInitiate?: boolean;
+  mode?: 'reset' | 'search' | 'unkown';
 };
 
 export type ColumnOrdersItemMetaType = {
@@ -625,6 +626,11 @@ export interface _OSTableType<
       OSTableValueType
     >;
   };
+  hooks?: {
+    /** 当执行搜索操作后 */
+    afterSearch?: (options: Pick<RequestOptions, 'mode' | 'manualInitiate'>) => void;
+  };
+  slots?: {};
   extraBatchOperation?: (options: {
     selectedRowKeys: React.Key[];
     selectedRows: RecordType[];
@@ -928,6 +934,8 @@ export type _OSSearchTableSelfType<
       },
       {
         message?: OSResMessage;
+        tplId: string;
+        tplName?: string;
       }
     >;
     /** 请求模板列表 */

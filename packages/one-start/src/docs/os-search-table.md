@@ -1,13 +1,13 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-search-table
 order: 1
 group:
   title: tables
-  path: /one-start/tables
+  path: /components/tables
 ---
 
 # os-search-table

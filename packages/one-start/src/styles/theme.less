@@ -2,10 +2,13 @@
 @import './layout-tabs-form.less';
 @import './layout-modal-form.less';
 @import './trigger.less';
+@import './table.less';
+@import './page.less';
+@import './fields/digit-base.less';
 @import (reference) '~@ty/antd/lib/style/themes/default.less';
 
 body {
-  // 关闭抗锯齿和 ag-grid 保持一致
+  /* 关闭抗锯齿和 ag-grid 保持一致 */
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -20,7 +23,7 @@ body {
   }
 }
 
-// 会引起 loading 动画问题，这里删除
+/* 会引起 loading 动画问题，这里删除 */
 .ty-ant-btn > .anticon + span,
 .ty-ant-btn > span + .anticon {
   margin-left: 0;
@@ -164,17 +167,6 @@ body {
             }
           }
         }
-      }
-    }
-  }
-
-  &-page {
-    &-header {
-      margin-bottom: 10px;
-    }
-    &-tabs {
-      .ty-ant-tabs-nav {
-        margin-bottom: 10px;
       }
     }
   }
@@ -333,59 +325,8 @@ body {
     }
   }
 
-  &-digit-base {
-    &-input-number-unit-item {
-      .ty-ant-input {
-        display: none !important;
-      }
-      &.no-border {
-        &.disabled {
-          .ty-ant-input-group-addon {
-            color: @disabled-color;
-          }
-        }
-      }
-    }
-    &-input-number-input-item {
-      &.has-unit-before {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
-      &.has-unit-after {
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-    }
-    &-input-group {
-      /** 只有在和查看模式下混用的时候才需要无边框，因此这里设置成 read 的边距 **/
-      &.no-border {
-        .ty-ant-input-group-addon {
-          padding-right: 0;
-          padding-left: 0;
-          background-color: transparent;
-          border: none;
-        }
-        .ty-ant-input-number-input {
-          padding-right: 0;
-          padding-left: 0;
-        }
-        &.has-unit-before {
-          .ty-ant-input-number-input {
-            padding-left: 5px;
-          }
-        }
-        .ty-ant-input-number-handler-wrap {
-          background-color: transparent;
-        }
-      }
-      .ty-ant-input-group-addon {
-        padding: 0 5px;
-      }
-    }
-  }
-
   &-os-form {
-    // 当 row 有 gutter 的时候，横向隐藏 marge -x 部分
+    /* 当 row 有 gutter 的时候，横向隐藏 marge -x 部分 */
     overflow-x: hidden;
 
     &-divider-item {
@@ -442,7 +383,7 @@ body {
       .ty-ant-table-tbody {
         .ty-ant-table-row:last-child {
           > td {
-            // transparent 使得 hover 不会 resize 页面
+            /* transparent 使得 hover 不会 resize 页面 */
             border-bottom: 1px solid transparent;
           }
         }

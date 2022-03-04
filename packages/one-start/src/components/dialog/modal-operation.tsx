@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { CloseSquareOutlined, InfoCircleOutlined } from '@ant-design/icons';
-import { Button, Col, Modal, Row, Space } from '@ty/antd';
+import { Col, Modal, Row, Space } from '@ty/antd';
 import cls from 'classnames';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle } from 'react';
@@ -150,16 +150,15 @@ const OSDialogModalOperation: React.ForwardRefRenderFunction<
                   </Space>
                 </Col>
                 <Col>
-                  <Button
-                    {...{
-                      size: 'small',
-                      loading: requestAfterCancelLoading,
+                  <Trigger
+                    type="button"
+                    settings={{
+                      text: '取消',
                       disabled: cancelButtonDisabled,
                     }}
+                    loading={requestAfterCancelLoading}
                     onClick={handleCancel}
-                  >
-                    取消
-                  </Button>
+                  ></Trigger>
                 </Col>
                 {type === 'confirm' ? (
                   <Col>

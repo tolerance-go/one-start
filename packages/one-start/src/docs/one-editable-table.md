@@ -1,12 +1,12 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-editable-table
 group:
   title: tables
-  path: /one-start/tables
+  path: /components/tables
 ---
 
 # os-editable-table

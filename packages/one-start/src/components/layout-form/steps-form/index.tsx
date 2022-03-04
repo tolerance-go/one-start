@@ -218,7 +218,7 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
         spinning={requestInitialValuesLoading || requestDataSourceLoading.loading}
         indicator={<LoadingOutlined />}
       >
-        <Steps size="small" type="navigation" className={cls(clsPrefix)} current={current}>
+        <Steps type="navigation" className={cls(clsPrefix)} current={current}>
           {steps?.map((item, index) => {
             const key = getItemKey(item) ?? index;
             return <Steps.Step key={key} title={<span>{item.title}</span>}></Steps.Step>;

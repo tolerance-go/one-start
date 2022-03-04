@@ -64,7 +64,7 @@ export const useTableTopPanel = ({
         /** 设置 gutter 会引起 margin-left/right 负数的情况，引起页面滚动 */
         <Row style={{ marginBottom: 8 }} justify="space-between">
           <Col>
-            <Space size={5}>
+            <Space size={5} style={{ height: '100%' }}>
               {selectionDom}
               {expandBtn}
               {highlightTag}

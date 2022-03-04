@@ -1,4 +1,5 @@
 import type { BadgeProps, ButtonProps, UploadProps } from '@ty/antd';
+import { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 import type { RibbonProps } from '@ty/antd/lib/badge/Ribbon';
 import type { DropdownButtonProps } from '@ty/antd/lib/dropdown';
 import type { RcFile } from '@ty/antd/lib/upload';
@@ -50,6 +51,7 @@ export type OSButtonCore = {
    * @default false
    */
   manualPush?: boolean;
+  size?: SizeType;
 };
 
 export interface OSTriggerDropdownAPI extends OSTriggerAPIBase {
@@ -76,6 +78,8 @@ export interface OSTriggerDropdownType extends OSTriggerBase {
         /** 设置主副按钮 */
         split?: true;
         type?: DropdownButtonProps['type'];
+        /** 附属 icon */
+        affiliateIcon?: React.ReactNode | ((options: { dom: React.ReactNode }) => React.ReactNode);
       } & OSTriggerDropdownSettingsCore);
   requests?: {
     requestMenuData?: RequestIO<void, OSMenuItem[]>;
@@ -107,6 +111,7 @@ export interface OSTriggerDropdownType extends OSTriggerBase {
   };
   __shouldPush?: boolean;
   __disabled?: boolean;
+  className?: string;
   onMenuClick?: (options: { key: string; keyPath: string[] }) => void;
   onClick?: (options: {
     event?: React.MouseEvent<HTMLElement, MouseEvent>;
@@ -162,6 +167,7 @@ export interface OSTriggerButtonType extends OSTriggerBase {
   __shouldPush?: boolean;
   __disabled?: boolean;
   loading?: boolean;
+  className?: string;
   onClick?: (options: {
     event?: React.MouseEvent<HTMLElement, MouseEvent>;
     actions: OSTriggerButtonAPI;

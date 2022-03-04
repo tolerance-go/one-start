@@ -1,5 +1,6 @@
 import type { OSCore } from './core';
 import type { RecordType } from '../core';
+import { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 
 export interface OSPageAPI {
   /** 打开指定 tab 页面 */
@@ -26,5 +27,6 @@ export interface OSPageType extends OSCore {
     content?: React.ReactElement | Record<string, React.ReactElement>;
     /** 页面操作 */
     actions?: React.ReactNode[];
+    size?: SizeType;
   };
 }
