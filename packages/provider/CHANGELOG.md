@@ -1,6 +1,18 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0 (2022-03-04)
+
+
+### Features
+
+* 新增 license 管理原型 from 1182 ([01cd780](https://github.com/ant-design/pro-components/commit/01cd780064164b7c105360d06f7bbb158f36f543))
+
+
+
+
 
 ## [1.5.8](https://github.com/ant-design/pro-components/compare/@ty-one-components/provider@1.5.7...@ty-one-components/provider@1.5.8) (2022-02-14)
 

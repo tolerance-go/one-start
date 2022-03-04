@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.18.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.17.3...@ty-one-start/one-start@0.18.0) (2022-03-04)
+
+
+### Bug Fixes
+
+* 百分比类型字段精度提示语优化 ([210a72c](https://10.1.2.7/visual-fe/swap-modules/commits/210a72c59588ef40421d0119fa14ab68da885872))
+
+
+### Features
+
+* **os-table:** 行点击样式持久化 ([c1b371f](https://10.1.2.7/visual-fe/swap-modules/commits/c1b371ffcad91515c801e53049d262128202112f))
+* 新增 license 管理原型 from 1182 ([01cd780](https://10.1.2.7/visual-fe/swap-modules/commits/01cd780064164b7c105360d06f7bbb158f36f543))
+* 整体设计 Size 调整及搜索表格搜索视图模板管理改造 ([d517bb2](https://10.1.2.7/visual-fe/swap-modules/commits/d517bb24fb70c83fb44ff02860a99c7e22593143))
+* **tree-select:** 支持树形的展示状态 ([121fdc9](https://10.1.2.7/visual-fe/swap-modules/commits/121fdc94693729add6bbf1ed38e6748253ce9e5b))
+
+
+
+
+
 ## [0.17.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.17.2...@ty-one-start/one-start@0.17.3) (2022-02-18)
 
 **Note:** Version bump only for package @ty-one-start/one-start

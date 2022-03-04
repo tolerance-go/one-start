@@ -1,6 +1,6 @@
 {
   "name": "@ty-one-start/one-start",
-  "version": "0.17.3",
+  "version": "0.18.0",
   "description": "@ty-one-start/one-start",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -71,14 +71,14 @@
     "rc-util": "~5.13.1",
     "react-grid-layout": "^1.3.0",
     "react-highlight-words": "^0.17.0",
+    "react-text-loop": "^2.3.0",
     "react-window": "^1.8.6",
     "scheduler": "^0.20.2",
     "store2": "^2.12.0",
     "ua-parser-js": "^1.0.2",
     "umi-request": "^1.3.9",
+    "unstated-next": "^1.0.0",
     "use-context-selector": "^1.3.7",
-    "uuid": "^8.3.2",
-    "react-text-loop": "^2.3.0",
-    "unstated-next": "^1.0.0"
+    "uuid": "^8.3.2"
   }
 }

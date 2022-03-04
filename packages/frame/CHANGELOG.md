@@ -1,6 +1,18 @@
 # Change Log
 
-All notable changes to this project will be documented in this file. See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0 (2022-03-04)
+
+
+### Features
+
+* 新增 license 管理原型 from 1182 ([01cd780](https://10.1.2.7/visual-fe/swap-modules/commits/01cd780064164b7c105360d06f7bbb158f36f543))
+
+
+
+
 
 ## [6.32.14](https://github.com/ant-design/pro-components/compare/@ty-one-components/frame@6.32.13...@ty-one-components/frame@6.32.14) (2022-02-15)
 
