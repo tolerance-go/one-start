@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-proto@0.1.38...@ty-one-start/one-proto@0.2.0) (2022-03-04)
+
+
+### Features
+
+* 整体设计 Size 调整及搜索表格搜索视图模板管理改造 ([d517bb2](https://10.1.2.7/visual-fe/swap-modules/commits/d517bb24fb70c83fb44ff02860a99c7e22593143))
+
+
+
+
+
 ## [0.1.38](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-proto@0.1.37...@ty-one-start/one-proto@0.1.38) (2022-02-18)
 
 **Note:** Version bump only for package @ty-one-start/one-proto

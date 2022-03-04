@@ -1,6 +1,6 @@
 {
   "name": "@ty-one-components/provider",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "@ty-one-components/provider",
   "repository": {
     "type": "git",
@@ -8,7 +8,7 @@
   },
   "license": "MIT",
   "module": "es/index.js",
-  "types": "lib/index.d.ts",
+  "types": "es/index.d.ts",
   "files": [
     "dist",
     "es",

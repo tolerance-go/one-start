@@ -1,5 +1,5 @@
 {
-  "headPkgs": ["utils", "request", "one-start", "one-proto"],
+  "headPkgs": ["utils", "request", "provider", "frame", "one-start", "proto", "devops"],
   "scope": "ty-one-start",
   "siteTitle": "One-Start",
   "requestLibPath": "import request from '@ty-one-start/request';",
