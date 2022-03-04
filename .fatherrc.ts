@@ -6,19 +6,22 @@ import appConfigs from './.configs';
 const { headPkgs } = settings;
 const { extraBabelPlugins } = appConfigs;
 
+const pkgs =
+  process.argv[process.argv.length - 1] === '--all'
+    ? getAllPkgs({
+        headPkgs,
+      })
+    : getReadyToPublishPkgs({
+        headPkgs,
+      });
+console.log('🚀 ~ file: .fatherrc.ts ~ line 10 ~ pkgs', pkgs);
+
 export default {
   // cjs: { type: 'babel', lazy: true },
   esm: {
     type: 'babel',
     importLibToEs: true,
   },
-  pkgs:
-    process.argv[process.argv.length - 1] === '--all'
-      ? getAllPkgs({
-          headPkgs,
-        })
-      : getReadyToPublishPkgs({
-          headPkgs,
-        }),
+  pkgs,
   extraBabelPlugins,
 };
