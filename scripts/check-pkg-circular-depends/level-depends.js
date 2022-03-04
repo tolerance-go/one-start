@@ -25,6 +25,7 @@ const run = () => {
     const mergedDepends = [...inners, ...tyPkgs, ...external];
 
     const dependsPrefixChain = settings.headPkgs;
+
     dependsPrefixChain.forEach((lowLevel, index) => {
       if (pkgName.startsWith(lowLevel)) {
         const highLevels = dependsPrefixChain.slice(index + 1);

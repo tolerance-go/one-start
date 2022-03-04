@@ -167,6 +167,7 @@ export default () => {
                       b: 'B',
                       c: 'C',
                     },
+                    search: true,
                   },
                 },
                 {
@@ -176,6 +177,7 @@ export default () => {
                     dataIndex: 'select-search',
                     showSearch: true,
                     mode: 'multiple',
+                    search: true,
                   },
                   requests: {
                     requestOptions: async () => {

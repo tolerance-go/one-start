@@ -157,8 +157,8 @@ const lightFieldItems = normalFieldItems.map((item, index) => ({
 })) as OSTableFormFieldItems;
 
 export default () => {
-  const { settingForm, settings } = useDemoSettings(
-    [
+  const { settingForm, settings } = useDemoSettings({
+    fieldItems: [
       {
         type: 'switch',
         settings: {
@@ -167,10 +167,10 @@ export default () => {
         },
       },
     ],
-    {
+    initialSettings: {
       enableLightSearch: false,
     },
-  );
+  });
 
   return (
     <OSProviderWrapper>

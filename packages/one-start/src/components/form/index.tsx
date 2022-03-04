@@ -515,7 +515,6 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
       (asyncLinkageResult) => {
         if (scopeLinkCount != null) {
           if (asyncLinkCountRef.current === scopeLinkCount) {
-            console.log('🚀 ~ file: index.tsx ~ line 503 ~ asyncLinkageResult', asyncLinkageResult);
             syncValues(asyncLinkageResult);
             return;
           }
@@ -539,6 +538,10 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     });
   };
 
+  const getFieldsValue = (nameList?: NamePath[] | true, filterFunc?: (meta: Meta) => boolean) => {
+    return nameList == null ? form.getFieldsValue() : form.getFieldsValue(nameList, filterFunc);
+  };
+
   const formActionsRef = useActionsRef<OSFormAPI>({
     ...refObectApis,
     clearPrevUserCellInputs,
@@ -553,8 +556,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     setDataSource,
     getDataSource,
     validate,
-    getFieldsValue: (nameList?: NamePath[] | true, filterFunc?: (meta: Meta) => boolean) =>
-      nameList == null ? form.getFieldsValue() : form.getFieldsValue(nameList, filterFunc),
+    getFieldsValue,
     setFieldsValue,
     resetFields: () => {
       form.resetFields();
@@ -982,10 +984,6 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
   const handleAccChange: FormProps['onValuesChange'] = withDebounce(changeDebounceTimestamp)(
     (changedValues, values) => {
       changedMetaCacheRef.current = {};
-      console.log('🚀 ~ file: index.tsx ~ line 972 ~ current', {
-        changedValues,
-        values,
-      });
 
       onChange?.(values);
 

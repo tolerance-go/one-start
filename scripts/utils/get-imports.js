@@ -11,6 +11,12 @@ const getImports = (paths, inners = [], relatives = [], tyPkgs = [], external = 
     if (['.less', '.md', '.txt', '.json'].some((item) => paths.endsWith(item))) {
       return;
     }
+
+    /** 跳过内部 demo 文件 */
+    if (paths.indexOf(path.join('src', 'demos')) > -1) {
+      return;
+    }
+
     const content = fs.readFileSync(paths, { encoding: 'utf-8' });
     content.replace(new RegExp("from '(.*)';", 'ig'), (_, item) => {
       if (item.startsWith('.')) {

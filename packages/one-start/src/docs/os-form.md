@@ -132,6 +132,13 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 
 <code src="../demos/form/value-transform.tsx" />
 
+### API 接口
+
+1. getDataSource 获取静态后的数据，getFieldsValue 获取内存中的数据
+2. getFieldsValue 默认不包括 hide 字段，第一个参数传递 true 则获取当前全部数据
+
+<code src="../demos/form/apis.tsx" />
+
 <API exports='["FormSettings", "FormRequests", "FormAPI"]' src="../components/form/index.tsx"></API>
 
 ### FormFieldItems

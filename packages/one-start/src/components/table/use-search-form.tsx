@@ -1,4 +1,3 @@
-import { Row, Typography } from '@ty/antd';
 import cls from 'classnames';
 import qs from 'qs';
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
@@ -14,6 +13,7 @@ import type {
 import OSForm from '../form';
 import { DEFAULT_LABEL_COL, DEFAULT_WRAPPER_COL } from '../form/constants';
 import { useActionsRef } from '../hooks/use-actions-ref';
+import { SearchCollapse } from './components/search-collapse';
 import {
   DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW,
   searchFormVisibleLocalField,
@@ -91,7 +91,7 @@ export const useSearchForm = ({
 
   const resetSerachFormValues = () => {
     searchFormRef.current?.resetFields?.();
-    setSearchFormValues(searchFormRef.current?.getFieldsValue?.() ?? {}, {
+    setSearchFormValues(searchFormRef.current?.getFieldsValue?.(true) ?? {}, {
       update: false,
     });
   };
@@ -150,35 +150,20 @@ export const useSearchForm = ({
           (searchFormFieldItems?.length ?? 0) - 1 > shownLatestIndex
             ? {
                 type: 'custom',
-                dependencies: ['showMore'],
-                settings: ({ form }) => {
-                  return {
-                    dataIndex: 'showMore',
-                    element: (
-                      <Row justify="start">
-                        <Typography.Link
-                          onClick={() => {
-                            form.setFieldsValue({
-                              showMore: !form.getFieldValue('showMore'),
-                            });
-                          }}
-                        >
-                          {form.getFieldValue('showMore') ? '收起更多' : '展开更多'}
-                        </Typography.Link>
-                      </Row>
-                    ),
-                    colSpan: Math.round(24 / singleLineFieldItemSize),
-                    wrapperCol: {
-                      span:
-                        searchFormSettings?.fieldItemSettings?.wrapperCol?.span ??
-                        searchFormSettings?.wrapperCol?.span ??
-                        DEFAULT_WRAPPER_COL.span,
-                      offset:
-                        searchFormSettings?.fieldItemSettings?.labelCol?.span ??
-                        searchFormSettings?.labelCol?.span ??
-                        DEFAULT_LABEL_COL.span,
-                    },
-                  };
+                settings: {
+                  dataIndex: 'showMore',
+                  element: <SearchCollapse />,
+                  colSpan: Math.round(24 / singleLineFieldItemSize),
+                  wrapperCol: {
+                    span:
+                      searchFormSettings?.fieldItemSettings?.wrapperCol?.span ??
+                      searchFormSettings?.wrapperCol?.span ??
+                      DEFAULT_WRAPPER_COL.span,
+                    offset:
+                      searchFormSettings?.fieldItemSettings?.labelCol?.span ??
+                      searchFormSettings?.labelCol?.span ??
+                      DEFAULT_LABEL_COL.span,
+                  },
                 },
               }
             : [],
@@ -243,7 +228,7 @@ export const useSearchForm = ({
 
   /** 设置一次搜索表单初始值 */
   useEffect(() => {
-    setSearchFormValues(searchFormRef.current?.getFieldsValue() ?? {}, { update: false });
+    setSearchFormValues(searchFormRef.current?.getFieldsValue(true) ?? {}, { update: false });
   }, []);
 
   const actionsRef = useActionsRef(

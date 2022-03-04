@@ -1,8 +1,8 @@
 ---
 nav:
-  title: components
+  title: components-ty
   order: 1
-  path: /components
+  path: /components-ty
 title: os-actions-operate
 group:
   title: actions

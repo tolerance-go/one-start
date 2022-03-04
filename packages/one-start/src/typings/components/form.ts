@@ -354,6 +354,7 @@ export type OSFormAPI = OSFormRefObjectAPIS & {
         data: ValidateErrorEntity;
       }
   >;
+  /** nameList 传递 true，则获取全部 values，默认是现存组件字段 */
   getFieldsValue: (
     nameList?: NamePath[] | true,
     filterFunc?: (meta: Meta) => boolean,
