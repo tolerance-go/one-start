@@ -1,0 +1,53 @@
+{
+  "name": "@ty-one-components/frame",
+  "version": "0.0.0",
+  "description": "@ty-one-components/frame",
+  "repository": {
+    "type": "git",
+    "url": "git@10.1.2.7:visual-fe/swap-modules.git"
+  },
+  "license": "MIT",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "es"
+  ],
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@ty/antd": "4.x",
+    "lodash": "4.x",
+    "react": "16.x",
+    "react-dom": "16.x",
+    "umi": "3.x"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.0.0",
+    "@babel/runtime": "^7.16.3",
+    "@umijs/route-utils": "^2.0.1",
+    "@umijs/ssr-darkreader": "^4.9.44",
+    "@umijs/use-params": "^1.0.9",
+    "classnames": "^2.2.6",
+    "lodash.merge": "^4.6.2",
+    "omit.js": "^2.0.2",
+    "path-to-regexp": "2.4.0",
+    "rc-resize-observer": "^1.1.0",
+    "rc-util": "^5.0.6",
+    "swr": "^1.2.0",
+    "unstated-next": "^1.1.0",
+    "use-json-comparison": "^1.0.3",
+    "use-media-antd-query": "^1.0.6",
+    "warning": "^4.0.3",
+    "@ty-one-start/utils": "0.1.1",
+    "@ty-one-components/provider": "0.0.0"
+  }
+}

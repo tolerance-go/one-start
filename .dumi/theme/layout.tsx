@@ -18,7 +18,11 @@ export default (props: IRouteComponentProps) => {
   const { children, ...rest } = props;
   return (
     <ConfigProvider locale={zhCN}>
-      {rest.location.pathname === '/one-proto' ? children : <Layout {...rest}>{children}</Layout>}
+      {['/proto', '/devops'].includes(rest.location.pathname) ? (
+        children
+      ) : (
+        <Layout {...rest}>{children}</Layout>
+      )}
     </ConfigProvider>
   );
 };

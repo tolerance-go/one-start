@@ -406,13 +406,13 @@ export const useSearchTemplate = ({
       </Space>
     );
   }, [
+    inlineAPIRef,
     enable,
     tplManagementDom,
     currentTplId,
     updateMenuDom,
     canYouCreateOrUpdate,
     currentTplName,
-    inlineAPIRef,
   ]);
 
   useEffect(() => {
