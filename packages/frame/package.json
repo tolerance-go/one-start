@@ -1,6 +1,6 @@
 {
   "name": "@ty-one-components/frame",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "@ty-one-components/frame",
   "repository": {
     "type": "git",
@@ -33,8 +33,8 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
     "@babel/runtime": "^7.16.3",
-    "@ty-one-components/provider": "0.1.0",
-    "@ty-one-start/utils": "0.2.0",
+    "@ty-one-components/provider": "0.2.0",
+    "@ty-one-start/utils": "0.3.0",
     "@umijs/route-utils": "^2.0.1",
     "@umijs/ssr-darkreader": "^4.9.44",
     "@umijs/use-params": "^1.0.9",
