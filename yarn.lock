@@ -247,7 +247,7 @@
   resolved "http://npm.tongyu.tech/@ant-design%2ficons-svg/-/icons-svg-4.2.1.tgz#8630da8eb4471a4aabdaed7d1ff6a97dcb2cf05a"
   integrity sha1-hjDajrRHGkqr2u19H/apfcss8Fo=
 
-"@ant-design/icons@^4.0.0", "@ant-design/icons@^4.1.0", "@ant-design/icons@^4.2.1", "@ant-design/icons@^4.3.0":
+"@ant-design/icons@^4.0.0", "@ant-design/icons@^4.1.0", "@ant-design/icons@^4.2.1", "@ant-design/icons@^4.3.0", "@ant-design/icons@^4.7.0":
   version "4.7.0"
   resolved "http://npm.tongyu.tech/@ant-design%2ficons/-/icons-4.7.0.tgz#8c3cbe0a556ba92af5dc7d1e70c0b25b5179af0f"
   integrity sha1-jDy+ClVrqSr13H0ecMCyW1F5rw8=
@@ -1770,6 +1770,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.16.3", "@babel/runtime@^7.2.0":
+  version "7.17.2"
+  resolved "http://npm.tongyu.tech/@babel%2fruntime/-/runtime-7.17.2.tgz#66f68591605e59da47523c631416b18508779941"
+  integrity sha512-hzeyJyMA1YGdJTuWU0e/j4wKXrU4OMFvY2MSlaI9B7VQb0r5cxTE3EAIS2Q7Tn2RIcDkRvTA/v2JsAEhxe99uw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/template@^7.10.4", "@babel/template@^7.12.7", "@babel/template@^7.14.5", "@babel/template@^7.3.3", "@babel/template@^7.4.0", "@babel/template@^7.4.4":
   version "7.14.5"
   resolved "http://npm.tongyu.tech/@babel%2ftemplate/-/template-7.14.5.tgz#a9bc9d8b33354ff6e55a9c60d1109200a68974f4"
@@ -2290,6 +2297,11 @@
   version "1.2.0"
   resolved "http://npm.tongyu.tech/@humanwhocodes%2fobject-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha1-h956+cIxgm/daKxyWPd8Qp4OX88=
+
+"@icons/material@^0.2.4":
+  version "0.2.4"
+  resolved "http://npm.tongyu.tech/@icons%2fmaterial/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
+  integrity sha1-6QyfcXaLNzbnbX3WeD/Gwq+oi8g=
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -5448,6 +5460,16 @@
     lodash.isequal "^4.5.0"
     memoize-one "^5.1.1"
 
+"@umijs/route-utils@^2.0.1":
+  version "2.0.5"
+  resolved "http://npm.tongyu.tech/@umijs%2froute-utils/-/route-utils-2.0.5.tgz#5d4c96b444ae5a1eb29cab25300e3774689d02f7"
+  integrity sha512-HSuQebvOmupsWvzl6P2ZRH5cFOs+Wla3wlnKIG1n1bDXnAYuJ5gHpA0uAf0AZIP4wIL5xsxOqlgYqAoOuOSuKw==
+  dependencies:
+    "@qixian.cs/path-to-regexp" "^6.1.0"
+    fast-deep-equal "^3.1.3"
+    lodash.isequal "^4.5.0"
+    memoize-one "^5.1.1"
+
 "@umijs/runtime@3.4.25", "@umijs/runtime@^3.2.14":
   version "3.4.25"
   resolved "http://npm.tongyu.tech/@umijs%2fruntime/-/runtime-3.4.25.tgz#c3c976afff713c9d5d40b8f0ea6b174b24d44973"
@@ -5487,6 +5509,11 @@
   dependencies:
     "@umijs/deps" "3.5.20"
     "@umijs/utils" "3.5.20"
+
+"@umijs/ssr-darkreader@^4.9.44":
+  version "4.9.44"
+  resolved "http://npm.tongyu.tech/@umijs%2fssr-darkreader/-/ssr-darkreader-4.9.44.tgz#addee781c991af31dde0b464b077198538bd7990"
+  integrity sha512-HppwdNiHI4hA/WP29HGLr1c1Hn2+g+EDzcHrXXaad1ftfxQc52/yljDB4cX8yna8l3WcGw7CgVer7/uHRyYNMg==
 
 "@umijs/test-utils@^3.2.10":
   version "3.4.25"
@@ -5535,6 +5562,11 @@
     "@umijs/server" "3.5.20"
     "@umijs/utils" "3.5.20"
     webpack-chain "6.5.1"
+
+"@umijs/use-params@^1.0.9":
+  version "1.0.9"
+  resolved "http://npm.tongyu.tech/@umijs%2fuse-params/-/use-params-1.0.9.tgz#0ae4a87f4922d8e8e3fb4495b0f8f4de9ca38c52"
+  integrity sha512-QlN0RJSBVQBwLRNxbxjQ5qzqYIGn+K7USppMoIOVlf7fxXHsnQZ2bEsa6Pm74bt6DVQxpUE8HqvdStn6Y9FV1w==
 
 "@umijs/use-request@^1.4.3":
   version "1.4.3"
@@ -8558,6 +8590,11 @@ currently-unhandled@^0.4.1:
   integrity sha1-mI3zP+qxke95mmE2nddsF635V+o=
   dependencies:
     array-find-index "^1.0.1"
+
+cxs@^6.2.0:
+  version "6.2.0"
+  resolved "http://npm.tongyu.tech/cxs/-/cxs-6.2.0.tgz#f11ca3bdaef154b93bdadca5df70f2cb3e37ca24"
+  integrity sha1-8Ryjva7xVLk72tyl33Dyyz43yiQ=
 
 cyclist@^1.0.1:
   version "1.0.1"
@@ -14735,7 +14772,7 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
-lodash-es@^4.2.1:
+lodash-es@^4.17.15, lodash-es@^4.2.1:
   version "4.17.21"
   resolved "http://npm.tongyu.tech/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
   integrity sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4=
@@ -14885,7 +14922,7 @@ lodash@4.17.15:
   resolved "http://npm.tongyu.tech/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
 
-lodash@4.17.21, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@^4.7.0:
+lodash@4.17.21, lodash@^4.0.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@^4.17.21, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.1, lodash@^4.7.0:
   version "4.17.21"
   resolved "http://npm.tongyu.tech/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw=
@@ -15184,6 +15221,11 @@ matchmediaquery@^0.3.0:
   integrity sha1-gkftxH5Jnrt8WPYqn/nM9bgVxtc=
   dependencies:
     css-mediaquery "^0.1.2"
+
+material-colors@^1.2.1:
+  version "1.2.6"
+  resolved "http://npm.tongyu.tech/material-colors/-/material-colors-1.2.6.tgz#6d1958871126992ceecc72f4bcc4d8f010865f46"
+  integrity sha1-bRlYhxEmmSzuzHL0vMTY8BCGX0Y=
 
 mathjax-full@^3.0.0:
   version "3.1.4"
@@ -18558,6 +18600,15 @@ prop-types@15.x, prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.6.0:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
+prop-types@^15.5.7:
+  version "15.8.1"
+  resolved "http://npm.tongyu.tech/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
+  integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.13.1"
+
 prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "http://npm.tongyu.tech/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
@@ -19071,6 +19122,16 @@ rc-resize-observer@^1.0.0:
     rc-util "^5.0.0"
     resize-observer-polyfill "^1.5.1"
 
+rc-resize-observer@^1.1.0:
+  version "1.2.0"
+  resolved "http://npm.tongyu.tech/rc-resize-observer/-/rc-resize-observer-1.2.0.tgz#9f46052f81cdf03498be35144cb7c53fd282c4c7"
+  integrity sha512-6W+UzT3PyDM0wVCEHfoW3qTHPTvbdSgiA43buiy8PzmeMnfgnDeb9NjdimMXMl3/TcrvvWl5RRVdp+NqcR47pQ==
+  dependencies:
+    "@babel/runtime" "^7.10.1"
+    classnames "^2.2.1"
+    rc-util "^5.15.0"
+    resize-observer-polyfill "^1.5.1"
+
 rc-select@^12.0.0:
   version "12.1.10"
   resolved "http://npm.tongyu.tech/rc-select/-/rc-select-12.1.10.tgz#66ce43192751190b7c0e9a0ab1ef79606421ce30"
@@ -19260,6 +19321,15 @@ rc-util@^5.13.0, rc-util@~5.13.1:
     react-is "^16.12.0"
     shallowequal "^1.1.0"
 
+rc-util@^5.15.0:
+  version "5.18.1"
+  resolved "http://npm.tongyu.tech/rc-util/-/rc-util-5.18.1.tgz#80bd1450b5254655d2fbea63e3d34f6871e9be79"
+  integrity sha512-24xaSrMZUEKh1+suDOtJWfPe9E6YrwryViZcoPO0miJTKzP4qhUlV5AAlKQ82AJilz/AOHfi3l6HoX8qa1ye8w==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    react-is "^16.12.0"
+    shallowequal "^1.1.0"
+
 rc-util@^5.16.1:
   version "5.16.1"
   resolved "http://npm.tongyu.tech/rc-util/-/rc-util-5.16.1.tgz#374db7cb735512f05165ddc3d6b2c61c21b8b4e3"
@@ -19312,6 +19382,19 @@ react-base16-styling@^0.6.0:
     lodash.flow "^3.3.0"
     pure-color "^1.2.0"
 
+react-color@^2.19.3:
+  version "2.19.3"
+  resolved "http://npm.tongyu.tech/react-color/-/react-color-2.19.3.tgz#ec6c6b4568312a3c6a18420ab0472e146aa5683d"
+  integrity sha1-7GxrRWgxKjxqGEIKsEcuFGqlaD0=
+  dependencies:
+    "@icons/material" "^0.2.4"
+    lodash "^4.17.15"
+    lodash-es "^4.17.15"
+    material-colors "^1.2.1"
+    prop-types "^15.5.10"
+    reactcss "^1.2.0"
+    tinycolor2 "^1.4.1"
+
 react-copy-to-clipboard@5.0.3:
   version "5.0.3"
   resolved "http://npm.tongyu.tech/react-copy-to-clipboard/-/react-copy-to-clipboard-5.0.3.tgz#2a0623b1115a1d8c84144e9434d3342b5af41ab4"
@@ -19358,6 +19441,11 @@ react-draggable@^4.0.0, react-draggable@^4.0.3:
   dependencies:
     clsx "^1.1.1"
     prop-types "^15.6.0"
+
+react-fast-compare@2.0.4:
+  version "2.0.4"
+  resolved "http://npm.tongyu.tech/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
+  integrity sha1-6EtNRVsP7BE+BALDKTUnFRlvgfk=
 
 react-grid-layout@^1.3.0:
   version "1.3.0"
@@ -19544,6 +19632,15 @@ react-router@5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
+react-sortable-hoc@^2.0.0:
+  version "2.0.0"
+  resolved "http://npm.tongyu.tech/react-sortable-hoc/-/react-sortable-hoc-2.0.0.tgz#f6780d8aa4b922a21f3e754af542f032677078b7"
+  integrity sha1-9ngNiqS5IqIfPnVK9ULwMmdweLc=
+  dependencies:
+    "@babel/runtime" "^7.2.0"
+    invariant "^2.2.4"
+    prop-types "^15.5.7"
+
 react-syntax-highlighter@^15.4.3:
   version "15.4.3"
   resolved "http://npm.tongyu.tech/react-syntax-highlighter/-/react-syntax-highlighter-15.4.3.tgz#fffe3286677ac470b963b364916d16374996f3a6"
@@ -19564,6 +19661,15 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.9.0:
     prop-types "^15.6.2"
     react-is "^16.8.6"
     scheduler "^0.19.1"
+
+react-text-loop@^2.3.0:
+  version "2.3.0"
+  resolved "http://npm.tongyu.tech/react-text-loop/-/react-text-loop-2.3.0.tgz#c4035b1f3fb8216b34ed93f3160025fc7b1af3b7"
+  integrity sha1-xANbHz+4IWs07ZPzFgAl/Hsa87c=
+  dependencies:
+    cxs "^6.2.0"
+    react-fast-compare "2.0.4"
+    react-motion "^0.5.2"
 
 react-textarea-autosize@^8.3.2:
   version "8.3.3"
@@ -19590,6 +19696,13 @@ react@16.x, react@^16.11.0, react@^16.8.6:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
+
+reactcss@^1.2.0:
+  version "1.2.3"
+  resolved "http://npm.tongyu.tech/reactcss/-/reactcss-1.2.3.tgz#c00013875e557b1cf0dfd9a368a1c3dab3b548dd"
+  integrity sha1-wAATh15Vexzw39mjaKHD2rO1SN0=
+  dependencies:
+    lodash "^4.0.1"
 
 read-cmd-shim@^1.0.1:
   version "1.0.5"
@@ -21342,6 +21455,11 @@ store2@^2.12.0:
   resolved "http://npm.tongyu.tech/store2/-/store2-2.12.0.tgz#e1f1b7e1a59b6083b2596a8d067f6ee88fd4d3cf"
   integrity sha1-4fG34aWbYIOyWWqNBn9u6I/U088=
 
+store2@^2.13.1:
+  version "2.13.1"
+  resolved "http://npm.tongyu.tech/store2/-/store2-2.13.1.tgz#fae7b5bb9d35fc53dc61cd262df3abb2f6e59022"
+  integrity sha512-iJtHSGmNgAUx0b/MCS6ASGxb//hGrHHRgzvN+K5bvkBTN7A9RTpPSf1WSp+nPGvWCJ1jRnvY7MKnuqfoi3OEqg==
+
 stream-browserify@^2.0.1:
   version "2.0.2"
   resolved "http://npm.tongyu.tech/stream-browserify/-/stream-browserify-2.0.2.tgz#87521d38a44aa7ee91ce1cd2a47df0cb49dd660b"
@@ -22111,6 +22229,11 @@ swr@^0.3.6:
   dependencies:
     dequal "2.0.2"
 
+swr@^1.2.0:
+  version "1.2.2"
+  resolved "http://npm.tongyu.tech/swr/-/swr-1.2.2.tgz#6cae09928d30593a7980d80f85823e57468fac5d"
+  integrity sha512-ky0BskS/V47GpW8d6RU7CPsr6J8cr7mQD6+do5eky3bM0IyJaoi3vO8UhvrzJaObuTlGhPl2szodeB2dUd76Xw==
+
 symbol-observable@^1.0.3, symbol-observable@^1.1.0, symbol-observable@^1.2.0:
   version "1.2.0"
   resolved "http://npm.tongyu.tech/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
@@ -22425,6 +22548,11 @@ tiny-warning@^1.0.0, tiny-warning@^1.0.3:
   version "1.0.3"
   resolved "http://npm.tongyu.tech/tiny-warning/-/tiny-warning-1.0.3.tgz#94a30db453df4c643d0fd566060d60a875d84754"
   integrity sha1-lKMNtFPfTGQ9D9VmBg1gqHXYR1Q=
+
+tinycolor2@^1.4.1:
+  version "1.4.2"
+  resolved "http://npm.tongyu.tech/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"
+  integrity sha1-P2pNEHGtB2dtf6Ry4frECnGdiAM=
 
 tmp@^0.0.33:
   version "0.0.33"
@@ -23381,7 +23509,7 @@ use-media-antd-query@1.0.2:
   dependencies:
     react-responsive "^8.0.1"
 
-use-media-antd-query@^1.0.3:
+use-media-antd-query@^1.0.3, use-media-antd-query@^1.0.6:
   version "1.1.0"
   resolved "http://npm.tongyu.tech/use-media-antd-query/-/use-media-antd-query-1.1.0.tgz#f083ad7e292c1c0261b6bbfaac0edc3e0920d85d"
   integrity sha1-8IOtfiksHAJhtrv6rA7cPgkg2F0=

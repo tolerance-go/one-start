@@ -13,26 +13,23 @@ group:
 
 # 功能地图(建设中)
 
-## fields
-
 - tree-select
   - [树形状态展示](http://localhost:8000/one-start/fields/one-field-tree-select#%E6%A0%91%E5%BD%A2%E7%8A%B6%E6%80%81%E5%B1%95%E7%A4%BA)
 
 ## table
 
+- search: 'only'
+- initalValue
+- select showSearch
+- text-area 显示更多
+- 自动同步 url 状态
+- 搜索提示信息
 - 搜索表单
+  - 支持类 schema 方式定义搜索字段条件
+  - 支持展开收起更多
+- 轮训查询
 
-  - search: 'only'
-  - initalValue
-  - select showSearch
-  - text-area 显示更多
-  - 自动同步 url 状态
-  - 搜索提示信息
-  - 搜索表单
-    - 支持类 schema 方式定义搜索字段条件
-    - 支持展开收起更多
-  - 轮训查询
-    - 显示搜索时间戳
+  - 显示搜索时间戳
 
 - 分页管理
 

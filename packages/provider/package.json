@@ -1,0 +1,36 @@
+{
+  "name": "@ty-one-components/provider",
+  "version": "0.0.0",
+  "description": "@ty-one-components/provider",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ant-design/pro-components"
+  },
+  "license": "MIT",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "dist",
+    "es",
+    "src"
+  ],
+  "browserslist": [
+    "last 2 versions",
+    "Firefox ESR",
+    "> 1%",
+    "ie >= 11"
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.16.3",
+    "rc-util": "^5.0.1",
+    "swr": "^1.2.0"
+  },
+  "peerDependencies": {
+    "@ty/antd": ">=4.13.0",
+    "react": ">=16.8.0",
+    "umi": "3.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
