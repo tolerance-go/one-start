@@ -137,6 +137,8 @@ export const renderFormItem = (
 
       return (
         <OSFormItemBase
+          valueType={valueType}
+          fieldSettings={fieldSettings}
           historyData={options.historyData}
           className={options.className}
           readonly={options.readonly}

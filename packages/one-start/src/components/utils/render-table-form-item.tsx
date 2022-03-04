@@ -73,6 +73,8 @@ export const renderTableFormItem = (
 
       return (
         <OSFormItemBase
+          valueType={valueType}
+          fieldSettings={fieldSettings}
           className={formItemClassName}
           validateTrigger={(() => {
             if (valueType === 'layout-modal-form') {

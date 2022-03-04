@@ -4,7 +4,12 @@ import type { Rule, RuleObject } from '@ty/antd/lib/form';
 import type { ValidateStatus } from '@ty/antd/lib/form/FormItem';
 import cls from 'classnames';
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import type { OSFormItemTooltip, OSFormItemType, OSRule } from '../../../typings';
+import type {
+  OSFormItemTooltip,
+  OSFormItemType,
+  OSRule,
+  OSPercentFieldType,
+} from '../../../typings';
 import { FormInstanceContext } from '../../providers/form-context';
 import { normalizeDataIndex } from '../../utils/normalize-data-index';
 import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
@@ -29,6 +34,8 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     validateTrigger,
     readonly,
     hideItemControlLine,
+    valueType,
+    fieldSettings,
   } = props;
   const {
     tooltip,
@@ -100,6 +107,8 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
         return getNumberDigitsRule({
           integersMaxLen: osRule.settings?.integersMaxLen,
           floatsMaxLen: osRule.settings?.floatsMaxLen,
+          percent: valueType === 'percent',
+          decimalData: (fieldSettings as OSPercentFieldType['settings'])?.decimalData,
         });
       }
       if (osRule.ruleType === 'date-check') {
@@ -121,6 +130,8 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
           maxDataLabel: osRule.settings?.maxDataLabel,
           minType: osRule.settings?.minType,
           maxType: osRule.settings?.maxType,
+          percent: valueType === 'percent',
+          decimalData: (fieldSettings as OSPercentFieldType['settings'])?.decimalData,
         });
       }
       if (osRule.ruleType === 'trading-day-check') {

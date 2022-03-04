@@ -1,6 +1,7 @@
 import BigNumber from 'bignumber.js';
 import React, { useCallback } from 'react';
 import type { OSDigitFieldBaseType, OSPercentFieldAPI, OSPercentFieldType } from '../../typings';
+import { DEFAULT_DECIMAL_DATA } from '../constants/digit';
 import DigitBase from './digit-base';
 
 const OSPercentField: React.ForwardRefRenderFunction<OSPercentFieldAPI, OSPercentFieldType> = (
@@ -13,7 +14,7 @@ const OSPercentField: React.ForwardRefRenderFunction<OSPercentFieldAPI, OSPercen
     bordered,
     autoFocus,
     format = '0.[000000]',
-    decimalData = true,
+    decimalData = DEFAULT_DECIMAL_DATA,
     stringMode,
     min,
     max,
