@@ -13,6 +13,8 @@ export type NumberDigitsRuleDefaults = {
   valueType?: 'digit' | 'percent';
   minDataLabel?: string;
   maxDataLabel?: string;
+  decimalData?: boolean;
+  percent?: boolean;
 };
 
 export type OSRule =

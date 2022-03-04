@@ -1,6 +1,7 @@
 import type { Rule } from '@ty/antd/lib/form';
 import { BigNumber as BN } from 'bignumber.js';
 import type { NumberDigitsRuleDefaults } from '../../../typings';
+import { DEFAULT_DECIMAL_DATA } from '../../constants/digit';
 
 export const numberDigitsRuleDefaults: Pick<
   Required<NumberDigitsRuleDefaults>,
@@ -20,9 +21,10 @@ export const getNumberRangeRule = (options: NumberDigitsRuleDefaults): Rule => {
     maxDataIndex,
     minDataLabel,
     maxDataLabel,
-    // valueType,
-    // decimalData = true,
+    percent,
+    decimalData = DEFAULT_DECIMAL_DATA,
   } = options;
+  const isPercent = percent && decimalData;
 
   return (form) => ({
     validator(_, value?: number | string) {
@@ -32,11 +34,15 @@ export const getNumberRangeRule = (options: NumberDigitsRuleDefaults): Rule => {
 
       const throwMinError = (minVal: number | string) => {
         if (!new BN(value)[minType](minVal)) {
+          const minValStr = isPercent ? `${new BN(minVal).multipliedBy(100).toNumber()}%` : minVal;
+
           return Promise.reject(
             new Error(
-              `绝对数值最小${minType === 'isGreaterThanOrEqualTo' ? '(包括)' : '(不包括)'}为 ${
-                minDataLabel ? `${minDataLabel}(${minVal})` : minVal
-              }，当前输入为 ${value}`,
+              `数值最小${minType === 'isGreaterThanOrEqualTo' ? '(包括)' : '(不包括)'}为 ${
+                minDataLabel ? `${minDataLabel}${minValStr}` : `${minValStr}`
+              }，当前输入为 ${
+                isPercent ? `${new BN(value).multipliedBy(100).toNumber()}%` : value
+              }`,
             ),
           );
         }
@@ -59,11 +65,14 @@ export const getNumberRangeRule = (options: NumberDigitsRuleDefaults): Rule => {
 
       const throwMaxError = (maxVal: number | string) => {
         if (!new BN(value)[maxType](maxVal)) {
+          const maxValStr = isPercent ? `${new BN(maxVal).multipliedBy(100).toNumber()}%` : maxVal;
           return Promise.reject(
             new Error(
-              `绝对数值最大${maxType === 'isLessThanOrEqualTo' ? '(包括)' : '(不包括)'}为 ${
-                maxDataLabel ? `${maxDataLabel}(${maxVal})` : maxVal
-              }，当前输入为 ${value}`,
+              `数值最大${maxType === 'isLessThanOrEqualTo' ? '(包括)' : '(不包括)'}为 ${
+                maxDataLabel ? `${maxDataLabel}${maxValStr}` : `${maxValStr}`
+              }，当前输入为 ${
+                isPercent ? `${new BN(value).multipliedBy(100).toNumber()}%` : value
+              }`,
             ),
           );
         }

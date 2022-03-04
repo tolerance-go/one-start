@@ -3,7 +3,7 @@ nav:
   title: components
   order: 1
   path: /components
-title: 功能地图
+title: 功能地图(建设中)
 order: -1
 group:
   order: -1
@@ -16,7 +16,10 @@ group:
 ## fields
 
 - tree-select
-  - [树形状态展示](http://localhost:8000/one-start/fields/one-field-tree-select#%E6%A0%91%E5%BD%A2%E7%8A%B6%E6%80%81%E5%B1%95%E7%A4%BA)
+
+  - [树形状态展示](/components/fields/one-field-tree-select#%E6%A0%91%E5%BD%A2%E7%8A%B6%E6%80%81%E5%B1%95%E7%A4%BA)
+
+- [静态验证规则](/components/forms/os-form#%E8%A1%A8%E5%8D%95%E5%86%85%E7%BD%AE%E9%AA%8C%E8%AF%81)
 
 ## table
 
@@ -29,7 +32,7 @@ group:
 - 搜索表单
   - 支持类 schema 方式定义搜索字段条件
   - 支持展开收起更多
-- [行支持点击选中样式](http://localhost:8000/components/tables/os-table#%E8%A1%8C%E6%94%AF%E6%8C%81%E7%82%B9%E5%87%BB%E9%80%89%E4%B8%AD%E6%A0%B7%E5%BC%8F)
+- [行支持点击选中样式](/components/tables/os-table#%E8%A1%8C%E6%94%AF%E6%8C%81%E7%82%B9%E5%87%BB%E9%80%89%E4%B8%AD%E6%A0%B7%E5%BC%8F)
 - 轮训查询
 
   - 显示搜索时间戳

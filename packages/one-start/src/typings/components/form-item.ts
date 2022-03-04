@@ -81,4 +81,6 @@ export interface OSFormItemType<Value = any> extends OSCore {
   readonly?: boolean;
   /** 是否隐藏 formItem control 部分下面的线 */
   hideItemControlLine?: boolean;
+  valueType?: string;
+  fieldSettings?: OSCore['settings'];
 }

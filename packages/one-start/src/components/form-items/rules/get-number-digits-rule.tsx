@@ -1,10 +1,14 @@
 import type { RuleObject } from '@ty/antd/lib/form';
+import BN from 'bignumber.js';
+import { DEFAULT_DECIMAL_DATA } from '../../constants/digit';
 
 export const getNumberDigitsRule = (options: {
   integersMaxLen?: number;
   floatsMaxLen?: number;
+  percent?: boolean;
+  decimalData?: boolean;
 }): RuleObject => {
-  const { integersMaxLen, floatsMaxLen } = options;
+  const { integersMaxLen, floatsMaxLen, percent, decimalData = DEFAULT_DECIMAL_DATA } = options;
 
   return {
     validator(_, value?: number | string) {
@@ -43,8 +47,13 @@ export const getNumberDigitsRule = (options: {
       if (floatResult.error) {
         return Promise.reject(
           new Error(
-            `绝对数值小数位最长为 ${floatsMaxLen} 位${withStr(
-              (item) => `，当前输入为 ${item} 位`,
+            `输入数字小数位最长为 ${
+              percent && decimalData ? new BN(floatsMaxLen!).minus(2).toNumber() : floatsMaxLen
+            } 位${withStr(
+              (item) =>
+                `，当前输入为 ${
+                  percent && decimalData ? new BN(item).minus(2).toNumber() : item
+                } 位`,
               floatResult.current,
             )}`,
           ),
@@ -55,8 +64,13 @@ export const getNumberDigitsRule = (options: {
       if (integersResult.error) {
         return Promise.reject(
           new Error(
-            `绝对数值整数位最长为 ${integersMaxLen} 位${withStr(
-              (item) => `，当前输入为 ${item} 位`,
+            `输入整数位最长为 ${
+              percent && decimalData ? new BN(integersMaxLen!).plus(2).toNumber() : integersMaxLen
+            } 位${withStr(
+              (item) =>
+                `，当前输入为 ${
+                  percent && decimalData ? new BN(item).plus(2).toNumber() : item
+                } 位`,
               integersResult.current,
             )}`,
           ),

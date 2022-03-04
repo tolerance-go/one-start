@@ -72,6 +72,104 @@ export default () => {
                 ],
               },
             },
+            {
+              type: 'percent',
+              settings: {
+                title: '数字(%)精度校验(value为小数形式)',
+                dataIndex: 'd',
+                rules: [
+                  {
+                    ruleType: 'digital-accuracy',
+                    settings: {
+                      floatsMaxLen: 6,
+                      integersMaxLen: 1,
+                    },
+                  },
+                ],
+                decimalData: true,
+              },
+            },
+            {
+              type: 'percent',
+              settings: {
+                title: '数字(%)精度校验(value为非小数形式)',
+                dataIndex: 'e',
+                rules: [
+                  {
+                    ruleType: 'digital-accuracy',
+                    settings: {
+                      floatsMaxLen: 6,
+                      integersMaxLen: 1,
+                    },
+                  },
+                ],
+                decimalData: false,
+              },
+            },
+            {
+              type: 'percent',
+              settings: {
+                title: '数字(%)min校验（包括min）',
+                dataIndex: 'f',
+                rules: [
+                  {
+                    ruleType: 'digital-scope',
+                    settings: {
+                      min: 1,
+                      minType: 'isGreaterThanOrEqualTo',
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              type: 'percent',
+              settings: {
+                title: '数字(%)min校验（不包括min）',
+                dataIndex: 'g',
+                rules: [
+                  {
+                    ruleType: 'digital-scope',
+                    settings: {
+                      min: 1,
+                      minType: 'isGreaterThan',
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              type: 'percent',
+              settings: {
+                title: '数字(%)max校验（包括max）',
+                dataIndex: 'h',
+                rules: [
+                  {
+                    ruleType: 'digital-scope',
+                    settings: {
+                      max: 1,
+                      maxType: 'isLessThanOrEqualTo',
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              type: 'percent',
+              settings: {
+                title: '数字(%)max校验（不包括max）',
+                dataIndex: 'i',
+                rules: [
+                  {
+                    ruleType: 'digital-scope',
+                    settings: {
+                      max: 1,
+                      maxType: 'isLessThan',
+                    },
+                  },
+                ],
+              },
+            },
           ],
         }}
       ></OSForm>
