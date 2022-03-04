@@ -1,12 +1,12 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-actions-report-download
 group:
   title: actions
-  path: /one-start/actions
+  path: /components/actions
 ---
 
 # os-actions-report-download

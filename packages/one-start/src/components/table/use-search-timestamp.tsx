@@ -1,7 +1,5 @@
-import { Typography } from '@ty/antd';
-import { useState, useMemo } from 'react';
-import type { RequiredRecursion } from '../../typings';
-import type { OSTableType, OSTableAPI } from '../../typings';
+import { useMemo, useState } from 'react';
+import type { OSTableAPI, OSTableType, RequiredRecursion } from '../../typings';
 
 export const useSearchTimestamp = ({
   pagination,
@@ -16,20 +14,21 @@ export const useSearchTimestamp = ({
   enableSearch?: boolean;
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
 }) => {
-  const [timeStr, setTimeStr] = useState<string>();
+  // const [timeStr, setTimeStr] = useState<string>();
+  const [, setTimeStr] = useState<string>();
   const dom = useMemo(() => {
     if (loading) return null;
     if (enableSearch || loopRequest != null) {
-      const text = (
-        <Typography.Text
-          type="secondary"
-          style={{
-            fontSize: 13,
-          }}
-        >
-          最近搜索时间: {timeStr ?? '--'}
-        </Typography.Text>
-      );
+      const text =
+        // <Typography.Text
+        //   type="secondary"
+        //   style={{
+        //     fontSize: 13,
+        //   }}
+        // >
+        //   最近搜索时间: {timeStr ?? '--'}
+        // </Typography.Text>
+        null;
 
       if (pagination !== false) {
         if (pagination?.hideOnSinglePage) {
@@ -56,7 +55,7 @@ export const useSearchTimestamp = ({
       return <div style={{ marginTop: 5 }}>{text}</div>;
     }
     return null;
-  }, [enableSearch, loading, pagination, tableActionsRef, timeStr, loopRequest]);
+  }, [enableSearch, loading, pagination, tableActionsRef, loopRequest]);
 
   return {
     dom,

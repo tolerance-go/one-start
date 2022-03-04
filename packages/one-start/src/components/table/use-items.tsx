@@ -433,7 +433,6 @@ export const useItems = ({
                 <Col flex={'auto'}>
                   <Button
                     style={{ fontSize: 12 }}
-                    size="small"
                     block
                     type="text"
                     onClick={() => {
@@ -452,7 +451,6 @@ export const useItems = ({
                 <Col flex={'auto'}>
                   <Button
                     style={{ fontSize: 12 }}
-                    size="small"
                     type="link"
                     block
                     onClick={() => {

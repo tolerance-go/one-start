@@ -1,12 +1,12 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-field-time-lag
 group:
   title: fields
-  path: /one-start/fields
+  path: /components/fields
 ---
 
 # os-field-time-lag

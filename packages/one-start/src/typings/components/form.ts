@@ -31,6 +31,7 @@ import type { NamePath } from '@ty/antd/lib/form/interface';
 import type { Meta } from 'rc-field-form/es/interface';
 import type { ValueAsyncLinkage, ValueLinkage } from './linkage';
 import type { OSFormItemInputHistoryData } from './form-item';
+import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 
 export interface OSFormGroupFieldType extends OSField {
   type?: 'group';
@@ -374,6 +375,7 @@ export interface _OSFormType<
   StaticCustomValueType extends CreateStaticPureFormFieldItemConfigsType,
 > extends OSCore {
   settings?: {
+    size?: SizeType;
     changeDebounceTimestamp?: number;
     /**
      * 按照数组顺序进行 value 的改变

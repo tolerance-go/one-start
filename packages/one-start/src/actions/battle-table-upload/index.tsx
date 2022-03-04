@@ -444,12 +444,10 @@ const OSBattleTableUpload = (props: OSBattleTableUploadType) => {
                       key={meta.name}
                     >
                       <List
-                        size="small"
                         itemLayout="horizontal"
                         dataSource={meta.errorMessages}
                         pagination={{
                           pageSize: 15,
-                          size: 'small',
                         }}
                         renderItem={(item, index) => (
                           <List.Item

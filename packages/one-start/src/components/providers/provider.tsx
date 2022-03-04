@@ -25,6 +25,7 @@ import type {
 } from '../../typings';
 import OSDialog from '../dialog';
 import { useRefsRef } from './references';
+import { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 
 export const globalRefKeys = {
   dialogs: {
@@ -96,11 +97,15 @@ export const OSReferencesGlobalContext = React.createContext<
   React.RefObject<OSReferencesCollectorType<typeof globalRefKeys>>
 >(React.createRef());
 
-const OSProviderWrapper = (props: PropsWithChildren<{}>) => {
+const OSProviderWrapper = (
+  props: PropsWithChildren<{
+    size?: SizeType;
+  }>,
+) => {
   const { refKeys, refsRef } = useRefsRef(globalRefKeys);
 
   return (
-    <OSConfigProviderWrapper>
+    <OSConfigProviderWrapper size={props.size}>
       <ExtraValueTypesContext.Provider value={valueTypes}>
         <OSReferencesGlobalContext.Provider value={refsRef}>
           <OSReferencesCollectorProviderWrapper ref={refsRef}>

@@ -57,7 +57,7 @@ const PlaygroundSettings: React.FC<{
           </div>
         }
       >
-        <Tabs size="small" defaultActiveKey="tree-data">
+        <Tabs defaultActiveKey="tree-data">
           <Tabs.TabPane tab="树形数据" key="tree-data">
             <Tree
               className={`${clsPrefix}-tree`}

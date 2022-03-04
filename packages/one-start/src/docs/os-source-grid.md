@@ -1,12 +1,12 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: os-source-grid
 group:
   title: tables
-  path: /one-start/tables
+  path: /components/tables
 ---
 
 # os-source-grid

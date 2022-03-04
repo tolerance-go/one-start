@@ -160,6 +160,7 @@ export const renderRowActions =
                 settings={{
                   type: 'link',
                   text: '详情',
+                  size: 'small',
                   ...triggerSettings,
                   manualPush,
                 }}
@@ -248,6 +249,7 @@ export const renderRowActions =
                 settings={{
                   type: 'link',
                   text: '编辑',
+                  size: 'small',
                   ...triggerSettings,
                   manualPush,
                 }}
@@ -309,6 +311,7 @@ export const renderRowActions =
                 settings={{
                   type: 'link',
                   text: '删除',
+                  size: 'small',
                   danger: true,
                   ...settingsWithTrigger,
                 }}

@@ -9,6 +9,7 @@ import type {
 } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import { useSearchTemplate } from './use-search-template';
+import { useSearchSnapshotState } from './use-search-snapshot-state';
 
 const OSSearchTable: React.ForwardRefRenderFunction<OSSearchTableAPI, OSSearchTableType> = (
   props,
@@ -19,7 +20,19 @@ const OSSearchTable: React.ForwardRefRenderFunction<OSSearchTableAPI, OSSearchTa
 
   const sourceTableRef = useRef<OSSourceTableAPI>(null);
 
+  const { canYouCreateOrUpdate, disableSnapshotCreator, activeSnapshotCreator } =
+    useSearchSnapshotState({
+      sourceTableRef,
+    });
+
   const { createOrUpdateTempldateDom } = useSearchTemplate({
+    afterChangeApplyedSnapshot: () => {
+      disableSnapshotCreator();
+    },
+    afterUpdateSnapshotSuccess: () => {
+      disableSnapshotCreator();
+    },
+    canYouCreateOrUpdate,
     requestUpdateSearchTempldate: requests?.requestUpdateSearchTempldate,
     requestApplayTemplateSearchValues: requests?.requestApplayTemplateSearchValues,
     requestCreateTemplate: requests?.requestCreateTemplate,
@@ -50,6 +63,13 @@ const OSSearchTable: React.ForwardRefRenderFunction<OSSearchTableAPI, OSSearchTa
             }
           : undefined
       }
+      hooks={{
+        afterSearch: ({ mode }) => {
+          if (mode === 'search' || mode === 'reset') {
+            activeSnapshotCreator();
+          }
+        },
+      }}
     />
   );
 };

@@ -1,5 +1,6 @@
+import { Badge } from '@ty/antd';
+import cls from 'classnames';
 import React, { useContext, useEffect, useImperativeHandle, useRef } from 'react';
-import { OSReferencesCollectorDispatchContext } from '../providers/references';
 import type {
   OSTriggerAPI,
   OSTriggerButtonAPI,
@@ -8,21 +9,29 @@ import type {
   OSTriggerDropdownType,
   OSTriggerType,
 } from '../../typings';
+import { PrioritizedComponentSizeContext } from '../providers/prioritized-component-size';
+import { OSReferencesCollectorDispatchContext } from '../providers/references';
+import { useClsPrefix } from '../utils/use-cls-prefix';
 import OSTriggerButton from './trigger-button';
 import OSTriggerDropdown from './trigger-dropdown';
-import { Badge } from '@ty/antd';
-import { useClsPrefix } from '../utils/use-cls-prefix';
-import cls from 'classnames';
 
 const OSTrigger: React.ForwardRefRenderFunction<OSTriggerAPI, OSTriggerType> = (props, ref) => {
   const { type, refKey, ...rest } = props;
 
-  const { badge, badgeWrapperStyle, ...resetSettings } = rest.settings ?? {};
+  const { badge, badgeWrapperStyle, size, ...resetSettings } = rest.settings ?? {};
 
   const inlineRef = useRef<OSTriggerAPI>(null);
   const referencesDispatch = useContext(OSReferencesCollectorDispatchContext);
 
   const clsPrefix = useClsPrefix('os-trigger');
+
+  const pcs = useContext(PrioritizedComponentSizeContext);
+  const accSize = size ?? pcs.size;
+
+  const accSettings = {
+    ...resetSettings,
+    size: accSize,
+  };
 
   useImperativeHandle(ref, () => {
     const apis: OSTriggerAPI = inlineRef.current!;
@@ -91,15 +100,17 @@ const OSTrigger: React.ForwardRefRenderFunction<OSTriggerAPI, OSTriggerType> = (
     return trigger;
   };
 
+  const className = badge ? cls('over-badge', `badge-type-${badge.type}`) : undefined;
+
   if (type === 'button') {
     return renderTriggerWrapBadge(
-      <OSTriggerButton ref={inlineRef} {...rest} settings={resetSettings} />,
+      <OSTriggerButton ref={inlineRef} {...rest} settings={accSettings} className={className} />,
     );
   }
 
   if (type === 'dropdown') {
     return renderTriggerWrapBadge(
-      <OSTriggerDropdown ref={inlineRef} {...rest} settings={resetSettings} />,
+      <OSTriggerDropdown ref={inlineRef} {...rest} settings={accSettings} className={className} />,
     );
   }
 

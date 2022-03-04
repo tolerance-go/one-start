@@ -1,14 +1,14 @@
 ---
 nav:
-  title: one-start
+  title: components
   order: 1
-  path: /one-start
+  path: /components
 title: 功能地图
 order: -1
 group:
   order: -1
   title: general
-  path: /one-start/general
+  path: /components/general
 ---
 
 # 功能地图(建设中)

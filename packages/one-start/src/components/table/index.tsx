@@ -1,6 +1,6 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import type { FormInstance, TableProps } from '@ty/antd';
-import { Form, Table } from '@ty/antd';
+import { ConfigProvider, Form, Table } from '@ty/antd';
 import type { FormProps } from '@ty/antd/es/form/Form';
 import type { SorterResult } from '@ty/antd/es/table/interface';
 import type { NamePath } from '@ty/antd/lib/form/interface';
@@ -30,12 +30,14 @@ import type {
   OSTableFormGroupType,
   OSTableType,
   OSTableValueType,
+  PrioritizedComponentSizeContextValue,
   RecordType,
   SettingsDataNode,
   TableCoreActions,
 } from '../../typings';
 import { useActionsRef } from '../hooks/use-actions-ref';
 import { ExtraValueTypesContext } from '../providers/extra-value-types';
+import { PrioritizedComponentSizeContext } from '../providers/prioritized-component-size';
 import { OSReferencesCollectorDispatchContext } from '../providers/references';
 import { TableWrapperContext } from '../providers/table-context';
 import { parseTableValue } from '../utils/parse-table-value';
@@ -77,6 +79,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   const {
     settings,
     requests,
+    hooks,
     value,
     autoRequestWhenMounted: propsAutoRequestWhenMounted = true,
     onChange,
@@ -105,9 +108,13 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     autoRequestWhenMounted: userAutoRequestWhenMounted,
   } = settings ?? {};
 
+  const { afterSearch } = hooks ?? {};
+
   const autoRequestWhenMounted = userAutoRequestWhenMounted ?? propsAutoRequestWhenMounted;
 
   const [fieldItemsState, setFieldItemsState] = useState<typeof __fieldItems>();
+
+  const globalSize = useContext(ConfigProvider.SizeContext);
 
   const clsPrefix = useClsPrefix('os-table');
   const rowKey = props.settings?.rowKey ?? 'id';
@@ -584,6 +591,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   });
 
   const { loading, totalCount, current } = useRequestDataSource({
+    afterSearch,
     setFieldItemsState,
     loopRequest,
     tableKey,
@@ -783,67 +791,77 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     setSelectedRows,
   ]);
 
+  const prioritizedComSize = useMemo(() => {
+    return {
+      size: globalSize,
+    } as PrioritizedComponentSizeContextValue;
+  }, [globalSize]);
+
   return (
     <TableWrapperContext.Provider value={tableWrapRef}>
       <div ref={tableWrapRef}>
         {tableTopPanel}
-        <Form
-          form={tableWrapForm}
-          className={cls(clsPrefix, props.className)}
-          ref={tableWrapFormRef}
-          onValuesChange={(changedValues, values) => {
-            latestUserInputValueRef.current = changedValues;
+        <PrioritizedComponentSizeContext.Provider value={prioritizedComSize}>
+          <Form
+            /** 影响表格 cell 内第一层 */
+            size="small"
+            form={tableWrapForm}
+            className={cls(clsPrefix, props.className)}
+            ref={tableWrapFormRef}
+            onValuesChange={(changedValues, values) => {
+              latestUserInputValueRef.current = changedValues;
 
-            handleValueChange(changedValues, values);
-          }}
-        >
-          <div
-            ref={wrapRef}
-            style={{
-              position: 'relative',
-              maxWidth:
-                tableMaxWidth != null
-                  ? tableMaxWidth - (uaparser.getOS().name === 'Windows' ? 17 : 0)
-                  : undefined,
+              handleValueChange(changedValues, values);
             }}
           >
-            <Table
-              tableLayout="fixed"
-              loading={{
-                indicator: <LoadingOutlined />,
-                spinning: loading,
+            <div
+              ref={wrapRef}
+              style={{
+                position: 'relative',
+                maxWidth:
+                  tableMaxWidth != null
+                    ? tableMaxWidth - (uaparser.getOS().name === 'Windows' ? 17 : 0)
+                    : undefined,
               }}
-              rowSelection={finalRowSelection}
-              rowKey={rowKey}
-              columns={mergedColumns}
-              dataSource={visualDataSource ?? dataSource}
-              onChange={handleTableChange}
-              onRow={(row, index) => {
-                return {
-                  className: getRowClassName(row, index),
-                };
-              }}
-              expandable={{
-                expandedRowKeys,
-                onExpandedRowsChange: (_expandedRowKeys) => {
-                  setExpandedRowKeys(_expandedRowKeys);
-                },
-              }}
-              pagination={finalPagination}
-              scroll={{
-                x: totalTableWidth,
-                y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
-              }}
-              components={{
-                header: {
-                  wrapper: props.headerWrapper,
-                  cell: ResizeableHeaderCell,
-                },
-              }}
-            />
-            {searchTimestampDom}
-          </div>
-        </Form>
+            >
+              <Table
+                tableLayout="fixed"
+                loading={{
+                  indicator: <LoadingOutlined />,
+                  spinning: loading,
+                }}
+                rowSelection={finalRowSelection}
+                rowKey={rowKey}
+                columns={mergedColumns}
+                dataSource={visualDataSource ?? dataSource}
+                onChange={handleTableChange}
+                onRow={(row, index) => {
+                  return {
+                    className: getRowClassName(row, index),
+                  };
+                }}
+                expandable={{
+                  expandedRowKeys,
+                  onExpandedRowsChange: (_expandedRowKeys) => {
+                    setExpandedRowKeys(_expandedRowKeys);
+                  },
+                }}
+                pagination={finalPagination}
+                scroll={{
+                  x: totalTableWidth,
+                  y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
+                }}
+                components={{
+                  header: {
+                    wrapper: props.headerWrapper,
+                    cell: ResizeableHeaderCell,
+                  },
+                }}
+              />
+              {searchTimestampDom}
+            </div>
+          </Form>
+        </PrioritizedComponentSizeContext.Provider>
       </div>
     </TableWrapperContext.Provider>
   );

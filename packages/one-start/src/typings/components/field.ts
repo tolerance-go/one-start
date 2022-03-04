@@ -20,7 +20,8 @@ import type { Component } from 'react';
 import type { OSResMessage } from './message';
 import type { RecordType } from '../core';
 import type { OSCore, RequestIO } from './core';
-import { OSTriggerButtonType } from './trigger';
+import type { OSTriggerButtonType } from './trigger';
+import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 
 export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
   type?: string;
@@ -36,6 +37,9 @@ export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
 
 export type OSFieldBaseConfigs<ValueType = any> = {
   onChangeHook?: (value?: ValueType) => void;
+  size?: SizeType;
+  /** 是否在表格 cell 中 */
+  inTableCell?: boolean;
 };
 
 export type OSFieldBaseSettings = {
@@ -47,6 +51,8 @@ export type OSFieldBaseSettings = {
   disabled?: boolean;
   /** 输入提示信息 */
   placeholder?: string;
+  /** 尺寸大小 */
+  size?: SizeType;
 };
 
 export type OSDigitFieldValueType = string | number;

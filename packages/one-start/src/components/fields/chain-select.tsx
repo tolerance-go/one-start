@@ -42,7 +42,6 @@ const OSChainSelectField: React.ForwardRefRenderFunction<
             <Tag closable={closable} onClose={onClose}>
               <Space>
                 <Badge
-                  size="small"
                   count={utl.findIndex(_value, (item) => item === value) + 1}
                   style={{ backgroundColor: '#2db7f5', display: 'inline-block' }}
                 />
@@ -61,7 +60,7 @@ const OSChainSelectField: React.ForwardRefRenderFunction<
               return (
                 <span>
                   <Space>
-                    <Badge size="small" count={index + 1} style={{ backgroundColor: '#2db7f5' }} />
+                    <Badge count={index + 1} style={{ backgroundColor: '#2db7f5' }} />
                     {optionsMap?.[item]}
                   </Space>
                   {index === chainVal.length - 1 ? null : (

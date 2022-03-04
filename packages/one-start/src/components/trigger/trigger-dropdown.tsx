@@ -1,4 +1,4 @@
-import { DownOutlined, LoadingOutlined } from '@ant-design/icons';
+import { DownOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
 import type { DropDownProps } from '@ty/antd';
 import { Button, Dropdown, Menu, Space, Typography, Upload } from '@ty/antd';
 import type { RcFile } from '@ty/antd/lib/upload';
@@ -6,8 +6,6 @@ import utl from 'lodash';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import type { ReactNode } from 'react';
 import React, { useContext, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { OSDialogAPIContext } from '../dialog/contexts';
-import { useActionsRef } from '../hooks/use-actions-ref';
 import type {
   OSMenuItem,
   OSTriggerDropdownAPI,
@@ -15,6 +13,8 @@ import type {
   OSTriggerTooltip,
   OSTriggerUpload,
 } from '../../typings';
+import { OSDialogAPIContext } from '../dialog/contexts';
+import { useActionsRef } from '../hooks/use-actions-ref';
 import { logRequestMessage } from '../utils/log-request-message';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { renderTooltip as renderTooltipUtl } from './utils/render-tooltip';
@@ -31,6 +31,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     onMenuClick,
     __shouldPush,
     __disabled,
+    className: propClassName,
   } = props;
 
   const trigger: DropDownProps['trigger'] = ['click'];
@@ -46,7 +47,10 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     block,
     upload,
     overlayZIndex,
+    size,
   } = settings ?? {};
+
+  const affiliateIcon = settings?.split === true ? settings.affiliateIcon : undefined;
 
   const [requestAfterMenuClickLoading, setRequestAfterMenuClickLoading] = useState<
     Record<string, boolean>
@@ -359,6 +363,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
       const Component = settings?.type === 'link' ? Typography.Link : Typography.Text;
       return (
         <Component
+          className={propClassName}
           style={{
             display: block ? 'block' : undefined,
             cursor: disabled ? 'not-allowed' : 'pointer',
@@ -383,6 +388,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
 
     return (
       <Button
+        size={size}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         type={settings?.type}
@@ -392,6 +398,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
           marginRight: 5,
         })}
         block={block}
+        className={propClassName}
       >
         {renderTooltip(tooltip, {
           marginRight: 5,
@@ -422,6 +429,8 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     if (settings?.split) {
       return (
         <Dropdown.Button
+          size={size}
+          className={propClassName}
           trigger={trigger}
           onClick={(event) => {
             if (requestAfterClickLoading) return;
@@ -437,6 +446,25 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
           overlayStyle={{
             zIndex: overlayZIndex,
           }}
+          icon={
+            typeof affiliateIcon === 'function'
+              ? affiliateIcon({
+                  dom: (
+                    <EllipsisOutlined
+                      style={{
+                        color: settings.disabled ? '#aaa' : undefined,
+                      }}
+                    />
+                  ),
+                })
+              : affiliateIcon ?? (
+                  <EllipsisOutlined
+                    style={{
+                      color: settings.disabled ? '#aaa' : undefined,
+                    }}
+                  />
+                )
+          }
         >
           <Space size={5}>
             {renderLoading()}

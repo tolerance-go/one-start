@@ -52,7 +52,6 @@ export const useSearchSwitch = ({
 
   const resetButtonDom = searchFormVisible ? (
     <Button
-      size="small"
       key="reset-btn"
       onClick={() => {
         resetSerachFormValues();
@@ -71,7 +70,6 @@ export const useSearchSwitch = ({
 
   const searchButtonDom = searchFormVisible ? (
     <Button
-      size="small"
       type="primary"
       key="search-btn"
       onClick={() => {
@@ -96,7 +94,6 @@ export const useSearchSwitch = ({
           return val;
         })
       }
-      size="small"
       type="link"
     >
       <span>{searchFormVisible ? '收起' : '展开'}</span>
