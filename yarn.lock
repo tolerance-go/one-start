@@ -4541,6 +4541,14 @@
   resolved "http://npm.tongyu.tech/@types%2fqs/-/qs-6.9.6.tgz#df9c3c8b31a247ec315e6996566be3171df4b3b1"
   integrity sha1-35w8izGiR+wxXmmWVmvjFx30s7E=
 
+"@types/react-color@^3.0.6":
+  version "3.0.6"
+  resolved "http://npm.tongyu.tech/@types%2freact-color/-/react-color-3.0.6.tgz#602fed023802b2424e7cd6ff3594ccd3d5055f9a"
+  integrity sha1-YC/tAjgCskJOfNb/NZTM09UFX5o=
+  dependencies:
+    "@types/react" "*"
+    "@types/reactcss" "*"
+
 "@types/react-copy-to-clipboard@^4.3.0":
   version "4.3.0"
   resolved "http://npm.tongyu.tech/@types%2freact-copy-to-clipboard/-/react-copy-to-clipboard-4.3.0.tgz#8e07becb4f11cfced4bd36038cb5bdf5c2658be5"
@@ -4679,6 +4687,13 @@
     "@types/prop-types" "*"
     "@types/scheduler" "*"
     csstype "^3.0.2"
+
+"@types/reactcss@*":
+  version "1.2.6"
+  resolved "http://npm.tongyu.tech/@types%2freactcss/-/reactcss-1.2.6.tgz#133c1e7e896f2726370d1d5a26bf06a30a038bcc"
+  integrity sha1-EzwefolvJyY3DR1aJr8GowoDi8w=
+  dependencies:
+    "@types/react" "*"
 
 "@types/resolve@1.17.1":
   version "1.17.1"
@@ -23377,7 +23392,7 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-unstated-next@^1.1.0:
+unstated-next@^1.0.0, unstated-next@^1.1.0:
   version "1.1.0"
   resolved "http://npm.tongyu.tech/unstated-next/-/unstated-next-1.1.0.tgz#7bb4911a12fdf3cc8ad3eb11a0b315e4a8685ea8"
   integrity sha1-e7SRGhL988yK0+sRoLMV5KhoXqg=

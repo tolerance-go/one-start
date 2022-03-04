@@ -163,6 +163,14 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 <code src="../demos/table/poll-the-query.tsx" />
 
+### 行支持点击选中样式
+
+点击行后高亮整行，方便在查看详情后返回时，快速定位当前行
+
+通过 `rowSelection.type = 'click-hightlight'` 开启
+
+<code src="../demos/table/rows-support-clicking-to-select-the-style.tsx" />
+
 ### API 接口
 
 <code src="../demos/table/apis.tsx" />
