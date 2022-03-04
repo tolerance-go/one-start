@@ -65,6 +65,10 @@ const BaseTable: React.ForwardRefRenderFunction<
       {...restProps}
       ref={tableRef}
       settings={{
+        rowSelection: {
+          type: 'click-hightlight',
+          ...restProps.settings?.rowSelection,
+        },
         ...restProps.settings,
         rowActions: enableRowActions
           ? {

@@ -588,7 +588,10 @@ export interface _OSTableType<
      * @default 4
      */
     searchFormItemChunkSize?: number;
+    /** 指定行选择的行为 */
     rowSelection?: {
+      /** 点击高亮行 */
+      type?: 'click-hightlight';
       checkStrictly?: boolean;
     };
     /** 搜索表单配置 */

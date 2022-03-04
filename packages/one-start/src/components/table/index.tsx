@@ -72,6 +72,9 @@ import { useSelection } from './use-selection';
 import { useSnapshotOfCurrentSearchParameters } from './use-snapshot-of-current-search-parameters';
 import { useTableTopPanel } from './use-table-top-panel';
 import { useTreeSpread } from './use-tree-spread';
+import { RowSelectionModel } from './models/row-selection';
+import TableBodyRow from './components/table-body-row';
+import type { TableBodyRowProps } from './components/table-body-row';
 
 const uaparser = new UAParser();
 
@@ -798,72 +801,79 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   }, [globalSize]);
 
   return (
-    <TableWrapperContext.Provider value={tableWrapRef}>
-      <div ref={tableWrapRef}>
-        {tableTopPanel}
-        <PrioritizedComponentSizeContext.Provider value={prioritizedComSize}>
-          <Form
-            /** 影响表格 cell 内第一层 */
-            size="small"
-            form={tableWrapForm}
-            className={cls(clsPrefix, props.className)}
-            ref={tableWrapFormRef}
-            onValuesChange={(changedValues, values) => {
-              latestUserInputValueRef.current = changedValues;
+    <RowSelectionModel.Provider>
+      <TableWrapperContext.Provider value={tableWrapRef}>
+        <div ref={tableWrapRef}>
+          {tableTopPanel}
+          <PrioritizedComponentSizeContext.Provider value={prioritizedComSize}>
+            <Form
+              /** 影响表格 cell 内第一层 */
+              size="small"
+              form={tableWrapForm}
+              className={cls(clsPrefix, props.className)}
+              ref={tableWrapFormRef}
+              onValuesChange={(changedValues, values) => {
+                latestUserInputValueRef.current = changedValues;
 
-              handleValueChange(changedValues, values);
-            }}
-          >
-            <div
-              ref={wrapRef}
-              style={{
-                position: 'relative',
-                maxWidth:
-                  tableMaxWidth != null
-                    ? tableMaxWidth - (uaparser.getOS().name === 'Windows' ? 17 : 0)
-                    : undefined,
+                handleValueChange(changedValues, values);
               }}
             >
-              <Table
-                tableLayout="fixed"
-                loading={{
-                  indicator: <LoadingOutlined />,
-                  spinning: loading,
+              <div
+                ref={wrapRef}
+                style={{
+                  position: 'relative',
+                  maxWidth:
+                    tableMaxWidth != null
+                      ? tableMaxWidth - (uaparser.getOS().name === 'Windows' ? 17 : 0)
+                      : undefined,
                 }}
-                rowSelection={finalRowSelection}
-                rowKey={rowKey}
-                columns={mergedColumns}
-                dataSource={visualDataSource ?? dataSource}
-                onChange={handleTableChange}
-                onRow={(row, index) => {
-                  return {
-                    className: getRowClassName(row, index),
-                  };
-                }}
-                expandable={{
-                  expandedRowKeys,
-                  onExpandedRowsChange: (_expandedRowKeys) => {
-                    setExpandedRowKeys(_expandedRowKeys);
-                  },
-                }}
-                pagination={finalPagination}
-                scroll={{
-                  x: totalTableWidth,
-                  y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
-                }}
-                components={{
-                  header: {
-                    wrapper: props.headerWrapper,
-                    cell: ResizeableHeaderCell,
-                  },
-                }}
-              />
-              {searchTimestampDom}
-            </div>
-          </Form>
-        </PrioritizedComponentSizeContext.Provider>
-      </div>
-    </TableWrapperContext.Provider>
+              >
+                <Table
+                  tableLayout="fixed"
+                  loading={{
+                    indicator: <LoadingOutlined />,
+                    spinning: loading,
+                  }}
+                  rowSelection={finalRowSelection}
+                  rowKey={rowKey}
+                  columns={mergedColumns}
+                  dataSource={visualDataSource ?? dataSource}
+                  onChange={handleTableChange}
+                  onRow={(row, index) => {
+                    return {
+                      className: getRowClassName(row, index),
+                      rowId: row[rowKey],
+                      rowSelectionType: rowSelection?.type,
+                    } as TableBodyRowProps;
+                  }}
+                  expandable={{
+                    expandedRowKeys,
+                    onExpandedRowsChange: (_expandedRowKeys) => {
+                      setExpandedRowKeys(_expandedRowKeys);
+                    },
+                  }}
+                  pagination={finalPagination}
+                  scroll={{
+                    x: totalTableWidth,
+                    y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
+                  }}
+                  components={{
+                    header: {
+                      wrapper: props.headerWrapper,
+                      cell: ResizeableHeaderCell,
+                    },
+                    body: {
+                      row: TableBodyRow,
+                    },
+                  }}
+                />
+                {searchTimestampDom}
+              </div>
+            </Form>
+          </PrioritizedComponentSizeContext.Provider>
+        </div>
+      </TableWrapperContext.Provider>
+    </RowSelectionModel.Provider>
   );
 };
 
