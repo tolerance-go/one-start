@@ -99,20 +99,21 @@ export const renderFormItem = (
 
       keyIndexIdToStaticSettingsMapRef.current[keyIndexId] = mergedSettings;
 
-      if (settings_?.hide) {
+      if (settings_?.hide || settings_?.visible === false) {
         /** 联动需要通过 css 操作的方式来达到隐藏 col 的目的 */
         options?.hideFormGroupItemDom?.(keyIndexId);
 
         currentHideLeafKeyIndexIdSetRef.current.add(keyIndexId);
         currentVisibleLeafKeyIndexIdSetRef.current.delete(keyIndexId);
+      }
 
+      if (settings_?.hide) {
         return null;
       }
 
       /**
        * dataIndex 不是唯一键
        * 非 hide 的字段将覆盖历史 dataIndex
-       * 必须在 hide 结束语句后返回
        */
       leafDataIndexIdToStaticPureConfigsMapRef.current[dataIndexId] = {
         dependencies,
@@ -124,7 +125,7 @@ export const renderFormItem = (
         },
       } as OSFormFieldItemWithStaticPureConfigs;
 
-      if (settings_?.hide === false) {
+      if (settings_?.hide === false || settings_?.visible === true) {
         options?.showFormGroupItemDom?.(keyIndexId);
       }
 

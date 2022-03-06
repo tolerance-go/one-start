@@ -328,7 +328,7 @@ export type OSFormAPI = OSFormRefObjectAPIS & {
   normalizeFieldsValue: (values: RecordType) => RecordType;
   /** 会触发 onChange，值为一般值 */
   setDataSource: (dataSource?: RecordType) => void;
-  getDataSource: () => RecordType | undefined;
+  getDataSource: (nameList?: NamePath[] | true) => RecordType | undefined;
   updateContext: (data: RecordType) => void;
   getContext: () => RecordType;
   /** 修改字段值并触发联动 */

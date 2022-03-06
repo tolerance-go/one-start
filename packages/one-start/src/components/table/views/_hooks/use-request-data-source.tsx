@@ -5,7 +5,6 @@ import type { MutableRefObject } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type {
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-  OSFormAPI,
   OSSelectFieldValueType,
   OSTableAPI,
   OSTableFormFieldItemSearchType,
@@ -13,14 +12,15 @@ import type {
   OSTableType,
   RequestIO,
   RequestOptions,
-  TableCoreActions,
-} from '../../typings';
-import { useActionsRef } from '../hooks/use-actions-ref';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { unstateHistory } from '../utils/unstate-history';
-import { DEFAULT_CURRENT, DEFAULT_PAGE_SIZE } from './constants';
-import type { RequestDataSourceActions, TreeSpreadActions } from './typings';
+  TableCoreAPI,
+} from '../../../../typings';
+import { useActionsRef } from '../../../../components/hooks/use-actions-ref';
+import { normalizeRequestOutputs } from '../../../../components/utils/normalize-request-outputs';
+import { unstateHistory } from '../../../../components/utils/unstate-history';
+import { DEFAULT_CURRENT, DEFAULT_PAGE_SIZE } from '../../constants';
+import type { RequestDataSourceActions, SearchFormAPI, TreeSpreadActions } from '../../typings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
+import { SHOW_MORE_FIELD_KEY } from '../../components/search-form';
 
 const mapLevel = (
   rowData?: Record<string, any>[],
@@ -55,6 +55,7 @@ export const useRequestDataSource = ({
   loopRequest,
   defaultPageSize = DEFAULT_PAGE_SIZE,
   defaultCurrent = DEFAULT_CURRENT,
+  syncURLParams,
 }: {
   afterSearch?: Required<OSTableType>['hooks']['afterSearch'];
   defaultCurrent?: number;
@@ -62,7 +63,7 @@ export const useRequestDataSource = ({
     React.SetStateAction<Required<OSTableType>['settings']['fieldItems']>
   >;
   treeSpreadActionsRef: React.RefObject<TreeSpreadActions>;
-  searchFormRef: React.MutableRefObject<OSFormAPI | null>;
+  searchFormRef: React.MutableRefObject<SearchFormAPI | null>;
   defaultPageSize?: number;
   loopRequest?: number;
   tableKey?: string;
@@ -78,11 +79,12 @@ export const useRequestDataSource = ({
     string,
     RequestIO<{ searchValue?: string }, SelectProps<OSSelectFieldValueType>['options']>
   >;
-  tableCoreActionsRef: React.MutableRefObject<TableCoreActions>;
+  tableCoreActionsRef: React.MutableRefObject<TableCoreAPI>;
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
   clearSelection: () => void;
   requestDataSourceActionsRef: React.MutableRefObject<RequestDataSourceActions>;
   setSarchTimeStr: React.Dispatch<React.SetStateAction<string | undefined>>;
+  syncURLParams: boolean;
 }) => {
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState<number>();
@@ -97,30 +99,33 @@ export const useRequestDataSource = ({
    */
   const fieldOptionsMapDataIndexRef = useRef<Record<string, Record<string, string>>>();
 
-  const getSearch = useCallback(() => {
-    const search = Object.keys(snapshotOfCurrentSearchParametersRef.current.search).reduce(
-      (obj, next) => {
-        const val = snapshotOfCurrentSearchParametersRef.current.search[next];
-
-        /** 查询 transform 然后执行转换 */
-        if (searchTransfromMapDataIndexId[next]) {
-          return {
-            ...obj,
-            ...searchTransfromMapDataIndexId[next](val),
-          };
-        }
+  const getSearchData = () => {
+    const searchValues = searchFormRef.current?.getSearchFormValues() ?? {};
+    const searchValuesByTransformed = Object.keys(searchValues).reduce((obj, next) => {
+      const val = searchValues[next];
+      /** 查询 transform 然后执行转换 */
+      if (searchTransfromMapDataIndexId[next]) {
         return {
           ...obj,
-          [next]: val,
+          ...searchTransfromMapDataIndexId[next](val),
         };
-      },
-      {},
-    );
-    return searchFormRef.current?.normalizeFieldsValue(search) ?? search;
-  }, [searchFormRef, searchTransfromMapDataIndexId, snapshotOfCurrentSearchParametersRef]);
+      }
+      return {
+        ...obj,
+        [next]: val,
+      };
+    }, {});
+
+    const normalizedValues =
+      searchFormRef.current?.formRef.current?.normalizeFieldsValue(searchValuesByTransformed) ??
+      searchValuesByTransformed;
+
+    return normalizedValues;
+  };
 
   const inlineAPIRef = useActionsRef({
     afterSearch,
+    getSearchData,
   });
 
   const syncSearchTimestamp = useCallback(() => {
@@ -129,9 +134,9 @@ export const useRequestDataSource = ({
 
   const requestVisualDataSource_ = useCallback(async () => {
     if (!requestVisualDataSource) return;
-    const search = getSearch();
+    const searchData = inlineAPIRef.current.getSearchData();
     const { error, data } = await requestVisualDataSource({
-      search,
+      search: searchData,
       actions: tableActionsRef.current,
       dataSource: tableActionsRef.current.getDataSource(),
     }).then(normalizeRequestOutputs);
@@ -139,15 +144,12 @@ export const useRequestDataSource = ({
 
     tableCoreActionsRef.current.setVisualDataSource(data);
 
-    /** 同步表格头部的 search form  */
-    tableCoreActionsRef.current.setHeaderFormValues(search);
-
     setCurrent(1);
     setTotalCount(data?.length);
 
     syncSearchTimestamp();
   }, [
-    getSearch,
+    inlineAPIRef,
     requestVisualDataSource,
     syncSearchTimestamp,
     tableActionsRef,
@@ -163,14 +165,14 @@ export const useRequestDataSource = ({
       }
 
       const { manualInitiate, mode, ...seachOptions } = options;
-      const search = getSearch();
+      const searchData = inlineAPIRef.current.getSearchData();
 
       const params: OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType> =
         {
           current: snapshotOfCurrentSearchParametersRef.current.current ?? 1,
           pageSize: snapshotOfCurrentSearchParametersRef.current.pageSize ?? defaultPageSize,
           ...seachOptions,
-          search,
+          search: utl.omit(searchData, [SHOW_MORE_FIELD_KEY]),
           actions: tableActionsRef.current,
         };
 
@@ -205,8 +207,6 @@ export const useRequestDataSource = ({
 
       /** table 的 requestDataSource 会触发 onChange */
       tableActionsRef.current.setDataSource(renderPages);
-      /** 同步表格头部的 search form  */
-      tableCoreActionsRef.current.setHeaderFormValues(search);
 
       // eslint-disable-next-line no-param-reassign
       snapshotOfCurrentSearchParametersRef.current.current = params.current;
@@ -223,11 +223,12 @@ export const useRequestDataSource = ({
         mode,
       });
 
-      if (manualInitiate && tableKey) {
+      if (syncURLParams && manualInitiate && tableKey) {
         unstateHistory.push({
           pathname: window.location.pathname,
           query: {
-            searchValues: params.search,
+            /** 包括 showMore 按钮状态 */
+            searchValues: searchData,
             tableKey,
           },
           merged: true,
@@ -235,16 +236,15 @@ export const useRequestDataSource = ({
       }
     },
     [
+      syncURLParams,
       inlineAPIRef,
       setFieldItemsState,
-      getSearch,
       syncSearchTimestamp,
       tableActionsRef,
       tableKey,
       requestDataSource,
       searchRequestOptionsMapDataIndexId,
       snapshotOfCurrentSearchParametersRef,
-      tableCoreActionsRef,
       clearSelection,
       treeSpreadActionsRef,
       loopRequest,

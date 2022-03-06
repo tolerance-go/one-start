@@ -1,13 +1,21 @@
 /* eslint-disable no-param-reassign */
 /**
  * transform: true
+ * iframe: 700
  */
 import type {
   OSTableFormFieldItemExtra,
   OSTableType,
   RequiredRecursion,
 } from '@ty-one-start/one-start';
-import { OSDialog, OSForm, OSProviderWrapper, OSTable, OSTrigger } from '@ty-one-start/one-start';
+import {
+  OSDialog,
+  OSForm,
+  OSProviderWrapper,
+  OSTable,
+  OSTrigger,
+  unstateHistory,
+} from '@ty-one-start/one-start';
 import { Divider } from '@ty/antd';
 import delay from 'delay';
 import produce from 'immer';
@@ -16,6 +24,7 @@ import moment from 'moment';
 import React, { useState } from 'react';
 
 export default () => {
+  const [key, setKey] = useState('');
   const [settings, setSettings] = useState({
     leftSideSearchForm: false,
     searchFormItemChunkSize: 3,
@@ -25,6 +34,7 @@ export default () => {
     labelAlign: 'right',
     readonly: false,
     colSpan: 8,
+    syncURLParams: true,
   });
 
   const fieldItems: Required<OSTableType>['settings']['fieldItems'] = [
@@ -40,6 +50,7 @@ export default () => {
         ],
         search: true,
         sorter: true,
+        id: 't_money',
       },
     },
     {
@@ -107,6 +118,8 @@ export default () => {
             title: 'date',
             dataIndex: 'date',
             search: true,
+            id: 't_date',
+            formItemId: 't_formItem_date',
           },
         },
         {
@@ -153,6 +166,51 @@ export default () => {
             },
           },
         },
+        {
+          type: 'layout-modal-form',
+          settings: {
+            title: '自定义字段',
+            search: 'only',
+            dataIndex: 'customize',
+            buttonTriggerText: '自定义字段搜索表单',
+            modalDialogSettings: {
+              title: '自定义字段搜索表单',
+              width: 800,
+            },
+            formSettings: {
+              labelCol: { span: 9 },
+              wrapperCol: { span: 15 },
+            },
+            hideEmpty: false,
+          },
+          requests: {
+            requestFieldItems: async () => {
+              return {
+                error: false,
+                data: {
+                  fieldItems: [
+                    {
+                      type: 'group',
+                      settings: {
+                        key: `customize-search-group`,
+                      },
+                      children: [
+                        {
+                          type: 'date',
+                          settings: {
+                            dataIndex: 'customizeDate',
+                            title: 'customizeDate',
+                            colSpan: 12,
+                          },
+                        },
+                      ],
+                    },
+                  ],
+                },
+              };
+            },
+          },
+        },
       ],
     },
   ];
@@ -164,8 +222,48 @@ export default () => {
           setSettings(values_);
         }}
         settings={{
+          size: 'small',
+          layout: 'inline',
           initialValues: settings,
           fieldItems: [
+            {
+              type: 'switch',
+              settings: {
+                dataIndex: 'syncURLParams',
+                title: 'syncURLParams',
+              },
+            },
+            {
+              type: 'custom',
+              settings: {
+                dataIndex: 'setURLParams',
+                title: 'setURLParams',
+                element: (
+                  <span>
+                    <OSTrigger
+                      type="button"
+                      settings={{
+                        text: '设置URL参数',
+                        id: 'setURLParamsBtn',
+                      }}
+                      onClick={() => {
+                        unstateHistory.push({
+                          pathname: window.location.pathname,
+                          query: {
+                            searchValues: {
+                              money: 200,
+                              date: '2022-02-02',
+                            },
+                            tableKey: 'search-form',
+                          },
+                        });
+                        setKey(Random.id());
+                      }}
+                    />
+                  </span>
+                ),
+              },
+            },
             {
               type: 'switch',
               settings: {
@@ -237,7 +335,10 @@ export default () => {
       />
       <Divider />
       <OSTable
+        key={key}
         settings={{
+          syncURLParams: settings.syncURLParams,
+          tableKey: 'search-form',
           searchFormItemChunkSize: settings.searchFormItemChunkSize,
           searchFormSettings: {
             groupItemSettings: {
@@ -279,6 +380,7 @@ export default () => {
                 fieldItems.slice(settings.searchFormItemChunkSize).map((item) =>
                   produce(item, (draft) => {
                     if (draft.children) {
+                      // eslint-disable-next-line no-param-reassign
                       draft.children = draft.children.map((it) =>
                         produce(it, (draftIt) => {
                           (
@@ -287,6 +389,7 @@ export default () => {
                         }),
                       );
                     } else {
+                      // eslint-disable-next-line no-param-reassign
                       (draft as RequiredRecursion<OSTableFormFieldItemExtra>).settings.search =
                         false;
                     }

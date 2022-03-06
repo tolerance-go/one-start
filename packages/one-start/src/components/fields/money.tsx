@@ -19,6 +19,7 @@ const OSMoneyField: React.ForwardRefRenderFunction<OSMoneyFieldAPI, OSMoneyField
     max,
     disabled,
     unitInValue,
+    id,
   } = settings ?? {};
 
   const normalUnit = useMemo(() => {
@@ -86,6 +87,7 @@ const OSMoneyField: React.ForwardRefRenderFunction<OSMoneyFieldAPI, OSMoneyField
           min,
           max,
           disabled,
+          id,
         }}
         ref={ref}
         value={normalVal}
@@ -109,6 +111,7 @@ const OSMoneyField: React.ForwardRefRenderFunction<OSMoneyFieldAPI, OSMoneyField
           min,
           max,
           disabled,
+          id,
         }}
         text={normalText}
         formatter={formatter}

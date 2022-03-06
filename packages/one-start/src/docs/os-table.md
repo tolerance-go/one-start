@@ -16,9 +16,9 @@ group:
 
 ### 搜索表单
 
-收起后，隐藏表头搜索控件，并在表头顶部显示搜索控件
+界面上支持用户显示和关闭搜索表单的功能；当搜索字段超过指定行数时支持展开和收起更多字段的功能，最大显示行数可以通过 `searchFormItemChunkSize` 控制，默认为 2；通过 `syncURLParams` 开启搜索表单内容自动同步 URL 参数的功能，默认开启；
 
-有时，搜索控件和表格展示控件是有较大差异的，此时可以通过 `search: 'only'` 区分字段；可以通过 `initialValue` 设置搜索表单初始值
+支持 schmea 方式来定义表格列，如果配置为 search: true 支持同时定义搜索项，当二者差异较大时，可以通过 `search: 'only'` 区分显示，可以配置 `initialValue` 参数来初始化搜索字段
 
 ```tsx | pure
 [
@@ -40,8 +40,6 @@ group:
   },
 ];
 ```
-
-当 `fieldItems.length <= searchFormItemChunkSize` 时候，将会把搜索表单放置在左侧和操作栏对称显示，并且默认以 `inline layout` 展示表单；可以 `singleSearchForm: false` 强制单行搜索表单在顶部显示
 
 <code src="../demos/table/search-form.tsx" />
 
@@ -177,7 +175,7 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 <code src="../demos/table/dev-empty.tsx" />
 
-<API exports='["TableSettings", "TableAPI"]' src="../components/table/index.tsx"></API>
+<API exports='["TableSettings", "TableAPI"]' src="../components/table/views/index.tsx"></API>
 
 ### TableFormFieldItems
 
@@ -189,7 +187,7 @@ TableFormGroupItem 存在 children 字段，类型和 fieldItems 相同
 
 fieldItem 每一项都可能为函数形式，表示联动，入参为 `OSTableFormFieldItemSettingsFnOption`，注意必须指定 `dependencies`
 
-<API exports='["TableFormFieldItemSettingsFnOption", "TableFormFieldItemExtraSettings", "TableFormGroupItem"]' src="../components/table/index.tsx"></API>
+<API exports='["TableFormFieldItemSettingsFnOption", "TableFormFieldItemExtraSettings", "TableFormGroupItem"]' src="../components/table/views/index.tsx"></API>
 
 <API exports='["FormItemDependenciesConfigs"]' src="../components/form/index.tsx"></API>
 

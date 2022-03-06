@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import type { OSTableAPI, OSTableType, RequiredRecursion } from '../../typings';
+import type { OSTableAPI, OSTableType, RequiredRecursion } from '../../../../typings';
 
 export const useSearchTimestamp = ({
   pagination,

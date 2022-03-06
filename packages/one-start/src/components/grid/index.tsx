@@ -31,7 +31,7 @@ import type {
   OSTableFormFieldItemWithStaticPureConfigs,
   OSTableValueType,
   RecordType,
-  TableCoreActions,
+  TableCoreAPI,
 } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import FieldRenderer from './components/field-renderer';
@@ -117,7 +117,7 @@ const OSGrid: React.ForwardRefRenderFunction<OSGridAPI, OSGridType> = (props, re
     });
   };
 
-  const tableCoreActionsRef = useActionsRef<TableCoreActions>({
+  const tableCoreActionsRef = useActionsRef<TableCoreAPI>({
     switchHeaderFormSwitchMark,
     once(...args) {
       return eventBus.once(...args);
@@ -131,7 +131,10 @@ const OSGrid: React.ForwardRefRenderFunction<OSGridAPI, OSGridType> = (props, re
     emit(...args) {
       return eventBus.emit(...args);
     },
-  } as TableCoreActions);
+    /** 修改 antd table 改了类型，这里临时 any 一下后面再统一 */
+  } as TableCoreAPI & {
+    switchHeaderFormSwitchMark: any;
+  });
 
   const resetSearchForm = () => {
     searchFormActionsRef.current.resetSerachFormValues?.();

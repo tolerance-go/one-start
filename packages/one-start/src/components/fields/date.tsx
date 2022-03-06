@@ -22,6 +22,7 @@ const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldTyp
     placeholder,
     disabledDate,
     disabled,
+    id,
   } = settings ?? {};
   const [open, setOpen] = useState<boolean>();
 
@@ -54,7 +55,7 @@ const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldTyp
       return parseValue(val)?.format(format);
     };
     const dom = (
-      <span ref={inlineRef as React.MutableRefObject<HTMLSpanElement>}>
+      <span id={id} ref={inlineRef as React.MutableRefObject<HTMLSpanElement>}>
         {formatValue(text ?? _value)}
       </span>
     );
@@ -68,6 +69,7 @@ const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldTyp
 
     return (
       <DatePicker
+        id={id}
         open={open}
         disabled={disabled}
         disabledDate={disabledDate}

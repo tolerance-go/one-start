@@ -1,5 +1,5 @@
 import utl from 'lodash';
-import type { ColumnOrdersItemMetaType, ColumnOrdersMetaType } from '../../../typings';
+import type { ColumnOrdersItemMetaType, ColumnOrdersMetaType } from '../../../../../typings';
 
 /**
  * 找到树结构中 key 一致的节点，返回结构如下

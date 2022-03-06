@@ -48,6 +48,7 @@ import OSLayout from './layout';
 import { OSReferencesGlobalContext } from './providers/provider';
 import { useActionsRef } from './hooks/use-actions-ref';
 import { useLoading } from './utils/use-loading';
+import { unstateHistory } from './utils/unstate-history';
 
 const utils = {
   formatter,
@@ -58,6 +59,7 @@ const utils = {
 export * from './utils/parse-table-value';
 export * from './utils/tree-utils';
 export {
+  unstateHistory,
   OSFormField,
   useLoading,
   useActionsRef,

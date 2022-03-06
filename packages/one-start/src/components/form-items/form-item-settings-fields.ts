@@ -7,6 +7,8 @@ export const formItemSettingsFields = [
   'labelCol',
   'wrapperCol',
   'hide',
+  'formItemId',
+  'visible',
   'warningRules',
   'styles',
   'inlineError',

@@ -48,6 +48,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     upload,
     overlayZIndex,
     size,
+    id,
   } = settings ?? {};
 
   const affiliateIcon = settings?.split === true ? settings.affiliateIcon : undefined;
@@ -363,6 +364,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
       const Component = settings?.type === 'link' ? Typography.Link : Typography.Text;
       return (
         <Component
+          id={id}
           className={propClassName}
           style={{
             display: block ? 'block' : undefined,
@@ -388,6 +390,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
 
     return (
       <Button
+        id={id}
         size={size}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}

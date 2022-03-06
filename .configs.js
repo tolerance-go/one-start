@@ -1,6 +1,5 @@
 module.exports = {
   extraBabelPlugins: [
-    'styled-jsx/babel',
     [
       'import',
       {

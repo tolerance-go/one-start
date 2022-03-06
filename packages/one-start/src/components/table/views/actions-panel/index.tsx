@@ -1,15 +1,33 @@
 import { Col, Row, Space } from '@ty/antd';
-import React from 'react';
-import type { OSFormFieldItem, OSTableAPI, OSTableType } from '../../typings';
-import type { RequiredRecursion } from '../../typings';
-import { useMemo } from 'react';
-import { DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW } from './constants';
+import React, { useMemo } from 'react';
+import type {
+  OSFormFieldItem,
+  OSTableAPI,
+  OSTableType,
+  RequiredRecursion,
+} from '../../../../typings';
+import { DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW } from '../../constants';
 
-export const useTableTopPanel = ({
+const CoreActionsPanel: React.ForwardRefRenderFunction<
+  {},
+  React.PropsWithChildren<{
+    selectionDom?: React.ReactNode;
+    searchFormFieldItems: OSFormFieldItem[];
+    searchFormItemChunkSize?: RequiredRecursion<OSTableType>['settings']['searchFormItemChunkSize'];
+    searchFormDom?: React.ReactNode;
+    searchSwitchDom?: React.ReactNode;
+    expandBtn?: React.ReactNode;
+    actions?: RequiredRecursion<OSTableType>['settings']['actions'];
+    extraActions?: OSTableType['extraActions'];
+    settingDom?: React.ReactNode;
+    tableActionsRef: React.MutableRefObject<OSTableAPI>;
+    clsPrefix?: string;
+    highlightTag?: React.ReactNode;
+  }>
+> = ({
   selectionDom,
   searchFormFieldItems,
   searchFormItemChunkSize,
-  drawerDom,
   searchFormDom,
   searchSwitchDom,
   expandBtn,
@@ -19,20 +37,6 @@ export const useTableTopPanel = ({
   tableActionsRef,
   clsPrefix,
   highlightTag,
-}: {
-  selectionDom?: React.ReactNode;
-  searchFormFieldItems: OSFormFieldItem[];
-  searchFormItemChunkSize?: RequiredRecursion<OSTableType>['settings']['searchFormItemChunkSize'];
-  drawerDom?: React.ReactNode;
-  searchFormDom?: React.ReactNode;
-  searchSwitchDom?: React.ReactNode;
-  expandBtn?: React.ReactNode;
-  actions?: RequiredRecursion<OSTableType>['settings']['actions'];
-  extraActions?: OSTableType['extraActions'];
-  settingDom?: React.ReactNode;
-  tableActionsRef: React.MutableRefObject<OSTableAPI>;
-  clsPrefix?: string;
-  highlightTag?: React.ReactNode;
 }) => {
   const searchFormIsInline =
     searchFormDom &&
@@ -58,8 +62,6 @@ export const useTableTopPanel = ({
 
   return (
     <>
-      {drawerDom}
-      {searchFormIsInline ? null : searchFormDom}
       {(selectionDom || searchSwitchDom || settingDom || actions || expandBtn) && (
         /** 设置 gutter 会引起 margin-left/right 负数的情况，引起页面滚动 */
         <Row style={{ marginBottom: 8 }} justify="space-between">
@@ -113,3 +115,5 @@ export const useTableTopPanel = ({
     </>
   );
 };
+
+export default React.forwardRef(CoreActionsPanel);
