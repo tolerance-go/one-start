@@ -1,64 +1,49 @@
-import {
-  InfoCircleOutlined,
-  QuestionCircleOutlined,
-  SearchOutlined,
-  ThunderboltOutlined,
-} from '@ant-design/icons';
+import { InfoCircleOutlined, QuestionCircleOutlined, ThunderboltOutlined } from '@ant-design/icons';
 import type { FormInstance } from '@ty/antd';
-import { Button, Col, Divider, Row, Space, Tooltip, Typography } from '@ty/antd';
-import type { NamePath } from '@ty/antd/lib/form/interface';
+import { Space, Tooltip } from '@ty/antd';
 import type { ColumnGroupType, ColumnsType, ColumnType } from '@ty/antd/lib/table';
 import cls from 'classnames';
 import utl from 'lodash';
 import type { Rule } from 'rc-field-form/lib/interface';
-import React, { createRef, useMemo, useRef } from 'react';
-import { mergeRuleToTooltip, normalizeTooltip } from '../form-items/utils';
-import { useActionsRef } from '../hooks/use-actions-ref';
+import React, { useMemo, useRef } from 'react';
 import type {
-  OSFieldAPI,
   OSFormFieldItem,
   OSFormFieldItemWithStaticPureConfigs,
   OSFormItemSimpleTooltip,
   OSFormItemType,
-  OSOpenableFieldBaseAPI,
   OSRule,
-  OSTextFieldType,
   OSSelectFieldType,
   OSTableAPI,
+  OSTableCellMeta,
   OSTableFormFieldItemExtra,
   OSTableFormFieldItemRender,
   OSTableFormFieldItems,
   OSTableFormFieldItemSearchType,
   OSTableFormFieldItemWithStaticPureConfigs,
   OSTableType,
-  OSTextFieldAPI,
+  OSTextFieldType,
   RecordType,
   RenderFieldOptions,
+  RequiredRecursion,
   TableCoreActions,
-  OSTableCellMeta,
 } from '../../typings';
+import { mergeRuleToTooltip, normalizeTooltip } from '../form-items/utils';
+import { useActionsRef } from '../hooks/use-actions-ref';
 import { renderField } from '../utils/render-field';
 import { renderTableFormItem } from '../utils/render-table-form-item';
-import type { RequiredRecursion } from '../../typings';
 import type { ResizeableHeaderCellProps } from './components/resizeable-header-cell';
 import {
   DEFAULT_WIDTH,
-  eventNames,
   headerCellWithKeyClsPrefix,
-  searchFixedIconCls,
   searchHeadFormFieldRowId,
-  searchHeadFormFieldRowIdOverlay,
-  searchHeadFormSwitchIsOpenMarkId,
   tdSelfClassTag,
   verticalRowCellWithKeyClsPrefix,
 } from './constants';
 import type {
-  EventPayloads,
   OSTableFormFieldItemWithStaticPureConfigsWithChildren,
   RequestDataSourceActions,
   SearchFormActions,
 } from './typings';
-import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 import { getDataIndexId, getKeyIndexId, runTableSettings } from './utils';
 import { getColEditable } from './utils/get-col-editable';
 
@@ -146,7 +131,6 @@ export const useItems = ({
   clsPrefix,
   editableRowKeys,
   rowKey,
-  snapshotOfCurrentSearchParametersRef,
   extraValueTypes,
   searchFormActionsRef,
   tableCoreActionsRef,
@@ -169,7 +153,6 @@ export const useItems = ({
   columnsStaticPureConfigsIdMapsRef: React.MutableRefObject<
     Record<string, OSTableFormFieldItemWithStaticPureConfigs>
   >;
-  snapshotOfCurrentSearchParametersRef: React.MutableRefObject<SnapshotOfCurrentSearchParametersType>;
   editableRowKeys?: RequiredRecursion<OSTableType>['settings']['editableRowKeys'];
   rowKey: RequiredRecursion<OSTableType>['settings']['rowKey'];
   searchFormItemChunkSize?: RequiredRecursion<OSTableType>['settings']['searchFormItemChunkSize'];
@@ -202,270 +185,6 @@ export const useItems = ({
       propsColumnsStaticPureConfigsIdMapsRef.current = {};
     },
   });
-
-  const handleFilter =
-    ({
-      dataIndex,
-      valueType,
-      settings,
-      requests,
-      search,
-      dependencies,
-    }: {
-      dataIndex?: NamePath;
-      valueType?: OSTableFormFieldItems[number]['type'];
-      settings?: OSTableFormFieldItems[number]['settings'];
-      requests?: OSTableFormFieldItems[number]['requests'];
-      search?: RequiredRecursion<OSTableFormFieldItemExtra>['settings']['search'];
-      dependencies?: OSFormFieldItem['dependencies'];
-    }) =>
-    (col: ColumnType<RecordType>): ColumnType<RecordType> => {
-      if (!search) return col;
-
-      const inputRef = createRef<OSFieldAPI>();
-
-      const dropdownEventHandlerRef: {
-        current?: (payload: EventPayloads['SwitchedSearchForm']) => void;
-      } = {};
-
-      const renderFilterTitle = () => {
-        if (dataIndex) {
-          return (
-            <Typography.Text italic key="search-item-value">
-              {renderTableFormItem(
-                valueType,
-                (options) => {
-                  const { form } = options;
-                  const staticSettings =
-                    typeof settings === 'function' ? settings(options) : settings;
-                  if (
-                    form.getFieldValue(searchHeadFormFieldRowId)?.[getDataIndexId(dataIndex)] ==
-                      null ||
-                    form.getFieldValue(searchHeadFormSwitchIsOpenMarkId) === true
-                  ) {
-                    return {
-                      hide: true,
-                      dataIndex: staticSettings?.dataIndex,
-                    };
-                  }
-                  return {
-                    ...staticSettings,
-                    labelCol: { span: 0 },
-                    wrapperCol: { span: 24 },
-                  };
-                },
-                requests ?? {},
-                {
-                  dependencies: [
-                    ...(dependencies ?? []),
-                    searchHeadFormSwitchIsOpenMarkId,
-                    searchHeadFormFieldRowId,
-                  ],
-                  rowData: {},
-                  rowIndex: -1,
-                  rowId: searchHeadFormFieldRowId,
-                  actions: tableActionsRef.current,
-                  getField: (staticFieldSettings, staticFieldRequests) => {
-                    return renderField(
-                      'read',
-                      valueType,
-                      staticFieldSettings,
-                      staticFieldRequests,
-                      {
-                        types: extraValueTypes,
-                        formRef: tableWrapFormRef,
-                      },
-                    );
-                  },
-                  renderFormItem: (dom) => {
-                    return (
-                      <Space size={5} style={{ paddingLeft: 5 }}>
-                        <span>=</span>
-                        {dom}
-                      </Space>
-                    );
-                  },
-                },
-              )}
-            </Typography.Text>
-          );
-        }
-        return null;
-      };
-
-      return {
-        ...col,
-        title: (
-          <span style={{ paddingRight: col.align === 'right' && col.sorter ? 5 : 0 }}>
-            {col.title}
-            {renderFilterTitle()}
-          </span>
-        ),
-        onFilterDropdownVisibleChange: (visible) => {
-          if (visible) {
-            setTimeout(() => {
-              if (valueType === 'digit' || valueType === 'money' || valueType === 'percent') {
-                (inputRef.current as HTMLInputElement)?.select();
-              }
-              if (valueType === 'select' || valueType === 'date') {
-                (inputRef.current as OSOpenableFieldBaseAPI)?.open();
-                (inputRef.current as HTMLInputElement)?.focus();
-              }
-              // 临时不 open
-              if (valueType === 'date-range') {
-                (inputRef.current as HTMLInputElement)?.focus();
-              }
-              if (valueType === 'text') {
-                (inputRef.current as OSTextFieldAPI)?.focus({
-                  cursor: 'all',
-                });
-              }
-            });
-          }
-        },
-        /** 触发时机为 table 更新的时候 */
-        filterIcon: () => {
-          const value =
-            tableWrapForm.getFieldValue(searchHeadFormFieldRowId)?.[getDataIndexId(dataIndex)];
-          return (
-            <SearchOutlined
-              className={searchFixedIconCls}
-              style={{
-                fontSize: 14,
-                color: value ? '#1890ff' : undefined,
-              }}
-            />
-          );
-        },
-        filterDropdown: ({ setSelectedKeys, selectedKeys, confirm }) => {
-          if (dropdownEventHandlerRef.current) {
-            tableCoreActionsRef.current.off(
-              eventNames.switchedSearchForm,
-              dropdownEventHandlerRef.current,
-            );
-          }
-
-          dropdownEventHandlerRef.current = (payload: EventPayloads['SwitchedSearchForm']) => {
-            if (payload.open === false) {
-              const value_ =
-                snapshotOfCurrentSearchParametersRef.current.search[getDataIndexId(dataIndex)];
-
-              /** TODO: 待测试，非 string 类型的值能不能存储 */
-              // 同步 filterValue 的值，以正确执行 confirm 后的行为
-              setSelectedKeys(value_ == null ? [] : [value_ as string]);
-            }
-          };
-
-          tableCoreActionsRef.current.on(
-            eventNames.switchedSearchForm,
-            dropdownEventHandlerRef.current,
-          );
-
-          /** 编辑暂停后，触发搜索 */
-          const triggerRequest = () => {
-            const value_ =
-              snapshotOfCurrentSearchParametersRef.current.search[getDataIndexId(dataIndex)];
-
-            /** TODO: 待测试，非 string 类型的值能不能存储 */
-            setSelectedKeys(value_ == null ? [] : [value_ as string]);
-
-            // confirm({
-            //   closeDropdown: false,
-            // });
-            confirm();
-          };
-
-          const fieldItemDom = renderTableFormItem(
-            valueType,
-            {
-              ...settings,
-              bordered: false,
-              autoFocus: true,
-              initialValue: selectedKeys[0],
-              styles: {
-                minHeight: undefined,
-                padding: '0 5px',
-              },
-              labelCol: {
-                span: 0,
-              },
-              wrapperCol: {
-                span: 24,
-              },
-            },
-            requests ?? {},
-            {
-              formItemClassName: `${clsPrefix}-filter-dropdown-form-item`,
-              rowId: searchHeadFormFieldRowIdOverlay,
-              actions: tableActionsRef.current,
-              getField: (staticFieldSettings, staticFieldRequests) => {
-                return renderField('edit', valueType, staticFieldSettings, staticFieldRequests, {
-                  ref: inputRef,
-                  formRef: tableWrapFormRef,
-                  onChangeHook: (value_) => {
-                    searchFormActionsRef.current.setSearchFormValues?.(
-                      {
-                        [getDataIndexId(dataIndex)]: value_,
-                      },
-                      {
-                        updateOverlay: false,
-                      },
-                    );
-                  },
-                  types: extraValueTypes,
-                });
-              },
-            },
-          );
-
-          return (
-            <div
-              style={{ position: 'relative', padding: '0 4px 0 4px' }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  triggerRequest();
-                }
-              }}
-            >
-              {fieldItemDom}
-              <Divider style={{ margin: 0 }} />
-              <Row>
-                <Col flex={'auto'}>
-                  <Button
-                    style={{ fontSize: 12 }}
-                    block
-                    type="text"
-                    onClick={() => {
-                      searchFormActionsRef.current.setSearchFormValues?.({
-                        [getDataIndexId(dataIndex)]: undefined,
-                      });
-                      triggerRequest();
-                    }}
-                  >
-                    重置
-                  </Button>
-                </Col>
-                <Col>
-                  <Divider type="vertical" />
-                </Col>
-                <Col flex={'auto'}>
-                  <Button
-                    style={{ fontSize: 12 }}
-                    type="link"
-                    block
-                    onClick={() => {
-                      triggerRequest();
-                    }}
-                  >
-                    搜索
-                  </Button>
-                </Col>
-              </Row>
-            </div>
-          );
-        },
-      };
-    };
 
   const handleEditable =
     ({
@@ -1102,13 +821,6 @@ export const useItems = ({
               linkagetip: mergedSettings?.linkagetip,
               tooltip: mergedSettings?.tooltip,
               rules: mergedSettings?.rules,
-            }),
-            handleFilter({
-              dataIndex,
-              valueType,
-              settings: fieldItem.settings,
-              requests: fieldItem.requests,
-              search,
             }),
             handleEditable({
               editable,
