@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.19.0...@ty-one-start/one-start@0.19.1) (2022-03-06)
+
+
+### Bug Fixes
+
+* **table:** 修复搜索表单收起字段无法正确带参的问题 ([3d7b57b](https://10.1.2.7/visual-fe/swap-modules/commits/3d7b57b0070b570b56d2dbc0a520a459c984b6a6))
+
+
+
+
+
 # [0.19.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.17.3...@ty-one-start/one-start@0.19.0) (2022-03-04)
 
 

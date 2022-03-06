@@ -1,6 +1,6 @@
 {
   "name": "@ty-one-components/frame",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "@ty-one-components/frame",
   "repository": {
     "type": "git",
@@ -25,12 +25,12 @@
   },
   "peerDependencies": {
     "@ty/antd": "4.x",
+    "history": "4.x",
     "lodash": "4.x",
     "react": "16.x",
     "react-dom": "16.x",
-    "umi": "3.x",
-    "history": "4.x",
-    "react-router-dom": "5.x"
+    "react-router-dom": "5.x",
+    "umi": "3.x"
   },
   "dependencies": {
     "@ant-design/icons": "^4.0.0",
