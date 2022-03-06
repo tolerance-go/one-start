@@ -3,11 +3,11 @@ import type { ColumnGroupType, ColumnType } from '@ty/antd/es/table';
 import type { FixedType } from 'rc-table/lib/interface';
 import type {
   ColumnOrdersMetaType,
-  OSFormType,
+  OSFormAPI,
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
-  SettingsDataNode,
   RequestOptions,
+  SettingsDataNode,
 } from '../../typings';
 
 export type OSAntdColumnExtra = {};
@@ -27,19 +27,12 @@ export type TreeSpreadActions = {
   clearExpandedRowKeys: () => void;
 };
 
-export type SearchFormActions = {
-  setSearchFormValues: (
-    values: RecordType,
-    options?:
-      | {
-          update?: boolean | undefined;
-          updateOverlay?: boolean;
-        }
-      | undefined,
-  ) => void;
-  resetSerachFormValues: () => void;
+export type SearchFormAPI = {
+  formRef: React.MutableRefObject<OSFormAPI | null>;
+  resetSearchForm: () => void;
+  getSearchFormValues: () => RecordType | undefined;
   getSearchFormDataSource: () => RecordType | undefined;
-  getCurrentSearchFormFieldItems: () => Required<OSFormType>['settings']['fieldItems'];
+  setSearchFormValues: (values?: RecordType) => void;
 };
 
 export type SelectionsActions = {

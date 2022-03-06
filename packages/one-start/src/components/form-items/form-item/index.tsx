@@ -50,6 +50,9 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     validateFirst,
     labelAlign,
     required,
+    visible = true,
+    hide,
+    formItemId,
   } = settings ?? {};
 
   const formInstaceRefCtx = useContext(FormInstanceContext);
@@ -242,7 +245,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     historyData,
   });
 
-  if (settings?.hide) {
+  if (hide) {
     return null;
   }
 
@@ -285,56 +288,63 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     : undefined;
 
   const dom = (
-    <Spin
-      indicator={<LoadingOutlined />}
-      spinning={requestFormItemValueLoading || requestInitialValueLoading}
+    <div
+      id={formItemId}
+      style={{
+        display: visible ? 'block' : 'none',
+      }}
     >
-      <FormItemType
-        validateTrigger={validateTrigger}
-        validateFirst={validateFirst}
-        preserve={settings?.preserve}
-        className={cls(className, prefix, {
-          'label-align-left': labelAlign === 'left',
-          'readonly-form-item': readonly,
-          'hiden-item-control-line': hideItemControlLine,
-        })}
-        style={{
-          ...settings?.styles,
-          flexWrap: 'nowrap',
-        }}
-        help={help}
-        validateStatus={validateStatus}
-        key={asyncInitialValue && JSON.stringify(asyncInitialValue)}
-        noStyle={noStyle}
-        tooltip={
-          mergedTooltip.title?.length
-            ? {
-                title: (
-                  <div>
-                    {mergedTooltip.title.map((item) => (
-                      <div>{item}</div>
-                    ))}
-                  </div>
-                ),
-                overlayStyle: mergedTooltip.overlayStyle,
-                color: mergedTooltip.color,
-              }
-            : undefined
-        }
-        rules={wrapWarningRules()}
-        {...(required ? { required: true } : {})}
-        label={label}
-        name={dataIndex}
-        initialValue={asyncInitialValue ?? initialValue}
-        labelCol={labelCol}
-        wrapperCol={wrapperCol}
-        messageVariables={messageVariables}
+      <Spin
+        indicator={<LoadingOutlined />}
+        spinning={requestFormItemValueLoading || requestInitialValueLoading}
       >
-        <OSFormItemInput title={title} historyData={historyData}>
-          {props.children}
-        </OSFormItemInput>
-      </FormItemType>
-    </Spin>
+        <FormItemType
+          validateTrigger={validateTrigger}
+          validateFirst={validateFirst}
+          preserve={settings?.preserve}
+          className={cls(className, prefix, {
+            'label-align-left': labelAlign === 'left',
+            'readonly-form-item': readonly,
+            'hiden-item-control-line': hideItemControlLine,
+          })}
+          style={{
+            ...settings?.styles,
+            flexWrap: 'nowrap',
+          }}
+          help={help}
+          validateStatus={validateStatus}
+          key={asyncInitialValue && JSON.stringify(asyncInitialValue)}
+          noStyle={noStyle}
+          tooltip={
+            mergedTooltip.title?.length
+              ? {
+                  title: (
+                    <div>
+                      {mergedTooltip.title.map((item) => (
+                        <div>{item}</div>
+                      ))}
+                    </div>
+                  ),
+                  overlayStyle: mergedTooltip.overlayStyle,
+                  color: mergedTooltip.color,
+                }
+              : undefined
+          }
+          rules={wrapWarningRules()}
+          {...(required ? { required: true } : {})}
+          label={label}
+          name={dataIndex}
+          initialValue={asyncInitialValue ?? initialValue}
+          labelCol={labelCol}
+          wrapperCol={wrapperCol}
+          messageVariables={messageVariables}
+        >
+          <OSFormItemInput title={title} historyData={historyData}>
+            {props.children}
+          </OSFormItemInput>
+        </FormItemType>
+      </Spin>
+    </div>
   );
 
   if (props.renderFormItem) {

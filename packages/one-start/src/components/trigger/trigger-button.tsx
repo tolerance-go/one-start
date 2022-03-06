@@ -40,6 +40,7 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
     plain,
     upload,
     size,
+    id,
   } = settings ?? {};
 
   const requestAfterSyncLoading = useLoading();
@@ -220,6 +221,7 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
 
       return (
         <Component
+          id={id}
           className={cls(className, propClassName)}
           style={{
             display: block ? 'block' : undefined,
@@ -242,6 +244,7 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
 
     return (
       <Button
+        id={id}
         size={size}
         className={cls(className, propClassName)}
         onClick={handleClick}

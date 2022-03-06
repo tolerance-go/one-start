@@ -1,30 +1,24 @@
-const { readdirSync } = require('fs');
-const { join } = require('path');
-// eslint-disable-next-line import/no-dynamic-require
-const settings = require(path.join(process.cwd(), 'settings.json'));
-
-const pkgList = readdirSync(join(__dirname, './packages')).filter((pkg) => pkg.charAt(0) !== '.');
-
-const moduleNameMapper = {};
-
-pkgList.forEach((shortName) => {
-  const name = `@${settings.scope}/${shortName}`;
-  moduleNameMapper[name] = join(__dirname, `./packages/${shortName}/src`);
-});
+const moduleNameMapper = {
+  '^@ty-one-start/utils$': '<rootDir>/packages/utils/src/index',
+  '^@ty-one-start/request$': '<rootDir>/packages/request/src/index',
+  '^@ty-one-start/one-start$': '<rootDir>/packages/one-start/src/index',
+  '^@ty-one-start/one-proto$': '<rootDir>/packages/one-proto/src/index',
+  '^@ty-one-start/scripts$': '<rootDir>/packages/scripts/src/index',
+  '^@ty-one-components/frame$': '<rootDir>/packages/frame/src/index',
+  '^@ty-one-start/devops$': '<rootDir>/packages/devops/src/index',
+  '^@ty-one-components/provider$': '<rootDir>/packages/provider/src/index',
+};
 
 module.exports = {
   collectCoverageFrom: [
     'packages/**/src/**/*.{ts,tsx}',
     '!packages/**/src/demos/**',
     '!packages/**/src/**/demos/**',
-    '!packages/**/src/components/ColumnSetting/**',
   ],
   moduleNameMapper,
   testURL: 'http://localhost',
-  verbose: true,
+  verbose: false,
   snapshotSerializers: [require.resolve('enzyme-to-json/serializer')],
   extraSetupFiles: ['./tests/setupTests.js'],
-  globals: {
-    ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: false,
-  },
+  globals: {},
 };

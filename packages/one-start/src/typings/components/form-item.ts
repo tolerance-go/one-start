@@ -34,8 +34,11 @@ export interface OSFormItemType<Value = any> extends OSCore {
     labelCol?: FormItemProps['labelCol'];
     wrapperCol?: FormItemProps['wrapperCol'];
     validateFirst?: FormItemProps['validateFirst'];
-    /** 是否隐藏 */
+    formItemId?: string;
+    /** 是否隐藏（销毁dom） */
     hide?: boolean;
+    /** 是否隐藏 */
+    visible?: boolean;
     /** 警告的提示 */
     warningRules?: (OSRule | Rule)[];
     styles?: CSSProperties;

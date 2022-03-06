@@ -3,7 +3,7 @@ import {
   headerCellWithKeyClsPrefix,
   tdSelfClassTag,
   verticalRowCellWithKeyClsPrefix,
-} from './constants';
+} from '../../constants';
 
 const findCell = (
   item: HTMLElement,

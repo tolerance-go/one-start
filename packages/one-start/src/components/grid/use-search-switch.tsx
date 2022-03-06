@@ -3,7 +3,7 @@ import { Button, Space } from '@ty/antd';
 import type { MutableRefObject } from 'react';
 import { useCallback, useEffect } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { TableCoreActions } from '../../typings';
+import type { TableCoreAPI } from '../../typings';
 import { eventNames, searchFixedIconCls } from './constants';
 import type { RequestDataSourceActions } from './typings';
 
@@ -20,7 +20,7 @@ export const useSearchSwitch = ({
   resetSerachFormValues: () => void;
   setSearchFormVisible: React.Dispatch<React.SetStateAction<boolean>>;
   requestDataSourceActionsRef: MutableRefObject<RequestDataSourceActions>;
-  tableCoreActionsRef: React.MutableRefObject<TableCoreActions>;
+  tableCoreActionsRef: React.MutableRefObject<TableCoreAPI>;
   enable?: boolean;
   tableWrapRef: React.RefObject<HTMLDivElement>;
 }) => {
@@ -42,7 +42,8 @@ export const useSearchSwitch = ({
   });
 
   useEffect(() => {
-    tableCoreActionsRef.current.switchHeaderFormSwitchMark(searchFormVisible || false);
+    /** 修改 antd table 改了类型，这里临时 any 一下后面再统一 */
+    (tableCoreActionsRef.current as any).switchHeaderFormSwitchMark(searchFormVisible || false);
   }, [tableCoreActionsRef, searchFormVisible]);
 
   useEffect(() => {

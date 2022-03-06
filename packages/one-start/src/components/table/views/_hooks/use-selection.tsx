@@ -1,10 +1,10 @@
 import { Space, Typography } from '@ty/antd';
 import utl from 'lodash';
 import React, { useMemo, useState } from 'react';
-import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSTableAPI, OSTableType, RecordType, TableCoreActions } from '../../typings';
-import type { RequiredRecursion } from '../../typings';
-import type { SelectionsActions } from './typings';
+import { useActionsRef } from '../../../../components/hooks/use-actions-ref';
+import type { OSTableAPI, OSTableType, RecordType, TableCoreAPI } from '../../../../typings';
+import type { RequiredRecursion } from '../../../../typings';
+import type { SelectionsActions } from '../../typings';
 
 export const useSelection = ({
   batchOperation,
@@ -17,7 +17,7 @@ export const useSelection = ({
   batchOperation?: RequiredRecursion<OSTableType>['settings']['batchOperation'];
   extraBatchOperation?: OSTableType['extraBatchOperation'];
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
-  tableCoreActionsRef: React.MutableRefObject<TableCoreActions>;
+  tableCoreActionsRef: React.MutableRefObject<TableCoreAPI>;
   rowKey: string;
   ref: React.MutableRefObject<Partial<SelectionsActions> | null>;
 }) => {

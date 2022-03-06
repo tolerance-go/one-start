@@ -68,14 +68,10 @@ export type ColumnOrdersMetaType = Record<
   | number
 >;
 
-export type TableCoreActions = {
+export type TableCoreAPI = {
   setTableFormData: (dataSource_?: RecordType[]) => void;
   setVisualDataSource: (dataSource_?: RecordType[]) => void;
   setDataSourceAndFormData: (dataSource_?: OSTableValueType, clearInputCache?: boolean) => void;
-  setHeaderFormValues: (values: RecordType) => void;
-  setSearchHeadFormOverlayValues: (values: RecordType) => void;
-  getHeaderFormValues: () => RecordType;
-  switchHeaderFormSwitchMark: (open: boolean) => void;
   once: EventEmitter['once'];
   on: EventEmitter['on'];
   off: EventEmitter['off'];
@@ -133,7 +129,7 @@ export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = 
   applyColumnSettings: () => void;
   /** TODO: 修改此处类型 */
   getCurrentSearchFormFieldItems: () => Required<_OSFormType<any, any>>['settings']['fieldItems'];
-  core: TableCoreActions;
+  core: TableCoreAPI;
 };
 
 export interface OSTableFormGroupFieldType extends OSField {
@@ -511,6 +507,8 @@ export interface _OSTableType<
   ChangeValue = OSTableChangeValueType,
 > extends OSCore {
   settings?: {
+    /** 启用 URL 状态同步搜索表单 */
+    syncURLParams?: boolean;
     /** 启用列设置 */
     enableColumnsSettings?: boolean;
     autoRequestWhenMounted?: boolean;

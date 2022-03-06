@@ -6,7 +6,7 @@ import type {
   OSTableType,
   RequiredRecursion,
 } from '../../../typings';
-import OSTable from '../../table';
+import OSTable from '../../table/views';
 import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
 import type { RowMeta } from '../typings';
 import { renderRowActions } from './row-actions';

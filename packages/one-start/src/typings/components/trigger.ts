@@ -52,6 +52,8 @@ export type OSButtonCore = {
    */
   manualPush?: boolean;
   size?: SizeType;
+  /** html id */
+  id?: string;
 };
 
 export interface OSTriggerDropdownAPI extends OSTriggerAPIBase {

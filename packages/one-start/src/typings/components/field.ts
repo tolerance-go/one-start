@@ -53,6 +53,7 @@ export type OSFieldBaseSettings = {
   placeholder?: string;
   /** 尺寸大小 */
   size?: SizeType;
+  id?: string;
 };
 
 export type OSDigitFieldValueType = string | number;

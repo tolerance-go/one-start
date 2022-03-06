@@ -43,6 +43,7 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
       precision,
       disabled,
       addonFlexWidth,
+      id,
     } = settings ?? {};
 
     const parese = (val?: number | string | typeof NaN) => {
@@ -120,6 +121,7 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
           const inputNumberDom = (
             <Col flex="auto">
               <InputNumber
+                id={id}
                 ref={ref as React.RefObject<HTMLInputElement>}
                 style={{
                   width: '100%',
@@ -182,6 +184,7 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
 
         return (
           <InputNumber
+            id={id}
             ref={ref as React.RefObject<HTMLInputElement>}
             style={{
               width: '100%',

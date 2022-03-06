@@ -10,15 +10,15 @@ import type {
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
   SettingsDataNode,
-} from '../../../typings';
-import { useActionsRef } from '../../hooks/use-actions-ref';
-import { mapTreeNode } from '../../utils/tree-utils';
-import { useClsPrefix } from '../../utils/use-cls-prefix';
+} from '../../../../../typings';
+import { useActionsRef } from '../../../../../components/hooks/use-actions-ref';
+import { mapTreeNode } from '../../../../../components/utils/tree-utils';
+import { useClsPrefix } from '../../../../../components/utils/use-cls-prefix';
 import type {
   ColumnsSettingsActions,
   OSTableFormFieldItemWithStaticPureConfigsWithChildren,
-} from '../typings';
-import { getKeyIndexId } from '../utils';
+} from '../../../typings';
+import { getKeyIndexId } from '../../../utils';
 import { ImmediateLoadingButton } from './components/immediate-loading-button';
 import { TreeNodeActions } from './components/tree-node-actions';
 import { findTreeItem, sortTreeWithOrder } from './utils';
@@ -28,16 +28,12 @@ export const useSettings = ({
   columnsStaticPureConfigsIdMaps,
   tableWrapRef,
   enable,
-  searchSwitchActionsRef,
   ref,
   staticPureConfigsFieldItems,
   columns,
 }: {
   columns: ColumnsType<RecordType>;
   staticPureConfigsFieldItems: OSTableFormFieldItemWithStaticPureConfigsWithChildren;
-  searchSwitchActionsRef: React.RefObject<{
-    toggleTableHeaderSearchDom: () => void;
-  }>;
   allColumnsId: string[];
   columnsPropsIdMaps: Record<string, ColumnGroupType<RecordType> | ColumnType<RecordType>>;
   columnsStaticPureConfigsIdMaps: Record<string, OSTableFormFieldItemWithStaticPureConfigs>;
@@ -301,7 +297,6 @@ export const useSettings = ({
   /** 应用当前配置数据到表格 */
   const applyColumnSettings = () => {
     convertTreeDataToColumns();
-    searchSwitchActionsRef.current?.toggleTableHeaderSearchDom();
     setVisible(false);
   };
 
@@ -462,10 +457,9 @@ export const useSettings = ({
       initalColumnVisibleMap,
       initalColumnFixedMap,
     });
-    searchSwitchActionsRef.current?.toggleTableHeaderSearchDom();
     setVisible(false);
     setIsUserChangeSettings(false);
-  }, [coreActionsRef, searchSwitchActionsRef, staticPureConfigsFieldItems]);
+  }, [coreActionsRef, staticPureConfigsFieldItems]);
 
   const drawerDom = useMemo(() => {
     return (

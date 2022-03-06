@@ -2,7 +2,7 @@ import { PushpinFilled } from '@ant-design/icons';
 import { Col, Row, Space, Typography } from '@ty/antd';
 import type { FixedType } from 'rc-table/lib/interface';
 import React, { useState } from 'react';
-import type { SettingsDataNode } from '../../../../../typings';
+import type { SettingsDataNode } from '../../../../../../../typings';
 import { DragIcon } from '../drag-icon';
 import { FixableActions } from './fixable-actions';
 

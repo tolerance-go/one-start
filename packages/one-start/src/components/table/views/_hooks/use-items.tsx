@@ -8,6 +8,7 @@ import type { Rule } from 'rc-field-form/lib/interface';
 import React, { useMemo, useRef } from 'react';
 import type {
   OSFormFieldItem,
+  OSFormFieldItems,
   OSFormFieldItemWithStaticPureConfigs,
   OSFormItemSimpleTooltip,
   OSFormItemType,
@@ -25,27 +26,27 @@ import type {
   RecordType,
   RenderFieldOptions,
   RequiredRecursion,
-  TableCoreActions,
-} from '../../typings';
-import { mergeRuleToTooltip, normalizeTooltip } from '../form-items/utils';
-import { useActionsRef } from '../hooks/use-actions-ref';
-import { renderField } from '../utils/render-field';
-import { renderTableFormItem } from '../utils/render-table-form-item';
-import type { ResizeableHeaderCellProps } from './components/resizeable-header-cell';
+  TableCoreAPI,
+} from '../../../../typings';
+import { mergeRuleToTooltip, normalizeTooltip } from '../../../../components/form-items/utils';
+import { useActionsRef } from '../../../../components/hooks/use-actions-ref';
+import { renderField } from '../../../../components/utils/render-field';
+import { renderTableFormItem } from '../../../../components/utils/render-table-form-item';
+import type { ResizeableHeaderCellProps } from '../../components/resizeable-header-cell';
 import {
   DEFAULT_WIDTH,
   headerCellWithKeyClsPrefix,
   searchHeadFormFieldRowId,
   tdSelfClassTag,
   verticalRowCellWithKeyClsPrefix,
-} from './constants';
+} from '../../constants';
 import type {
   OSTableFormFieldItemWithStaticPureConfigsWithChildren,
   RequestDataSourceActions,
-  SearchFormActions,
-} from './typings';
-import { getDataIndexId, getKeyIndexId, runTableSettings } from './utils';
-import { getColEditable } from './utils/get-col-editable';
+  SearchFormAPI,
+} from '../../typings';
+import { getDataIndexId, getKeyIndexId, runTableSettings } from '../../utils';
+import { getColEditable } from '../../utils/get-col-editable';
 
 /** 中间产物 */
 const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
@@ -56,9 +57,6 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
   const searchTransfromMapDataIndexIdRef = useRef<
     Record<string, Required<OSTableFormFieldItemSearchType>['transform']>
   >({});
-
-  /** 最下层所有设置 search 的 items */
-  const searchFormFieldItemsRef = useRef<OSFormFieldItem[]>([]);
 
   /** 表格的总宽度 */
   const totalTableWidthRef = useRef<number>(0);
@@ -96,7 +94,6 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
   const resetIntermediateProducts = () => {
     searchRequestOptionsMapDataIndexIdRef.current = {};
     searchTransfromMapDataIndexIdRef.current = {};
-    searchFormFieldItemsRef.current = [];
     totalTableWidthRef.current = 0;
     allColumnsIdRef.current = [];
     columnsPropsIdMapsRef.current = {};
@@ -112,7 +109,6 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
   return {
     searchRequestOptionsMapDataIndexIdRef,
     searchTransfromMapDataIndexIdRef,
-    searchFormFieldItemsRef,
     totalTableWidthRef,
     allColumnsIdRef,
     columnsPropsIdMapsRef,
@@ -132,7 +128,7 @@ export const useItems = ({
   editableRowKeys,
   rowKey,
   extraValueTypes,
-  searchFormActionsRef,
+  searchFormRef,
   tableCoreActionsRef,
   tableWrapRef,
   tableWrapFormRef,
@@ -142,7 +138,9 @@ export const useItems = ({
   fieldItemSettings,
   allColumnsIdRef: propsAllColumnsIdRef,
   columnsStaticPureConfigsIdMapsRef: propsColumnsStaticPureConfigsIdMapsRef,
+  searchFormFieldItemsRef,
 }: {
+  searchFormFieldItemsRef: React.MutableRefObject<OSFormFieldItems>;
   tableWrapFormRef: React.RefObject<FormInstance>;
   tableKey?: string;
   fieldItems?: OSTableFormFieldItems;
@@ -157,8 +155,8 @@ export const useItems = ({
   rowKey: RequiredRecursion<OSTableType>['settings']['rowKey'];
   searchFormItemChunkSize?: RequiredRecursion<OSTableType>['settings']['searchFormItemChunkSize'];
   extraValueTypes: Record<string, (options: RenderFieldOptions) => React.ReactNode>;
-  searchFormActionsRef: React.MutableRefObject<Partial<SearchFormActions>>;
-  tableCoreActionsRef: React.MutableRefObject<TableCoreActions>;
+  searchFormRef: React.RefObject<SearchFormAPI | null>;
+  tableCoreActionsRef: React.MutableRefObject<TableCoreAPI>;
   requestDataSourceActionsRef: React.MutableRefObject<RequestDataSourceActions>;
   tableWrapRef: React.MutableRefObject<HTMLDivElement | null>;
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
@@ -167,7 +165,7 @@ export const useItems = ({
   const {
     searchRequestOptionsMapDataIndexIdRef,
     searchTransfromMapDataIndexIdRef,
-    searchFormFieldItemsRef,
+
     totalTableWidthRef,
     allColumnsIdRef,
     columnsPropsIdMapsRef,
@@ -183,6 +181,8 @@ export const useItems = ({
       propsAllColumnsIdRef.current = [];
       // eslint-disable-next-line no-param-reassign
       propsColumnsStaticPureConfigsIdMapsRef.current = {};
+      // eslint-disable-next-line no-param-reassign
+      searchFormFieldItemsRef.current = [];
     },
   });
 
@@ -241,36 +241,44 @@ export const useItems = ({
           });
 
           if (colEditable) {
-            const dom = renderTableFormItem(valueType, settings, requests ?? {}, {
-              dataSource: tableActionsRef.current.getDataSource(),
-              rowData,
-              rowIndex,
-              rowId: rowData[rowKey],
-              actions: tableActionsRef.current,
-              dependencies,
-              defaultSettings: {
-                ...fieldItemSettings,
-                inlineError: true,
+            const dom = renderTableFormItem(
+              valueType,
+              utl.omit(settings, ['formItemId']),
+              requests ?? {},
+              {
+                dataSource: tableActionsRef.current.getDataSource(),
+                rowData,
+                rowIndex,
+                rowId: rowData[rowKey],
+                actions: tableActionsRef.current,
+                dependencies,
+                defaultSettings: {
+                  ...fieldItemSettings,
+                  inlineError: true,
+                },
+                getField: (staticFieldSettings, staticFieldRequests, __, ___, options) => {
+                  return renderField(
+                    colEditable ? 'edit' : 'read',
+                    valueType,
+                    utl.omit(
+                      {
+                        ...staticFieldSettings,
+                        bordered: false,
+                      },
+                      ['id'],
+                    ),
+                    staticFieldRequests,
+                    {
+                      types: extraValueTypes,
+                      props: options?.props,
+                      ref: options?.ref,
+                      formRef: tableWrapFormRef,
+                      cellMeta,
+                    },
+                  );
+                },
               },
-              getField: (staticFieldSettings, staticFieldRequests, __, ___, options) => {
-                return renderField(
-                  colEditable ? 'edit' : 'read',
-                  valueType,
-                  {
-                    ...staticFieldSettings,
-                    bordered: false,
-                  },
-                  staticFieldRequests,
-                  {
-                    types: extraValueTypes,
-                    props: options?.props,
-                    ref: options?.ref,
-                    formRef: tableWrapFormRef,
-                    cellMeta,
-                  },
-                );
-              },
-            });
+            );
 
             if (render) {
               return render({
@@ -297,42 +305,46 @@ export const useItems = ({
             const dom = renderField(
               'read',
               valueType,
-              {
-                ...fieldItemSettings,
-                ...staticFieldSettings,
-                bordered: false,
-                ...(() => {
-                  /**
-                   * 当字符串搜索字段存在，高亮显示
-                   */
-                  const isSearchAndShow = () => {
-                    if (staticFieldSettings?.search) {
-                      if (typeof staticFieldSettings?.search === 'object') {
-                        return staticFieldSettings?.search.type !== 'only';
+              utl.omit(
+                {
+                  ...fieldItemSettings,
+                  ...staticFieldSettings,
+                  bordered: false,
+                  ...(() => {
+                    /**
+                     * 当字符串搜索字段存在，高亮显示
+                     */
+                    const isSearchAndShow = () => {
+                      if (staticFieldSettings?.search) {
+                        if (typeof staticFieldSettings?.search === 'object') {
+                          return staticFieldSettings?.search.type !== 'only';
+                        }
+                        return staticFieldSettings?.search !== 'only';
                       }
-                      return staticFieldSettings?.search !== 'only';
+                      return false;
+                    };
+
+                    if (valueType === 'text' && isSearchAndShow()) {
+                      const searchs = searchFormRef.current?.getSearchFormDataSource?.();
+                      return {
+                        searchValue: searchs?.[getDataIndexId(staticFieldSettings?.dataIndex)],
+                      } as OSTextFieldType['settings'];
                     }
-                    return false;
-                  };
 
-                  if (valueType === 'text' && isSearchAndShow()) {
-                    const searchs = searchFormActionsRef.current?.getSearchFormDataSource?.();
-                    return {
-                      searchValue: searchs?.[getDataIndexId(staticFieldSettings?.dataIndex)],
-                    } as OSTextFieldType['settings'];
-                  }
+                    if (valueType === 'select' && requests?.requestOptions) {
+                      const data =
+                        requestDataSourceActionsRef.current?.getFieldOptionsMapDataIndex();
+                      const id = getDataIndexId(staticFieldSettings?.dataIndex);
+                      return {
+                        valueEnums: data?.[id],
+                      } as OSSelectFieldType['settings'];
+                    }
 
-                  if (valueType === 'select' && requests?.requestOptions) {
-                    const data = requestDataSourceActionsRef.current?.getFieldOptionsMapDataIndex();
-                    const id = getDataIndexId(staticFieldSettings?.dataIndex);
-                    return {
-                      valueEnums: data?.[id],
-                    } as OSSelectFieldType['settings'];
-                  }
-
-                  return {};
-                })(),
-              },
+                    return {};
+                  })(),
+                },
+                ['id'],
+              ),
               requests,
               {
                 types: extraValueTypes,

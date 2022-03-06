@@ -2,7 +2,7 @@ import { useRef, useState, useMemo, useCallback } from 'react';
 import { useClsPrefix } from '../../utils/use-cls-prefix';
 import utl from 'lodash';
 import cls from 'classnames';
-import type { TableCoreActions } from '../../../typings';
+import type { TableCoreAPI } from '../../../typings';
 import { eventNames } from '../constants';
 
 export type ResizeableHeaderCellProps = {
@@ -13,7 +13,7 @@ export type ResizeableHeaderCellProps = {
   resizeable?: boolean;
   /** columns tree 的右侧边节点 */
   last?: boolean;
-  tableCoreActionsRef: React.MutableRefObject<TableCoreActions>;
+  tableCoreActionsRef: React.MutableRefObject<TableCoreAPI>;
 } & React.HTMLAttributes<HTMLTableCellElement>;
 
 export const ResizeableHeaderCell: React.ForwardRefRenderFunction<

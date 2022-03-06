@@ -11,6 +11,7 @@ export const SearchCollapse = ({
   return (
     <Row justify="start">
       <Typography.Link
+        className="collapse-link"
         onClick={() => {
           onChange?.(!value);
         }}

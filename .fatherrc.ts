@@ -6,14 +6,20 @@ import appConfigs from './.configs';
 const { headPkgs } = settings;
 const { extraBabelPlugins } = appConfigs;
 
-const pkgs =
-  process.argv[process.argv.length - 1] === '--all'
+const pkgs = (() => {
+  if (process.argv[process.argv.length - 2] === '--only' && process.argv[process.argv.length - 1]) {
+    return [process.argv[process.argv.length - 1]];
+  }
+
+  return process.argv[process.argv.length - 1] === '--all'
     ? getAllPkgs({
         headPkgs,
       })
     : getReadyToPublishPkgs({
         headPkgs,
       });
+})();
+
 console.log('🚀 ~ file: .fatherrc.ts ~ line 10 ~ pkgs', pkgs);
 
 export default {

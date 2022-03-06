@@ -304,9 +304,12 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
     onChange?.(dataSource_);
   };
 
-  const getDataSource = () => {
-    const validateDataIndexs = getVisibleLeafDataIndexs();
-    const values = normalizeFieldsValue(formRef.current?.getFieldsValue(validateDataIndexs));
+  const getDataSource = (nameList?: NamePath[] | true) => {
+    const values = normalizeFieldsValue(
+      nameList == null
+        ? formRef.current?.getFieldsValue()
+        : formRef.current?.getFieldsValue(nameList),
+    );
     return values;
   };
 
@@ -476,10 +479,6 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
           return meta.changedValues[changedField] !== values[changedField];
         })
       ) {
-        console.log('🚀 ~ file: index.tsx ~ line 475 ~ triggerChange', meta, {
-          values,
-          changedValues,
-        });
         formRef.current?.setFieldsValue(meta.changedValues);
         coreActionsRef.current.onChange?.(meta.values);
         coreActionsRef.current.onValuesLinkageChange?.(meta.changedValues, meta.values);

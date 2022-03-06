@@ -2,7 +2,7 @@ import { Space, Typography } from '@ty/antd';
 import utl from 'lodash';
 import React, { useMemo, useState } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSGridAPI, OSGridType, RecordType, TableCoreActions } from '../../typings';
+import type { OSGridAPI, OSGridType, RecordType, TableCoreAPI } from '../../typings';
 import type { RequiredRecursion } from '../../typings';
 import type { SelectionsActions } from './typings';
 
@@ -17,7 +17,7 @@ export const useSelection = ({
   batchOperation?: RequiredRecursion<OSGridType>['settings']['batchOperation'];
   extraBatchOperation?: OSGridType['extraBatchOperation'];
   tableActionsRef: React.MutableRefObject<OSGridAPI>;
-  tableCoreActionsRef: React.MutableRefObject<TableCoreActions>;
+  tableCoreActionsRef: React.MutableRefObject<TableCoreAPI>;
   rowKey: string;
   ref: React.MutableRefObject<Partial<SelectionsActions> | null>;
 }) => {

@@ -5744,6 +5744,11 @@ ag-charts-community@~4.1.0:
   resolved "http://npm.tongyu.tech/ag-charts-community/-/ag-charts-community-4.1.0.tgz#4fbf37d6d3bff50a59e91d48393651dcae2d58a7"
   integrity sha1-T7831tO/9QpZ6R1IOTZR3K4tWKc=
 
+ag-grid-community@26.1.0:
+  version "26.1.0"
+  resolved "http://npm.tongyu.tech/ag-grid-community/-/ag-grid-community-26.1.0.tgz#d4ee3e9591b351a5ae477a21dd3dc44491ccd7fa"
+  integrity sha1-1O4+lZGzUaWuR3oh3T3ERJHM1/o=
+
 ag-grid-enterprise@26.1.0:
   version "26.1.0"
   resolved "http://npm.tongyu.tech/ag-grid-enterprise/-/ag-grid-enterprise-26.1.0.tgz#5fad7524b8ccefe0c9a44e9a8b1f9a8a5fa16048"
@@ -6518,6 +6523,17 @@ babel-plugin-module-resolver@3.2.0:
     pkg-up "^2.0.0"
     reselect "^3.0.1"
     resolve "^1.4.0"
+
+babel-plugin-module-resolver@^4.1.0:
+  version "4.1.0"
+  resolved "http://npm.tongyu.tech/babel-plugin-module-resolver/-/babel-plugin-module-resolver-4.1.0.tgz#22a4f32f7441727ec1fbf4967b863e1e3e9f33e2"
+  integrity sha1-IqTzL3RBcn7B+/SWe4Y+Hj6fM+I=
+  dependencies:
+    find-babel-config "^1.2.0"
+    glob "^7.1.6"
+    pkg-up "^3.1.0"
+    reselect "^4.0.0"
+    resolve "^1.13.1"
 
 babel-plugin-polyfill-corejs2@^0.2.2:
   version "0.2.2"
@@ -10770,7 +10786,7 @@ finalhandler@~1.1.2:
     statuses "~1.5.0"
     unpipe "~1.0.0"
 
-find-babel-config@^1.1.0:
+find-babel-config@^1.1.0, find-babel-config@^1.2.0:
   version "1.2.0"
   resolved "http://npm.tongyu.tech/find-babel-config/-/find-babel-config-1.2.0.tgz#a9b7b317eb5b9860cda9d54740a8c8337a2283a2"
   integrity sha1-qbezF+tbmGDNqdVHQKjIM3oig6I=
@@ -17488,6 +17504,13 @@ pkg-up@^2.0.0:
   integrity sha1-yBmscoBZpGHKscOImivjxJoATX8=
   dependencies:
     find-up "^2.1.0"
+
+pkg-up@^3.1.0:
+  version "3.1.0"
+  resolved "http://npm.tongyu.tech/pkg-up/-/pkg-up-3.1.0.tgz#100ec235cc150e4fd42519412596a28512a0def5"
+  integrity sha1-EA7CNcwVDk/UJRlBJZaihRKg3vU=
+  dependencies:
+    find-up "^3.0.0"
 
 please-upgrade-node@^3.2.0:
   version "3.2.0"
