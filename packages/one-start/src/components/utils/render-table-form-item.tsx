@@ -3,7 +3,6 @@ import { Form } from '@ty/antd';
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { ReactNode } from 'react';
 import React from 'react';
-import OSFormItemBase from '../form-items/form-item';
 import type {
   OSFormItemType,
   OSLayoutFormAPI,
@@ -13,6 +12,7 @@ import type {
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
 } from '../../typings';
+import OSFormItemBase from '../form-items/form-item';
 import { normalizeDataIndex } from './normalize-data-index';
 import {
   pickFieldRequests,
@@ -20,7 +20,6 @@ import {
   pickFormItemSettings,
   pickTableFormItemRequests,
 } from './pick-field-item-settings';
-import utl from 'lodash';
 
 export const renderTableFormItem = (
   valueType: OSTableFormFieldItems[number]['type'],
@@ -28,7 +27,9 @@ export const renderTableFormItem = (
   requests: RecordType,
   options: {
     /** 需要过滤掉的 formItem 配置 */
-    omitSettings?: string[];
+    getExtraSettings?: (
+      settings: OSTableFormFieldItemWithStaticPureConfigs['settings'],
+    ) => OSTableFormFieldItemWithStaticPureConfigs['settings'];
     dataSource?: RecordType[];
     formItemClassName?: string;
     rowIndex?: number;
@@ -60,7 +61,7 @@ export const renderTableFormItem = (
     renderFormItem: _renderFormItem,
     defaultSettings,
     formItemClassName,
-    omitSettings,
+    getExtraSettings,
   } = options;
 
   const renderContent = () => {
@@ -69,9 +70,7 @@ export const renderTableFormItem = (
 
       const { dataIndex } = mergedSettings;
       const formItemSettings = pickFormItemSettings(mergedSettings);
-      const formItemSettingsWithFilted = omitSettings
-        ? utl.omit(formItemSettings, omitSettings)
-        : formItemSettings;
+      const formItemSettingsWithFilted = getExtraSettings?.(formItemSettings) ?? formItemSettings;
       const formItemRequests = pickTableFormItemRequests(requests);
       const fieldSettings = pickFieldSettings(mergedSettings);
       const fieldRequests = pickFieldRequests(requests);

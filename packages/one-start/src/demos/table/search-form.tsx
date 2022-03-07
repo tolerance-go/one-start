@@ -399,9 +399,7 @@ export default () => {
             : fieldItems,
         }}
         requests={{
-          requestDataSource: async (options) => {
-            console.log(options);
-
+          requestDataSource: async () => {
             await delay(1000);
 
             return Mock.mock({

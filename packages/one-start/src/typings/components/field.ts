@@ -102,7 +102,7 @@ export interface OSActionsFieldType extends OSField<OSActionsFieldValueType> {
      * @default <span style={{ color: '#ddd' }}>|</span>
      */
     splitMarker?: React.ReactNode;
-  };
+  } & OSFieldBaseSettings;
 }
 
 export type OSCustomFieldValueType = never;
@@ -118,7 +118,7 @@ export interface OSCustomFieldType
   type?: 'custom';
   settings?: {
     element?: React.ReactElement<OSCustomFieldElementProps>;
-  };
+  } & OSFieldBaseSettings;
 }
 
 export type OSDigitFieldAPI = HTMLInputElement | HTMLSpanElement;

@@ -7,6 +7,7 @@ import utl from 'lodash';
 import type { Rule } from 'rc-field-form/lib/interface';
 import React, { useMemo, useRef } from 'react';
 import type {
+  OSFieldBaseSettings,
   OSFormFieldItem,
   OSFormFieldItems,
   OSFormFieldItemWithStaticPureConfigs,
@@ -252,18 +253,28 @@ export const useItems = ({
                 ...fieldItemSettings,
                 inlineError: true,
               },
-              omitSettings: ['formItemId'],
+              getExtraSettings: (
+                staticFormItemSettings: OSTableFormFieldItemWithStaticPureConfigs['settings'],
+              ) => {
+                return {
+                  ...staticFormItemSettings,
+                  formItemId: staticFormItemSettings?.formItemId
+                    ? `${staticFormItemSettings.formItemId}-edit-${rowIndex}`
+                    : undefined,
+                };
+              },
               getField: (staticFieldSettings, staticFieldRequests, __, ___, options) => {
                 return renderField(
                   colEditable ? 'edit' : 'read',
                   valueType,
-                  utl.omit(
-                    {
-                      ...staticFieldSettings,
-                      bordered: false,
-                    },
-                    ['id'],
-                  ),
+                  {
+                    ...staticFieldSettings,
+                    bordered: false,
+                    /** 应该必须配合 type 才能出 OSFieldBaseSettings 类型，这样 as 一下  */
+                    id: (staticFieldSettings as OSFieldBaseSettings)?.id
+                      ? `${(staticFieldSettings as OSFieldBaseSettings).id}-edit-${rowIndex}`
+                      : undefined,
+                  },
                   staticFieldRequests,
                   {
                     types: extraValueTypes,
@@ -301,46 +312,45 @@ export const useItems = ({
             const dom = renderField(
               'read',
               valueType,
-              utl.omit(
-                {
-                  ...fieldItemSettings,
-                  ...staticFieldSettings,
-                  bordered: false,
-                  ...(() => {
-                    /**
-                     * 当字符串搜索字段存在，高亮显示
-                     */
-                    const isSearchAndShow = () => {
-                      if (staticFieldSettings?.search) {
-                        if (typeof staticFieldSettings?.search === 'object') {
-                          return staticFieldSettings?.search.type !== 'only';
-                        }
-                        return staticFieldSettings?.search !== 'only';
+              {
+                ...fieldItemSettings,
+                ...staticFieldSettings,
+                bordered: false,
+                id: (staticFieldSettings as OSFieldBaseSettings)?.id
+                  ? `${(staticFieldSettings as OSFieldBaseSettings).id}-read-${rowIndex}`
+                  : undefined,
+                ...(() => {
+                  /**
+                   * 当字符串搜索字段存在，高亮显示
+                   */
+                  const isSearchAndShow = () => {
+                    if (staticFieldSettings?.search) {
+                      if (typeof staticFieldSettings?.search === 'object') {
+                        return staticFieldSettings?.search.type !== 'only';
                       }
-                      return false;
-                    };
-
-                    if (valueType === 'text' && isSearchAndShow()) {
-                      const searchs = searchFormRef.current?.getSearchFormDataSource?.();
-                      return {
-                        searchValue: searchs?.[getDataIndexId(staticFieldSettings?.dataIndex)],
-                      } as OSTextFieldType['settings'];
+                      return staticFieldSettings?.search !== 'only';
                     }
+                    return false;
+                  };
 
-                    if (valueType === 'select' && requests?.requestOptions) {
-                      const data =
-                        requestDataSourceActionsRef.current?.getFieldOptionsMapDataIndex();
-                      const id = getDataIndexId(staticFieldSettings?.dataIndex);
-                      return {
-                        valueEnums: data?.[id],
-                      } as OSSelectFieldType['settings'];
-                    }
+                  if (valueType === 'text' && isSearchAndShow()) {
+                    const searchs = searchFormRef.current?.getSearchFormDataSource?.();
+                    return {
+                      searchValue: searchs?.[getDataIndexId(staticFieldSettings?.dataIndex)],
+                    } as OSTextFieldType['settings'];
+                  }
 
-                    return {};
-                  })(),
-                },
-                ['id'],
-              ),
+                  if (valueType === 'select' && requests?.requestOptions) {
+                    const data = requestDataSourceActionsRef.current?.getFieldOptionsMapDataIndex();
+                    const id = getDataIndexId(staticFieldSettings?.dataIndex);
+                    return {
+                      valueEnums: data?.[id],
+                    } as OSSelectFieldType['settings'];
+                  }
+
+                  return {};
+                })(),
+              },
               requests,
               {
                 types: extraValueTypes,

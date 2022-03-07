@@ -758,6 +758,18 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     } as PrioritizedComponentSizeContextValue;
   }, [globalSize]);
 
+  const components = useMemo(() => {
+    return {
+      header: {
+        wrapper: props.headerWrapper,
+        cell: ResizeableHeaderCell,
+      },
+      body: {
+        row: TableBodyRow,
+      },
+    };
+  }, [props.headerWrapper]);
+
   return (
     <RowSelectionModel.Provider>
       <TableWrapperContext.Provider value={tableWrapRef}>
@@ -838,15 +850,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
                     x: totalTableWidth,
                     y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
                   }}
-                  components={{
-                    header: {
-                      wrapper: props.headerWrapper,
-                      cell: ResizeableHeaderCell,
-                    },
-                    body: {
-                      row: TableBodyRow,
-                    },
-                  }}
+                  components={components}
                 />
                 {searchTimestampDom}
               </div>

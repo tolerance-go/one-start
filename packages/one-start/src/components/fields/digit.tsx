@@ -21,6 +21,7 @@ const OSDigitField: React.ForwardRefRenderFunction<OSDigitFieldAPI, OSDigitField
     addonPlacement,
     addonFlexWidth,
     step,
+    id,
   } = settings ?? {};
 
   const inputNumberRef = useRef<OSDigitFieldBaseAPI>(null);
@@ -47,6 +48,7 @@ const OSDigitField: React.ForwardRefRenderFunction<OSDigitFieldAPI, OSDigitField
           addonPlacement,
           addonFlexWidth,
           step,
+          id,
         }}
         value={_value}
         text={text}
@@ -75,6 +77,7 @@ const OSDigitField: React.ForwardRefRenderFunction<OSDigitFieldAPI, OSDigitField
           addonPlacement,
           addonFlexWidth,
           step,
+          id,
         }}
         value={_value}
         text={text}

@@ -246,13 +246,19 @@ export default () => {
                 settings: {
                   title: 'editable-table',
                   dataIndex: 'editableTable',
-                  addable: {},
+                  addable: {
+                    addTriggerSettings: {
+                      id: 't_add_row',
+                    },
+                  },
                   fieldItems: [
                     {
                       type: 'money',
                       settings: {
                         title: 'asyncValidate',
                         dataIndex: 'asyncValidate',
+                        id: 't_cell_money',
+                        formItemId: 't_form_item_money',
                         rules: [
                           { required: true },
                           {
@@ -305,6 +311,7 @@ export default () => {
                         title: 'linkageValue',
                         dataIndex: 'linkageValue',
                         disabled: true,
+                        id: 't_cell_digit',
                       },
                     },
                   ],
