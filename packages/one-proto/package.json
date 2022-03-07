@@ -1,6 +1,6 @@
 {
   "name": "@ty-one-start/one-proto",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "@ty-one-start/one-proto",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -28,6 +28,7 @@
   ],
   "license": "MIT",
   "peerDependencies": {
+    "@ty-one-start/one-start": "0.x",
     "@ty/antd": "4.x",
     "lodash": "4.x",
     "react": "16.x",
@@ -38,7 +39,6 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.4.0",
-    "@ty-one-start/one-start": "0.19.1",
     "classnames": "^2.3.1",
     "immer": "^9.0.5",
     "rc-tree": "^4.1.5",

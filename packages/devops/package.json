@@ -1,6 +1,6 @@
 {
   "name": "@ty-one-start/devops",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "@ty-one-start/devops",
   "module": "es/index.js",
   "types": "es/index.d.ts",
@@ -28,6 +28,8 @@
   ],
   "license": "MIT",
   "peerDependencies": {
+    "@ty-one-components/frame": "0.x",
+    "@ty-one-start/one-start": "0.x",
     "@ty/antd": "4.x",
     "lodash": "4.x",
     "react": "16.x",
@@ -38,8 +40,6 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@ty-one-components/frame": "0.2.1",
-    "@ty-one-start/one-start": "0.19.1",
     "delay": "^5.0.0",
     "mockjs": "^1.1.0",
     "store2": "^2.13.1",
