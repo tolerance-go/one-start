@@ -241,44 +241,40 @@ export const useItems = ({
           });
 
           if (colEditable) {
-            const dom = renderTableFormItem(
-              valueType,
-              utl.omit(settings, ['formItemId']),
-              requests ?? {},
-              {
-                dataSource: tableActionsRef.current.getDataSource(),
-                rowData,
-                rowIndex,
-                rowId: rowData[rowKey],
-                actions: tableActionsRef.current,
-                dependencies,
-                defaultSettings: {
-                  ...fieldItemSettings,
-                  inlineError: true,
-                },
-                getField: (staticFieldSettings, staticFieldRequests, __, ___, options) => {
-                  return renderField(
-                    colEditable ? 'edit' : 'read',
-                    valueType,
-                    utl.omit(
-                      {
-                        ...staticFieldSettings,
-                        bordered: false,
-                      },
-                      ['id'],
-                    ),
-                    staticFieldRequests,
-                    {
-                      types: extraValueTypes,
-                      props: options?.props,
-                      ref: options?.ref,
-                      formRef: tableWrapFormRef,
-                      cellMeta,
-                    },
-                  );
-                },
+            const dom = renderTableFormItem(valueType, settings, requests ?? {}, {
+              dataSource: tableActionsRef.current.getDataSource(),
+              rowData,
+              rowIndex,
+              rowId: rowData[rowKey],
+              actions: tableActionsRef.current,
+              dependencies,
+              defaultSettings: {
+                ...fieldItemSettings,
+                inlineError: true,
               },
-            );
+              omitSettings: ['formItemId'],
+              getField: (staticFieldSettings, staticFieldRequests, __, ___, options) => {
+                return renderField(
+                  colEditable ? 'edit' : 'read',
+                  valueType,
+                  utl.omit(
+                    {
+                      ...staticFieldSettings,
+                      bordered: false,
+                    },
+                    ['id'],
+                  ),
+                  staticFieldRequests,
+                  {
+                    types: extraValueTypes,
+                    props: options?.props,
+                    ref: options?.ref,
+                    formRef: tableWrapFormRef,
+                    cellMeta,
+                  },
+                );
+              },
+            });
 
             if (render) {
               return render({

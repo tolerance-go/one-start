@@ -20,12 +20,15 @@ import {
   pickFormItemSettings,
   pickTableFormItemRequests,
 } from './pick-field-item-settings';
+import utl from 'lodash';
 
 export const renderTableFormItem = (
   valueType: OSTableFormFieldItems[number]['type'],
   settings: OSTableFormFieldItems[number]['settings'],
   requests: RecordType,
   options: {
+    /** 需要过滤掉的 formItem 配置 */
+    omitSettings?: string[];
     dataSource?: RecordType[];
     formItemClassName?: string;
     rowIndex?: number;
@@ -57,6 +60,7 @@ export const renderTableFormItem = (
     renderFormItem: _renderFormItem,
     defaultSettings,
     formItemClassName,
+    omitSettings,
   } = options;
 
   const renderContent = () => {
@@ -65,6 +69,9 @@ export const renderTableFormItem = (
 
       const { dataIndex } = mergedSettings;
       const formItemSettings = pickFormItemSettings(mergedSettings);
+      const formItemSettingsWithFilted = omitSettings
+        ? utl.omit(formItemSettings, omitSettings)
+        : formItemSettings;
       const formItemRequests = pickTableFormItemRequests(requests);
       const fieldSettings = pickFieldSettings(mergedSettings);
       const fieldRequests = pickFieldRequests(requests);
@@ -84,9 +91,9 @@ export const renderTableFormItem = (
           })()}
           settings={((): OSFormItemType['settings'] => {
             const common = {
-              ...formItemSettings,
+              ...formItemSettingsWithFilted,
               styles: {
-                ...formItemSettings.styles,
+                ...formItemSettingsWithFilted.styles,
                 marginBottom: 0,
               },
               dataIndex: (rowId == null ? [] : [rowId]).concat(
@@ -100,7 +107,7 @@ export const renderTableFormItem = (
                 validateFirst: true,
                 ...common,
                 rules: [
-                  ...(formItemSettings.rules ?? []),
+                  ...(formItemSettingsWithFilted.rules ?? []),
                   {
                     /**
                      * 将内部表单字段表格内部的错误上报上去
@@ -133,9 +140,15 @@ export const renderTableFormItem = (
           requests={formItemRequests}
           renderFormItem={_renderFormItem}
         >
-          {options.getField?.(fieldSettings, fieldRequests, formItemSettings, formItemRequests, {
-            ref: fieldRef,
-          })}
+          {options.getField?.(
+            fieldSettings,
+            fieldRequests,
+            formItemSettingsWithFilted,
+            formItemRequests,
+            {
+              ref: fieldRef,
+            },
+          )}
         </OSFormItemBase>
       );
     };
