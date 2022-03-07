@@ -1,6 +1,6 @@
 {
   "name": "@ty-one-start/devops",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "@ty-one-start/devops",
   "module": "es/index.js",
   "types": "es/index.d.ts",

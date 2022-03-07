@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.19.1...@ty-one-start/one-start@0.19.3) (2022-03-07)
+
+
+### Bug Fixes
+
+* **table:** 修复编辑表格函数形式 settings 错误类型转换的问题 ([835b90c](https://10.1.2.7/visual-fe/swap-modules/commits/835b90c1b11e1946831a51e7afef8b45f3987101))
+
+
+
+
+
 ## [0.19.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.19.1...@ty-one-start/one-start@0.19.2) (2022-03-07)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ty-one-start/one-proto",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "@ty-one-start/one-proto",
   "module": "es/index.js",
   "types": "es/index.d.ts",
