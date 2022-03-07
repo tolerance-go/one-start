@@ -17,6 +17,6 @@ group:
 
 <code src="../demos/attachment-table/simple.tsx" />
 
-所有接口继承自 OSTable
+所有接口继承都自 OSTable
 
 <API exports='["Settings", "Requests"]' src="../components/attachment-table/index.tsx"></API>

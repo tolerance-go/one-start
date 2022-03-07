@@ -13,7 +13,7 @@ group:
 
 ## 代码演示
 
-### 绝对值和小数值
+### 绝对值及小数值
 
 <code src="../demos/field-percent/decimal-data.tsx" />
 
