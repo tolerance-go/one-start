@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.19.4](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.19.3...@ty-one-start/one-start@0.19.4) (2022-03-07)
+
+
+### Bug Fixes
+
+* 修复编辑表格单元格闪烁的问题 ([e1a0f2d](https://10.1.2.7/visual-fe/swap-modules/commits/e1a0f2dfcd3de56521e72faf160df79aafd2a821))
+
+
+
+
+
 ## [0.19.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.19.1...@ty-one-start/one-start@0.19.3) (2022-03-07)
 
 
