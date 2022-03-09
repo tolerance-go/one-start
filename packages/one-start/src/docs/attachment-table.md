@@ -3,13 +3,13 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-attachment-table
+title: attachment-table
 group:
   title: tables
   path: /components/tables
 ---
 
-# os-attachment-table
+# attachment-table
 
 ## 代码演示
 

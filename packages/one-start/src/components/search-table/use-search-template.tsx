@@ -272,6 +272,7 @@ export const useSearchTemplate = ({
                       type: 'link',
                       text: '应用',
                       size: 'small',
+                      className: 'visual-manager-apply-button',
                     }}
                     requests={{
                       requestAfterClick: async () => {
@@ -308,7 +309,9 @@ export const useSearchTemplate = ({
                           );
 
                           managementDialogRef.current?.pop();
-                          sourceTableRef.current?.reload();
+                          sourceTableRef.current?.reload({
+                            current: 1,
+                          });
                         }
 
                         return error;
@@ -369,6 +372,7 @@ export const useSearchTemplate = ({
               settings={{
                 type: 'default',
                 text: '视图管理',
+                className: 'visual-manager-button',
               }}
             ></OSTrigger>
           ),

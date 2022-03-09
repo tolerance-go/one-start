@@ -3,14 +3,14 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-search-table
+title: search-table
 order: 1
 group:
   title: tables
   path: /components/tables
 ---
 
-# os-search-table
+# search-table
 
 ## 代码演示
 

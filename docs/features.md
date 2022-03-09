@@ -101,7 +101,7 @@ group:
 
 ## search-table
 
-- 搜索视图 demo
+- [搜索视图](/components/tables/search-table#%E8%A7%86%E5%9B%BE%E7%AE%A1%E7%90%86)
   - 创建
   - 搜索
   - 应用

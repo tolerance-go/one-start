@@ -1,12 +1,21 @@
 /**
  * transform: true
+ * iframe: 650
  */
+import type {
+  OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+  OSTableRequestDataSourceParams,
+} from '@ty-one-start/one-start';
 import { OSProviderWrapper, OSSearchTable } from '@ty-one-start/one-start';
 import delay from 'delay';
 import Mock, { mock, Random } from 'mockjs';
 import React from 'react';
 
-export default () => {
+export default (props: {
+  onRequestDataSource?: (
+    options: OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+  ) => void;
+}) => {
   return (
     <OSProviderWrapper>
       <OSSearchTable
@@ -199,8 +208,7 @@ export default () => {
         }}
         requests={{
           requestDataSource: async (options) => {
-            console.log(options);
-
+            props.onRequestDataSource?.(options);
             await delay(1000);
 
             return Mock.mock({
@@ -220,26 +228,11 @@ export default () => {
                     'select-search': () => Random.pick(['a', 'b', 'c']),
                   },
                 ],
-                total: 20,
+                total: 100,
               },
             });
           },
           requestCreateTemplate: async (options) => {
-            console.log(options);
-
-            // const { error } =
-            //   await SwapServices.ContractSearchTemplateService.swapSaveContractSearchTemplate({}, {
-            //     /** 模板名称 */
-            //     templateName: options.values?.templateName,
-            //     /** 查询类型 */
-            //     searchType: 'test',
-            //     /** 模板类型 */
-            //     templateType: options.values?.templateType,
-            //     contractCacheFrontData: options.searchValues ?? {},
-            //   } as SwapServiceAPI.SwapContractSearchTemplateDTO);
-
-            // return error;
-
             await delay(1000);
 
             return mock({
@@ -250,27 +243,8 @@ export default () => {
               },
             });
           },
-          requestTemplateDataSource: async (options) => {
-            console.log(options);
+          requestTemplateDataSource: async () => {
             await delay(1000);
-
-            // const { error, data } =
-            //   await SwapServices.ContractSearchTemplateService.swapQueryContractSearchTemplateByPage(
-            //     {
-            //       page: options.current - 1,
-            //       pageSize: options.pageSize,
-            //     },
-            //     {
-            //       searchType: 'test',
-            //     },
-            //   );
-            // return {
-            //   error,
-            //   data: {
-            //     page: data?.page,
-            //     total: data?.totalCount,
-            //   },
-            // };
 
             return Mock.mock({
               error: false,
@@ -287,34 +261,17 @@ export default () => {
               },
             });
           },
-          requestApplayTemplateSearchValues: async (options) => {
-            console.log('options', options);
+          requestApplayTemplateSearchValues: async () => {
             await delay(1000);
-
-            // const { error, data } =
-            //   await SwapServices.ContractSearchTemplateService.searchSearchTemplateByTemplateId(
-            //     {
-            //       id: options.id,
-            //     },
-            //     {
-            //       searchType: 'test',
-            //     },
-            //   );
-            // return {
-            //   error,
-            //   data: {
-            //     searchValues: data?.contractCacheFrontData,
-            //   },
-            // };
 
             return {
               error: false,
               data: {
-                searchDataSource: Mock.mock({
-                  money: () => Random.integer(),
-                  percent: () => Random.integer(),
-                  text: () => Random.word(),
-                }),
+                searchDataSource: {
+                  money: -279017462758012,
+                  percent: -5717274175563392,
+                  text: 'nhlhym',
+                },
                 columnsVisibleMap: {
                   money: false,
                 },
@@ -340,8 +297,7 @@ export default () => {
               },
             };
           },
-          requestUpdateSearchTempldate: async (options) => {
-            console.log('options', options);
+          requestUpdateSearchTempldate: async () => {
             await delay(1000);
             return {
               error: false,

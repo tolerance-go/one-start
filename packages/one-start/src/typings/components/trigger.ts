@@ -54,6 +54,8 @@ export type OSButtonCore = {
   size?: SizeType;
   /** html id */
   id?: string;
+  /** 样式标记 */
+  className?: string;
 };
 
 export interface OSTriggerDropdownAPI extends OSTriggerAPIBase {
@@ -169,12 +171,13 @@ export interface OSTriggerButtonType extends OSTriggerBase {
   __shouldPush?: boolean;
   __disabled?: boolean;
   loading?: boolean;
+  /** @deprecated 请用 settings.className 代替 */
   className?: string;
+  actionsRef?: React.MutableRefObject<(OSTriggerButtonAPI & Record<string, Function>) | null>;
   onClick?: (options: {
     event?: React.MouseEvent<HTMLElement, MouseEvent>;
     actions: OSTriggerButtonAPI;
   }) => void;
-  actionsRef?: React.MutableRefObject<(OSTriggerButtonAPI & Record<string, Function>) | null>;
 }
 
 export type OSTriggerType = OSTriggerButtonType | OSTriggerDropdownType;

@@ -3,13 +3,13 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-editable-table
+title: editable-table
 group:
   title: tables
   path: /components/tables
 ---
 
-# os-editable-table
+# editable-table
 
 ## 代码演示
 

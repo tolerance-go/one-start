@@ -3,13 +3,13 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-field-editable-table
+title: editable-table-field
 group:
   title: fields
   path: /components/fields
 ---
 
-# os-field-editable-table
+# editable-table-field
 
 ## 代码演示
 

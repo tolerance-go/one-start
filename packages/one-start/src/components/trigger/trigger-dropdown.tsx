@@ -49,7 +49,10 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
     overlayZIndex,
     size,
     id,
+    className: settingsClassName,
   } = settings ?? {};
+
+  const finalClassName = settingsClassName ?? propClassName;
 
   const affiliateIcon = settings?.split === true ? settings.affiliateIcon : undefined;
 
@@ -365,7 +368,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
       return (
         <Component
           id={id}
-          className={propClassName}
+          className={finalClassName}
           style={{
             display: block ? 'block' : undefined,
             cursor: disabled ? 'not-allowed' : 'pointer',
@@ -401,7 +404,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
           marginRight: 5,
         })}
         block={block}
-        className={propClassName}
+        className={finalClassName}
       >
         {renderTooltip(tooltip, {
           marginRight: 5,
@@ -433,7 +436,7 @@ const OSTriggerDropdown: React.ForwardRefRenderFunction<
       return (
         <Dropdown.Button
           size={size}
-          className={propClassName}
+          className={finalClassName}
           trigger={trigger}
           onClick={(event) => {
             if (requestAfterClickLoading) return;
