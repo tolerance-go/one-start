@@ -1,3 +1,11 @@
+global.console = {
+  log: console.log,
+  error: () => {},
+  warn: () => {},
+  info: () => {},
+  debug: () => {},
+};
+
 /* eslint-disable global-require */
 if (typeof window !== 'undefined') {
   // ref: https://github.com/ant-design/ant-design/issues/18774

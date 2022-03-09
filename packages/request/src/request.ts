@@ -42,13 +42,30 @@ export type RestfulError = {
   errorMessage: string;
 };
 
-export type ResponseErrorType = RestfulError | RPCError | string | unknown;
+export type ResponseErrorType = RestfulError | RPCError | string | unknown | undefined;
+
+export type RequestOptions = RequestOptionsInit & {
+  /** 登录页面 URL 地址 */
+  loginRouteUrl?: string;
+  /** 本地用户信息存储的 key 值 */
+  localTokenFieldName?: string;
+  /**
+   * 忽略接口发送前验证本地 token 不存在自动跳转登录页
+   * @default false
+   */
+  ignoreValidateToken?: boolean;
+  /**
+   * 忽略接口返回无权限状态码时，自动转登录页面
+   * @default false
+   */
+  ignoreNoAccess?: boolean;
+};
 
 /**
  * 异常处理程序
  */
 const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseErrorType> => {
-  if ((error.data as RPCError).error) {
+  if ((error.data as RPCError | undefined)?.error) {
     const inlineError = error.data as RPCError;
     notification.error({
       message: `请求错误 ${inlineError.error.code}`,
@@ -62,7 +79,7 @@ const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseE
     };
   }
 
-  if ((error.data as RestfulError).errorMessage) {
+  if ((error.data as RestfulError | undefined)?.errorMessage) {
     const inlineError = error.data as RestfulError;
     const { response } = error;
     notification.error({
@@ -132,15 +149,7 @@ const request = extend({
  * 在请求或响应被 then 或 catch 处理前拦截它们
  */
 request.interceptors.request.use(
-  (
-    url: string,
-    options: RequestOptionsInit & {
-      /** 忽略验证本地 token 是否存在 */
-      ignoreValidateToken?: boolean;
-      loginRouteUrl?: string;
-      localTokenFieldName?: string;
-    },
-  ) => {
+  (url: string, options: RequestOptions) => {
     const {
       localTokenFieldName = 'tongyu_USER_LOCAL_FIELD',
       ignoreValidateToken = false,
@@ -148,7 +157,13 @@ request.interceptors.request.use(
     } = options;
 
     const getToken = () => {
-      const user = JSON.parse(localStorage.getItem(localTokenFieldName) || '');
+      let user;
+      try {
+        user = JSON.parse(window.localStorage.getItem(localTokenFieldName) ?? 'null');
+      } catch {
+        user = null;
+      }
+
       if (!ignoreValidateToken && !user?.token) {
         window.location.href = loginRouteUrl;
         return { url, options };
@@ -175,6 +190,18 @@ request.interceptors.request.use(
         },
       },
     };
+  },
+  { global: false },
+);
+
+request.interceptors.response.use(
+  (res, options: RequestOptions) => {
+    const { loginRouteUrl = '/user/login', ignoreNoAccess = false } = options;
+
+    if (res.status === 401 && !ignoreNoAccess) {
+      window.location.href = loginRouteUrl;
+    }
+    return res;
   },
   { global: false },
 );
@@ -207,10 +234,7 @@ request.use(async (ctx, next) => {
   } as Result<unknown>;
 });
 
-const requestPro = <T extends any>(
-  url: string,
-  options: RequestOptionsInit,
-): Promise<Result<T>> => {
+const requestPro = <T extends any>(url: string, options?: RequestOptions): Promise<Result<T>> => {
   return request(url, options) as Promise<Result<T>>;
 };
 
