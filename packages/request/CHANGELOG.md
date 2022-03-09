@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/request@0.1.2...@ty-one-start/request@0.1.3) (2022-03-09)
+
+
+### Bug Fixes
+
+* **request:** 修复 401 不会自动跳转首页的问题 ([7d040d6](https://10.1.2.7/visual-fe/swap-modules/commits/7d040d6e8d33e5551dd05aa012ad4a4c3b25dcaf))
+
+
+
+
+
 ## [0.1.2](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/request@0.1.1...@ty-one-start/request@0.1.2) (2021-12-24)
 
 
