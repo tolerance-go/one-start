@@ -67,6 +67,9 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     maxWidth,
     maxTagCount = 5,
     disabledRequestOptionsWhenOpen = false,
+    className,
+    dropdownClassName,
+    id,
   } = settings ?? {};
 
   const [loading, setLoading] = useState(false);
@@ -186,7 +189,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     };
 
     return (
-      <span ref={OSSelectRef as React.RefObject<HTMLSpanElement>}>
+      <span className={className} id={id} ref={OSSelectRef as React.RefObject<HTMLSpanElement>}>
         {getContent() ?? (loading ? <LoadingOutlined style={{ fontSize: 12 }} /> : '--')}
       </span>
     );
@@ -351,9 +354,10 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
         labelInValue={labelInValue}
         ref={OSSelectRef}
         value={_value}
-        className={cls(clsPrefix, {
+        className={cls(clsPrefix, className, {
           noborder: bordered === false,
         })}
+        dropdownClassName={dropdownClassName}
         mode={selectMode}
         open={open}
         allowClear={allowClear}

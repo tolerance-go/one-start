@@ -54,6 +54,7 @@ export type OSFieldBaseSettings = {
   /** 尺寸大小 */
   size?: SizeType;
   id?: string;
+  className?: string;
 };
 
 export type OSDigitFieldValueType = string | number;
@@ -290,6 +291,7 @@ export interface OSSelectFieldType<
     /** local 表示前端搜索 */
     showSearch?: SelectProps<ValueType>['showSearch'] | 'local';
     labelInValue?: SelectProps<ValueType>['labelInValue'];
+    dropdownClassName?: SelectProps<ValueType>['dropdownClassName'];
     /** 是否关闭下拉请求 */
     disabledRequestOptionsWhenOpen?: boolean;
     dropdownMatchSelectWidth?: boolean;

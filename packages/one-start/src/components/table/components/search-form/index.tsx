@@ -76,7 +76,7 @@ const SearchForm: React.ForwardRefRenderFunction<
 
             return {
               ...item,
-              dependencies: [SHOW_MORE_FIELD_KEY],
+              dependencies: [SHOW_MORE_FIELD_KEY, ...(item.dependencies ?? [])],
               settings: (options) => {
                 let { settings } = item;
                 if (typeof item.settings === 'function') {

@@ -41,6 +41,8 @@ group:
 ];
 ```
 
+搜索表单是在 Form 的基础上进行的封装，支持 Form 大部分功能，比如可以通过 dependencies 配合函数 settings 实现字段之间的联动
+
 <code src="../demos/table/search-form.tsx" />
 
 ### 下拉选项映射

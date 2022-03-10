@@ -40,6 +40,18 @@ export default () => {
               type: 'money',
               dependencies: ['b-gogo'],
               settings: ({ form }) => {
+                if (form.getFieldValue('b-gogo') > 100) {
+                  return {
+                    title: 'c-gogo',
+                    dataIndex: 'c',
+                    hide: true,
+                    rules: [
+                      {
+                        required: true,
+                      },
+                    ],
+                  };
+                }
                 if (form.getFieldValue('b-gogo') > 10) {
                   return {
                     title: 'c-gogo',

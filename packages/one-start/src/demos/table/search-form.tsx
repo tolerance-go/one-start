@@ -141,17 +141,22 @@ export default () => {
               b: 'B',
               c: 'C',
             },
+            className: 't_select',
+            dropdownClassName: 't_select_dropdown',
           },
         },
         {
           type: 'select',
-          settings: {
+          dependencies: ['select'],
+          settings: ({ form }) => ({
+            hide: !(form.getFieldValue('select') && form.getFieldValue('select') === 'a'),
             search: true,
             title: 'select-search',
             dataIndex: 'select-search',
             showSearch: true,
             mode: 'multiple',
-          },
+            formItemId: 't_select_search',
+          }),
           requests: {
             requestOptions: async () => {
               await delay(1000);
