@@ -68,6 +68,15 @@ export type ColumnOrdersMetaType = Record<
   | number
 >;
 
+export type TableInlineAPI = {
+  getDataSource: () => OSTableValueType;
+  getOriginDataSource: () => OSTableValueType;
+  getRowKey: () => string;
+  isFEPagination: () => boolean;
+  getRowSelection: () => RowSelection | undefined;
+  setSelectedRowsAndKeys: (rows: RecordType[]) => void;
+};
+
 export type TableCoreAPI = {
   setTableFormData: (dataSource_?: RecordType[]) => void;
   setVisualDataSource: (dataSource_?: RecordType[]) => void;
@@ -92,9 +101,16 @@ export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = 
   getSearchFormDataSource: () => RecordType | undefined;
   normalizeDataSource: (dataSource_?: RecordType[]) => RecordType[] | undefined;
   getPagination: () => Pick<PaginationProps, 'current' | 'total'> | undefined;
+  /** 获取 normalized 后的数据 */
   getDataSource: () => OSTableValueType;
-  /** 相较于 getDataSource 会更快，比如如果只是想判断 length 建议用这个  */
+  /**
+   * 获取原始 dataSource 相当于 form 的 values
+   * 相较于 getDataSource 会更快，比如如果只是想判断 length 建议用这个
+   */
   getOriginDataSource: () => OSTableValueType;
+  /**
+   * 获取内部临时的数据，比如过滤后的数据
+   */
   getVisualDataSource: () => OSTableValueType;
   reload: (options?: { current?: number }) => void;
   setDataSource: (dataSource?: RecordType[]) => void;
@@ -498,6 +514,31 @@ export type HighlightBadgeItem = {
   tooltipTitle?: string;
 };
 
+export type RowSelection = {
+  /** 点击高亮行 */
+  type?: 'click-hightlight';
+  checkStrictly?: boolean;
+  /** 搜索后默认选中全部 */
+  defaultSelectAllAfterSearch?: boolean;
+  /**
+   * 快捷批量选择视图状态
+   */
+  quicklyBulkSelection?:
+    | {
+        /* 选择全部 */
+        all?: {};
+        /* 全选当前页 */
+        // allPage?: {};
+        /* 清空全部 */
+        clearAll?: {};
+        /* 清空当前页 */
+        // clearPage?: {};
+        /* 反选当前页 */
+        invertPage?: {};
+      }
+    | true;
+};
+
 export interface _OSTableType<
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
   CustomTableValueType extends CreatePureTableFormFieldItemConfigsType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
@@ -587,11 +628,7 @@ export interface _OSTableType<
      */
     searchFormItemChunkSize?: number;
     /** 指定行选择的行为 */
-    rowSelection?: {
-      /** 点击高亮行 */
-      type?: 'click-hightlight';
-      checkStrictly?: boolean;
-    };
+    rowSelection?: RowSelection;
     /** 搜索表单配置 */
     searchFormSettings?: _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
     batchOperation?: (options: {

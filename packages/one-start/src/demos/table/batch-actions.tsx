@@ -1,6 +1,6 @@
 import { OSProviderWrapper, OSTable, OSTrigger } from '@ty-one-start/one-start';
 import delay from 'delay';
-import Mock from 'mockjs';
+import Mock, { Random } from 'mockjs';
 import React from 'react';
 
 export default () => {
@@ -8,7 +8,10 @@ export default () => {
     <OSProviderWrapper>
       <OSTable
         settings={{
-          /** batchOperation */
+          rowSelection: {
+            quicklyBulkSelection: true,
+            defaultSelectAllAfterSearch: true,
+          },
           batchOperation: () => {
             return [
               <OSTrigger
@@ -43,24 +46,10 @@ export default () => {
               },
             },
             {
-              type: 'money',
+              type: 'digit',
               settings: {
-                title: 'money2',
-                dataIndex: 'money2',
-                rules: [
-                  {
-                    required: true,
-                  },
-                ],
-                sorter: true,
-                search: true,
-              },
-            },
-            {
-              type: 'money',
-              settings: {
-                title: 'money3',
-                dataIndex: 'money3',
+                title: 'digit',
+                dataIndex: 'digit',
                 rules: [
                   {
                     required: true,
@@ -75,19 +64,35 @@ export default () => {
               settings: {
                 title: 'percent',
                 dataIndex: 'percent',
+                rules: [
+                  {
+                    required: true,
+                  },
+                ],
+                sorter: true,
+                search: true,
+              },
+            },
+            {
+              type: 'date',
+              settings: {
+                title: 'date',
+                dataIndex: 'date',
+                search: true,
               },
             },
             {
               type: 'group',
               settings: {
-                title: '分组1',
+                title: '分组',
               },
               children: [
                 {
-                  type: 'money',
+                  type: 'text',
                   settings: {
-                    title: 'money2',
-                    dataIndex: 'money2',
+                    title: 'text',
+                    dataIndex: 'text',
+                    search: true,
                     rules: [
                       {
                         required: true,
@@ -96,10 +101,10 @@ export default () => {
                   },
                 },
                 {
-                  type: 'percent',
+                  type: 'textarea',
                   settings: {
-                    title: 'percent2',
-                    dataIndex: 'percent2',
+                    title: 'textarea',
+                    dataIndex: 'textarea',
                   },
                 },
                 {
@@ -114,55 +119,30 @@ export default () => {
                     },
                   },
                 },
-                {
-                  type: 'select',
-                  settings: {
-                    search: true,
-                    title: 'select2',
-                    dataIndex: 'select2',
-                    showSearch: true,
-                    mode: 'multiple',
-                  },
-                  requests: {
-                    requestOptions: async () => {
-                      await delay(1000);
-                      return Mock.mock({
-                        error: false,
-                        'data|1-100': [
-                          {
-                            label: '@word',
-                            value: '@word',
-                          },
-                        ],
-                      });
-                    },
-                  },
-                },
               ],
             },
           ],
         }}
         requests={{
-          requestDataSource: async (options) => {
-            console.log(options);
-
+          requestDataSource: async () => {
             await delay(1000);
 
             return Mock.mock({
               error: false,
               data: {
-                'page|20': [
+                'page|100': [
                   {
                     id: '@id',
                     money: '@integer',
+                    digit: '@integer',
                     percent: '@integer',
-                    money2: '@integer',
-                    percent2: '@integer',
-                    select: () => 'a',
-                    select2: () => 'a',
+                    date: '@date',
+                    text: '@word',
+                    textarea: '@word',
+                    select: () => Random.pick(['a', 'b']),
                   },
                 ],
-                total: () => Mock.Random.integer(50, 100),
+                total: 100,
               },
             });
           },

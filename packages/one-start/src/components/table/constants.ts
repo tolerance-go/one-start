@@ -41,3 +41,6 @@ export const DEFAULT_ROW_HEIGHT = 31;
 
 /** 默认的搜索表单一行显示数量 */
 export const DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW = 4;
+
+/** 默认的行 rowKey */
+export const DEFAULT_ROW_KEY = 'id';

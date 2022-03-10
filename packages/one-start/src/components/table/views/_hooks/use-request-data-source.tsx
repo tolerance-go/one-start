@@ -13,6 +13,7 @@ import type {
   RequestIO,
   RequestOptions,
   TableCoreAPI,
+  TableInlineAPI,
 } from '../../../../typings';
 import { useActionsRef } from '../../../../components/hooks/use-actions-ref';
 import { normalizeRequestOutputs } from '../../../../components/utils/normalize-request-outputs';
@@ -56,12 +57,11 @@ export const useRequestDataSource = ({
   defaultPageSize = DEFAULT_PAGE_SIZE,
   defaultCurrent = DEFAULT_CURRENT,
   syncURLParams,
+  currentTotalCountRef,
+  tableInlineAPISRef,
 }: {
-  afterSearch?: Required<OSTableType>['hooks']['afterSearch'];
+  currentTotalCountRef: React.MutableRefObject<number | undefined>;
   defaultCurrent?: number;
-  setFieldItemsState: React.Dispatch<
-    React.SetStateAction<Required<OSTableType>['settings']['fieldItems']>
-  >;
   treeSpreadActionsRef: React.RefObject<TreeSpreadActions>;
   searchFormRef: React.MutableRefObject<SearchFormAPI | null>;
   defaultPageSize?: number;
@@ -69,8 +69,6 @@ export const useRequestDataSource = ({
   tableKey?: string;
   autoRequestWhenMounted?: boolean;
   snapshotOfCurrentSearchParametersRef: MutableRefObject<SnapshotOfCurrentSearchParametersType>;
-  requestDataSource?: Required<OSTableType>['requests']['requestDataSource'];
-  requestVisualDataSource?: Required<OSTableType>['requests']['requestVisualDataSource'];
   searchTransfromMapDataIndexId: Record<
     string,
     Required<OSTableFormFieldItemSearchType>['transform']
@@ -81,10 +79,17 @@ export const useRequestDataSource = ({
   >;
   tableCoreActionsRef: React.MutableRefObject<TableCoreAPI>;
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
-  clearSelection: () => void;
   requestDataSourceActionsRef: React.MutableRefObject<RequestDataSourceActions>;
-  setSarchTimeStr: React.Dispatch<React.SetStateAction<string | undefined>>;
   syncURLParams: boolean;
+  tableInlineAPISRef: React.MutableRefObject<TableInlineAPI>;
+  setSarchTimeStr: React.Dispatch<React.SetStateAction<string | undefined>>;
+  clearSelection: () => void;
+  requestDataSource?: Required<OSTableType>['requests']['requestDataSource'];
+  requestVisualDataSource?: Required<OSTableType>['requests']['requestVisualDataSource'];
+  setFieldItemsState: React.Dispatch<
+    React.SetStateAction<Required<OSTableType>['settings']['fieldItems']>
+  >;
+  afterSearch?: Required<OSTableType>['hooks']['afterSearch'];
 }) => {
   const [loading, setLoading] = useState(false);
   const [totalCount, setTotalCount] = useState<number>();
@@ -145,10 +150,14 @@ export const useRequestDataSource = ({
     tableCoreActionsRef.current.setVisualDataSource(data);
 
     setCurrent(1);
+
     setTotalCount(data?.length);
+    // eslint-disable-next-line no-param-reassign
+    currentTotalCountRef.current = data?.length;
 
     syncSearchTimestamp();
   }, [
+    currentTotalCountRef,
     inlineAPIRef,
     requestVisualDataSource,
     syncSearchTimestamp,
@@ -203,6 +212,10 @@ export const useRequestDataSource = ({
 
       setFieldItemsState(data?.fieldItems);
       setTotalCount(data?.total);
+
+      // eslint-disable-next-line no-param-reassign
+      currentTotalCountRef.current = data?.total;
+
       setCurrent(params.current);
 
       /** table 的 requestDataSource 会触发 onChange */
@@ -223,6 +236,11 @@ export const useRequestDataSource = ({
         mode,
       });
 
+      /** 搜索后默认选中全部 */
+      if (tableInlineAPISRef.current.getRowSelection()?.defaultSelectAllAfterSearch) {
+        tableInlineAPISRef.current.setSelectedRowsAndKeys(renderPages ?? []);
+      }
+
       if (syncURLParams && manualInitiate && tableKey) {
         unstateHistory.push({
           pathname: window.location.pathname,
@@ -236,6 +254,8 @@ export const useRequestDataSource = ({
       }
     },
     [
+      tableInlineAPISRef,
+      currentTotalCountRef,
       syncURLParams,
       inlineAPIRef,
       setFieldItemsState,

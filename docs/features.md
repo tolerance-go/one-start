@@ -30,6 +30,7 @@ group:
 - select showSearch
 - text-area 显示更多
 - 自动同步 url 状态
+
 - 搜索提示信息
 - [搜索表单](/components/tables/os-table#%E6%90%9C%E7%B4%A2%E8%A1%A8%E5%8D%95)
   - 支持类 schema 方式定义搜索字段条件
@@ -54,10 +55,17 @@ group:
   - 列提示信息
   - 列数据映射，层级 dataIndex
 
-- 行管理 demo
+- 单行操作
 
-  - 行操作
+- [行批量选择及操作](/components/tables/table#%E8%A1%8C%E6%89%B9%E9%87%8F%E9%80%89%E6%8B%A9%E5%8F%8A%E6%93%8D%E4%BD%9C)
+
+  - 行批量操作
   - 行选择
+    - 选择全部
+    - 全选当前页
+    - 清空全部
+    - 清空当前页
+    - 反选当前页
 
 - 树形表格
 

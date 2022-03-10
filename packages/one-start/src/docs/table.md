@@ -101,9 +101,13 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 <code src="../demos/table/tree-table.tsx" />
 
-### 批量操作
+### 行批量选择及操作
 
-选择列后，激活批量操作按钮
+通过 `batchOperation` 参数返回非空 `ReactNode` 数组，来设置行批量操作，默认开启行选择器
+
+通过 `rowSelection.selections` 开启额外的行批量选择模式
+
+> 暂时不支持后端分页下的选择当前页和前端分页下的选择全部等
 
 <code src="../demos/table/batch-actions.tsx" />
 
