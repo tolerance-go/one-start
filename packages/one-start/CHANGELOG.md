@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.20.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.19.5...@ty-one-start/one-start@0.20.0) (2022-03-10)
+
+
+### Bug Fixes
+
+* 视图管理应用后，请求应该从第一页发起 ([e480e1c](https://10.1.2.7/visual-fe/swap-modules/commits/e480e1c183bfaac1b6f78f723106013b9c9b5283))
+
+
+### Features
+
+* **table:** 行选择器新增下拉菜单，支持多种行选择模式，同时支持相应初始化参数 ([ac77e5e](https://10.1.2.7/visual-fe/swap-modules/commits/ac77e5edad6c55eae304c78d0198efeccbb4ce75))
+
+
+
+
+
 ## [0.19.5](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.19.4...@ty-one-start/one-start@0.19.5) (2022-03-09)
 
 **Note:** Version bump only for package @ty-one-start/one-start
