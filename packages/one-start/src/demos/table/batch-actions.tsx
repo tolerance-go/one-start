@@ -1,35 +1,68 @@
-import { OSProviderWrapper, OSTable, OSTrigger } from '@ty-one-start/one-start';
+import { OSForm, OSProviderWrapper, OSTable, OSTrigger } from '@ty-one-start/one-start';
+import { Divider } from '@ty/antd';
 import delay from 'delay';
 import Mock, { Random } from 'mockjs';
-import React from 'react';
+import React, { useState } from 'react';
 
 export default () => {
+  const [key, setKey] = useState('');
+  const [settings, setSettings] = useState({
+    enableRowBulk: true,
+  });
+
   return (
     <OSProviderWrapper>
+      <OSForm
+        onValuesChange={(_, values_) => {
+          if ('enableRowBulk' in values_) {
+            setKey(Random.id());
+          }
+          setSettings(values_);
+        }}
+        settings={{
+          size: 'small',
+          layout: 'inline',
+          initialValues: settings,
+          fieldItems: [
+            {
+              type: 'switch',
+              settings: {
+                dataIndex: 'enableRowBulk',
+                title: '开启批量操作',
+                className: 't_enableRowBulk',
+              },
+            },
+          ],
+        }}
+      />
+      <Divider />
       <OSTable
+        key={key}
         settings={{
           rowSelection: {
             quicklyBulkSelection: true,
             defaultSelectAllAfterSearch: true,
           },
-          batchOperation: () => {
-            return [
-              <OSTrigger
-                type="button"
-                settings={{
-                  text: '批量下载',
-                  type: 'primary',
-                }}
-              ></OSTrigger>,
-              <OSTrigger
-                type="button"
-                settings={{
-                  text: '批量导出',
-                  type: 'primary',
-                }}
-              ></OSTrigger>,
-            ];
-          },
+          batchOperation: settings.enableRowBulk
+            ? () => {
+                return [
+                  <OSTrigger
+                    type="button"
+                    settings={{
+                      text: '批量下载',
+                      type: 'primary',
+                    }}
+                  ></OSTrigger>,
+                  <OSTrigger
+                    type="button"
+                    settings={{
+                      text: '批量导出',
+                      type: 'primary',
+                    }}
+                  ></OSTrigger>,
+                ];
+              }
+            : undefined,
           fieldItems: [
             {
               type: 'money',

@@ -5,10 +5,9 @@ import { act } from 'react-dom/test-utils';
 import { waitForComponentToPaint } from '../utils';
 
 describe('batch-actions', () => {
-  const html = mount(<Demo />);
   it('默认搜索后选中全部', async () => {
+    const html = mount(<Demo />);
     await waitForComponentToPaint(html, 1200);
-
     expect(html.find('span.bulk-operation-counter').text()).toBe('已选择 100 项');
 
     // 取消当前页选中
@@ -180,5 +179,22 @@ describe('batch-actions', () => {
     expect(
       html.find('input.ty-ant-checkbox-input').map((item) => item.props().checked),
     ).toStrictEqual(fls);
+  });
+
+  it('批量操作启动和关闭', async () => {
+    const html = mount(<Demo />);
+    await waitForComponentToPaint(html, 1200);
+
+    // 关闭批量操作
+    act(() => {
+      html.find('button.t_enableRowBulk').simulate('click');
+    });
+
+    await waitForComponentToPaint(html, 1200);
+
+    expect(html.find('span.bulk-operation-counter').exists()).toBe(false);
+    expect(
+      html.find('input.ty-ant-checkbox-input').map((item) => item.props().checked),
+    ).toStrictEqual([]);
   });
 });

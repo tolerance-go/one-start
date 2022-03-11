@@ -50,9 +50,9 @@ export const useRowSelection = ({
 
   return {
     selectedRowKeys,
-    setSelectedRowKeys,
     selectedRows,
-    setSelectedRows,
     selectedRowsMaps,
+    setSelectedRowKeys,
+    setSelectedRows,
   };
 };

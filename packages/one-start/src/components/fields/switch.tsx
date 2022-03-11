@@ -3,6 +3,7 @@ import { Switch } from '@ty/antd';
 import React from 'react';
 import type { OSSwitchFieldAPI, OSSwitchFieldType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
+import classNames from 'classnames';
 
 const OSSwitchField: React.ForwardRefRenderFunction<OSSwitchFieldAPI, OSSwitchFieldType> = (
   props,
@@ -11,7 +12,7 @@ const OSSwitchField: React.ForwardRefRenderFunction<OSSwitchFieldAPI, OSSwitchFi
   const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
 
   const clsPrefix = useClsPrefix('os-date-field');
-  const { autoFocus } = settings ?? {};
+  const { autoFocus, className } = settings ?? {};
 
   if (mode === 'read') {
     const zhMap = {
@@ -20,7 +21,7 @@ const OSSwitchField: React.ForwardRefRenderFunction<OSSwitchFieldAPI, OSSwitchFi
     };
     const val = text ?? _value;
     const dom = (
-      <span ref={ref as React.MutableRefObject<HTMLSpanElement>}>
+      <span className={className} ref={ref as React.MutableRefObject<HTMLSpanElement>}>
         {val != null ? zhMap[String(val)] : '--'}
       </span>
     );
@@ -34,7 +35,7 @@ const OSSwitchField: React.ForwardRefRenderFunction<OSSwitchFieldAPI, OSSwitchFi
 
     return (
       <Switch
-        className={clsPrefix}
+        className={classNames(clsPrefix, className)}
         autoFocus={autoFocus}
         ref={ref as React.RefObject<HTMLInputElement>}
         checked={_value}

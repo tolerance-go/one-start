@@ -111,6 +111,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     changeDebounceTimestamp = 450,
     autoRequestWhenMounted: userAutoRequestWhenMounted,
     syncURLParams = true,
+    batchOperation,
   } = settings ?? {};
 
   const { afterSearch } = hooks ?? {};
@@ -587,25 +588,48 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
       />
     ) : null;
 
-  const { setSelectedRowKeys, setSelectedRows, selectedRowKeys } = useRowSelection({
+  const { setSelectedRowKeys, setSelectedRows, selectedRowKeys, selectedRows } = useRowSelection({
     tableCoreActionsRef,
     rowKey,
     ref: selectionActionsRef,
   });
 
+  const rowOperationTriggersDom = React.Children.map(
+    [
+      ...(extraBatchOperation?.({
+        selectedRowKeys,
+        selectedRows,
+        actions: tableActionsRef.current,
+      }) ?? []),
+      ...(batchOperation?.({
+        selectedRowKeys,
+        selectedRows,
+        actions: tableActionsRef.current,
+      }) ?? []),
+    ],
+    (item) => {
+      if (React.isValidElement(item)) {
+        return React.cloneElement(item, {
+          ...item.props,
+          __disabled: selectedRowKeys.length === 0,
+        });
+      }
+      return item;
+    },
+  );
+
+  const enableRowBulkOperation = React.Children.count(rowOperationTriggersDom) !== 0;
+
   // TODO: 后续有时间再优化
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const bulkOperationViewDom = (
+  const bulkOperationViewDom = enableRowBulkOperation ? (
     <BulkOperationView
       {...{
-        batchOperation: props.settings?.batchOperation,
-        tableAPISRef: tableActionsRef,
-        extraBatchOperation,
-        setSelectedRows,
         selectedRowKeys,
+        operationDom: rowOperationTriggersDom,
       }}
     />
-  );
+  ) : null;
 
   const clearSelection = useCallback(() => {
     setSelectedRowKeys([]);
