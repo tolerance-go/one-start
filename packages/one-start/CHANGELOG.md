@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.20.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.20.0...@ty-one-start/one-start@0.20.1) (2022-03-11)
+
+
+### Bug Fixes
+
+* **table:** 批量处理按钮中获取不到选中行数据 ([b8cf8de](https://10.1.2.7/visual-fe/swap-modules/commits/b8cf8de29c4cf40a693528dc53a205d693647f30))
+
+
+
+
+
 # [0.20.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.19.5...@ty-one-start/one-start@0.20.0) (2022-03-10)
 
 
