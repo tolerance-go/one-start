@@ -8,6 +8,7 @@ import LnlineLogin from './inline-login';
 import PageLicenseList from './page-license-list';
 import defaultProps from './_defaultProps';
 import PageLicenseApprovalList from './page-license-approval-list';
+import PageUserManageList from './page-user-manage-list';
 
 export default () => {
   const [pathname, setPathname] = useState('/license');
@@ -72,6 +73,8 @@ export default () => {
               return <PageLicenseList />;
             case '/license-approval':
               return <PageLicenseApprovalList />;
+            case '/user-manage':
+              return <PageUserManageList />;
             default:
               return <PageLicenseList />;
           }

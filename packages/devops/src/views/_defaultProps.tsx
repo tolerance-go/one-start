@@ -19,6 +19,13 @@ export default {
         access: 'canAdmin',
         component: './Admin',
       },
+      {
+        path: '/user-manage',
+        name: '用户管理',
+        icon: <CrownOutlined />,
+        access: 'canAdmin',
+        component: './Admin',
+      },
     ],
   },
 };
