@@ -1,8 +1,7 @@
-/* eslint-disable no-param-reassign */
 /**
- * transform: true
  * iframe: 700
  */
+/* eslint-disable no-param-reassign */
 import type {
   OSTableFormFieldItemExtra,
   OSTableType,

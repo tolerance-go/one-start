@@ -43,6 +43,8 @@ group:
 
 搜索表单是在 Form 的基础上进行的封装，支持 Form 大部分功能，比如可以通过 dependencies 配合函数 settings 实现字段之间的联动
 
+当传递 `tableKey` 时自动开启搜索表单值与 URL search 参数同步功能，同步时机为手动执行搜索操作时
+
 <code src="../demos/table/search-form.tsx" />
 
 ### 下拉选项映射
@@ -136,12 +138,6 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 表格预设了 3 种高亮颜色和文案：`warning`, `error`, `success`，通过设置 `highlightBadge` 可以控制工具栏高亮徽章的类型数量和文案等信息；通过设置 `fieldItems[number].settings.highlight` 控制选中单元格高亮类型
 
 <code src="../demos/table/highlight.tsx" />
-
-### 搜索表单值 URL 持久化
-
-传递 `tableKey` 自动开启搜索表单值与 URL search 参数同步，同步时机为手动执行搜索操作时
-
-<code src="../demos/table/state-query.tsx" />
 
 ### 异步获取表头信息
 

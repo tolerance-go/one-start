@@ -34,6 +34,7 @@ describe('table search form', () => {
     const html = mount(<SearchFormDemo />);
     await waitForComponentToPaint(html, 1200);
 
+    // 点击 URL 参数按钮
     act(() => {
       html.find('button#setURLParamsBtn').simulate('click');
       // html.find('input#money').simulate('change', {
@@ -47,6 +48,7 @@ describe('table search form', () => {
     expect(html.find('div#t_formItem_date').props().style?.display).toBe('none');
     expect(html.find('input#t_date').exists()).toBe(true);
 
+    // 展开更多
     act(() => {
       html.find('a.collapse-link').simulate('click');
     });
@@ -56,6 +58,7 @@ describe('table search form', () => {
     expect(html.find('div#t_formItem_date').props().style?.display).toBe('block');
     expect(html.find('input#t_date').props().value).toBe('2022-02-02');
 
+    // 点击重置按钮
     act(() => {
       html.find('button.reset-button').simulate('click');
     });
