@@ -50,6 +50,7 @@ export default () => {
         search: true,
         sorter: true,
         id: 't_money',
+        tooltip: ['提示信息第一行', '提示信息第二行'],
       },
     },
     {

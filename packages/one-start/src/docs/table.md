@@ -8,17 +8,26 @@ order: -1
 group:
   title: tables
   path: /components/tables
+tocMaxDepth: 5
 ---
 
 # table
 
-## 代码演示
+## 功能演示
 
-### 搜索表单
+### 外部搜索表单
 
-界面上支持用户显示和关闭搜索表单的功能；当搜索字段超过指定行数时支持展开和收起更多字段的功能，最大显示行数可以通过 `searchFormItemChunkSize` 控制，默认为 2；通过 `syncURLParams` 开启搜索表单内容自动同步 URL 参数的功能，默认开启；
+#### 支持表单字段展开收起更多
 
-支持 schmea 方式来定义表格列，如果配置为 search: true 支持同时定义搜索项，当二者差异较大时，可以通过 `search: 'only'` 区分显示，可以配置 `initialValue` 参数来初始化搜索字段
+界面上支持用户显示和关闭搜索表单的功能；当搜索字段超过指定行数时支持展开和收起更多字段的功能，最大显示行数可以通过 `searchFormItemChunkSize` 控制，默认为 2；
+
+#### 支持表单数据与 URL 状态同步
+
+当传递 `tableKey` 时，通过 `syncURLParams` 开启搜索表单内容自动同步 URL 参数的功能，默认开启，同步时机为手动执行搜索操作时
+
+#### 支持 type-schema 方式快速定义搜索字段
+
+支持 schmea 方式来定义表格列
 
 ```tsx | pure
 [
@@ -41,9 +50,63 @@ group:
 ];
 ```
 
-搜索表单是在 Form 的基础上进行的封装，支持 Form 大部分功能，比如可以通过 dependencies 配合函数 settings 实现字段之间的联动
+#### 支持搜索表单布局调整
 
-当传递 `tableKey` 时自动开启搜索表单值与 URL search 参数同步功能，同步时机为手动执行搜索操作时
+```tsx | pure
+({
+  searchFormSettings: {
+    groupItemSettings: {
+      gutter: 10,
+    },
+    fieldItemSettings: {
+      labelCol: {
+        span: 4,
+      },
+      wrapperCol: {
+        span: 20,
+      },
+      labelAlign: 'left',
+      readonly: true,
+      colSpan: 8,
+    },
+  },
+});
+```
+
+#### 支持搜索字段展示提示信息
+
+```tsx | pure
+[
+  {
+    type: 'money',
+    settings: {
+      title: 'money',
+      dataIndex: 'money',
+      rules: [
+        {
+          required: true,
+        },
+      ],
+      search: true,
+      sorter: true,
+      id: 't_money',
+      tooltip: ['提示信息第一行', '提示信息第二行'],
+    },
+  },
+];
+```
+
+#### 支持搜索表单设置初始值
+
+可以配置 `initialValue` 参数来初始化搜索字段
+
+#### 支持单独定义搜索字段，区分表格列
+
+如果配置为 search: true 支持同时定义搜索项，当二者差异较大时，可以通过 `search: 'only'` 区分显示
+
+#### 支持搜索字段之间联动
+
+搜索表单是在 Form 的基础上进行的封装，支持 Form 大部分功能，比如可以通过 dependencies 配合函数 settings 实现字段之间的联动
 
 <code src="../demos/table/search-form.tsx" />
 
@@ -171,7 +234,7 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 <code src="../demos/table/rows-support-clicking-to-select-the-style.tsx" />
 
-### API 接口
+## API 接口
 
 <code src="../demos/table/apis.tsx" />
 
