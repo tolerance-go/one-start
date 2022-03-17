@@ -96,4 +96,39 @@ describe('request', () => {
       token: `Bearer ${token}`,
     });
   });
+
+  it('ignoreErrorTips', async () => {
+    server.get('/test/3', (req, res) => {
+      res.setHeader('access-control-allow-origin', '*');
+      res.status(500);
+      res.send();
+    });
+
+    const errorTipsCustomHandler = jest.fn();
+
+    await request(prefix('/test/3'), {
+      method: 'get',
+      ignoreErrorTips: true,
+      errorTipsCustomHandler,
+    });
+
+    expect(errorTipsCustomHandler).toHaveBeenCalledTimes(0);
+  });
+
+  it('errorTipsCustomHandler', async () => {
+    server.get('/test/4', (req, res) => {
+      res.setHeader('access-control-allow-origin', '*');
+      res.status(500);
+      res.send();
+    });
+
+    const errorTipsCustomHandler = jest.fn();
+
+    await request(prefix('/test/3'), {
+      method: 'get',
+      errorTipsCustomHandler,
+    });
+
+    expect(errorTipsCustomHandler).toHaveBeenCalled();
+  });
 });

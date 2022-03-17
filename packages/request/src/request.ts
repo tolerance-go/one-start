@@ -1,6 +1,7 @@
 import { extend } from 'umi-request';
 import type { RequestOptionsInit, ResponseError } from 'umi-request';
 import { notification } from '@ty/antd';
+import type { ArgsProps } from '@ty/antd/lib/notification';
 
 export const BCTServicePrefix = process.env.NODE_ENV === 'development' ? '/bct-service' : '';
 
@@ -59,6 +60,21 @@ export type RequestOptions = RequestOptionsInit & {
    * @default false
    */
   ignoreNoAccess?: boolean;
+  /**
+   * 忽略通知信息打印
+   * @default false
+   */
+  ignoreErrorTips?: boolean;
+  /** 忽略通知信息打印的回调 */
+  errorTipsCustomHandler?: (args: ArgsProps) => void;
+};
+
+/**
+ * 错误信息提示
+ * @param args
+ */
+const defaultErrorTipsCustomHandler = (args: ArgsProps) => {
+  notification.error(args);
 };
 
 /**
@@ -67,10 +83,15 @@ export type RequestOptions = RequestOptionsInit & {
 const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseErrorType> => {
   if ((error.data as RPCError | undefined)?.error) {
     const inlineError = error.data as RPCError;
-    notification.error({
-      message: `请求错误 ${inlineError.error.code}`,
-      description: inlineError.error.message,
-    });
+    const { ignoreErrorTips, errorTipsCustomHandler } = error.request.options;
+
+    if (!ignoreErrorTips) {
+      const errorTipsCustomHandlerFun = errorTipsCustomHandler ?? defaultErrorTipsCustomHandler;
+      errorTipsCustomHandlerFun({
+        message: `请求错误 ${inlineError.error.code}`,
+        description: inlineError.error.message,
+      });
+    }
     return {
       error: true,
       data: undefined,
@@ -81,11 +102,16 @@ const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseE
 
   if ((error.data as RestfulError | undefined)?.errorMessage) {
     const inlineError = error.data as RestfulError;
-    const { response } = error;
-    notification.error({
-      message: `请求错误 ${(response && response.status) ?? ''}`,
-      description: inlineError.errorMessage,
-    });
+    const { response, request } = error;
+    const { ignoreErrorTips, errorTipsCustomHandler } = request.options;
+
+    if (!ignoreErrorTips) {
+      const errorTipsCustomHandlerFun = errorTipsCustomHandler ?? defaultErrorTipsCustomHandler;
+      errorTipsCustomHandlerFun({
+        message: `请求错误 ${(response && response.status) ?? ''}`,
+        description: inlineError.errorMessage,
+      });
+    }
     return {
       error: true,
       data: undefined,
@@ -94,7 +120,9 @@ const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseE
     };
   }
 
-  const { response } = error;
+  const { response, request } = error;
+  const { ignoreErrorTips, errorTipsCustomHandler } = request.options;
+
   if (response && response.status) {
     const ackmsg = response.headers.get('ackmsg');
     const errorText = ackmsg
@@ -102,10 +130,13 @@ const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseE
       : codeMessage[response.status] || response.statusText;
     const { status } = response;
 
-    notification.error({
-      message: `请求错误 ${status}`,
-      description: errorText,
-    });
+    if (!ignoreErrorTips) {
+      const errorTipsCustomHandlerFun = errorTipsCustomHandler ?? defaultErrorTipsCustomHandler;
+      errorTipsCustomHandlerFun({
+        message: `请求错误 ${status}`,
+        description: errorText,
+      });
+    }
     return {
       error: true,
       data: undefined,
