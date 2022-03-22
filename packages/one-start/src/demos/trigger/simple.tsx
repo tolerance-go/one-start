@@ -1,8 +1,9 @@
-import { UploadOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, UploadOutlined } from '@ant-design/icons';
 import { OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Divider, Space } from '@ty/antd';
+import { Divider, Row, Space } from '@ty/antd';
 import delay from 'delay';
 import React from 'react';
+import { OSDialog } from '../../components';
 
 export default () => {
   return (
@@ -262,6 +263,137 @@ export default () => {
                 text: 'menu1',
               },
             ],
+          }}
+          requests={{
+            requestAfterClick: async () => {
+              await delay(1000);
+            },
+          }}
+        ></OSTrigger>
+      </Space>
+      <Divider />
+      <Space split={<Divider type="vertical" />}>
+        <OSTrigger
+          type="icon"
+          settings={{
+            content: <InfoCircleOutlined />,
+          }}
+          requests={{
+            requestAfterClick: async () => {
+              await delay(1000);
+            },
+          }}
+        ></OSTrigger>
+        <OSTrigger
+          type="icon"
+          settings={{
+            content: <InfoCircleOutlined />,
+            disabled: true,
+          }}
+          requests={{
+            requestAfterClick: async () => {
+              await delay(1000);
+            },
+          }}
+        ></OSTrigger>
+        <OSDialog
+          type="popover"
+          // ref={dialogPopoverRef}
+          settings={{
+            title: <Row>最近计算运行结果</Row>,
+            content: <div style={{ width: 250 }}>xxxxx</div>,
+          }}
+        >
+          <OSTrigger
+            type="icon"
+            settings={{
+              content: <InfoCircleOutlined />,
+            }}
+            requests={{
+              requestAfterClick: async () => {
+                await delay(1000);
+              },
+            }}
+          ></OSTrigger>
+        </OSDialog>
+        <OSDialog
+          type="modal"
+          settings={{
+            title: 'modal',
+          }}
+        >
+          <OSTrigger
+            type="icon"
+            settings={{
+              content: <InfoCircleOutlined />,
+            }}
+            requests={{
+              requestAfterClick: async () => {
+                await delay(1000);
+              },
+            }}
+          ></OSTrigger>
+        </OSDialog>
+        <OSTrigger
+          type="button"
+          settings={{
+            text: '按钮',
+            icon: (
+              <OSDialog
+                type="popover"
+                // ref={dialogPopoverRef}
+                settings={{
+                  title: <Row>最近计算运行结果</Row>,
+                  content: <div style={{ width: 250 }}>xxxxx</div>,
+                }}
+              >
+                <OSTrigger
+                  type="icon"
+                  settings={{
+                    content: <InfoCircleOutlined />,
+                  }}
+                  requests={{
+                    requestAfterClick: async () => {
+                      await delay(1000);
+                    },
+                  }}
+                ></OSTrigger>
+              </OSDialog>
+            ),
+          }}
+          requests={{
+            requestAfterClick: async () => {
+              await delay(1000);
+            },
+          }}
+        ></OSTrigger>
+        <OSTrigger
+          type="button"
+          settings={{
+            text: '按钮',
+            mergeIconInLoading: false,
+            icon: (
+              <OSDialog
+                type="popover"
+                // ref={dialogPopoverRef}
+                settings={{
+                  title: <Row>最近计算运行结果</Row>,
+                  content: <div style={{ width: 250 }}>xxxxx</div>,
+                }}
+              >
+                <OSTrigger
+                  type="icon"
+                  settings={{
+                    content: <InfoCircleOutlined />,
+                  }}
+                  requests={{
+                    requestAfterClick: async () => {
+                      await delay(1000);
+                    },
+                  }}
+                ></OSTrigger>
+              </OSDialog>
+            ),
           }}
           requests={{
             requestAfterClick: async () => {

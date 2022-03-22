@@ -19,7 +19,7 @@ import type {
   OSDialogAPIBase,
   OSDialogDrawerAPI,
 } from '../../typings';
-import { OSDialogAPIContext } from './contexts';
+import { OSDialogAPIContext, OSDialogTypeContext } from './contexts';
 import OSDialogMessage from './message';
 import OSDialogModal from './modal';
 import OSDialogModalOperation from './modal-operation';
@@ -165,7 +165,9 @@ const OSDialog: React.ForwardRefRenderFunction<OSDialogAPI, PropsWithChildren<OS
   };
 
   return (
-    <OSDialogAPIContext.Provider value={innerRef}>{renderContent()}</OSDialogAPIContext.Provider>
+    <OSDialogTypeContext.Provider value={props.type}>
+      <OSDialogAPIContext.Provider value={innerRef}>{renderContent()}</OSDialogAPIContext.Provider>
+    </OSDialogTypeContext.Provider>
   );
 };
 

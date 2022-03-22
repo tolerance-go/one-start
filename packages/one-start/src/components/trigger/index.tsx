@@ -7,6 +7,8 @@ import type {
   OSTriggerButtonType,
   OSTriggerDropdownAPI,
   OSTriggerDropdownType,
+  OSTriggerIconAPI,
+  OSTriggerIconType,
   OSTriggerType,
 } from '../../typings';
 import { PrioritizedComponentSizeContext } from '../providers/prioritized-component-size';
@@ -14,6 +16,7 @@ import { OSReferencesCollectorDispatchContext } from '../providers/references';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import OSTriggerButton from './trigger-button';
 import OSTriggerDropdown from './trigger-dropdown';
+import OSTriggerIcon from './trigger-icon';
 
 const OSTrigger: React.ForwardRefRenderFunction<OSTriggerAPI, OSTriggerType> = (props, ref) => {
   const { type, refKey, ...rest } = props;
@@ -114,6 +117,12 @@ const OSTrigger: React.ForwardRefRenderFunction<OSTriggerAPI, OSTriggerType> = (
     );
   }
 
+  if (type === 'icon') {
+    return renderTriggerWrapBadge(
+      <OSTriggerIcon ref={inlineRef} {...rest} settings={accSettings} className={className} />,
+    );
+  }
+
   return null;
 };
 
@@ -126,3 +135,7 @@ export const TriggerButtonRequests: React.FC<OSTriggerButtonType['requests']> = 
 export const TriggerDropdownSettings: React.FC<OSTriggerDropdownType['settings']> = () => <></>;
 export const TriggerDropdownAPI: React.FC<OSTriggerDropdownAPI> = () => <></>;
 export const TriggerDropdownRequests: React.FC<OSTriggerDropdownType['requests']> = () => <></>;
+
+export const TriggerIconSettings: React.FC<OSTriggerIconType['settings']> = () => <></>;
+export const TriggerIconAPI: React.FC<OSTriggerIconAPI> = () => <></>;
+export const TriggerIconRequests: React.FC<OSTriggerIconType['requests']> = () => <></>;

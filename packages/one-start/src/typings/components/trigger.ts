@@ -1,3 +1,4 @@
+import { AntdIconProps } from '@ant-design/icons/lib/components/AntdIcon';
 import type { BadgeProps, ButtonProps, UploadProps } from '@ty/antd';
 import { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 import type { RibbonProps } from '@ty/antd/lib/badge/Ribbon';
@@ -128,6 +129,41 @@ export interface OSTriggerButtonAPI extends OSTriggerAPIBase {
   update: (settings?: OSTriggerButtonType['settings']) => void;
 }
 
+export interface OSTriggerIconAPI extends OSTriggerAPIBase {}
+
+export interface OSTriggerIconType extends OSTriggerBase {
+  type?: 'icon';
+  settings?: {
+    className?: string;
+    id?: string;
+    style?: React.CSSProperties;
+    content?: React.ReactElement<AntdIconProps>;
+    loading?: string;
+    manualPush?: boolean;
+    disabled?: boolean;
+    initialDisabled?: boolean;
+    upload?: OSTriggerUpload;
+  } & OSButtonCore;
+  requests?: {
+    requestAfterClick?: RequestIO<
+      {
+        actions: OSTriggerIconAPI;
+      },
+      {
+        message?: OSResMessage;
+      }
+    >;
+  };
+  __shouldPush?: boolean;
+  __disabled?: boolean;
+  className?: string;
+  onClick?: (options: {
+    event?: React.MouseEvent<HTMLElement, MouseEvent>;
+    actions: OSTriggerIconAPI;
+  }) => void;
+  actionsRef?: React.MutableRefObject<(OSTriggerIconAPI & Record<string, Function>) | null>;
+}
+
 export type OSTriggerTooltip = string | string[];
 
 export type OSTriggerUpload = {
@@ -146,6 +182,8 @@ export interface OSTriggerButtonType extends OSTriggerBase {
     /** 纯文本模式 */
     plain?: boolean;
     upload?: OSTriggerUpload;
+    /** 是否 loading 的时候不显示 icon */
+    mergeIconInLoading?: boolean;
   };
   requests?: {
     /** 同步后调用，会设置 icon 的 spin */
@@ -180,6 +218,6 @@ export interface OSTriggerButtonType extends OSTriggerBase {
   }) => void;
 }
 
-export type OSTriggerType = OSTriggerButtonType | OSTriggerDropdownType;
+export type OSTriggerType = OSTriggerButtonType | OSTriggerDropdownType | OSTriggerIconType;
 
-export type OSTriggerAPI = OSTriggerButtonAPI | OSTriggerDropdownAPI;
+export type OSTriggerAPI = OSTriggerButtonAPI | OSTriggerDropdownAPI | OSTriggerIconAPI;

@@ -42,6 +42,7 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
     size,
     id,
     className: settingsClassName,
+    mergeIconInLoading = true,
   } = settings ?? {};
 
   const finalClassName = settingsClassName ?? propClassName;
@@ -150,7 +151,7 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
   };
 
   const renderIcon = (style?: React.CSSProperties) => {
-    if (requestAfterClickLoading) return null;
+    if (mergeIconInLoading && (requestAfterClickLoading || loading)) return null;
 
     const icon_ = icon || (requests?.requestAfterSync ? <SyncOutlined /> : undefined);
 
@@ -254,21 +255,18 @@ const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTrig
         type={settings?.type}
         disabled={disabled}
         danger={danger}
-        icon={renderIcon({
-          marginRight: 5,
-        })}
         block={block}
         loading={icon ? false : loading || requestAfterClickLoading}
+        style={{
+          cursor: (loading || requestAfterClickLoading) && icon ? 'default' : 'pointer',
+        }}
       >
-        {icon
-          ? renderLoading({
-              marginRight: 5,
-            })
-          : null}
-        {renderTooltip({
-          marginRight: 5,
-        })}
-        {renderText(content)}
+        <Space size={5}>
+          {renderIcon()}
+          {icon ? renderLoading() : null}
+          {renderTooltip()}
+          {renderText(content)}
+        </Space>
       </Button>
     );
   };
