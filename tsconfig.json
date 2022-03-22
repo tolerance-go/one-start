@@ -22,7 +22,6 @@
       "@ty-one-start/one-proto": ["packages/one-proto/src/index"],
       "@ty-one-start/scripts": ["packages/scripts/src/index"],
       "@ty-one-components/frame": ["packages/frame/src/index"],
-      "@ty-one-start/devops": ["packages/devops/src/index"],
       "@ty-one-components/provider": ["packages/provider/src/index"]
     }
   },

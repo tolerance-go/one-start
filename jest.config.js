@@ -5,7 +5,6 @@ const moduleNameMapper = {
   '^@ty-one-start/one-proto$': '<rootDir>/packages/one-proto/src/index',
   '^@ty-one-start/scripts$': '<rootDir>/packages/scripts/src/index',
   '^@ty-one-components/frame$': '<rootDir>/packages/frame/src/index',
-  '^@ty-one-start/devops$': '<rootDir>/packages/devops/src/index',
   '^@ty-one-components/provider$': '<rootDir>/packages/provider/src/index',
 };
 
