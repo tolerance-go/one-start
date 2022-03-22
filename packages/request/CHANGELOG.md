@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/request@0.1.3...@ty-one-start/request@0.2.0) (2022-03-22)
+
+
+### Features
+
+* **request:** 新增 ignoreErrorTips 参数，支持忽略通知信息打印 ([21ee54b](https://10.1.2.7/visual-fe/swap-modules/commits/21ee54b89215627c2de0bb30098c75e43cb1d2fd))
+
+
+
+
+
 ## [0.1.3](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/request@0.1.2...@ty-one-start/request@0.1.3) (2022-03-09)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.21.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.20.1...@ty-one-start/one-start@0.21.0) (2022-03-22)
+
+
+### Features
+
+* **trigger:** 新增 type 为 icon 的 trigger，支持 dialog 联动 ([7301a42](https://10.1.2.7/visual-fe/swap-modules/commits/7301a4228ee244a04b84c5463b2ad1ff77041176))
+
+
+
+
+
 ## [0.20.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.20.0...@ty-one-start/one-start@0.20.1) (2022-03-11)
 
 
