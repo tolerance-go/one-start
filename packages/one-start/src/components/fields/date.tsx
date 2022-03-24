@@ -4,7 +4,7 @@ import type { PickerProps } from '@ty/antd/lib/date-picker/generatePicker';
 import type { Moment } from 'moment';
 import moment from 'moment';
 import type { Component } from 'react';
-import React, { useState, useImperativeHandle, useRef } from 'react';
+import React, { useImperativeHandle, useRef, useState } from 'react';
 import type { OSDateFieldAPI, OSDateFieldType, OSDateFieldValueType } from '../../typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 
@@ -23,6 +23,8 @@ const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldTyp
     disabledDate,
     disabled,
     id,
+    showNow,
+    showTime,
   } = settings ?? {};
   const [open, setOpen] = useState<boolean>();
 
@@ -70,6 +72,8 @@ const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldTyp
     return (
       <DatePicker
         id={id}
+        showNow={showNow}
+        showTime={showTime}
         open={open}
         disabled={disabled}
         disabledDate={disabledDate}

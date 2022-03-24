@@ -63,6 +63,9 @@ group:
   - 支持只读状态
     - 支持快速复制
 
+- field-date
+  - 支持选择时间
+
 ### form
 
 ### table

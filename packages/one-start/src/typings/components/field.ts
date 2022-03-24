@@ -10,6 +10,7 @@ import type {
 } from '@ty/antd';
 import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 import type { UploadFile } from '@ty/antd/es/upload/interface';
+import type { PickerPanelDateProps } from '@ty/antd/lib/calendar/generateCalendar';
 import type { PickerProps, RangePickerDateProps } from '@ty/antd/lib/date-picker/generatePicker';
 import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
 import type { RefSelectProps } from '@ty/antd/lib/select';
@@ -537,6 +538,8 @@ export interface OSDateFieldType extends OSField, OSFieldBaseConfigs<OSDateField
     /** 日期格式化 */
     format?: string;
     disabledDate?: DatePickerProps['disabledDate'];
+    showNow?: boolean;
+    showTime?: PickerPanelDateProps<Moment>['showTime'];
   } & OSFieldBaseSettings;
 }
 

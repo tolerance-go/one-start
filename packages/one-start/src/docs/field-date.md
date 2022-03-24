@@ -3,13 +3,13 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-field-date
+title: field-date
 group:
   title: fields
   path: /components/fields
 ---
 
-# os-field-date
+# field-date
 
 ## 代码演示
 
@@ -24,6 +24,10 @@ group:
 ### 格式化
 
 <code src="../demos/field-date/format.tsx" />
+
+### 支持选择时间
+
+<code src="../demos/field-date/show-time.tsx" />
 
 <API exports='["Settings"]' src="../components/fields/date.tsx"></API>
 
