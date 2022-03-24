@@ -68,6 +68,11 @@ group:
 
 ### form
 
+#### form-item
+
+- 支持显示 label
+  - 当宽度不够时，显示省略
+
 ### table
 
 - [搜索视图](/components/tables/table#搜索视图)

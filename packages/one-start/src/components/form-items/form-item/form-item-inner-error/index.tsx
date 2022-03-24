@@ -4,20 +4,25 @@ import type { FormItemProps } from '@ty/antd/lib/form';
 import utl from 'lodash';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
-import type { RecordType } from '../../../typings';
-import { useActionsRef } from '../../hooks/use-actions-ref';
+import type { RecordType } from '../../../../typings';
+import { useActionsRef } from '../../../hooks/use-actions-ref';
 import {
   LayoutModalFormEventBusContext,
   LayoutTabsFormEventBusContext,
   LayoutTabsFormTabMetaContext,
-} from '../../layout-form/layout-form-event-context';
-import { TableAPIContext } from '../../providers/table-api-context';
-import { TableWrapperContext } from '../../providers/table-context';
-import { useClsPrefix } from '../../utils/use-cls-prefix';
+} from '../../../layout-form/layout-form-event-context';
+import { TableAPIContext } from '../../../providers/table-api-context';
+import { TableWrapperContext } from '../../../providers/table-context';
+import { useClsPrefix } from '../../../utils/use-cls-prefix';
 import { ErrorPopover } from './error-popover';
 import { findClosestParentElement } from './_utils';
 
-const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
+const InlineErrorFormItem: React.FC<
+  FormItemProps & {
+    isInTable?: boolean;
+  }
+> = (props) => {
+  const { isInTable } = props;
   const clsPrefix = useClsPrefix('os-table-inline-error-form-item');
 
   /** 是否手动关闭 */
@@ -208,7 +213,7 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
 
           const visible = (() => {
             /** 当在 table 内时，支持关闭 */
-            if (tableAPI.current) {
+            if (isInTable) {
               const next = (() => {
                 if (cellIsFixed) {
                   return errors.length > 0;
@@ -216,7 +221,7 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
                 return !isScrolling && cellIsInCenterView && errors.length > 0;
               })();
 
-              if (tableAPI.current.isChangeDebounce()) {
+              if (tableAPI.current?.isChangeDebounce()) {
                 /** 当用户输入当前单元格时，才将关闭的标记量关闭 */
                 const inputs = tableAPI.current?.getIntervalLatestUserInputValue() ?? {};
                 if (name && name[0] in inputs && name[1] in inputs[name[0]]) {
@@ -226,7 +231,7 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
 
               if (next === true) {
                 if (closeOnceRef.current) {
-                  if (tableAPI.current.isChangeDebounce() === false) {
+                  if (tableAPI.current?.isChangeDebounce() === false) {
                     closeOnceRef.current = false;
                   }
                   return false;
@@ -245,7 +250,7 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
               trigger={props.trigger}
               visible={visible}
               errorList={errorList}
-              enableClose={!!tableAPI.current}
+              enableClose={isInTable}
               getPopupContainer={() => {
                 /** 解决弹窗内的表格关闭时候无法隐藏的问题 */
                 return (

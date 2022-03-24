@@ -79,6 +79,7 @@ export const renderTableFormItem = (
 
       return (
         <OSFormItemBase
+          isInTable
           valueType={valueType}
           fieldSettings={fieldSettings}
           className={formItemClassName}

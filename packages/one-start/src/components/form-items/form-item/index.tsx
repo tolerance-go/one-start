@@ -1,5 +1,5 @@
 import { LoadingOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import { Form, Spin, Tooltip } from '@ty/antd';
+import { Form, Spin, Tooltip, Typography } from '@ty/antd';
 import type { Rule, RuleObject } from '@ty/antd/lib/form';
 import type { ValidateStatus } from '@ty/antd/lib/form/FormItem';
 import cls from 'classnames';
@@ -7,20 +7,21 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type {
   OSFormItemTooltip,
   OSFormItemType,
-  OSRule,
   OSPercentFieldType,
+  OSRule,
 } from '../../../typings';
 import { FormInstanceContext } from '../../providers/form-context';
 import { normalizeDataIndex } from '../../utils/normalize-data-index';
 import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
 import { useClsPrefix } from '../../utils/use-cls-prefix';
-import FormItemInlineError from '../form-item-inner-error';
 import { getDateCheckRule } from '../rules/get-date-check-rule';
 import { getNumberDigitsRule } from '../rules/get-number-digits-rule';
 import { getNumberRangeRule } from '../rules/get-number-range-rule';
 import { getTradingDaysRule } from '../rules/get-trading-days-rule';
 import { mergeRuleToTooltip, normalizeTooltip } from '../utils';
+import FormItemInlineError from './form-item-inner-error';
 import { OSFormItemInput } from './form-item-input';
+import './index.less';
 import { useHistoryTimeline } from './use-history-timeline';
 
 const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
@@ -36,6 +37,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     hideItemControlLine,
     valueType,
     fieldSettings,
+    isInTable,
   } = props;
   const {
     tooltip,
@@ -249,36 +251,43 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     return null;
   }
 
-  const label = title ? (
-    <>
-      {title}
-      {historyTimeLineEl}
-      {linkagetip ? (
-        <Tooltip
-          title={
-            Array.isArray(linkagetip) ? (
-              <div>
-                {linkagetip.map((item) => (
-                  <div>{item}</div>
-                ))}
-              </div>
-            ) : (
-              linkagetip
-            )
-          }
-        >
-          <ThunderboltOutlined
-            style={{
-              marginLeft: 4,
-              color: 'rgba(0, 0, 0, 0.45)',
-              fontSize: 12,
-              cursor: 'help',
-            }}
-          />
-        </Tooltip>
-      ) : null}
-    </>
-  ) : undefined;
+  const label = (() => {
+    if (isInTable) {
+      return undefined;
+    }
+    return title ? (
+      <>
+        <Typography.Text ellipsis title={title}>
+          {title}
+        </Typography.Text>
+        {historyTimeLineEl}
+        {linkagetip ? (
+          <Tooltip
+            title={
+              Array.isArray(linkagetip) ? (
+                <div>
+                  {linkagetip.map((item) => (
+                    <div>{item}</div>
+                  ))}
+                </div>
+              ) : (
+                linkagetip
+              )
+            }
+          >
+            <ThunderboltOutlined
+              style={{
+                marginLeft: 4,
+                color: 'rgba(0, 0, 0, 0.45)',
+                fontSize: 12,
+                cursor: 'help',
+              }}
+            />
+          </Tooltip>
+        ) : null}
+      </>
+    ) : undefined;
+  })();
 
   /** React.ReactNode 类型的 title 不会自动出现在 rule 提示中，提供一个特殊的 title */
   const messageVariables = title
@@ -299,6 +308,11 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
         spinning={requestFormItemValueLoading || requestInitialValueLoading}
       >
         <FormItemType
+          {...(settings?.inlineError
+            ? {
+                isInTable,
+              }
+            : {})}
           validateTrigger={validateTrigger}
           validateFirst={validateFirst}
           preserve={settings?.preserve}

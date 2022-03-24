@@ -3,13 +3,13 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-form
+title: form
 group:
   title: forms
   path: /components/forms
 ---
 
-# os-form
+# form
 
 ## 代码演示
 
@@ -131,6 +131,8 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 > 其他原因，暂时只在 `placeholder-input` 上实现，后续有需求再迁移到 `form` 级别
 
 <code src="../demos/form/value-transform.tsx" />
+
+<code src="../cases/form/form-item-label-ellipsis.tsx" />
 
 ### API 接口
 
