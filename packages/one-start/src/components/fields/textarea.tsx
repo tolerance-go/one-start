@@ -1,4 +1,4 @@
-import { Input } from '@ty/antd';
+import { Input, Typography } from '@ty/antd';
 import type { TextAreaProps } from '@ty/antd/lib/input';
 import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
 import utl from 'lodash';
@@ -18,7 +18,9 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
     placeholder,
     showCount,
     maxLength,
+    ellipsis = { rows: 2, expandable: true, symbol: '更多' },
     autoTrim = true,
+    copyable = true,
   } = settings ?? {};
 
   const inputRef = useRef<TextAreaRef>(null);
@@ -26,9 +28,21 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
   useImperativeHandle(ref, () => inputRef.current!);
 
   if (mode === 'read') {
-    const dom = (
-      <span ref={ref as React.MutableRefObject<HTMLSpanElement>}>{text ?? _value ?? '--'}</span>
-    );
+    const content = text ?? _value;
+    const dom =
+      (content?.length || 0) > 1 ? (
+        <Typography.Paragraph
+          style={{
+            marginBottom: 0,
+          }}
+          copyable={copyable}
+          ellipsis={ellipsis}
+        >
+          {content}
+        </Typography.Paragraph>
+      ) : (
+        <span ref={ref as React.MutableRefObject<HTMLSpanElement>}>{content ?? '--'}</span>
+      );
     return dom;
   }
   if (mode === 'edit' || mode === 'update') {

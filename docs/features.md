@@ -58,6 +58,11 @@ group:
 
 - [静态验证规则](/components/forms/os-form#%E8%A1%A8%E5%8D%95%E5%86%85%E7%BD%AE%E9%AA%8C%E8%AF%81)
 
+- field-textarea
+
+  - 支持只读状态
+    - 支持快速复制
+
 ### form
 
 ### table

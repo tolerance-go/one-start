@@ -3,13 +3,13 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-field-textarea
+title: field-textarea
 group:
   title: fields
   path: /components/fields
 ---
 
-# os-field-textarea
+# field-textarea
 
 ## 代码演示
 
@@ -24,6 +24,16 @@ group:
 ### 前后空格自动 trim
 
 <code src="../demos/field-textarea/auto-trim.tsx" />
+
+### 只读状态
+
+#### 支持快速复制
+
+超过 2 行支持展开更多
+
+<code src="../demos/field-textarea/readonly.tsx" />
+
+####
 
 <API exports='["Settings"]' src="../components/fields/textarea.tsx"></API>
 

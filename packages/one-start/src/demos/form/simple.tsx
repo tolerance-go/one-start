@@ -2,6 +2,7 @@ import type { RecordType } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
 import { message } from '@ty/antd';
 import utlFp from 'lodash/fp';
+import { mock, Random } from 'mockjs';
 import React from 'react';
 import { session } from 'store2';
 
@@ -11,6 +12,17 @@ export default () => {
       <OSForm
         settings={{
           fieldItems: [
+            {
+              type: 'textarea',
+              settings: {
+                title: 'textarea',
+                dataIndex: 'textarea',
+                initialValue: mock({
+                  text: () => Random.paragraph(),
+                }).text,
+                readonly: true,
+              },
+            },
             {
               type: 'upload',
               settings: {

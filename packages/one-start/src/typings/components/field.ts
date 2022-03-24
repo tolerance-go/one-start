@@ -8,20 +8,21 @@ import type {
   TreeSelectProps,
   UploadProps,
 } from '@ty/antd';
+import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 import type { UploadFile } from '@ty/antd/es/upload/interface';
 import type { PickerProps, RangePickerDateProps } from '@ty/antd/lib/date-picker/generatePicker';
 import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
 import type { RefSelectProps } from '@ty/antd/lib/select';
+import type { ParagraphProps } from '@ty/antd/lib/typography/Paragraph';
 import type { Moment } from 'moment';
 import type { NamePath } from 'rc-field-form/lib/interface';
 import type Picker from 'rc-picker/lib/Picker';
 import type React from 'react';
 import type { Component } from 'react';
-import type { OSResMessage } from './message';
 import type { RecordType } from '../core';
 import type { OSCore, RequestIO } from './core';
+import type { OSResMessage } from './message';
 import type { OSTriggerButtonType } from './trigger';
-import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 
 export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
   type?: string;
@@ -393,6 +394,9 @@ export interface OSTextareaFieldType
     maxLength?: number;
     /** 自动 trim */
     autoTrim?: boolean;
+    /** 只读可复制 */
+    copyable?: boolean;
+    ellipsis?: ParagraphProps['ellipsis'];
   } & OSFieldBaseSettings;
 }
 
