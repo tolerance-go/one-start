@@ -3,13 +3,13 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-dialog
+title: dialog
 group:
   title: general
   path: /components/general
 ---
 
-# os-dialog
+# dialog
 
 ## 代码演示
 
@@ -40,6 +40,8 @@ group:
 ### 确认类型
 
 <code src="../demos/dialog/confirm-type.tsx" />
+
+<code src="../cases/dialog/zindex.tsx" />
 
 DialogAPIBase 为公共的 api，具体 dialog 各自继承实现
 

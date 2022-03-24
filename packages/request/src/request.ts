@@ -67,6 +67,7 @@ export type RequestOptions = RequestOptionsInit & {
   ignoreErrorTips?: boolean;
   /** 忽略通知信息打印的回调 */
   errorTipsCustomHandler?: (args: ArgsProps) => void;
+  notificationSettings?: Pick<ArgsProps, 'duration' | 'placement'>;
 };
 
 /**
@@ -74,13 +75,17 @@ export type RequestOptions = RequestOptionsInit & {
  * @param args
  */
 const defaultErrorTipsCustomHandler = (args: ArgsProps) => {
-  notification.error(args);
+  notification.error({
+    ...args,
+    className: 'one-request-notification',
+  });
 };
 
 /**
  * 异常处理程序
  */
 const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseErrorType> => {
+  const { notificationSettings } = error.request.options;
   if ((error.data as RPCError | undefined)?.error) {
     const inlineError = error.data as RPCError;
     const { ignoreErrorTips, errorTipsCustomHandler } = error.request.options;
@@ -88,6 +93,7 @@ const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseE
     if (!ignoreErrorTips) {
       const errorTipsCustomHandlerFun = errorTipsCustomHandler ?? defaultErrorTipsCustomHandler;
       errorTipsCustomHandlerFun({
+        ...notificationSettings,
         message: `请求错误 ${inlineError.error.code}`,
         description: inlineError.error.message,
       });
@@ -108,6 +114,7 @@ const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseE
     if (!ignoreErrorTips) {
       const errorTipsCustomHandlerFun = errorTipsCustomHandler ?? defaultErrorTipsCustomHandler;
       errorTipsCustomHandlerFun({
+        ...notificationSettings,
         message: `请求错误 ${(response && response.status) ?? ''}`,
         description: inlineError.errorMessage,
       });
@@ -133,6 +140,7 @@ const errorHandler = (error: ResponseError<ResponseErrorType>): Result<ResponseE
     if (!ignoreErrorTips) {
       const errorTipsCustomHandlerFun = errorTipsCustomHandler ?? defaultErrorTipsCustomHandler;
       errorTipsCustomHandlerFun({
+        ...notificationSettings,
         message: `请求错误 ${status}`,
         description: errorText,
       });

@@ -44,6 +44,10 @@ group:
 
 ## 组件及功能
 
+### dialog
+
+- 各种 dialog 存在时的 zindex 优先级
+
 ### fields
 
 - tree-select
