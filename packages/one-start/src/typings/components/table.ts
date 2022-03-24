@@ -94,6 +94,16 @@ export type TableCoreAPI = {
 
 export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = {
   /**
+   * 获取用户最新输入
+   * 因为编辑表单作为字段时候，为了提供性能，提供了防抖
+   * 间隔间的输入，debounce change 后会清空
+   */
+  getIntervalLatestUserInputValue: () => Record<string, any> | undefined;
+  /**
+   * 是否防抖触发修改
+   */
+  isChangeDebounce: () => boolean;
+  /**
    * 清空上一次单元格用户输入，原作用是避免数值联动冲掉当前输入
    * 但是在手动设置的情况下，需要先清理，避免无效
    */

@@ -15,7 +15,7 @@ tocMaxDepth: 5
 
 ## 功能演示
 
-### 外部搜索表单
+### 搜索视图
 
 #### 支持表单字段展开收起更多
 
@@ -239,6 +239,10 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 <code src="../demos/table/apis.tsx" />
 
 <code src="../demos/table/dev-empty.tsx" />
+
+<code src="../cases/table/nest-form-cell-tooltip-close.tsx" />
+
+<code src="../cases/form/form-item-warning-not-close.tsx" />
 
 <API exports='["TableSettings", "TableAPI"]' src="../components/table/views/index.tsx"></API>
 

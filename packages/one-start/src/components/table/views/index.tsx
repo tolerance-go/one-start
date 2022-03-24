@@ -43,6 +43,7 @@ import { ExtraValueTypesContext } from '../../providers/extra-value-types';
 import { PrioritizedComponentSizeContext } from '../../providers/prioritized-component-size';
 import { OSReferencesCollectorDispatchContext } from '../../providers/references';
 import { TableWrapperContext } from '../../providers/table-context';
+import { TableAPIContext } from '../../providers/table-api-context';
 import { parseTableValue } from '../../utils/parse-table-value';
 import { mapTreeNode } from '../../utils/tree-utils';
 import { useClsPrefix } from '../../utils/use-cls-prefix';
@@ -160,6 +161,12 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
    * 可能出现最新输入的值要比联动的 changed cell value 更新，导致变化当前 focus 的 cell
    */
   const latestUserInputValueRef = useRef();
+
+  /**
+   * 最近用户输入，再下次 debounce onChange 触发后会设置为空
+   *
+   */
+  const latestIntervalUserInputValueRef = useRef();
 
   const columnSettingsActionsRef = useActionsRef<Partial<ColumnsSettingsActions>>({});
 
@@ -287,6 +294,14 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
    */
   const clearPrevUserCellInputs = () => {
     latestUserInputValueRef.current = undefined;
+  };
+
+  const getIntervalLatestUserInputValue = () => {
+    return latestIntervalUserInputValueRef.current;
+  };
+
+  const isChangeDebounce = () => {
+    return !!changeDebounceTimestamp;
   };
 
   const setDataSourceAndFormData = useCallback(
@@ -486,6 +501,8 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   });
 
   const tableActionsRef = useActionsRef<OSTableAPI>({
+    isChangeDebounce,
+    getIntervalLatestUserInputValue,
     clearPrevUserCellInputs,
     getPagination: () => requestDataSourceActionsRef.current?.getPagination(),
     getColumnsSettingsOrders: () => columnSettingsActionsRef.current.getColumnsSettingsOrders?.(),
@@ -770,6 +787,8 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
       onChange?.(data);
     }
     changedvaluesCacheRef.current = undefined;
+
+    latestIntervalUserInputValueRef.current = undefined;
   };
 
   const handleValueChangeCoreWithDebounce = changeDebounceTimestamp
@@ -834,94 +853,97 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   }, [props.headerWrapper]);
 
   return (
-    <RowSelectionModel.Provider>
-      <TableWrapperContext.Provider value={tableWrapRef}>
-        <div ref={tableWrapRef}>
-          <SearchPanel
-            {...{
-              searchFormFieldItems,
-              searchFormItemChunkSize,
-              searchFormDom,
-            }}
-          />
-          <ActionsPanel
-            {...{
-              selectionDom: bulkOperationViewDom,
-              searchFormFieldItems,
-              searchFormItemChunkSize,
-              searchFormDom,
-              searchSwitchDom,
-              expandBtn,
-              actions,
-              extraActions,
-              settingDom,
-              tableActionsRef,
-              clsPrefix,
-              highlightTag,
-            }}
-          ></ActionsPanel>
-          {drawerDom}
-          <PrioritizedComponentSizeContext.Provider value={prioritizedComSize}>
-            <Form
-              /** 影响表格 cell 内第一层 */
-              size="small"
-              form={tableWrapForm}
-              className={cls(clsPrefix, props.className)}
-              ref={tableWrapFormRef}
-              onValuesChange={(changedValues, values) => {
-                latestUserInputValueRef.current = changedValues;
-
-                handleValueChange(changedValues, values);
+    <TableAPIContext.Provider value={tableActionsRef}>
+      <RowSelectionModel.Provider>
+        <TableWrapperContext.Provider value={tableWrapRef}>
+          <div ref={tableWrapRef}>
+            <SearchPanel
+              {...{
+                searchFormFieldItems,
+                searchFormItemChunkSize,
+                searchFormDom,
               }}
-            >
-              <div
-                ref={wrapRef}
-                style={{
-                  position: 'relative',
-                  maxWidth:
-                    tableMaxWidth != null
-                      ? tableMaxWidth - (uaparser.getOS().name === 'Windows' ? 17 : 0)
-                      : undefined,
+            />
+            <ActionsPanel
+              {...{
+                selectionDom: bulkOperationViewDom,
+                searchFormFieldItems,
+                searchFormItemChunkSize,
+                searchFormDom,
+                searchSwitchDom,
+                expandBtn,
+                actions,
+                extraActions,
+                settingDom,
+                tableActionsRef,
+                clsPrefix,
+                highlightTag,
+              }}
+            ></ActionsPanel>
+            {drawerDom}
+            <PrioritizedComponentSizeContext.Provider value={prioritizedComSize}>
+              <Form
+                /** 影响表格 cell 内第一层 */
+                size="small"
+                form={tableWrapForm}
+                className={cls(clsPrefix, props.className)}
+                ref={tableWrapFormRef}
+                onValuesChange={(changedValues, values) => {
+                  latestUserInputValueRef.current = changedValues;
+                  latestIntervalUserInputValueRef.current = changedValues;
+
+                  handleValueChange(changedValues, values);
                 }}
               >
-                <Table
-                  tableLayout="fixed"
-                  loading={{
-                    indicator: <LoadingOutlined />,
-                    spinning: loading,
+                <div
+                  ref={wrapRef}
+                  style={{
+                    position: 'relative',
+                    maxWidth:
+                      tableMaxWidth != null
+                        ? tableMaxWidth - (uaparser.getOS().name === 'Windows' ? 17 : 0)
+                        : undefined,
                   }}
-                  rowSelection={antdSelectionConfigs}
-                  rowKey={rowKey}
-                  columns={mergedColumns}
-                  dataSource={visualDataSource ?? dataSource}
-                  onChange={handleTableChange}
-                  onRow={(row, index) => {
-                    return {
-                      className: getRowClassName(row, index),
-                      rowId: row[rowKey],
-                      rowSelectionType: rowSelection?.type,
-                    } as TableBodyRowProps;
-                  }}
-                  expandable={{
-                    expandedRowKeys,
-                    onExpandedRowsChange: (_expandedRowKeys) => {
-                      setExpandedRowKeys(_expandedRowKeys);
-                    },
-                  }}
-                  pagination={finalPagination}
-                  scroll={{
-                    x: totalTableWidth,
-                    y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
-                  }}
-                  components={components}
-                />
-                {searchTimestampDom}
-              </div>
-            </Form>
-          </PrioritizedComponentSizeContext.Provider>
-        </div>
-      </TableWrapperContext.Provider>
-    </RowSelectionModel.Provider>
+                >
+                  <Table
+                    tableLayout="fixed"
+                    loading={{
+                      indicator: <LoadingOutlined />,
+                      spinning: loading,
+                    }}
+                    rowSelection={antdSelectionConfigs}
+                    rowKey={rowKey}
+                    columns={mergedColumns}
+                    dataSource={visualDataSource ?? dataSource}
+                    onChange={handleTableChange}
+                    onRow={(row, index) => {
+                      return {
+                        className: getRowClassName(row, index),
+                        rowId: row[rowKey],
+                        rowSelectionType: rowSelection?.type,
+                      } as TableBodyRowProps;
+                    }}
+                    expandable={{
+                      expandedRowKeys,
+                      onExpandedRowsChange: (_expandedRowKeys) => {
+                        setExpandedRowKeys(_expandedRowKeys);
+                      },
+                    }}
+                    pagination={finalPagination}
+                    scroll={{
+                      x: totalTableWidth,
+                      y: settings?.tableHeight ?? DEFAULT_TABLE_HEIGHT,
+                    }}
+                    components={components}
+                  />
+                  {searchTimestampDom}
+                </div>
+              </Form>
+            </PrioritizedComponentSizeContext.Provider>
+          </div>
+        </TableWrapperContext.Provider>
+      </RowSelectionModel.Provider>
+    </TableAPIContext.Provider>
   );
 };
 

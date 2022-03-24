@@ -34,6 +34,14 @@ group:
 
 组件是逻辑单位，包含若干视图，视图也可以偏逻辑或者重展示，视图中包含一系列的状态及操作状态的逻辑，一组状态及行为称之为功能
 
+- 功能
+  - demos
+  - cases
+
+每个功能都有面向用户的使用案例和面向测试的测试案例，测试案例往往场景和状态较为复杂
+
+> cases 的位置应该为功能定义的组件内，比如单元格编辑提示信息关闭，应该是 table 的 case 而不是 editable-table 的
+
 ## 组件及功能
 
 ### fields
@@ -44,9 +52,11 @@ group:
 
 - [静态验证规则](/components/forms/os-form#%E8%A1%A8%E5%8D%95%E5%86%85%E7%BD%AE%E9%AA%8C%E8%AF%81)
 
+### form
+
 ### table
 
-- [搜索视图](/components/tables/table#%E5%A4%96%E9%83%A8%E6%90%9C%E7%B4%A2%E8%A1%A8%E5%8D%95)
+- [搜索视图](/components/tables/table#搜索视图)
 
   - 支持 type-schema 方式快速定义搜索字段
   - 支持表单字段展开收起更多
@@ -97,6 +107,8 @@ group:
   - 支持单元格可编辑
   - 支持单元格高亮展示
   - 支持单元格展示提示信息
+  - 支持编辑单元格提示信息手动关闭
+    - 在表单嵌套中使用，修改的防抖时间大于 0 时
 
 ### source-table
 
@@ -133,7 +145,7 @@ group:
 
 ### editable-table
 
-- CRUD demo
+- CRUD
 
   - 创建
     - 控制新增行方向

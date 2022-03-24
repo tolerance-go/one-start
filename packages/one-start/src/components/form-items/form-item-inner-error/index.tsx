@@ -1,37 +1,21 @@
 /* eslint-disable no-bitwise */
-import { Col, Form, Popover, Row } from '@ty/antd';
+import { Form } from '@ty/antd';
 import type { FormItemProps } from '@ty/antd/lib/form';
 import utl from 'lodash';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { unstable_batchedUpdates } from 'react-dom';
-import type { RecordType } from '../../typings';
-import { useActionsRef } from '../hooks/use-actions-ref';
+import type { RecordType } from '../../../typings';
+import { useActionsRef } from '../../hooks/use-actions-ref';
 import {
   LayoutModalFormEventBusContext,
   LayoutTabsFormEventBusContext,
   LayoutTabsFormTabMetaContext,
-} from '../layout-form/layout-form-event-context';
-import { TableWrapperContext } from '../providers/table-context';
-import CloseIconAction from '../utils/components/close-icon-action';
-import { useClsPrefix } from '../utils/use-cls-prefix';
-
-/** 找到最近的父级元素 */
-const findClosestParentElement = (
-  target: HTMLElement | undefined,
-  predicate: (current: HTMLElement) => boolean,
-): HTMLElement | undefined => {
-  if (target == null) return undefined;
-
-  if (predicate(target) === true) {
-    return target;
-  }
-
-  if (target.parentElement) {
-    return findClosestParentElement(target.parentElement, predicate);
-  }
-
-  return undefined;
-};
+} from '../../layout-form/layout-form-event-context';
+import { TableAPIContext } from '../../providers/table-api-context';
+import { TableWrapperContext } from '../../providers/table-context';
+import { useClsPrefix } from '../../utils/use-cls-prefix';
+import { ErrorPopover } from './error-popover';
+import { findClosestParentElement } from './_utils';
 
 const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
   const clsPrefix = useClsPrefix('os-table-inline-error-form-item');
@@ -43,11 +27,13 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
     setCount((prev) => prev + 1);
   };
 
-  const shouldCloseRef = useRef<boolean>();
+  const closeOnceRef = useRef<boolean>();
 
   const layoutModalFormEvent = useContext(LayoutModalFormEventBusContext);
   const layoutTabsFormEvent = useContext(LayoutTabsFormEventBusContext);
   const layoutTabsFormTabMeta = useContext(LayoutTabsFormTabMetaContext);
+
+  const tableAPI = useContext(TableAPIContext);
 
   const tableWrapperRef = useContext(TableWrapperContext);
 
@@ -218,44 +204,48 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
             extra: JSX.Element;
           },
         ) => {
-          const { errors } = inputProps;
+          const { errors, name } = inputProps;
 
           const visible = (() => {
-            if (shouldCloseRef.current) {
-              shouldCloseRef.current = undefined;
-              return false;
+            /** 当在 table 内时，支持关闭 */
+            if (tableAPI.current) {
+              const next = (() => {
+                if (cellIsFixed) {
+                  return errors.length > 0;
+                }
+                return !isScrolling && cellIsInCenterView && errors.length > 0;
+              })();
+
+              if (tableAPI.current.isChangeDebounce()) {
+                /** 当用户输入当前单元格时，才将关闭的标记量关闭 */
+                const inputs = tableAPI.current?.getIntervalLatestUserInputValue() ?? {};
+                if (name && name[0] in inputs && name[1] in inputs[name[0]]) {
+                  closeOnceRef.current = false;
+                }
+              }
+
+              if (next === true) {
+                if (closeOnceRef.current) {
+                  if (tableAPI.current.isChangeDebounce() === false) {
+                    closeOnceRef.current = false;
+                  }
+                  return false;
+                }
+              }
+
+              return next;
             }
 
-            if (cellIsFixed) {
-              return errors.length > 0;
-            }
-            return !isScrolling && cellIsInCenterView && errors.length > 0;
+            return errors.length > 0;
           })();
 
           return (
-            <Popover
-              overlayClassName={`${clsPrefix}-popover-overlay`}
+            <ErrorPopover
+              clsPrefix={clsPrefix}
               trigger={props.trigger}
-              placement="topLeft"
               visible={visible}
-              content={
-                <Row align="top" justify="space-between">
-                  <Col>{errorList}</Col>
-                  <Col>
-                    <CloseIconAction
-                      style={{
-                        marginLeft: 4,
-                        fontSize: 10,
-                      }}
-                      onClick={() => {
-                        shouldCloseRef.current = true;
-                        forceUpdate();
-                      }}
-                    />
-                  </Col>
-                </Row>
-              }
-              autoAdjustOverflow
+              errorList={errorList}
+              enableClose={!!tableAPI.current}
               getPopupContainer={() => {
                 /** 解决弹窗内的表格关闭时候无法隐藏的问题 */
                 return (
@@ -269,12 +259,16 @@ const InlineErrorFormItem: React.FC<FormItemProps> = (props) => {
                     : null) ?? document.body
                 );
               }}
+              onClose={() => {
+                closeOnceRef.current = true;
+                forceUpdate();
+              }}
             >
               <div ref={cellRef}>
                 {input}
                 {extra}
               </div>
-            </Popover>
+            </ErrorPopover>
           );
         },
       }}
