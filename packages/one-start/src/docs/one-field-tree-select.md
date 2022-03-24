@@ -7,6 +7,7 @@ title: os-field-tree-select
 group:
   title: fields
   path: /components/fields
+tocMaxDepth: 5
 ---
 
 # os-field-tree-select
@@ -22,6 +23,8 @@ group:
 <code src="../demos/field-tree-select/multiple.tsx" />
 
 ### 搜索
+
+#### 搜索后连续选择
 
 <code src="../demos/field-tree-select/search.tsx" />
 

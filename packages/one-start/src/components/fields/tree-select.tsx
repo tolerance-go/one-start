@@ -17,7 +17,8 @@ import type {
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { mapTreeNode } from '../utils/tree-utils';
 import { useClsPrefix } from '../utils/use-cls-prefix';
-import { DataNode } from '@ty/antd/lib/tree';
+import type { DataNode } from '@ty/antd/lib/tree';
+import { useUpdateEffect } from 'ahooks';
 
 const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTreeSelectFieldType> = (
   props,
@@ -100,6 +101,13 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
       },
     };
   });
+
+  useUpdateEffect(() => {
+    if (open === false) {
+      /** 清空 searchValue，否则选择的项会高亮 */
+      setSearchValue(undefined);
+    }
+  }, [open]);
 
   if (mode === 'read') {
     const maps = utl.fromPairs(
@@ -211,20 +219,32 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
 
     return (
       <TreeSelect<OSTreeSelectFieldValueType>
-        ref={OSSelectRef}
+        treeDefaultExpandAll
         treeCheckable
+        ref={OSSelectRef}
         maxTagCount={5}
         showCheckedStrategy={TreeSelect.SHOW_PARENT}
         multiple={multiple}
         value={_value}
+        open={open}
+        placeholder="请选择选项"
+        allowClear={allowClear}
+        dropdownClassName={`${clsPrefix}-dropdown`}
+        optionFilterProp={'label'}
         className={cls(clsPrefix, {
           noborder: bordered === false,
         })}
-        treeDefaultExpandAll
+        bordered={bordered}
+        disabled={disabled}
+        autoFocus={autoFocus}
+        loading={loading}
+        style={{
+          width: '100%',
+          minWidth: 120,
+        }}
+        showSearch={showSearch == null ? undefined : !!showSearch}
+        searchValue={searchValue}
         onChange={(value: OSTreeSelectFieldValueType) => {
-          /** 清空 searchValue，否则选择的项会高亮 */
-          setSearchValue(undefined);
-
           const parseValue = (val: OSTreeSelectFieldValueType) => {
             if (val == null || utl.isEmpty(valueToOptionMaps)) {
               return val;
@@ -265,24 +285,8 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
           }
           return true;
         }}
-        open={open}
         onDropdownVisibleChange={setOpen}
         notFoundContent={renderNotFoundContent()}
-        allowClear={allowClear}
-        showSearch={showSearch == null ? undefined : !!showSearch}
-        optionFilterProp={'label'}
-        {...{
-          bordered,
-          disabled,
-          autoFocus,
-          loading,
-        }}
-        style={{
-          width: '100%',
-          minWidth: 120,
-        }}
-        placeholder="请选择选项"
-        dropdownClassName={`${clsPrefix}-dropdown`}
         // dropdownRender={(menuDom) => {
         //   return (
         //     <div ref={dropWrapRef} style={{ overflow: 'visible' }}>

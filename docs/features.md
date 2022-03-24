@@ -49,6 +49,8 @@ group:
 - tree-select
 
   - [树形状态展示](/components/fields/one-field-tree-select#%E6%A0%91%E5%BD%A2%E7%8A%B6%E6%80%81%E5%B1%95%E7%A4%BA)
+  - 支持搜索
+    - 支持搜索后连续选择
 
 - [静态验证规则](/components/forms/os-form#%E8%A1%A8%E5%8D%95%E5%86%85%E7%BD%AE%E9%AA%8C%E8%AF%81)
 
