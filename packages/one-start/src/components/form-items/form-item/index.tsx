@@ -226,7 +226,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     }
     return title ? (
       <>
-        <Typography.Text ellipsis title={title}>
+        <Typography.Text className="os-form-item-title" ellipsis title={title}>
           {title}
         </Typography.Text>
         {historyTimeLineEl}
