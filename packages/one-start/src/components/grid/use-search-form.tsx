@@ -4,7 +4,6 @@ import store from 'store2';
 import OSForm from '../form';
 import { useActionsRef } from '../hooks/use-actions-ref';
 import type { OSFormAPI, OSFormFieldItems, OSTableType, RecordType } from '../../typings';
-import type { RequiredRecursion } from '../../typings';
 import {
   DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW,
   searchFormVisibleLocalField,
@@ -28,8 +27,8 @@ export const useSearchForm = ({
   __localkey?: string;
   tableKey?: string;
   snapshotOfCurrentSearchParametersRef: React.MutableRefObject<SnapshotOfCurrentSearchParametersType>;
-  searchFormItemChunkSize?: RequiredRecursion<OSTableType>['settings']['searchFormItemChunkSize'];
-  searchFormSettings?: RequiredRecursion<OSTableType>['settings']['searchFormSettings'];
+  searchFormItemChunkSize?: Required<OSTableType>['settings']['searchFormItemChunkSize'];
+  searchFormSettings?: Required<OSTableType>['settings']['searchFormSettings'];
   searchFormFieldItems?: OSFormFieldItems;
   ref?: React.MutableRefObject<Partial<SearchFormActions>>;
   enable?: boolean;

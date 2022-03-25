@@ -240,9 +240,9 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 <code src="../demos/table/dev-empty.tsx" />
 
-<code src="../cases/table/nest-form-cell-tooltip-close.tsx" />
+<code src="../demos/__cases__/table/nest-form-cell-tooltip-close.tsx" />
 
-<code src="../cases/form/form-item-warning-not-close.tsx" />
+<code src="../demos/__cases__/form/form-item-warning-not-close.tsx" />
 
 <API exports='["TableSettings", "TableAPI"]' src="../components/table/views/index.tsx"></API>
 

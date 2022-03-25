@@ -180,6 +180,15 @@ export default (props: {
                   },
                 },
                 {
+                  type: 'textarea',
+                  settings: {
+                    title: 'textarea',
+                    dataIndex: 'textarea',
+                    search: true,
+                    ellipsis: true,
+                  },
+                },
+                {
                   type: 'select',
                   settings: {
                     title: 'select-search',

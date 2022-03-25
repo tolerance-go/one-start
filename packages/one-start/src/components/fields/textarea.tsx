@@ -9,7 +9,15 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
   props,
   ref,
 ) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onChangeHook,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+    isWrapFormItem,
+  } = props;
 
   const {
     bordered,
@@ -30,7 +38,7 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
   if (mode === 'read') {
     const content = text ?? _value;
     const dom =
-      (content?.length || 0) > 1 ? (
+      isWrapFormItem && (content?.length || 0) > 1 ? (
         <Typography.Paragraph
           style={{
             marginBottom: 0,

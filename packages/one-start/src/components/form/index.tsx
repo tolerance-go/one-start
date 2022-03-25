@@ -892,6 +892,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
                 props: { ...options?.props, eventBus, name: formItemSettings?.dataIndex },
                 ref: leafFieldItemComponentRefRefs.current[keyIndexId].ref,
                 formRef,
+                isWrapFormItem: true,
               },
             );
           },

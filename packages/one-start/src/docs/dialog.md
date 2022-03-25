@@ -41,7 +41,7 @@ group:
 
 <code src="../demos/dialog/confirm-type.tsx" />
 
-<code src="../cases/dialog/zindex.tsx" />
+<code src="../demos/__cases__/dialog/zindex.tsx" />
 
 DialogAPIBase 为公共的 api，具体 dialog 各自继承实现
 

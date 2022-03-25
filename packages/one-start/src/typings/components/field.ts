@@ -40,8 +40,8 @@ export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
 export type OSFieldBaseConfigs<ValueType = any> = {
   onChangeHook?: (value?: ValueType) => void;
   size?: SizeType;
-  /** 是否在表格 cell 中 */
-  inTableCell?: boolean;
+  /** 是否外部被 FormItem 包裹 */
+  isWrapFormItem?: boolean;
 };
 
 export type OSFieldBaseSettings = {

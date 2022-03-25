@@ -132,7 +132,7 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 
 <code src="../demos/form/value-transform.tsx" />
 
-<code src="../cases/form/form-item-label-ellipsis.tsx" />
+<code src="../demos/__cases__/form/form-item-label-ellipsis.tsx" />
 
 ### API 接口
 

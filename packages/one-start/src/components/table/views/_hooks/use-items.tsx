@@ -282,6 +282,7 @@ export const useItems = ({
                     ref: options?.ref,
                     formRef: tableWrapFormRef,
                     cellMeta,
+                    isWrapFormItem: true,
                   },
                 );
               },

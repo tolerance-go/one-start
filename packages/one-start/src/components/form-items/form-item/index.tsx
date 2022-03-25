@@ -1,9 +1,8 @@
 import { LoadingOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import { Form, Spin, Tooltip, Typography } from '@ty/antd';
+import { Form, message, Spin, Tooltip, Typography } from '@ty/antd';
 import type { Rule, RuleObject } from '@ty/antd/lib/form';
-import type { ValidateStatus } from '@ty/antd/lib/form/FormItem';
 import cls from 'classnames';
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import type {
   OSFormItemTooltip,
   OSFormItemType,
@@ -14,6 +13,7 @@ import { FormInstanceContext } from '../../providers/form-context';
 import { normalizeDataIndex } from '../../utils/normalize-data-index';
 import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
 import { useClsPrefix } from '../../utils/use-cls-prefix';
+import { withDebounce } from '../../utils/with-debounce';
 import { getDateCheckRule } from '../rules/get-date-check-rule';
 import { getNumberDigitsRule } from '../rules/get-number-digits-rule';
 import { getNumberRangeRule } from '../rules/get-number-range-rule';
@@ -102,9 +102,6 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     requestInitialValue();
   }, []);
 
-  const [help, setHelp] = useState<string>();
-  const [validateStatus, setValidateStatus] = useState<ValidateStatus>();
-
   const convertOsRule = (item: Rule | OSRule): Rule => {
     if ((item as OSRule).ruleType) {
       const osRule = item as OSRule;
@@ -148,7 +145,9 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     return item as Rule;
   };
 
-  const prevInputValueRef = useRef();
+  const logWarning = withDebounce(300)((info?: string) => {
+    message.warn(info);
+  });
 
   const wrapWarningRules = () => {
     return (
@@ -169,43 +168,13 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
                   return new Promise((resolve, reject) => {
                     if (validator) {
                       try {
-                        if (prevInputValueRef.current !== value) {
-                          setHelp(undefined);
-                          setValidateStatus(undefined);
-                        }
-                        prevInputValueRef.current = value;
-
-                        // setValidateStatus('validating');
-                        // setRequestFormItemValueLoading(true);
                         const result = validator(rule, value, callback);
 
                         if (result instanceof Promise) {
                           result
-                            .then(() => {
-                              // setValidateStatus(undefined)
-                              // setRequestFormItemValueLoading(false);
-                              resolve(true);
-                            })
+                            .then(() => resolve(true))
                             .catch((error: Error) => {
-                              /**
-                               * 1. 所有 error 会在 warn 之前执行
-                               * 2. form item 出现一个 error 不会暂停后续的
-                               * 3. 所有 warn 本质是一个必定成功的 rule
-                               * 4. warn 使用了 validateStatus 受控，优先级最高
-                               *
-                               * settimeout 执行时，错误信息已经可以获取
-                               * */
-                              setTimeout(() => {
-                                if (dataIndex) {
-                                  const validateError = form.getFieldsError([dataIndex]);
-                                  if (validateError.some((data) => data.errors.length > 0)) {
-                                    return;
-                                  }
-                                }
-                                setHelp(error.message);
-                                setValidateStatus('warning');
-                                // setRequestFormItemValueLoading(false);
-                              });
+                              logWarning(`${title ? `${title}: ` : ''}${error.message}`);
                               resolve(true);
                             });
                           return;
@@ -325,8 +294,6 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
             ...settings?.styles,
             flexWrap: 'nowrap',
           }}
-          help={help}
-          validateStatus={validateStatus}
           key={asyncInitialValue && JSON.stringify(asyncInitialValue)}
           noStyle={noStyle}
           tooltip={

@@ -72,6 +72,7 @@ group:
 
 - 支持显示 label
   - [当宽度不够时，显示省略](http://localhost:8001/components/forms/form#form-form-item-label-ellipsis)
+- 支持警告验证规则
 
 ### table
 

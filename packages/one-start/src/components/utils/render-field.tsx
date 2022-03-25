@@ -74,6 +74,8 @@ export const renderField = (
     autoFetchSelectOptions?: boolean;
     formRef?: React.RefObject<FormInstance>;
     cellMeta?: OSTableCellMeta;
+    /** 是否 field 直接被 FormItem 包裹 */
+    isWrapFormItem?: boolean;
   },
 ) => {
   if (type === 'digit') {

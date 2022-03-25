@@ -30,6 +30,7 @@
     "**/docs/**/*",
     "scripts/**/*",
     "**/demos",
+    "**/cases",
     ".eslintrc.js",
     "tests",
     "jest.config.js",

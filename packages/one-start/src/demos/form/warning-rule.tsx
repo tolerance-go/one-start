@@ -14,8 +14,8 @@ export default () => {
             {
               type: 'money',
               settings: {
-                title: 'a',
-                dataIndex: 'a',
+                title: 'money',
+                dataIndex: 'money',
                 warningRules: [
                   {
                     validator: async (rule, value) => {
@@ -43,6 +43,15 @@ export default () => {
           }}
         >
           验证
+        </Button>
+        <Button
+          onClick={async () => {
+            formRef.current?.setFieldsValue({
+              money: 20,
+            });
+          }}
+        >
+          setValues
         </Button>
       </div>
     </OSProviderWrapper>
