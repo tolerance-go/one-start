@@ -10,13 +10,13 @@ import type {
 } from '@ty/antd';
 import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 import type { UploadFile } from '@ty/antd/es/upload/interface';
-import type { PickerPanelDateProps } from '@ty/antd/lib/calendar/generateCalendar';
 import type { PickerProps, RangePickerDateProps } from '@ty/antd/lib/date-picker/generatePicker';
 import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
 import type { RefSelectProps } from '@ty/antd/lib/select';
 import type { ParagraphProps } from '@ty/antd/lib/typography/Paragraph';
 import type { Moment } from 'moment';
 import type { NamePath } from 'rc-field-form/lib/interface';
+import type { SharedTimeProps } from 'rc-picker/lib/panels/TimePanel';
 import type Picker from 'rc-picker/lib/Picker';
 import type React from 'react';
 import type { Component } from 'react';
@@ -539,7 +539,7 @@ export interface OSDateFieldType extends OSField, OSFieldBaseConfigs<OSDateField
     format?: string;
     disabledDate?: DatePickerProps['disabledDate'];
     showNow?: boolean;
-    showTime?: PickerPanelDateProps<Moment>['showTime'];
+    showTime?: SharedTimeProps<Moment> | boolean;
   } & OSFieldBaseSettings;
 }
 
