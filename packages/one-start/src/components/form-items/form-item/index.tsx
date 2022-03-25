@@ -37,7 +37,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
     hideItemControlLine,
     valueType,
     fieldSettings,
-    isInTable,
+    isInTableCell,
   } = props;
   const {
     tooltip,
@@ -252,7 +252,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
   }
 
   const label = (() => {
-    if (isInTable) {
+    if (isInTableCell) {
       return undefined;
     }
     return title ? (
@@ -310,7 +310,7 @@ const OSFormItemBase: React.FC<OSFormItemType> = (props) => {
         <FormItemType
           {...(settings?.inlineError
             ? {
-                isInTable,
+                isInTableCell,
               }
             : {})}
           validateTrigger={validateTrigger}

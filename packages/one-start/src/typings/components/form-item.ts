@@ -74,7 +74,7 @@ export interface OSFormItemType<Value = any> extends OSCore {
     requestFormItemValue?: RequestIO<void, Value>;
     requestInitialValue?: RequestIO<{ value?: any }, Value>;
   };
-  isInTable?: boolean;
+  isInTableCell?: boolean;
   noStyle?: boolean;
   renderFormItem?: (dom: React.ReactNode, props: Omit<OSFormItemType, 'renderFormItem'>) => void;
   className?: string;

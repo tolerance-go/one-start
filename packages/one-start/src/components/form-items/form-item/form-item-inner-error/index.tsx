@@ -19,10 +19,10 @@ import { findClosestParentElement } from './_utils';
 
 const InlineErrorFormItem: React.FC<
   FormItemProps & {
-    isInTable?: boolean;
+    isInTableCell?: boolean;
   }
 > = (props) => {
-  const { isInTable } = props;
+  const { isInTableCell } = props;
   const clsPrefix = useClsPrefix('os-table-inline-error-form-item');
 
   /** 是否手动关闭 */
@@ -138,49 +138,57 @@ const InlineErrorFormItem: React.FC<
   });
 
   useEffect(() => {
-    const tableScrollWrapperDom = getTableScrollWrapperDom();
+    if (isInTableCell) {
+      const tableScrollWrapperDom = getTableScrollWrapperDom();
 
-    const handleTableScroll = utl.debounce(
-      () => {
-        unstable_batchedUpdates(() => {
-          setIsScrolling((prev) => !prev);
-          apisRef.current.updateCenterState();
-        });
-      },
-      400,
-      {
-        leading: true,
-      },
-    );
+      const handleTableScroll = utl.debounce(
+        () => {
+          unstable_batchedUpdates(() => {
+            setIsScrolling((prev) => !prev);
+            apisRef.current.updateCenterState();
+          });
+        },
+        400,
+        {
+          leading: true,
+        },
+      );
 
-    tableScrollWrapperDom?.addEventListener('scroll', handleTableScroll);
+      tableScrollWrapperDom?.addEventListener('scroll', handleTableScroll);
 
-    return () => {
-      tableScrollWrapperDom?.removeEventListener('scroll', handleTableScroll);
-    };
+      return () => {
+        tableScrollWrapperDom?.removeEventListener('scroll', handleTableScroll);
+      };
+    }
+    return () => {};
   }, []);
 
   useEffect(() => {
-    apisRef.current.updatePositionState();
-  }, []);
-
-  useEffect(() => {
-    const handleLayoutFormAppear = () => {
+    if (isInTableCell) {
       apisRef.current.updatePositionState();
-    };
+    }
+  }, []);
 
-    const handleLayoutTabsFormAppear = (activeKey: string) => {
-      if (activeKey === apisRef.current.getCurrentActiveTabKey()) {
+  useEffect(() => {
+    if (isInTableCell) {
+      const handleLayoutFormAppear = () => {
         apisRef.current.updatePositionState();
-      }
-    };
+      };
 
-    layoutModalFormEvent?.addListener('layout-modal-form-appear', handleLayoutFormAppear);
-    layoutTabsFormEvent?.addListener('layout-tabs-form-appear', handleLayoutTabsFormAppear);
-    return () => {
-      layoutModalFormEvent?.removeListener('layout-modal-form-appear', handleLayoutFormAppear);
-      layoutTabsFormEvent?.removeListener('layout-tabs-form-appear', handleLayoutTabsFormAppear);
-    };
+      const handleLayoutTabsFormAppear = (activeKey: string) => {
+        if (activeKey === apisRef.current.getCurrentActiveTabKey()) {
+          apisRef.current.updatePositionState();
+        }
+      };
+
+      layoutModalFormEvent?.addListener('layout-modal-form-appear', handleLayoutFormAppear);
+      layoutTabsFormEvent?.addListener('layout-tabs-form-appear', handleLayoutTabsFormAppear);
+      return () => {
+        layoutModalFormEvent?.removeListener('layout-modal-form-appear', handleLayoutFormAppear);
+        layoutTabsFormEvent?.removeListener('layout-tabs-form-appear', handleLayoutTabsFormAppear);
+      };
+    }
+    return () => {};
   }, []);
 
   return (
@@ -213,7 +221,7 @@ const InlineErrorFormItem: React.FC<
 
           const visible = (() => {
             /** 当在 table 内时，支持关闭 */
-            if (isInTable) {
+            if (isInTableCell) {
               const next = (() => {
                 if (cellIsFixed) {
                   return errors.length > 0;
@@ -250,19 +258,23 @@ const InlineErrorFormItem: React.FC<
               trigger={props.trigger}
               visible={visible}
               errorList={errorList}
-              enableClose={isInTable}
+              enableClose={!!isInTableCell}
               getPopupContainer={() => {
-                /** 解决弹窗内的表格关闭时候无法隐藏的问题 */
-                return (
-                  (cellRef.current
-                    ? findClosestParentElement(
-                        cellRef.current,
-                        (item) =>
-                          item.classList.contains('ty-ant-modal-content') ||
-                          item.classList.contains('ty-ant-drawer-content'),
-                      )
-                    : null) ?? document.body
-                );
+                if (isInTableCell) {
+                  /** 解决弹窗内的表格关闭时候无法隐藏的问题 */
+                  return (
+                    (cellRef.current
+                      ? findClosestParentElement(
+                          cellRef.current,
+                          (item) =>
+                            item.classList.contains('ty-ant-modal-content') ||
+                            item.classList.contains('ty-ant-drawer-content'),
+                        )
+                      : null) ?? document.body
+                  );
+                }
+
+                return document.body;
               }}
               onClose={() => {
                 closeOnceRef.current = true;

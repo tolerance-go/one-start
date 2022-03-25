@@ -116,7 +116,9 @@ tocMaxDepth: 5
 
 <code src="../demos/table/select.tsx" />
 
-### 单元格编辑
+### 单元格视图
+
+#### 支持单元格定义编辑规则
 
 editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单元格是否可以编辑
 
@@ -125,8 +127,6 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 注意：当 `changeDebounceTimestamp > 0` 的时候，用户输入可能触发 onChange 多个单元格变化
 
 <code src="../demos/table/edit.tsx" />
-
-#### 自定义单元格验证
 
 编辑表格的验证 `validateTrigger` 都必须设置为 `[]`，以在提交的时候判断，因为有联动，会导致值变化，错误信息的机制是这样的，一旦有新的值，会导致重置错误信息
 
