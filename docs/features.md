@@ -46,7 +46,7 @@ group:
 
 ### dialog
 
-- 各种 dialog 存在时的 zindex 优先级
+- [各种 dialog 存在时的 zindex 优先级](http://localhost:8001/components/general/dialog#dialog-zindex)
 
 ### fields
 
@@ -71,7 +71,7 @@ group:
 #### form-item
 
 - 支持显示 label
-  - 当宽度不够时，显示省略
+  - [当宽度不够时，显示省略](http://localhost:8001/components/forms/form#form-form-item-label-ellipsis)
 
 ### table
 

@@ -1,6 +1,6 @@
 /**
  * debug: true
- * desc: label 显示不全展示省略
+ * title: label 显示不全展示省略
  */
 import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
 import { mock, Random } from 'mockjs';

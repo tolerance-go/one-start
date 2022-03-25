@@ -1,6 +1,6 @@
 /**
  * debug: true
- * desc: 各种 dialog 存在时的 zindex 优先级
+ * title: 各种 dialog 存在时的 zindex 优先级
  * iframe: 700
  */
 import { OSProviderWrapper, OSSourceTable } from '@ty-one-start/one-start';
