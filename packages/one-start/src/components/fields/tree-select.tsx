@@ -220,7 +220,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     return (
       <TreeSelect<OSTreeSelectFieldValueType>
         treeDefaultExpandAll
-        treeCheckable
+        treeCheckable={multiple}
         ref={OSSelectRef}
         maxTagCount={5}
         showCheckedStrategy={TreeSelect.SHOW_PARENT}
