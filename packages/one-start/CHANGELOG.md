@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.24.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.20.1...@ty-one-start/one-start@0.24.0) (2022-03-27)
+
+
+### Bug Fixes
+
+* **table:** 解决单元格内的 tooltip 提示信息当防抖开启时会闪烁 2 次动画 ([489fe2c](https://10.1.2.7/visual-fe/swap-modules/commits/489fe2c4d881d574318a7dacd7027b8cc8d8b139))
+* **tree-select:** multiple 未传递时，无法单选 ([498ae8c](https://10.1.2.7/visual-fe/swap-modules/commits/498ae8cb4eb423f9b6a227feed6d50a75f609b43))
+
+
+### Features
+
+* **field-date:** 支持日期到时分秒配置 ([0d444f9](https://10.1.2.7/visual-fe/swap-modules/commits/0d444f9f42c298e55d2575f7837f16596f491f2e))
+* **field-textarea:** 支持文本只读状态下可快捷复制 ([2f6cf9a](https://10.1.2.7/visual-fe/swap-modules/commits/2f6cf9afbaaf25abbcfda3716f337cdcd7d5314a))
+* **one-request:** 支持请求时候传入通知框的 duration placement 参数 ([5658926](https://10.1.2.7/visual-fe/swap-modules/commits/56589267328f6bfef641725101eb639cdd98a980))
+* **tree-select:** 支持 labelInValue 模式下注入 data 对象 ([415a39d](https://10.1.2.7/visual-fe/swap-modules/commits/415a39dbd00dc69aeba230a13bef2cc40b8681fb))
+* **trigger:** 新增 type 为 icon 的 trigger，支持 dialog 联动 ([7301a42](https://10.1.2.7/visual-fe/swap-modules/commits/7301a4228ee244a04b84c5463b2ad1ff77041176))
+
+
+
+
+
 # [0.23.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.20.1...@ty-one-start/one-start@0.23.0) (2022-03-27)
 
 
