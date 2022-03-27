@@ -45,7 +45,7 @@
     "prepare": "husky install",
     "precommit": "yarn lint-staged",
     "release": "yarn build && yarn release:only",
-    "version:bump": "lerna version --exact --conventional-commits",
+    "version:bump": "node ./scripts/bump.js",
     "version:only": "lerna version --exact --conventional-commits --include-merged-tags",
     "release:only": "yarn version:only && yarn publish:only",
     "publish:only": "lerna publish from-git --yes",
