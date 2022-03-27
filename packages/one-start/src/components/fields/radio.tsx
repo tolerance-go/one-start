@@ -2,7 +2,7 @@ import type { RadioProps } from '@ty/antd';
 import { Radio } from '@ty/antd';
 import React, { useMemo } from 'react';
 import type { OSRadioFieldAPI, OSRadioFieldType, OSRadioOptionItem } from '../../typings';
-import { convertEnumsToOptions } from './utils/convert-enum-to-options';
+import { convertEnumsToOptions } from './_utils/convert-enum-to-options';
 import utl from 'lodash';
 
 const OSRadioField: React.ForwardRefRenderFunction<OSRadioFieldAPI, OSRadioFieldType> = (

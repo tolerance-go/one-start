@@ -42,6 +42,8 @@ export type OSFieldBaseConfigs<ValueType = any> = {
   size?: SizeType;
   /** 是否外部被 FormItem 包裹 */
   isWrapFormItem?: boolean;
+  /** 所在 form 类型 */
+  wrapFormType?: 'table-form' | 'form';
 };
 
 export type OSFieldBaseSettings = {
@@ -337,8 +339,13 @@ export type OSTreeSelectOptionItem = {
   label?: string;
   value: string;
   children?: OSTreeSelectOptionItem[];
+  data?: RecordType;
 };
-export type OSTreeSelectFieldValueType = string | string[];
+
+export type OSTreeSelectFieldValueItemType = RawValue | OSSelectFieldLabelValueType;
+export type OSTreeSelectFieldValueArrayType = RawValue[] | OSSelectFieldLabelValueType[];
+
+export type OSTreeSelectFieldValueType = OSSelectFieldValueArrayType | OSSelectFieldValueItemType;
 
 export interface OSTreeSelectFieldType<ValueType = OSTreeSelectFieldValueType>
   extends OSField<ValueType>,
@@ -353,8 +360,8 @@ export interface OSTreeSelectFieldType<ValueType = OSTreeSelectFieldValueType>
     multiple?: TreeSelectProps<ValueType>['multiple'];
     /** local 表示前端搜索 */
     showSearch?: TreeSelectProps<ValueType>['showSearch'] | 'local';
-    // labelInValue?: TreeSelectProps<ValueType>['labelInValue'];
-    // dropdownMatchSelectWidth?: boolean;
+    labelInValue?: TreeSelectProps<ValueType>['labelInValue'];
+    showCheckedStrategy?: TreeSelectProps<ValueType>['showCheckedStrategy'];
   } & OSFieldBaseSettings;
   requests?: {
     /** 请求下拉选项 */
@@ -556,9 +563,10 @@ export interface OSDateRangeFieldType
     OSFieldBaseConfigs<RangePickerDateProps<Moment>['value']> {
   type?: 'date-range';
   settings?: {
+    showTime?: RangePickerDateProps<Moment>['showTime'];
     /** 日期格式化 */
     format?: string;
-    disabledDate?: DatePickerProps['disabledDate'];
+    disabledDate?: RangePickerDateProps<Moment>['disabledDate'];
   } & OSFieldBaseSettings;
 }
 

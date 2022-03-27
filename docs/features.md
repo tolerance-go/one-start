@@ -52,9 +52,13 @@ group:
 
 - tree-select
 
-  - [树形状态展示](/components/fields/one-field-tree-select#%E6%A0%91%E5%BD%A2%E7%8A%B6%E6%80%81%E5%B1%95%E7%A4%BA)
+  - [支持树形状态展示](/components/fields/one-field-tree-select#%E6%A0%91%E5%BD%A2%E7%8A%B6%E6%80%81%E5%B1%95%E7%A4%BA)
+    - 当选择模式为只选择 子节点 时
   - 支持搜索
     - 支持搜索后连续选择
+    - 支持本地搜索
+      - 当多选模式下
+      - 当 labelInValue 模式下
 
 - [静态验证规则](/components/forms/os-form#%E8%A1%A8%E5%8D%95%E5%86%85%E7%BD%AE%E9%AA%8C%E8%AF%81)
 
@@ -64,7 +68,15 @@ group:
     - 支持快速复制
 
 - field-date
+
   - 支持选择时间
+
+- field-tree-select
+
+  - 支持富 value 类型
+
+- field-date-range
+  - 支持定义时分秒
 
 ### form
 

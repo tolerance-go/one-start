@@ -76,6 +76,8 @@ export const renderField = (
     cellMeta?: OSTableCellMeta;
     /** 是否 field 直接被 FormItem 包裹 */
     isWrapFormItem?: boolean;
+    /** 所在 form 类型 */
+    wrapFormType?: 'table-form' | 'form';
   },
 ) => {
   if (type === 'digit') {
@@ -89,6 +91,8 @@ export const renderField = (
         value={options?.value}
         text={options?.text}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -103,6 +107,8 @@ export const renderField = (
         value={options?.value as OSMoneyFieldValueType}
         text={options?.text as OSMoneyFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -117,6 +123,8 @@ export const renderField = (
         value={options?.value}
         text={options?.text}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -131,6 +139,8 @@ export const renderField = (
         value={options?.value as OSSelectFieldValueType}
         text={options?.text as OSSelectFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
         autoFetchSelectOptionsWhenMounted={options?.autoFetchSelectOptions}
         requestExtra={() => ({
           form: options?.formRef?.current,
@@ -150,6 +160,8 @@ export const renderField = (
         value={options?.value as OSChainSelectFieldValueType}
         text={options?.text as OSChainSelectFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
         autoFetchSelectOptionsWhenMounted={options?.autoFetchSelectOptions}
       />
     );
@@ -166,6 +178,8 @@ export const renderField = (
         value={options?.value as OSSwitchFieldValueType}
         text={options?.text as OSSwitchFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -195,6 +209,8 @@ export const renderField = (
         value={options?.value as OSTextFieldValueType}
         text={options?.text as OSTextFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -210,6 +226,8 @@ export const renderField = (
         value={options?.value as OSTextareaFieldValueType}
         text={options?.text as OSTextareaFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -225,6 +243,8 @@ export const renderField = (
         value={options?.value}
         text={options?.text}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -240,6 +260,8 @@ export const renderField = (
         value={options?.value as OSDateRangeFieldValueType}
         text={options?.text as OSDateRangeFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -265,6 +287,8 @@ export const renderField = (
         value={options?.value as OSCustomFieldValueType}
         text={options?.text as OSCustomFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -280,6 +304,8 @@ export const renderField = (
         value={options?.value as OSImageFieldValueType}
         text={options?.text as OSImageFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -295,6 +321,8 @@ export const renderField = (
         value={options?.value as OSRelativeDayFieldType}
         text={options?.text as OSRelativeDayFieldType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -310,6 +338,8 @@ export const renderField = (
         value={options?.value as OSRadioFieldValueType}
         text={options?.text as OSRadioFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -321,6 +351,9 @@ export const renderField = (
         settings={fieldSettings}
         value={options?.value as OSRadioFieldValueType}
         text={options?.text as OSRadioFieldValueType}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
+        requests={requests}
       />
     );
   }
@@ -335,6 +368,8 @@ export const renderField = (
         value={options?.value as OSTransferFieldValueType}
         text={options?.text as OSTransferFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -349,6 +384,8 @@ export const renderField = (
         value={options?.value as OSTreeSelectFieldValueType}
         text={options?.text as OSTreeSelectFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -363,6 +400,8 @@ export const renderField = (
         value={options?.value as OSPlaceholderInputFieldValueType}
         text={options?.text as OSPlaceholderInputFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }
@@ -377,6 +416,8 @@ export const renderField = (
         value={options?.value as OSUploadFieldValueType}
         text={options?.text as OSUploadFieldValueType}
         requests={requests}
+        isWrapFormItem={options?.isWrapFormItem}
+        wrapFormType={options?.wrapFormType}
       />
     );
   }

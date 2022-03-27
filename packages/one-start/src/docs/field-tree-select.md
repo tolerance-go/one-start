@@ -3,14 +3,14 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-field-tree-select
+title: field-tree-select
 group:
   title: fields
   path: /components/fields
 tocMaxDepth: 5
 ---
 
-# os-field-tree-select
+# field-tree-select
 
 ## 代码演示
 
@@ -27,6 +27,10 @@ tocMaxDepth: 5
 #### 搜索后连续选择
 
 <code src="../demos/field-tree-select/search.tsx" />
+
+### 支持富 value 类型
+
+<code src="../demos/field-tree-select/rich-value.tsx" />
 
 ### 树形状态展示
 

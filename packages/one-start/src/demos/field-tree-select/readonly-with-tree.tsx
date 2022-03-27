@@ -36,6 +36,33 @@ export default () => {
         ></OSTreeSelectField>
         <OSTreeSelectField
           mode="read"
+          value={['a2', 'b2', 'c2']}
+          settings={{
+            readonlyWithTree: true,
+            showCheckedStrategy: 'SHOW_CHILD',
+            treeOptions: [
+              {
+                value: 'p',
+                label: 'P',
+                children: [
+                  { value: 'a', label: 'A' },
+                  { value: 'b', label: 'B' },
+                  {
+                    value: 'p2',
+                    label: 'P2',
+                    children: [
+                      { value: 'a2', label: 'A2' },
+                      { value: 'b2', label: 'B2' },
+                      { value: 'c2', label: 'C2' },
+                    ],
+                  },
+                ],
+              },
+            ],
+          }}
+        ></OSTreeSelectField>
+        <OSTreeSelectField
+          mode="read"
           value={['a', 'b', 'a2', 'b2', 'c2']}
           settings={{
             readonlyWithTree: true,

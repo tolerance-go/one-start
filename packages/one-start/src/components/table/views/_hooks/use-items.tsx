@@ -283,6 +283,7 @@ export const useItems = ({
                     formRef: tableWrapFormRef,
                     cellMeta,
                     isWrapFormItem: true,
+                    wrapFormType: 'table-form',
                   },
                 );
               },
@@ -359,6 +360,7 @@ export const useItems = ({
                 autoFetchSelectOptions: false,
                 formRef: tableWrapFormRef,
                 cellMeta,
+                wrapFormType: 'table-form',
               },
             );
 

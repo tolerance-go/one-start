@@ -11,8 +11,11 @@ import type {
   OSTreeSelectFieldAPI,
   OSTreeSelectFieldType,
   OSTreeSelectFieldValueType,
+  OSTreeSelectFieldValueArrayType,
   OSTreeSelectOptionItem,
   RecordType,
+  RawValue,
+  OSSelectFieldLabelValueType,
 } from '../../typings';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { mapTreeNode } from '../utils/tree-utils';
@@ -47,6 +50,8 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     allowClear = true,
     multiple,
     readonlyWithTree,
+    labelInValue,
+    showCheckedStrategy,
   } = settings ?? {};
 
   const [loading, setLoading] = useState(false);
@@ -55,6 +60,40 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
 
   const [searchValue, setSearchValue] = useState<string>();
   // const dropWrapRef = useRef<HTMLDivElement>(null);
+
+  const flatedOptions = useMemo(() => {
+    return utl.flattenDeep(
+      mapTreeNode(asyncOptions ?? treeOptions ?? [], (item) => {
+        if (item.children) {
+          return [item, ...item.children];
+        }
+        return item;
+      }),
+    );
+  }, [asyncOptions, treeOptions]);
+
+  const valueItems = useMemo(() => {
+    return utl.fromPairs(flatedOptions?.map((item) => [item.key ?? item.value, item]));
+  }, [flatedOptions]);
+
+  const mergedDataInValue = (val: OSTreeSelectFieldValueType): OSTreeSelectFieldValueType => {
+    if (val == null || utl.isEmpty(valueItems)) {
+      return val;
+    }
+    if (labelInValue) {
+      if (Array.isArray(val)) {
+        return val.map(mergedDataInValue) as OSTreeSelectFieldValueArrayType;
+      }
+      if (typeof val === 'object') {
+        return {
+          ...val,
+          data: valueItems[val.key ?? val.value].data,
+          label: valueItems[val.key ?? val.value].label,
+        };
+      }
+    }
+    return val;
+  };
 
   const requestOptions = utl.debounce(async (searchValue_?: string, params_?: RecordType) => {
     if (!requests?.requestOptions) return;
@@ -72,11 +111,6 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     setAsyncOptions(data);
     setSearchValue(searchValue_);
   }, 400);
-
-  /** 映射字符串的 label */
-  const valueToOptionMaps = useMemo(() => {
-    return utl.fromPairs(asyncOptions?.map((item) => [item.key ?? item.value, item]));
-  }, [asyncOptions]);
 
   const actionsRef = useActionsRef({
     requestOptions,
@@ -113,7 +147,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     const maps = utl.fromPairs(
       utl.map(
         utl.flattenDeep(
-          mapTreeNode(treeOptions ?? asyncOptions ?? [], (item, parent) => {
+          mapTreeNode(asyncOptions ?? treeOptions ?? [], (item, parent) => {
             if (item.children) {
               return item.children;
             }
@@ -136,17 +170,30 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
           return null;
         }
         return text
-          .map((item) => {
+          .map((item: RawValue | OSSelectFieldLabelValueType) => {
+            if (typeof item === 'object') {
+              return item.label;
+            }
             return maps[item] ?? item;
           })
           .join(', ');
+      }
+
+      if (typeof text === 'object') {
+        return text.label;
       }
 
       return maps[text ?? ''] ?? text;
     };
 
     if (readonlyWithTree) {
-      const arrayValue = typeof _value === 'string' ? [_value] : _value;
+      const arrayValue = (
+        Array.isArray(_value)
+          ? _value
+          : (() => {
+              return _value == null ? [] : [_value];
+            })()
+      ).map((item) => (typeof item === 'object' ? item.value : item));
       return (
         <div
           style={{
@@ -162,18 +209,40 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
             defaultExpandAll
             checkedKeys={arrayValue}
             treeData={mapTreeNode(
-              (treeOptions || asyncOptions) ?? [],
+              (asyncOptions || treeOptions) ?? [],
               (item: OSTreeSelectOptionItem) => {
                 if (item.children) {
                   return {
                     title: `${item.label}(${
                       utl.intersection(
                         item.children.map((it) => it.key),
-                        arrayValue,
+                        arrayValue
+                          .concat(
+                            showCheckedStrategy === 'SHOW_CHILD'
+                              ? (
+                                  item.children as (DataNode & {
+                                    customChecked?: boolean;
+                                  })[]
+                                )
+                                  .filter((it) => it.customChecked)
+                                  .map((it) => it.key)
+                              : [],
+                          )
+                          .map(String),
                       ).length
                     }/${item.children.length})`,
                     key: item.value,
                     children: item.children,
+                    customChecked: (() => {
+                      if (showCheckedStrategy === 'SHOW_CHILD') {
+                        /** 父组件选择与否，根据所有子项目判断，因为 SHOW_CHILD 模式下 value 中不存在父节点 */
+                        const customChecked = (item.children as DataNode[] | undefined)?.every(
+                          (child) => arrayValue.includes(child.key),
+                        );
+                        return customChecked;
+                      }
+                      return undefined;
+                    })(),
                   } as DataNode;
                 }
                 return {
@@ -219,11 +288,12 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
 
     return (
       <TreeSelect<OSTreeSelectFieldValueType>
+        labelInValue={labelInValue}
         treeDefaultExpandAll
         treeCheckable={multiple}
         ref={OSSelectRef}
         maxTagCount={5}
-        showCheckedStrategy={TreeSelect.SHOW_PARENT}
+        showCheckedStrategy={showCheckedStrategy ?? TreeSelect.SHOW_PARENT}
         multiple={multiple}
         value={_value}
         open={open}
@@ -246,16 +316,18 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
         searchValue={searchValue}
         onChange={(value: OSTreeSelectFieldValueType) => {
           const parseValue = (val: OSTreeSelectFieldValueType) => {
-            if (val == null || utl.isEmpty(valueToOptionMaps)) {
+            if (val == null || utl.isEmpty(valueItems)) {
               return val;
             }
             return val;
           };
 
           const mergedValue = parseValue(value);
-          onChangeHook?.(mergedValue);
+          onChangeHook?.(mergedDataInValue(mergedValue));
           return _onChange?.(
-            allowClear && Array.isArray(value) && value.length === 0 ? undefined : mergedValue,
+            allowClear && Array.isArray(value) && value.length === 0
+              ? undefined
+              : mergedDataInValue(mergedValue),
           );
         }}
         onSearch={(() => {

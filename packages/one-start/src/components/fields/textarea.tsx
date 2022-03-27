@@ -16,7 +16,7 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
     mode = 'read',
     value: _value,
     onChange: _onChange,
-    isWrapFormItem,
+    wrapFormType,
   } = props;
 
   const {
@@ -38,7 +38,7 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
   if (mode === 'read') {
     const content = text ?? _value;
     const dom =
-      isWrapFormItem && (content?.length || 0) > 1 ? (
+      wrapFormType !== 'table-form' && (content?.length || 0) > 1 ? (
         <Typography.Paragraph
           style={{
             marginBottom: 0,

@@ -4,7 +4,7 @@ import type { RangePickerProps } from '@ty/antd/lib/date-picker/generatePicker';
 import type { Moment } from 'moment';
 import moment from 'moment';
 import type { Component } from 'react';
-import React, { useRef, useState, useImperativeHandle } from 'react';
+import React, { useImperativeHandle, useRef, useState } from 'react';
 import type {
   OSDateRangeFieldAPI,
   OSDateRangeFieldType,
@@ -24,7 +24,13 @@ const OSDateRangeField: React.ForwardRefRenderFunction<OSDateRangeFieldAPI, OSDa
     } = props;
 
     const clsPrefix = useClsPrefix('os-date-range-field');
-    const { bordered, autoFocus, format = 'YYYY-MM-DD', disabledDate } = settings ?? {};
+    const { showTime } = settings ?? {};
+    const {
+      bordered,
+      autoFocus,
+      format = showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD',
+      disabledDate,
+    } = settings ?? {};
     const inlineRef = useRef<OSDateRangeFieldAPI>(null);
     const [open, setOpen] = useState<boolean>();
 
@@ -87,6 +93,7 @@ const OSDateRangeField: React.ForwardRefRenderFunction<OSDateRangeFieldAPI, OSDa
 
       return (
         <DatePicker.RangePicker
+          showTime={showTime}
           open={open}
           onOpenChange={setOpen}
           className={clsPrefix}

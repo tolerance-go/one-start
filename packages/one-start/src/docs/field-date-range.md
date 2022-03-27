@@ -3,13 +3,13 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-field-date-range
+title: field-date-range
 group:
   title: fields
   path: /components/fields
 ---
 
-# os-field-date-range
+# field-date-range
 
 ## 代码演示
 
@@ -28,6 +28,10 @@ group:
 ### 指令打开
 
 <code src="../demos/field-date-range/open.tsx" />
+
+### 支持定义时分秒
+
+<code src="../demos/field-date-range/show-time.tsx" />
 
 <API exports='["Settings"]' src="../components/fields/date-range.tsx"></API>
 

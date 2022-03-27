@@ -34,7 +34,10 @@ export const findTreeNodeMeta = <
   return findItem ? { parent, item: findItem, itemIndex } : null;
 };
 
-/** 如果 callback 返回值不是 T 元素类型，需要手动强制转换 */
+/**
+ * 如果 callback 返回值不是 T 元素类型，需要手动强制转换
+ * TODO: 回调返回值的类型会作为下一次 item.children 的类型
+ * */
 export const mapTreeNode = <
   T extends {
     [key: string]: any;

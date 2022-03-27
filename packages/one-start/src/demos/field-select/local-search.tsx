@@ -10,7 +10,9 @@ export default () => {
         // value="a"
         mode="edit"
         settings={{
+          mode: 'multiple',
           showSearch: 'local',
+          labelInValue: true,
         }}
         requests={{
           requestOptions: async ({ searchValue }) => {

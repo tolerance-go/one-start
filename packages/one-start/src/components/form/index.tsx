@@ -893,6 +893,7 @@ const OSForm: React.ForwardRefRenderFunction<OSFormAPI, OSFormType> = (props, re
                 ref: leafFieldItemComponentRefRefs.current[keyIndexId].ref,
                 formRef,
                 isWrapFormItem: true,
+                wrapFormType: 'form',
               },
             );
           },

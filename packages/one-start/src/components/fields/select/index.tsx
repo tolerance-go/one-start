@@ -28,7 +28,6 @@ import { ExtraValueTypesContext } from '../../providers/extra-value-types';
 import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
 import { useClsPrefix } from '../../utils/use-cls-prefix';
 import { useUpdateEffect } from '../../utils/use-update-effect';
-import { convertEnumsToOptions } from '../utils/convert-enum-to-options';
 import { ShowInfoLabel } from './show-info-label';
 
 const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFieldType> = (
@@ -81,13 +80,30 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
   const [open, setOpen] = useState<boolean>();
 
   /** 映射字符串的 label */
-  const asyncValueEnums = useMemo(() => {
+  const valueItems = useMemo((): Record<string, OSSelectOptionItem> => {
+    if (asyncOptions == null) {
+      if (valueEnums == null) return {};
+      return Object.keys(valueEnums).reduce(
+        (dist, key) => ({
+          ...dist,
+          [key]: {
+            label: valueEnums[key],
+            value: key,
+            key,
+          },
+        }),
+        {},
+      );
+    }
     return utl.fromPairs(asyncOptions?.map((item) => [item.key ?? item.value, item]));
-  }, [asyncOptions]);
+  }, [valueEnums, asyncOptions]);
 
   const options = useMemo(() => {
-    return valueEnums ? convertEnumsToOptions(valueEnums) : undefined;
-  }, [valueEnums]);
+    if (asyncOptions) {
+      return asyncOptions;
+    }
+    return valueItems ? utl.toPairs(valueItems).map(([, item]) => item) : undefined;
+  }, [asyncOptions, valueItems]);
 
   const requestOptions = async (searchValue_?: string, params_?: RecordType) => {
     if (!requests?.requestOptions) return;
@@ -121,7 +137,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
   const requestOptionsParams = requestParams?.requestOptions ?? params;
 
   const mergedDataInValue = (val: OSSelectFieldValueType): OSSelectFieldValueType => {
-    if (val == null || utl.isEmpty(asyncValueEnums)) {
+    if (val == null || utl.isEmpty(valueItems)) {
       return val;
     }
     if (labelInValue) {
@@ -131,8 +147,8 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
       if (typeof val === 'object') {
         return {
           ...val,
-          data: asyncValueEnums[val.key ?? val.value].data,
-          label: asyncValueEnums[val.key ?? val.value].label,
+          data: valueItems[val.key ?? val.value].data,
+          label: valueItems[val.key ?? val.value].label,
         };
       }
     }
@@ -159,14 +175,11 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
   }, [JSON.stringify(requestOptionsParams)]);
 
   if (mode === 'read') {
-    const maps =
-      valueEnums ?? utl.fromPairs(utl.map(asyncOptions, (item) => [item.value, item.label]));
-
     const getContent = () => {
       const text = _text ?? _value;
 
       if (renderOnRead) {
-        return renderOnRead(text, maps);
+        return renderOnRead(text, valueItems);
       }
       if (Array.isArray(text)) {
         if (text.length === 0) {
@@ -177,7 +190,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
             if (typeof item === 'object') {
               return item.label;
             }
-            return maps[item] ?? item;
+            return valueItems[item]?.label ?? item;
           })
           .join(', ');
       }
@@ -185,12 +198,14 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
       if (typeof text === 'object') {
         return text.label;
       }
-      return maps[text ?? ''] ?? text;
+      return valueItems[text ?? '']?.label ?? text;
     };
+
+    const item = getContent();
 
     return (
       <span className={className} id={id} ref={OSSelectRef as React.RefObject<HTMLSpanElement>}>
-        {getContent() ?? (loading ? <LoadingOutlined style={{ fontSize: 12 }} /> : '--')}
+        {item ?? (loading ? <LoadingOutlined style={{ fontSize: 12 }} /> : '--')}
       </span>
     );
   }
@@ -232,13 +247,18 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
       option,
     ) => {
       if (showSearch === 'local') {
-        const text =
-          // eslint-disable-next-line no-nested-ternary
-          typeof option?.label === 'string'
-            ? option.label
-            : typeof option?.value === 'string' || typeof option?.value === 'number'
-            ? String(option.value)
-            : '';
+        const text = (() => {
+          if (typeof option?.label === 'string') {
+            return option.label;
+          }
+          if (typeof option?.labelStr === 'string') {
+            return option.labelStr;
+          }
+          if (typeof option?.value === 'string' || typeof option?.value === 'number') {
+            return String(option.value);
+          }
+          return '';
+        })();
         return text.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0;
       }
       return true;
@@ -281,7 +301,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     };
 
     const renderOptions = () => {
-      return (options || asyncOptions)?.map((item: OSSelectOptionItem) => {
+      return options?.map((item: OSSelectOptionItem) => {
         const labelStr = item.label?.toString();
 
         const highlightDom = (
@@ -342,6 +362,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
              * 鼠标持续悬停显示更多信息，当 showInfo 时，悬停位置在内部
              */
             title={normalizedShowInfo ? undefined : labelStr}
+            labelStr={labelStr}
           >
             {normalizedShowInfo ? renderInfoOption(normalizedShowInfo) : highlightDom}
           </Select.Option>
