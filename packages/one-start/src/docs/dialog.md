@@ -35,7 +35,7 @@ group:
 
 ### 额外操作
 
-<code src="../demos/dialog/actions.tsx" />
+<!-- <code src="../demos/dialog/actions.tsx" /> -->
 
 ### 确认类型
 
