@@ -1,5 +1,6 @@
 import { SwapRightOutlined } from '@ant-design/icons';
 import { DatePicker } from '@ty/antd';
+import type { RangePickerDateProps } from '@ty/antd/es/date-picker/generatePicker';
 import type { RangePickerProps } from '@ty/antd/lib/date-picker/generatePicker';
 import type { Moment } from 'moment';
 import moment from 'moment';
@@ -93,7 +94,7 @@ const OSDateRangeField: React.ForwardRefRenderFunction<OSDateRangeFieldAPI, OSDa
 
       return (
         <DatePicker.RangePicker
-          showTime={showTime}
+          showTime={showTime as RangePickerDateProps<Moment>['showTime']}
           open={open}
           onOpenChange={setOpen}
           className={clsPrefix}

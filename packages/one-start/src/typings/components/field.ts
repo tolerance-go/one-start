@@ -563,7 +563,12 @@ export interface OSDateRangeFieldType
     OSFieldBaseConfigs<RangePickerDateProps<Moment>['value']> {
   type?: 'date-range';
   settings?: {
-    showTime?: RangePickerDateProps<Moment>['showTime'];
+    showTime?:
+      | boolean
+      | (Omit<SharedTimeProps<Moment>, 'defaultValue'> & {
+          /** 这里的类型要和 date 的兼容，否则整体类型推倒会失败 */
+          defaultValue?: Moment[] | Moment;
+        });
     /** 日期格式化 */
     format?: string;
     disabledDate?: RangePickerDateProps<Moment>['disabledDate'];
