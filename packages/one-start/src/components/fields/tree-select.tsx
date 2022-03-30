@@ -1,27 +1,28 @@
 import { LoadingOutlined } from '@ant-design/icons';
 import type { TreeSelectProps } from '@ty/antd';
-import { Col, Row, TreeSelect, Typography, Tree } from '@ty/antd';
+import { Col, Row, Spin, Tree, TreeSelect, Typography } from '@ty/antd';
+import type { DataNode } from '@ty/antd/lib/tree';
+import { useUpdateEffect } from 'ahooks';
 import cls from 'classnames';
 import utl from 'lodash';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
-import { useActionsRef } from '../hooks/use-actions-ref';
 import type {
   OSSelectBaseAPI,
+  OSSelectFieldLabelValueType,
   OSTreeSelectFieldAPI,
   OSTreeSelectFieldType,
-  OSTreeSelectFieldValueType,
   OSTreeSelectFieldValueArrayType,
+  OSTreeSelectFieldValueType,
   OSTreeSelectOptionItem,
-  RecordType,
   RawValue,
-  OSSelectFieldLabelValueType,
+  RecordType,
 } from '../../typings';
+import { useActionsRef } from '../hooks/use-actions-ref';
 import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
 import { mapTreeNode } from '../utils/tree-utils';
 import { useClsPrefix } from '../utils/use-cls-prefix';
-import type { DataNode } from '@ty/antd/lib/tree';
-import { useUpdateEffect } from 'ahooks';
+import { withDebounce } from '../utils/with-debounce';
 
 const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTreeSelectFieldType> = (
   props,
@@ -36,6 +37,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     onChange: _onChange,
     requests,
     autoFetchSelectOptions = true,
+    requestExtra,
   } = props;
 
   const clsPrefix = useClsPrefix('field-tree-select');
@@ -52,6 +54,10 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     readonlyWithTree,
     labelInValue,
     showCheckedStrategy,
+    dropdownStyle,
+    dropdownContentStyle,
+    disabledRequestOptionsWhenOpen = false,
+    disabledRequestOptionsWhenMounted = false,
   } = settings ?? {};
 
   const [loading, setLoading] = useState(false);
@@ -60,6 +66,8 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
 
   const [searchValue, setSearchValue] = useState<string>();
   // const dropWrapRef = useRef<HTMLDivElement>(null);
+
+  const [open, setOpen] = useState<boolean>();
 
   const flatedOptions = useMemo(() => {
     return utl.flattenDeep(
@@ -95,12 +103,13 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     return val;
   };
 
-  const requestOptions = utl.debounce(async (searchValue_?: string, params_?: RecordType) => {
+  const requestOptions = async (searchValue_?: string, params_?: RecordType) => {
     if (!requests?.requestOptions) return;
 
     setLoading(true);
     const { error, data } = await requests
       .requestOptions({
+        ...requestExtra?.(),
         searchValue: searchValue_,
         params: params_,
       })
@@ -110,22 +119,43 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
 
     setAsyncOptions(data);
     setSearchValue(searchValue_);
-  }, 400);
+  };
+
+  const requestOptionsWithDebounce = withDebounce(400)(requestOptions);
 
   const actionsRef = useActionsRef({
     requestOptions,
   });
 
+  const handleDropdownVisibleChange: TreeSelectProps<OSTreeSelectFieldValueType>['onDropdownVisibleChange'] =
+    (visible) => {
+      if (!disabledRequestOptionsWhenOpen && visible) {
+        requestOptions(undefined, params);
+      }
+      setOpen(visible);
+    };
+
+  const handleDropdownRender: TreeSelectProps<OSTreeSelectFieldValueType>['dropdownRender'] = (
+    menuDom,
+  ) => {
+    return (
+      <Spin size="small" indicator={<LoadingOutlined />} spinning={loading}>
+        <div style={dropdownContentStyle}>{menuDom}</div>
+      </Spin>
+    );
+  };
+
   useEffect(() => {
-    if (autoFetchSelectOptions) {
+    if (!disabledRequestOptionsWhenMounted && autoFetchSelectOptions) {
       actionsRef.current.requestOptions(undefined, params);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [actionsRef, JSON.stringify(params), mode]);
+  }, []);
+
+  useUpdateEffect(() => {
+    requestOptions(undefined, params);
+  }, [JSON.stringify(params)]);
 
   const OSSelectRef = useRef<OSTreeSelectFieldAPI>(null);
-
-  const [open, setOpen] = useState<boolean>();
 
   useImperativeHandle(ref, () => {
     return {
@@ -293,6 +323,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
         treeCheckable={multiple}
         ref={OSSelectRef}
         maxTagCount={5}
+        dropdownStyle={dropdownStyle}
         showCheckedStrategy={showCheckedStrategy ?? TreeSelect.SHOW_PARENT}
         multiple={multiple}
         value={_value}
@@ -336,7 +367,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
           }
           return showSearch
             ? (((value) => {
-                requestOptions(value, params);
+                requestOptionsWithDebounce(value, params);
               }) as TreeSelectProps<RecordType>['onSearch'])
             : undefined;
         })()}
@@ -357,15 +388,9 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
           }
           return true;
         }}
-        onDropdownVisibleChange={setOpen}
+        onDropdownVisibleChange={handleDropdownVisibleChange}
         notFoundContent={renderNotFoundContent()}
-        // dropdownRender={(menuDom) => {
-        //   return (
-        //     <div ref={dropWrapRef} style={{ overflow: 'visible' }}>
-        //       {menuDom}
-        //     </div>
-        //   );
-        // }}
+        dropdownRender={handleDropdownRender}
       >
         {mapTreeNode((treeOptions || asyncOptions) ?? [], (item: OSTreeSelectOptionItem) => {
           const highlightDom = (
@@ -383,6 +408,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
                 value={item.value}
                 title={highlightDom}
                 label={item.label}
+                disabled={item.disabled}
               >
                 {item.children}
               </TreeSelect.TreeNode>
@@ -394,6 +420,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
               value={item.value}
               title={highlightDom}
               label={item.label}
+              disabled={item.disabled}
             ></TreeSelect.TreeNode>
           );
         })}

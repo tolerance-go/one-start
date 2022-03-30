@@ -386,6 +386,9 @@ export const renderField = (
         requests={requests}
         isWrapFormItem={options?.isWrapFormItem}
         wrapFormType={options?.wrapFormType}
+        requestExtra={() => ({
+          form: options?.formRef?.current,
+        })}
       />
     );
   }

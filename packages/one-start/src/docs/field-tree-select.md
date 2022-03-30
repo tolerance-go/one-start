@@ -38,4 +38,16 @@ tocMaxDepth: 5
 
 <code src="../demos/field-tree-select/readonly-with-tree.tsx" />
 
+### 支持搜索获取表单其他字段当前值
+
+<code src="../demos/field-tree-select/request-other-field.tsx" />
+
+### 支持选项配置禁用状态
+
+<code src="../demos/field-tree-select/option-disabled.tsx" />
+
+### 支持设置下拉框内容样式包括高度等
+
+<code src="../demos/field-tree-select/dropdown-style.tsx" />
+
 <API exports='["Settings", "Requests"]' src="../components/fields/tree-select.tsx"></API>

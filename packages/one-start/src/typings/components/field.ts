@@ -298,6 +298,8 @@ export interface OSSelectFieldType<
     dropdownClassName?: SelectProps<ValueType>['dropdownClassName'];
     /** 是否关闭下拉请求 */
     disabledRequestOptionsWhenOpen?: boolean;
+    /** 是否关闭 mounted 后自动下拉请求 */
+    disabledRequestOptionsWhenMounted?: boolean;
     dropdownMatchSelectWidth?: boolean;
     /**
      * 展示更多字段信息
@@ -340,6 +342,7 @@ export type OSTreeSelectOptionItem = {
   value: string;
   children?: OSTreeSelectOptionItem[];
   data?: RecordType;
+  disabled?: boolean;
 };
 
 export type OSTreeSelectFieldValueItemType = RawValue | OSSelectFieldLabelValueType;
@@ -347,8 +350,10 @@ export type OSTreeSelectFieldValueArrayType = RawValue[] | OSSelectFieldLabelVal
 
 export type OSTreeSelectFieldValueType = OSSelectFieldValueArrayType | OSSelectFieldValueItemType;
 
-export interface OSTreeSelectFieldType<ValueType = OSTreeSelectFieldValueType>
-  extends OSField<ValueType>,
+export interface OSTreeSelectFieldType<
+  ValueType = OSTreeSelectFieldValueType,
+  ExtraRequestOptions = RecordType,
+> extends OSField<ValueType>,
     OSFieldBaseConfigs<ValueType> {
   type?: 'tree-select';
   settings?: {
@@ -362,16 +367,23 @@ export interface OSTreeSelectFieldType<ValueType = OSTreeSelectFieldValueType>
     showSearch?: TreeSelectProps<ValueType>['showSearch'] | 'local';
     labelInValue?: TreeSelectProps<ValueType>['labelInValue'];
     showCheckedStrategy?: TreeSelectProps<ValueType>['showCheckedStrategy'];
+    disabledRequestOptionsWhenOpen?: boolean;
+    /** 是否关闭 mounted 后自动下拉请求 */
+    disabledRequestOptionsWhenMounted?: boolean;
+    dropdownStyle?: React.CSSProperties;
+    dropdownContentStyle?: React.CSSProperties;
   } & OSFieldBaseSettings;
   requests?: {
     /** 请求下拉选项 */
     requestOptions?: RequestIO<
-      { searchValue?: string; params?: RecordType },
+      { searchValue?: string; params?: RecordType } & ExtraRequestOptions,
       OSTreeSelectOptionItem[]
     >;
   };
   autoFetchSelectOptions?: boolean;
   className?: string;
+  /** 请求注入的额外参数 */
+  requestExtra?: () => ExtraRequestOptions;
 }
 
 export type OSChainSelectBaseAPI = OSSelectBaseAPI;

@@ -55,10 +55,13 @@ group:
   - [支持树形状态展示](/components/fields/one-field-tree-select#%E6%A0%91%E5%BD%A2%E7%8A%B6%E6%80%81%E5%B1%95%E7%A4%BA)
     - 当选择模式为只选择 子节点 时
   - 支持搜索
-    - 支持搜索后连续选择
+    - [支持搜索后连续选择](http://localhost:8002/components/fields/field-tree-select#%E6%90%9C%E7%B4%A2%E5%90%8E%E8%BF%9E%E7%BB%AD%E9%80%89%E6%8B%A9)
+    - [支持搜索获取表单其他字段当前值](http://localhost:8002/components/fields/field-tree-select#%E6%94%AF%E6%8C%81%E6%90%9C%E7%B4%A2%E8%8E%B7%E5%8F%96%E8%A1%A8%E5%8D%95%E5%85%B6%E4%BB%96%E5%AD%97%E6%AE%B5%E5%BD%93%E5%89%8D%E5%80%BC)
     - 支持本地搜索
       - 当多选模式下
       - 当 labelInValue 模式下
+    - [支持选项配置禁用状态](/components/fields/field-tree-select#支持选项配置禁用状态)
+    - [支持设置下拉框内容样式包括高度等](/components/fields/field-tree-select#支持设置下拉框内容样式包括高度等)
 
 - [静态验证规则](/components/forms/os-form#%E8%A1%A8%E5%8D%95%E5%86%85%E7%BD%AE%E9%AA%8C%E8%AF%81)
 

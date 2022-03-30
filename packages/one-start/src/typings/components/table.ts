@@ -33,6 +33,7 @@ import type {
   OSTransferFieldType,
   OSTreeSelectFieldType,
   OSUploadFieldType,
+  OSTreeSelectFieldValueType,
 } from './field';
 import type {
   CreatePureFormFieldItemConfigs,
@@ -423,7 +424,15 @@ export type _OSTableFormFieldItemWithStaticPureConfigs<
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSCustomFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
-  | (CreateStaticPureFormFieldItemConfigs<OSTreeSelectFieldType, OSTableFormFieldItemExtra> &
+  | (CreateStaticPureFormFieldItemConfigs<
+      OSTreeSelectFieldType<
+        OSTreeSelectFieldValueType,
+        {
+          form?: FormInstance;
+        }
+      >,
+      OSTableFormFieldItemExtra
+    > &
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSTransferFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)

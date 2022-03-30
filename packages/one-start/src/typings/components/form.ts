@@ -1,4 +1,4 @@
-import type { OSSwitchFieldType, OSTimeLagFieldType } from './field';
+import type { OSSwitchFieldType, OSTimeLagFieldType, OSTreeSelectFieldValueType } from './field';
 import type { FormInstance, FormItemProps, FormProps } from '@ty/antd/lib/form';
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { OSCore, RequestIO } from './core';
@@ -174,7 +174,12 @@ export type _OSFormFieldItem<CustomValueType extends CreatePureFormFieldItemConf
     > &
       OSFormItemDependenciesConfigs)
   | (CreatePureFormFieldItemConfigs<
-      OSTreeSelectFieldType,
+      OSTreeSelectFieldType<
+        OSTreeSelectFieldValueType,
+        {
+          form?: FormInstance;
+        }
+      >,
       OSFormFieldItemSettingsFnOption,
       OSFormFieldItemExtra
     > &

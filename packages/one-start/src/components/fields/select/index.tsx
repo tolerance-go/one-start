@@ -66,6 +66,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
     maxWidth,
     maxTagCount = 5,
     disabledRequestOptionsWhenOpen = false,
+    disabledRequestOptionsWhenMounted = false,
     className,
     dropdownClassName,
     id,
@@ -165,7 +166,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
   });
 
   useEffect(() => {
-    if (autoFetchSelectOptions) {
+    if (!disabledRequestOptionsWhenMounted && autoFetchSelectOptions) {
       requestOptions(undefined, requestOptionsParams);
     }
   }, []);
