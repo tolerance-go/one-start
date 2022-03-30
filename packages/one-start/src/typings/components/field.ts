@@ -368,10 +368,16 @@ export interface OSTreeSelectFieldType<
     labelInValue?: TreeSelectProps<ValueType>['labelInValue'];
     showCheckedStrategy?: TreeSelectProps<ValueType>['showCheckedStrategy'];
     disabledRequestOptionsWhenOpen?: boolean;
+    defaultExpandAll?: boolean;
     /** 是否关闭 mounted 后自动下拉请求 */
     disabledRequestOptionsWhenMounted?: boolean;
     dropdownStyle?: React.CSSProperties;
     dropdownContentStyle?: React.CSSProperties;
+    /**
+     * dropdown 内容高度，同时会设置虚拟 list 高度
+     * 优先级比 dropdownContentStyle.height 要高
+     */
+    dropdownHeight?: number;
   } & OSFieldBaseSettings;
   requests?: {
     /** 请求下拉选项 */

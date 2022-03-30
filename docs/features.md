@@ -60,8 +60,9 @@ group:
     - 支持本地搜索
       - 当多选模式下
       - 当 labelInValue 模式下
-    - [支持选项配置禁用状态](/components/fields/field-tree-select#支持选项配置禁用状态)
-    - [支持设置下拉框内容样式包括高度等](/components/fields/field-tree-select#支持设置下拉框内容样式包括高度等)
+  - [支持选项配置禁用状态](/components/fields/field-tree-select#支持选项配置禁用状态)
+  - [支持设置下拉框内容样式包括高度等](/components/fields/field-tree-select#支持设置下拉框内容样式包括高度等)
+  - 支持异步下默认展开全部
 
 - [静态验证规则](/components/forms/os-form#%E8%A1%A8%E5%8D%95%E5%86%85%E7%BD%AE%E9%AA%8C%E8%AF%81)
 

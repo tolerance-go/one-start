@@ -273,8 +273,17 @@ request.use(async (ctx, next) => {
   } as Result<unknown>;
 });
 
+const baseOptions = {};
+
 const requestPro = <T extends any>(url: string, options?: RequestOptions): Promise<Result<T>> => {
-  return request(url, options) as Promise<Result<T>>;
+  return request(url, {
+    ...baseOptions,
+    ...options,
+  }) as Promise<Result<T>>;
 };
 
 export default requestPro;
+
+export const extendOptions = (options?: RequestOptions) => {
+  Object.assign(baseOptions, options);
+};

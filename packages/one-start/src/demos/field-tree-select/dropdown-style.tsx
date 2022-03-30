@@ -1,5 +1,6 @@
 import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
 import delay from 'delay';
+import { mock } from 'mockjs';
 import React from 'react';
 
 export default () => {
@@ -15,23 +16,22 @@ export default () => {
                 dataIndex: 'pagePermissions',
                 multiple: true,
                 showCheckedStrategy: 'SHOW_CHILD',
-                dropdownContentStyle: {
-                  height: 500,
-                },
+                dropdownHeight: 500,
               },
               requests: {
-                requestOptions: async ({ form }) => {
+                requestOptions: async () => {
                   await delay(1000);
-                  console.log("form?.getFieldValue('text')", form?.getFieldValue('text'));
-                  return {
+                  return mock({
                     error: false,
-                    data: [
+                    'data|200': [
                       {
-                        value: 'a',
-                        label: 'A',
+                        value: '@word',
+                        label() {
+                          return this.value;
+                        },
                       },
-                    ].filter((item) => form?.getFieldValue('text') === item.value),
-                  };
+                    ],
+                  });
                 },
               },
             },

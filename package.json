@@ -22,7 +22,7 @@
     "format": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "site": "cross-env UMI_ENV=prod dumi build",
     "size": "npm run build && size-limit",
-    "start": "npm run dev",
+    "start": "cross-env PORT=8099 npm run dev",
     "start:scripts": "yarn lerna run --scope=@ty-one-start/scripts build:watch",
     "dev": "dumi dev",
     "test": "umi-test",

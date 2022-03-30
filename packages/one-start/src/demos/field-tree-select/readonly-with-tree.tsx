@@ -12,26 +12,33 @@ export default () => {
           value={['a', 'b', 'a2', 'b2', 'c2']}
           settings={{
             readonlyWithTree: true,
-            treeOptions: [
-              {
-                value: 'p',
-                label: 'P',
-                children: [
-                  { value: 'a', label: 'A' },
-                  { value: 'b', label: 'B' },
-                  { value: 'c', label: 'C' },
+          }}
+          requests={{
+            requestOptions: async () => {
+              return {
+                error: false,
+                data: [
+                  {
+                    value: 'p',
+                    label: 'P',
+                    children: [
+                      { value: 'a', label: 'A' },
+                      { value: 'b', label: 'B' },
+                      { value: 'c', label: 'C' },
+                    ],
+                  },
+                  {
+                    value: 'p2',
+                    label: 'P2',
+                    children: [
+                      { value: 'a2', label: 'A2' },
+                      { value: 'b2', label: 'B2' },
+                      { value: 'c2', label: 'C2' },
+                    ],
+                  },
                 ],
-              },
-              {
-                value: 'p2',
-                label: 'P2',
-                children: [
-                  { value: 'a2', label: 'A2' },
-                  { value: 'b2', label: 'B2' },
-                  { value: 'c2', label: 'C2' },
-                ],
-              },
-            ],
+              };
+            },
           }}
         ></OSTreeSelectField>
         <OSTreeSelectField

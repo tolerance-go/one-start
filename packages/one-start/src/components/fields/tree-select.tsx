@@ -5,6 +5,7 @@ import type { DataNode } from '@ty/antd/lib/tree';
 import { useUpdateEffect } from 'ahooks';
 import cls from 'classnames';
 import utl from 'lodash';
+import type { Key } from 'react';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import type {
@@ -56,6 +57,8 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     showCheckedStrategy,
     dropdownStyle,
     dropdownContentStyle,
+    dropdownHeight,
+    defaultExpandAll = true,
     disabledRequestOptionsWhenOpen = false,
     disabledRequestOptionsWhenMounted = false,
   } = settings ?? {};
@@ -68,6 +71,8 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
   // const dropWrapRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState<boolean>();
+
+  const [expandedKeys, setExpandedKeys] = useState<Key[]>([]);
 
   const flatedOptions = useMemo(() => {
     return utl.flattenDeep(
@@ -118,6 +123,23 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     if (error) return;
 
     setAsyncOptions(data);
+
+    /**
+     * 异步的默认展开全部，这里设计为数据的从无到有，则为默认展开的契机
+     * 就像组件同步的默认展开全部一样，是从组件的从无到有
+     */
+    if (!asyncOptions?.length && data?.length) {
+      const arr: string[] = [];
+
+      mapTreeNode(data, (item) => {
+        if (item.children) {
+          arr.push(item.key ?? item.value);
+        }
+      });
+
+      setExpandedKeys(arr);
+    }
+
     setSearchValue(searchValue_);
   };
 
@@ -140,7 +162,14 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
   ) => {
     return (
       <Spin size="small" indicator={<LoadingOutlined />} spinning={loading}>
-        <div style={dropdownContentStyle}>{menuDom}</div>
+        <div
+          style={{
+            ...dropdownContentStyle,
+            height: dropdownHeight ?? dropdownContentStyle?.height,
+          }}
+        >
+          {menuDom}
+        </div>
       </Spin>
     );
   };
@@ -236,7 +265,15 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
               showLeafIcon: false,
             }}
             checkable
-            defaultExpandAll
+            /** 如果有请求就受控，来支持异步的 defaultExpandAll */
+            {...(requests?.requestOptions
+              ? {
+                  expandedKeys,
+                  onExpand: setExpandedKeys,
+                }
+              : {})}
+            selectable={false}
+            defaultExpandAll={defaultExpandAll}
             checkedKeys={arrayValue}
             treeData={mapTreeNode(
               (asyncOptions || treeOptions) ?? [],
@@ -263,6 +300,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
                     }/${item.children.length})`,
                     key: item.value,
                     children: item.children,
+                    disabled: item.disabled,
                     customChecked: (() => {
                       if (showCheckedStrategy === 'SHOW_CHILD') {
                         /** 父组件选择与否，根据所有子项目判断，因为 SHOW_CHILD 模式下 value 中不存在父节点 */
@@ -278,6 +316,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
                 return {
                   title: item.label,
                   key: item.value,
+                  disabled: item.disabled,
                 } as DataNode;
               },
             )}
@@ -319,7 +358,14 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
     return (
       <TreeSelect<OSTreeSelectFieldValueType>
         labelInValue={labelInValue}
-        treeDefaultExpandAll
+        /** 如果有请求就受控，来支持异步的 defaultExpandAll */
+        {...(requests?.requestOptions
+          ? {
+              treeExpandedKeys: expandedKeys,
+              onTreeExpand: setExpandedKeys,
+            }
+          : {})}
+        treeDefaultExpandAll={defaultExpandAll}
         treeCheckable={multiple}
         ref={OSSelectRef}
         maxTagCount={5}
@@ -388,6 +434,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
           }
           return true;
         }}
+        listHeight={dropdownHeight}
         onDropdownVisibleChange={handleDropdownVisibleChange}
         notFoundContent={renderNotFoundContent()}
         dropdownRender={handleDropdownRender}
