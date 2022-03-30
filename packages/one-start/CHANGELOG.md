@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.25.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.24.1...@ty-one-start/one-start@0.25.0) (2022-03-30)
+
+
+### Features
+
+* **field-tree-select:** 支持异步下默认展开全部 ([5aedf23](https://10.1.2.7/visual-fe/swap-modules/commits/5aedf234e8d6fa72d4d24b0ce3824992c93c6e75))
+* **tree-select:** 支持支持搜索获取表单其他字段当前值 ([58cfe85](https://10.1.2.7/visual-fe/swap-modules/commits/58cfe85736ce9022c39cbd0c2775fa36b4039811))
+
+
+
+
+
 ## [0.24.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.24.0...@ty-one-start/one-start@0.24.1) (2022-03-29)
 
 
