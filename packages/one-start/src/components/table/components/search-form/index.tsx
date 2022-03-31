@@ -145,9 +145,9 @@ const SearchForm: React.ForwardRefRenderFunction<
   };
 
   /** 可能隐藏，获取全部字段 */
-  const getSearchFormValues = () => formRef.current?.getFieldsValue(true);
+  const getSearchFormValues = () => formRef.current?.getFieldsValue();
 
-  const getSearchFormDataSource = () => formRef.current?.getDataSource(true);
+  const getSearchFormDataSource = () => formRef.current?.getDataSource();
 
   useImperativeHandle(ref, () => ({
     formRef,
