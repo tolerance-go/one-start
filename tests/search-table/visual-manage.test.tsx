@@ -37,6 +37,12 @@ describe('search-table', () => {
     await waitForComponentToPaint(html, 1200);
 
     expect(options?.search).toStrictEqual({
+      date: undefined,
+      'date-range': undefined,
+      digit: undefined,
+      select: undefined,
+      'select-search': undefined,
+      textarea: undefined,
       money: -279017462758012,
       percent: -5717274175563392,
       text: 'nhlhym',
