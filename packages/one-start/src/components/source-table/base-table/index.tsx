@@ -15,7 +15,7 @@ const BaseTable: React.ForwardRefRenderFunction<
   OSSourceTableAPI,
   OSSourceTableType & {
     tableRef: React.RefObject<OSTableAPI>;
-    setActiveMeta: React.Dispatch<React.SetStateAction<RowMeta | undefined>>;
+    setActiveMeta?: React.Dispatch<React.SetStateAction<RowMeta | undefined>>;
     activeMeta?: RowMeta;
   }
 > = ({ tableRef, setActiveMeta, activeMeta, ...restProps }) => {
@@ -55,7 +55,7 @@ const BaseTable: React.ForwardRefRenderFunction<
           actions: tableRef.current!,
           type: defaultActiveFirstRow.type ?? 'edit',
         };
-        setActiveMeta(firstRowMeta);
+        setActiveMeta?.(firstRowMeta);
       }
       return result;
     };

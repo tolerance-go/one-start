@@ -45,8 +45,11 @@ import type {
 } from './form';
 import type { _OSLayoutStepsFormType } from './layout-form';
 import type { OSResMessage } from './message';
+import type { DataNode, EventDataNode } from '@ty/antd/lib/tree';
+import type { Key } from 'react';
 
 export type RequestOptions = {
+  params?: RecordType;
   current?: number;
   pageSize?: number;
   order?: SorterResult<RecordType>['order'];
@@ -123,7 +126,7 @@ export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = 
    * 获取内部临时的数据，比如过滤后的数据
    */
   getVisualDataSource: () => OSTableValueType;
-  reload: (options?: { current?: number }) => void;
+  reload: (options?: { current?: number; params?: RecordType }) => void;
   setDataSource: (dataSource?: RecordType[]) => void;
   getAllColumnsId: () => string[];
   getColumnsStaticPureConfigsIdMaps: () => Record<
@@ -459,6 +462,7 @@ export type _OSTableFormFieldItems<
   >)[];
 
 export type OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = {
+  params: RecordType;
   current: number;
   pageSize: number;
   order?: SorterResult<RecordType>['order'];
@@ -721,10 +725,32 @@ export interface _OSTableType<
         CustomTableValueType
       >
     | undefined;
+  requestParams?: {
+    requestDataSource?: RecordType;
+  };
 }
 
+export type OSSourceTableCategorizableMenuItem = {
+  title: string;
+  key: string;
+  selectable?: boolean;
+  children?: OSSourceTableCategorizableMenuItem[];
+};
+
 export type _OSSourceTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> =
-  _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
+  _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> & {
+    /**
+     * 在分类树结构中插入节点
+     * 在父节点 parentKey 下的 index 后插入
+     */
+    insertCategorizableTreeChildAfterIndex?: (
+      parentKey: Key,
+      index: number,
+      data: DataNode,
+    ) => void;
+    insertCategorizableTreeChildLatest?: (parentKey: Key, data: DataNode) => void;
+    deleteCategorizableTreeChild?: (parentKey: Key, predicate: (node: DataNode) => boolean) => void;
+  };
 
 export type _OSSourceTableSelfType<
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
@@ -739,6 +765,13 @@ export type _OSSourceTableSelfType<
     };
     /** 操作列宽度 */
     rowActionsColWidth?: number | string;
+    /** 支持一级内容分类 */
+    categorizable?: {
+      /** 标题内容 */
+      listTitle?: string;
+      /** 表格宽度占比 */
+      tableSpan?: number;
+    };
     /** 表格展示模式，panelable 将展示双栏信息 */
     panelable?: {
       /** 表格宽度占比 */
@@ -839,6 +872,15 @@ export type _OSSourceTableSelfType<
         ));
   };
   requests?: {
+    /** 请求分类菜单数据 */
+    requestCategorizableData?: RequestIO<
+      void,
+      {
+        data?: OSSourceTableCategorizableMenuItem[];
+        /** 删除成功消息提示 */
+        message?: string;
+      }
+    >;
     /** 行删除请求 */
     requestRemoveRow?: RequestIO<
       {
@@ -887,6 +929,22 @@ export type _OSSourceTableSelfType<
       }
     >;
   };
+  slots?: {
+    /** 自定义分类列表的表格区域渲染 */
+    renderCategorizableTable?: (options: {
+      node: EventDataNode;
+      apisRef: React.RefObject<
+        Required<
+          Pick<
+            _OSSourceTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+            | 'deleteCategorizableTreeChild'
+            | 'insertCategorizableTreeChildAfterIndex'
+            | 'insertCategorizableTreeChildLatest'
+          >
+        >
+      >;
+    }) => React.ReactNode;
+  };
 };
 
 export type _OSSourceTableType<
@@ -907,6 +965,11 @@ export type _OSSourceTableType<
     CustomFormValueType,
     StaticCustomFormValueType
   >['requests'];
+  slots?: _OSSourceTableSelfType<
+    OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+    CustomFormValueType,
+    StaticCustomFormValueType
+  >['slots'];
 } & _OSTableType<
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
   CustomTableValueType,

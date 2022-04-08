@@ -32,9 +32,13 @@ group:
 
 <!-- remove-check -->
 
-### 双栏模式展示
+### 支持详情内容铺平
 
 <code src="../demos/source-table/panelable.tsx" />
+
+### 支持一级内容分类
+
+<code src="../demos/source-table/categorizable.tsx" />
 
 ### 特殊布局的表单
 

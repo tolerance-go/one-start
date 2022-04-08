@@ -97,9 +97,17 @@ export const PanelView = ({
   const tableSpan = panelable?.tableSpan ?? 10;
 
   return (
-    <Row gutter={10}>
+    <Row gutter={15}>
       <Col span={tableSpan}>{baseTableDom}</Col>
-      <Col className={`${clsPrefix}-panel`} span={24 - tableSpan}>
+      <Col
+        style={{
+          borderRadius: '2px',
+          padding: '10px 15px',
+          border: '1px solid #babfc7',
+        }}
+        className={`${clsPrefix}-panel`}
+        span={24 - tableSpan}
+      >
         {activeMeta ? (
           <div style={{ height: '100%' }} key={`${activeMeta.rowId}_${activeMeta.type}`}>
             {renderPanelView()}

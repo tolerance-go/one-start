@@ -150,6 +150,9 @@ group:
 
 ### source-table
 
+- [支持详情内容铺平](/components/tables/source-table#支持详情内容铺平)
+- [支持一级内容分类](/components/tables/source-table#支持一级内容分类)
+
 - CRUD demo
 
   - 创建

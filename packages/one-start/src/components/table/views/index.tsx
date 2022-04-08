@@ -93,6 +93,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     extraRowActions,
     extraActions,
     extraBatchOperation,
+    requestParams,
   } = props;
   const {
     enableColumnsSettings: propsEnableColumnsSettings,
@@ -392,7 +393,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
 
   const requestDataSourceActionsRef = useRef<RequestDataSourceActions>(null);
 
-  const reload = (options?: { current?: number }) => {
+  const reload = (options?: { current?: number; params?: RecordType }) => {
     requestDataSourceActionsRef.current?.requestDataSource({ ...options });
   };
 
@@ -662,6 +663,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   });
 
   const { loading, totalCount, current } = useRequestDataSource({
+    requestParamsWithRequestDataSource: requestParams?.requestDataSource,
     tableInlineAPISRef,
     currentTotalCountRef,
     syncURLParams,

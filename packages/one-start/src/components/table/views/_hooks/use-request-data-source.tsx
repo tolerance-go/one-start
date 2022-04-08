@@ -10,6 +10,7 @@ import type {
   OSTableFormFieldItemSearchType,
   OSTableRequestDataSourceParams,
   OSTableType,
+  RecordType,
   RequestIO,
   RequestOptions,
   TableCoreAPI,
@@ -22,6 +23,7 @@ import { DEFAULT_CURRENT, DEFAULT_PAGE_SIZE } from '../../constants';
 import type { RequestDataSourceActions, SearchFormAPI, TreeSpreadActions } from '../../typings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 import { SHOW_MORE_FIELD_KEY } from '../../components/search-form';
+import { useUpdateEffect } from 'ahooks';
 
 const mapLevel = (
   rowData?: Record<string, any>[],
@@ -59,6 +61,7 @@ export const useRequestDataSource = ({
   syncURLParams,
   currentTotalCountRef,
   tableInlineAPISRef,
+  requestParamsWithRequestDataSource,
 }: {
   currentTotalCountRef: React.MutableRefObject<number | undefined>;
   defaultCurrent?: number;
@@ -82,6 +85,7 @@ export const useRequestDataSource = ({
   requestDataSourceActionsRef: React.MutableRefObject<RequestDataSourceActions>;
   syncURLParams: boolean;
   tableInlineAPISRef: React.MutableRefObject<TableInlineAPI>;
+  requestParamsWithRequestDataSource?: RecordType;
   setSarchTimeStr: React.Dispatch<React.SetStateAction<string | undefined>>;
   clearSelection: () => void;
   requestDataSource?: Required<OSTableType>['requests']['requestDataSource'];
@@ -165,112 +169,97 @@ export const useRequestDataSource = ({
     tableCoreActionsRef,
   ]);
 
-  const requestTableDataSource = useCallback(
-    async (options: RequestOptions) => {
-      if (!requestDataSource) return;
+  const requestTableDataSource = async (options: RequestOptions) => {
+    if (!requestDataSource) return;
 
-      if (loopRequest == null) {
-        setLoading(true);
-      }
+    if (loopRequest == null) {
+      setLoading(true);
+    }
 
-      const { manualInitiate, mode, ...seachOptions } = options;
-      const searchData = inlineAPIRef.current.getSearchData();
+    const { manualInitiate, mode, ...seachOptions } = options;
+    const searchData = inlineAPIRef.current.getSearchData();
 
-      const params: OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType> =
-        {
-          current: snapshotOfCurrentSearchParametersRef.current.current ?? 1,
-          pageSize: snapshotOfCurrentSearchParametersRef.current.pageSize ?? defaultPageSize,
-          ...seachOptions,
-          search: utl.omit(searchData, [SHOW_MORE_FIELD_KEY]),
-          actions: tableActionsRef.current,
-        };
+    const params: OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType> =
+      {
+        current: snapshotOfCurrentSearchParametersRef.current.current ?? 1,
+        pageSize: snapshotOfCurrentSearchParametersRef.current.pageSize ?? defaultPageSize,
+        ...seachOptions,
+        params: {
+          ...requestParamsWithRequestDataSource,
+          ...seachOptions.params,
+        },
+        search: utl.omit(searchData, [SHOW_MORE_FIELD_KEY]),
+        actions: tableActionsRef.current,
+      };
 
-      const [{ error, data }, ...dataIndexAndSelectOptions] = await Promise.all([
-        requestDataSource(params).then(normalizeRequestOutputs),
-        ...(Object.keys(searchRequestOptionsMapDataIndexId).map((dataIndex) => {
-          return searchRequestOptionsMapDataIndexId[dataIndex]({
-            searchValue: undefined,
-          })
-            .then(normalizeRequestOutputs)
-            .then(({ error: error_, data: data_ }) => {
-              if (error_) return [dataIndex, {}];
-              return [dataIndex, utl.fromPairs(data_?.map((item) => [item.value, item.label]))];
-            });
-        }) as Promise<any>[]),
-      ]);
+    const [{ error, data }, ...dataIndexAndSelectOptions] = await Promise.all([
+      requestDataSource(params).then(normalizeRequestOutputs),
+      ...(Object.keys(searchRequestOptionsMapDataIndexId).map((dataIndex) => {
+        return searchRequestOptionsMapDataIndexId[dataIndex]({
+          searchValue: undefined,
+        })
+          .then(normalizeRequestOutputs)
+          .then(({ error: error_, data: data_ }) => {
+            if (error_) return [dataIndex, {}];
+            return [dataIndex, utl.fromPairs(data_?.map((item) => [item.value, item.label]))];
+          });
+      }) as Promise<any>[]),
+    ]);
 
-      if (loopRequest == null) {
-        setLoading(false);
-      }
+    if (loopRequest == null) {
+      setLoading(false);
+    }
 
-      if (error) return;
+    if (error) return;
 
-      let renderPages = data?.page;
-      renderPages = mapLevel(renderPages);
+    let renderPages = data?.page;
+    renderPages = mapLevel(renderPages);
 
-      fieldOptionsMapDataIndexRef.current = utl.fromPairs(dataIndexAndSelectOptions);
+    fieldOptionsMapDataIndexRef.current = utl.fromPairs(dataIndexAndSelectOptions);
 
-      setFieldItemsState(data?.fieldItems);
-      setTotalCount(data?.total);
+    setFieldItemsState(data?.fieldItems);
+    setTotalCount(data?.total);
 
-      // eslint-disable-next-line no-param-reassign
-      currentTotalCountRef.current = data?.total;
+    // eslint-disable-next-line no-param-reassign
+    currentTotalCountRef.current = data?.total;
 
-      setCurrent(params.current);
+    setCurrent(params.current);
 
-      /** table 的 requestDataSource 会触发 onChange */
-      tableActionsRef.current.setDataSource(renderPages);
+    /** table 的 requestDataSource 会触发 onChange */
+    tableActionsRef.current.setDataSource(renderPages);
 
-      // eslint-disable-next-line no-param-reassign
-      snapshotOfCurrentSearchParametersRef.current.current = params.current;
-      // eslint-disable-next-line no-param-reassign
-      snapshotOfCurrentSearchParametersRef.current.pageSize = params.pageSize;
+    // eslint-disable-next-line no-param-reassign
+    snapshotOfCurrentSearchParametersRef.current.current = params.current;
+    // eslint-disable-next-line no-param-reassign
+    snapshotOfCurrentSearchParametersRef.current.pageSize = params.pageSize;
 
-      syncSearchTimestamp();
-      clearSelection();
-      treeSpreadActionsRef.current?.clearExpandedRowKeys();
+    syncSearchTimestamp();
+    clearSelection();
+    treeSpreadActionsRef.current?.clearExpandedRowKeys();
 
-      /** 执行相关 hooks */
-      inlineAPIRef.current.afterSearch?.({
-        manualInitiate,
-        mode,
+    /** 执行相关 hooks */
+    inlineAPIRef.current.afterSearch?.({
+      manualInitiate,
+      mode,
+    });
+
+    /** 搜索后默认选中全部 */
+    if (tableInlineAPISRef.current.getRowSelection()?.defaultSelectAllAfterSearch) {
+      tableInlineAPISRef.current.setSelectedRowsAndKeys(renderPages ?? []);
+    }
+
+    if (syncURLParams && manualInitiate && tableKey) {
+      unstateHistory.push({
+        pathname: window.location.pathname,
+        query: {
+          /** 包括 showMore 按钮状态 */
+          searchValues: searchData,
+          tableKey,
+        },
+        merged: true,
       });
-
-      /** 搜索后默认选中全部 */
-      if (tableInlineAPISRef.current.getRowSelection()?.defaultSelectAllAfterSearch) {
-        tableInlineAPISRef.current.setSelectedRowsAndKeys(renderPages ?? []);
-      }
-
-      if (syncURLParams && manualInitiate && tableKey) {
-        unstateHistory.push({
-          pathname: window.location.pathname,
-          query: {
-            /** 包括 showMore 按钮状态 */
-            searchValues: searchData,
-            tableKey,
-          },
-          merged: true,
-        });
-      }
-    },
-    [
-      tableInlineAPISRef,
-      currentTotalCountRef,
-      syncURLParams,
-      inlineAPIRef,
-      setFieldItemsState,
-      syncSearchTimestamp,
-      tableActionsRef,
-      tableKey,
-      requestDataSource,
-      searchRequestOptionsMapDataIndexId,
-      snapshotOfCurrentSearchParametersRef,
-      clearSelection,
-      treeSpreadActionsRef,
-      loopRequest,
-      defaultPageSize,
-    ],
-  );
+    }
+  };
 
   const actionsRef = useActionsRef(
     {
@@ -292,6 +281,14 @@ export const useRequestDataSource = ({
       });
     }
   }, []);
+
+  useUpdateEffect(() => {
+    requestTableDataSource({
+      current: defaultCurrent,
+      pageSize: defaultPageSize,
+      mode: 'search',
+    });
+  }, [JSON.stringify(requestParamsWithRequestDataSource)]);
 
   useEffect(() => {
     if (loopRequest != null) {

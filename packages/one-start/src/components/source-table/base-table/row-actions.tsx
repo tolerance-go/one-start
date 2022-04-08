@@ -40,7 +40,7 @@ export const renderRowActions =
     requestViewRowData?: Required<OSSourceTableType>['requests']['requestViewRowData'];
     requestRowEditData?: Required<OSSourceTableType>['requests']['requestRowEditData'];
     requestSaveRowData?: Required<OSSourceTableType>['requests']['requestSaveRowData'];
-    setActiveMeta: React.Dispatch<React.SetStateAction<RowMeta | undefined>>;
+    setActiveMeta?: React.Dispatch<React.SetStateAction<RowMeta | undefined>>;
   }) =>
   ({
     rowData,
@@ -166,7 +166,7 @@ export const renderRowActions =
                 }}
                 onClick={() => {
                   if (panelable) {
-                    setActiveMeta({
+                    setActiveMeta?.({
                       rowData,
                       rowId,
                       rowIndex,
@@ -255,7 +255,7 @@ export const renderRowActions =
                 }}
                 onClick={() => {
                   if (panelable) {
-                    setActiveMeta({
+                    setActiveMeta?.({
                       rowData,
                       rowId,
                       rowIndex,

@@ -114,6 +114,7 @@ export const useRequestDataSource = ({
         {
           current: snapshotOfCurrentSearchParametersRef.current.current ?? 1,
           pageSize: snapshotOfCurrentSearchParametersRef.current.pageSize ?? defaultPageSize,
+          params: {},
           ...seachOptions,
           search,
           actions: tableActionsRef.current,
