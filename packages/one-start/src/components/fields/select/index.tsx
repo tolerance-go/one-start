@@ -36,7 +36,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
 ) => {
   const {
     text: _text,
-    onChangeHook,
+    onValueChange,
     settings,
     mode = 'read',
     value: _value,
@@ -271,7 +271,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
       /** 清空 searchValue，否则选择的项会高亮 */
       setSearchValue(undefined);
 
-      onChangeHook?.(mergedDataInValue(value));
+      onValueChange?.(mergedDataInValue(value));
       return _onChange?.(
         allowClear && Array.isArray(value) && value.length === 0
           ? undefined
@@ -325,7 +325,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFi
                     minWidth: showInfoSetting.popoverWidth ?? 200,
                   }}
                   placement="right"
-                  content={extraValueTypes.form({
+                  content={extraValueTypes.form<RecordType>({
                     mode: 'read',
                     type: 'form',
                     text: item.data,

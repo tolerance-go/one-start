@@ -18,7 +18,7 @@ import type {
   _OSEditableTableSelfType,
   _OSEditableTableType,
 } from './editable-table';
-import type { OSFieldAPI, OSFieldValueType } from './field';
+import type { OSFieldAPI, OSFieldChangeEventType, OSFieldValueType } from './field';
 import type {
   _OSFormFieldItem,
   _OSFormFieldItems,
@@ -55,11 +55,12 @@ import type {
   _OSTableType,
 } from './table';
 
-export type RenderFieldOptions = {
-  ref?: React.RefObject<OSFieldAPI>;
-  onChangeHook?: (value: OSFieldValueType) => void;
-  value?: OSFieldValueType;
-  text?: OSFieldValueType;
+export type RenderFieldOptions<ExtraFieldValueType = OSFieldValueType> = {
+  ref?: React.RefObject<OSFieldAPI> | ((instance: OSFieldAPI | null) => void);
+  onValueChange?: (value: OSFieldValueType) => void;
+  onChange?: (event: OSFieldChangeEventType) => void;
+  value?: OSFieldValueType | ExtraFieldValueType;
+  text?: OSFieldValueType | ExtraFieldValueType;
 } & {
   mode: 'edit' | 'read' | 'update';
   type: _OSFormFieldItems<OSCustomFieldPureFormFieldItemConfigsType>[number]['type'];

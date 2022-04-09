@@ -12,7 +12,14 @@ const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldTyp
   props,
   ref,
 ) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
 
   const clsPrefix = useClsPrefix('os-date-field');
   const {
@@ -65,7 +72,7 @@ const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldTyp
   }
   if (mode === 'edit' || mode === 'update') {
     const onChange: DatePickerProps['onChange'] = (value) => {
-      onChangeHook?.(value);
+      onValueChange?.(value);
       return _onChange?.(value);
     };
 

@@ -9,7 +9,14 @@ const OSSwitchField: React.ForwardRefRenderFunction<OSSwitchFieldAPI, OSSwitchFi
   props,
   ref,
 ) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
 
   const clsPrefix = useClsPrefix('os-date-field');
   const { autoFocus, className } = settings ?? {};
@@ -29,7 +36,7 @@ const OSSwitchField: React.ForwardRefRenderFunction<OSSwitchFieldAPI, OSSwitchFi
   }
   if (mode === 'edit' || mode === 'update') {
     const onChange: SwitchProps['onChange'] = (value) => {
-      onChangeHook?.(value);
+      onValueChange?.(value);
       return _onChange?.(value);
     };
 

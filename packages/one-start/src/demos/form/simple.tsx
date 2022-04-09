@@ -13,6 +13,19 @@ export default () => {
         settings={{
           fieldItems: [
             {
+              type: 'atom',
+              settings: {
+                title: 'atom',
+                dataIndex: 'atom',
+                type: 'select',
+                settings: {
+                  valueEnums: {
+                    a: 'A',
+                  },
+                },
+              },
+            },
+            {
               type: 'textarea',
               settings: {
                 title: 'textarea',

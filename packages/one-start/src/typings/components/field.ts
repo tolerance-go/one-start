@@ -10,35 +10,36 @@ import type {
 } from '@ty/antd';
 import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
 import type { UploadFile } from '@ty/antd/es/upload/interface';
-import type { PickerProps, RangePickerDateProps } from '@ty/antd/lib/date-picker/generatePicker';
-import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
-import type { RefSelectProps } from '@ty/antd/lib/select';
-import type { ParagraphProps } from '@ty/antd/lib/typography/Paragraph';
+import type { PickerProps, RangePickerDateProps } from '@ty/antd/es/date-picker/generatePicker';
+import type { TextAreaRef } from '@ty/antd/es/input/TextArea';
+import type { RefSelectProps } from '@ty/antd/es/select';
+import type { ParagraphProps } from '@ty/antd/es/typography/Paragraph';
 import type { Moment } from 'moment';
-import type { NamePath } from 'rc-field-form/lib/interface';
-import type { SharedTimeProps } from 'rc-picker/lib/panels/TimePanel';
-import type Picker from 'rc-picker/lib/Picker';
+import type { NamePath } from 'rc-field-form/es/interface';
+import type { SharedTimeProps } from 'rc-picker/es/panels/TimePanel';
+import type Picker from 'rc-picker/es/Picker';
 import type React from 'react';
-import type { Component } from 'react';
+import type { ChangeEvent, Component } from 'react';
 import type { RecordType } from '../core';
 import type { OSCore, RequestIO } from './core';
 import type { OSResMessage } from './message';
 import type { OSTriggerButtonType } from './trigger';
+import type { CreateStaticPureFieldItemConfigs } from './_utils';
 
-export interface OSField<Value = any, ChangeValue = Value> extends OSCore {
+export interface OSField<Value = any, ChangeEvent = Value> extends OSCore {
   type?: string;
   key?: string;
   mode?: 'edit' | 'read' | 'update';
   /** text 在 read 模式下的优先级比 value 更高，比如表格外面了套了一层大 form，用 text 就可以展示静态数据 */
   text?: Value;
   value?: Value;
-  onChange?: (value?: ChangeValue) => void;
+  onChange?: (event?: ChangeEvent) => void;
   /** 如果 field 存在于 form 内的 name 字段 */
   name?: string;
 }
 
 export type OSFieldBaseConfigs<ValueType = any> = {
-  onChangeHook?: (value?: ValueType) => void;
+  onValueChange?: (value?: ValueType) => void;
   size?: SizeType;
   /** 是否外部被 FormItem 包裹 */
   isWrapFormItem?: boolean;
@@ -162,9 +163,13 @@ export interface OSRelativeDayFieldType
 
 export type OSImageFieldAPI = Input | HTMLImageElement;
 
-export type OSImageFieldValueType = string | Blob;
+export type OSImageFieldValueType = string | Blob | undefined;
 
-export interface OSImageFieldType extends OSField, OSFieldBaseConfigs<OSImageFieldValueType> {
+export type OSImageFieldChangeEvent = ChangeEvent<HTMLInputElement>;
+
+export interface OSImageFieldType
+  extends OSField<OSImageFieldValueType, OSImageFieldChangeEvent>,
+    OSFieldBaseConfigs<OSImageFieldValueType> {
   type?: 'image';
   settings?: {
     width?: string | number;
@@ -183,8 +188,10 @@ export type OSMoneyFieldUnitValueType = {
   value: number | string | undefined;
 };
 
+export type OSMoneyFieldChangeEvent = OSMoneyFieldValueType;
+
 export interface OSMoneyFieldType
-  extends OSField<OSMoneyFieldValueType>,
+  extends OSField<OSMoneyFieldValueType, OSMoneyFieldChangeEvent>,
     OSFieldBaseConfigs<OSMoneyFieldValueType> {
   type?: 'money';
   settings?: {
@@ -328,7 +335,7 @@ export interface OSSelectFieldType<
   /** 自定义编辑状态下的渲染逻辑 */
   renderOnRead?: (
     text?: OSSelectFieldValueType,
-    optionMaps?: Record<string, React.ReactNode>,
+    optionMaps?: Record<string, OSSelectOptionItem>,
   ) => React.ReactElement;
   /** 请求注入的额外参数 */
   requestExtra?: () => ExtraRequestOptions;
@@ -411,8 +418,10 @@ export type OSTextareaFieldValueType = string;
 
 export type OSTextareaFieldAPI = TextAreaRef | HTMLSpanElement;
 
+export type OSTextareaChangeEvent = React.ChangeEvent<HTMLTextAreaElement>;
+
 export interface OSTextareaFieldType
-  extends OSField<OSTextareaFieldValueType, React.ChangeEvent<HTMLTextAreaElement>>,
+  extends OSField<OSTextareaFieldValueType, OSTextareaChangeEvent>,
     OSFieldBaseConfigs<OSTextareaFieldValueType> {
   type?: 'textarea';
   settings?: {
@@ -436,8 +445,11 @@ export interface OSOptionFieldType extends OSField {
 export type OSTextFieldValueType = string;
 
 export type OSTextFieldAPI = HTMLSpanElement | Input;
+
+export type OSTextFieldChangeEvent = React.ChangeEvent<HTMLInputElement>;
+
 export interface OSTextFieldType
-  extends OSField<OSTextFieldValueType, React.ChangeEvent<HTMLInputElement>>,
+  extends OSField<OSTextFieldValueType, OSTextFieldChangeEvent>,
     OSFieldBaseConfigs<OSTextFieldValueType> {
   type?: 'text';
   settings?: {
@@ -518,9 +530,11 @@ export type OSRadioOptionItem = { label: string; value: string; disabled?: boole
 
 export type OSRadioFieldValueType = string;
 
+export type OSRadioFieldChangeEvent = RadioChangeEvent;
+
 export type OSRadioFieldAPI = HTMLSpanElement | HTMLDivElement;
 export interface OSRadioFieldType
-  extends OSField<OSRadioFieldValueType, RadioChangeEvent>,
+  extends OSField<OSRadioFieldValueType, OSRadioFieldChangeEvent>,
     OSFieldBaseConfigs<OSRadioFieldValueType> {
   type?: 'radio';
   settings?: {
@@ -616,7 +630,100 @@ export interface OSTimeLagFieldType extends OSField, OSFieldBaseConfigs<OSDigitF
   } & OSFieldBaseSettings;
 }
 
-export type OSFieldValueType =
+export type OSAtomFieldValueType = OSBaseFieldValueType;
+export type OSAtomFieldChangedEvent = OSBaseFieldChangeEventType;
+
+export type OSAtomFieldAPI = OSBaseFieldAPI;
+export interface OSAtomFieldType
+  extends OSField<OSAtomFieldValueType, OSAtomFieldChangedEvent>,
+    OSFieldBaseConfigs<OSAtomFieldValueType> {
+  type?: 'atom';
+  settings?: OSFieldItemWithStaticPureConfigs & OSFieldBaseSettings;
+}
+
+export type OSFieldType = OSBaseFieldType | OSAtomFieldType;
+
+export type OSFieldItemWithStaticPureConfigs =
+  | CreateStaticPureFieldItemConfigs<OSActionsFieldType>
+  | CreateStaticPureFieldItemConfigs<OSCustomFieldType>
+  | CreateStaticPureFieldItemConfigs<OSDigitFieldType>
+  | CreateStaticPureFieldItemConfigs<OSRelativeDayFieldType>
+  | CreateStaticPureFieldItemConfigs<OSImageFieldType>
+  | CreateStaticPureFieldItemConfigs<OSMoneyFieldType>
+  | CreateStaticPureFieldItemConfigs<OSPercentFieldType>
+  | CreateStaticPureFieldItemConfigs<OSSelectFieldType>
+  | CreateStaticPureFieldItemConfigs<OSTreeSelectFieldType>
+  | CreateStaticPureFieldItemConfigs<OSChainSelectFieldType>
+  | CreateStaticPureFieldItemConfigs<OSSelectFieldType>
+  | CreateStaticPureFieldItemConfigs<OSTextareaFieldType>
+  | CreateStaticPureFieldItemConfigs<OSOptionFieldType>
+  | CreateStaticPureFieldItemConfigs<OSTextFieldType>
+  | CreateStaticPureFieldItemConfigs<OSPlaceholderInputFieldType>
+  | CreateStaticPureFieldItemConfigs<OSRadioFieldType>
+  | CreateStaticPureFieldItemConfigs<OSTransferFieldType>
+  | CreateStaticPureFieldItemConfigs<OSDateFieldType>
+  | CreateStaticPureFieldItemConfigs<OSDateRangeFieldType>
+  | CreateStaticPureFieldItemConfigs<OSSwitchFieldType>
+  | CreateStaticPureFieldItemConfigs<OSTimeLagFieldType>
+  | CreateStaticPureFieldItemConfigs<OSSwitchFieldType>
+  | CreateStaticPureFieldItemConfigs<OSCustomFieldType>
+  | CreateStaticPureFieldItemConfigs<OSChainSelectFieldType>
+  | CreateStaticPureFieldItemConfigs<OSRadioFieldType>
+  | CreateStaticPureFieldItemConfigs<OSPlaceholderInputFieldType>
+  | CreateStaticPureFieldItemConfigs<OSUploadFieldType>;
+
+export type OSBaseFieldType =
+  | OSActionsFieldType
+  | OSCustomFieldType
+  | OSDigitFieldType
+  | OSRelativeDayFieldType
+  | OSImageFieldType
+  | OSMoneyFieldType
+  | OSPercentFieldType
+  | OSSelectFieldType
+  | OSTreeSelectFieldType
+  | OSChainSelectFieldType
+  | OSSelectFieldType
+  | OSTextareaFieldType
+  | OSOptionFieldType
+  | OSTextFieldType
+  | OSPlaceholderInputFieldType
+  | OSRadioFieldType
+  | OSTransferFieldType
+  | OSDateFieldType
+  | OSDateRangeFieldType
+  | OSSwitchFieldType
+  | OSTimeLagFieldType
+  | OSSwitchFieldType
+  | OSCustomFieldType
+  | OSChainSelectFieldType
+  | OSRadioFieldType
+  | OSPlaceholderInputFieldType
+  | OSUploadFieldType;
+
+export type OSFieldChangeEventType = OSBaseFieldChangeEventType | OSAtomFieldChangedEvent;
+
+export type OSBaseFieldChangeEventType =
+  | OSDigitFieldValueType
+  | OSSelectFieldValueType
+  | OSDateFieldValueType
+  | OSDateRangeFieldValueType
+  | OSActionsFieldValueType
+  | OSSwitchFieldValueType
+  | RadioChangeEvent
+  | OSCustomFieldValueType
+  | OSChainSelectFieldValueType
+  | OSUploadFieldValueType
+  | OSPlaceholderInputFieldValueType
+  | OSRadioFieldValueType
+  | OSMoneyFieldChangeEvent
+  | OSTextFieldChangeEvent
+  | OSTextareaChangeEvent
+  | OSImageFieldChangeEvent;
+
+export type OSFieldValueType = OSBaseFieldValueType | OSAtomFieldValueType;
+
+export type OSBaseFieldValueType =
   | OSDigitFieldValueType
   | OSSelectFieldValueType
   | OSTextareaFieldValueType
@@ -624,15 +731,17 @@ export type OSFieldValueType =
   | OSDateFieldValueType
   | OSDateRangeFieldValueType
   | OSActionsFieldValueType
-  | OSSwitchFieldType
-  | OSCustomFieldType
-  | OSImageFieldType
-  | OSChainSelectFieldType
-  | OSRadioFieldType
-  | OSPlaceholderInputFieldType
-  | OSUploadFieldType;
+  | OSSwitchFieldValueType
+  | OSCustomFieldValueType
+  | OSImageFieldValueType
+  | OSChainSelectFieldValueType
+  | OSRadioFieldValueType
+  | OSPlaceholderInputFieldValueType
+  | OSUploadFieldValueType;
 
-export type OSFieldAPI =
+export type OSFieldAPI = OSBaseFieldAPI | OSAtomFieldAPI;
+
+export type OSBaseFieldAPI =
   | OSTextFieldAPI
   | OSSelectFieldAPI
   | OSPercentFieldAPI

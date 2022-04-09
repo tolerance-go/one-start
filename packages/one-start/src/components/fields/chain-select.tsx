@@ -27,8 +27,8 @@ const OSChainSelectField: React.ForwardRefRenderFunction<
       onChange={(next) => {
         props.onChange?.(next as OSChainSelectFieldValueType);
       }}
-      onChangeHook={(next) => {
-        props.onChangeHook?.(next as OSChainSelectFieldValueType);
+      onValueChange={(next) => {
+        props.onValueChange?.(next as OSChainSelectFieldValueType);
       }}
       settings={{
         ...props.settings,
@@ -61,7 +61,7 @@ const OSChainSelectField: React.ForwardRefRenderFunction<
                 <span>
                   <Space>
                     <Badge count={index + 1} style={{ backgroundColor: '#2db7f5' }} />
-                    {optionsMap?.[item]}
+                    {optionsMap?.[item]?.label}
                   </Space>
                   {index === chainVal.length - 1 ? null : (
                     <SwapRightOutlined style={{ marginLeft: 6, marginRight: 6 }} />

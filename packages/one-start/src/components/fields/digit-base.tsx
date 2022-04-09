@@ -17,7 +17,7 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
       mode = 'read',
       value: _value,
       onChange: _onChange,
-      onChangeHook,
+      onValueChange,
       text: _text,
       onFocus,
       onBlur,
@@ -95,7 +95,7 @@ const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDi
     if (mode === 'edit' || mode === 'update') {
       const onChange: InputNumberProps['onChange'] = (value) => {
         const next = transformValue?.(value) ?? value;
-        onChangeHook?.(next);
+        onValueChange?.(next);
         return _onChange?.(next);
       };
 

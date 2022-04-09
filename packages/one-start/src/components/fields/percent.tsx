@@ -8,7 +8,14 @@ const OSPercentField: React.ForwardRefRenderFunction<OSPercentFieldAPI, OSPercen
   props,
   ref,
 ) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
 
   const {
     bordered,
@@ -84,7 +91,7 @@ const OSPercentField: React.ForwardRefRenderFunction<OSPercentFieldAPI, OSPercen
         onChange={_onChange}
         {...getExtra()}
         {...{
-          onChangeHook,
+          onValueChange,
         }}
       />
     );
@@ -110,7 +117,7 @@ const OSPercentField: React.ForwardRefRenderFunction<OSPercentFieldAPI, OSPercen
         onChange={_onChange}
         {...getExtra()}
         {...{
-          onChangeHook,
+          onValueChange,
         }}
       />
     );

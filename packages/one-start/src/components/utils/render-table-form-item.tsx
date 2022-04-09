@@ -20,6 +20,7 @@ import {
   pickFormItemSettings,
   pickTableFormItemRequests,
 } from './pick-field-item-settings';
+import utl from 'lodash';
 
 export const renderTableFormItem = (
   valueType: OSTableFormFieldItems[number]['type'],
@@ -157,11 +158,15 @@ export const renderTableFormItem = (
       return (
         <Form.Item
           noStyle
-          shouldUpdate={(prevValues, curValues) =>
-            dependencies
-              ? dependencies.some((dependKey) => prevValues[dependKey] !== curValues[dependKey])
-              : false
-          }
+          shouldUpdate={(prevValues, curValues) => {
+            return dependencies
+              ? dependencies.some(
+                  (dependKey) =>
+                    utl.get(prevValues, [rowId!, dependKey]) !==
+                    utl.get(curValues, [rowId!, dependKey]),
+                )
+              : false;
+          }}
         >
           {(form: FormInstance) => {
             return renderInner(settings({ dataSource, form, rowIndex, rowData, rowId, actions }));

@@ -9,7 +9,14 @@ const OSRadioField: React.ForwardRefRenderFunction<OSRadioFieldAPI, OSRadioField
   props,
   ref,
 ) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
 
   const { disabled, options, valueEnums } = settings ?? {};
 
@@ -35,7 +42,7 @@ const OSRadioField: React.ForwardRefRenderFunction<OSRadioFieldAPI, OSRadioField
   }
   if (mode === 'edit' || mode === 'update') {
     const onChange: RadioProps['onChange'] = (value) => {
-      onChangeHook?.(value.target.value);
+      onValueChange?.(value.target.value);
       return _onChange?.(value);
     };
 

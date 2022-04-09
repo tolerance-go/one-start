@@ -49,6 +49,12 @@ group:
 
 <code src="../demos/editable-table/pagination.tsx" />
 
+### 列视图
+
+#### 支持单列类型联动变化
+
+<code src="../demos/editable-table/column-type-linkage.tsx" />
+
 所有接口继承自 OSTable
 
 <API exports='["Settings", "EditableTableAddable"]' src="../components/editable-table/index.tsx"></API>

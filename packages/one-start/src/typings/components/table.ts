@@ -34,6 +34,7 @@ import type {
   OSTreeSelectFieldType,
   OSUploadFieldType,
   OSTreeSelectFieldValueType,
+  OSAtomFieldType,
 } from './field';
 import type {
   CreatePureFormFieldItemConfigs,
@@ -375,6 +376,12 @@ export type _OSTableFormFieldItem<
       _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       OSTableFormFieldItemExtra
     > &
+      OSFormItemDependenciesConfigs)
+  | (CreatePureFormFieldItemConfigs<
+      OSAtomFieldType,
+      _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
+      OSTableFormFieldItemExtra
+    > &
       OSFormItemDependenciesConfigs);
 
 export type CreateStaticPureTableFormFieldItemConfigsType<T extends OSCore = OSCore> =
@@ -442,6 +449,8 @@ export type _OSTableFormFieldItemWithStaticPureConfigs<
   | (CreateStaticPureFormFieldItemConfigs<OSPlaceholderInputFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSUploadFieldType, OSTableFormFieldItemExtra> &
+      OSFormItemDependenciesConfigs)
+  | (CreateStaticPureFormFieldItemConfigs<OSAtomFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs);
 
 export type _OSTableFormGroupType<

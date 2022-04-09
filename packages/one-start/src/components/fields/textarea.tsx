@@ -11,7 +11,7 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
 ) => {
   const {
     text,
-    onChangeHook,
+    onValueChange,
     settings,
     mode = 'read',
     value: _value,
@@ -60,7 +60,7 @@ const OSTextareaField: React.ForwardRefRenderFunction<OSTextareaFieldAPI, OSText
         inputRef.current.resizableTextArea.textArea.value = utl.trim(event.target.value);
       }
 
-      onChangeHook?.(event.target.value);
+      onValueChange?.(event.target.value);
       return _onChange?.(event);
     };
 

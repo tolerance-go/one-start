@@ -6,7 +6,14 @@ const OSDigitField: React.ForwardRefRenderFunction<OSDigitFieldAPI, OSDigitField
   props,
   ref,
 ) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
 
   const {
     bordered,
@@ -54,7 +61,7 @@ const OSDigitField: React.ForwardRefRenderFunction<OSDigitFieldAPI, OSDigitField
         text={text}
         onChange={_onChange}
         {...{
-          onChangeHook,
+          onValueChange,
         }}
       />
     );
@@ -83,7 +90,7 @@ const OSDigitField: React.ForwardRefRenderFunction<OSDigitFieldAPI, OSDigitField
         text={text}
         onChange={_onChange}
         {...{
-          onChangeHook,
+          onValueChange,
         }}
       />
     );

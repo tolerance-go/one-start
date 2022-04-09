@@ -7,7 +7,14 @@ const OSMoneyField: React.ForwardRefRenderFunction<OSMoneyFieldAPI, OSMoneyField
   props,
   ref,
 ) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
 
   const {
     bordered,
@@ -59,18 +66,18 @@ const OSMoneyField: React.ForwardRefRenderFunction<OSMoneyFieldAPI, OSMoneyField
     [_onChange, normalUnit, unitInValue],
   );
 
-  const handleChangeHook: OSDigitFieldBaseType['onChangeHook'] = useCallback(
+  const handleChangeHook: OSDigitFieldBaseType['onValueChange'] = useCallback(
     (value) => {
       if (unitInValue) {
-        onChangeHook?.({
+        onValueChange?.({
           value,
           unit: normalUnit,
         });
         return;
       }
-      onChangeHook?.(value);
+      onValueChange?.(value);
     },
-    [normalUnit, onChangeHook, unitInValue],
+    [normalUnit, onValueChange, unitInValue],
   );
 
   if (mode === 'read') {
@@ -93,7 +100,7 @@ const OSMoneyField: React.ForwardRefRenderFunction<OSMoneyFieldAPI, OSMoneyField
         value={normalVal}
         text={normalText}
         onChange={handleChange}
-        onChangeHook={handleChangeHook}
+        onValueChange={handleChangeHook}
       />
     );
   }
@@ -119,7 +126,7 @@ const OSMoneyField: React.ForwardRefRenderFunction<OSMoneyFieldAPI, OSMoneyField
         ref={ref}
         value={normalVal}
         onChange={handleChange}
-        onChangeHook={handleChangeHook}
+        onValueChange={handleChangeHook}
       />
     );
   }

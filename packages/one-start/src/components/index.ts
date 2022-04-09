@@ -27,6 +27,7 @@ import OSTextareaField from './fields/textarea';
 import OSPlaceholderInputField from './fields/placeholder-input';
 import OSTimeLagField from './fields/time-lag';
 import OSTransferField from './fields/transfer';
+import OSAtomField from './fields/atom';
 import OSForm from './form';
 import OSGrid from './grid';
 import OSFrame from './frame';
@@ -50,6 +51,7 @@ import { useActionsRef } from './hooks/use-actions-ref';
 import { useLoading } from './utils/use-loading';
 import { unstateHistory } from './utils/unstate-history';
 import { normalizeArray } from './utils/normalize-array';
+import { parseFieldChangeEvent } from './utils/parse-field-change-event';
 
 const utils = {
   formatter,
@@ -60,6 +62,8 @@ const utils = {
 export * from './utils/parse-table-value';
 export * from './utils/tree-utils';
 export {
+  parseFieldChangeEvent,
+  OSAtomField,
   normalizeArray,
   unstateHistory,
   OSFormField,

@@ -8,7 +8,14 @@ const OSImageField: React.ForwardRefRenderFunction<OSImageFieldAPI, OSImageField
   props,
   ref,
 ) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
 
   const clsPrefix = useClsPrefix('os-field-image');
   const { bordered, autoFocus, disabled, width, height, fallback } = settings ?? {};
@@ -44,7 +51,7 @@ const OSImageField: React.ForwardRefRenderFunction<OSImageFieldAPI, OSImageField
 
   if (mode === 'edit' || mode === 'update') {
     const onChange: InputProps['onChange'] = (value) => {
-      onChangeHook?.(value.target.value);
+      onValueChange?.(value.target.value);
       return _onChange?.(value);
     };
 

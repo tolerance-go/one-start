@@ -11,7 +11,14 @@ const OSRelativeDayField: React.ForwardRefRenderFunction<
   OSRelativeDayFieldAPI,
   OSRelativeDayFieldType
 > = (props, ref) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
 
   const { bordered, autoFocus, min = -5, max = 5 } = settings ?? {};
 
@@ -45,7 +52,7 @@ const OSRelativeDayField: React.ForwardRefRenderFunction<
         text={text}
         onChange={_onChange}
         {...{
-          onChangeHook,
+          onValueChange,
         }}
       />
     );
@@ -94,7 +101,7 @@ const OSRelativeDayField: React.ForwardRefRenderFunction<
         text={text}
         onChange={_onChange}
         {...{
-          onChangeHook,
+          onValueChange,
         }}
       />
     );

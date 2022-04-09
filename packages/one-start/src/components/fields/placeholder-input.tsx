@@ -10,7 +10,14 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
   OSPlaceholderInputFieldAPI,
   OSPlaceholderInputFieldType
 > = (props, ref) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
   const [focus, setFocus] = useState(false);
   const judgeOffsetRef = useRef<{
     offset: number | null;
@@ -64,7 +71,7 @@ const OSPlaceholderInputField: React.ForwardRefRenderFunction<
   if (mode === 'edit' || mode === 'update') {
     const triggerChange = (value: string) => {
       const next = valueTransform ? valueTransform(value) : value;
-      onChangeHook?.(next);
+      onValueChange?.(next);
       return _onChange?.(next);
     };
 

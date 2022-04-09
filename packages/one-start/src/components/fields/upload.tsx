@@ -14,7 +14,7 @@ const OSUploadField: React.ForwardRefRenderFunction<OSUploadFieldAPI, OSUploadFi
 ) => {
   const {
     text,
-    onChangeHook,
+    onValueChange,
     settings,
     mode = 'read',
     value: _value,
@@ -151,7 +151,7 @@ const OSUploadField: React.ForwardRefRenderFunction<OSUploadFieldAPI, OSUploadFi
 
       const nextValue = utl.flow(sizeCheck, duplicate)(params.fileList);
 
-      onChangeHook?.(nextValue);
+      onValueChange?.(nextValue);
       if (requestAfterUpload) {
         const { error, data: customFile } = await requestAfterUpload({
           fileList: nextValue,

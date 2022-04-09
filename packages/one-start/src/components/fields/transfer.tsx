@@ -11,7 +11,14 @@ const OSTransferField: React.ForwardRefRenderFunction<OSTransferFieldAPI, OSTran
   props,
   ref,
 ) => {
-  const { text, onChangeHook, settings, mode = 'read', value: _value, onChange: _onChange } = props;
+  const {
+    text,
+    onValueChange,
+    settings,
+    mode = 'read',
+    value: _value,
+    onChange: _onChange,
+  } = props;
 
   const { source } = settings ?? {};
 
@@ -25,7 +32,7 @@ const OSTransferField: React.ForwardRefRenderFunction<OSTransferFieldAPI, OSTran
   }
   if (mode === 'edit' || mode === 'update') {
     const onChange = (value: OSTransferFieldValueType) => {
-      onChangeHook?.(value);
+      onValueChange?.(value);
       return _onChange?.(value);
     };
 

@@ -19,7 +19,7 @@ const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldTyp
 ) => {
   const {
     text,
-    onChangeHook,
+    onValueChange,
     settings,
     mode = 'read',
     value: _value,
@@ -41,7 +41,7 @@ const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldTyp
   const inputRef = useRef<Input>(null);
 
   const triggerChange = (value?: OSTextFieldValueType) => {
-    onChangeHook?.(value);
+    onValueChange?.(value);
 
     /** TODO: antd form 内部是根据 target 特征判断取值的，源码链接以后加 */
     return _onChange?.({
@@ -107,7 +107,7 @@ const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldTyp
         inputRef.current.input.value = utl.trim(event.target.value);
       }
 
-      onChangeHook?.(event.target.value);
+      onValueChange?.(event.target.value);
       return _onChange?.(event);
     };
 

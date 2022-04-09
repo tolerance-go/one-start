@@ -13,7 +13,7 @@ const OSLayoutTabsFormField: React.ForwardRefRenderFunction<
 > = (props, ref) => {
   const {
     text,
-    onChangeHook,
+    onValueChange,
     settings,
     requests,
     mode = 'read',
@@ -51,7 +51,7 @@ const OSLayoutTabsFormField: React.ForwardRefRenderFunction<
   }
   if (mode === 'edit' || mode === 'update') {
     const onChange: OSLayoutTabsFormFieldType['onChange'] = (value) => {
-      onChangeHook?.(value);
+      onValueChange?.(value);
       return _onChange?.(value);
     };
 

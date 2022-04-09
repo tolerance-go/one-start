@@ -80,7 +80,11 @@ group:
   - 支持富 value 类型
 
 - field-date-range
+
   - 支持定义时分秒
+
+- field-atom
+  - 支持自定义类型
 
 ### form
 
@@ -185,6 +189,10 @@ group:
   - 删除
 
 ### editable-table
+
+- 列视图
+
+  - 支持单列类型联动变化
 
 - CRUD
 

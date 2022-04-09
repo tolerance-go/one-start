@@ -31,7 +31,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
 ) => {
   const {
     text: _text,
-    onChangeHook,
+    onValueChange,
     settings,
     mode = 'read',
     value: _value,
@@ -400,7 +400,7 @@ const OSSelectField: React.ForwardRefRenderFunction<OSTreeSelectFieldAPI, OSTree
           };
 
           const mergedValue = parseValue(value);
-          onChangeHook?.(mergedDataInValue(mergedValue));
+          onValueChange?.(mergedDataInValue(mergedValue));
           return _onChange?.(
             allowClear && Array.isArray(value) && value.length === 0
               ? undefined

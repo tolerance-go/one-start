@@ -9,7 +9,7 @@ const OSFormField: React.ForwardRefRenderFunction<OSFormFieldAPI, OSFormFieldTyp
 ) => {
   const {
     text,
-    onChangeHook,
+    onValueChange,
     settings,
     requests,
     mode = 'read',
@@ -39,7 +39,7 @@ const OSFormField: React.ForwardRefRenderFunction<OSFormFieldAPI, OSFormFieldTyp
   }
   if (mode === 'edit' || mode === 'update') {
     const onChange: OSFormFieldType['onChange'] = (value) => {
-      onChangeHook?.(value);
+      onValueChange?.(value);
       return _onChange?.(value);
     };
 

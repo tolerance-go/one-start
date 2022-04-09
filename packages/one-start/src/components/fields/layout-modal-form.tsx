@@ -12,7 +12,7 @@ const OSLayoutModalFormField: React.ForwardRefRenderFunction<
 > = (props, ref) => {
   const {
     text,
-    onChangeHook,
+    onValueChange,
     settings,
     requests,
     mode = 'read',
@@ -49,7 +49,7 @@ const OSLayoutModalFormField: React.ForwardRefRenderFunction<
   }
   if (mode === 'edit' || mode === 'update') {
     const onChange: OSLayoutModalFormFieldType['onChange'] = (value) => {
-      onChangeHook?.(value);
+      onValueChange?.(value);
       return _onChange?.(value);
     };
 

@@ -17,7 +17,7 @@ const OSDateRangeField: React.ForwardRefRenderFunction<OSDateRangeFieldAPI, OSDa
   (props, ref) => {
     const {
       text,
-      onChangeHook,
+      onValueChange,
       settings,
       mode = 'read',
       value: _value,
@@ -88,7 +88,7 @@ const OSDateRangeField: React.ForwardRefRenderFunction<OSDateRangeFieldAPI, OSDa
     }
     if (mode === 'edit' || mode === 'update') {
       const onChange: RangePickerProps<Moment>['onChange'] = (value) => {
-        onChangeHook?.(value);
+        onValueChange?.(value);
         return _onChange?.(value);
       };
 
