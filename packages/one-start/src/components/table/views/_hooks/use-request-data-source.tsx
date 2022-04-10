@@ -1,8 +1,12 @@
 import type { SelectProps } from '@ty/antd';
+import { useUpdateEffect } from 'ahooks';
 import utl from 'lodash';
 import moment from 'moment';
 import type { MutableRefObject } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useActionsRef } from '../../../../components/hooks/use-actions-ref';
+import { normalizeRequestOutputs } from '../../../../components/utils/normalize-request-outputs';
+import { unstateHistory } from '../../../../components/utils/unstate-history';
 import type {
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
   OSSelectFieldValueType,
@@ -16,14 +20,10 @@ import type {
   TableCoreAPI,
   TableInlineAPI,
 } from '../../../../typings';
-import { useActionsRef } from '../../../../components/hooks/use-actions-ref';
-import { normalizeRequestOutputs } from '../../../../components/utils/normalize-request-outputs';
-import { unstateHistory } from '../../../../components/utils/unstate-history';
+import { SHOW_MORE_FIELD_KEY } from '../../components/search-form';
 import { DEFAULT_CURRENT, DEFAULT_PAGE_SIZE } from '../../constants';
 import type { RequestDataSourceActions, SearchFormAPI, TreeSpreadActions } from '../../typings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
-import { SHOW_MORE_FIELD_KEY } from '../../components/search-form';
-import { useUpdateEffect } from 'ahooks';
 
 const mapLevel = (
   rowData?: Record<string, any>[],
@@ -259,6 +259,9 @@ export const useRequestDataSource = ({
         merged: true,
       });
     }
+
+    /** 触发 core api 上相关的事件 */
+    tableCoreActionsRef.current.emit('initedTableDataSource', renderPages);
   };
 
   const actionsRef = useActionsRef(

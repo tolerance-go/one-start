@@ -128,6 +128,16 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 <code src="../demos/table/edit.tsx" />
 
+#### 支持单元格编辑值前后变化状态显示
+
+设置 `enableEditedCellDiffValueState: {}` 来启动编辑后，值发生变化的单元格用颜色来进行区分
+
+#### 支持用户主动保存编辑后数据
+
+设置 `enableEditedCellSaveAction: {}` 来启动编辑后，可以对值发生的变化单元格进行异步保存，组件会显示”保存“按钮，点击后触发 `requests.requestEditedCellToSave` 如果返回无错误，则会恢复对应的单元格状态
+
+<code src="../demos/table/edit-value-diff.tsx" />
+
 编辑表格的验证 `validateTrigger` 都必须设置为 `[]`，以在提交的时候判断，因为有联动，会导致值变化，错误信息的机制是这样的，一旦有新的值，会导致重置错误信息
 
 准确来说，是有联动的编辑表格要注意，而且如果是简单 `input` 是不会这样的，因为判断 `value` 是否变化用的是 `===`，编辑表格的值是一个对象，数据不可变原则，所以联动计算前后 2 个数组对象用 `===` 判断一定会改变，像 `input`，如果联动计算出的值是 `"new"`，而之前的值也是 `"new"` ，2 个字符串比较内容是一样的，就不会触发改变

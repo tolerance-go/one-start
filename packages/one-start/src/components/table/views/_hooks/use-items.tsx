@@ -140,6 +140,7 @@ export const useItems = ({
   allColumnsIdRef: propsAllColumnsIdRef,
   columnsStaticPureConfigsIdMapsRef: propsColumnsStaticPureConfigsIdMapsRef,
   searchFormFieldItemsRef,
+  enableEditedCellDiffValueState,
 }: {
   searchFormFieldItemsRef: React.MutableRefObject<OSFormFieldItems>;
   tableWrapFormRef: React.RefObject<FormInstance>;
@@ -161,6 +162,7 @@ export const useItems = ({
   requestDataSourceActionsRef: React.MutableRefObject<RequestDataSourceActions>;
   tableWrapRef: React.MutableRefObject<HTMLDivElement | null>;
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
+  enableEditedCellDiffValueState?: Required<OSTableType>['settings']['enableEditedCellDiffValueState'];
   getFieldItems?: OSTableType['getFieldItems'];
 }) => {
   const {
@@ -196,7 +198,9 @@ export const useItems = ({
       dependencies,
       dataIndex,
       render,
+      colId,
     }: {
+      colId?: string;
       editable?: RequiredRecursion<OSTableFormFieldItemExtra>['settings']['editable'];
       valueType?: OSTableFormFieldItems[number]['type'];
       settings?: OSTableFormFieldItems[number]['settings'];
@@ -219,6 +223,10 @@ export const useItems = ({
           const prev = col_.onCell?.(data, index);
           return {
             ...prev,
+            editable,
+            rowId: data[rowKey],
+            colId,
+            enableEditedCellDiffValueState,
             className: cls(
               prev?.className,
               [clsPrefix, colEditable ? 'cell-editing' : ''].filter(Boolean).join('-'),
@@ -844,6 +852,7 @@ export const useItems = ({
               rules: mergedSettings?.rules,
             }),
             handleEditable({
+              colId,
               editable,
               valueType,
               settings: fieldItem.settings,

@@ -14,7 +14,7 @@
   ],
   "bin": {
     "one-scripts": "./bin/prompts.js",
-    "one-scripts:yargs": "./bin/yargs.js"
+    "one-scripts-yargs": "./bin/yargs.js"
   },
   "scripts": {
     "clean": "rimraf lib",

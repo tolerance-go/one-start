@@ -7,6 +7,8 @@
   "name": "one-start",
   "repository": "git@10.1.2.7:visual-fe/swap-modules.git",
   "scripts": {
+    "deploy": "npm run site && npm run deploy:only",
+    "deploy:only": "cross-env DEPLOY_ENV=prod node ./scripts/deploy.js",
     "merge:changelog": "node ./scripts/cli/merge-changelog.js --path 'packages/*'",
     "remove:empty-pkgs": "node ./scripts/remove-empty-pkgs.js",
     "scfupgrade": "scfupgrade && yarn",
@@ -18,7 +20,6 @@
     "size:build": "cross-env PRO_COMPONENTS_CI='CI' webpack",
     "changelog": "pro-changelog",
     "createRelease": "node ./scripts/createRelease.js",
-    "deploy": "deploy-go",
     "format": "prettier --write \"**/**.{js,jsx,tsx,ts,less,md,json}\"",
     "site": "cross-env UMI_ENV=prod dumi build",
     "size": "npm run build && size-limit",

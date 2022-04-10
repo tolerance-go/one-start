@@ -97,7 +97,20 @@ export type TableCoreAPI = {
   ) => void;
 };
 
+export type OSTableChangedCellMeta = {
+  rowId: string;
+  colId: string;
+  prevValue: any;
+  nextValue: any;
+};
+
 export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = {
+  /** 获取当前单元格编辑数据 */
+  getTableFormEditedData?: () => {
+    initialTableFormValue: Record<string, any>;
+    currentTableFormValue: Record<string, any>;
+    changedCells: OSTableChangedCellMeta[];
+  };
   /**
    * 获取用户最新输入
    * 因为编辑表单作为字段时候，为了提供性能，提供了防抖
@@ -580,6 +593,8 @@ export interface _OSTableType<
   ChangeValue = OSTableChangeValueType,
 > extends OSCore {
   settings?: {
+    /** 启动单元格编辑值前后变化状态显示 */
+    enableEditedCellDiffValueState?: {};
     /** 启用 URL 状态同步搜索表单 */
     syncURLParams?: boolean;
     /** 启用列设置 */
