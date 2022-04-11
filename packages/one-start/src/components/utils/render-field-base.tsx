@@ -1,6 +1,4 @@
-import type { FormInstance } from '@ty/antd';
 import invariant from 'invariant';
-import type { ReactNode } from 'react';
 import React from 'react';
 import type {
   OSChainSelectFieldAPI,
@@ -30,7 +28,6 @@ import type {
   OSSelectFieldValueType,
   OSSwitchFieldAPI,
   OSSwitchFieldValueType,
-  OSTableCellMeta,
   OSTextareaChangeEvent,
   OSTextareaFieldAPI,
   OSTextareaFieldValueType,
@@ -44,7 +41,7 @@ import type {
   OSTreeSelectFieldValueType,
   OSUploadFieldAPI,
   OSUploadFieldValueType,
-  RenderFieldOptions,
+  RenderFieldMethodOptions,
 } from '../../typings';
 import OSActionsField from '../fields/actions';
 import OSChainSelectField from '../fields/chain-select';
@@ -73,16 +70,7 @@ export const renderFieldBase = (
   type: OSFormFieldItems[number]['type'],
   settings: OSCore['settings'],
   requests?: OSCore['requests'],
-  options?: Omit<RenderFieldOptions, 'mode' | 'type' | 'fieldSettings' | 'requests'> & {
-    types?: Record<string, (options: RenderFieldOptions) => ReactNode>;
-    autoFetchSelectOptions?: boolean;
-    formRef?: React.RefObject<FormInstance>;
-    cellMeta?: OSTableCellMeta;
-    /** 是否 field 直接被 FormItem 包裹 */
-    isWrapFormItem?: boolean;
-    /** 所在 form 类型 */
-    wrapFormType?: 'table-form' | 'form';
-  },
+  options?: RenderFieldMethodOptions,
 ) => {
   if (type === 'digit') {
     return (

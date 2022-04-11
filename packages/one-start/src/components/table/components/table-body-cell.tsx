@@ -1,13 +1,15 @@
 import cls from 'classnames';
 import React from 'react';
-import type { OSTableType } from '../../../typings';
+import type { OSTableFormFieldItemExtra, OSTableType, RecordType } from '../../../typings';
 import { TableFormValueStateModel } from '../models/table-form-value-state';
 import './table-body-cell.less';
 
 export type TableBodyCellProps = React.HTMLAttributes<HTMLTableCellElement> & {
   rowId: string;
   colId: string;
-  editable?: boolean;
+  rowData: RecordType;
+  rowIndex: number;
+  editable?: Required<OSTableFormFieldItemExtra>['settings']['editable'];
   enableEditedCellDiffValueState?: Required<
     Required<OSTableType>['settings']
   >['enableEditedCellDiffValueState'];
@@ -16,7 +18,8 @@ export type TableBodyCellProps = React.HTMLAttributes<HTMLTableCellElement> & {
 const TableBodyCell: React.ForwardRefRenderFunction<HTMLTableRowElement, TableBodyCellProps> = (
   props,
 ) => {
-  const { rowId, colId, editable, enableEditedCellDiffValueState, ...rest } = props;
+  const { rowId, colId, editable, rowData, rowIndex, enableEditedCellDiffValueState, ...rest } =
+    props;
 
   const { cellValueIsDiff } = TableFormValueStateModel.useContainer();
 
@@ -26,7 +29,15 @@ const TableBodyCell: React.ForwardRefRenderFunction<HTMLTableRowElement, TableBo
       className={cls(
         {
           'cell-value-is-diff':
-            enableEditedCellDiffValueState && editable ? cellValueIsDiff(colId, rowId) : false,
+            enableEditedCellDiffValueState &&
+            (() => {
+              if (typeof editable === 'function') {
+                return editable(rowData, rowIndex);
+              }
+              return editable;
+            })()
+              ? cellValueIsDiff(colId, rowId)
+              : false,
         },
         rest.className,
       )}

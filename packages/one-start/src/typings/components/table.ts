@@ -102,6 +102,8 @@ export type OSTableChangedCellMeta = {
   colId: string;
   prevValue: any;
   nextValue: any;
+  prevRowData: RecordType;
+  nextRowData: RecordType;
 };
 
 export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = {
@@ -110,6 +112,9 @@ export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = 
     initialTableFormValue: Record<string, any>;
     currentTableFormValue: Record<string, any>;
     changedCells: OSTableChangedCellMeta[];
+    addRowIds: string[];
+    removeRowIds: string[];
+    updateRowIds: string[];
   };
   /**
    * 获取用户最新输入
@@ -752,12 +757,14 @@ export interface _OSTableType<
   requestParams?: {
     requestDataSource?: RecordType;
   };
+  isEditableTable?: boolean;
 }
 
 export type OSSourceTableCategorizableMenuItem = {
   title: string;
   key: string;
   selectable?: boolean;
+  icon?: React.ReactNode;
   children?: OSSourceTableCategorizableMenuItem[];
 };
 
@@ -774,6 +781,7 @@ export type _OSSourceTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsTy
     ) => void;
     insertCategorizableTreeChildLatest?: (parentKey: Key, data: DataNode) => void;
     deleteCategorizableTreeChild?: (parentKey: Key, predicate: (node: DataNode) => boolean) => void;
+    reloadCategorizableList?: () => void;
   };
 
 export type _OSSourceTableSelfType<
@@ -795,6 +803,8 @@ export type _OSSourceTableSelfType<
       listTitle?: string;
       /** 表格宽度占比 */
       tableSpan?: number;
+      /** 树形操作 */
+      actions?: React.ReactNode[];
     };
     /** 表格展示模式，panelable 将展示双栏信息 */
     panelable?: {
@@ -964,6 +974,7 @@ export type _OSSourceTableSelfType<
             | 'deleteCategorizableTreeChild'
             | 'insertCategorizableTreeChildAfterIndex'
             | 'insertCategorizableTreeChildLatest'
+            | 'reloadCategorizableList'
           >
         >
       >;

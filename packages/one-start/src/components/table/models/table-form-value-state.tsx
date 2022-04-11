@@ -8,6 +8,7 @@ import type {
   OSTableAPI,
   OSTableChangedCellMeta,
   OSTableValueType,
+  RecordType,
   TableCoreAPI,
 } from '../../../typings';
 import { useActionsRef } from '../../hooks/use-actions-ref';
@@ -45,6 +46,9 @@ const useTableFormValueState = (initalState?: {
   const getTableFormEditedData = (): {
     initialTableFormValue: Record<string, any>;
     currentTableFormValue: Record<string, any>;
+    addRowIds: string[];
+    removeRowIds: string[];
+    updateRowIds: string[];
     changedCells: OSTableChangedCellMeta[];
   } => {
     const changedCells = Object.keys(currentTableFormValue).reduce((acc, rowId_) => {
@@ -53,15 +57,35 @@ const useTableFormValueState = (initalState?: {
           return acc_.concat({
             rowId: rowId_,
             colId: colId_,
-            prevValue: initialTableFormValue[rowId_][colId_],
+            /** 如果是新增行，可能出现空数据的问题 */
+            prevValue: initialTableFormValue[rowId_]?.[colId_],
             nextValue: currentTableFormValue[rowId_][colId_],
+            prevRowData: initialTableFormValue[rowId_],
+            nextRowData: currentTableFormValue[rowId_],
           });
         }
         return acc_;
       }, acc);
     }, [] as OSTableChangedCellMeta[]);
 
+    const addRowIds = Object.keys(currentTableFormValue ?? {}).filter(
+      (rowId) => rowId in (initialTableFormValue ?? {}) === false,
+    );
+
+    const updateRowIds = Object.keys(currentTableFormValue ?? {}).filter(
+      (rowId) =>
+        rowId in (initialTableFormValue ?? {}) &&
+        changedCells.find(({ rowId: cellChangedWithRowId }) => cellChangedWithRowId === rowId),
+    );
+
+    const removeRowIds = Object.keys(initialTableFormValue ?? {}).filter(
+      (rowId) => rowId in (currentTableFormValue ?? {}) === false,
+    );
+
     return {
+      removeRowIds,
+      updateRowIds,
+      addRowIds,
       initialTableFormValue,
       currentTableFormValue,
       changedCells,
@@ -85,16 +109,46 @@ const useTableFormValueState = (initalState?: {
         setCurrentTableFormValue(next);
       };
 
-      const handleTableFormValuesChanged = (data: Record<string, any>) => {
+      const handleTableFormValuesEdited = (data: Record<string, any>) => {
         /** data 可能只是一页的 form item 渲染数据，这里覆盖相同 rowId 即可 */
         setCurrentTableFormValue((prev) => ({ ...prev, ...data }));
       };
 
+      const handleTableFormValuesRemoved = (rowId: string) => {
+        /** data 可能只是一页的 form item 渲染数据，这里覆盖相同 rowId 即可 */
+        setCurrentTableFormValue((prev) => {
+          const next = { ...prev };
+          delete next[rowId];
+          return next;
+        });
+      };
+
+      const handleTableFormValuesAdded = (rowDataList: RecordType[]) => {
+        /** data 可能只是一页的 form item 渲染数据，这里覆盖相同 rowId 即可 */
+        setCurrentTableFormValue((prev) => {
+          const next = {
+            ...prev,
+            ...rowDataList.reduce((acc, rowData) => {
+              const rowId = rowData[rowKey];
+              return {
+                ...acc,
+                [rowId]: rowData,
+              };
+            }, {}),
+          };
+          return next;
+        });
+      };
+
       apis?.on('initedTableDataSource', handleInitedTableDataSource);
-      apis?.on('tableFormValuesChanged', handleTableFormValuesChanged);
+      apis?.on('tableFormValuesEdited', handleTableFormValuesEdited);
+      apis?.on('tableFormValuesRemoved', handleTableFormValuesRemoved);
+      apis?.on('tableFormValuesAdded', handleTableFormValuesAdded);
       return () => {
         apis?.off('initedTableDataSource', handleInitedTableDataSource);
-        apis?.off('tableFormValuesChanged', handleTableFormValuesChanged);
+        apis?.off('tableFormValuesEdited', handleTableFormValuesEdited);
+        apis?.off('tableFormValuesRemoved', handleTableFormValuesRemoved);
+        apis?.off('tableFormValuesAdded', handleTableFormValuesAdded);
       };
     }
     return undefined;

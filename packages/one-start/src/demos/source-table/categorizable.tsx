@@ -1,3 +1,4 @@
+import { FundOutlined } from '@ant-design/icons';
 import type { RecordType } from '@ty-one-start/one-start';
 import { OSEditableTable, OSProviderWrapper, OSSourceTable } from '@ty-one-start/one-start';
 import delay from 'delay';
@@ -5,7 +6,7 @@ import produce from 'immer';
 import Mock, { mock, Random } from 'mockjs';
 import moment from 'moment';
 import React, { useState } from 'react';
-import { parseTableValue } from '../../components';
+import { OSTrigger, parseTableValue } from '../../components';
 import type { OSSourceTableType } from '../../typings';
 
 const createRowData = () => {
@@ -136,6 +137,24 @@ export default () => {
           categorizable: {
             listTitle: '自定义标题',
             autoSelectFirst: true,
+            actions: [
+              <OSTrigger
+                type="button"
+                settings={{
+                  type: 'primary',
+                  text: '导入',
+                  size: 'small',
+                }}
+              />,
+              <OSTrigger
+                type="button"
+                settings={{
+                  type: 'primary',
+                  text: '导出',
+                  size: 'small',
+                }}
+              />,
+            ],
           },
           rowRemoveable: {},
           rowViewable: {
@@ -389,6 +408,7 @@ export default () => {
                       {
                         title: 'leaf',
                         key: '0-0-0-0',
+                        icon: <FundOutlined />,
                       },
                       {
                         title: 'multiple line title',

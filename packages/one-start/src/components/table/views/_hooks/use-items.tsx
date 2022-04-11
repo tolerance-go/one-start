@@ -141,6 +141,7 @@ export const useItems = ({
   columnsStaticPureConfigsIdMapsRef: propsColumnsStaticPureConfigsIdMapsRef,
   searchFormFieldItemsRef,
   enableEditedCellDiffValueState,
+  isEditableTable,
 }: {
   searchFormFieldItemsRef: React.MutableRefObject<OSFormFieldItems>;
   tableWrapFormRef: React.RefObject<FormInstance>;
@@ -164,6 +165,7 @@ export const useItems = ({
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
   enableEditedCellDiffValueState?: Required<OSTableType>['settings']['enableEditedCellDiffValueState'];
   getFieldItems?: OSTableType['getFieldItems'];
+  isEditableTable?: boolean;
 }) => {
   const {
     searchRequestOptionsMapDataIndexIdRef,
@@ -201,13 +203,13 @@ export const useItems = ({
       colId,
     }: {
       colId?: string;
-      editable?: RequiredRecursion<OSTableFormFieldItemExtra>['settings']['editable'];
+      editable?: Required<OSTableFormFieldItemExtra>['settings']['editable'];
       valueType?: OSTableFormFieldItems[number]['type'];
       settings?: OSTableFormFieldItems[number]['settings'];
       render?: OSTableFormFieldItemRender;
       requests?: OSTableFormFieldItems[number]['requests'];
       dependencies?: OSFormFieldItem['dependencies'];
-      dataIndex?: RequiredRecursion<OSFormItemType>['settings']['dataIndex'];
+      dataIndex?: Required<OSFormItemType>['settings']['dataIndex'];
     }) =>
     (col_: ColumnType<RecordType>): ColumnType<RecordType> => {
       return {
@@ -224,6 +226,8 @@ export const useItems = ({
           return {
             ...prev,
             editable,
+            rowData: data,
+            rowIndex: index,
             rowId: data[rowKey],
             colId,
             enableEditedCellDiffValueState,
@@ -365,7 +369,7 @@ export const useItems = ({
               {
                 types: extraValueTypes,
                 text: dataIndex ? utl.get(rowData, dataIndex) : undefined,
-                autoFetchSelectOptions: false,
+                autoFetchSelectOptions: !!isEditableTable,
                 formRef: tableWrapFormRef,
                 cellMeta,
                 wrapFormType: 'table-form',

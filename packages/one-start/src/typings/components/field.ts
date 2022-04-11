@@ -1,10 +1,12 @@
 import type {
   DatePickerProps,
+  FormInstance,
   Input,
   InputNumberProps,
   RadioChangeEvent,
   SelectProps,
   Transfer,
+  TransferProps,
   TreeSelectProps,
   UploadProps,
 } from '@ty/antd';
@@ -19,11 +21,42 @@ import type { NamePath } from 'rc-field-form/es/interface';
 import type { SharedTimeProps } from 'rc-picker/es/panels/TimePanel';
 import type Picker from 'rc-picker/es/Picker';
 import type React from 'react';
-import type { ChangeEvent, Component } from 'react';
+import type { ChangeEvent, Component, ReactNode } from 'react';
 import type { RecordType } from '../core';
 import type { OSCore, RequestIO } from './core';
 import type { OSResMessage } from './message';
 import type { OSTriggerButtonType } from './trigger';
+import type { OSTableCellMeta } from './table';
+import type { _OSFormFieldItems } from './form';
+import type { OSCustomFieldPureFormFieldItemConfigsType } from './custom-fields';
+
+export type RenderFieldOptions<ExtraFieldValueType = OSFieldValueType> = {
+  ref?: React.RefObject<OSFieldAPI> | ((instance: OSFieldAPI | null) => void);
+  onValueChange?: (value: OSFieldValueType) => void;
+  onChange?: (event: OSFieldChangeEventType) => void;
+  value?: OSFieldValueType | ExtraFieldValueType;
+  text?: OSFieldValueType | ExtraFieldValueType;
+} & {
+  mode: 'edit' | 'read' | 'update';
+  type: _OSFormFieldItems<OSCustomFieldPureFormFieldItemConfigsType>[number]['type'];
+  fieldSettings: OSCore['settings'];
+  requests?: OSCore['requests'];
+  props?: RecordType;
+};
+
+export type RenderFieldMethodOptions = Omit<
+  RenderFieldOptions,
+  'mode' | 'type' | 'fieldSettings' | 'requests'
+> & {
+  types?: Record<string, (options: RenderFieldOptions) => ReactNode>;
+  autoFetchSelectOptions?: boolean;
+  formRef?: React.RefObject<FormInstance>;
+  cellMeta?: OSTableCellMeta;
+  /** 是否 field 直接被 FormItem 包裹 */
+  isWrapFormItem?: boolean;
+  /** 所在 form 类型 */
+  wrapFormType?: 'table-form' | 'form';
+};
 
 export type CreateStaticPureFieldItemConfigs<FieldType extends OSField> = {
   type?: FieldType['type'];
@@ -559,17 +592,23 @@ export type OSTransferFieldAPI =
       title: string;
       children?: OSTransferFieldValueType | undefined;
     }>;
+
+export type OSTransferFieldSource = {
+  key?: string;
+  title: string;
+  children?: OSTransferFieldValueType;
+}[];
 export interface OSTransferFieldType
   extends OSField<OSTransferFieldValueType>,
     OSFieldBaseConfigs<OSTransferFieldValueType> {
   type?: 'transfer';
   settings?: {
-    source?: {
-      key?: string;
-      title: string;
-      children?: OSTransferFieldValueType;
-    }[];
+    source?: OSTransferFieldSource;
+    listStyle?: TransferProps<RecordType>['listStyle'];
   } & OSFieldBaseSettings;
+  requests?: {
+    requestSource?: RequestIO<void, OSTransferFieldSource>;
+  };
 }
 
 export type OSDateFieldAPI =
@@ -646,6 +685,7 @@ export interface OSAtomFieldType
     OSFieldBaseConfigs<OSAtomFieldValueType> {
   type?: 'atom';
   settings?: OSFieldItemWithStaticPureConfigs & OSFieldBaseSettings;
+  options?: RenderFieldMethodOptions;
 }
 
 export type OSFieldType = OSBaseFieldType | OSAtomFieldType;
