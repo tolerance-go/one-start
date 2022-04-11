@@ -1,6 +1,7 @@
 import type { OSTransferFieldType, OSTransferFieldValueType } from '@ty-one-start/one-start';
 import { OSTransferField, OSProviderWrapper } from '@ty-one-start/one-start';
 import { Space } from '@ty/antd';
+import delay from 'delay';
 import React, { useState } from 'react';
 
 const mockData: Required<OSTransferFieldType>['settings']['source'] = [];
@@ -22,8 +23,17 @@ export default () => {
           value={value}
           onChange={(e) => setValue(e)}
           mode="edit"
-          settings={{
-            source: mockData,
+          // settings={{
+          //   source: mockData,
+          // }}
+          requests={{
+            requestSource: async () => {
+              await delay(1000);
+              return {
+                error: false,
+                data: mockData,
+              };
+            },
           }}
         ></OSTransferField>
         <OSTransferField
