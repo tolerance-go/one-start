@@ -35,11 +35,47 @@ export default () => {
                 ...(form.getFieldValue([rowId!, 'selectA']) === 'a'
                   ? {
                       type: 'select',
-                      settings: {
-                        valueEnums: {
-                          a: 'a',
-                          b: 'b',
-                          c: 'c',
+                      requests: {
+                        requestOptions: async (options) => {
+                          console.log('options', options);
+                          return {
+                            error: false,
+                            data: [
+                              {
+                                label: 'A',
+                                value: 'a',
+                              },
+                            ],
+                          };
+                        },
+                      },
+                    }
+                  : {
+                      type: 'text',
+                    }),
+              }),
+            },
+            {
+              type: 'atom',
+              settings: ({ form, rowId }) => ({
+                title: 'atom-readonly',
+                dataIndex: 'atom',
+                editable: false,
+                ...(form.getFieldValue([rowId!, 'selectA']) === 'a'
+                  ? {
+                      type: 'select',
+                      requests: {
+                        requestOptions: async (options) => {
+                          console.log('options', options);
+                          return {
+                            error: false,
+                            data: [
+                              {
+                                label: 'A',
+                                value: 'a',
+                              },
+                            ],
+                          };
                         },
                       },
                     }

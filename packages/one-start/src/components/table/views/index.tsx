@@ -96,6 +96,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     extraActions,
     extraBatchOperation,
     requestParams,
+    isEditableTable = false,
   } = props;
   const {
     enableEditedCellDiffValueState,
@@ -561,6 +562,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     enableColumnsSettings,
     enableCellHighlight,
   } = useItems({
+    isEditableTable,
     enableEditedCellDiffValueState,
     searchFormFieldItemsRef,
     requestDataSourceActionsRef,
@@ -911,7 +913,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
                     handleValueChange(changedValues, values);
 
                     /** 触发 core api 上相关的事件 */
-                    tableCoreActionsRef.current.emit('tableFormValuesChanged', values);
+                    tableCoreActionsRef.current.emit('tableFormValuesEdited', values);
                   }}
                 >
                   <div
