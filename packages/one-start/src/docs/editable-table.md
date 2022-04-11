@@ -55,6 +55,10 @@ group:
 
 <code src="../demos/editable-table/column-type-linkage.tsx" />
 
+#### 支持本地化的编辑新增删除
+
+<code src="../demos/editable-table/localized-edits-added-delete.tsx" />
+
 所有接口继承自 OSTable
 
 <API exports='["Settings", "EditableTableAddable"]' src="../components/editable-table/index.tsx"></API>

@@ -6,8 +6,14 @@ const OSAtomField: React.ForwardRefRenderFunction<OSAtomFieldAPI, OSAtomFieldTyp
   props,
   ref,
 ) => {
-  const { mode = 'read', value, text, settings, onChange, onValueChange } = props;
-
+  const {
+    mode = 'read',
+    value /** value onchange 会被 antd form item 包裹后注入，text 在 options 当中传入 */,
+    settings,
+    onChange,
+    onValueChange,
+    options,
+  } = props;
   const {
     type,
     settings: innerSettings,
@@ -18,8 +24,8 @@ const OSAtomField: React.ForwardRefRenderFunction<OSAtomFieldAPI, OSAtomFieldTyp
   } = settings ?? {};
 
   const dom = renderFieldBase(mode, type, { ...restSettings, ...innerSettings }, requests, {
+    ...options,
     ref: ref ?? undefined,
-    text,
     value,
     onChange,
     onValueChange,

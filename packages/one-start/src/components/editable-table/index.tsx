@@ -3,7 +3,7 @@ import { Row } from '@ty/antd';
 import invariant from 'invariant';
 import utl from 'lodash';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
-import React, { useCallback, useImperativeHandle, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useImperativeHandle, useMemo, useRef } from 'react';
 import { v4 as uuid } from 'uuid';
 import type {
   OSEditableTableAddable,
@@ -36,7 +36,13 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
     extraAddable: defaultAddable,
     extraRowActions,
   } = props;
-  const { addable, rowKey = 'id', removeable, requestParams } = settings ?? {};
+  const {
+    addable,
+    rowKey = 'id',
+    removeable,
+    requestParams,
+    enableEditedCellDiffValueState,
+  } = settings ?? {};
 
   const [dataSource, setDataSource] = useMergedState(value, {
     value,
@@ -135,6 +141,10 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
 
     const addNewRowData = async (rowDataList: RecordType[]) => {
       if (rowDataList.length === 0) return;
+
+      if (enableEditedCellDiffValueState) {
+        tableRef.current?.core.emit('tableFormValuesAdded', rowDataList);
+      }
 
       if (settings?.changedValueHasMeta) {
         if (addableData.direction === 'top') {
@@ -250,6 +260,7 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
   }, [
     addableData,
     dataSource,
+    enableEditedCellDiffValueState,
     requestNewRecordData,
     requests?.requestNewRecordData,
     rowKey,
@@ -294,10 +305,17 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
     return undefined;
   }, [addableData, recordCreateBtnDom]);
 
+  useEffect(() => {
+    if (enableEditedCellDiffValueState) {
+      tableRef.current?.core.emit('initedTableDataSource', parseTableValue(value));
+    }
+  }, []);
+
   return (
     <div>
       <OSTable
         {...props}
+        isEditableTable
         ref={tableRef}
         value={parseTableValue(dataSource)}
         settings={{
@@ -373,6 +391,10 @@ const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEdit
                               next.splice(index, 1);
                               /** 删除当前行的选择状态 */
                               tableRef.current?.removeSelection(rowId);
+                              /** 删除当前编辑表单数据的行 */
+                              if (enableEditedCellDiffValueState) {
+                                tableRef.current?.core.emit('tableFormValuesRemoved', rowId);
+                              }
 
                               return next;
                             };
