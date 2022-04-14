@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.25.1...@ty-one-start/one-start@0.27.0) (2022-04-14)
+
+
+### Bug Fixes
+
+* 添加遗漏类型导出 ([5a52239](https://10.1.2.7/visual-fe/swap-modules/commits/5a52239650807080a2470da8d647bf3a1555da5e))
+* **table:** 修复 enableEditedCellDiffValueState 的可编辑状态判断问题 ([d3d4b63](https://10.1.2.7/visual-fe/swap-modules/commits/d3d4b637739d5fb31859257b6cbf28033fc3f5a0))
+* **table:** 修复编辑表格中，只读 select 不会自动获取下拉选项 ([8110e30](https://10.1.2.7/visual-fe/swap-modules/commits/8110e302e16327204ac7c123d832ae045f515904))
+* **tabs-layout-form:** 修复联动失效问题 ([6765a07](https://10.1.2.7/visual-fe/swap-modules/commits/6765a07443697fd975ef4616b709d81077ccc08a))
+
+
+### Features
+
+* **atom-field:** 新增原子字段，允许 type 字段自定义 ([e91bff5](https://10.1.2.7/visual-fe/swap-modules/commits/e91bff571b1499077bad3ca288df019d22920fa0))
+* **editable-table:** 支持编辑表格的本地化的 CURD 操作及数据记录 API ([0190c54](https://10.1.2.7/visual-fe/swap-modules/commits/0190c54519a6639b1f56344b724b564b332112f2))
+* **source-table:** 支持插槽渲染方式，允许自定义 actions ([5aa031f](https://10.1.2.7/visual-fe/swap-modules/commits/5aa031f023f81992d4e07eff0a19c7a222200146))
+* **table:** 支持编辑前后区分单元格颜色，同时支持保存相关 api ([a455349](https://10.1.2.7/visual-fe/swap-modules/commits/a45534936a64db0e4059b144bf2e7be5977bb264))
+* **table:** 支持一级内容分类菜单 ([0a9bc8a](https://10.1.2.7/visual-fe/swap-modules/commits/0a9bc8a52d7a83a4d07cbef1b3a78e6e436ffb42))
+* **transfer-field:** 支持异步获取 source 内容 ([9a97d12](https://10.1.2.7/visual-fe/swap-modules/commits/9a97d12048c11b80c29736c1a00709800804f236))
+
+
+### Performance Improvements
+
+* **table:** select options 下拉缓存策略优化 ([9b250e3](https://10.1.2.7/visual-fe/swap-modules/commits/9b250e303cb9464bf02a0343f4911a1942243266))
+
+
+
+
+
 # [0.26.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.25.1...@ty-one-start/one-start@0.26.0) (2022-04-14)
 
 
