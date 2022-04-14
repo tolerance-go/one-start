@@ -63,6 +63,6 @@ export type RequestDataSourceActions = {
   setCurrent: React.Dispatch<React.SetStateAction<number | undefined>>;
   requestDataSource: (options: RequestOptions) => Promise<void>;
   requestVisualDataSource: () => Promise<void>;
-  getFieldOptionsMapDataIndex: () => Record<string, Record<string, string>> | undefined;
+  getFieldOptionsMapColId: () => Record<string, Record<string, string>> | undefined;
   getPagination: () => Pick<PaginationProps, 'current' | 'total'>;
 } | null;

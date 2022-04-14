@@ -29,12 +29,14 @@ export default () => {
             {
               type: 'select',
               settings: {
-                title: 'select-async',
-                dataIndex: 'select-async',
+                title: 'select-async-editable',
+                dataIndex: 'select-async-editable',
                 search: true,
+                editable: true,
               },
               requests: {
                 requestOptions: async () => {
+                  console.log('request');
                   await delay(1000);
                   return Promise.resolve({
                     error: false,
@@ -50,14 +52,62 @@ export default () => {
             {
               type: 'select',
               settings: {
-                title: 'select-search',
-                dataIndex: 'select-search',
-                mode: 'multiple',
-                showSearch: true,
+                title: 'select-async',
+                dataIndex: 'select-async',
                 search: true,
               },
               requests: {
                 requestOptions: async () => {
+                  console.log('request');
+                  await delay(1000);
+                  return Promise.resolve({
+                    error: false,
+                    data: [
+                      { value: 'a', label: 'A' },
+                      { value: 'b', label: 'B' },
+                      { value: 'c', label: 'C' },
+                    ],
+                  });
+                },
+              },
+            },
+            {
+              type: 'select',
+              settings: {
+                title: 'select-async-showSearch-remote',
+                dataIndex: 'select-async-showSearch-remote',
+                mode: 'multiple',
+                showSearch: true,
+                search: true,
+                key: 'lasdjflasdjflj',
+              },
+              requests: {
+                requestOptions: async ({ searchValue, searchKeys }) => {
+                  console.log('request', searchValue, searchKeys);
+                  await delay(1000);
+                  return Promise.resolve({
+                    error: false,
+                    data: [
+                      { value: 'a', label: 'A' },
+                      { value: 'b', label: 'B' },
+                      { value: 'c', label: 'C' },
+                    ],
+                  });
+                },
+              },
+            },
+            {
+              type: 'select',
+              settings: {
+                title: 'select-async-showSearch-local',
+                dataIndex: 'select-async-showSearch-local',
+                mode: 'multiple',
+                showSearch: 'local',
+                search: true,
+              },
+              requests: {
+                requestOptions: async () => {
+                  console.log('request');
                   await delay(1000);
                   return Promise.resolve({
                     error: false,
@@ -73,9 +123,7 @@ export default () => {
           ],
         }}
         requests={{
-          requestDataSource: async (options) => {
-            console.log(options);
-
+          requestDataSource: async () => {
             await delay(1000);
 
             return Mock.mock({
@@ -84,9 +132,11 @@ export default () => {
                 'page|20': [
                   {
                     id: '@id',
-                    'select-async': () => Random.pick(['a', 'b', 'c']),
                     select: () => Random.pick(['a', 'b', 'c']),
-                    'select-search': () => Random.pick(['a', 'b', 'c']),
+                    'select-async-editable': () => Random.pick(['a', 'b', 'c']),
+                    'select-async': () => Random.pick(['a', 'b', 'c']),
+                    'select-async-showSearch-remote': () => Random.pick(['a', 'b', 'c']),
+                    'select-async-showSearch-local': () => Random.pick(['a', 'b', 'c']),
                   },
                 ],
                 total: 20,

@@ -7,16 +7,15 @@ import type EventEmitter from 'eventemitter3';
 import type { FieldError, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { CustomizeComponent, FixedType } from 'rc-table/lib/interface';
 import type React from 'react';
-import type { OSTriggerType } from './trigger';
-import type { RecordType } from '../core';
-import type { OSCore, RequestIO, SettingsDataNode } from './core';
+import type { RecordType } from '../../core';
+import type { OSCore, RequestIO, SettingsDataNode } from '../core';
 import type {
   OSActionsFieldType,
+  OSAtomFieldType,
   OSChainSelectFieldType,
   OSCustomFieldType,
   OSDateFieldType,
   OSDateRangeFieldType,
-  OSSelectFieldValueType,
   OSDigitFieldType,
   OSField,
   OSImageFieldType,
@@ -27,15 +26,15 @@ import type {
   OSRadioFieldType,
   OSRelativeDayFieldType,
   OSSelectFieldType,
+  OSSelectFieldValueType,
   OSSwitchFieldType,
   OSTextareaFieldType,
   OSTextFieldType,
   OSTransferFieldType,
   OSTreeSelectFieldType,
-  OSUploadFieldType,
   OSTreeSelectFieldValueType,
-  OSAtomFieldType,
-} from './field';
+  OSUploadFieldType,
+} from '../field';
 import type {
   CreatePureFormFieldItemConfigs,
   CreatePureFormFieldItemConfigsType,
@@ -43,11 +42,7 @@ import type {
   CreateStaticPureFormFieldItemConfigsType,
   OSFormItemDependenciesConfigs,
   _OSFormType,
-} from './form';
-import type { _OSLayoutStepsFormType } from './layout-form';
-import type { OSResMessage } from './message';
-import type { DataNode, EventDataNode } from '@ty/antd/lib/tree';
-import type { Key } from 'react';
+} from '../form';
 
 export type RequestOptions = {
   params?: RecordType;
@@ -109,8 +104,8 @@ export type OSTableChangedCellMeta = {
 export type _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> = {
   /** 获取当前单元格编辑数据 */
   getTableFormEditedData?: () => {
-    initialTableFormValue: Record<string, any>;
-    currentTableFormValue: Record<string, any>;
+    initialTableFormData: Record<string, any>;
+    currentTableFormData: Record<string, any>;
     changedCells: OSTableChangedCellMeta[];
     addRowIds: string[];
     removeRowIds: string[];
@@ -589,6 +584,19 @@ export type RowSelection = {
     | true;
 };
 
+export type RenderActionsType<
+  OSCustomFieldStaticPureTableFormFieldItemConfigsType,
+  P extends Record<string, React.Context<any>['Consumer']> = Record<
+    string,
+    React.Context<any>['Consumer']
+  >,
+> = (options: {
+  renderConsumers?: P;
+  apisRef: React.MutableRefObject<
+    _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>
+  >;
+}) => React.ReactNode | React.ReactNode[];
+
 export interface _OSTableType<
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
   CustomTableValueType extends CreatePureTableFormFieldItemConfigsType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
@@ -720,7 +728,9 @@ export interface _OSTableType<
     /** 当执行搜索操作后 */
     afterSearch?: (options: Pick<RequestOptions, 'mode' | 'manualInitiate'>) => void;
   };
-  slots?: {};
+  slots?: {
+    renderActions?: RenderActionsType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
+  };
   extraBatchOperation?: (options: {
     selectedRowKeys: React.Key[];
     selectedRows: RecordType[];
@@ -757,418 +767,7 @@ export interface _OSTableType<
   requestParams?: {
     requestDataSource?: RecordType;
   };
+  /** slots 中注入的消费者 */
+  renderConsumers?: Record<string, React.Context<any>['Consumer']>;
   isEditableTable?: boolean;
 }
-
-export type OSSourceTableCategorizableMenuItem = {
-  title: string;
-  key: string;
-  selectable?: boolean;
-  icon?: React.ReactNode;
-  children?: OSSourceTableCategorizableMenuItem[];
-};
-
-export type _OSSourceTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> =
-  _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> & {
-    /**
-     * 在分类树结构中插入节点
-     * 在父节点 parentKey 下的 index 后插入
-     */
-    insertCategorizableTreeChildAfterIndex?: (
-      parentKey: Key,
-      index: number,
-      data: DataNode,
-    ) => void;
-    insertCategorizableTreeChildLatest?: (parentKey: Key, data: DataNode) => void;
-    deleteCategorizableTreeChild?: (parentKey: Key, predicate: (node: DataNode) => boolean) => void;
-    reloadCategorizableList?: () => void;
-  };
-
-export type _OSSourceTableSelfType<
-  OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-  CustomFormValueType,
-  StaticCustomFormValueType,
-> = {
-  settings?: {
-    rowTagKey?: string;
-    /** 默认激活第一行数据 */
-    defaultActiveFirstRow?: {
-      type?: 'edit' | 'view';
-    };
-    /** 操作列宽度 */
-    rowActionsColWidth?: number | string;
-    /** 支持一级内容分类 */
-    categorizable?: {
-      /** 标题内容 */
-      listTitle?: string;
-      /** 表格宽度占比 */
-      tableSpan?: number;
-      /** 树形操作 */
-      actions?: React.ReactNode[];
-    };
-    /** 表格展示模式，panelable 将展示双栏信息 */
-    panelable?: {
-      /** 表格宽度占比 */
-      tableSpan?: number;
-    };
-    /** 启动行删除 */
-    rowRemoveable?:
-      | {
-          /** 删除按钮的配置 */
-          triggerSettings?: OSTriggerType['settings'];
-        }
-      | ((options: {
-          rowData: RecordType;
-          rowIndex: number;
-          rowId: string;
-          actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
-        }) => {
-          triggerSettings?: OSTriggerType['settings'];
-        });
-    /** 启动行查看 */
-    rowViewable?:
-      | {
-          modalTitle?: string;
-          modalMask?: boolean | 'transparent';
-          modalWidth?: string | number;
-          formSettings?: _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
-          triggerSettings?: OSTriggerType['settings'];
-        }
-      | ((options: {
-          rowData: RecordType;
-          rowIndex: number;
-          rowId: string;
-          actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
-        }) => {
-          modalTitle?: string;
-          modalMask?: boolean | 'transparent';
-          modalWidth?: string | number;
-          formSettings?: _OSFormType<CustomFormValueType, StaticCustomFormValueType>['settings'];
-          triggerSettings?: OSTriggerType['settings'];
-        });
-    /** 启动行编辑 */
-    rowEditable?:
-      | ({
-          modalWidth?: string | number;
-        } & (
-          | {
-              formSettings?: _OSFormType<
-                CustomFormValueType,
-                StaticCustomFormValueType
-              >['settings'];
-              formRequests?: _OSFormType<
-                CustomFormValueType,
-                StaticCustomFormValueType
-              >['requests'];
-              formType: 'form';
-            }
-          | {
-              formSettings?: _OSLayoutStepsFormType<
-                CustomFormValueType,
-                StaticCustomFormValueType
-              >['settings'];
-              formRequests?: Required<
-                _OSLayoutStepsFormType<CustomFormValueType, StaticCustomFormValueType>
-              >['requests'];
-              formType: 'steps-form';
-            }
-        ))
-      | ((options: {
-          rowData: RecordType;
-          rowIndex: number;
-          rowId: string;
-          actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
-        }) => {
-          modalWidth?: string | number;
-          triggerSettings?: OSTriggerType['settings'];
-        } & (
-          | {
-              formSettings?: _OSFormType<
-                CustomFormValueType,
-                StaticCustomFormValueType
-              >['settings'];
-              formRequests?: _OSFormType<
-                CustomFormValueType,
-                StaticCustomFormValueType
-              >['requests'];
-              formType: 'form';
-            }
-          | {
-              formSettings?: _OSLayoutStepsFormType<
-                CustomFormValueType,
-                StaticCustomFormValueType
-              >['settings'];
-              formRequests?: Required<
-                _OSLayoutStepsFormType<CustomFormValueType, StaticCustomFormValueType>
-              >['requests'];
-              formType: 'steps-form';
-            }
-        ));
-  };
-  requests?: {
-    /** 请求分类菜单数据 */
-    requestCategorizableData?: RequestIO<
-      void,
-      {
-        data?: OSSourceTableCategorizableMenuItem[];
-        /** 删除成功消息提示 */
-        message?: string;
-      }
-    >;
-    /** 行删除请求 */
-    requestRemoveRow?: RequestIO<
-      {
-        rowData: RecordType;
-        rowIndex: number;
-        rowId: string;
-        actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
-      },
-      {
-        /** 删除成功消息提示 */
-        message?: string;
-      }
-    >;
-    /** 行查看数据请求 */
-    requestViewRowData?: RequestIO<
-      {
-        rowData: RecordType;
-        rowIndex: number;
-        rowId: string;
-        actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
-      },
-      RecordType
-    >;
-    /** 获取行编辑数据的初始化数据 */
-    requestRowEditData?: RequestIO<
-      {
-        rowData: RecordType;
-        rowIndex: number;
-        rowId: string;
-        actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
-      },
-      RecordType
-    >;
-    /** 请求保存当前编辑后的行数据 */
-    requestSaveRowData?: RequestIO<
-      {
-        rowData: RecordType;
-        rowIndex: number;
-        rowId: string;
-        actions: _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
-        values: RecordType;
-      },
-      {
-        /** 保存成功消息提示 */
-        message?: string;
-      }
-    >;
-  };
-  slots?: {
-    /** 自定义分类列表的表格区域渲染 */
-    renderCategorizableTable?: (options: {
-      node: EventDataNode;
-      apisRef: React.RefObject<
-        Required<
-          Pick<
-            _OSSourceTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
-            | 'deleteCategorizableTreeChild'
-            | 'insertCategorizableTreeChildAfterIndex'
-            | 'insertCategorizableTreeChildLatest'
-            | 'reloadCategorizableList'
-          >
-        >
-      >;
-    }) => React.ReactNode;
-  };
-};
-
-export type _OSSourceTableType<
-  OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-  CustomTableValueType extends CreatePureTableFormFieldItemConfigsType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
-  CustomFormValueType extends CreatePureFormFieldItemConfigsType,
-  StaticCustomFormValueType extends CreateStaticPureFormFieldItemConfigsType,
-  Value = OSTableValueType,
-  ChangeValue = OSTableChangeValueType,
-> = {
-  settings?: _OSSourceTableSelfType<
-    OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-    CustomFormValueType,
-    StaticCustomFormValueType
-  >['settings'];
-  requests?: _OSSourceTableSelfType<
-    OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-    CustomFormValueType,
-    StaticCustomFormValueType
-  >['requests'];
-  slots?: _OSSourceTableSelfType<
-    OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-    CustomFormValueType,
-    StaticCustomFormValueType
-  >['slots'];
-} & _OSTableType<
-  OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-  CustomTableValueType,
-  CustomFormValueType,
-  StaticCustomFormValueType,
-  Value,
-  ChangeValue
->;
-
-export type _OSSearchTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType> =
-  _OSTableAPI<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
-
-export type _OSSearchTableSelfType<
-  OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-  CustomTableValueType extends CreatePureTableFormFieldItemConfigsType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
-  CustomFormValueType extends CreatePureFormFieldItemConfigsType,
-  StaticCustomFormValueType extends CreateStaticPureFormFieldItemConfigsType,
-  Value = OSTableValueType,
-  ChangeValue = OSTableChangeValueType,
-> = {
-  settings?: {
-    /** 设置搜索模板 */
-    searchTempldateable?: {
-      /** 模板名称 key */
-      templateNameKey?: string;
-      /** 模板管理字段 */
-      templateManagementTableFieldItems?: Required<
-        _OSSourceTableType<
-          OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-          CustomTableValueType,
-          CustomFormValueType,
-          StaticCustomFormValueType,
-          Value,
-          ChangeValue
-        >
-      >['settings']['fieldItems'];
-      /** 创建模板字段 */
-      createFormFieldItems?: Required<
-        _OSFormType<CustomFormValueType, StaticCustomFormValueType>
-      >['settings']['fieldItems'];
-      /** 编辑模板字段 */
-      editFormFieldItems?: Required<
-        _OSFormType<CustomFormValueType, StaticCustomFormValueType>
-      >['settings']['fieldItems'];
-    };
-  };
-  requests?: {
-    /** 请求更新当前搜索模板 */
-    requestUpdateSearchTempldate?: RequestIO<
-      {
-        id: string;
-        searchValues?: RecordType;
-        columnsVisibleMap?: Record<string, boolean>;
-        columnsFixedsMap?: Record<string, FixedType | undefined>;
-        columnsOrders?: ColumnOrdersMetaType;
-      },
-      {
-        message?: OSResMessage;
-      }
-    >;
-    /** 请求当前应用的模板数据 */
-    requestApplayTemplateSearchValues?: RequestIO<
-      {
-        id: string;
-      },
-      {
-        searchDataSource?: RecordType;
-        message?: OSResMessage;
-        columnsVisibleMap?: Record<string, boolean>;
-        columnsFixedsMap?: Record<string, FixedType | undefined>;
-        columnsOrders?: ColumnOrdersMetaType;
-      }
-    >;
-    /** 请求创建搜索模板 */
-    requestCreateTemplate?: RequestIO<
-      {
-        values?: RecordType;
-        searchDataSource?: RecordType;
-        columnsVisibleMap?: Record<string, boolean>;
-        columnsFixedsMap?: Record<string, FixedType | undefined>;
-        columnsOrders?: ColumnOrdersMetaType;
-      },
-      {
-        message?: OSResMessage;
-        tplId: string;
-        tplName?: string;
-      }
-    >;
-    /** 请求模板列表 */
-    requestTemplateDataSource?: Required<
-      _OSSourceTableType<
-        OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-        CustomTableValueType,
-        CustomFormValueType,
-        StaticCustomFormValueType,
-        Value,
-        ChangeValue
-      >
-    >['requests']['requestDataSource'];
-    /** 请求删除模版 */
-    requestRemoveTemplate?: Required<
-      _OSSourceTableType<
-        OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-        CustomTableValueType,
-        CustomFormValueType,
-        StaticCustomFormValueType,
-        Value,
-        ChangeValue
-      >
-    >['requests']['requestRemoveRow'];
-    /** 请求编辑模版初始化数据 */
-    requestRowEditTemplate?: Required<
-      _OSSourceTableType<
-        OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-        CustomTableValueType,
-        CustomFormValueType,
-        StaticCustomFormValueType,
-        Value,
-        ChangeValue
-      >
-    >['requests']['requestRowEditData'];
-    /** 请求保存模板基本信息 */
-    requestSaveRowTemplate?: Required<
-      _OSSourceTableType<
-        OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-        CustomTableValueType,
-        CustomFormValueType,
-        StaticCustomFormValueType,
-        Value,
-        ChangeValue
-      >
-    >['requests']['requestSaveRowData'];
-  };
-};
-
-export type _OSSearchTableType<
-  OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-  CustomTableValueType extends CreatePureTableFormFieldItemConfigsType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
-  CustomFormValueType extends CreatePureFormFieldItemConfigsType,
-  StaticCustomFormValueType extends CreateStaticPureFormFieldItemConfigsType,
-  Value = OSTableValueType,
-  ChangeValue = OSTableChangeValueType,
-> = {
-  settings?: _OSSearchTableSelfType<
-    OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-    CustomTableValueType,
-    CustomFormValueType,
-    StaticCustomFormValueType,
-    Value,
-    ChangeValue
-  >['settings'];
-  requests?: _OSSearchTableSelfType<
-    OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-    CustomTableValueType,
-    CustomFormValueType,
-    StaticCustomFormValueType,
-    Value,
-    ChangeValue
-  >['requests'];
-} & _OSSourceTableType<
-  OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-  CustomTableValueType,
-  CustomFormValueType,
-  StaticCustomFormValueType,
-  Value,
-  ChangeValue
->;

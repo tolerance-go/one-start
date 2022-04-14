@@ -364,7 +364,7 @@ export interface OSSelectFieldType<
   requests?: {
     /** 请求下拉选项 */
     requestOptions?: RequestIO<
-      { searchValue?: string; params?: RecordType } & ExtraRequestOptions,
+      { searchValue?: string; searchKeys?: string[]; params?: RecordType } & ExtraRequestOptions,
       OSSelectOptionItem[]
     >;
   };

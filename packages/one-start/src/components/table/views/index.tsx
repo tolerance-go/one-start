@@ -86,6 +86,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
   const {
     settings,
     requests,
+    slots,
     hooks,
     value,
     autoRequestWhenMounted: propsAutoRequestWhenMounted = true,
@@ -97,6 +98,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     extraBatchOperation,
     requestParams,
     isEditableTable = false,
+    renderConsumers,
   } = props;
   const {
     enableEditedCellDiffValueState,
@@ -119,6 +121,8 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     syncURLParams = true,
     batchOperation,
   } = settings ?? {};
+
+  const { renderActions } = slots ?? {};
 
   const { afterSearch } = hooks ?? {};
 
@@ -550,7 +554,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
 
   const {
     columns,
-    searchRequestOptionsMapDataIndexId,
+    searchRequestOptionsMapColIdRef,
     searchTransfromMapDataIndexId,
     staticPureConfigsFieldItems,
     totalTableWidth,
@@ -682,7 +686,7 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
     requestVisualDataSource: requests?.requestVisualDataSource,
     snapshotOfCurrentSearchParametersRef,
     searchTransfromMapDataIndexId,
-    searchRequestOptionsMapDataIndexId,
+    searchRequestOptionsMapColIdRef,
     tableCoreActionsRef,
     clearSelection,
     requestDataSourceActionsRef,
@@ -896,6 +900,8 @@ const OSTable: React.ForwardRefRenderFunction<OSTableAPI, OSTableType> = (props,
                   tableActionsRef,
                   clsPrefix,
                   highlightTag,
+                  renderActions,
+                  renderConsumers,
                 }}
               ></ActionsPanel>
               {drawerDom}

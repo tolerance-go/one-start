@@ -48,12 +48,11 @@ import type {
 } from '../../typings';
 import { getDataIndexId, getKeyIndexId, runTableSettings } from '../../utils';
 import { getColEditable } from '../../utils/get-col-editable';
+import type { SearchRequestOptionsMapColIdType } from '../_typeings';
 
 /** 中间产物 */
 const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
-  const searchRequestOptionsMapDataIndexIdRef = useRef<
-    Record<string, RequiredRecursion<OSSelectFieldType>['requests']['requestOptions']>
-  >({});
+  const searchRequestOptionsMapColIdRef = useRef<SearchRequestOptionsMapColIdType>({});
 
   const searchTransfromMapDataIndexIdRef = useRef<
     Record<string, Required<OSTableFormFieldItemSearchType>['transform']>
@@ -93,7 +92,7 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
   const enableColumnsSettingsRef = useRef<boolean>(false);
 
   const resetIntermediateProducts = () => {
-    searchRequestOptionsMapDataIndexIdRef.current = {};
+    searchRequestOptionsMapColIdRef.current = {};
     searchTransfromMapDataIndexIdRef.current = {};
     totalTableWidthRef.current = 0;
     allColumnsIdRef.current = [];
@@ -108,7 +107,7 @@ const useIntermediateProducts = ({ reset }: { reset?: () => void }) => {
   };
 
   return {
-    searchRequestOptionsMapDataIndexIdRef,
+    searchRequestOptionsMapColIdRef,
     searchTransfromMapDataIndexIdRef,
     totalTableWidthRef,
     allColumnsIdRef,
@@ -168,9 +167,8 @@ export const useItems = ({
   isEditableTable?: boolean;
 }) => {
   const {
-    searchRequestOptionsMapDataIndexIdRef,
+    searchRequestOptionsMapColIdRef,
     searchTransfromMapDataIndexIdRef,
-
     totalTableWidthRef,
     allColumnsIdRef,
     columnsPropsIdMapsRef,
@@ -202,7 +200,7 @@ export const useItems = ({
       render,
       colId,
     }: {
-      colId?: string;
+      colId: string;
       editable?: Required<OSTableFormFieldItemExtra>['settings']['editable'];
       valueType?: OSTableFormFieldItems[number]['type'];
       settings?: OSTableFormFieldItems[number]['settings'];
@@ -275,7 +273,13 @@ export const useItems = ({
                     : undefined,
                 };
               },
-              getField: (staticFieldSettings, staticFieldRequests, __, ___, options) => {
+              getField: (
+                staticFieldSettings,
+                staticFieldRequests,
+                staticFormItemSettings,
+                staticFormItemRequests,
+                options,
+              ) => {
                 return renderField(
                   colEditable ? 'edit' : 'read',
                   valueType,
@@ -286,6 +290,20 @@ export const useItems = ({
                     id: (staticFieldSettings as OSFieldBaseSettings)?.id
                       ? `${(staticFieldSettings as OSFieldBaseSettings).id}-edit-${rowIndex}`
                       : undefined,
+                    ...(() => {
+                      if (valueType === 'select' && requests?.requestOptions) {
+                        const data = requestDataSourceActionsRef.current?.getFieldOptionsMapColId();
+                        const runtimeColId = getKeyIndexId(
+                          staticFieldSettings?.key ||
+                            staticFormItemSettings?.dataIndex ||
+                            staticFormItemSettings?.title,
+                        );
+                        return {
+                          valueEnums: data?.[runtimeColId],
+                        } as OSSelectFieldType['settings'];
+                      }
+                      return {};
+                    })(),
                   },
                   staticFieldRequests,
                   {
@@ -296,6 +314,7 @@ export const useItems = ({
                     cellMeta,
                     isWrapFormItem: true,
                     wrapFormType: 'table-form',
+                    autoFetchSelectOptions: !!isEditableTable,
                   },
                 );
               },
@@ -355,10 +374,9 @@ export const useItems = ({
                   }
 
                   if (valueType === 'select' && requests?.requestOptions) {
-                    const data = requestDataSourceActionsRef.current?.getFieldOptionsMapDataIndex();
-                    const id = getDataIndexId(staticFieldSettings?.dataIndex);
+                    const data = requestDataSourceActionsRef.current?.getFieldOptionsMapColId();
                     return {
-                      valueEnums: data?.[id],
+                      valueEnums: data?.[colId],
                     } as OSSelectFieldType['settings'];
                   }
 
@@ -428,13 +446,11 @@ export const useItems = ({
                 <Tooltip
                   title={(() => {
                     if (valueType === 'select' && requests?.requestOptions) {
-                      const data =
-                        requestDataSourceActionsRef.current?.getFieldOptionsMapDataIndex();
-                      const id = getDataIndexId(staticFieldSettings?.dataIndex);
+                      const data = requestDataSourceActionsRef.current?.getFieldOptionsMapColId();
 
                       return val != null
                         ? (Array.isArray(val) ? val : [val])
-                            .map((item: string) => data![id][item])
+                            .map((item: string) => data![colId][item])
                             .join(', ')
                         : undefined;
                     }
@@ -663,6 +679,10 @@ export const useItems = ({
 
           const dataIndexId = getDataIndexId(dataIndex);
 
+          const colId = getKeyIndexId(
+            fieldItem.key || mergedSettings.dataIndex || mergedSettings?.title,
+          );
+
           /** 最小宽度没有指定，则和用户指定的 默认宽度 一致 */
           const minWidth = mergedSettings.minWidth ?? mergedSettings.defaultWidth ?? DEFAULT_WIDTH;
 
@@ -689,18 +709,22 @@ export const useItems = ({
               return null;
           }
 
-          if (
-            valueType === 'select' &&
-            _requests?.requestOptions &&
-            !(mergedSettings as OSSelectFieldType['settings'])?.showSearch
-          ) {
-            searchRequestOptionsMapDataIndexIdRef.current[dataIndexId] =
-              _requests.requestOptions as RequiredRecursion<OSSelectFieldType>['requests']['requestOptions'];
+          if (valueType === 'select' && _requests?.requestOptions) {
+            const showSearch = (mergedSettings as OSSelectFieldType['settings'])?.showSearch;
+            const showSearchType = (() => {
+              if (showSearch) {
+                return showSearch === 'local' ? 'local' : 'remote';
+              }
+              return undefined;
+            })();
+            searchRequestOptionsMapColIdRef.current[colId] = {
+              enableShowSearch: !!showSearch,
+              showSearchType,
+              dataIndexId,
+              request:
+                _requests.requestOptions as RequiredRecursion<OSSelectFieldType>['requests']['requestOptions'],
+            };
           }
-
-          const colId = getKeyIndexId(
-            fieldItem.key || mergedSettings.dataIndex || mergedSettings?.title,
-          );
 
           if (colId) {
             columnsStaticPureConfigsIdMapsRef.current[colId] =
@@ -889,7 +913,7 @@ export const useItems = ({
   return {
     columns,
     enableCellHighlight: enableCellHighlightRef.current,
-    searchRequestOptionsMapDataIndexId: searchRequestOptionsMapDataIndexIdRef.current,
+    searchRequestOptionsMapColIdRef: searchRequestOptionsMapColIdRef.current,
     searchTransfromMapDataIndexId: searchTransfromMapDataIndexIdRef.current,
     totalTableWidth: totalTableWidthRef.current,
     allColumnsId: allColumnsIdRef.current,

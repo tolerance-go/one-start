@@ -1,4 +1,3 @@
-import type { SelectProps } from '@ty/antd';
 import { useUpdateEffect } from 'ahooks';
 import utl from 'lodash';
 import moment from 'moment';
@@ -9,13 +8,11 @@ import { normalizeRequestOutputs } from '../../../../components/utils/normalize-
 import { unstateHistory } from '../../../../components/utils/unstate-history';
 import type {
   OSCustomFieldStaticPureTableFormFieldItemConfigsType,
-  OSSelectFieldValueType,
   OSTableAPI,
   OSTableFormFieldItemSearchType,
   OSTableRequestDataSourceParams,
   OSTableType,
   RecordType,
-  RequestIO,
   RequestOptions,
   TableCoreAPI,
   TableInlineAPI,
@@ -23,6 +20,7 @@ import type {
 import { SHOW_MORE_FIELD_KEY } from '../../components/search-form';
 import { DEFAULT_CURRENT, DEFAULT_PAGE_SIZE } from '../../constants';
 import type { RequestDataSourceActions, SearchFormAPI, TreeSpreadActions } from '../../typings';
+import type { SearchRequestOptionsMapColIdType } from '../_typeings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 
 const mapLevel = (
@@ -44,7 +42,7 @@ export const useRequestDataSource = ({
   requestDataSource,
   snapshotOfCurrentSearchParametersRef,
   searchTransfromMapDataIndexId,
-  searchRequestOptionsMapDataIndexId,
+  searchRequestOptionsMapColIdRef,
   tableCoreActionsRef,
   clearSelection,
   requestDataSourceActionsRef,
@@ -76,10 +74,7 @@ export const useRequestDataSource = ({
     string,
     Required<OSTableFormFieldItemSearchType>['transform']
   >;
-  searchRequestOptionsMapDataIndexId: Record<
-    string,
-    RequestIO<{ searchValue?: string }, SelectProps<OSSelectFieldValueType>['options']>
-  >;
+  searchRequestOptionsMapColIdRef: SearchRequestOptionsMapColIdType;
   tableCoreActionsRef: React.MutableRefObject<TableCoreAPI>;
   tableActionsRef: React.MutableRefObject<OSTableAPI>;
   requestDataSourceActionsRef: React.MutableRefObject<RequestDataSourceActions>;
@@ -106,7 +101,7 @@ export const useRequestDataSource = ({
    *    }
    * }
    */
-  const fieldOptionsMapDataIndexRef = useRef<Record<string, Record<string, string>>>();
+  const fieldOptionsMapColIdRef = useRef<Record<string, Record<string, string>>>();
 
   const getSearchData = () => {
     const searchValues = searchFormRef.current?.getSearchFormValues() ?? {};
@@ -194,17 +189,57 @@ export const useRequestDataSource = ({
 
     const [{ error, data }, ...dataIndexAndSelectOptions] = await Promise.all([
       requestDataSource(params).then(normalizeRequestOutputs),
-      ...(Object.keys(searchRequestOptionsMapDataIndexId).map((dataIndex) => {
-        return searchRequestOptionsMapDataIndexId[dataIndex]({
-          searchValue: undefined,
+      ...(Object.keys(searchRequestOptionsMapColIdRef)
+        .filter((colId) => {
+          const { enableShowSearch, showSearchType } = searchRequestOptionsMapColIdRef[colId];
+          return enableShowSearch === false || (enableShowSearch && showSearchType === 'local');
         })
-          .then(normalizeRequestOutputs)
-          .then(({ error: error_, data: data_ }) => {
-            if (error_) return [dataIndex, {}];
-            return [dataIndex, utl.fromPairs(data_?.map((item) => [item.value, item.label]))];
-          });
-      }) as Promise<any>[]),
+        .map((colId) => {
+          const { request } = searchRequestOptionsMapColIdRef[colId];
+          return request({
+            searchValue: undefined,
+          })
+            .then(normalizeRequestOutputs)
+            .then(({ error: error_, data: data_ }) => {
+              if (error_) return [colId, {}];
+              return [colId, utl.fromPairs(data_?.map((item) => [item.value, item.label]))];
+            });
+        }) as Promise<any>[]),
     ]);
+
+    const remoteSearchColIds = Object.keys(searchRequestOptionsMapColIdRef).filter((colId) => {
+      const { enableShowSearch, showSearchType } = searchRequestOptionsMapColIdRef[colId];
+      return enableShowSearch && showSearchType === 'remote';
+    });
+
+    if (remoteSearchColIds.length) {
+      const remoteDataIndexAndSelectOptions = await Promise.all([
+        ...(remoteSearchColIds.map((colId) => {
+          const { request, dataIndexId } = searchRequestOptionsMapColIdRef[colId];
+          return request({
+            searchValue: undefined,
+            searchKeys: (() => {
+              const keys = data?.page?.map((item: RecordType) => item[dataIndexId]);
+              if (keys?.length) {
+                return utl.union(keys);
+              }
+              return keys;
+            })(),
+          })
+            .then(normalizeRequestOutputs)
+            .then(({ error: error_, data: data_ }) => {
+              if (error_) return [colId, {}];
+              return [colId, utl.fromPairs(data_?.map((item) => [item.value, item.label]))];
+            });
+        }) as Promise<any>[]),
+      ]);
+
+      fieldOptionsMapColIdRef.current = utl.fromPairs(
+        dataIndexAndSelectOptions.concat(remoteDataIndexAndSelectOptions),
+      );
+    } else {
+      fieldOptionsMapColIdRef.current = utl.fromPairs(dataIndexAndSelectOptions);
+    }
 
     if (loopRequest == null) {
       setLoading(false);
@@ -214,8 +249,6 @@ export const useRequestDataSource = ({
 
     let renderPages = data?.page;
     renderPages = mapLevel(renderPages);
-
-    fieldOptionsMapDataIndexRef.current = utl.fromPairs(dataIndexAndSelectOptions);
 
     setFieldItemsState(data?.fieldItems);
     setTotalCount(data?.total);
@@ -269,7 +302,7 @@ export const useRequestDataSource = ({
       setCurrent,
       requestDataSource: requestTableDataSource,
       requestVisualDataSource: requestVisualDataSource_,
-      getFieldOptionsMapDataIndex: () => fieldOptionsMapDataIndexRef.current,
+      getFieldOptionsMapColId: () => fieldOptionsMapColIdRef.current,
       getPagination: () => ({ current, total: totalCount }),
     },
     requestDataSourceActionsRef,
