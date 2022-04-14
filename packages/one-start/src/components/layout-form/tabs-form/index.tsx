@@ -261,8 +261,16 @@ const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLa
                         formRef={formRef}
                         formConfigs={{
                           ...formConfigs,
-                          onChange: () => {
-                            onChange?.(getFieldsValue());
+                          onChange: (data?: RecordType) => {
+                            /** 合并 value 为 tabs form value */
+                            const tabsValue = getFieldsValue();
+                            onChange?.({
+                              ...tabsValue,
+                              [key]: {
+                                ...tabsValue[key],
+                                ...data,
+                              },
+                            });
                           },
                           onFieldsChange: triggerFieldValidate(key),
                         }}

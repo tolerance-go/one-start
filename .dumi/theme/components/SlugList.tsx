@@ -5,7 +5,7 @@ import './SlugList.less';
 
 const SlugsList: FC<{ slugs: any; className?: string; maxDepth?: number }> = ({
   slugs,
-  maxDepth = 4,
+  maxDepth = 5,
   ...props
 }) => (
   <ul role="slug-list" {...props}>

@@ -504,7 +504,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * 新增 os-field-upload 组件，支持本地文件受控上传 ([51949d4](https://10.1.2.7/visual-fe/swap-modules/commits/51949d4646d94615576d7b3e3fbcf38faef14ade))
 * 新增占位输入控件，支持插入和删除模板变量键盘操作 ([b505eb5](https://10.1.2.7/visual-fe/swap-modules/commits/b505eb5f6a4b774657e59029fb10237a05085ab1))
-* os-layout-form 新增 steps 类型，支持步骤创建表单 ([5957548](https://10.1.2.7/visual-fe/swap-modules/commits/5957548a91dc44b1545916453960988c4e7cae35))
+* layout-form 新增 steps 类型，支持步骤创建表单 ([5957548](https://10.1.2.7/visual-fe/swap-modules/commits/5957548a91dc44b1545916453960988c4e7cae35))
 * os-trigger 新增 overlayZIndex 参数，支持控制堆叠优先级 ([a7a92e1](https://10.1.2.7/visual-fe/swap-modules/commits/a7a92e15496ea224f8535c2b2d9d428ae8edfba9))
 * source-table 编辑场景支持 steps-form 表单类型 ([7fc1e16](https://10.1.2.7/visual-fe/swap-modules/commits/7fc1e16ce8858e1ac7c20281edf96ddf7a89d283))
 * steps-form 新增 requestInitialValues 接口，支持异步获取初始表单数据 ([bd9d90a](https://10.1.2.7/visual-fe/swap-modules/commits/bd9d90a071603d818885c40233ff1c6aa436c99a))

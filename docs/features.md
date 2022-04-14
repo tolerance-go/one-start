@@ -86,6 +86,12 @@ group:
 - field-atom
   - 支持自定义类型
 
+### layout-form
+
+#### tabs-layout-form
+
+- [支持表单值联动](/components/forms/layout-form#支持表单值联动)
+
 ### form
 
 #### form-item
@@ -95,6 +101,8 @@ group:
 - 支持警告验证规则
 
 ### table
+
+- 支持操作区域自定义渲染
 
 - [搜索视图](/components/tables/table#搜索视图)
 
@@ -128,6 +136,7 @@ group:
   - 支持列数据层级映射
   - 支持列高亮展示
   - 支持列隐藏或显示
+  - 支持 select 类型列下拉选项缓存
 
 - [行视图](/components/tables/table#%E8%A1%8C%E6%89%B9%E9%87%8F%E9%80%89%E6%8B%A9%E5%8F%8A%E6%93%8D%E4%BD%9C)
 
@@ -153,6 +162,7 @@ group:
   - 支持单元格展示提示信息
   - 支持编辑单元格提示信息手动关闭
     - 在表单嵌套中使用，修改的防抖时间大于 0 时
+  - [支持单元格显示更多内容](/components/tables/table#支持单元格显示更多内容)
 
 ### source-table
 
@@ -195,7 +205,7 @@ group:
 - 列视图
 
   - 支持单列类型联动变化
-  - 支持本地化的编辑新增删除
+  - [支持本地化的编辑新增删除](/components/tables/editable-table#%E6%94%AF%E6%8C%81%E6%9C%AC%E5%9C%B0%E5%8C%96%E7%9A%84%E7%BC%96%E8%BE%91%E6%96%B0%E5%A2%9E%E5%88%A0%E9%99%A4)
 
 - CRUD
 
