@@ -1,12 +1,12 @@
 import type { FixedType } from 'rc-table/lib/interface';
-import type { RecordType } from '../../core';
-import type { RequestIO } from '../core';
+import type { RecordType } from '../core';
+import type { RequestIO } from './core';
 import type {
   CreatePureFormFieldItemConfigsType,
   CreateStaticPureFormFieldItemConfigsType,
   _OSFormType,
-} from '../form';
-import type { OSResMessage } from '../message';
+} from './form';
+import type { OSResMessage } from './message';
 import type { _OSSourceTableType } from './source-table';
 import type {
   ColumnOrdersMetaType,

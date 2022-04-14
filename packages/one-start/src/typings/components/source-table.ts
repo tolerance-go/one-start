@@ -1,15 +1,15 @@
 import type { DataNode, EventDataNode } from '@ty/antd/lib/tree';
 import type React from 'react';
 import type { Key } from 'react';
-import type { RecordType } from '../../core';
-import type { RequestIO } from '../core';
+import type { RecordType } from '../core';
+import type { RequestIO } from './core';
 import type {
   CreatePureFormFieldItemConfigsType,
   CreateStaticPureFormFieldItemConfigsType,
   _OSFormType,
-} from '../form';
-import type { _OSLayoutStepsFormType } from '../layout-form';
-import type { OSTriggerType } from '../trigger';
+} from './form';
+import type { _OSLayoutStepsFormType } from './layout-form';
+import type { OSTriggerType } from './trigger';
 import type {
   CreatePureTableFormFieldItemConfigsType,
   OSTableChangeValueType,

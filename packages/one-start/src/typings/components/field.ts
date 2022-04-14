@@ -1,6 +1,5 @@
 import type {
   DatePickerProps,
-  FormInstance,
   Input,
   InputNumberProps,
   RadioChangeEvent,
@@ -11,52 +10,22 @@ import type {
   UploadProps,
 } from '@ty/antd';
 import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
-import type { UploadFile } from '@ty/antd/es/upload/interface';
 import type { PickerProps, RangePickerDateProps } from '@ty/antd/es/date-picker/generatePicker';
 import type { TextAreaRef } from '@ty/antd/es/input/TextArea';
 import type { RefSelectProps } from '@ty/antd/es/select';
 import type { ParagraphProps } from '@ty/antd/es/typography/Paragraph';
+import type { UploadFile } from '@ty/antd/es/upload/interface';
 import type { Moment } from 'moment';
 import type { NamePath } from 'rc-field-form/es/interface';
 import type { SharedTimeProps } from 'rc-picker/es/panels/TimePanel';
 import type Picker from 'rc-picker/es/Picker';
 import type React from 'react';
-import type { ChangeEvent, Component, ReactNode } from 'react';
+import type { ChangeEvent, Component } from 'react';
 import type { RecordType } from '../core';
 import type { OSCore, RequestIO } from './core';
+import type { RenderFieldMethodOptions } from './custom-field-render';
 import type { OSResMessage } from './message';
 import type { OSTriggerButtonType } from './trigger';
-import type { OSTableCellMeta } from './table';
-import type { _OSFormFieldItems } from './form';
-import type { OSCustomFieldPureFormFieldItemConfigsType } from './custom-fields';
-
-export type RenderFieldOptions<ExtraFieldValueType = OSFieldValueType> = {
-  ref?: React.RefObject<OSFieldAPI> | ((instance: OSFieldAPI | null) => void);
-  onValueChange?: (value: OSFieldValueType) => void;
-  onChange?: (event: OSFieldChangeEventType) => void;
-  value?: OSFieldValueType | ExtraFieldValueType;
-  text?: OSFieldValueType | ExtraFieldValueType;
-} & {
-  mode: 'edit' | 'read' | 'update';
-  type: _OSFormFieldItems<OSCustomFieldPureFormFieldItemConfigsType>[number]['type'];
-  fieldSettings: OSCore['settings'];
-  requests?: OSCore['requests'];
-  props?: RecordType;
-};
-
-export type RenderFieldMethodOptions = Omit<
-  RenderFieldOptions,
-  'mode' | 'type' | 'fieldSettings' | 'requests'
-> & {
-  types?: Record<string, (options: RenderFieldOptions) => ReactNode>;
-  autoFetchSelectOptions?: boolean;
-  formRef?: React.RefObject<FormInstance>;
-  cellMeta?: OSTableCellMeta;
-  /** 是否 field 直接被 FormItem 包裹 */
-  isWrapFormItem?: boolean;
-  /** 所在 form 类型 */
-  wrapFormType?: 'table-form' | 'form';
-};
 
 export type CreateStaticPureFieldItemConfigs<FieldType extends OSField> = {
   type?: FieldType['type'];
@@ -364,7 +333,11 @@ export interface OSSelectFieldType<
   requests?: {
     /** 请求下拉选项 */
     requestOptions?: RequestIO<
-      { searchValue?: string; searchKeys?: string[]; params?: RecordType } & ExtraRequestOptions,
+      {
+        searchValue?: string;
+        searchKeys?: string[];
+        params?: RecordType;
+      } & ExtraRequestOptions,
       OSSelectOptionItem[]
     >;
   };

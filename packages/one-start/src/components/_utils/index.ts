@@ -4,7 +4,7 @@ export type Ref<T> = ((instance: T | null) => void) | React.MutableRefObject<T |
 
 export function forwardRef<T, P = {}>(
   render: (props: P, ref: Ref<T>) => React.ReactElement | null,
-): (props: P & React.RefAttributes<T>) => React.ReactElement | null {
+): (props: React.PropsWithoutRef<P> & React.RefAttributes<T>) => React.ReactElement | null {
   return React.forwardRef(render);
 }
 

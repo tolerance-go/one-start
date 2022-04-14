@@ -37,12 +37,6 @@ import type {
   _OSLayoutTabsFormType,
 } from './layout-form';
 import type {
-  _OSSearchTableAPI,
-  _OSSearchTableSelfType,
-  _OSSearchTableType,
-  _OSSourceTableAPI,
-  _OSSourceTableSelfType,
-  _OSSourceTableType,
   _OSTableAPI,
   _OSTableFormFieldItem,
   _OSTableFormFieldItems,
@@ -51,6 +45,8 @@ import type {
   _OSTableFormGroupType,
   _OSTableType,
 } from './table';
+import type { _OSSearchTableAPI, _OSSearchTableSelfType, _OSSearchTableType } from './search-table';
+import type { _OSSourceTableAPI, _OSSourceTableSelfType, _OSSourceTableType } from './source-table';
 
 export * from './attachment-table';
 export * from './core';
@@ -212,3 +208,5 @@ export type OSAttachmentTableType = _OSAttachmentTableType<
 
 export type OSAttachmentTableSelfType =
   _OSAttachmentTableSelfType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
+
+export * from './custom-field-render';

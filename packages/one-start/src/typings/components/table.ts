@@ -7,8 +7,8 @@ import type EventEmitter from 'eventemitter3';
 import type { FieldError, ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { CustomizeComponent, FixedType } from 'rc-table/lib/interface';
 import type React from 'react';
-import type { RecordType } from '../../core';
-import type { OSCore, RequestIO, SettingsDataNode } from '../core';
+import type { RecordType } from '../core';
+import type { OSCore, RequestIO, SettingsDataNode } from './core';
 import type {
   OSActionsFieldType,
   OSAtomFieldType,
@@ -34,7 +34,7 @@ import type {
   OSTreeSelectFieldType,
   OSTreeSelectFieldValueType,
   OSUploadFieldType,
-} from '../field';
+} from './field';
 import type {
   CreatePureFormFieldItemConfigs,
   CreatePureFormFieldItemConfigsType,
@@ -42,7 +42,7 @@ import type {
   CreateStaticPureFormFieldItemConfigsType,
   OSFormItemDependenciesConfigs,
   _OSFormType,
-} from '../form';
+} from './form';
 
 export type RequestOptions = {
   params?: RecordType;

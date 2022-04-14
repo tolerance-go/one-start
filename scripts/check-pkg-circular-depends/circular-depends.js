@@ -12,9 +12,14 @@ const getPaths = () => {
 };
 
 const run = () => {
+  console.log(getPaths());
   return madge(getPaths(), {
+    detectiveOptions: {
+      ts: {
+        skipTypeImports: true,
+      },
+    },
     fileExtensions: ['ts', 'tsx'],
-    excludeRegExp: ['lib', 'es', 'dist'],
     tsConfig: path.join(process.cwd(), 'tsconfig.json'),
   }).then((res) => {
     const circulars = res.circular();
