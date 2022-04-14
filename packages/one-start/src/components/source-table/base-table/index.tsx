@@ -60,9 +60,13 @@ const BaseTable: React.ForwardRefRenderFunction<
       return result;
     };
 
+  const { slots, ...others } = restProps;
+
   return (
     <OSTable
-      {...restProps}
+      {...others}
+      /** 因为某些原因不能用泛型 slots.renderActions 是覆盖的，类型更加精确，传给上级组件类型转换需要强制   */
+      slots={slots as OSTableType['slots']}
       ref={tableRef}
       settings={{
         rowSelection: {

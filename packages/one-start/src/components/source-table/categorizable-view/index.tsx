@@ -4,14 +4,16 @@ import { Col, Row, Skeleton, Tree, Typography } from '@ty/antd';
 import type { DataNode, EventDataNode } from '@ty/antd/lib/tree';
 import utl from 'lodash';
 import type { Key } from 'react';
+import { useMemo } from 'react';
 import React, { useEffect, useState } from 'react';
-import type { OSSourceTableAPI, OSSourceTableType } from '../../../typings';
+import type { OSSourceTableAPI, OSSourceTableType, RecordType } from '../../../typings';
 import { useActionsRef } from '../../hooks/use-actions-ref';
 import OSEmpty from '../../table/components/empty';
 import { logRequestMessage } from '../../utils/log-request-message';
 import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
 import { mapTreeNode } from '../../utils/tree-utils';
 import BaseTable from '../base-table';
+import { CategorizableRenderModel } from '../_models/categorizable-model';
 
 export const CategorizableView = ({
   categorizable,
@@ -20,9 +22,11 @@ export const CategorizableView = ({
   requestCategorizableData,
   renderCategorizableTable,
   tableRef,
+  defaultActiveFirstRow,
 }: {
   clsPrefix: string;
   categorizable?: Required<OSSourceTableType>['settings']['categorizable'];
+  defaultActiveFirstRow?: Required<OSSourceTableType>['settings']['defaultActiveFirstRow'];
   tableProps?: OSSourceTableType;
   requestCategorizableData?: Required<OSSourceTableType>['requests']['requestCategorizableData'];
   renderCategorizableTable?: Required<OSSourceTableType>['slots']['renderCategorizableTable'];
@@ -36,6 +40,85 @@ export const CategorizableView = ({
   const [customTableDom, setCustomTableDom] = useState<React.ReactNode>();
   /** 需要保证可以 JSON.strinify */
   const [activeNode, setActiveNode] = useState<EventDataNode>();
+
+  const [selectedKeys, setSelectedKeys] = useState<Key[]>();
+
+  const reloadCategorizableList = async () => {
+    if (!requestCategorizableData) return;
+
+    setRequestCategorizableDataLoading(true);
+    const { error, data } = await requestCategorizableData()
+      .then(normalizeRequestOutputs)
+      .then(logRequestMessage());
+    setRequestCategorizableDataLoading(false);
+
+    if (error) return;
+
+    if (data?.data) {
+      setTreeData(data?.data);
+
+      /**
+       * 异步的默认展开全部，这里设计为数据的从无到有，则为默认展开的契机
+       * 就像组件同步的默认展开全部一样，是从组件的从无到有
+       */
+      if (!treeData?.length && data?.data?.length) {
+        const arr: string[] = [];
+
+        mapTreeNode(data?.data, (item) => {
+          if (item.children) {
+            arr.push(item.key);
+          }
+        });
+
+        setExpandedKeys(arr);
+      }
+
+      /** 默认选中第一个 */
+      if (defaultActiveFirstRow) {
+        const findFirst = (
+          tree: DataNode[],
+          predicate: (item: DataNode) => boolean,
+        ): EventDataNode | null => {
+          // eslint-disable-next-line no-restricted-syntax
+          for (const item of tree) {
+            if (predicate(item)) {
+              setSelectedKeys([item.key]);
+
+              return {
+                ...item,
+                /** TODO: 设置内容 */
+                expanded: false,
+                selected: false,
+                checked: false,
+                loaded: false,
+                loading: false,
+                halfChecked: false,
+                dragOver: false,
+                dragOverGapTop: false,
+                dragOverGapBottom: false,
+                pos: '',
+                active: false,
+              };
+            }
+            if (item.children) {
+              return findFirst(item.children, predicate);
+            }
+          }
+          return null;
+        };
+
+        const firstRow = findFirst(data?.data ?? [], (item) => item.selectable !== false);
+
+        if (firstRow) {
+          setActiveNode(firstRow);
+        }
+      }
+    }
+  };
+
+  const handleRequestCategorizableData = async () => {
+    reloadCategorizableList();
+  };
 
   const insertCategorizableTreeChildAfterIndex = (
     parentKey: Key,
@@ -87,16 +170,23 @@ export const CategorizableView = ({
     setTreeData(next);
   };
 
+  const getSelectedNode = <E extends RecordType>(): (E & EventDataNode) | undefined => {
+    return activeNode as (E & EventDataNode) | undefined;
+  };
+
   const apisRef = useActionsRef(
     {
       insertCategorizableTreeChildAfterIndex,
       insertCategorizableTreeChildLatest,
       deleteCategorizableTreeChild,
+      reloadCategorizableList,
+      getSelectedNode,
     },
     tableRef,
   );
 
-  const handleTreeSelect: TreeProps['onSelect'] = (selectedKeys, info) => {
+  const handleTreeSelect: TreeProps['onSelect'] = (selectedKeys_, info) => {
+    setSelectedKeys(selectedKeys_);
     setActiveNode(info.node);
 
     if (renderCategorizableTable) {
@@ -104,6 +194,7 @@ export const CategorizableView = ({
         node: info.node,
         /** 注意：当 Table 卸载掉时候，ref.current 会设置为 null */
         apisRef,
+        tableRef,
       });
       if (custom) {
         setCustomTableDom(custom);
@@ -113,37 +204,11 @@ export const CategorizableView = ({
     }
   };
 
-  const handleRequestCategorizableData = async () => {
-    if (!requestCategorizableData) return;
-
-    setRequestCategorizableDataLoading(true);
-    const { error, data } = await requestCategorizableData()
-      .then(normalizeRequestOutputs)
-      .then(logRequestMessage());
-    setRequestCategorizableDataLoading(false);
-
-    if (error) return;
-
-    if (data?.data) {
-      setTreeData(data?.data);
-
-      /**
-       * 异步的默认展开全部，这里设计为数据的从无到有，则为默认展开的契机
-       * 就像组件同步的默认展开全部一样，是从组件的从无到有
-       */
-      if (!treeData?.length && data?.data?.length) {
-        const arr: string[] = [];
-
-        mapTreeNode(data?.data, (item) => {
-          if (item.children) {
-            arr.push(item.key);
-          }
-        });
-
-        setExpandedKeys(arr);
-      }
-    }
-  };
+  const categorizableRenderModel = useMemo(() => {
+    return {
+      activeNode,
+    };
+  }, [activeNode]);
 
   useEffect(() => {
     handleRequestCategorizableData();
@@ -163,7 +228,20 @@ export const CategorizableView = ({
         }}
         span={24 - tableSpan}
       >
-        <Typography.Title level={5}>{categorizable?.listTitle ?? '默认标题'}</Typography.Title>
+        <Row justify="space-between" gutter={15}>
+          <Col>
+            <Typography.Title level={5}>{categorizable?.listTitle ?? '默认标题'}</Typography.Title>
+          </Col>
+          {categorizable?.actions && (
+            <Col>
+              <Row gutter={5}>
+                {React.Children.map(categorizable?.actions, (item) => (
+                  <Col>{item}</Col>
+                ))}
+              </Row>
+            </Col>
+          )}
+        </Row>
         <Skeleton active paragraph={{ rows: 4 }} loading={requestCategorizableDataLoading}>
           {(() => {
             if (requestCategorizableDataLoading) {
@@ -180,7 +258,11 @@ export const CategorizableView = ({
                       onExpand: setExpandedKeys,
                     }
                   : {})}
-                showLine
+                showLine={{
+                  showLeafIcon: false,
+                }}
+                selectedKeys={selectedKeys}
+                showIcon
                 switcherIcon={<DownOutlined />}
                 defaultExpandAll
                 treeData={treeData}
@@ -192,15 +274,20 @@ export const CategorizableView = ({
       </Col>
       <Col span={tableSpan}>
         {customTableDom || (
-          <BaseTable
-            {...tableProps}
-            tableRef={tableRef}
-            requestParams={{
-              requestDataSource: {
-                activeNode,
-              },
-            }}
-          />
+          <CategorizableRenderModel.Provider value={categorizableRenderModel}>
+            <BaseTable
+              {...tableProps}
+              tableRef={tableRef}
+              requestParams={{
+                requestDataSource: {
+                  activeNode,
+                },
+              }}
+              renderConsumers={{
+                CategorizableRenderModelConsumer: CategorizableRenderModel.Consumer,
+              }}
+            />
+          </CategorizableRenderModel.Provider>
         )}
       </Col>
     </Row>

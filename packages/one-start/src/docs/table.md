@@ -110,9 +110,15 @@ tocMaxDepth: 5
 
 <code src="../demos/table/search-form.tsx" />
 
-### 下拉选项映射
+### 支持操作区域自定义渲染
 
-如果 select field 设置了 showSearch，则在表格搜索时不会进行下拉选项搜索，因为此时内容和 value 可能无法映射导致空值
+<code src="../demos/table/actions-render.tsx" />
+
+### 列视图
+
+#### 支持 select 类型列下拉选项缓存
+
+如果 select field 设置了 `showSearch: true`，则在表格搜索时不会进行下拉选项搜索，因为此时内容和 value 可能无法映射导致空值
 
 <code src="../demos/table/select.tsx" />
 
@@ -149,6 +155,10 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 > 关于表格单元格验证提示信息，当滚动表格时，默认行为是先隐藏再显示，如果单元格不可见（被 fixed 列覆盖）则直接隐藏
 
 <code src="../demos/table/edit-validate-cell.tsx" />
+
+#### 支持单元格显示更多内容
+
+<code src="../demos/table/cell-tooltip.tsx" />
 
 ### 列宽调整
 

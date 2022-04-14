@@ -23,6 +23,8 @@ const CoreActionsPanel: React.ForwardRefRenderFunction<
     tableActionsRef: React.MutableRefObject<OSTableAPI>;
     clsPrefix?: string;
     highlightTag?: React.ReactNode;
+    renderActions?: Required<OSTableType>['slots']['renderActions'];
+    renderConsumers?: OSTableType['renderConsumers'];
   }>
 > = ({
   selectionDom,
@@ -37,6 +39,8 @@ const CoreActionsPanel: React.ForwardRefRenderFunction<
   tableActionsRef,
   clsPrefix,
   highlightTag,
+  renderActions,
+  renderConsumers = {},
 }) => {
   const searchFormIsInline =
     searchFormDom &&
@@ -70,6 +74,10 @@ const CoreActionsPanel: React.ForwardRefRenderFunction<
               {selectionDom}
               {expandBtn}
               {highlightTag}
+              {renderActions?.({
+                apisRef: tableActionsRef,
+                renderConsumers,
+              })}
               {normalizedActions.left?.map((item, index) =>
                 React.cloneElement(item, {
                   ...item.props,

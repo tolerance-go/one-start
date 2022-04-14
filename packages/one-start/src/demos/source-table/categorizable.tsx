@@ -384,11 +384,21 @@ export default () => {
           },
         }}
         slots={{
-          renderCategorizableTable: ({ node, apisRef }) => {
+          renderCategorizableTable: ({ node, apisRef, tableRef }) => {
             if (node.key === '0-1') {
-              return <EditableTable1 node={node} apisRef={apisRef} />;
+              return <EditableTable1 node={node} apisRef={apisRef} tableRef={tableRef} />;
             }
             return null;
+          },
+          renderActions: ({ renderConsumers }) => {
+            const { CategorizableRenderModelConsumer } = renderConsumers!;
+            return (
+              <CategorizableRenderModelConsumer>
+                {(model) => {
+                  return <div>hi {model.activeNode?.key}</div>;
+                }}
+              </CategorizableRenderModelConsumer>
+            );
           },
         }}
         requests={{

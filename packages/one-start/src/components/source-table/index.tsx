@@ -11,7 +11,8 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
   ref,
 ) => {
   const { settings, requests, slots } = props;
-  const { rowViewable, panelable, rowEditable, categorizable } = settings ?? {};
+  const { rowViewable, panelable, rowEditable, categorizable, defaultActiveFirstRow } =
+    settings ?? {};
   const { renderCategorizableTable } = slots ?? {};
   const { requestViewRowData, requestRowEditData, requestSaveRowData, requestCategorizableData } =
     requests ?? {};
@@ -29,6 +30,7 @@ const OSSourceTable: React.ForwardRefRenderFunction<OSSourceTableAPI, OSSourceTa
         tableRef={tableRef}
         categorizable={categorizable}
         clsPrefix={clsPrefix}
+        defaultActiveFirstRow={defaultActiveFirstRow}
         requestCategorizableData={requestCategorizableData}
         renderCategorizableTable={renderCategorizableTable}
       />
