@@ -13,6 +13,7 @@ import type {
 } from '../../../typings';
 import { useActionsRef } from '../../hooks/use-actions-ref';
 import { convertTableDataSourceToFormValues } from '../utils/convert-table-data-source-to-form-values';
+import ReactDOM from 'react-dom';
 
 const useTableFormValueState = (initalState?: {
   enableEditedCellDiffValueState?: {};
@@ -33,19 +34,26 @@ const useTableFormValueState = (initalState?: {
     rowKey = 'id',
     enableEditedCellDiffValueState,
   } = initalState ?? {};
-  const [initialTableFormValue, setInitialTableFormValue] = useState<Record<string, any>>(() => {
+
+  /**
+   * formData 和 formValue 的区别在于前者的 value 可能包含注册表单字段以外的数据，
+   * 而后者只包含注册表单字段的数据，比如 表格 rowData 中包含自定义字段 _id，它不是
+   * 注册的 form item 上的 name，所以 formValue 中不包含 _id，而 formData 包含了
+   */
+  const [initialTableFormData, setInitialTableFormData] = useState<Record<string, any>>(() => {
     return convertTableDataSourceToFormValues(rowKey, value);
   });
+  const [currentTableFormData, setCurrentTableFormData] = useState<Record<string, any>>({});
   const [currentTableFormValue, setCurrentTableFormValue] = useState<Record<string, any>>({});
 
   const cellValueIsDiff = (colId: string, rowId: string) => {
-    const diffed = currentTableFormValue[rowId]?.[colId] !== initialTableFormValue[rowId]?.[colId];
+    const diffed = currentTableFormData[rowId]?.[colId] !== initialTableFormData[rowId]?.[colId];
     return diffed;
   };
 
   const getTableFormEditedData = (): {
-    initialTableFormValue: Record<string, any>;
-    currentTableFormValue: Record<string, any>;
+    initialTableFormData: Record<string, any>;
+    currentTableFormData: Record<string, any>;
     addRowIds: string[];
     removeRowIds: string[];
     updateRowIds: string[];
@@ -58,36 +66,36 @@ const useTableFormValueState = (initalState?: {
             rowId: rowId_,
             colId: colId_,
             /** 如果是新增行，可能出现空数据的问题 */
-            prevValue: initialTableFormValue[rowId_]?.[colId_],
+            prevValue: initialTableFormData[rowId_]?.[colId_],
             nextValue: currentTableFormValue[rowId_][colId_],
-            prevRowData: initialTableFormValue[rowId_],
-            nextRowData: currentTableFormValue[rowId_],
+            prevRowData: initialTableFormData[rowId_],
+            nextRowData: currentTableFormData[rowId_],
           });
         }
         return acc_;
       }, acc);
     }, [] as OSTableChangedCellMeta[]);
 
-    const addRowIds = Object.keys(currentTableFormValue ?? {}).filter(
-      (rowId) => rowId in (initialTableFormValue ?? {}) === false,
+    const addRowIds = Object.keys(currentTableFormData ?? {}).filter(
+      (rowId) => rowId in (initialTableFormData ?? {}) === false,
     );
 
-    const updateRowIds = Object.keys(currentTableFormValue ?? {}).filter(
+    const updateRowIds = Object.keys(currentTableFormData ?? {}).filter(
       (rowId) =>
-        rowId in (initialTableFormValue ?? {}) &&
+        rowId in (initialTableFormData ?? {}) &&
         changedCells.find(({ rowId: cellChangedWithRowId }) => cellChangedWithRowId === rowId),
     );
 
-    const removeRowIds = Object.keys(initialTableFormValue ?? {}).filter(
-      (rowId) => rowId in (currentTableFormValue ?? {}) === false,
+    const removeRowIds = Object.keys(initialTableFormData ?? {}).filter(
+      (rowId) => rowId in (currentTableFormData ?? {}) === false,
     );
 
     return {
       removeRowIds,
       updateRowIds,
       addRowIds,
-      initialTableFormValue,
-      currentTableFormValue,
+      initialTableFormData,
+      currentTableFormData,
       changedCells,
     };
   };
@@ -105,18 +113,56 @@ const useTableFormValueState = (initalState?: {
 
       const handleInitedTableDataSource = (data: OSTableValueType) => {
         const next = convertTableDataSourceToFormValues(rowKey, data);
-        setInitialTableFormValue(next);
-        setCurrentTableFormValue(next);
+        ReactDOM.unstable_batchedUpdates(() => {
+          setInitialTableFormData(next);
+          setCurrentTableFormData(next);
+          /** TODO: 可能存在数据不一致 data -> value */
+          setCurrentTableFormValue(next);
+        });
       };
 
       const handleTableFormValuesEdited = (data: Record<string, any>) => {
-        /** data 可能只是一页的 form item 渲染数据，这里覆盖相同 rowId 即可 */
-        setCurrentTableFormValue((prev) => ({ ...prev, ...data }));
+        ReactDOM.unstable_batchedUpdates(() => {
+          /**
+           * data 可能只是一页的 form item 渲染数据，这里覆盖相同 rowId 即可
+           * rowData 里面可能存在额外的字段（不是 form item），form values change 的时候不要覆盖它
+           */
+          setCurrentTableFormData((prev) =>
+            Object.keys({
+              ...prev,
+              ...data,
+            }).reduce((acc, key) => {
+              if (key in data && key in prev) {
+                return {
+                  ...acc,
+                  [key]: {
+                    ...prev[key],
+                    ...data[key],
+                  },
+                };
+              }
+              if (key in data) {
+                return {
+                  ...acc,
+                  [key]: data[key],
+                };
+              }
+              if (key in prev) {
+                return {
+                  ...acc,
+                  [key]: prev[key],
+                };
+              }
+              return acc;
+            }, {}),
+          );
+          setCurrentTableFormValue((prev) => ({ ...prev, ...data }));
+        });
       };
 
       const handleTableFormValuesRemoved = (rowId: string) => {
         /** data 可能只是一页的 form item 渲染数据，这里覆盖相同 rowId 即可 */
-        setCurrentTableFormValue((prev) => {
+        setCurrentTableFormData((prev) => {
           const next = { ...prev };
           delete next[rowId];
           return next;
@@ -125,7 +171,7 @@ const useTableFormValueState = (initalState?: {
 
       const handleTableFormValuesAdded = (rowDataList: RecordType[]) => {
         /** data 可能只是一页的 form item 渲染数据，这里覆盖相同 rowId 即可 */
-        setCurrentTableFormValue((prev) => {
+        setCurrentTableFormData((prev) => {
           const next = {
             ...prev,
             ...rowDataList.reduce((acc, rowData) => {
@@ -154,7 +200,7 @@ const useTableFormValueState = (initalState?: {
     return undefined;
   }, []);
 
-  return { cellValueIsDiff, setInitialTableFormValue, setCurrentTableFormValue };
+  return { cellValueIsDiff, setInitialTableFormData, setCurrentTableFormData };
 };
 
 export const TableFormValueStateModel = createContainer(useTableFormValueState);

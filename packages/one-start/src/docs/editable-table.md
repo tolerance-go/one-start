@@ -57,6 +57,8 @@ group:
 
 #### 支持本地化的编辑新增删除
 
+formData 和 formValue 的区别在于前者的 value 可能包含注册表单字段以外的数据， 而后者只包含注册表单字段的数据，比如 表格 rowData 中包含自定义字段 \_id，它不是 注册的 form item 上的 name，所以 formValue 中不包含 \_id，而 formData 包含了
+
 <code src="../demos/editable-table/localized-edits-added-delete.tsx" />
 
 所有接口继承自 OSTable
