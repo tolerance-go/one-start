@@ -210,3 +210,5 @@ export type OSAttachmentTableSelfType =
   _OSAttachmentTableSelfType<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
 
 export * from './custom-field-render';
+export * from './source-table';
+export * from './search-table';
