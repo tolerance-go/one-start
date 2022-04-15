@@ -277,6 +277,7 @@ export const CategorizableView = ({
           <CategorizableRenderModel.Provider value={categorizableRenderModel}>
             <BaseTable
               {...tableProps}
+              key={activeNode?.key}
               tableRef={tableRef}
               requestParams={{
                 requestDataSource: {
