@@ -391,7 +391,11 @@ export type _OSTableFormFieldItem<
     > &
       OSFormItemDependenciesConfigs)
   | (CreatePureFormFieldItemConfigs<
-      OSAtomFieldType,
+      OSAtomFieldType<
+        {
+          form?: FormInstance;
+        } & OSTableCellMeta
+      >,
       _OSTableFormFieldItemSettingsFnOption<OSCustomFieldStaticPureTableFormFieldItemConfigsType>,
       OSTableFormFieldItemExtra
     > &
@@ -463,7 +467,17 @@ export type _OSTableFormFieldItemWithStaticPureConfigs<
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSUploadFieldType, OSTableFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
-  | (CreateStaticPureFormFieldItemConfigs<OSAtomFieldType, OSTableFormFieldItemExtra> &
+  | (CreateStaticPureFormFieldItemConfigs<
+      OSAtomFieldType<
+        {
+          form?: FormInstance;
+        } & OSTableCellMeta,
+        {
+          form?: FormInstance;
+        }
+      >,
+      OSTableFormFieldItemExtra
+    > &
       OSFormItemDependenciesConfigs);
 
 export type _OSTableFormGroupType<

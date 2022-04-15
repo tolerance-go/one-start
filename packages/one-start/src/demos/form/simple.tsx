@@ -1,10 +1,8 @@
 import type { RecordType } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
-import { message } from '@ty/antd';
 import utlFp from 'lodash/fp';
 import { mock, Random } from 'mockjs';
 import React from 'react';
-import { session } from 'store2';
 
 export default () => {
   return (
@@ -48,18 +46,9 @@ export default () => {
                 triggerButtonText: '上传',
               },
               requests: {
-                requestAfterUpload: async ({ fileList, file }) => {
+                requestAfterUpload: async ({ fileList }) => {
                   /** 标记上传状态 可用于未完成上传时不可进行提交操作的提醒  */
-                  const recordStatus = () => {
-                    session.set('uploadStatus', file.status);
-                  };
-                  if (!fileList || !fileList.length) {
-                    return { data: [], error: false };
-                  }
-                  if (file?.response?.errorMessage) {
-                    message.error(file.response.errorMessage);
-                  }
-                  recordStatus();
+
                   return { data: fileList.filter((item) => item.status !== 'error'), error: false };
                 },
               },

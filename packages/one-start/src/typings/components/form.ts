@@ -146,7 +146,12 @@ export type _OSFormFieldItemWithStaticPureConfigs<
       OSFormItemDependenciesConfigs)
   | (CreateStaticPureFormFieldItemConfigs<OSUploadFieldType, OSFormFieldItemExtra> &
       OSFormItemDependenciesConfigs)
-  | (CreateStaticPureFormFieldItemConfigs<OSAtomFieldType, OSFormFieldItemExtra> &
+  | (CreateStaticPureFormFieldItemConfigs<
+      OSAtomFieldType<{
+        form?: FormInstance;
+      }>,
+      OSFormFieldItemExtra
+    > &
       OSFormItemDependenciesConfigs);
 
 export type OSFormFieldItemSettingsFnOption = {
@@ -317,7 +322,14 @@ export type _OSFormFieldItem<CustomValueType extends CreatePureFormFieldItemConf
     > &
       OSFormItemDependenciesConfigs)
   | (CreatePureFormFieldItemConfigs<
-      OSAtomFieldType,
+      OSAtomFieldType<
+        {
+          form?: FormInstance;
+        },
+        {
+          form?: FormInstance;
+        }
+      >,
       OSFormFieldItemSettingsFnOption,
       OSFormFieldItemExtra
     > &
