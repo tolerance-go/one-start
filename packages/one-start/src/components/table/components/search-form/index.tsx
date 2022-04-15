@@ -149,11 +149,10 @@ const SearchForm: React.ForwardRefRenderFunction<
 
   const getSearchFormDataSource = () => formRef.current?.getDataSource();
 
+  const isExist = () => !!formRef.current;
+
   const isValidate = () =>
-    formRef.current
-      ? formRef.current?.validate().then(({ error }) => !error)
-      : /** 表单实例不存在时候，表示无效 */
-        Promise.resolve(false);
+    isExist() ? formRef.current!.validate().then(({ error }) => !error) : Promise.resolve(false);
 
   useImperativeHandle(ref, () => ({
     formRef,
@@ -162,6 +161,7 @@ const SearchForm: React.ForwardRefRenderFunction<
     getSearchFormValues,
     getSearchFormDataSource,
     isValidate,
+    isExist,
   }));
 
   const inlineAPIRef = useActionsRef({

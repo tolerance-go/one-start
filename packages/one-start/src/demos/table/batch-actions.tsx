@@ -69,11 +69,6 @@ export default () => {
               settings: {
                 title: 'money',
                 dataIndex: 'money',
-                rules: [
-                  {
-                    required: true,
-                  },
-                ],
                 sorter: true,
                 search: true,
               },
@@ -83,11 +78,6 @@ export default () => {
               settings: {
                 title: 'digit',
                 dataIndex: 'digit',
-                rules: [
-                  {
-                    required: true,
-                  },
-                ],
                 sorter: true,
                 search: true,
               },
@@ -97,11 +87,6 @@ export default () => {
               settings: {
                 title: 'percent',
                 dataIndex: 'percent',
-                rules: [
-                  {
-                    required: true,
-                  },
-                ],
                 sorter: true,
                 search: true,
               },
@@ -126,11 +111,6 @@ export default () => {
                     title: 'text',
                     dataIndex: 'text',
                     search: true,
-                    rules: [
-                      {
-                        required: true,
-                      },
-                    ],
                   },
                 },
                 {
