@@ -328,11 +328,6 @@ export default () => {
               settings: {
                 title: 'money',
                 dataIndex: 'money',
-                rules: [
-                  {
-                    required: true,
-                  },
-                ],
                 fixed: 'left',
                 resizeable: false,
                 search: true,

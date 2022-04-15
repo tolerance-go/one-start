@@ -598,6 +598,7 @@ export interface OSDateFieldType extends OSField, OSFieldBaseConfigs<OSDateField
     disabledDate?: DatePickerProps['disabledDate'];
     showNow?: boolean;
     showTime?: SharedTimeProps<Moment> | boolean;
+    allowClear?: boolean;
   } & OSFieldBaseSettings;
 }
 
@@ -623,6 +624,7 @@ export interface OSDateRangeFieldType
     /** 日期格式化 */
     format?: string;
     disabledDate?: RangePickerDateProps<Moment>['disabledDate'];
+    allowClear?: boolean;
   } & OSFieldBaseSettings;
 }
 
