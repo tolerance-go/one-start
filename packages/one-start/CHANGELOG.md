@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.28.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.27.0...@ty-one-start/one-start@0.28.0) (2022-04-15)
+
+
+### Bug Fixes
+
+* **table:** 表格搜索未做验证判断 ([5e71741](https://10.1.2.7/visual-fe/swap-modules/commits/5e71741be215970125f165286751ed7b7ab19a34))
+* **table:** 修复搜索表单 validate 判断时机问题 ([ecabe36](https://10.1.2.7/visual-fe/swap-modules/commits/ecabe36b28256f63957d5571a7afbd9258e6728f))
+
+
+### Features
+
+* **field-date:** 新增 allowClear 配置 ([400f75c](https://10.1.2.7/visual-fe/swap-modules/commits/400f75ced6e4bf84044f5a13dd9b7ce289fdadf0))
+
+
+
+
+
 # [0.27.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.25.1...@ty-one-start/one-start@0.27.0) (2022-04-14)
 
 
