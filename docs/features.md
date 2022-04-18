@@ -94,7 +94,9 @@ group:
 
 ### form
 
-#### form-item
+- 支持表单验证方法
+
+### form-item
 
 - 支持显示 label
   - [当宽度不够时，显示省略](http://localhost:8001/components/forms/form#form-form-item-label-ellipsis)
@@ -222,3 +224,7 @@ group:
     - 单元格验证
     - 分页编辑
   - 删除
+
+### attachment-table
+
+- 支持数据结构中包含文件对象
