@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.28.0...@ty-one-start/one-start@0.28.1) (2022-04-19)
+
+
+### Bug Fixes
+
+* **source-table:** 解决 Categorizable 模式下 table 异常卸载问题 ([476bcb9](https://10.1.2.7/visual-fe/swap-modules/commits/476bcb942243a8a00080aaeb9e6f57e0ff43afc6))
+
+
+
+
+
 # [0.28.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.27.0...@ty-one-start/one-start@0.28.0) (2022-04-15)
 
 
