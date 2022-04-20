@@ -84,7 +84,11 @@ group:
   - 支持定义时分秒
 
 - field-atom
+
   - 支持自定义类型
+
+- field-select
+  - 支持显示枚举展示状态
 
 ### layout-form
 
