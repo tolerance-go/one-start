@@ -1,5 +1,5 @@
 import utl from 'lodash';
-import type { OSTableValueType } from '../../../typings';
+import type { OSTableValueType } from '../@ty-one-start/typings';
 import { parseTableValue } from '../../utils/parse-table-value';
 
 export const convertTableDataSourceToFormValues = (rowKey: string, value?: OSTableValueType) => {

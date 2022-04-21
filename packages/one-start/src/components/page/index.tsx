@@ -1,8 +1,8 @@
 import { Breadcrumb, Col, Row, Space, Tabs } from '@ty/antd';
 import qs from 'qs';
 import React, { useImperativeHandle, useMemo, useState } from 'react';
-import type { OSPageAPI, OSPageType, RecordType } from '../../typings';
-import type { RequiredRecursion } from '../../typings';
+import type { OSPageAPI, OSPageType, RecordType } from '@ty-one-start/typings';
+import type { RequiredRecursion } from '@ty-one-start/typings';
 import { unstateHistory } from '../utils/unstate-history';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 

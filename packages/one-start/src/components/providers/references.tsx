@@ -23,7 +23,7 @@ import type {
   RecordType,
   OSLayoutModalFormAPI,
   OSLayoutTabsFormAPI,
-} from '../../typings';
+} from '@ty-one-start/typings';
 
 export type OSReferencesCollectorKeys = {
   dialogs?: {

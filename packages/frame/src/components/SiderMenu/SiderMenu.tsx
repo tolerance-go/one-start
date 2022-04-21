@@ -2,7 +2,7 @@ import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { Layout, Menu } from '@ty/antd';
 import classNames from 'classnames';
 import React from 'react';
-import type { PrivateSiderMenuProps, SiderMenuProps } from '../../typings';
+import type { PrivateSiderMenuProps, SiderMenuProps } from '@ty-one-start/typings';
 import BaseMenu from './BaseMenu';
 import MenuCounter from './Counter';
 import './index.less';

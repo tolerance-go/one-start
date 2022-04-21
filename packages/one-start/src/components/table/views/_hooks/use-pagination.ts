@@ -1,6 +1,6 @@
 import type { PaginationProps } from '@ty/antd/es/pagination';
 import { useMemo } from 'react';
-import type { OSTableType } from '../../../../typings';
+import type { OSTableType } from '../../@ty-one-start/typings';
 
 export const usePagination = ({
   pagination,

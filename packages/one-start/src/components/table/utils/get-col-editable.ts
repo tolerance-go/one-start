@@ -3,7 +3,7 @@ import type {
   OSTableType,
   RecordType,
   RequiredRecursion,
-} from '../../../typings';
+} from '../@ty-one-start/typings';
 
 /** 根据行编辑和列编辑共同计算单元格是否开启编辑 */
 export const getColEditable = ({

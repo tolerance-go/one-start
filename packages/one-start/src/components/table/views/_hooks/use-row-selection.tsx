@@ -2,8 +2,8 @@ import utl from 'lodash';
 import type React from 'react';
 import { useMemo, useState } from 'react';
 import { useActionsRef } from '../../../hooks/use-actions-ref';
-import type { RecordType, TableCoreAPI } from '../../../../typings';
-import type { SelectionsActions } from '../../typings';
+import type { RecordType, TableCoreAPI } from '../../@ty-one-start/typings';
+import type { SelectionsActions } from '@ty-one-start/typings';
 
 export const useRowSelection = ({
   tableCoreActionsRef,

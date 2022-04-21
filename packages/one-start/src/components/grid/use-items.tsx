@@ -7,7 +7,7 @@ import cls from 'classnames';
 import utl from 'lodash';
 import type { Rule } from '@ty/antd/lib/form';
 import React, { useMemo, useRef } from 'react';
-import { mergeRuleToTooltip, normalizeTooltip } from '../form-items/utils';
+import { mergeRuleToTooltip, normalizeTooltip } from '@ty-one-start/forms-items/utils';
 import { useActionsRef } from '../hooks/use-actions-ref';
 import type {
   OSFormFieldItem,
@@ -25,10 +25,10 @@ import type {
   OSTableType,
   RecordType,
   RenderFieldOptions,
-} from '../../typings';
+} from '@ty-one-start/typings';
 import { renderField } from '../utils/render-field';
 import { renderTableFormItem } from '../utils/render-table-form-item';
-import type { RequiredRecursion } from '../../typings';
+import type { RequiredRecursion } from '@ty-one-start/typings';
 import {
   DEFAULT_WIDTH,
   searchHeadFormFieldRowId,

@@ -37,7 +37,7 @@ import type {
   SettingsDataNode,
   TableCoreAPI,
   TableInlineAPI,
-} from '../../../typings';
+} from '../@ty-one-start/typings';
 import { useActionsRef } from '../../hooks/use-actions-ref';
 import { ExtraValueTypesContext } from '../../providers/extra-value-types';
 import { PrioritizedComponentSizeContext } from '../../providers/prioritized-component-size';

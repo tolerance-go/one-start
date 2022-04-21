@@ -1,9 +1,9 @@
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
 import { Button, Space } from '@ty/antd';
 import React from 'react';
-import type { TableCoreAPI } from '../../../../typings';
+import type { TableCoreAPI } from '../../@ty-one-start/typings';
 import { eventNames } from '../../constants';
-import type { RequestDataSourceActions, SearchFormAPI } from '../../typings';
+import type { RequestDataSourceActions, SearchFormAPI } from '@ty-one-start/typings';
 
 const SearchSwitcher: React.ForwardRefRenderFunction<
   {},

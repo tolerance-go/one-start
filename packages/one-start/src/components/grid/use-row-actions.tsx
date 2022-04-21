@@ -2,8 +2,8 @@ import type { ColDef, ColGroupDef } from '@ag-grid-enterprise/all-modules';
 import type { ColumnsType } from '@ty/antd/lib/table';
 import React from 'react';
 import OSActionsField from '../fields/actions';
-import type { OSGridType, RecordType, OSGridAPI } from '../../typings';
-import type { RequiredRecursion } from '../../typings';
+import type { OSGridType, RecordType, OSGridAPI } from '@ty-one-start/typings';
+import type { RequiredRecursion } from '@ty-one-start/typings';
 import { DEFAULT_WIDTH } from './constants';
 
 export const useRowActions = ({

@@ -4,7 +4,7 @@ import utl from 'lodash';
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 import type { ReactNode } from 'react';
 import React from 'react';
-import OSFormItemBase from '../form-items/form-item';
+import OSFormItemBase from '@ty-one-start/forms-items/form-item';
 import { getDataIndexId, getKeyIndexId } from '../table/utils';
 import type {
   OSEditableTableFieldType,
@@ -20,7 +20,7 @@ import type {
   OSTableAPI,
   RecordType,
   _OSFormFieldItemWithStaticPureConfigs,
-} from '../../typings';
+} from '@ty-one-start/typings';
 import {
   pickFieldRequests,
   pickFieldSettings,

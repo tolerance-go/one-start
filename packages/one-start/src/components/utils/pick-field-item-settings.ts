@@ -2,9 +2,9 @@ import type {
   OSFormFieldItemWithStaticPureConfigs,
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
-} from '../../typings';
+} from '@ty-one-start/typings';
 import utl from 'lodash';
-import { formItemSettingsFields } from '../form-items/form-item-settings-fields';
+import { formItemSettingsFields } from '@ty-one-start/forms-items/form-item-settings-fields';
 
 /**
  * to fix 此节点的推断类型超出编译器将序列化的最大长度。需要显式类型注释。ts(7056)

@@ -3,7 +3,7 @@ import { OSProviderWrapper, OSTreeSelectField } from '@ty-one-start/one-start';
 import { Space } from '@ty/antd';
 import delay from 'delay';
 import React, { useState } from 'react';
-import type { OSSelectFieldLabelValueType } from '../../typings';
+import type { OSSelectFieldLabelValueType } from '@ty-one-start/typings';
 
 export default () => {
   const [value, setValue] = useState<OSTreeSelectFieldValueType>();

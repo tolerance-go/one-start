@@ -2,7 +2,7 @@ import type { PaginationProps } from '@ty/antd';
 import { Pagination } from '@ty/antd';
 import { useMemo } from 'react';
 import type { RequestDataSourceActions } from './typings';
-import type { OSGridType } from '../../typings';
+import type { OSGridType } from '@ty-one-start/typings';
 
 export const usePagination = ({
   pagination,

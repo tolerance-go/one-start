@@ -10,14 +10,14 @@ import type {
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
   SettingsDataNode,
-} from '../../../../../typings';
+} from '../../../@ty-one-start/typings';
 import { useActionsRef } from '../../../../../components/hooks/use-actions-ref';
 import { mapTreeNode } from '../../../../../components/utils/tree-utils';
 import { useClsPrefix } from '../../../../../components/utils/use-cls-prefix';
 import type {
   ColumnsSettingsActions,
   OSTableFormFieldItemWithStaticPureConfigsWithChildren,
-} from '../../../typings';
+} from '../@ty-one-start/typings';
 import { getKeyIndexId } from '../../../utils';
 import { ImmediateLoadingButton } from './components/immediate-loading-button';
 import { TreeNodeActions } from './components/tree-node-actions';

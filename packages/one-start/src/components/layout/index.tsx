@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import type { ReactGridLayoutProps, ResponsiveProps } from 'react-grid-layout';
 import GridLayout, { Responsive, WidthProvider } from 'react-grid-layout';
-import type { OSLayoutType } from '../../typings';
+import type { OSLayoutType } from '@ty-one-start/typings';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
 

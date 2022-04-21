@@ -1,5 +1,5 @@
 import React from 'react';
-import type { OSFormFieldItem, OSTableType, RequiredRecursion } from '../../../typings';
+import type { OSFormFieldItem, OSTableType, RequiredRecursion } from '../@ty-one-start/typings';
 import { DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW } from '../constants';
 
 const SearchPanel: React.ForwardRefRenderFunction<

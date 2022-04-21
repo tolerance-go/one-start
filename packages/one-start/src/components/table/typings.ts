@@ -8,7 +8,7 @@ import type {
   RecordType,
   RequestOptions,
   SettingsDataNode,
-} from '../../typings';
+} from '@ty-one-start/typings';
 
 export type OSAntdColumnExtra = {};
 

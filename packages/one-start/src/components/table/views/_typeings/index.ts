@@ -1,4 +1,4 @@
-import type { OSSelectFieldType } from '../../../../typings';
+import type { OSSelectFieldType } from '../../@ty-one-start/typings';
 
 export type SearchRequestOptionsMapColIdItemType = {
   dataIndexId: string;

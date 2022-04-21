@@ -7,7 +7,7 @@ import Mock, { mock, Random } from 'mockjs';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { OSTrigger, parseTableValue } from '../../components';
-import type { OSSourceTableType } from '../../typings';
+import type { OSSourceTableType } from '@ty-one-start/typings';
 
 const createRowData = () => {
   return Mock.mock({

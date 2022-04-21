@@ -2,8 +2,8 @@ import { Space, Typography } from '@ty/antd';
 import utl from 'lodash';
 import React, { useMemo, useState } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSGridAPI, OSGridType, RecordType, TableCoreAPI } from '../../typings';
-import type { RequiredRecursion } from '../../typings';
+import type { OSGridAPI, OSGridType, RecordType, TableCoreAPI } from '@ty-one-start/typings';
+import type { RequiredRecursion } from '@ty-one-start/typings';
 import type { SelectionsActions } from './typings';
 
 export const useSelection = ({

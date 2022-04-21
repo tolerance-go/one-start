@@ -1,4 +1,4 @@
-import type { RecordType } from '../../typings';
+import type { RecordType } from '@ty-one-start/typings';
 
 export type PartialRecursive<T> = {
   [P in keyof T]?: T[P] extends (infer U)[]

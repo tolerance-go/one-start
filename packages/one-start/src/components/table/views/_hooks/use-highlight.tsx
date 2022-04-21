@@ -1,7 +1,7 @@
 import { Badge, Space, Tooltip } from '@ty/antd';
 import { useMemo } from 'react';
-import type { OSTableType } from '../../../../typings';
-import type { RequiredRecursion } from '../../../../typings';
+import type { OSTableType } from '../../@ty-one-start/typings';
+import type { RequiredRecursion } from '../../@ty-one-start/typings';
 
 const badgeMeta = {
   warning: {

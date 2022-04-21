@@ -28,7 +28,7 @@ import type {
   RenderFieldOptions,
   RequiredRecursion,
   TableCoreAPI,
-} from '../../../../typings';
+} from '../../@ty-one-start/typings';
 import { mergeRuleToTooltip, normalizeTooltip } from '../../../../components/form-items/utils';
 import { useActionsRef } from '../../../../components/hooks/use-actions-ref';
 import { renderField } from '../../../../components/utils/render-field';
@@ -45,7 +45,7 @@ import type {
   OSTableFormFieldItemWithStaticPureConfigsWithChildren,
   RequestDataSourceActions,
   SearchFormAPI,
-} from '../../typings';
+} from '@ty-one-start/typings';
 import { getDataIndexId, getKeyIndexId, runTableSettings } from '../../utils';
 import { getColEditable } from '../../utils/get-col-editable';
 import type { SearchRequestOptionsMapColIdType } from '../_typeings';

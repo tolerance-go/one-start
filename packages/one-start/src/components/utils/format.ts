@@ -1,4 +1,4 @@
-import type { OSDigitFieldValueType } from '../../typings';
+import type { OSDigitFieldValueType } from '@ty-one-start/typings';
 
 export const formatter = (value?: OSDigitFieldValueType) =>
   value == null ? '' : `${value}`.replace(/(?<!\.\d*)\B(?=(\d{3})+(?!\d))/g, ',');

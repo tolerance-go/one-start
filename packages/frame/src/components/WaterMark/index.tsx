@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ConfigProvider } from '@ty/antd';
 import classNames from 'classnames';
-import type { WaterMarkProps } from '../../typings';
+import type { WaterMarkProps } from '@ty-one-start/typings';
 
 /**
  * 返回当前显示设备的物理像素分辨率与CSS像素分辨率之比

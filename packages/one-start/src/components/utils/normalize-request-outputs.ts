@@ -1,4 +1,4 @@
-import type { RequestOutputs } from '../../typings';
+import type { RequestOutputs } from '@ty-one-start/typings';
 
 export const normalizeRequestOutputs = <T extends any>(
   data: RequestOutputs<T> | boolean | void,

@@ -38,6 +38,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@ty-one-start/tables": "0.0.0",
     "@ag-grid-community/react": "26.1.0",
     "@ag-grid-enterprise/all-modules": "26.1.0",
     "@ag-grid-enterprise/core": "26.1.0",

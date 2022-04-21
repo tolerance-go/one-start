@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 import { clearMenuItem } from '../../utils/utils';
-import type { GlobalHeaderProps, PrivateSiderMenuProps, SiderMenuProps } from '../../typings';
+import type { GlobalHeaderProps, PrivateSiderMenuProps, SiderMenuProps } from '@ty-one-start/typings';
 import {
   defaultRenderCollapsedButton,
   defaultRenderLogo,

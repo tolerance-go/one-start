@@ -16,7 +16,7 @@ import type {
   RecordType,
   RequiredRecursion,
   TableInlineAPI,
-} from '../../../../typings';
+} from '../../@ty-one-start/typings';
 
 export const useQuicklyBulkSelectViewsState = ({
   rowSelection,

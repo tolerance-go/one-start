@@ -7,12 +7,12 @@ import type {
   OSTableType,
   RecordType,
   RequiredRecursion,
-} from '../../../../typings';
-import OSForm from '../../../form';
-import { DEFAULT_LABEL_COL, DEFAULT_WRAPPER_COL } from '../../../form/constants';
+} from '../../@ty-one-start/typings';
+import OSForm from '../../@ty-one-start/forms';
+import { DEFAULT_LABEL_COL, DEFAULT_WRAPPER_COL } from '../../@ty-one-start/forms/constants';
 import { useActionsRef } from '../../../hooks/use-actions-ref';
 import { DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW } from '../../constants';
-import type { SearchFormAPI } from '../../typings';
+import type { SearchFormAPI } from '@ty-one-start/typings';
 import { SearchCollapse } from './search-collapse';
 import utl from 'lodash';
 

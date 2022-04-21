@@ -1,6 +1,6 @@
 import cls from 'classnames';
 import React from 'react';
-import type { OSTableFormFieldItemExtra, OSTableType, RecordType } from '../../../typings';
+import type { OSTableFormFieldItemExtra, OSTableType, RecordType } from '../@ty-one-start/typings';
 import { TableFormValueStateModel } from '../models/table-form-value-state';
 import './table-body-cell.less';
 

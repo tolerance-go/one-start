@@ -3,7 +3,7 @@
  */
 import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
 import React from 'react';
-import type { OSTableChangedValueType } from '../../typings';
+import type { OSTableChangedValueType } from '@ty-one-start/typings';
 
 export default () => {
   return (

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import omit from 'omit.js';
 import React, { useContext, useEffect, useMemo } from 'react';
 import RouteContext from '../../RouteContext';
-import type { FooterToolbarProps } from '../../typings';
+import type { FooterToolbarProps } from '@ty-one-start/typings';
 import './index.less';
 
 const FooterToolbar: React.FC<FooterToolbarProps> = (props) => {

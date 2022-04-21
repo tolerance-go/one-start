@@ -1,5 +1,5 @@
 import React from 'react';
-import type { OSCore, OSFormFieldItems, RenderFieldMethodOptions } from '../../typings';
+import type { OSCore, OSFormFieldItems, RenderFieldMethodOptions } from '@ty-one-start/typings';
 import OSAtomField from '../fields/atom';
 import { renderFieldBase } from './render-field-base';
 

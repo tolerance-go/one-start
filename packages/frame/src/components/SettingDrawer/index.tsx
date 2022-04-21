@@ -13,7 +13,7 @@ import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import React, { useEffect, useRef, useState } from 'react';
 import defaultSettings from '../../defaultSettings';
 import { getLanguage } from '../../locales';
-import type { BodyProps, MergerSettingsType, ProSettings, SettingDrawerProps } from '../../typings';
+import type { BodyProps, MergerSettingsType, ProSettings, SettingDrawerProps } from '@ty-one-start/typings';
 import { genStringToTheme } from '../../utils/utils';
 import BlockCheckbox from './BlockCheckbox';
 import LayoutSetting, { renderLayoutSettingItem } from './LayoutChange';

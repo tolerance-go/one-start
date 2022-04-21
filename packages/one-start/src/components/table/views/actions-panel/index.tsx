@@ -5,7 +5,7 @@ import type {
   OSTableAPI,
   OSTableType,
   RequiredRecursion,
-} from '../../../../typings';
+} from '../../@ty-one-start/typings';
 import { DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW } from '../../constants';
 
 const CoreActionsPanel: React.ForwardRefRenderFunction<

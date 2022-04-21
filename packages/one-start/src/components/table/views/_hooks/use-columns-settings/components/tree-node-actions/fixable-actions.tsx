@@ -8,7 +8,7 @@ import utl from 'lodash';
 import type { FixedType } from 'rc-table/lib/interface';
 import React from 'react';
 import { findTreeNodeMeta } from '../../../../../../../components/utils/tree-utils';
-import type { SettingsDataNode } from '../../../../../../../typings';
+import type { SettingsDataNode } from '../../../../../@ty-one-start/typings';
 import { Space } from '@ty/antd';
 
 const cancelEventDefaults = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {

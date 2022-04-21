@@ -5,7 +5,7 @@ import type {
   OSFormFieldItemSettingsFnOption,
   OSTableFormFieldItemSettingsFnOption,
   OSFormFieldItemWithStaticPureConfigs,
-} from '../../../typings';
+} from '../@ty-one-start/typings';
 import { normalizeDataIndex } from '../../utils/normalize-data-index';
 
 export const getNamePathId = (

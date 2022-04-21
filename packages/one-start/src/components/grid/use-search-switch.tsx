@@ -3,7 +3,7 @@ import { Button, Space } from '@ty/antd';
 import type { MutableRefObject } from 'react';
 import { useCallback, useEffect } from 'react';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { TableCoreAPI } from '../../typings';
+import type { TableCoreAPI } from '@ty-one-start/typings';
 import { eventNames, searchFixedIconCls } from './constants';
 import type { RequestDataSourceActions } from './typings';
 

@@ -1,6 +1,6 @@
 import utl from 'lodash';
 import type { FieldError } from 'rc-field-form/lib/interface';
-import type { RecordType } from '../../typings';
+import type { RecordType } from '@ty-one-start/typings';
 
 export const tableCellErrorValidate = ({
   errorFields,

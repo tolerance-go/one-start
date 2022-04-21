@@ -1,7 +1,7 @@
 import type { TableProps } from '@ty/antd';
 import type React from 'react';
 import { useMemo } from 'react';
-import type { OSTableType, RecordType, RequiredRecursion } from '../../../../typings';
+import type { OSTableType, RecordType, RequiredRecursion } from '../../@ty-one-start/typings';
 
 export const useAntdRowSelectionConfigs = ({
   bulkOperationViewDom,

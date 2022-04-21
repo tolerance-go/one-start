@@ -1,9 +1,9 @@
 import qs from 'qs';
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import store from 'store2';
-import OSForm from '../form';
+import {OSForm} from '@ty-one-start/forms';
 import { useActionsRef } from '../hooks/use-actions-ref';
-import type { OSFormAPI, OSFormFieldItems, OSTableType, RecordType } from '../../typings';
+import type { OSFormAPI, OSFormFieldItems, OSTableType, RecordType } from '@ty-one-start/typings';
 import {
   DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW,
   searchFormVisibleLocalField,

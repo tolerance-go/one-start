@@ -1,4 +1,4 @@
-import type { RecordType } from '../../typings';
+import type { RecordType } from '@ty-one-start/typings';
 import qs from 'qs';
 
 export const unstateHistory = {

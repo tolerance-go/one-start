@@ -16,10 +16,10 @@ import type {
   RequestOptions,
   TableCoreAPI,
   TableInlineAPI,
-} from '../../../../typings';
+} from '../../@ty-one-start/typings';
 import { SHOW_MORE_FIELD_KEY } from '../../components/search-form';
 import { DEFAULT_CURRENT, DEFAULT_PAGE_SIZE } from '../../constants';
-import type { RequestDataSourceActions, SearchFormAPI, TreeSpreadActions } from '../../typings';
+import type { RequestDataSourceActions, SearchFormAPI, TreeSpreadActions } from '@ty-one-start/typings';
 import type { SearchRequestOptionsMapColIdType } from '../_typeings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 

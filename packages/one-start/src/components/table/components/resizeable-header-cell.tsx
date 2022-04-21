@@ -2,7 +2,7 @@ import { useRef, useState, useMemo, useCallback } from 'react';
 import { useClsPrefix } from '../../utils/use-cls-prefix';
 import utl from 'lodash';
 import cls from 'classnames';
-import type { TableCoreAPI } from '../../../typings';
+import type { TableCoreAPI } from '../@ty-one-start/typings';
 import { eventNames } from '../constants';
 
 export type ResizeableHeaderCellProps = {

@@ -1,4 +1,4 @@
-import type { OSFieldChangeEventType, OSFieldValueType } from '../../typings';
+import type { OSFieldChangeEventType, OSFieldValueType } from '@ty-one-start/typings';
 
 interface ChangeEvent {
   target: unknown;

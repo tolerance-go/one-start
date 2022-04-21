@@ -11,8 +11,8 @@ import type {
   OSTableFormFieldItems,
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
-} from '../../typings';
-import OSFormItemBase from '../form-items/form-item';
+} from '@ty-one-start/typings';
+import OSFormItemBase from '@ty-one-start/forms-items/form-item';
 import { normalizeDataIndex } from './normalize-data-index';
 import {
   pickFieldRequests,

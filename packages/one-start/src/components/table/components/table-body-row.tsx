@@ -1,4 +1,4 @@
-import type { OSTableType } from '../../../typings';
+import type { OSTableType } from '../@ty-one-start/typings';
 import cls from 'classnames';
 import React, { useMemo } from 'react';
 import { RowSelectionModel } from '../models/row-selection';

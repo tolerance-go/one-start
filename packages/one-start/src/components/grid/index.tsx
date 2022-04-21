@@ -32,7 +32,7 @@ import type {
   OSTableValueType,
   RecordType,
   TableCoreAPI,
-} from '../../typings';
+} from '@ty-one-start/typings';
 import { useClsPrefix } from '../utils/use-cls-prefix';
 import FieldRenderer from './components/field-renderer';
 import { AgGridLocalZhCN, searchHeadFormSwitchIsOpenMarkId } from './constants';

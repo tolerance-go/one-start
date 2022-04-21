@@ -10,7 +10,7 @@ import type {
   OSTableValueType,
   RecordType,
   TableCoreAPI,
-} from '../../../typings';
+} from '../@ty-one-start/typings';
 import { useActionsRef } from '../../hooks/use-actions-ref';
 import { convertTableDataSourceToFormValues } from '../utils/convert-table-data-source-to-form-values';
 import ReactDOM from 'react-dom';

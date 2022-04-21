@@ -42,7 +42,7 @@ import type {
   OSUploadFieldAPI,
   OSUploadFieldValueType,
   RenderFieldMethodOptions,
-} from '../../typings';
+} from '@ty-one-start/typings';
 import OSActionsField from '../fields/actions';
 import OSChainSelectField from '../fields/chain-select';
 import OSCustomField from '../fields/custom';

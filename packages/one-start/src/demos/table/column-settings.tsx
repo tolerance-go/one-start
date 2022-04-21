@@ -2,7 +2,7 @@ import { OSProviderWrapper, OSTable } from '@ty-one-start/one-start';
 import delay from 'delay';
 import Mock from 'mockjs';
 import React from 'react';
-import type { OSTableType } from '../../typings';
+import type { OSTableType } from '@ty-one-start/typings';
 
 export default () => {
   const percents = Array(30)

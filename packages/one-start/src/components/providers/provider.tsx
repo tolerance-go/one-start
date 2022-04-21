@@ -7,7 +7,7 @@ import OSLayoutModalFormField from '../fields/layout-modal-form';
 import OSLayoutTabsFormField from '../fields/layout-tabs-form';
 import OSFormField from '../fields/form';
 
-import type { RenderFieldOptions } from '../../typings';
+import type { RenderFieldOptions } from '@ty-one-start/typings';
 import { OSConfigProviderWrapper } from './config';
 import type { OSReferencesCollectorType } from './references';
 import OSReferencesCollectorProviderWrapper from './references';
@@ -22,11 +22,11 @@ import type {
   OSAttachmentTableFieldValueType,
   OSFormFieldAPI,
   OSFormFieldValueType,
-} from '../../typings';
-import OSDialog from '../dialog';
+} from '@ty-one-start/typings';
+import {OSDialog} from '@ty-one-start/dialogs';
 import { useRefsRef } from './references';
 import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
-import type { OSFieldValueType } from '../../typings/components/field';
+import type { OSFieldValueType } from '@ty-one-start/typings/components/field';
 
 export const globalRefKeys = {
   dialogs: {

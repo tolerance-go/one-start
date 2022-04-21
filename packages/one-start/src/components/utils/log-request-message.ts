@@ -1,5 +1,5 @@
 import { message } from '@ty/antd';
-import type { OSResMessage, RequestOutputs } from '../../typings';
+import type { OSResMessage, RequestOutputs } from '@ty-one-start/typings';
 
 export const logRequestMessage =
   <
