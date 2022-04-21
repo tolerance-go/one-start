@@ -108,6 +108,10 @@ tocMaxDepth: 5
 
 搜索表单是在 Form 的基础上进行的封装，支持 Form 大部分功能，比如可以通过 dependencies 配合函数 settings 实现字段之间的联动
 
+#### 支持搜索表单字段验证
+
+搜索表单可以设置定义验证规则，在搜索前如果验证失败会停止搜索
+
 <code src="../demos/table/search-form.tsx" />
 
 ### 支持操作区域自定义渲染

@@ -29,6 +29,8 @@ export type TreeSpreadActions = {
 
 export type SearchFormAPI = {
   formRef: React.MutableRefObject<OSFormAPI | null>;
+  isValidate: () => Promise<boolean>;
+  isExist: () => boolean;
   resetSearchForm: () => void;
   getSearchFormValues: () => RecordType | undefined;
   getSearchFormDataSource: () => RecordType | undefined;

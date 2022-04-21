@@ -167,6 +167,13 @@ export const useRequestDataSource = ({
   const requestTableDataSource = async (options: RequestOptions) => {
     if (!requestDataSource) return;
 
+    if (searchFormRef.current) {
+      if (searchFormRef.current.isExist()) {
+        const searchFormIsValidate = await searchFormRef.current.isValidate();
+        if (!searchFormIsValidate) return;
+      }
+    }
+
     if (loopRequest == null) {
       setLoading(true);
     }

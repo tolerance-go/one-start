@@ -76,6 +76,10 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 
 <code src="../demos/form/readonly.tsx" />
 
+### 支持表单验证方法
+
+<code src="../demos/form/form-validate.tsx" />
+
 ### 表单数据受控
 
 <code src="../demos/form/value-onchange.tsx" />

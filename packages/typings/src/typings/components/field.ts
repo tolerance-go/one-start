@@ -598,6 +598,7 @@ export interface OSDateFieldType extends OSField, OSFieldBaseConfigs<OSDateField
     disabledDate?: DatePickerProps['disabledDate'];
     showNow?: boolean;
     showTime?: SharedTimeProps<Moment> | boolean;
+    allowClear?: boolean;
   } & OSFieldBaseSettings;
 }
 
@@ -623,6 +624,7 @@ export interface OSDateRangeFieldType
     /** 日期格式化 */
     format?: string;
     disabledDate?: RangePickerDateProps<Moment>['disabledDate'];
+    allowClear?: boolean;
   } & OSFieldBaseSettings;
 }
 
@@ -653,28 +655,30 @@ export type OSAtomFieldValueType = OSBaseFieldValueType;
 export type OSAtomFieldChangedEvent = OSBaseFieldChangeEventType;
 
 export type OSAtomFieldAPI = OSBaseFieldAPI;
-export interface OSAtomFieldType
-  extends OSField<OSAtomFieldValueType, OSAtomFieldChangedEvent>,
+export interface OSAtomFieldType<
+  SelectExtra = Record<string, unknown>,
+  TreeSelectExtra = Record<string, unknown>,
+> extends OSField<OSAtomFieldValueType, OSAtomFieldChangedEvent>,
     OSFieldBaseConfigs<OSAtomFieldValueType> {
   type?: 'atom';
-  settings?: OSFieldItemWithStaticPureConfigs & OSFieldBaseSettings;
+  settings?: OSFieldItemWithStaticPureConfigs<SelectExtra, TreeSelectExtra> & OSFieldBaseSettings;
   options?: RenderFieldMethodOptions;
 }
 
 export type OSFieldType = OSBaseFieldType | OSAtomFieldType;
 
-export type OSFieldItemWithStaticPureConfigs =
+export type OSFieldItemWithStaticPureConfigs<SelectExtra, TreeSelectExtra> =
   | CreateStaticPureFieldItemConfigs<OSActionsFieldType>
-  | CreateStaticPureFieldItemConfigs<OSCustomFieldType>
   | CreateStaticPureFieldItemConfigs<OSDigitFieldType>
   | CreateStaticPureFieldItemConfigs<OSRelativeDayFieldType>
   | CreateStaticPureFieldItemConfigs<OSImageFieldType>
   | CreateStaticPureFieldItemConfigs<OSMoneyFieldType>
   | CreateStaticPureFieldItemConfigs<OSPercentFieldType>
-  | CreateStaticPureFieldItemConfigs<OSSelectFieldType>
-  | CreateStaticPureFieldItemConfigs<OSTreeSelectFieldType>
+  | CreateStaticPureFieldItemConfigs<OSSelectFieldType<OSSelectFieldValueType, SelectExtra>>
+  | CreateStaticPureFieldItemConfigs<
+      OSTreeSelectFieldType<OSTreeSelectFieldValueType, TreeSelectExtra>
+    >
   | CreateStaticPureFieldItemConfigs<OSChainSelectFieldType>
-  | CreateStaticPureFieldItemConfigs<OSSelectFieldType>
   | CreateStaticPureFieldItemConfigs<OSTextareaFieldType>
   | CreateStaticPureFieldItemConfigs<OSOptionFieldType>
   | CreateStaticPureFieldItemConfigs<OSTextFieldType>
@@ -685,11 +689,7 @@ export type OSFieldItemWithStaticPureConfigs =
   | CreateStaticPureFieldItemConfigs<OSDateRangeFieldType>
   | CreateStaticPureFieldItemConfigs<OSSwitchFieldType>
   | CreateStaticPureFieldItemConfigs<OSTimeLagFieldType>
-  | CreateStaticPureFieldItemConfigs<OSSwitchFieldType>
   | CreateStaticPureFieldItemConfigs<OSCustomFieldType>
-  | CreateStaticPureFieldItemConfigs<OSChainSelectFieldType>
-  | CreateStaticPureFieldItemConfigs<OSRadioFieldType>
-  | CreateStaticPureFieldItemConfigs<OSPlaceholderInputFieldType>
   | CreateStaticPureFieldItemConfigs<OSUploadFieldType>;
 
 export type OSBaseFieldType =

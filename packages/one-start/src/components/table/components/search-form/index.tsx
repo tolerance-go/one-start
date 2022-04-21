@@ -149,12 +149,19 @@ const SearchForm: React.ForwardRefRenderFunction<
 
   const getSearchFormDataSource = () => formRef.current?.getDataSource();
 
+  const isExist = () => !!formRef.current;
+
+  const isValidate = () =>
+    isExist() ? formRef.current!.validate().then(({ error }) => !error) : Promise.resolve(false);
+
   useImperativeHandle(ref, () => ({
     formRef,
     resetSearchForm,
     setSearchFormValues,
     getSearchFormValues,
     getSearchFormDataSource,
+    isValidate,
+    isExist,
   }));
 
   const inlineAPIRef = useActionsRef({

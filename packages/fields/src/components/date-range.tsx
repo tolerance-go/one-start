@@ -31,6 +31,7 @@ const OSDateRangeField: React.ForwardRefRenderFunction<OSDateRangeFieldAPI, OSDa
       autoFocus,
       format = showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD',
       disabledDate,
+      allowClear = true,
     } = settings ?? {};
     const inlineRef = useRef<OSDateRangeFieldAPI>(null);
     const [open, setOpen] = useState<boolean>();
@@ -94,6 +95,7 @@ const OSDateRangeField: React.ForwardRefRenderFunction<OSDateRangeFieldAPI, OSDa
 
       return (
         <DatePicker.RangePicker
+          allowClear={allowClear}
           showTime={showTime as RangePickerDateProps<Moment>['showTime']}
           open={open}
           onOpenChange={setOpen}

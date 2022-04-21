@@ -84,7 +84,11 @@ group:
   - 支持定义时分秒
 
 - field-atom
+
   - 支持自定义类型
+
+- field-select
+  - 支持显示枚举展示状态
 
 ### layout-form
 
@@ -94,7 +98,9 @@ group:
 
 ### form
 
-#### form-item
+- 支持表单验证方法
+
+### form-item
 
 - 支持显示 label
   - [当宽度不够时，显示省略](http://localhost:8001/components/forms/form#form-form-item-label-ellipsis)
@@ -116,6 +122,7 @@ group:
   - 支持单独定义搜索字段，区分表格列
   - 支持列头独立搜索切换
   - 支持定时器查询
+  - [支持搜索表单字段验证](/components/tables/table#%E6%94%AF%E6%8C%81%E6%90%9C%E7%B4%A2%E8%A1%A8%E5%8D%95%E5%AD%97%E6%AE%B5%E9%AA%8C%E8%AF%81)
 
 - 数据视图
 
@@ -221,3 +228,7 @@ group:
     - 单元格验证
     - 分页编辑
   - 删除
+
+### attachment-table
+
+- 支持数据结构中包含文件对象

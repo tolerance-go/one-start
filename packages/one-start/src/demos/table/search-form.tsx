@@ -42,11 +42,6 @@ export default () => {
       settings: {
         title: 'money',
         dataIndex: 'money',
-        rules: [
-          {
-            required: true,
-          },
-        ],
         search: true,
         sorter: true,
         id: 't_money',
@@ -105,11 +100,6 @@ export default () => {
             title: 'digit',
             dataIndex: 'digit',
             search: true,
-            rules: [
-              {
-                required: true,
-              },
-            ],
           },
         },
         {

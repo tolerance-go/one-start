@@ -30,17 +30,20 @@ const SearchSwitcher: React.ForwardRefRenderFunction<
       onClick={() => {
         searchFormRef.current?.resetSearchForm();
 
-        if (isExistPropsRequestVisualDataSource) {
-          requestDataSourceActionsRef.current?.requestVisualDataSource();
-        } else {
-          requestDataSourceActionsRef.current?.requestDataSource({
-            current: 1,
-            manualInitiate: true,
-            mode: 'reset',
-          });
-        }
+        /** reset 后立即 validate 会失效，所以添加到 loop 里面 */
+        setTimeout(() => {
+          if (isExistPropsRequestVisualDataSource) {
+            requestDataSourceActionsRef.current?.requestVisualDataSource();
+          } else {
+            requestDataSourceActionsRef.current?.requestDataSource({
+              current: 1,
+              manualInitiate: true,
+              mode: 'reset',
+            });
+          }
 
-        tableCoreActionsRef.current.emit(eventNames.onSearchFormReset);
+          tableCoreActionsRef.current.emit(eventNames.onSearchFormReset);
+        });
       }}
     >
       重置

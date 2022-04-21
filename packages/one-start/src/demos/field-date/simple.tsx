@@ -8,7 +8,14 @@ export default () => {
   return (
     <OSProviderWrapper>
       <Space split="|">
-        <OSDateField value={value} onChange={setValue} mode="edit"></OSDateField>
+        <OSDateField
+          value={value}
+          onChange={setValue}
+          mode="edit"
+          settings={{
+            allowClear: false,
+          }}
+        ></OSDateField>
         <OSDateField value={value} mode="read"></OSDateField>
       </Space>
     </OSProviderWrapper>

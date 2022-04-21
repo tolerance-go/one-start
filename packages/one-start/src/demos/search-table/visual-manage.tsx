@@ -98,11 +98,6 @@ export default (props: {
               settings: {
                 title: 'money',
                 dataIndex: 'money',
-                rules: [
-                  {
-                    required: true,
-                  },
-                ],
                 search: true,
                 sorter: true,
               },
@@ -143,11 +138,6 @@ export default (props: {
                     title: 'digit',
                     dataIndex: 'digit',
                     search: true,
-                    rules: [
-                      {
-                        required: true,
-                      },
-                    ],
                   },
                 },
                 {
@@ -199,7 +189,6 @@ export default (props: {
                   },
                   requests: {
                     requestOptions: async () => {
-                      await delay(1000);
                       return Promise.resolve({
                         error: false,
                         data: [

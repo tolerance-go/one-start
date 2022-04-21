@@ -273,7 +273,12 @@ export const CategorizableView = ({
         </Skeleton>
       </Col>
       <Col span={tableSpan}>
-        {customTableDom || (
+        {customTableDom}
+        <div
+          style={{
+            display: customTableDom ? 'none' : 'block',
+          }}
+        >
           <CategorizableRenderModel.Provider value={categorizableRenderModel}>
             <BaseTable
               {...tableProps}
@@ -288,7 +293,7 @@ export const CategorizableView = ({
               }}
             />
           </CategorizableRenderModel.Provider>
-        )}
+        </div>
       </Col>
     </Row>
   );

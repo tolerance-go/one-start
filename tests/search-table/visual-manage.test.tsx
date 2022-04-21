@@ -16,7 +16,7 @@ describe('search-table', () => {
       | OSTableRequestDataSourceParams<OSCustomFieldStaticPureTableFormFieldItemConfigsType>;
 
     const html = mount(<Demo onRequestDataSource={(opt) => (options = opt)} />);
-    await waitForComponentToPaint(html, 2000);
+    await waitForComponentToPaint(html, 1500);
 
     act(() => {
       html.find('li.ty-ant-pagination-next > button').simulate('click');

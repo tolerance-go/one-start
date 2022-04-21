@@ -3,13 +3,13 @@ nav:
   title: components
   order: 1
   path: /components
-title: os-field-select
+title: field-select
 group:
   title: fields
   path: /components/fields
 ---
 
-# os-field-select
+# field-select
 
 ## 代码演示
 
@@ -73,6 +73,10 @@ group:
 注意：当 `options` 更新时，如果 `value` 不在选项范围内，注意添加验证通知用户
 
 <code src="../demos/field-select/form-async.tsx" />
+
+### 支持显示枚举展示状态
+
+<code src="../demos/field-select/readonly-enums.tsx" />
 
 <code src="../demos/field-select/dev.tsx" />
 

@@ -32,6 +32,7 @@ const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldTyp
     id,
     showNow,
     showTime,
+    allowClear = true,
   } = settings ?? {};
   const [open, setOpen] = useState<boolean>();
 
@@ -79,6 +80,7 @@ const OSDateField: React.ForwardRefRenderFunction<OSDateFieldAPI, OSDateFieldTyp
     return (
       <DatePicker
         id={id}
+        allowClear={allowClear}
         showNow={showNow}
         showTime={showTime}
         open={open}
