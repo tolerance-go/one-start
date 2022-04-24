@@ -17,8 +17,8 @@ group:
 
 <code src="../demos/field-chain-select/simple.tsx" />
 
-<API exports='["Settings", "Requests"]' src="../components/fields/chain-select.tsx"></API>
+<!-- <API exports='["Settings", "Requests"]' src="../components/fields/chain-select.tsx"></API> -->
 
 ### API
 
-<API exports='["SelectBaseAPI"]' src="../components/fields/chain-select.tsx"></API>
+<!-- <API exports='["SelectBaseAPI"]' src="../components/fields/chain-select.tsx"></API> -->

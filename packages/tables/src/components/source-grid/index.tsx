@@ -1,11 +1,11 @@
 import { Col, Row } from '@ty/antd';
 import React, { useContext, useState, useImperativeHandle, useRef } from 'react';
-import {OSDialog} from '@ty-one-start/dialogs';
-import {OSForm} from '@ty-one-start/forms';
-import { OSReferencesGlobalContext } from '../providers/provider';
-import OSGrid from '../grid';
+import { OSDialog } from '@ty-one-start/dialogs';
+import { OSForm } from '@ty-one-start/forms';
+import { OSReferencesGlobalContext } from '@ty-one-start/provider';
+import { OSGrid } from '@ty-one-start/tables';
 import OSEmpty from '../table/components/empty';
-import OSTrigger from '../trigger';
+import { OSTrigger } from '@ty-one-start/triggers';
 import type {
   OSDialogDrawerAPI,
   OSFormAPI,
@@ -16,8 +16,8 @@ import type {
   RecordType,
   OSGridType,
 } from '@ty-one-start/typings';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
 import type { RequiredRecursion } from '@ty-one-start/typings';
 
 const OSSourceGrid: React.ForwardRefRenderFunction<OSSourceGridAPI, OSSourceGridType> = (

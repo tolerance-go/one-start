@@ -7,7 +7,7 @@ import type {
   OSSearchTableType,
   OSSourceTableAPI,
 } from '@ty-one-start/typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useClsPrefix } from '@ty-one-start/utils';
 import { useSearchTemplate } from './use-search-template';
 import { useSearchSnapshotState } from './use-search-snapshot-state';
 

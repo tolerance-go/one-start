@@ -5,7 +5,7 @@ import cls from 'classnames';
 import numeral from 'numeral';
 import React, { useContext } from 'react';
 import type { OSDigitFieldBaseAPI, OSDigitFieldBaseType } from '@ty-one-start/typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useClsPrefix } from '@ty-one-start/utils';
 
 const OSDigitFieldBase: React.ForwardRefRenderFunction<OSDigitFieldBaseAPI, OSDigitFieldBaseType> =
   (props, ref) => {

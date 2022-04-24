@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { useEffect } from 'react';
 import React, { useContext, useImperativeHandle, useRef } from 'react';
-import { OSReferencesCollectorDispatchContext } from '../providers/references';
+import { OSReferencesCollectorDispatchContext } from '@ty-one-start/provider';
 import type {
   OSDialogAPI,
   OSDialogMessageAPI,

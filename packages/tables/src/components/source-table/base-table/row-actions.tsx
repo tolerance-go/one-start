@@ -8,11 +8,11 @@ import type {
   OSTriggerType,
   RecordType,
   OSSourceTableType,
-} from '../@ty-one-start/typings';
-import OSDialog from '../../dialog';
-import OSTrigger from '../../trigger';
+} from '@ty-one-start/typings';
+import { OSDialog } from '@ty-one-start/dialogs';
+import { OSTrigger } from '@ty-one-start/triggers';
 import { renderViewForm } from '../render-view-form';
-import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 import type { RowMeta } from '../typings';
 import { renderEditForm } from '../render-edit-form';
 

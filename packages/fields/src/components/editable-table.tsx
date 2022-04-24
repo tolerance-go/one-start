@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
-import OSEditableTable from '../editable-table';
-import { FormInstanceContext } from '../providers/form-context';
+import { OSEditableTable } from '@ty-one-start/tables';
+import { FormInstanceContext } from '@ty-one-start/provider';
 import type {
   OSEditableTableAPI,
   OSEditableTableFieldAPI,
@@ -9,7 +9,7 @@ import type {
   OSTableType,
   RequiredRecursion,
 } from '@ty-one-start/typings';
-import { parseTableValue } from '../utils/parse-table-value';
+import { parseTableValue } from '@ty-one-start/utils';
 
 const OSEditableTableField: React.ForwardRefRenderFunction<
   OSEditableTableFieldAPI,

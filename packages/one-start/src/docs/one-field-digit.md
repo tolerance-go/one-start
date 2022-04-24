@@ -31,7 +31,7 @@ group:
 
 <code src="../demos/field-digit/empty.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/digit.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/digit.tsx"></API> -->
 
 ### API
 

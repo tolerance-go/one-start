@@ -1,11 +1,11 @@
 import { Col, Row, Typography } from '@ty/antd';
 import utl from 'lodash';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import {OSDialog} from '@ty-one-start/dialogs';
-import {OSForm} from '@ty-one-start/forms';
+import { OSDialog } from '@ty-one-start/dialogs';
+import { OSForm } from '@ty-one-start/forms';
 import OSSourceGrid from '../source-grid';
 import { eventNames } from '../table/constants';
-import OSTrigger from '../trigger';
+import { OSTrigger } from '@ty-one-start/triggers';
 import type {
   OSDialogAPI,
   OSFormAPI,
@@ -14,8 +14,8 @@ import type {
   OSSearchGridType,
   OSSourceGridAPI,
 } from '@ty-one-start/typings';
-import { logRequestMessage } from '../utils/log-request-message';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { logRequestMessage } from '@ty-one-start/utils';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 import type { RequiredRecursion } from '@ty-one-start/typings';
 
 export const useSearchTemplate = ({

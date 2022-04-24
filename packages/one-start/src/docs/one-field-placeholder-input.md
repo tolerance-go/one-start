@@ -28,4 +28,4 @@ group:
 
 <code src="../demos/field-placeholder-input/cursor-control.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/placeholder-input.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/placeholder-input.tsx"></API> -->

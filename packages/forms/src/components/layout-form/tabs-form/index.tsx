@@ -5,18 +5,18 @@ import cls from 'classnames';
 import EventEmitter from 'eventemitter3';
 import invariant from 'invariant';
 import utl from 'lodash';
-import type { NamePath } from 'rc-field-form/lib/interface';
+import type { NamePath } from 'rc-field-form/es/interface';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type {
   OSFormAPI,
   OSLayoutTabsFormAPI,
   OSLayoutTabsFormType,
   RecordType,
-} from '../@ty-one-start/typings';
-import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
-import { useClsPrefix } from '../../utils/use-cls-prefix';
-import { useLoading } from '../../utils/use-loading';
-import { useUpdateEffect } from '../../utils/use-update-effect';
+} from '@ty-one-start/typings';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
+import { useLoading } from '@ty-one-start/utils';
+import { useUpdateEffect } from '@ty-one-start/utils';
 import { LayoutTabsFormEventBusContext } from '../layout-form-event-context';
 import { FormItem } from './form-item';
 

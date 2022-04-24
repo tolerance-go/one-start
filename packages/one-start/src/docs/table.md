@@ -268,7 +268,7 @@ editableRowKeys 存在的时候，将和 `fieldItems[].editable` 共同决定单
 
 <code src="../demos/__cases__/form/form-item-warning-not-close.tsx" />
 
-<API exports='["TableSettings", "TableAPI"]' src="../components/table/views/index.tsx"></API>
+<!-- <API exports='["TableSettings", "TableAPI"]' src="../components/table/views/index.tsx"></API> -->
 
 ### TableFormFieldItems
 
@@ -280,10 +280,10 @@ TableFormGroupItem 存在 children 字段，类型和 fieldItems 相同
 
 fieldItem 每一项都可能为函数形式，表示联动，入参为 `OSTableFormFieldItemSettingsFnOption`，注意必须指定 `dependencies`
 
-<API exports='["TableFormFieldItemSettingsFnOption", "TableFormFieldItemExtraSettings", "TableFormGroupItem"]' src="../components/table/views/index.tsx"></API>
+<!-- <API exports='["TableFormFieldItemSettingsFnOption", "TableFormFieldItemExtraSettings", "TableFormGroupItem"]' src="../components/table/views/index.tsx"></API> -->
 
-<API exports='["FormItemDependenciesConfigs"]' src="../components/form/index.tsx"></API>
+<!-- <API exports='["FormItemDependenciesConfigs"]' src="../components/form/index.tsx"></API> -->
 
-<API exports='["FormItemTypeSettings"]' src="../components/form/index.tsx"></API>
+<!-- <API exports='["FormItemTypeSettings"]' src="../components/form/index.tsx"></API> -->
 
-<API exports='["FormItemTypeRequests"]' src="../components/form/index.tsx"></API>
+<!-- <API exports='["FormItemTypeRequests"]' src="../components/form/index.tsx"></API> -->

@@ -2,7 +2,7 @@ import { ConfigProvider } from '@ty/antd';
 import classNames from 'classnames';
 import React, { useContext } from 'react';
 import RouteContext from '../../RouteContext';
-import { GridContentProps } from '@ty-one-start/typings';
+import type { GridContentProps } from '../../typings';
 import './GridContent.less';
 
 /**

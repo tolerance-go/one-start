@@ -3,7 +3,7 @@ import { Affix, Breadcrumb, ConfigProvider, PageHeader, Tabs } from '@ty/antd';
 import classNames from 'classnames';
 import React, { useContext, useMemo } from 'react';
 import RouteContext from '../../RouteContext';
-import type { PageContainerProps } from '@ty-one-start/typings';
+import type { PageContainerProps } from '../../typings';
 import FooterToolbar from '../FooterToolbar';
 import GridContent from '../GridContent';
 import PageLoading from '../PageLoading';

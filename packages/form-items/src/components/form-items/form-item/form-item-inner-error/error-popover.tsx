@@ -2,7 +2,7 @@
 import type { PopoverProps } from '@ty/antd';
 import { Col, Popover, Row } from '@ty/antd';
 import React from 'react';
-import CloseIconAction from '../../../utils/components/close-icon-action';
+import { CloseIconAction } from '@ty-one-start/utils';
 
 export const ErrorPopover: React.FC<{
   clsPrefix: string;

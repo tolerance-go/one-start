@@ -1,4 +1,4 @@
-import type { OSRule } from '../@ty-one-start/typings';
+import type { OSRule } from '@ty-one-start/typings';
 
 export const getRuleTooltip = (rule: OSRule) => {
   if (rule.ruleType === 'digital-accuracy') {

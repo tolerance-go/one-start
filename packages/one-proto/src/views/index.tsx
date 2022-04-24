@@ -1,6 +1,6 @@
 import { OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
 import React, { useState } from 'react';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useClsPrefix } from '@ty-one-start/utils';
 import PlaygroundSettings from './playground-settings';
 import { NodeDataType } from './typings';
 import { renderNode } from './utils/render-node';

@@ -2,7 +2,7 @@ import cls from 'classnames';
 import React, { useImperativeHandle, useRef } from 'react';
 import OSSourceGrid from '../source-grid';
 import type { OSSearchGridAPI, OSSearchGridType, OSSourceGridAPI } from '@ty-one-start/typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useClsPrefix } from '@ty-one-start/utils';
 import { useSearchTemplate } from './use-search-template';
 
 const OSSearchGrid: React.ForwardRefRenderFunction<OSSearchGridAPI, OSSearchGridType> = (

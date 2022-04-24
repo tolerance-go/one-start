@@ -17,7 +17,7 @@ group:
 
 <code src="../demos/field-switch/simple.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/switch.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/switch.tsx"></API> -->
 
 ### API
 

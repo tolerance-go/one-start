@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { OSSourceTableAPI } from '@ty-one-start/typings';
-import { useActionsRef } from '../hooks/use-actions-ref';
+import { useActionsRef } from '@ty-one-start/utils';
 import { eventNames } from '../table/constants';
 
 export const useSearchSnapshotState = ({

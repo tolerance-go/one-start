@@ -15,7 +15,7 @@
   },
   "ignoreUsedPkgsCheck": [
     "rc-select/lib/interface/generator",
-    "rc-field-form/lib/interface",
+    "@ty/antd/lib/form",
     "path",
     "fs",
     "(.*)"

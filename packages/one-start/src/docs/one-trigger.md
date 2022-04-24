@@ -65,6 +65,6 @@ group:
 
 <code src="../demos/trigger/upload.tsx" />
 
-<API exports='["TriggerButtonSettings", "TriggerButtonAPI", "TriggerButtonRequests"]' src="../components/trigger/index.tsx"></API>
+<!-- <API exports='["TriggerButtonSettings", "TriggerButtonAPI", "TriggerButtonRequests"]' src="../components/trigger/index.tsx"></API> -->
 
-<API exports='["TriggerDropdownSettings", "TriggerDropdownAPI", "TriggerDropdownRequests"]' src="../components/trigger/index.tsx"></API>
+<!-- <API exports='["TriggerDropdownSettings", "TriggerDropdownAPI", "TriggerDropdownRequests"]' src="../components/trigger/index.tsx"></API> -->

@@ -3,9 +3,9 @@ import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import React, { useContext, useState } from 'react';
 import type { OSTriggerIconAPI, OSTriggerIconType } from '@ty-one-start/typings';
 import { OSDialogAPIContext, OSDialogTypeContext } from '@ty-one-start/dialogs';
-import { useActionsRef } from '../hooks/use-actions-ref';
-import { logRequestMessage } from '../utils/log-request-message';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { useActionsRef } from '@ty-one-start/utils';
+import { logRequestMessage } from '@ty-one-start/utils';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 
 const OSTriggerIcon: React.ForwardRefRenderFunction<OSTriggerIconAPI, OSTriggerIconType> = (
   props,

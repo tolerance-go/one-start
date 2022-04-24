@@ -23,11 +23,11 @@ import type {
   OSSelectFieldValueType,
   OSSelectOptionItem,
   RecordType,
-} from '../@ty-one-start/typings';
-import { ExtraValueTypesContext } from '../../providers/extra-value-types';
-import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
-import { useClsPrefix } from '../../utils/use-cls-prefix';
-import { useUpdateEffect } from '../../utils/use-update-effect';
+} from '@ty-one-start/typings';
+import { ExtraValueTypesContext } from '@ty-one-start/provider';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
+import { useUpdateEffect } from '@ty-one-start/utils';
 import { ShowInfoLabel } from './show-info-label';
 
 const OSSelectField: React.ForwardRefRenderFunction<OSSelectFieldAPI, OSSelectFieldType> = (

@@ -4,7 +4,7 @@ import type { NamePath } from '@ty/antd/lib/form/interface';
 import type { ColumnType } from '@ty/antd/lib/table';
 import type { SorterResult } from '@ty/antd/lib/table/interface';
 import type EventEmitter from 'eventemitter3';
-import type { FieldError, ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import type { FieldError, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import type { CustomizeComponent, FixedType } from 'rc-table/lib/interface';
 import type React from 'react';
 import type { RecordType } from '../core';

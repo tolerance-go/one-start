@@ -29,7 +29,7 @@ group:
 
 <code src="../demos/field-date/show-time.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/date.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/date.tsx"></API> -->
 
 ### API
 

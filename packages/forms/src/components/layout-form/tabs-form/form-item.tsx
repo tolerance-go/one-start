@@ -1,4 +1,4 @@
-import type { OSFormAPI, OSFormType } from '../@ty-one-start/typings';
+import type { OSFormAPI, OSFormType } from '@ty-one-start/typings';
 import React, { useMemo } from 'react';
 import OSForm from '../../form';
 import { LayoutTabsFormTabMetaContext } from '../layout-form-event-context';

@@ -1,6 +1,10 @@
 import React, { useImperativeHandle, useRef, useState } from 'react';
-import type { OSSourceTableAPI, OSSourceTableSelfType, OSSourceTableType } from '@ty-one-start/typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import type {
+  OSSourceTableAPI,
+  OSSourceTableSelfType,
+  OSSourceTableType,
+} from '@ty-one-start/typings';
+import { useClsPrefix } from '@ty-one-start/utils';
 import BaseTable from './base-table';
 import { CategorizableView } from './categorizable-view';
 import { PanelView } from './panel-view';

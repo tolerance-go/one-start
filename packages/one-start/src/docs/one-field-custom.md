@@ -19,4 +19,4 @@ group:
 
 <code src="../demos/field-custom/simple.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/custom.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/custom.tsx"></API> -->

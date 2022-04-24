@@ -33,7 +33,7 @@ group:
 
 <code src="../demos/field-date-range/show-time.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/date-range.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/date-range.tsx"></API> -->
 
 ### API
 

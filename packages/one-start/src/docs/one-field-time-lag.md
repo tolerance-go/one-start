@@ -17,7 +17,7 @@ group:
 
 <code src="../demos/field-time-lag/index.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/time-lag.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/time-lag.tsx"></API> -->
 
 ### API
 

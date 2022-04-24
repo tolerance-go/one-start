@@ -11,7 +11,7 @@ import type {
   OSDateRangeFieldType,
   OSDateRangeFieldValueType,
 } from '@ty-one-start/typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useClsPrefix } from '@ty-one-start/utils';
 
 const OSDateRangeField: React.ForwardRefRenderFunction<OSDateRangeFieldAPI, OSDateRangeFieldType> =
   (props, ref) => {

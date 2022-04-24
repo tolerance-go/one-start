@@ -23,4 +23,4 @@ group:
 
 所有接口继承都自 OSTable
 
-<API exports='["Settings", "Requests"]' src="../components/attachment-table/index.tsx"></API>
+<!-- <API exports='["Settings", "Requests"]' src="../components/attachment-table/index.tsx"></API> -->

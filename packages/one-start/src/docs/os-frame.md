@@ -25,4 +25,4 @@ group:
 
 <code src="../demos/frame/async-nav-data.tsx" />
 
-<API exports='["Settings", "Requests"]' src="../components/frame/index.tsx"></API>
+<!-- <API exports='["Settings", "Requests"]' src="../components/frame/index.tsx"></API> -->

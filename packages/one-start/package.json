@@ -64,7 +64,6 @@
     "moment": "^2.29.1",
     "numeral": "2.0.4",
     "qs": "^6.10.1",
-    "rc-field-form": "1.20.1",
     "rc-picker": "^2.5.14",
     "rc-queue-anim": "^2.0.0",
     "rc-resize-observer": "^1.0.0",

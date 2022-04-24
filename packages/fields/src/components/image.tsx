@@ -1,8 +1,12 @@
 import type { InputProps } from '@ty/antd';
 import { Image, Input } from '@ty/antd';
 import React from 'react';
-import type { OSImageFieldAPI, OSImageFieldType, OSImageFieldValueType } from '@ty-one-start/typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import type {
+  OSImageFieldAPI,
+  OSImageFieldType,
+  OSImageFieldValueType,
+} from '@ty-one-start/typings';
+import { useClsPrefix } from '@ty-one-start/utils';
 
 const OSImageField: React.ForwardRefRenderFunction<OSImageFieldAPI, OSImageFieldType> = (
   props,

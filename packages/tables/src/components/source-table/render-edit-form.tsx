@@ -11,11 +11,11 @@ import type {
   OSTriggerAPI,
   RecordType,
 } from '@ty-one-start/typings';
-import {OSDialog} from '@ty-one-start/dialogs';
-import {OSForm} from '@ty-one-start/forms';
-import {OSLayoutForm} from '@ty-one-start/forms';
-import OSTrigger from '../trigger';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { OSDialog } from '@ty-one-start/dialogs';
+import { OSForm } from '@ty-one-start/forms';
+import { OSLayoutForm } from '@ty-one-start/forms';
+import { OSTrigger } from '@ty-one-start/triggers';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 
 export const renderEditForm = (options: {
   rowData: RecordType;

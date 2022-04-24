@@ -4,7 +4,7 @@ import { Menu, Skeleton } from '@ty/antd';
 import classNames from 'classnames';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import defaultSettings from '../../defaultSettings';
-import type { BaseMenuProps, MenuDataItem, PrivateSiderMenuProps, WithFalse } from '@ty-one-start/typings';
+import type { BaseMenuProps, MenuDataItem, PrivateSiderMenuProps, WithFalse } from '../../typings';
 import { getOpenKeysFromMenuData } from '../../utils/utils';
 import MenuCounter from './Counter';
 import './index.less';

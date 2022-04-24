@@ -2,7 +2,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import { Col, Divider, Form, Row, Spin, Steps } from '@ty/antd';
 import cls from 'classnames';
 import utl from 'lodash';
-import type { NamePath } from 'rc-field-form/lib/interface';
+import type { NamePath } from 'rc-field-form/es/interface';
 import React, { useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react';
 import type {
   AbstractItem,
@@ -10,14 +10,14 @@ import type {
   OSLayoutStepsFormAPI,
   OSLayoutStepsFormType,
   RecordType,
-} from '../@ty-one-start/typings';
+} from '@ty-one-start/typings';
 import OSForm from '../../form';
-import { useActionsRef } from '../../hooks/use-actions-ref';
-import OSTrigger from '../../trigger';
-import { logRequestMessage } from '../../utils/log-request-message';
-import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
-import { useClsPrefix } from '../../utils/use-cls-prefix';
-import { useLoading } from '../../utils/use-loading';
+import { useActionsRef } from '@ty-one-start/utils';
+import { OSTrigger } from '@ty-one-start/triggers';
+import { logRequestMessage } from '@ty-one-start/utils';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
+import { useLoading } from '@ty-one-start/utils';
 import { useRequestInitialValues } from './use-request-initial-values';
 
 const OSLayoutStepsForm: React.ForwardRefRenderFunction<

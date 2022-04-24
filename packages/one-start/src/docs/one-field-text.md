@@ -27,7 +27,7 @@ group:
 
 <code src="../demos/field-text/auto-trim.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/text.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/text.tsx"></API> -->
 
 ### API
 

@@ -1,6 +1,6 @@
 import type EventEmitter from 'eventemitter3';
 import { useEffect } from 'react';
-import { eventNames } from '../@ty-one-start/forms/constants';
+import { eventNames } from '@ty-one-start/forms';
 
 export const useTriggerLinkageFinished = ({
   name,

@@ -6,10 +6,10 @@ import type {
   OSLayoutModalFormAPI,
   OSLayoutModalFormType,
 } from '@ty-one-start/typings';
-import OSDialogModal from '../dialog/modal';
+import { OSDialogModal } from '@ty-one-start/dialogs';
 import OSForm from '../form';
-import OSTriggerButton from '../trigger/trigger-button';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { OSTriggerButton } from '@ty-one-start/triggers';
+import { useClsPrefix } from '@ty-one-start/utils';
 import EventEmitter from 'eventemitter3';
 import { LayoutModalFormEventBusContext } from './layout-form-event-context';
 

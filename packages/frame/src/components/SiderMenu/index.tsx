@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import Omit from 'omit.js';
 import { getFlatMenus } from '@umijs/route-utils';
 
-import type { PrivateSiderMenuProps, SiderMenuProps } from '@ty-one-start/typings';
+import type { PrivateSiderMenuProps, SiderMenuProps } from '../../typings';
 import SiderMenu from './SiderMenu';
 import MenuCounter from './Counter';
 

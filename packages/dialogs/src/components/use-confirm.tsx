@@ -1,9 +1,9 @@
 /** confirm hooks 中没有 visible，也没有 promise */
 import { useEffect, useRef, useState } from 'react';
-import { useActionsRef } from '../hooks/use-actions-ref';
+import { useActionsRef } from '@ty-one-start/utils';
 import type { RequestIO, OSResMessage } from '@ty-one-start/typings';
-import { logRequestMessage } from '../utils/log-request-message';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { logRequestMessage } from '@ty-one-start/utils';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 
 export const useConfirm = ({
   onVisibleChange,

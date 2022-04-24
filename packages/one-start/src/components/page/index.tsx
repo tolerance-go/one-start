@@ -3,8 +3,8 @@ import qs from 'qs';
 import React, { useImperativeHandle, useMemo, useState } from 'react';
 import type { OSPageAPI, OSPageType, RecordType } from '@ty-one-start/typings';
 import type { RequiredRecursion } from '@ty-one-start/typings';
-import { unstateHistory } from '../utils/unstate-history';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { unstateHistory } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
 
 const getTagKey = (
   tabItem: RequiredRecursion<OSPageType>['settings']['tabs'][number],

@@ -7,7 +7,7 @@ import type {
   OSTransferFieldValueType,
 } from '@ty-one-start/typings';
 import utl from 'lodash';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 import { LoadingOutlined } from '@ant-design/icons/lib/icons';
 
 const OSTransferField: React.ForwardRefRenderFunction<OSTransferFieldAPI, OSTransferFieldType> = (

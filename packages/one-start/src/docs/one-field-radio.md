@@ -21,4 +21,4 @@ group:
 
 <code src="../demos/field-radio/in-table.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/radio.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/radio.tsx"></API> -->

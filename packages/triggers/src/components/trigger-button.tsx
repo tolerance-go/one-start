@@ -7,12 +7,12 @@ import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import type { ReactNode } from 'react';
 import React, { useContext, useImperativeHandle, useState } from 'react';
 import { OSDialogAPIContext } from '@ty-one-start/dialogs';
-import { useActionsRef } from '../hooks/use-actions-ref';
+import { useActionsRef } from '@ty-one-start/utils';
 import type { OSTriggerButtonAPI, OSTriggerButtonType } from '@ty-one-start/typings';
-import { logRequestMessage } from '../utils/log-request-message';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { useClsPrefix } from '../utils/use-cls-prefix';
-import { useLoading } from '../utils/use-loading';
+import { logRequestMessage } from '@ty-one-start/utils';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
+import { useLoading } from '@ty-one-start/utils';
 import { renderTooltip as renderTooltipUtl } from './utils/render-tooltip';
 
 const OSTriggerButton: React.ForwardRefRenderFunction<OSTriggerButtonAPI, OSTriggerButtonType> = (

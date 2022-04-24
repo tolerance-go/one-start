@@ -1,5 +1,5 @@
 import React from 'react';
-import type { OSFormItemInputHistoryData } from '../@ty-one-start/typings';
+import type { OSFormItemInputHistoryData } from '@ty-one-start/typings';
 
 export const OSFormItemInput: React.ForwardRefRenderFunction<
   {},

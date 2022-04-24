@@ -45,16 +45,16 @@ group:
 
 DialogAPIBase 为公共的 api，具体 dialog 各自继承实现
 
-<API exports='["DialogAPIBase"]' src="../components/dialog/index.tsx"></API>
+<!-- <API exports='["DialogAPIBase"]' src="../components/dialog/index.tsx"></API> -->
 
-<API exports='["DialogMessageSettings", "DialogMessageAPI"]' src="../components/dialog/index.tsx"></API>
+<!-- <API exports='["DialogMessageSettings", "DialogMessageAPI"]' src="../components/dialog/index.tsx"></API> -->
 
-<API exports='["DialogPopoverSettings", "DialogPopoverAPI"]' src="../components/dialog/index.tsx"></API>
+<!-- <API exports='["DialogPopoverSettings", "DialogPopoverAPI"]' src="../components/dialog/index.tsx"></API> -->
 
-<API exports='["DialogPopconfirmSettings", "DialogPopconfirmRequests", "DialogPopconfirmAPI"]' src="../components/dialog/index.tsx"></API>
+<!-- <API exports='["DialogPopconfirmSettings", "DialogPopconfirmRequests", "DialogPopconfirmAPI"]' src="../components/dialog/index.tsx"></API> -->
 
-<API exports='["DialogModalSettings", "DialogModalAPI"]' src="../components/dialog/index.tsx"></API>
+<!-- <API exports='["DialogModalSettings", "DialogModalAPI"]' src="../components/dialog/index.tsx"></API> -->
 
-<API exports='["DialogmodalOperationSettings", "DialogModalOperationRequests", "DialogModalOperationAPI"]' src="../components/dialog/index.tsx"></API>
+<!-- <API exports='["DialogmodalOperationSettings", "DialogModalOperationRequests", "DialogModalOperationAPI"]' src="../components/dialog/index.tsx"></API> -->
 
-<API exports='["DialogDrawerSettings", "DialogDrawerRequests", "DialogDrawerAPI"]' src="../components/dialog/index.tsx"></API>
+<!-- <API exports='["DialogDrawerSettings", "DialogDrawerRequests", "DialogDrawerAPI"]' src="../components/dialog/index.tsx"></API> -->

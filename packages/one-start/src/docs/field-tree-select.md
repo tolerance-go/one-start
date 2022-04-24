@@ -50,4 +50,4 @@ tocMaxDepth: 5
 
 <code src="../demos/field-tree-select/dropdown-style.tsx" />
 
-<API exports='["Settings", "Requests"]' src="../components/fields/tree-select.tsx"></API>
+<!-- <API exports='["Settings", "Requests"]' src="../components/fields/tree-select.tsx"></API> -->

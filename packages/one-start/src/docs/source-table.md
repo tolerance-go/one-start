@@ -46,4 +46,4 @@ group:
 
 基于 os-table，扩展了以下接口
 
-<API exports='["Settings", "Requests"]' src="../components/source-table/index.tsx"></API>
+<!-- <API exports='["Settings", "Requests"]' src="../components/source-table/index.tsx"></API> -->

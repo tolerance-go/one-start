@@ -9,7 +9,7 @@ import type {
   OSLayoutTabsFormAPI,
   OSLayoutTabsFormType,
 } from '@ty-one-start/typings';
-import { OSReferencesCollectorDispatchContext } from '../providers/references';
+import { OSReferencesCollectorDispatchContext } from '@ty-one-start/provider';
 import { OSLayoutFormAPIContext } from './contexts';
 import OSLayoutModalForm from './modal-form';
 import OSLayoutStepsForm from './steps-form';

@@ -19219,19 +19219,10 @@ rc-dropdown@^3.2.0, rc-dropdown@~3.2.0:
     classnames "^2.2.6"
     rc-trigger "^5.0.4"
 
-rc-field-form@1.20.1, rc-field-form@~1.20.0:
+rc-field-form@~1.20.0:
   version "1.20.1"
   resolved "http://npm.tongyu.tech/rc-field-form/-/rc-field-form-1.20.1.tgz#d1c51888107cf075b42704b7b575bef84c359291"
   integrity sha1-0cUYiBB88HW0JwS3tXW++Ew1kpE=
-  dependencies:
-    "@babel/runtime" "^7.8.4"
-    async-validator "^3.0.3"
-    rc-util "^5.8.0"
-
-rc-field-form@^1.18.1:
-  version "1.21.0"
-  resolved "http://npm.tongyu.tech/rc-field-form/-/rc-field-form-1.21.0.tgz#91f3d711d681c59777432ba9f8cadfa595d28dea"
-  integrity sha1-kfPXEdaBxZd3Qyup+MrfpZXSjeo=
   dependencies:
     "@babel/runtime" "^7.8.4"
     async-validator "^3.0.3"

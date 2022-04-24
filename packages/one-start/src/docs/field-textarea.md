@@ -35,7 +35,7 @@ group:
 
 ####
 
-<API exports='["Settings"]' src="../components/fields/textarea.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/textarea.tsx"></API> -->
 
 ### API
 

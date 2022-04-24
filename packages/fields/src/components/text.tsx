@@ -8,9 +8,9 @@ import type {
   RecordType,
 } from '@ty-one-start/typings';
 import Highlighter from 'react-highlight-words';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { logRequestMessage } from '../utils/log-request-message';
-import { useActionsRef } from '../hooks/use-actions-ref';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { logRequestMessage } from '@ty-one-start/utils';
+import { useActionsRef } from '@ty-one-start/utils';
 import utl from 'lodash';
 
 const OSTextField: React.ForwardRefRenderFunction<OSTextFieldAPI, OSTextFieldType> = (

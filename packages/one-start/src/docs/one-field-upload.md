@@ -37,4 +37,4 @@ group:
 
 <code src="../demos/field-upload/size-check.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/upload.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/upload.tsx"></API> -->

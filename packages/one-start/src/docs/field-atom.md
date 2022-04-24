@@ -17,7 +17,7 @@ group:
 
 <code src="../demos/field-atom/simple.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/atom.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/atom.tsx"></API> -->
 
 ### API
 

@@ -17,4 +17,4 @@ group:
 
 <code src="../demos/field-image/simple.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/image.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/image.tsx"></API> -->

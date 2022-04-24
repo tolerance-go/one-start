@@ -2,9 +2,12 @@ import { Input, Popover, Space, Tag, Typography } from '@ty/antd';
 import type { TextAreaProps } from '@ty/antd/lib/input';
 import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
-import type { OSPlaceholderInputFieldAPI, OSPlaceholderInputFieldType } from '@ty-one-start/typings';
+import type {
+  OSPlaceholderInputFieldAPI,
+  OSPlaceholderInputFieldType,
+} from '@ty-one-start/typings';
 import ResizeObserver from 'rc-resize-observer';
-import { useRenderTooltip } from '../utils/use-render-tooltip';
+import { useRenderTooltip } from '@ty-one-start/utils';
 
 const OSPlaceholderInputField: React.ForwardRefRenderFunction<
   OSPlaceholderInputFieldAPI,

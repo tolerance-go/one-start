@@ -1,9 +1,9 @@
 import type { Rule } from '@ty/antd/lib/form';
-import type { Moment } from 'moment';
 import type { FormInstance } from 'rc-field-form/lib/interface';
-import type { RequestIO } from '../@ty-one-start/typings';
-import { momentify } from '../../utils/momentify';
-import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
+import type { Moment } from 'moment';
+import type { RequestIO } from '@ty-one-start/typings';
+import { momentify } from '@ty-one-start/utils';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 
 const getTradingDaysRule = (options: {
   request?: RequestIO<

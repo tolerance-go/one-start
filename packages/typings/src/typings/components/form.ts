@@ -5,7 +5,7 @@ import type {
   OSTreeSelectFieldValueType,
 } from './field';
 import type { FormInstance, FormItemProps, FormProps } from '@ty/antd/lib/form';
-import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
+import type { ValidateErrorEntity } from 'rc-field-form/es/interface';
 import type { OSCore, RequestIO } from './core';
 import type { RecordType } from '../core';
 import type {

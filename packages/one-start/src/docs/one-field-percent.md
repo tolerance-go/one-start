@@ -27,7 +27,7 @@ group:
 
 <code src="../demos/field-percent/empty.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/percent.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/percent.tsx"></API> -->
 
 ### API
 

@@ -1,6 +1,6 @@
 import { Col, Row } from '@ty/antd';
 import React from 'react';
-import type { OSSourceTableType } from '../@ty-one-start/typings';
+import type { OSSourceTableType } from '@ty-one-start/typings';
 import OSEmpty from '../../table/components/empty';
 import { renderEditForm } from '../render-edit-form';
 import { renderViewForm } from '../render-view-form';

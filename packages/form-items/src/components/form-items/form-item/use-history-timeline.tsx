@@ -1,8 +1,8 @@
 import { HistoryOutlined } from '@ant-design/icons';
 import { Popover, Timeline } from '@ty/antd';
 import React from 'react';
-import type { OSFormItemInputHistoryData, RecordType } from '../@ty-one-start/typings';
-import { useClsPrefix } from '../../utils/use-cls-prefix';
+import type { OSFormItemInputHistoryData, RecordType } from '@ty-one-start/typings';
+import { useClsPrefix } from '@ty-one-start/utils';
 
 export const useHistoryTimeline = ({
   title,

@@ -63,4 +63,4 @@ formData 和 formValue 的区别在于前者的 value 可能包含注册表单�
 
 所有接口继承自 OSTable
 
-<API exports='["Settings", "EditableTableAddable"]' src="../components/editable-table/index.tsx"></API>
+<!-- <API exports='["Settings", "EditableTableAddable"]' src="../components/editable-table/index.tsx"></API> -->

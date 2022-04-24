@@ -2,7 +2,7 @@ import type { SwitchProps } from '@ty/antd';
 import { Switch } from '@ty/antd';
 import React from 'react';
 import type { OSSwitchFieldAPI, OSSwitchFieldType } from '@ty-one-start/typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useClsPrefix } from '@ty-one-start/utils';
 import classNames from 'classnames';
 
 const OSSwitchField: React.ForwardRefRenderFunction<OSSwitchFieldAPI, OSSwitchFieldType> = (

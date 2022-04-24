@@ -5,9 +5,9 @@ import type {
   OSTableAPI,
   OSTableType,
   RequiredRecursion,
-} from '../@ty-one-start/typings';
+} from '@ty-one-start/typings';
 import OSTable from '../../table/views';
-import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 import type { RowMeta } from '../typings';
 import { renderRowActions } from './row-actions';
 

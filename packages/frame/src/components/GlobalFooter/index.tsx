@@ -1,7 +1,7 @@
 import { ConfigProvider } from '@ty/antd';
 import classNames from 'classnames';
 import React, { useContext } from 'react';
-import type { GlobalFooterProps } from '@ty-one-start/typings';
+import type { GlobalFooterProps } from '../../typings';
 import './index.less';
 
 export default ({ className, prefixCls, links, copyright, style }: GlobalFooterProps) => {

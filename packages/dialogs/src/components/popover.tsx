@@ -3,8 +3,8 @@ import { useClickAway } from 'ahooks';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle, useRef, useState } from 'react';
 import type { OSDialogPopoverAPI, OSDialogPopoverType } from '@ty-one-start/typings';
-import { useActionsRef } from '../hooks/use-actions-ref';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useActionsRef } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
 import { useVisible } from './use-visible';
 import { renderTrigger } from './utils';
 

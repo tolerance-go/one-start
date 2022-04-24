@@ -17,12 +17,12 @@ import type {
   OSTriggerType,
   RecordType,
 } from '@ty-one-start/typings';
-import {OSDialog} from '@ty-one-start/dialogs';
+import { OSDialog } from '@ty-one-start/dialogs';
 import OSTable from '../table';
-import OSTrigger from '../trigger';
-import { logRequestMessage } from '../utils/log-request-message';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { parseTableValue } from '../utils/parse-table-value';
+import { OSTrigger } from '@ty-one-start/triggers';
+import { logRequestMessage } from '@ty-one-start/utils';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { parseTableValue } from '@ty-one-start/utils';
 
 const OSEditableTable: React.ForwardRefRenderFunction<OSEditableTableAPI, OSEditableTableType> = (
   props,

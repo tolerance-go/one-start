@@ -3,14 +3,14 @@ import cls from 'classnames';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import React from 'react';
 import OSEditableTable from '../editable-table';
-import OSTrigger from '../trigger';
+import { OSTrigger } from '@ty-one-start/triggers';
 import type {
   OSAttachmentTableAPI,
   OSAttachmentTableSelfType,
   OSAttachmentTableType,
 } from '@ty-one-start/typings';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
 
 const OSAttachmentTable: React.ForwardRefRenderFunction<
   OSAttachmentTableAPI,

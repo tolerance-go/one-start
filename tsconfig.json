@@ -17,6 +17,8 @@
     "paths": {
       "@@/*": [".umi/*"],
       "@ty-one-start/utils": ["./packages/utils/src/index"],
+      "@ty-one-start/form-items": ["./packages/form-items/src/index"],
+      "@ty-one-start/provider": ["./packages/provider/src/index"],
       "@ty-one-start/request": ["packages/request/src/index"],
       "@ty-one-start/one-start": ["packages/one-start/src/index"],
       "@ty-one-start/one-proto": ["packages/one-proto/src/index"],
@@ -28,10 +30,10 @@
       "@ty-one-start/themes": ["packages/themes/src/index"],
       "@ty-one-start/forms": ["packages/forms/src/index"],
       "@ty-one-start/fields": ["packages/fields/src/index"],
-      "@ty-one-start/form-items": ["packages/form-items/src/index"],
       "@ty-one-start/triggers": ["packages/triggers/src/index"],
       "@ty-one-start/dialogs": ["packages/dialogs/src/index"],
-      "@ty-one-start/helpers": ["packages/helpers/src/index"]
+      "@ty-one-start/helpers": ["packages/helpers/src/index"],
+      "@ty-one-start/app-admin": ["packages/app-admin/src/index"]
     }
   },
   "include": [

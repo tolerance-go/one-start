@@ -2,9 +2,9 @@ import { CloseSquareOutlined } from '@ant-design/icons';
 import { Drawer } from '@ty/antd';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle } from 'react';
-import { useActionsRef } from '../hooks/use-actions-ref';
+import { useActionsRef } from '@ty-one-start/utils';
 import type { OSDialogDrawerAPI, OSDialogDrawerType } from '@ty-one-start/typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useClsPrefix } from '@ty-one-start/utils';
 import { useVisible } from './use-visible';
 import { renderTrigger } from './utils';
 

@@ -1,5 +1,5 @@
 import type { OSRule, OSFormItemTooltip, OSFormItemSimpleTooltip } from '@ty-one-start/typings';
-import type { Rule, RuleObject } from 'rc-field-form/lib/interface';
+import type { Rule, RuleObject } from '@ty/antd/lib/form';
 import { getRuleTooltip } from './rules/tooltips';
 
 export const mergeRuleToTooltip = (rules?: (Rule | OSRule)[], tooltip?: OSFormItemTooltip) => {

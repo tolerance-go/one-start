@@ -1,7 +1,7 @@
 import type { Rule } from '@ty/antd/lib/form';
 import { BigNumber as BN } from 'bignumber.js';
-import type { NumberDigitsRuleDefaults } from '../@ty-one-start/typings';
-import { DEFAULT_DECIMAL_DATA } from '../../constants/digit';
+import type { NumberDigitsRuleDefaults } from '@ty-one-start/typings';
+import { DEFAULT_DECIMAL_DATA } from '@ty-one-start/utils';
 
 export const numberDigitsRuleDefaults: Pick<
   Required<NumberDigitsRuleDefaults>,

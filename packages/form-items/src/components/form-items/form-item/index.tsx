@@ -8,12 +8,12 @@ import type {
   OSFormItemType,
   OSPercentFieldType,
   OSRule,
-} from '../@ty-one-start/typings';
-import { FormInstanceContext } from '../../providers/form-context';
-import { normalizeDataIndex } from '../../utils/normalize-data-index';
-import { normalizeRequestOutputs } from '../../utils/normalize-request-outputs';
-import { useClsPrefix } from '../../utils/use-cls-prefix';
-import { withDebounce } from '../../utils/with-debounce';
+} from '@ty-one-start/typings';
+import { FormInstanceContext } from '@ty-one-start/provider';
+import { normalizeDataIndex } from '@ty-one-start/utils';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
+import { withDebounce } from '@ty-one-start/utils';
 import { getDateCheckRule } from '../rules/get-date-check-rule';
 import { getNumberDigitsRule } from '../rules/get-number-digits-rule';
 import { getNumberRangeRule } from '../rules/get-number-range-rule';

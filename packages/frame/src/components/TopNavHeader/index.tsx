@@ -2,9 +2,9 @@ import { useDebounceFn } from '@ty-one-start/utils';
 import classNames from 'classnames';
 import ResizeObserver from 'rc-resize-observer';
 import React, { useRef, useState } from 'react';
-import type { GlobalHeaderProps } from '@ty-one-start/typings';
+import type { GlobalHeaderProps } from '../../typings';
 import BaseMenu from '../SiderMenu/BaseMenu';
-import type { PrivateSiderMenuProps, SiderMenuProps } from '@ty-one-start/typings';
+import type { PrivateSiderMenuProps, SiderMenuProps } from '../../typings';
 import { defaultRenderLogoAndTitle } from '../SiderMenu/SiderMenu';
 import './index.less';
 

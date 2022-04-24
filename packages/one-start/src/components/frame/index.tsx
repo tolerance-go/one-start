@@ -5,9 +5,9 @@ import cls from 'classnames';
 import produce from 'immer';
 import React, { useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type { OSFrameAPI, OSFrameType, OSNavItem } from '@ty-one-start/typings';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
-import { useClsPrefix } from '../utils/use-cls-prefix';
-import { useLoading } from '../utils/use-loading';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
+import { useClsPrefix } from '@ty-one-start/utils';
+import { useLoading } from '@ty-one-start/utils';
 
 const { TabPane } = Tabs;
 

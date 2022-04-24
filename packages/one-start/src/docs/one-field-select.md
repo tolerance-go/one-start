@@ -80,10 +80,10 @@ group:
 
 <code src="../demos/field-select/dev.tsx" />
 
-<API exports='["Settings", "Requests"]' src="../components/fields/select/index.tsx"></API>
+<!-- <API exports='["Settings", "Requests"]' src="../components/fields/select/index.tsx"></API> -->
 
 ### API
 
 `export type OSSelectFieldAPI = HTMLSpanElement | (RefSelectProps & OSSelectBaseAPI);`
 
-<API exports='["SelectBaseAPI"]' src="../components/fields/select/index.tsx"></API>
+<!-- <API exports='["SelectBaseAPI"]' src="../components/fields/select/index.tsx"></API> -->

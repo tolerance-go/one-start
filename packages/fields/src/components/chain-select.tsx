@@ -9,7 +9,7 @@ import type {
   OSChainSelectFieldType,
   OSChainSelectFieldValueType,
 } from '@ty-one-start/typings';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { useClsPrefix } from '@ty-one-start/utils';
 import OSSelect from './select';
 
 const OSChainSelectField: React.ForwardRefRenderFunction<

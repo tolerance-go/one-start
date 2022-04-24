@@ -33,4 +33,4 @@ group:
 
 <code src="../demos/page/apis.tsx" />
 
-<API exports='["Settings"]' src="../components/page/index.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/page/index.tsx"></API> -->

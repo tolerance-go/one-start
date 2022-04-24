@@ -23,4 +23,4 @@ group:
 
 <code src="../demos/field-relative-day/simple.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/relative-day.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/relative-day.tsx"></API> -->

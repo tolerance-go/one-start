@@ -145,7 +145,7 @@ one-start 表单内部设置了数值精度校验和日期早晚校验
 
 <code src="../demos/form/apis.tsx" />
 
-<API exports='["FormSettings", "FormRequests", "FormAPI"]' src="../components/form/index.tsx"></API>
+<!-- <API exports='["FormSettings", "FormRequests", "FormAPI"]' src="../components/form/index.tsx"></API> -->
 
 ### FormFieldItems
 
@@ -157,12 +157,12 @@ FormGroupItemType 存在 children 字段，类型和 fieldItems 相同
 
 fieldItem 每一项都可能为函数形式，表示联动，入参为 `OSFormFieldItemSettingsFnOption`，注意必须指定 `dependencies`
 
-<API exports='["FormFieldItemSettingsFnOption", "FormFieldItemExtraSettings"]' src="../components/form/index.tsx"></API>
+<!-- <API exports='["FormFieldItemSettingsFnOption", "FormFieldItemExtraSettings"]' src="../components/form/index.tsx"></API> -->
 
-<API exports='["FormGroupItemType"]' src="../components/form/index.tsx"></API>
+<!-- <API exports='["FormGroupItemType"]' src="../components/form/index.tsx"></API> -->
 
-<API exports='["FormItemDependenciesConfigs"]' src="../components/form/index.tsx"></API>
+<!-- <API exports='["FormItemDependenciesConfigs"]' src="../components/form/index.tsx"></API> -->
 
-<API exports='["FormItemTypeSettings"]' src="../components/form/index.tsx"></API>
+<!-- <API exports='["FormItemTypeSettings"]' src="../components/form/index.tsx"></API> -->
 
-<API exports='["FormItemTypeRequests"]' src="../components/form/index.tsx"></API>
+<!-- <API exports='["FormItemTypeRequests"]' src="../components/form/index.tsx"></API> -->

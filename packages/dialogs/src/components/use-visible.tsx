@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { RecordType } from '@ty-one-start/typings';
-import { useActionsRef } from '../hooks/use-actions-ref';
+import { useActionsRef } from '@ty-one-start/utils';
 
 export const useVisible = ({
   onVisibleChange,

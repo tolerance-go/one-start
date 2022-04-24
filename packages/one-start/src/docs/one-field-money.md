@@ -25,7 +25,7 @@ group:
 
 <code src="../demos/field-money/empty.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/digit.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/digit.tsx"></API> -->
 
 ### API
 

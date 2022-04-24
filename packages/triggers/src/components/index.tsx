@@ -11,9 +11,9 @@ import type {
   OSTriggerIconType,
   OSTriggerType,
 } from '@ty-one-start/typings';
-import { PrioritizedComponentSizeContext } from '../providers/prioritized-component-size';
-import { OSReferencesCollectorDispatchContext } from '../providers/references';
-import { useClsPrefix } from '../utils/use-cls-prefix';
+import { PrioritizedComponentSizeContext } from '@ty-one-start/provider';
+import { OSReferencesCollectorDispatchContext } from '@ty-one-start/provider';
+import { useClsPrefix } from '@ty-one-start/utils';
 import OSTriggerButton from './trigger-button';
 import OSTriggerDropdown from './trigger-dropdown';
 import OSTriggerIcon from './trigger-icon';

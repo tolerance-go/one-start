@@ -18,4 +18,4 @@ group:
 
 <code src="../demos/search-table/visual-manage.tsx" />
 
-<API exports='["Settings", "Requests"]' src="../components/search-table/index.tsx"></API>
+<!-- <API exports='["Settings", "Requests"]' src="../components/search-table/index.tsx"></API> -->

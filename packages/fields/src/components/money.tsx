@@ -1,6 +1,10 @@
 import React, { useMemo, useCallback } from 'react';
-import type { OSDigitFieldBaseType, OSMoneyFieldAPI, OSMoneyFieldType } from '@ty-one-start/typings';
-import { formatter, parser } from '../utils/format';
+import type {
+  OSDigitFieldBaseType,
+  OSMoneyFieldAPI,
+  OSMoneyFieldType,
+} from '@ty-one-start/typings';
+import { formatter, parser } from '@ty-one-start/utils';
 import DigitBase from './digit-base';
 
 const OSMoneyField: React.ForwardRefRenderFunction<OSMoneyFieldAPI, OSMoneyFieldType> = (

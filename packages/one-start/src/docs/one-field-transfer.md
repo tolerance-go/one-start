@@ -17,4 +17,4 @@ group:
 
 <code src="../demos/field-transfer/simple.tsx" />
 
-<API exports='["Settings"]' src="../components/fields/transfer.tsx"></API>
+<!-- <API exports='["Settings"]' src="../components/fields/transfer.tsx"></API> -->

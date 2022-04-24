@@ -14,9 +14,9 @@ import type {
   OSTriggerUpload,
 } from '@ty-one-start/typings';
 import { OSDialogAPIContext } from '@ty-one-start/dialogs';
-import { useActionsRef } from '../hooks/use-actions-ref';
-import { logRequestMessage } from '../utils/log-request-message';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { useActionsRef } from '@ty-one-start/utils';
+import { logRequestMessage } from '@ty-one-start/utils';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 import { renderTooltip as renderTooltipUtl } from './utils/render-tooltip';
 
 const OSTriggerDropdown: React.ForwardRefRenderFunction<

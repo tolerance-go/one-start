@@ -5,8 +5,8 @@ import type { UploadFile } from '@ty/antd/es/upload/interface';
 import utl from 'lodash';
 import React from 'react';
 import type { OSUploadFieldAPI, OSUploadFieldType } from '@ty-one-start/typings';
-import OSTrigger from '../trigger';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { OSTrigger } from '@ty-one-start/triggers';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 
 const OSUploadField: React.ForwardRefRenderFunction<OSUploadFieldAPI, OSUploadFieldType> = (
   props,

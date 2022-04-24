@@ -1,7 +1,7 @@
 import React from 'react';
 import type { OSFormType, OSSourceTableType, OSTableAPI, RecordType } from '@ty-one-start/typings';
-import {OSForm} from '@ty-one-start/forms';
-import { normalizeRequestOutputs } from '../utils/normalize-request-outputs';
+import { OSForm } from '@ty-one-start/forms';
+import { normalizeRequestOutputs } from '@ty-one-start/utils';
 
 export const renderViewForm = ({
   rowData,

@@ -1,6 +1,6 @@
 import type { RuleObject } from '@ty/antd/lib/form';
 import BN from 'bignumber.js';
-import { DEFAULT_DECIMAL_DATA } from '../../constants/digit';
+import { DEFAULT_DECIMAL_DATA } from '@ty-one-start/utils';
 
 export const getNumberDigitsRule = (options: {
   integersMaxLen?: number;

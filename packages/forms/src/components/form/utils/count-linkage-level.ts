@@ -1,6 +1,6 @@
-import type { OSFormFieldItemWithStaticPureConfigs } from '../@ty-one-start/typings';
+import type { OSFormFieldItemWithStaticPureConfigs } from '@ty-one-start/typings';
 import utl from 'lodash';
-import { normalizeArray } from '../../utils/normalize-array';
+import { normalizeArray } from '@ty-one-start/utils';
 
 export const countLinkageLevel = (
   keyIdToFieldSettings: Record<string, OSFormFieldItemWithStaticPureConfigs['settings']>,

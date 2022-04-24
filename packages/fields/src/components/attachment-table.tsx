@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
-import OSAttachmentTable from '../attachment-table';
-import { FormInstanceContext } from '../providers/form-context';
+import { OSAttachmentTable } from '@ty-one-start/tables';
+import { FormInstanceContext } from '@ty-one-start/provider';
 import type {
   OSAttachmentTableAPI,
   OSAttachmentTableFieldAPI,
@@ -9,7 +9,7 @@ import type {
   OSTableType,
   RequiredRecursion,
 } from '@ty-one-start/typings';
-import { parseTableValue } from '../utils/parse-table-value';
+import { parseTableValue } from '@ty-one-start/utils';
 
 const OSAttachmentTableField: React.ForwardRefRenderFunction<
   OSAttachmentTableFieldAPI,
