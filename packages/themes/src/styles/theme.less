@@ -16,20 +16,20 @@ body {
   display: none !important;
 }
 
-.ty-ant-btn-primary {
-  .ty-ant-upload {
+.ant-btn-primary {
+  .ant-upload {
     color: #fff;
     border-color: #1890ff;
   }
 }
 
 /* 会引起 loading 动画问题，这里删除 */
-.ty-ant-btn > .anticon + span,
-.ty-ant-btn > span + .anticon {
+.ant-btn > .anticon + span,
+.ant-btn > span + .anticon {
   margin-left: 0;
 }
 
-.ty-ant-btn > .ty-ant-btn-loading-icon .anticon {
+.ant-btn > .ant-btn-loading-icon .anticon {
   padding-right: 5px;
 }
 
@@ -59,10 +59,10 @@ body {
   &-os-field {
     &-image {
       &-preview {
-        .ty-ant-image-preview-operations {
+        .ant-image-preview-operations {
           background-color: rgba(0, 0, 0, 0.25);
         }
-        .ty-ant-image-preview-body {
+        .ant-image-preview-body {
           background-color: #fff;
         }
       }
@@ -84,7 +84,7 @@ body {
       }
     }
     &-content-tabs {
-      .ty-ant-tabs-nav {
+      .ant-tabs-nav {
         display: none;
       }
     }
@@ -95,10 +95,10 @@ body {
         transition: left @animation-duration-slow;
       }
 
-      .ty-ant-tabs-card {
-        &.ty-ant-tabs-top {
-          .ty-ant-tabs-nav {
-            .ty-ant-tabs-nav-more {
+      .ant-tabs-card {
+        &.ant-tabs-top {
+          .ant-tabs-nav {
+            .ant-tabs-nav-more {
               padding: 6px 16px;
               color: rgba(255, 255, 255, 0.65);
               background: #001529;
@@ -114,45 +114,45 @@ body {
 
             margin-bottom: 0;
 
-            .ty-ant-tabs-nav-wrap {
+            .ant-tabs-nav-wrap {
               background-color: #001529;
             }
 
-            .ty-ant-tabs-tab + .ty-ant-tabs-tab {
+            .ant-tabs-tab + .ant-tabs-tab {
               margin-left: 0;
             }
 
-            .ty-ant-tabs-tab {
+            .ant-tabs-tab {
               border: none;
               border-radius: 0;
 
-              &.ty-ant-tabs-tab-with-remove {
+              &.ant-tabs-tab-with-remove {
                 background-color: #002140;
                 border-bottom-color: #002140;
 
                 &:hover {
-                  .ty-ant-tabs-tab-btn {
+                  .ant-tabs-tab-btn {
                     color: #fff;
                   }
                 }
 
-                .ty-ant-tabs-tab-remove {
+                .ant-tabs-tab-remove {
                   &:hover {
                     color: #fff;
                   }
                 }
 
-                .ty-ant-tabs-tab-remove,
-                .ty-ant-tabs-tab-btn {
+                .ant-tabs-tab-remove,
+                .ant-tabs-tab-btn {
                   color: rgba(255, 255, 255, 0.65);
                 }
 
-                &.ty-ant-tabs-tab-active {
+                &.ant-tabs-tab-active {
                   background-color: #1890ff;
                   border-bottom-color: #1890ff;
 
-                  .ty-ant-tabs-tab-remove,
-                  .ty-ant-tabs-tab-btn {
+                  .ant-tabs-tab-remove,
+                  .ant-tabs-tab-btn {
                     color: #fff;
                   }
                 }
@@ -166,17 +166,17 @@ body {
 
   &-field-select {
     &.noborder {
-      .ty-ant-select-selector {
+      .ant-select-selector {
         padding-right: 0 !important;
         padding-left: 0 !important;
       }
-      .ty-ant-select-arrow {
+      .ant-select-arrow {
         right: 4px;
       }
-      .ty-ant-select-selection-search {
+      .ant-select-selection-search {
         left: 0 !important;
       }
-      .ty-ant-select-selection-placeholder {
+      .ant-select-selection-placeholder {
         left: 0 !important;
       }
     }
@@ -184,7 +184,7 @@ body {
 
   &-field-tree-select {
     &-dropdown {
-      &.ty-ant-tree-select-dropdown {
+      &.ant-tree-select-dropdown {
         padding: 4px !important;
       }
     }
@@ -192,10 +192,10 @@ body {
 
   &-settings {
     &-drawer {
-      .ty-ant-drawer-body {
+      .ant-drawer-body {
         padding: 0;
       }
-      .ty-ant-drawer-footer {
+      .ant-drawer-footer {
         padding: 0;
         border-top: none;
         border-bottom: 1px solid #eee;
@@ -253,43 +253,43 @@ body {
       }
     }
 
-    .ty-ant-modal-confirm {
-      .ty-ant-modal-body {
+    .ant-modal-confirm {
+      .ant-modal-body {
         padding: 10px;
       }
     }
-    .ty-ant-modal-confirm-body > .anticon {
+    .ant-modal-confirm-body > .anticon {
       margin-top: 3px;
       margin-right: 10px;
       font-size: 16px;
     }
-    .ty-ant-modal-confirm-body
+    .ant-modal-confirm-body
       > .anticon
-      + .ty-ant-modal-confirm-title
-      + .ty-ant-modal-confirm-content {
+      + .ant-modal-confirm-title
+      + .ant-modal-confirm-content {
       margin-left: 26px;
     }
-    .ty-ant-modal-confirm-body .ty-ant-modal-confirm-content {
+    .ant-modal-confirm-body .ant-modal-confirm-content {
       margin-top: 10px;
     }
 
-    .ty-ant-modal-confirm-btns {
+    .ant-modal-confirm-btns {
       margin-top: 10px;
     }
 
-    .ty-ant-modal-close-x {
+    .ant-modal-close-x {
       width: 32px;
       height: 32px;
       line-height: 32px;
     }
-    .ty-ant-modal-body,
-    .ty-ant-modal-footer,
-    .ty-ant-modal-header {
+    .ant-modal-body,
+    .ant-modal-footer,
+    .ant-modal-header {
       padding: 7px 10px;
     }
 
     &.normal {
-      .ty-ant-modal-footer {
+      .ant-modal-footer {
         padding: 0;
         border-top: none;
       }
@@ -300,20 +300,20 @@ body {
       }
     }
 
-    .ty-ant-pagination {
+    .ant-pagination {
       margin-top: 10px;
       margin-bottom: 0;
     }
   }
 
   &-os-drawer {
-    .ty-ant-drawer-header {
+    .ant-drawer-header {
       padding: 7px 10px;
     }
-    .ty-ant-drawer-body {
+    .ant-drawer-body {
       padding: 10px 14px;
     }
-    .ty-ant-drawer-close {
+    .ant-drawer-close {
       padding: 8px;
     }
   }
@@ -323,12 +323,12 @@ body {
     overflow-x: hidden;
 
     &-divider-item {
-      .ty-ant-divider-inner-text {
+      .ant-divider-inner-text {
         padding-left: 0;
       }
     }
 
-    .ty-ant-divider-horizontal.ty-ant-divider-with-text-left::before {
+    .ant-divider-horizontal.ant-divider-with-text-left::before {
       width: 0;
     }
 
@@ -346,34 +346,34 @@ body {
   }
 
   &-os-table {
-    .ty-ant-table-footer {
+    .ant-table-footer {
       padding: 2px 8px !important;
     }
 
     &:not(.editable) {
-      .ty-ant-empty {
-        &.ty-ant-empty-normal {
+      .ant-empty {
+        &.ant-empty-normal {
           margin: 250px 0;
         }
       }
 
-      .ty-ant-table {
+      .ant-table {
         min-height: 570px;
       }
     }
 
-    .ty-ant-table-pagination.ty-ant-pagination {
+    .ant-table-pagination.ant-pagination {
       margin: 8px 0 0 0;
     }
 
     /** columns settings 的容器 */
-    .ty-ant-table {
+    .ant-table {
       position: relative;
       overflow: hidden;
       border: 1px solid #babfc7;
 
-      // .ty-ant-table-tbody {
-      //   .ty-ant-table-row:last-child {
+      // .ant-table-tbody {
+      //   .ant-table-row:last-child {
       //     > td {
       //       /* transparent 使得 hover 不会 resize 页面 */
       //       border-bottom: 1px solid transparent;
@@ -381,7 +381,7 @@ body {
       //   }
       // }
 
-      .ty-ant-table-thead {
+      .ant-table-thead {
         > tr {
           > th {
             padding: 5.5px 8px !important;
@@ -535,7 +535,7 @@ body {
     }
 
     /** 行缩小 **/
-    .ty-ant-table-cell {
+    .ant-table-cell {
       padding-top: 2px !important;
       padding-bottom: 2px !important;
     }

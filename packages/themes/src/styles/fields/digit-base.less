@@ -4,29 +4,29 @@
   &-digit-base {
     /** 单位 input 显示区域 **/
     &-input-number-unit-item {
-      .ty-ant-input {
+      .ant-input {
         display: none !important;
       }
 
       /** 因为 unit 的 input 是隐藏的，所以高度要指定 **/
-      .ty-ant-input-group-addon {
+      .ant-input-group-addon {
         height: @input-height-base;
       }
 
       &.small {
-        .ty-ant-input-group-addon {
+        .ant-input-group-addon {
           height: @input-height-sm;
         }
       }
       &.large {
-        .ty-ant-input-group-addon {
+        .ant-input-group-addon {
           height: @input-height-lg;
         }
       }
 
       &.no-border {
         &.disabled {
-          .ty-ant-input-group-addon {
+          .ant-input-group-addon {
             color: @disabled-color;
           }
         }
@@ -45,26 +45,26 @@
     &-input-group {
       /** 只有在和查看模式下混用的时候才需要无边框，因此这里设置成 read 的边距 **/
       &.no-border {
-        .ty-ant-input-group-addon {
+        .ant-input-group-addon {
           padding-right: 0;
           padding-left: 0;
           background-color: transparent;
           border: none;
         }
-        .ty-ant-input-number-input {
+        .ant-input-number-input {
           padding-right: 0;
           padding-left: 0;
         }
         &.has-unit-before {
-          .ty-ant-input-number-input {
+          .ant-input-number-input {
             padding-left: 5px;
           }
         }
-        .ty-ant-input-number-handler-wrap {
+        .ant-input-number-handler-wrap {
           background-color: transparent;
         }
       }
-      .ty-ant-input-group-addon {
+      .ant-input-group-addon {
         padding: 0 5px;
       }
     }

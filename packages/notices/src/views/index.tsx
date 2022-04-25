@@ -1,4 +1,3 @@
-import { PageContainer } from '@ty-ant-design/pro-layout';
 import React from 'react';
 
 export interface PageProps {
@@ -15,30 +14,8 @@ export interface PageProps {
   title?: string;
 }
 
-const Page: React.FC<PageProps> = (props) => {
-  return (
-    <>
-      <PageContainer
-        ghost
-        header={{
-          title: 'notices',
-          breadcrumb: {
-            routes: (
-              props.breadcrumb?.map((item) => {
-                return {
-                  path: item.path ?? '',
-                  breadcrumbName: item.name,
-                };
-              }) ?? []
-            ).concat({
-              path: '',
-              breadcrumbName: 'notices',
-            }),
-          },
-        }}
-      ></PageContainer>
-    </>
-  );
+const Page: React.FC<PageProps> = () => {
+  return <></>;
 };
 
 export default Page;

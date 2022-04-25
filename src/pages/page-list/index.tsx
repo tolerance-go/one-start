@@ -544,6 +544,7 @@ const PageList = () => {
   );
 };
 
-PageList.name = 'pageList';
+PageList.menuName = 'pageList';
+PageList.icon = 'CompassOutlined';
 
 export default PageList;

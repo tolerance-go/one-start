@@ -1,18 +1,19 @@
 // import { getTongyuUserInfo } from '@/helpers';
-// import {
-//   CompassOutlined,
-//   FolderOpenOutlined,
-//   FundProjectionScreenOutlined,
-//   InsertRowBelowOutlined,
-//   NodeIndexOutlined,
-//   PayCircleOutlined,
-//   PropertySafetyOutlined,
-//   ReadOutlined,
-//   SettingOutlined,
-//   UserSwitchOutlined,
-// } from '@ant-design/icons';
+import {
+  CompassOutlined,
+  FolderOpenOutlined,
+  FundProjectionScreenOutlined,
+  InsertRowBelowOutlined,
+  NodeIndexOutlined,
+  PayCircleOutlined,
+  PropertySafetyOutlined,
+  ReadOutlined,
+  SettingOutlined,
+  UserSwitchOutlined,
+} from '@ant-design/icons';
 import type { MenuDataItem } from '@ty-one-start/frame';
 import ProLayout, { DefaultFooter } from '@ty-one-start/frame';
+import { useActionsRef } from '@ty-one-start/utils';
 // import { UserInfoModel } from './_models/user-info';
 import { getMatchMenu, transformRoute } from '@umijs/route-utils';
 import { Input } from 'antd';
@@ -26,18 +27,18 @@ import { RightContent } from './right-content';
 
 // const routes = getRoutes();
 
-// const iconMaps = {
-//   InsertRowBelowOutlined: <InsertRowBelowOutlined />,
-//   FundProjectionScreenOutlined: <FundProjectionScreenOutlined />,
-//   NodeIndexOutlined: <NodeIndexOutlined />,
-//   PayCircleOutlined: <PayCircleOutlined />,
-//   ReadOutlined: <ReadOutlined />,
-//   FolderOpenOutlined: <FolderOpenOutlined />,
-//   SettingOutlined: <SettingOutlined />,
-//   UserSwitchOutlined: <UserSwitchOutlined />,
-//   CompassOutlined: <CompassOutlined />,
-//   PropertySafetyOutlined: <PropertySafetyOutlined />,
-// };
+const iconMaps = {
+  InsertRowBelowOutlined: <InsertRowBelowOutlined />,
+  FundProjectionScreenOutlined: <FundProjectionScreenOutlined />,
+  NodeIndexOutlined: <NodeIndexOutlined />,
+  PayCircleOutlined: <PayCircleOutlined />,
+  ReadOutlined: <ReadOutlined />,
+  FolderOpenOutlined: <FolderOpenOutlined />,
+  SettingOutlined: <SettingOutlined />,
+  UserSwitchOutlined: <UserSwitchOutlined />,
+  CompassOutlined: <CompassOutlined />,
+  PropertySafetyOutlined: <PropertySafetyOutlined />,
+};
 
 const Content: React.FC<{
   location: Location;
@@ -65,28 +66,44 @@ const Content: React.FC<{
     // }
   }, []);
 
-  // const loopMenuItem = (menus: MenuDataItem[] = []): MenuDataItem[] => {
-  //   return menus
-  //     .map((item) => {
-  //       // if (permissions?.[item.name ?? '']) {
-  //       if (item.routes) {
-  //         return {
-  //           ...item,
-  //           routes: loopMenuItem(item.routes),
-  //           icon: typeof item.icon === 'string' ? iconMaps[item.icon] : item.icon,
-  //           hideInMenu: !!(process.env.NODE_ENV === 'production' && item.hideInMenuWhenProduction),
-  //         };
-  //       }
-  //       return {
-  //         ...item,
-  //         icon: typeof item.icon === 'string' ? iconMaps[item.icon] : item.icon,
-  //         hideInMenu: !!(process.env.NODE_ENV === 'production' && item.hideInMenuWhenProduction),
-  //       };
-  //       // }
-  //       // return null;
-  //     })
-  //     .filter((item) => item) as MenuDataItem[];
-  // };
+  const loopMenuItem = (menus: MenuDataItem[] = []): MenuDataItem[] => {
+    return menus
+      .map((item) => {
+        // if (permissions?.[item.name ?? '']) {
+        if (item.routes) {
+          return {
+            ...item,
+            name: formatMessage({
+              id: `menu.${item.name ?? item.menuName ?? 'unknown'}`,
+            }),
+            routes: loopMenuItem(item.routes),
+            icon: typeof item.icon === 'string' ? iconMaps[item.icon] : item.icon,
+            hideInMenu: !!(process.env.NODE_ENV === 'production' && item.hideInMenuWhenProduction),
+          };
+        }
+        return {
+          ...item,
+          name: formatMessage({
+            id: `menu.${item.name ?? item.menuName ?? 'unknown'}`,
+          }),
+          icon: typeof item.icon === 'string' ? iconMaps[item.icon] : item.icon,
+          hideInMenu: !!(process.env.NODE_ENV === 'production' && item.hideInMenuWhenProduction),
+        };
+        // }
+        // return null;
+      })
+      .filter((item) => item.path !== '/') as MenuDataItem[];
+  };
+
+  const utilsRef = useActionsRef({
+    loopMenuItem,
+  });
+
+  const routes = useMemo(() => {
+    return utilsRef.current.loopMenuItem(props.route?.routes);
+  }, [props.route, utilsRef]);
+
+  console.log('props.route', props.route);
 
   const filterByMenuDate = (data: MenuDataItem[], keyWord_: string): MenuDataItem[] =>
     data
@@ -114,13 +131,11 @@ const Content: React.FC<{
   // }
 
   const currentPathConfig = useMemo(() => {
-    const { menuData } = transformRoute(route?.routes || [], true, formatMessage, true);
+    const { menuData } = transformRoute(routes || [], undefined, undefined, true);
     // 动态路由匹配
     const currentPathConfigMenus = getMatchMenu(location.pathname, menuData).pop();
     return currentPathConfigMenus || {};
-  }, [location?.pathname, route?.routes]);
-
-  console.log(props.route)
+  }, [location.pathname, routes]);
 
   return (
     <div
@@ -146,16 +161,13 @@ const Content: React.FC<{
             />
           )
         }
-        route={props.route}
-        // route={currentPathConfig.routes}
-        // route={{
-        //   path: '/',
-        //   routes: loopMenuItem(routes.find((item) => item.path === '/')?.routes),
-        // }}
+        route={{
+          path: '/',
+          routes,
+        }}
         location={{
           pathname: props.location.pathname,
         }}
-        formatMessage={formatMessage}
         title={'Swap 互换系统'}
         logo={'/logo.svg'}
         // headerContentRender={() => {

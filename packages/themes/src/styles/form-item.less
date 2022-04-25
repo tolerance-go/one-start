@@ -1,41 +1,41 @@
 @import (reference) '~antd/lib/style/themes/default.less';
 
-.ty-ant-form-item-has-error
-  .ty-ant-select:not(.ty-ant-select-disabled):not(.ty-ant-select-customize-input).ty-ant-select-borderless
-  .ty-ant-select-selector {
+.ant-form-item-has-error
+  .ant-select:not(.ant-select-disabled):not(.ant-select-customize-input).ant-select-borderless
+  .ant-select-selector {
   border-color: transparent !important;
 }
 
-.ty-ant-form-item-has-error {
+.ant-form-item-has-error {
   .one-source {
     &-os-table {
-      .ty-ant-input-group-wrapper:not(.disabled) {
-        .ty-ant-input-group-addon {
+      .ant-input-group-wrapper:not(.disabled) {
+        .ant-input-group-addon {
           color: rgba(0, 0, 0, 0.85) !important;
         }
       }
       // 行悬停样式会有冲突
-      .ty-ant-input-number {
+      .ant-input-number {
         background-color: transparent;
       }
     }
 
     &-layouttabs-form {
-      .ty-ant-form-item:not(.ty-ant-form-item-has-error) {
-        .ty-ant-picker,
-        .ty-ant-input-number {
+      .ant-form-item:not(.ant-form-item-has-error) {
+        .ant-picker,
+        .ant-input-number {
           border-color: #d9d9d9;
         }
 
-        .ty-ant-input-group-addon {
+        .ant-input-group-addon {
           color: rgba(0, 0, 0, 0.85);
           border-color: #d9d9d9;
         }
 
-        .ty-ant-picker-focused,
-        .ty-ant-picker:focus,
-        .ty-ant-input-number-focused,
-        .ty-ant-input-number:focus {
+        .ant-picker-focused,
+        .ant-picker:focus,
+        .ant-input-number-focused,
+        .ant-input-number:focus {
           border-color: #40a9ff;
           border-right-width: 1px !important;
           outline: 0;
@@ -47,7 +47,7 @@
 
   // 表单内的表格搜索框不受字段错误影响样式
   .one-source-os-table-search-form {
-    .ty-ant-input-affix-wrapper {
+    .ant-input-affix-wrapper {
       border: 1px solid #d9d9d9 !important;
     }
   }
@@ -56,21 +56,21 @@
 .one-source {
   &-os-form-item-history {
     &-popover-overlay {
-      .ty-ant-popover-inner-content {
+      .ant-popover-inner-content {
         max-height: 700px;
         padding: 17px 10px 10px 10px;
         overflow-y: scroll;
       }
     }
     &-timeline {
-      .ty-ant-timeline-item {
+      .ant-timeline-item {
         padding-bottom: 10px;
       }
-      .ty-ant-timeline-item-last {
-        > .ty-ant-timeline-item-content {
+      .ant-timeline-item-last {
+        > .ant-timeline-item-content {
           min-height: inherit;
         }
-        &.ty-ant-timeline-item {
+        &.ant-timeline-item {
           margin-bottom: -7px;
           padding-bottom: 0;
         }
@@ -79,11 +79,11 @@
   }
 
   &-os-form {
-    .ty-ant-form-item {
+    .ant-form-item {
       margin-bottom: 10px;
 
       &.readonly-form-item:not(.hiden-item-control-line) {
-        .ty-ant-form-item-control {
+        .ant-form-item-control {
           border-bottom: 1px solid hsv(0, 0, 95%);
         }
       }
@@ -97,7 +97,7 @@
   &-os-table {
     &-inline-error-form-item {
       &-popover-overlay {
-        .ty-ant-popover-inner-content {
+        .ant-popover-inner-content {
           min-width: 100px;
           padding: 2px 8px;
         }
@@ -106,31 +106,31 @@
 
     &-filter-dropdown-form-item {
       /** 表格内部的输入字端，隐藏 label **/
-      .ty-ant-form-item-label {
+      .ant-form-item-label {
         display: none;
       }
     }
 
     &.editable {
-      .ty-ant-table-tbody {
-        .ty-ant-table-cell {
-          .ty-ant-form-item {
+      .ant-table-tbody {
+        .ant-table-cell {
+          .ant-form-item {
             margin: 0;
           }
         }
       }
     }
 
-    .ty-ant-table {
+    .ant-table {
       /** 表格内部的输入字端，隐藏 label **/
-      .ty-ant-form-item-label {
+      .ant-form-item-label {
         display: none;
       }
     }
 
     /** 左侧工具栏出现的 搜索表单 **/
     &-inline-search-form-wrapper {
-      .ty-ant-form-item {
+      .ant-form-item {
         margin-bottom: 0;
       }
     }
