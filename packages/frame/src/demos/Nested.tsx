@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProLayout, { PageContainer } from '@ty-one-components/frame';
+import ProLayout, { PageContainer } from '@ty-one-start/frame';
 import { Avatar } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import complexMenu from './complexMenu';

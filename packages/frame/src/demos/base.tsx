@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button, Descriptions, Result, Avatar, Space, Statistic } from 'antd';
 import { LikeOutlined, UserOutlined } from '@ant-design/icons';
 
-import type { ProSettings } from '@ty-one-components/frame';
-import ProLayout, { PageContainer, SettingDrawer } from '@ty-one-components/frame';
+import type { ProSettings } from '@ty-one-start/frame';
+import ProLayout, { PageContainer, SettingDrawer } from '@ty-one-start/frame';
 import defaultProps from './_defaultProps';
 
 const content = (

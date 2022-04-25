@@ -1,7 +1,7 @@
 {
-  "name": "@ty-one-components/frame",
+  "name": "@ty-one-start/frame",
   "version": "0.2.1",
-  "description": "@ty-one-components/frame",
+  "description": "@ty-one-start/frame",
   "repository": {
     "type": "git",
     "url": "git@10.1.2.7:visual-fe/swap-modules.git"

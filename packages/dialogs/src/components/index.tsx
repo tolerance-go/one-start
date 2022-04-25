@@ -19,7 +19,7 @@ import type {
   OSDialogAPIBase,
   OSDialogDrawerAPI,
 } from '@ty-one-start/typings';
-import { OSDialogAPIContext, OSDialogTypeContext } from './contexts';
+import { OSDialogAPIContext, OSDialogTypeContext } from '@ty-one-start/provider';
 import OSDialogMessage from './message';
 import OSDialogModal from './modal';
 import OSDialogModalOperation from './modal-operation';

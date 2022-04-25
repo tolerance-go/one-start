@@ -13,7 +13,7 @@ import type {
   OSTriggerTooltip,
   OSTriggerUpload,
 } from '@ty-one-start/typings';
-import { OSDialogAPIContext } from '@ty-one-start/dialogs';
+import { OSDialogAPIContext } from '@ty-one-start/provider';
 import { useActionsRef } from '@ty-one-start/utils';
 import { logRequestMessage } from '@ty-one-start/utils';
 import { normalizeRequestOutputs } from '@ty-one-start/utils';

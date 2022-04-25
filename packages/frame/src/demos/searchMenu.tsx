@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import type { MenuDataItem } from '@ty-one-components/frame';
-import ProLayout, { PageContainer } from '@ty-one-components/frame';
+import type { MenuDataItem } from '@ty-one-start/frame';
+import ProLayout, { PageContainer } from '@ty-one-start/frame';
 import { Input } from 'antd';
 import complexMenu from './complexMenu';
 

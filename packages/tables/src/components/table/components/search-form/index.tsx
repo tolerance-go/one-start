@@ -12,7 +12,7 @@ import { OSForm } from '@ty-one-start/forms';
 import { DEFAULT_LABEL_COL, DEFAULT_WRAPPER_COL } from '@ty-one-start/forms';
 import { useActionsRef } from '@ty-one-start/utils';
 import { DEFAULT_SEARCH_FORM_DISPLAYS_QUANTITY_IN_ONE_ROW } from '../../constants';
-import type { SearchFormAPI } from '@ty-one-start/tables';
+import type { SearchFormAPI } from '../../typings';
 import { SearchCollapse } from './search-collapse';
 import utl from 'lodash';
 

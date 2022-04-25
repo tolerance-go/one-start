@@ -12,14 +12,14 @@ import type {
   OSTableFormFieldItemWithStaticPureConfigs,
   RecordType,
 } from '@ty-one-start/typings';
-import { OSFormItem as OSFormItemBase } from '@ty-one-start/form-items';
+import { OSFormItem as OSFormItemBase } from '../components';
 import { normalizeDataIndex } from '@ty-one-start/utils';
 import {
   pickFieldRequests,
   pickFieldSettings,
   pickFormItemSettings,
   pickTableFormItemRequests,
-} from '@ty-one-start/form-items';
+} from './pick-field-item-settings';
 import utl from 'lodash';
 
 export const renderTableFormItem = (

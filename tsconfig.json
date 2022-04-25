@@ -16,7 +16,7 @@
     "skipLibCheck": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@@/*": [".umi/*"],
+      "@@/*": ["./src/.umi/*"],
       "@ty-one-start/utils": ["./packages/utils/src/index"],
       "@ty-one-start/form-items": ["./packages/form-items/src/index"],
       "@ty-one-start/provider": ["./packages/provider/src/index"],
@@ -24,7 +24,7 @@
       "@ty-one-start/one-start": ["packages/one-start/src/index"],
       "@ty-one-start/one-proto": ["packages/one-proto/src/index"],
       "@ty-one-start/scripts": ["packages/scripts/src/index"],
-      "@ty-one-components/frame": ["packages/frame/src/index"],
+      "@ty-one-start/frame": ["packages/frame/src/index"],
       "@ty-one-start/tables": ["packages/tables/src/index"],
       "@ty-one-start/typings": ["packages/typings/src/index"],
       "@ty-one-start/themes": ["packages/themes/src/index"],
@@ -33,7 +33,8 @@
       "@ty-one-start/triggers": ["packages/triggers/src/index"],
       "@ty-one-start/dialogs": ["packages/dialogs/src/index"],
       "@ty-one-start/helpers": ["packages/helpers/src/index"],
-      "@ty-one-start/app-admin": ["packages/app-admin/src/index"]
+      "@ty-one-start/app-admin": ["packages/app-admin/src/index"],
+      "@ty-one-start/notices": ["packages/notices/src/index"]
     }
   },
   "include": [

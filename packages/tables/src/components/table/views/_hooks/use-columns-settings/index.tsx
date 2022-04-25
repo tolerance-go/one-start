@@ -17,7 +17,7 @@ import { useClsPrefix } from '@ty-one-start/utils';
 import type {
   ColumnsSettingsActions,
   OSTableFormFieldItemWithStaticPureConfigsWithChildren,
-} from '@ty-one-start/tables';
+} from '../../../typings';
 import { getKeyIndexId } from '@ty-one-start/utils';
 import { ImmediateLoadingButton } from './components/immediate-loading-button';
 import { TreeNodeActions } from './components/tree-node-actions';

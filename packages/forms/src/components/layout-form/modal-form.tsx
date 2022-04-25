@@ -11,7 +11,7 @@ import OSForm from '../form';
 import { OSTriggerButton } from '@ty-one-start/triggers';
 import { useClsPrefix } from '@ty-one-start/utils';
 import EventEmitter from 'eventemitter3';
-import { LayoutModalFormEventBusContext } from './layout-form-event-context';
+import { LayoutModalFormEventBusContext } from '@ty-one-start/provider';
 
 const OSLayoutModalForm: React.ForwardRefRenderFunction<
   OSLayoutModalFormAPI,

@@ -9,7 +9,7 @@ import type {
   OSTableFormFieldItemWithStaticPureConfigsWithChildren,
   RequestDataSourceActions,
   SearchFormAPI,
-} from '@ty-one-start/tables';
+} from '../../typings';
 import type {
   OSFieldBaseSettings,
   OSFormFieldItem,
@@ -49,8 +49,7 @@ import {
   tdSelfClassTag,
   verticalRowCellWithKeyClsPrefix,
 } from '../../constants';
-import { runTableSettings } from '../../utils';
-import { getDataIndexId, getKeyIndexId } from '@ty-one-start/utils';
+import { getDataIndexId, getKeyIndexId, runTableSettings } from '@ty-one-start/utils';
 import { getColEditable } from '../../utils/get-col-editable';
 import type { SearchRequestOptionsMapColIdType } from '../_typeings';
 

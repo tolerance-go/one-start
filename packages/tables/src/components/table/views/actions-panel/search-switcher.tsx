@@ -3,7 +3,7 @@ import { Button, Space } from 'antd';
 import React from 'react';
 import type { TableCoreAPI } from '@ty-one-start/typings';
 import { eventNames } from '../../constants';
-import type { RequestDataSourceActions, SearchFormAPI } from '@ty-one-start/tables';
+import type { RequestDataSourceActions, SearchFormAPI } from '../../typings';
 
 const SearchSwitcher: React.ForwardRefRenderFunction<
   {},

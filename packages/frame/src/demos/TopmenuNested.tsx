@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProLayout, { PageContainer } from '@ty-one-components/frame';
+import ProLayout, { PageContainer } from '@ty-one-start/frame';
 import complexMenu from './complexMenu';
 
 export default () => (

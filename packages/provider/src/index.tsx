@@ -184,6 +184,9 @@ export * from './providers/table-api-context';
 export * from './providers/table-context';
 export * from './providers/form-context';
 export * from './providers/refs-global-context';
+export * from './providers/dialog-api-context';
+export * from './providers/layout-form-event-context';
+
 export {
   arEGIntl,
   enUSIntl,

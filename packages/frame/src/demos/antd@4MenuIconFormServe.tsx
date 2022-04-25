@@ -1,7 +1,7 @@
 import React from 'react';
 
-import type { MenuDataItem } from '@ty-one-components/frame';
-import ProLayout, { PageContainer } from '@ty-one-components/frame';
+import type { MenuDataItem } from '@ty-one-start/frame';
+import ProLayout, { PageContainer } from '@ty-one-start/frame';
 import { SmileOutlined, HeartOutlined } from '@ant-design/icons';
 
 const IconMap = {

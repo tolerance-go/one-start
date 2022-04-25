@@ -1,5 +1,5 @@
 import React from 'react';
-import ProLayout, { DefaultFooter, PageContainer } from '@ty-one-components/frame';
+import ProLayout, { DefaultFooter, PageContainer } from '@ty-one-start/frame';
 import defaultProps from './_defaultProps';
 
 export default () => (

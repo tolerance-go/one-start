@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ProLayout, { PageContainer, ProBreadcrumb } from '@ty-one-components/frame';
+import ProLayout, { PageContainer, ProBreadcrumb } from '@ty-one-start/frame';
 
 export default () => (
   <div

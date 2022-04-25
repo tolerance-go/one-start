@@ -1,8 +1,8 @@
 ﻿import React, { useState } from 'react';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import type { BasicLayoutProps } from '@ty-one-components/frame';
+import type { BasicLayoutProps } from '@ty-one-start/frame';
 
-import ProLayout, { PageContainer } from '@ty-one-components/frame';
+import ProLayout, { PageContainer } from '@ty-one-start/frame';
 import { OSForm } from '@ty-one-start/one-start';
 import defaultProps from './_defaultProps';
 

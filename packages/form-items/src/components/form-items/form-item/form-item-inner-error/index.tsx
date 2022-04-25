@@ -10,7 +10,7 @@ import {
   LayoutModalFormEventBusContext,
   LayoutTabsFormEventBusContext,
   LayoutTabsFormTabMetaContext,
-} from '@ty-one-start/forms';
+} from '@ty-one-start/provider';
 import { TableAPIContext } from '@ty-one-start/provider';
 import { TableWrapperContext } from '@ty-one-start/provider';
 import { useClsPrefix } from '@ty-one-start/utils';

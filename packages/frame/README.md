@@ -1,4 +1,4 @@
-# @ty-one-components/frame
+# @ty-one-start/frame
 
 ![](https://gw.alipayobjects.com/zos/antfincdn/HSeAGqaEwn/1586504755352-479bf47d-97a6-4080-afed-d38ffe905e57.png)
 
@@ -54,11 +54,11 @@ ProLayout will automatically select the menu based on `location.pathname` and au
 Using npm:
 
 ```bash
-$ npm install --save  @ty-one-components/frame
+$ npm install --save  @ty-one-start/frame
 ```
 
 or using yarn:
 
 ```bash
-$ yarn add @ty-one-components/frame
+$ yarn add @ty-one-start/frame
 ```

@@ -1,5 +1,4 @@
 import OSDialog from './components';
-import { OSDialogAPIContext, OSDialogTypeContext } from './components/contexts';
 
 import OSDialogMessage from './components/message';
 import OSDialogModal from './components/modal';
@@ -10,8 +9,6 @@ import OSDialogDrawer from './components/drawer';
 
 export {
   OSDialog,
-  OSDialogAPIContext,
-  OSDialogTypeContext,
   OSDialogMessage,
   OSDialogModal,
   OSDialogModalOperation,

@@ -1,5 +1,5 @@
 import React from 'react';
-import ProLayout, { SettingDrawer } from '@ty-one-components/frame';
+import ProLayout, { SettingDrawer } from '@ty-one-start/frame';
 import defaultProps from './_defaultProps';
 
 export default () => {

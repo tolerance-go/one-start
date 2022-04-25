@@ -23,7 +23,7 @@ import type {
   RequestDataSourceActions,
   SearchFormAPI,
   TreeSpreadActions,
-} from '@ty-one-start/tables';
+} from '../../typings';
 import type { SearchRequestOptionsMapColIdType } from '../_typeings';
 import type { SnapshotOfCurrentSearchParametersType } from './use-snapshot-of-current-search-parameters';
 

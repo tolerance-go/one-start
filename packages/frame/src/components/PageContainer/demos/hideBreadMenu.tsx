@@ -1,6 +1,6 @@
 import React from 'react';
 import { Descriptions } from 'antd';
-import { PageContainer } from '@ty-one-components/frame';
+import { PageContainer } from '@ty-one-start/frame';
 
 export default () => (
   <div

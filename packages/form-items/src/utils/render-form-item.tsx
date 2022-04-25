@@ -4,7 +4,7 @@ import utl from 'lodash';
 import type { ValidateErrorEntity } from 'rc-field-form/es/interface';
 import type { ReactNode } from 'react';
 import React from 'react';
-import { OSFormItem as OSFormItemBase } from '@ty-one-start/form-items';
+import { OSFormItem as OSFormItemBase } from '../components';
 import { getDataIndexId, getKeyIndexId } from '@ty-one-start/utils';
 import type {
   OSEditableTableFieldType,
@@ -26,7 +26,7 @@ import {
   pickFieldSettings,
   pickFormItemRequests,
   pickFormItemSettings,
-} from '@ty-one-start/form-items';
+} from './pick-field-item-settings';
 import { tableCellErrorValidate } from '@ty-one-start/utils';
 
 export const renderFormItem = (

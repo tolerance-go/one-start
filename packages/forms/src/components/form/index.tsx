@@ -3,7 +3,7 @@ import {
   OSReferencesCollectorDispatchContext,
   PrioritizedComponentSizeContext,
 } from '@ty-one-start/provider';
-import { runFormSettings } from '@ty-one-start/tables';
+import { runFormSettings } from '@ty-one-start/utils';
 import { getDataIndexId, getKeyIndexId } from '@ty-one-start/utils';
 import type {
   OSEditableTableAPI,

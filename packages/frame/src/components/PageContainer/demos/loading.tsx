@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { PageContainer } from '@ty-one-components/frame';
+import { PageContainer } from '@ty-one-start/frame';
 import { Card } from 'antd';
 
 export default () => {

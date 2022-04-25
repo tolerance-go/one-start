@@ -17,7 +17,7 @@ import { normalizeRequestOutputs } from '@ty-one-start/utils';
 import { useClsPrefix } from '@ty-one-start/utils';
 import { useLoading } from '@ty-one-start/utils';
 import { useUpdateEffect } from '@ty-one-start/utils';
-import { LayoutTabsFormEventBusContext } from '../layout-form-event-context';
+import { LayoutTabsFormEventBusContext } from '@ty-one-start/provider';
 import { FormItem } from './form-item';
 
 const OSLayoutTabsForm: React.ForwardRefRenderFunction<OSLayoutTabsFormAPI, OSLayoutTabsFormType> =

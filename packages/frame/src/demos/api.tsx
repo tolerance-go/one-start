@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Switch, Avatar } from 'antd';
-import ProLayout, { PageContainer, DefaultFooter } from '@ty-one-components/frame';
+import ProLayout, { PageContainer, DefaultFooter } from '@ty-one-start/frame';
 import defaultProps from './_defaultProps';
 import { GithubOutlined } from '@ant-design/icons';
 

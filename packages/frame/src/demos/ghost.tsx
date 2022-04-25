@@ -1,5 +1,5 @@
 import React from 'react';
-import ProLayout, { PageContainer } from '@ty-one-components/frame';
+import ProLayout, { PageContainer } from '@ty-one-start/frame';
 
 import { Descriptions } from 'antd';
 import defaultProps from './_defaultProps';

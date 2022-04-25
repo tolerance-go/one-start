@@ -2,7 +2,7 @@ import { LoadingOutlined } from '@ant-design/icons/lib/icons';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import React, { useContext, useState } from 'react';
 import type { OSTriggerIconAPI, OSTriggerIconType } from '@ty-one-start/typings';
-import { OSDialogAPIContext, OSDialogTypeContext } from '@ty-one-start/dialogs';
+import { OSDialogAPIContext, OSDialogTypeContext } from '@ty-one-start/provider';
 import { useActionsRef } from '@ty-one-start/utils';
 import { logRequestMessage } from '@ty-one-start/utils';
 import { normalizeRequestOutputs } from '@ty-one-start/utils';

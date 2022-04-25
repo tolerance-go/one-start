@@ -6,7 +6,7 @@ import utl from 'lodash';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import type { ReactNode } from 'react';
 import React, { useContext, useImperativeHandle, useState } from 'react';
-import { OSDialogAPIContext } from '@ty-one-start/dialogs';
+import { OSDialogAPIContext } from '@ty-one-start/provider';
 import { useActionsRef } from '@ty-one-start/utils';
 import type { OSTriggerButtonAPI, OSTriggerButtonType } from '@ty-one-start/typings';
 import { logRequestMessage } from '@ty-one-start/utils';

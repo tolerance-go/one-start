@@ -1,11 +1,11 @@
-import { OSGrid, OSLayout, OSProviderWrapper } from '@ty-one-start/one-start';
+import { OSTable, OSLayout, OSProviderWrapper } from '@ty-one-start/one-start';
 import Mock, { Random } from 'mockjs';
 
 const Order = () => {
   return (
     <OSProviderWrapper>
       <p>订单</p>
-      <OSGrid
+      <OSTable
         settings={{
           fieldItems: [
             {
@@ -59,7 +59,7 @@ const Order = () => {
               },
             },
           ],
-          height: 380,
+          tableHeight: 380,
         }}
         requests={{
           requestDataSource: async () => {
@@ -90,7 +90,7 @@ const Position = () => {
   return (
     <OSProviderWrapper>
       <p>持仓</p>
-      <OSGrid
+      <OSTable
         settings={{
           fieldItems: [
             {
@@ -136,7 +136,7 @@ const Position = () => {
               },
             },
           ],
-          height: 380,
+          tableHeight: 380,
         }}
         requests={{
           requestDataSource: async () => {

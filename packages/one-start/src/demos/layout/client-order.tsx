@@ -1,4 +1,4 @@
-import { OSGrid, OSLayout, OSProviderWrapper, OSForm } from '@ty-one-start/one-start';
+import { OSTable, OSLayout, OSProviderWrapper, OSForm } from '@ty-one-start/one-start';
 import Mock, { Random } from 'mockjs';
 import { Row, Col } from 'antd';
 
@@ -6,7 +6,7 @@ const Order = () => {
   return (
     <OSProviderWrapper>
       <p>订单管理</p>
-      <OSGrid
+      <OSTable
         settings={{
           fieldItems: [
             {
@@ -60,7 +60,7 @@ const Order = () => {
               },
             },
           ],
-          height: 330,
+          tableHeight: 330,
         }}
         requests={{
           requestDataSource: async () => {
@@ -91,7 +91,7 @@ const CannotSecuritiesList = () => {
   return (
     <OSProviderWrapper>
       <p>非可融券列表</p>
-      <OSGrid
+      <OSTable
         settings={{
           searchFormItemChunkSize: 3,
           fieldItems: [
@@ -118,7 +118,7 @@ const CannotSecuritiesList = () => {
               },
             },
           ],
-          height: 380,
+          tableHeight: 380,
         }}
         requests={{
           requestDataSource: async () => {
@@ -148,7 +148,7 @@ const SecuritiesList = () => {
   return (
     <OSProviderWrapper>
       <p>可融券列表</p>
-      <OSGrid
+      <OSTable
         settings={{
           searchFormItemChunkSize: 3,
           fieldItems: [
@@ -189,7 +189,7 @@ const SecuritiesList = () => {
               },
             },
           ],
-          height: 380,
+          tableHeight: 380,
         }}
         requests={{
           requestDataSource: async () => {
@@ -236,7 +236,7 @@ const ApplyOrder = () => {
           }}
         />
       </div>
-      <OSGrid
+      <OSTable
         settings={{
           fieldItems: [
             {
@@ -261,7 +261,7 @@ const ApplyOrder = () => {
               },
             },
           ],
-          height: 400,
+          tableHeight: 400,
         }}
         requests={{
           requestDataSource: async () => {
