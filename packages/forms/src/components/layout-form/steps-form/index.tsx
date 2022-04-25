@@ -24,9 +24,10 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
   OSLayoutStepsFormAPI,
   OSLayoutStepsFormType
 > = (props, ref) => {
-  const { settings, requests, value, onChange } = props;
+  const { settings, requests, value, onChange, slots } = props;
 
   const { steps, forms, submitTriggerText, defaultCurrent } = settings ?? {};
+  const { renderExtraActions } = slots ?? {};
   const [current, setCurrent] = useState(defaultCurrent ?? 0);
 
   const { requestWhenSubmit, requestWhenNext, requestInitialValues } = requests ?? {};
@@ -85,7 +86,7 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
     return utl.fromPairs(
       formsRef.current.map((__, index) => [
         indexKeysMap[index],
-        formsRef.current[index].current!.getFieldsValue(),
+        formsRef.current[index].current?.getFieldsValue(),
       ]),
     );
   };
@@ -171,6 +172,11 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
     );
   };
 
+  const resetStepsForm = () => {
+    resetFormsFields();
+    setCurrent(0);
+  };
+
   const coreActionsRef = useActionsRef({
     clearPrevUserCellInputs,
     validateRecursion,
@@ -181,6 +187,7 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
     setFieldsValue,
     resetFields,
     getFieldsError,
+    resetStepsForm,
   });
 
   const { requestInitialValuesLoading } = useRequestInitialValues({
@@ -200,6 +207,7 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
       setFieldsValue,
       resetFields,
       getFieldsError,
+      resetStepsForm,
     };
   });
 
@@ -261,6 +269,16 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
               }}
             />
             <Row gutter={5} justify="end" align="middle">
+              {React.Children.map(
+                renderExtraActions?.({
+                  current,
+                  formsRef,
+                  apisRef: coreActionsRef,
+                }),
+                (child) => {
+                  return <Col>{child}</Col>;
+                },
+              )}
               <Col>
                 <OSTrigger
                   type="button"
@@ -323,8 +341,7 @@ const OSLayoutStepsForm: React.ForwardRefRenderFunction<
                               return true;
                             }
 
-                            resetFormsFields();
-                            setCurrent(0);
+                            resetStepsForm();
 
                             return false;
                           }

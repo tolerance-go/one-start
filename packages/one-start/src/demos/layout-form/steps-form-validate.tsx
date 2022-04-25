@@ -464,6 +464,45 @@ export default () => {
               },
             },
           }}
+          slots={{
+            renderExtraActions: (options) => {
+              if (options.current !== 1) {
+                return [
+                  <OSTrigger
+                    type="button"
+                    settings={{
+                      text: '额外操作1',
+                      type: 'primary',
+                    }}
+                  />,
+                  <OSTrigger
+                    type="button"
+                    settings={{
+                      text: '额外操作2',
+                      type: 'primary',
+                    }}
+                  />,
+                ];
+              }
+              return (
+                <OSTrigger
+                  type="button"
+                  settings={{
+                    text: '额外操作3',
+                    type: 'primary',
+                  }}
+                  requests={{
+                    requestAfterClick: async () => {
+                      console.log(options);
+                      console.log(options.apisRef.current?.getFieldsValue());
+                      await delay(1000);
+                      options.apisRef.current?.resetStepsForm();
+                    },
+                  }}
+                />
+              );
+            },
+          }}
           requests={{
             // requestStepsFormDataSource: async () => {
             //   await delay(1000);

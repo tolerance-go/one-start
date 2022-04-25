@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.28.1...@ty-one-start/one-start@0.29.0) (2022-04-25)
+
+
+### Features
+
+* **steps-form:** 新增 slots.renderExtraActions ([2a41da8](https://10.1.2.7/visual-fe/swap-modules/commits/2a41da880a934e796f9f0e63652bef8e11704b1c))
+
+
+
+
+
 ## [0.28.1](https://10.1.2.7/visual-fe/swap-modules/compare/@ty-one-start/one-start@0.28.0...@ty-one-start/one-start@0.28.1) (2022-04-19)
 
 
