@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import React from 'react';
 import { Layout } from 'antd';
-import { ConfigProviderWrap } from '@ty-one-components/provider';
+import { ConfigProviderWrap } from '@ty-one-start/provider';
 import { ErrorBoundary } from '@ty-one-start/utils';
 
 const WrapContent: React.FC<{

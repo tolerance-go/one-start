@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "description": "@ty-one-start/fields",
   "module": "es/index.js",
-  
   "types": "es/index.d.ts",
   "files": [
     "lib",
@@ -37,5 +36,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@ty-one-start/provider": "0.2.0"
   }
 }

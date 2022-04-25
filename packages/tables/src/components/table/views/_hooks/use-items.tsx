@@ -29,7 +29,7 @@ import type {
   OSTableType,
   OSTextFieldType,
   RecordType,
-  RenderFieldOptions,
+  CustomFieldValueTypeOptions,
   RequiredRecursion,
   TableCoreAPI,
 } from '@ty-one-start/typings';
@@ -160,7 +160,7 @@ export const useItems = ({
   editableRowKeys?: RequiredRecursion<OSTableType>['settings']['editableRowKeys'];
   rowKey: RequiredRecursion<OSTableType>['settings']['rowKey'];
   searchFormItemChunkSize?: RequiredRecursion<OSTableType>['settings']['searchFormItemChunkSize'];
-  extraValueTypes: Record<string, (options: RenderFieldOptions) => React.ReactNode>;
+  extraValueTypes: Record<string, (options: CustomFieldValueTypeOptions) => React.ReactNode>;
   searchFormRef: React.RefObject<SearchFormAPI | null>;
   tableCoreActionsRef: React.MutableRefObject<TableCoreAPI>;
   requestDataSourceActionsRef: React.MutableRefObject<RequestDataSourceActions>;

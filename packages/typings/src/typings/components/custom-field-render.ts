@@ -8,7 +8,7 @@ import type { OSFieldAPI, OSFieldChangeEventType, OSFieldValueType } from './fie
 import type { _OSFormFieldItems } from './form';
 import type { OSTableCellMeta } from './table';
 
-export type RenderFieldOptions<ExtraFieldValueType = OSFieldValueType> = {
+export type CustomFieldValueTypeOptions<ExtraFieldValueType = OSFieldValueType> = {
   ref?: React.RefObject<OSFieldAPI> | ((instance: OSFieldAPI | null) => void);
   onValueChange?: (value: OSFieldValueType) => void;
   onChange?: (event: OSFieldChangeEventType) => void;
@@ -22,10 +22,10 @@ export type RenderFieldOptions<ExtraFieldValueType = OSFieldValueType> = {
 };
 
 export type RenderFieldMethodOptions = Omit<
-  RenderFieldOptions,
+  CustomFieldValueTypeOptions,
   'mode' | 'type' | 'fieldSettings' | 'requests'
 > & {
-  types?: Record<string, (options: RenderFieldOptions) => ReactNode>;
+  types?: Record<string, (options: CustomFieldValueTypeOptions) => ReactNode>;
   autoFetchSelectOptions?: boolean;
   formRef?: React.RefObject<FormInstance>;
   cellMeta?: OSTableCellMeta;

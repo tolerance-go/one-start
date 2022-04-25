@@ -1,19 +1,19 @@
-# @ty-one-components/provider
+# @ty-one-start/provider
 
-> @ty-one-components/provider.
+> @ty-one-start/provider.
 
-See our website [@ty-one-components/provider](https://procomponent.ant.design/) for more information.
+See our website [@ty-one-start/provider](https://procomponent.ant.design/) for more information.
 
 ## Install
 
 Using npm:
 
 ```bash
-$ npm install --save  @ty-one-components/provider
+$ npm install --save  @ty-one-start/provider
 ```
 
 or using yarn:
 
 ```bash
-$ yarn add @ty-one-components/provider
+$ yarn add @ty-one-start/provider
 ```

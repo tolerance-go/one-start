@@ -21,7 +21,7 @@ import type {
   OSTableFormFieldItemWithStaticPureConfigs,
   OSTableType,
   RecordType,
-  RenderFieldOptions,
+  CustomFieldValueTypeOptions,
   RequiredRecursion,
 } from '@ty-one-start/typings';
 import { useActionsRef } from '@ty-one-start/utils';
@@ -128,7 +128,7 @@ export const useItems = ({
   editableRowKeys?: RequiredRecursion<OSTableType>['settings']['editableRowKeys'];
   rowKey: RequiredRecursion<OSTableType>['settings']['rowKey'];
   searchFormItemChunkSize?: RequiredRecursion<OSTableType>['settings']['searchFormItemChunkSize'];
-  extraValueTypes: Record<string, (options: RenderFieldOptions) => React.ReactNode>;
+  extraValueTypes: Record<string, (options: CustomFieldValueTypeOptions) => React.ReactNode>;
   tableActionsRef: React.MutableRefObject<OSGridAPI>;
   getFieldItems?: OSTableType['getFieldItems'];
 }) => {

@@ -24,7 +24,6 @@ import viVN from './locale/vi_VN';
 import zhCN from './locale/zh_CN';
 import zhTW from './locale/zh_TW';
 import { OSConfigProviderWrapper } from './providers/config';
-import OSProviderWrapper, { globalRefKeys, OSReferencesGlobalContext } from './providers/provider';
 import OSReferencesCollectorProviderWrapper from './providers/references';
 
 export type ProSchemaValueEnumType = {
@@ -184,6 +183,7 @@ export * from './providers/extra-value-types';
 export * from './providers/table-api-context';
 export * from './providers/table-context';
 export * from './providers/form-context';
+export * from './providers/refs-global-context';
 export {
   arEGIntl,
   enUSIntl,
@@ -210,13 +210,7 @@ export {
   intlMapKeys,
 };
 export { ConfigConsumer, ConfigProvider, ConfigProviderWrap, createIntl };
-export {
-  OSReferencesGlobalContext,
-  OSProviderWrapper,
-  OSConfigProviderWrapper,
-  OSReferencesCollectorProviderWrapper,
-  globalRefKeys,
-};
+export { OSConfigProviderWrapper, OSReferencesCollectorProviderWrapper };
 
 export type ConfigContextPropsType = {
   intl: IntlType;

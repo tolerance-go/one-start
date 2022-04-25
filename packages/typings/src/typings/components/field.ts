@@ -27,6 +27,8 @@ import type { RenderFieldMethodOptions } from './custom-field-render';
 import type { OSResMessage } from './message';
 import type { OSTriggerButtonType } from './trigger';
 
+export type SelectRawValueType = string | number;
+
 export type CreateStaticPureFieldItemConfigs<FieldType extends OSField> = {
   type?: FieldType['type'];
   settings?: FieldType['settings'];

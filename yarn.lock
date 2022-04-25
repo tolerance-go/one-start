@@ -222,14 +222,6 @@
     "@ag-grid-community/core" "~26.1.0"
     "@ag-grid-enterprise/core" "~26.1.0"
 
-"@ahooksjs/use-request@^2.0.0":
-  version "2.8.15"
-  resolved "http://npm.tongyu.tech/@ahooksjs%2fuse-request/-/use-request-2.8.15.tgz#daa32a8395ba75e8deb9f4fde4e221a4a8f525db"
-  integrity sha512-xhVaM4fyIiAMdVFuuU5i3CFUdFa/IblF+fvITVMFaUEO3w/V5tVCAF6WIA3T03n1/RPuzRkA7Ao1PFtSGtGelw==
-  dependencies:
-    lodash.debounce "^4.0.8"
-    lodash.throttle "^4.1.1"
-
 "@ahooksjs/use-request@^2.8.10":
   version "2.8.10"
   resolved "http://npm.tongyu.tech/@ahooksjs%2fuse-request/-/use-request-2.8.10.tgz#643ea1a3c025fc7d0ff6a41621f11c03eed9ac22"
@@ -255,7 +247,7 @@
   resolved "http://npm.tongyu.tech/@ant-design%2ficons-svg/-/icons-svg-4.2.1.tgz#8630da8eb4471a4aabdaed7d1ff6a97dcb2cf05a"
   integrity sha1-hjDajrRHGkqr2u19H/apfcss8Fo=
 
-"@ant-design/icons@^4.0.0", "@ant-design/icons@^4.1.0", "@ant-design/icons@^4.2.1", "@ant-design/icons@^4.3.0", "@ant-design/icons@^4.7.0":
+"@ant-design/icons@^4.0.0", "@ant-design/icons@^4.1.0", "@ant-design/icons@^4.2.1", "@ant-design/icons@^4.3.0":
   version "4.7.0"
   resolved "http://npm.tongyu.tech/@ant-design%2ficons/-/icons-4.7.0.tgz#8c3cbe0a556ba92af5dc7d1e70c0b25b5179af0f"
   integrity sha1-jDy+ClVrqSr13H0ecMCyW1F5rw8=
@@ -1768,13 +1760,6 @@
   version "7.14.6"
   resolved "http://npm.tongyu.tech/@babel%2fruntime/-/runtime-7.14.6.tgz#535203bc0892efc7dec60bdc27b2ecf6e409062d"
   integrity sha1-U1IDvAiS78fexgvcJ7Ls9uQJBi0=
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@^7.12.13", "@babel/runtime@^7.15.4":
-  version "7.17.9"
-  resolved "http://npm.tongyu.tech/@babel%2fruntime/-/runtime-7.17.9.tgz#d19fbf802d01a8cb6cf053a64e472d42c434ba72"
-  integrity sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -4093,11 +4078,6 @@
   resolved "http://npm.tongyu.tech/@types%2fhistory/-/history-4.7.8.tgz#49348387983075705fe8f4e02fb67f7daaec4934"
   integrity sha1-STSDh5gwdXBf6PTgL7Z/farsSTQ=
 
-"@types/history@^4.7.11":
-  version "4.7.11"
-  resolved "http://npm.tongyu.tech/@types%2fhistory/-/history-4.7.11.tgz#56588b17ae8f50c53983a524fc3cc47437969d64"
-  integrity sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==
-
 "@types/hoist-non-react-statics@^3.3.0", "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "http://npm.tongyu.tech/@types%2fhoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
@@ -4120,11 +4100,6 @@
   version "2.2.34"
   resolved "http://npm.tongyu.tech/@types%2finvariant/-/invariant-2.2.34.tgz#05e4f79f465c2007884374d4795452f995720bbe"
   integrity sha1-BeT3n0ZcIAeIQ3TUeVRS+ZVyC74=
-
-"@types/isomorphic-fetch@^0.0.35":
-  version "0.0.35"
-  resolved "http://npm.tongyu.tech/@types%2fisomorphic-fetch/-/isomorphic-fetch-0.0.35.tgz#c1c0d402daac324582b6186b91f8905340ea3361"
-  integrity sha1-wcDUAtqsMkWCthhrkfiQU0DqM2E=
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0", "@types/istanbul-lib-coverage@^2.0.1":
   version "2.0.3"
@@ -4415,16 +4390,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-redux@^7.1.0", "@types/react-redux@^7.1.20":
-  version "7.1.24"
-  resolved "http://npm.tongyu.tech/@types%2freact-redux/-/react-redux-7.1.24.tgz#6caaff1603aba17b27d20f8ad073e4c077e975c0"
-  integrity sha512-7FkurKcS1k0FHZEtdbbgN8Oc6b+stGSfZYjQGicofJ0j4U0qIn/jaSvnP2pLwZKiai3/17xqqxkkrxTgN8UNbQ==
-  dependencies:
-    "@types/hoist-non-react-statics" "^3.3.0"
-    "@types/react" "*"
-    hoist-non-react-statics "^3.3.0"
-    redux "^4.0.0"
-
 "@types/react-redux@^7.1.2":
   version "7.1.16"
   resolved "http://npm.tongyu.tech/@types%2freact-redux/-/react-redux-7.1.16.tgz#0fbd04c2500c12105494c83d4a3e45c084e3cb21"
@@ -4457,15 +4422,6 @@
   integrity sha1-oSbZ6nYHn/u9sNkiUHPrV5ercnE=
   dependencies:
     "@types/history" "*"
-    "@types/react" "*"
-    "@types/react-router" "*"
-
-"@types/react-router-dom@^5.1.2":
-  version "5.3.3"
-  resolved "http://npm.tongyu.tech/@types%2freact-router-dom/-/react-router-dom-5.3.3.tgz#e9d6b4a66fcdbd651a5f106c2656a30088cc1e83"
-  integrity sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==
-  dependencies:
-    "@types/history" "^4.7.11"
     "@types/react" "*"
     "@types/react-router" "*"
 
@@ -4804,13 +4760,6 @@
   dependencies:
     "@umijs/utils" "3.5.20"
 
-"@umijs/babel-plugin-auto-css-modules@3.5.23":
-  version "3.5.23"
-  resolved "http://npm.tongyu.tech/@umijs%2fbabel-plugin-auto-css-modules/-/babel-plugin-auto-css-modules-3.5.23.tgz#f5469099c3468d29ab8ae34882b430811248b1e6"
-  integrity sha512-dMrprGgbKHN2gvqGYa9D20514KetAmD+WHaYgu9PWApddYs/GIrAWuFv16yi1N9nm6GBF6k3obX64rp/mZXHnw==
-  dependencies:
-    "@umijs/utils" "3.5.23"
-
 "@umijs/babel-plugin-import-to-await-require@3.4.25":
   version "3.4.25"
   resolved "http://npm.tongyu.tech/@umijs%2fbabel-plugin-import-to-await-require/-/babel-plugin-import-to-await-require-3.4.25.tgz#8bc8347d36d1107605dcbf5b6f41498aa062206c"
@@ -4824,13 +4773,6 @@
   integrity sha1-GUfwUzcD2N/XRCo4MCBiHn6HFmc=
   dependencies:
     "@umijs/utils" "3.5.20"
-
-"@umijs/babel-plugin-import-to-await-require@3.5.23":
-  version "3.5.23"
-  resolved "http://npm.tongyu.tech/@umijs%2fbabel-plugin-import-to-await-require/-/babel-plugin-import-to-await-require-3.5.23.tgz#b07e6d92c3c8de045744cdebbd7ab7c5629e4d1c"
-  integrity sha512-4dmcX6Q2ReYoO1qS/gpKF3V/0RgLSmQu2NskkdAVeENK84ayJwnuqdMe+hW59L0C4hLbq9JO+GLUE1mGp+54Fw==
-  dependencies:
-    "@umijs/utils" "3.5.23"
 
 "@umijs/babel-plugin-lock-core-js-3@3.4.25":
   version "3.4.25"
@@ -4848,14 +4790,6 @@
     "@umijs/utils" "3.5.20"
     core-js "3.6.5"
 
-"@umijs/babel-plugin-lock-core-js-3@3.5.23":
-  version "3.5.23"
-  resolved "http://npm.tongyu.tech/@umijs%2fbabel-plugin-lock-core-js-3/-/babel-plugin-lock-core-js-3-3.5.23.tgz#1f6213607e1ebb2fa705764d6bee586f7a6cc43e"
-  integrity sha512-F3wNVGycIE/bjxhkMz4SyONqrc0M2GbmZOMIo0x+QNdeNzoQ9Y6t3LM18+0M1i834z4QZbR0EBrXWaqYo2FpLQ==
-  dependencies:
-    "@umijs/utils" "3.5.23"
-    core-js "3.6.5"
-
 "@umijs/babel-plugin-no-anonymous-default-export@3.4.25":
   version "3.4.25"
   resolved "http://npm.tongyu.tech/@umijs%2fbabel-plugin-no-anonymous-default-export/-/babel-plugin-no-anonymous-default-export-3.4.25.tgz#4c47af75656b98bc84659bf7a4cc869645d95c0f"
@@ -4869,13 +4803,6 @@
   integrity sha1-8etST6Qz0PoZWQcV/scN15tRsl0=
   dependencies:
     "@umijs/utils" "3.5.20"
-
-"@umijs/babel-plugin-no-anonymous-default-export@3.5.23":
-  version "3.5.23"
-  resolved "http://npm.tongyu.tech/@umijs%2fbabel-plugin-no-anonymous-default-export/-/babel-plugin-no-anonymous-default-export-3.5.23.tgz#a50534ab724e964f0658a2e5c623554b0c15c13f"
-  integrity sha512-wBWOHx+bo3G/OfFYBTD+r4v/7tGMF7Ut2ry8SL11nmhX3eRgb5OIHbnbfLEUPmH6s/meBiiHZOLccFagW6SOKg==
-  dependencies:
-    "@umijs/utils" "3.5.23"
 
 "@umijs/babel-preset-umi@3.4.25", "@umijs/babel-preset-umi@3.x", "@umijs/babel-preset-umi@^3.0.14":
   version "3.4.25"
@@ -4899,18 +4826,6 @@
     "@umijs/babel-plugin-lock-core-js-3" "3.5.20"
     "@umijs/babel-plugin-no-anonymous-default-export" "3.5.20"
     "@umijs/deps" "3.5.20"
-
-"@umijs/babel-preset-umi@3.5.23":
-  version "3.5.23"
-  resolved "http://npm.tongyu.tech/@umijs%2fbabel-preset-umi/-/babel-preset-umi-3.5.23.tgz#0f3494aefc1f77afc1b791d06bed5f412597f4d0"
-  integrity sha512-RRPhP5jmhvZnfGDV0jpBMw6eV7oFjdxVd47++Gt1N3L8QVhHpSDn9AZ3ww0xg5Ffn7SK7wfsgMiEXKzfuKbqGw==
-  dependencies:
-    "@babel/runtime" "7.12.5"
-    "@umijs/babel-plugin-auto-css-modules" "3.5.23"
-    "@umijs/babel-plugin-import-to-await-require" "3.5.23"
-    "@umijs/babel-plugin-lock-core-js-3" "3.5.23"
-    "@umijs/babel-plugin-no-anonymous-default-export" "3.5.23"
-    "@umijs/deps" "3.5.23"
 
 "@umijs/bundler-utils@3.4.25":
   version "3.4.25"
@@ -5013,19 +4928,6 @@
     jest-worker "24.9.0"
     prettier "2.2.1"
 
-"@umijs/deps@3.5.23":
-  version "3.5.23"
-  resolved "http://npm.tongyu.tech/@umijs%2fdeps/-/deps-3.5.23.tgz#cb29269b7874d2c9645f60aad9e120a180b9be04"
-  integrity sha512-Z4Tq0GG6PQaguPWIVVtfi+ehruD4JJjTibPXIASxuMT9Xey076ZMY9rjCd5ZBlecFDde2lC53MOkyOcGniCAaQ==
-  dependencies:
-    "@bloomberg/record-tuple-polyfill" "0.0.3"
-    chokidar "3.5.1"
-    clipboardy "2.3.0"
-    esbuild "0.12.15"
-    jest-worker "24.9.0"
-    prettier "2.2.1"
-    regenerate-unicode-properties "9.0.0"
-
 "@umijs/fabric@^2.0.0", "@umijs/fabric@^2.5.6":
   version "2.6.2"
   resolved "http://npm.tongyu.tech/@umijs%2ffabric/-/fabric-2.6.2.tgz#5c862cd7a8cf624a2a5beb6150bad3e8f03f484d"
@@ -5101,39 +5003,10 @@
     swagger2openapi "^7.0.4"
     tiny-pinyin "^1.3.2"
 
-"@umijs/plugin-access@2.4.2":
-  version "2.4.2"
-  resolved "http://npm.tongyu.tech/@umijs%2fplugin-access/-/plugin-access-2.4.2.tgz#0bc4b63d9dc0a2a04a303a352556721c891a8b30"
-  integrity sha1-C8S2PZ3AoqBKMDo1JVZyHIkaizA=
-
-"@umijs/plugin-analytics@0.2.2", "@umijs/plugin-analytics@^0.2.2":
+"@umijs/plugin-analytics@^0.2.2":
   version "0.2.2"
   resolved "http://npm.tongyu.tech/@umijs%2fplugin-analytics/-/plugin-analytics-0.2.2.tgz#575fd231d4327ea13413217aa1b5fc6bdd89465e"
   integrity sha1-V1/SMdQyfqE0EyF6obX8a92JRl4=
-
-"@umijs/plugin-antd@0.13.0":
-  version "0.13.0"
-  resolved "http://npm.tongyu.tech/@umijs%2fplugin-antd/-/plugin-antd-0.13.0.tgz#9a7e2f21d37fa4200f25024047035b420557693a"
-  integrity sha512-7tooYtOylVatrzMWCJtk8JFQL90i94OD0FgZYpKBbM7keThH8prYkSkDJFIDkuGfZ6pl6BJT8ESnYLxf2OiQUw==
-  dependencies:
-    antd "^4.1.3"
-    antd-mobile "^2.3.1"
-    semver "^7.3.5"
-
-"@umijs/plugin-crossorigin@1.2.1":
-  version "1.2.1"
-  resolved "http://npm.tongyu.tech/@umijs%2fplugin-crossorigin/-/plugin-crossorigin-1.2.1.tgz#c210375392dc020ad201b9b0ab5a49234e24e6d3"
-  integrity sha1-whA3U5LcAgrSAbmwq1pJI04k5tM=
-
-"@umijs/plugin-dva@0.13.0":
-  version "0.13.0"
-  resolved "http://npm.tongyu.tech/@umijs%2fplugin-dva/-/plugin-dva-0.13.0.tgz#aa8cf9982cfb5b8d5fcb59c3915cca866dc37dab"
-  integrity sha1-qoz5mCz7W41fy1nDkVzKhm3Dfas=
-  dependencies:
-    babel-plugin-dva-hmr "^0.4.2"
-    dva "^2.6.0-beta.20"
-    dva-immer "^0.5.2"
-    dva-loading "^3.0.20"
 
 "@umijs/plugin-esbuild@^1.1.0":
   version "1.4.1"
@@ -5150,21 +5023,6 @@
     "@types/react-helmet" "^6.1.0"
     react-helmet "^6.1.0"
 
-"@umijs/plugin-initial-state@2.4.0":
-  version "2.4.0"
-  resolved "http://npm.tongyu.tech/@umijs%2fplugin-initial-state/-/plugin-initial-state-2.4.0.tgz#a6759082f2bdd0aeb278ae95b2e4b562a061aed6"
-  integrity sha1-pnWQgvK90K6yeK6VsuS1YqBhrtY=
-
-"@umijs/plugin-layout@0.18.1":
-  version "0.18.1"
-  resolved "http://npm.tongyu.tech/@umijs%2fplugin-layout/-/plugin-layout-0.18.1.tgz#8490fb525a6225fbf3081b9c32d145def42da88c"
-  integrity sha1-hJD7UlpiJfvzCBucMtFF3vQtqIw=
-  dependencies:
-    "@umijs/route-utils" "^2.0.0"
-    antd "^4.1.2"
-    lodash "^4.17.15"
-    path-to-regexp "1.x"
-
 "@umijs/plugin-locale@0.15.1":
   version "0.15.1"
   resolved "http://npm.tongyu.tech/@umijs%2fplugin-locale/-/plugin-locale-0.15.1.tgz#2b2c7f419d40d2a44a6b3041b7ad7d40abff69cf"
@@ -5178,13 +5036,6 @@
     react-intl "3.12.1"
     warning "^4.0.3"
 
-"@umijs/plugin-model@2.6.2":
-  version "2.6.2"
-  resolved "http://npm.tongyu.tech/@umijs%2fplugin-model/-/plugin-model-2.6.2.tgz#779a726ae0b0746723df166a28e17f026adc517a"
-  integrity sha1-d5pyauCwdGcj3xZqKOF/AmrcUXo=
-  dependencies:
-    fast-deep-equal "3.1.1"
-
 "@umijs/plugin-openapi@^1.3.2":
   version "1.3.2"
   resolved "http://npm.tongyu.tech/@umijs%2fplugin-openapi/-/plugin-openapi-1.3.2.tgz#ff411e81e8f1e4296aba8b12eac02f106b0579cc"
@@ -5193,21 +5044,6 @@
     "@umijs/openapi" "^1.2.0"
     serve-static "^1.14.1"
     swagger-ui-react "^3.41.1"
-
-"@umijs/plugin-request@2.8.0":
-  version "2.8.0"
-  resolved "http://npm.tongyu.tech/@umijs%2fplugin-request/-/plugin-request-2.8.0.tgz#f2ac21a1e39e6a2f94b42f1b348a4b480b355139"
-  integrity sha1-8qwhoeOeai+UtC8bNIpLSAs1UTk=
-  dependencies:
-    "@ahooksjs/use-request" "^2.0.0"
-    umi-request "^1.2.14"
-
-"@umijs/plugin-test@1.0.2":
-  version "1.0.2"
-  resolved "http://npm.tongyu.tech/@umijs%2fplugin-test/-/plugin-test-1.0.2.tgz#df67c7b6e31bf4df4e2857d04a103046e557143d"
-  integrity sha1-32fHtuMb9N9OKFfQShAwRuVXFD0=
-  dependencies:
-    "@umijs/test" "~3.5.14"
 
 "@umijs/preset-built-in@3.4.25":
   version "3.4.25"
@@ -5313,24 +5149,6 @@
     unist-util-visit "^2.0.1"
     unist-util-visit-parents "^3.0.1"
 
-"@umijs/preset-react@^1.8.17":
-  version "1.8.30"
-  resolved "http://npm.tongyu.tech/@umijs%2fpreset-react/-/preset-react-1.8.30.tgz#eebf9b1e7195f598f6b6e183c2e50208d712d8df"
-  integrity sha512-l+l5r+x9cyqNxbtmUNqoibfV9UK/daiD2HjFiTql3wyKzR6cEIq+h8RQ+ehO9DmzU8Tu5LPRimT97MuOsMciOQ==
-  dependencies:
-    "@umijs/plugin-access" "2.4.2"
-    "@umijs/plugin-analytics" "0.2.2"
-    "@umijs/plugin-antd" "0.13.0"
-    "@umijs/plugin-crossorigin" "1.2.1"
-    "@umijs/plugin-dva" "0.13.0"
-    "@umijs/plugin-helmet" "1.1.3"
-    "@umijs/plugin-initial-state" "2.4.0"
-    "@umijs/plugin-layout" "0.18.1"
-    "@umijs/plugin-locale" "0.15.1"
-    "@umijs/plugin-model" "2.6.2"
-    "@umijs/plugin-request" "2.8.0"
-    "@umijs/plugin-test" "1.0.2"
-
 "@umijs/renderer-mpa@3.4.25":
   version "3.4.25"
   resolved "http://npm.tongyu.tech/@umijs%2frenderer-mpa/-/renderer-mpa-3.4.25.tgz#a212659f4302eae96b9f6a13f5406f22a9462a75"
@@ -5375,16 +5193,6 @@
   version "1.0.37"
   resolved "http://npm.tongyu.tech/@umijs%2froute-utils/-/route-utils-1.0.37.tgz#1ceb516980d4754ce2d5959878fe72259091a990"
   integrity sha1-HOtRaYDUdUzi1ZWYeP5yJZCRqZA=
-  dependencies:
-    "@qixian.cs/path-to-regexp" "^6.1.0"
-    fast-deep-equal "^3.1.3"
-    lodash.isequal "^4.5.0"
-    memoize-one "^5.1.1"
-
-"@umijs/route-utils@^2.0.0":
-  version "2.1.1"
-  resolved "http://npm.tongyu.tech/@umijs%2froute-utils/-/route-utils-2.1.1.tgz#85d19351f888f105ce348aecfdc1234e13a93220"
-  integrity sha512-N2ftgkqDEPBau1WyAxJfTQOs78OAVJY/Grl90fDo6ui75Eww563FhWcTrribS8sJS33mv9gtSlBLJ3F9WPLVog==
   dependencies:
     "@qixian.cs/path-to-regexp" "^6.1.0"
     fast-deep-equal "^3.1.3"
@@ -5469,24 +5277,6 @@
     regenerator-runtime "^0.13.7"
     whatwg-fetch "^3.5.0"
 
-"@umijs/test@~3.5.14":
-  version "3.5.23"
-  resolved "http://npm.tongyu.tech/@umijs%2ftest/-/test-3.5.23.tgz#ed1b1b0e077e9e013d7d543385f3feefd8b05f56"
-  integrity sha512-ipglpweW2wEwc+8sER3DdEI/x8n71Dlc70WIkmNMKYbdnYHhgprY58ayR2HKCyjb1t5pBj24j9Vhw8B5anJ9GQ==
-  dependencies:
-    "@babel/core" "7.12.10"
-    "@umijs/babel-preset-umi" "3.5.23"
-    "@umijs/utils" "3.5.23"
-    babel-core "7.0.0-bridge.0"
-    babel-jest "^26.6.3"
-    core-js "3.8.2"
-    identity-obj-proxy "3.0.0"
-    jest "^26.6.3"
-    jest-cli "^26.6.3"
-    jest-environment-jsdom-fourteen "1.0.1"
-    regenerator-runtime "^0.13.7"
-    whatwg-fetch "^3.5.0"
-
 "@umijs/types@3.4.25", "@umijs/types@3.x":
   version "3.4.25"
   resolved "http://npm.tongyu.tech/@umijs%2ftypes/-/types-3.4.25.tgz#074a7ada836c76189da0e8e8b935269e14a2fc5d"
@@ -5539,13 +5329,6 @@
   integrity sha1-Reie6sc0o5YyBdVbD1M72WSS87k=
   dependencies:
     "@umijs/deps" "3.5.20"
-
-"@umijs/utils@3.5.23":
-  version "3.5.23"
-  resolved "http://npm.tongyu.tech/@umijs%2futils/-/utils-3.5.23.tgz#5c26746380c4f3db21631f3ae0c38cc7d3b1ec6a"
-  integrity sha512-3uGD7DeuQrhfWZBnm3ry7PvP7jZwmdps5na+7TsI1/XpjyIWLWxbuy5vYQszi/1spKA3eIB0UNW9PrroAVxMIg==
-  dependencies:
-    "@umijs/deps" "3.5.23"
 
 "@zkochan/cmd-shim@^3.1.0":
   version "3.1.0"
@@ -5949,35 +5732,6 @@ ansi-wrap@0.1.0, ansi-wrap@^0.1.0:
   resolved "http://npm.tongyu.tech/ansi-wrap/-/ansi-wrap-0.1.0.tgz#a82250ddb0015e9a27ca82e82ea603bbfa45efaf"
   integrity sha1-qCJQ3bABXponyoLoLqYDu/pF768=
 
-antd-mobile@^2.3.1:
-  version "2.3.4"
-  resolved "http://npm.tongyu.tech/antd-mobile/-/antd-mobile-2.3.4.tgz#8f584707b30343d102f3ca10fdaf677e2a5d1cc8"
-  integrity sha1-j1hHB7MDQ9EC88oQ/a9nfipdHMg=
-  dependencies:
-    array-tree-filter "~2.1.0"
-    babel-runtime "6.x"
-    classnames "^2.2.1"
-    normalize.css "^7.0.0"
-    rc-checkbox "~2.0.0"
-    rc-collapse "~1.9.1"
-    rc-slider "~8.2.0"
-    rc-swipeout "~2.0.0"
-    rmc-calendar "^1.0.0"
-    rmc-cascader "~5.0.0"
-    rmc-date-picker "^6.0.8"
-    rmc-dialog "^1.0.1"
-    rmc-drawer "^0.4.11"
-    rmc-feedback "^2.0.0"
-    rmc-input-number "^1.0.0"
-    rmc-list-view "^0.11.0"
-    rmc-notification "~1.0.0"
-    rmc-nuka-carousel "~3.0.0"
-    rmc-picker "~5.0.0"
-    rmc-pull-to-refresh "~1.0.1"
-    rmc-steps "~1.0.0"
-    rmc-tabs "~1.2.0"
-    rmc-tooltip "~1.0.0"
-
 antd@4.16.7:
   version "4.16.7"
   resolved "http://npm.tongyu.tech/antd/-/antd-4.16.7.tgz#c51fb143288adb8b008a786efe8d5df13320ac4c"
@@ -6025,56 +5779,6 @@ antd@4.16.7:
     rc-util "^5.13.1"
     scroll-into-view-if-needed "^2.2.25"
     warning "^4.0.3"
-
-antd@^4.1.2, antd@^4.1.3:
-  version "4.20.0"
-  resolved "http://npm.tongyu.tech/antd/-/antd-4.20.0.tgz#5f5fa4fccb90dd3e091c8d6e9d503114d98d862f"
-  integrity sha512-Msowfvabsn/yJIo3qYU0vMqGb31OUylMeFRDilosBViG2AS8R2VB2IX53kbw4kFV3vr7fr2HXcuQkf/FMLU+Dg==
-  dependencies:
-    "@ant-design/colors" "^6.0.0"
-    "@ant-design/icons" "^4.7.0"
-    "@ant-design/react-slick" "~0.28.1"
-    "@babel/runtime" "^7.12.5"
-    "@ctrl/tinycolor" "^3.4.0"
-    classnames "^2.2.6"
-    copy-to-clipboard "^3.2.0"
-    lodash "^4.17.21"
-    memoize-one "^6.0.0"
-    moment "^2.29.2"
-    rc-cascader "~3.5.0"
-    rc-checkbox "~2.3.0"
-    rc-collapse "~3.1.0"
-    rc-dialog "~8.8.1"
-    rc-drawer "~4.4.2"
-    rc-dropdown "~3.5.0"
-    rc-field-form "~1.26.1"
-    rc-image "~5.6.0"
-    rc-input "~0.0.1-alpha.5"
-    rc-input-number "~7.3.0"
-    rc-mentions "~1.7.0"
-    rc-menu "~9.5.5"
-    rc-motion "^2.5.1"
-    rc-notification "~4.6.0"
-    rc-pagination "~3.1.9"
-    rc-picker "~2.6.4"
-    rc-progress "~3.2.1"
-    rc-rate "~2.9.0"
-    rc-resize-observer "^1.2.0"
-    rc-segmented "~2.0.0"
-    rc-select "~14.1.1"
-    rc-slider "~10.0.0"
-    rc-steps "~4.1.0"
-    rc-switch "~3.2.0"
-    rc-table "~7.24.0"
-    rc-tabs "~11.13.0"
-    rc-textarea "~0.3.0"
-    rc-tooltip "~5.1.1"
-    rc-tree "~5.5.0"
-    rc-tree-select "~5.3.0"
-    rc-trigger "^5.2.10"
-    rc-upload "~4.3.0"
-    rc-util "^5.20.0"
-    scroll-into-view-if-needed "^2.2.25"
 
 any-observable@^0.3.0:
   version "0.3.0"
@@ -6236,7 +5940,7 @@ array-slice@^0.2.3:
   resolved "http://npm.tongyu.tech/array-slice/-/array-slice-0.2.3.tgz#dd3cfb80ed7973a75117cdac69b0b99ec86186f5"
   integrity sha1-3Tz7gO15c6dRF82sabC5nshhhvU=
 
-array-tree-filter@2.1.x, array-tree-filter@^2.1.0, array-tree-filter@~2.1.0:
+array-tree-filter@^2.1.0:
   version "2.1.0"
   resolved "http://npm.tongyu.tech/array-tree-filter/-/array-tree-filter-2.1.0.tgz#873ac00fec83749f255ac8dd083814b4f6329190"
   integrity sha1-hzrAD+yDdJ8lWsjdCDgUtPYykZA=
@@ -6405,11 +6109,6 @@ async-validator@^3.0.3:
   resolved "http://npm.tongyu.tech/async-validator/-/async-validator-3.5.2.tgz#68e866a96824e8b2694ff7a831c1a25c44d5e500"
   integrity sha1-aOhmqWgk6LJpT/eoMcGiXETV5QA=
 
-async-validator@^4.0.2:
-  version "4.0.7"
-  resolved "http://npm.tongyu.tech/async-validator/-/async-validator-4.0.7.tgz#034a0fd2103a6b2ebf010da75183bec299247afe"
-  integrity sha1-A0oP0hA6ay6/AQ2nUYO+wpkkev4=
-
 async@0.9.x:
   version "0.9.2"
   resolved "http://npm.tongyu.tech/async/-/async-0.9.2.tgz#aea74d5e61c1f899613bf64bda66d4c78f2fd17d"
@@ -6524,11 +6223,6 @@ babel-loader@^8.1.0:
     loader-utils "^1.4.0"
     make-dir "^3.1.0"
     schema-utils "^2.6.5"
-
-babel-plugin-dva-hmr@^0.4.2:
-  version "0.4.2"
-  resolved "http://npm.tongyu.tech/babel-plugin-dva-hmr/-/babel-plugin-dva-hmr-0.4.2.tgz#56cf3d49cc366fb191cd883e27ca42bddfd12735"
-  integrity sha1-Vs89Scw2b7GRzYg+J8pCvd/RJzU=
 
 babel-plugin-dynamic-import-node@^2.3.3:
   version "2.3.3"
@@ -6729,7 +6423,7 @@ babel-preset-umi@1.8.4:
     babel-plugin-react-require "3.0.0"
     babel-plugin-transform-react-remove-prop-types "0.4.24"
 
-babel-runtime@6.x, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
+babel-runtime@^6.23.0, babel-runtime@^6.26.0:
   version "6.26.0"
   resolved "http://npm.tongyu.tech/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
@@ -7566,7 +7260,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@*, classnames@2.3.1, classnames@2.x, classnames@^2.2.0, classnames@^2.2.1, classnames@^2.2.3, classnames@^2.2.4, classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.1:
+classnames@*, classnames@2.3.1, classnames@2.x, classnames@^2.2.1, classnames@^2.2.3, classnames@^2.2.5, classnames@^2.2.6, classnames@^2.3.1:
   version "2.3.1"
   resolved "http://npm.tongyu.tech/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
   integrity sha1-38+jiR4wbsHa0QXQ6I9EF7hTXo4=
@@ -7947,22 +7641,10 @@ complex.js@^2.0.15:
   resolved "http://npm.tongyu.tech/complex.js/-/complex.js-2.0.15.tgz#7add6848b4c1d12aa9262f7df925ebe7a51a7406"
   integrity sha1-et1oSLTB0SqpJi99+SXr56UadAY=
 
-component-classes@^1.2.5:
-  version "1.2.6"
-  resolved "http://npm.tongyu.tech/component-classes/-/component-classes-1.2.6.tgz#c642394c3618a4d8b0b8919efccbbd930e5cd691"
-  integrity sha1-xkI5TDYYpNiwuJGe/Mu9kw5c1pE=
-  dependencies:
-    component-indexof "0.0.3"
-
 component-emitter@^1.2.1:
   version "1.3.0"
   resolved "http://npm.tongyu.tech/component-emitter/-/component-emitter-1.3.0.tgz#16e4070fba8ae29b679f2215853ee181ab2eabc0"
   integrity sha1-FuQHD7qK4ptnnyIVhT7hgasuq8A=
-
-component-indexof@0.0.3:
-  version "0.0.3"
-  resolved "http://npm.tongyu.tech/component-indexof/-/component-indexof-0.0.3.tgz#11d091312239eb8f32c8f25ae9cb002ffe8d3c24"
-  integrity sha1-EdCRMSI5648yyPJa6csAL/6NPCQ=
 
 compute-scroll-into-view@^1.0.17:
   version "1.0.17"
@@ -8037,15 +7719,6 @@ confusing-browser-globals@^1.0.10:
   version "1.0.10"
   resolved "http://npm.tongyu.tech/confusing-browser-globals/-/confusing-browser-globals-1.0.10.tgz#30d1e7f3d1b882b25ec4933d1d1adac353d20a59"
   integrity sha1-MNHn89G4grJexJM9HRraw1PSClk=
-
-connected-react-router@6.5.2:
-  version "6.5.2"
-  resolved "http://npm.tongyu.tech/connected-react-router/-/connected-react-router-6.5.2.tgz#422af70f86cb276681e20ab4295cf27dd9b6c7e3"
-  integrity sha1-Qir3D4bLJ2aB4gq0KVzyfdm2x+M=
-  dependencies:
-    immutable "^3.8.1"
-    prop-types "^15.7.2"
-    seamless-immutable "^7.1.3"
 
 console-browserify@^1.1.0:
   version "1.2.0"
@@ -8277,11 +7950,6 @@ core-js@3.8.2:
   resolved "http://npm.tongyu.tech/core-js/-/core-js-3.8.2.tgz#0a1fd6709246da9ca8eff5bb0cbd15fba9ac7044"
   integrity sha1-Ch/WcJJG2pyo7/W7DL0V+6mscEQ=
 
-core-js@^1.0.0:
-  version "1.2.7"
-  resolved "http://npm.tongyu.tech/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
-  integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
-
 core-js@^2.4.0, core-js@^2.5.0:
   version "2.6.12"
   resolved "http://npm.tongyu.tech/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
@@ -8376,7 +8044,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.5.1, create-react-class@^15.6.0:
+create-react-class@^15.5.1:
   version "15.7.0"
   resolved "http://npm.tongyu.tech/create-react-class/-/create-react-class-15.7.0.tgz#7499d7ca2e69bb51d13faf59bd04f0c65a1d6c1e"
   integrity sha1-dJnXyi5pu1HRP69ZvQTwxlodbB4=
@@ -8468,14 +8136,6 @@ crypto-random-string@^2.0.0:
   version "2.0.0"
   resolved "http://npm.tongyu.tech/crypto-random-string/-/crypto-random-string-2.0.0.tgz#ef2a7a966ec11083388369baa02ebead229b30d5"
   integrity sha1-7yp6lm7BEIM4g2m6oC6+rSKbMNU=
-
-css-animation@1.x, css-animation@^1.3.2:
-  version "1.6.1"
-  resolved "http://npm.tongyu.tech/css-animation/-/css-animation-1.6.1.tgz#162064a3b0d51f958b7ff37b3d6d4de18e17039e"
-  integrity sha1-FiBko7DVH5WLf/N7PW1N4Y4XA54=
-  dependencies:
-    babel-runtime "6.x"
-    component-classes "^1.2.5"
 
 css-blank-pseudo@^0.1.4:
   version "0.1.4"
@@ -9281,7 +8941,7 @@ dom-accessibility-api@^0.5.6:
   resolved "http://npm.tongyu.tech/dom-accessibility-api/-/dom-accessibility-api-0.5.6.tgz#3f5d43b52c7a3bd68b5fb63fa47b4e4c1fdf65a9"
   integrity sha1-P11DtSx6O9aLX7Y/pHtOTB/fZak=
 
-dom-align@1.x, dom-align@^1.7.0:
+dom-align@^1.7.0:
   version "1.12.2"
   resolved "http://npm.tongyu.tech/dom-align/-/dom-align-1.12.2.tgz#0f8164ebd0c9c21b0c790310493cd855892acd4b"
   integrity sha1-D4Fk69DJwhsMeQMQSTzYVYkqzUs=
@@ -9462,53 +9122,6 @@ duplexify@^3.4.2, duplexify@^3.5.0, duplexify@^3.6.0:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
-
-dva-core@2.0.4:
-  version "2.0.4"
-  resolved "http://npm.tongyu.tech/dva-core/-/dva-core-2.0.4.tgz#086665d1d5f684e089c5bfac9ba388d91cc9050a"
-  integrity sha1-CGZl0dX2hOCJxb+sm6OI2RzJBQo=
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    flatten "^1.0.2"
-    global "^4.3.2"
-    invariant "^2.2.1"
-    is-plain-object "^2.0.3"
-    redux-saga "^0.16.0"
-    warning "^3.0.0"
-
-dva-immer@^0.5.2:
-  version "0.5.2"
-  resolved "http://npm.tongyu.tech/dva-immer/-/dva-immer-0.5.2.tgz#128bd6d96b25f11e6f137807b614b9c58cf03f32"
-  integrity sha1-EovW2Wsl8R5vE3gHthS5xYzwPzI=
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    immer "^7.0.5"
-
-dva-loading@^3.0.20:
-  version "3.0.22"
-  resolved "http://npm.tongyu.tech/dva-loading/-/dva-loading-3.0.22.tgz#c0dd2fb081492752b992d9ce2701b88825186e02"
-  integrity sha1-wN0vsIFJJ1K5ktnOJwG4iCUYbgI=
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-
-dva@^2.6.0-beta.20:
-  version "2.6.0-beta.22"
-  resolved "http://npm.tongyu.tech/dva/-/dva-2.6.0-beta.22.tgz#3288993ecea70ee9c507d4aa9e0ed8247d4af69c"
-  integrity sha1-MoiZPs6nDunFB9Sqng7YJH1K9pw=
-  dependencies:
-    "@babel/runtime" "^7.0.0"
-    "@types/isomorphic-fetch" "^0.0.35"
-    "@types/react-redux" "^7.1.0"
-    "@types/react-router-dom" "^5.1.2"
-    connected-react-router "6.5.2"
-    dva-core "2.0.4"
-    global "^4.3.2"
-    history "^4.7.2"
-    invariant "^2.2.4"
-    isomorphic-fetch "^2.2.1"
-    react-redux "^7.1.0"
-    react-router-dom "^5.1.2"
-    redux "^4.0.1"
 
 earcut@^2.1.1:
   version "2.2.3"
@@ -10442,11 +10055,6 @@ execall@^2.0.0:
   dependencies:
     clone-regexp "^2.1.0"
 
-exenv@^1.2.0:
-  version "1.2.2"
-  resolved "http://npm.tongyu.tech/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
-  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
-
 exit-on-epipe@~1.0.1:
   version "1.0.1"
   resolved "http://npm.tongyu.tech/exit-on-epipe/-/exit-on-epipe-1.0.1.tgz#0bdd92e87d5285d267daa8171d0eb06159689692"
@@ -10650,11 +10258,6 @@ fancy-log@^1.3.2:
     parse-node-version "^1.0.0"
     time-stamp "^1.0.0"
 
-fast-deep-equal@3.1.1:
-  version "3.1.1"
-  resolved "http://npm.tongyu.tech/fast-deep-equal/-/fast-deep-equal-3.1.1.tgz#545145077c501491e33b15ec408c294376e94ae4"
-  integrity sha1-VFFFB3xQFJHjOxXsQIwpQ3bpSuQ=
-
 fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "http://npm.tongyu.tech/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
@@ -10809,19 +10412,6 @@ fbjs-css-vars@^1.0.0:
   version "1.0.2"
   resolved "http://npm.tongyu.tech/fbjs-css-vars/-/fbjs-css-vars-1.0.2.tgz#216551136ae02fe255932c3ec8775f18e2c078b8"
   integrity sha1-IWVRE2rgL+JVkyw+yHdfGOLAeLg=
-
-fbjs@^0.8.3:
-  version "0.8.18"
-  resolved "http://npm.tongyu.tech/fbjs/-/fbjs-0.8.18.tgz#9835e0addb9aca2eff53295cd79ca1cfc7c9662a"
-  integrity sha1-mDXgrduayi7/Uylc15yhz8fJZio=
-  dependencies:
-    core-js "^1.0.0"
-    isomorphic-fetch "^2.1.1"
-    loose-envify "^1.0.0"
-    object-assign "^4.1.0"
-    promise "^7.1.1"
-    setimmediate "^1.0.5"
-    ua-parser-js "^0.7.30"
 
 fbjs@^3.0.0:
   version "3.0.0"
@@ -11566,7 +11156,7 @@ global-prefix@^3.0.0:
     kind-of "^6.0.2"
     which "^1.3.1"
 
-global@^4.3.0, global@^4.3.2:
+global@^4.3.0:
   version "4.4.0"
   resolved "http://npm.tongyu.tech/global/-/global-4.4.0.tgz#3e7b105179006a323ed71aafca3e9c57a5cc6406"
   integrity sha1-PnsQUXkAajI+1xqvyj6cV6XMZAY=
@@ -12048,7 +11638,7 @@ history-with-query@4.10.4:
     tiny-warning "^1.0.0"
     value-equal "^1.0.1"
 
-history@^4.7.2, history@^4.9.0:
+history@^4.9.0:
   version "4.10.1"
   resolved "http://npm.tongyu.tech/history/-/history-4.10.1.tgz#33371a65e3a83b267434e2b3f3b1b4c58aad4cf3"
   integrity sha1-MzcaZeOoOyZ0NOKz87G0xYqtTPM=
@@ -12417,11 +12007,6 @@ image-size@~0.5.0:
   resolved "http://npm.tongyu.tech/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=
 
-immer@^7.0.5:
-  version "7.0.15"
-  resolved "http://npm.tongyu.tech/immer/-/immer-7.0.15.tgz#dc3bc6db87401659d2e737c67a21b227c484a4ad"
-  integrity sha1-3DvG24dAFlnS5zfGeiGyJ8SEpK0=
-
 immer@^9.0.5:
   version "9.0.5"
   resolved "http://npm.tongyu.tech/immer/-/immer-9.0.5.tgz#a7154f34fe7064f15f00554cc94c66cc0bf453ec"
@@ -12721,7 +12306,7 @@ intl@1.2.5:
   resolved "http://npm.tongyu.tech/intl/-/intl-1.2.5.tgz#82244a2190c4e419f8371f5aa34daa3420e2abde"
   integrity sha1-giRKIZDE5Bn4Nx9ao02qNCDiq94=
 
-invariant@^2.0.0, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.4:
+invariant@^2.0.0, invariant@^2.2.2, invariant@^2.2.4:
   version "2.2.4"
   resolved "http://npm.tongyu.tech/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
   integrity sha1-YQ88ksk1nOHbYW5TgAjSP/NRWOY=
@@ -13345,7 +12930,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "http://npm.tongyu.tech/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
-isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.1:
+isomorphic-fetch@^2.2.1:
   version "2.2.1"
   resolved "http://npm.tongyu.tech/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   integrity sha1-YRrhrPFPXoH3KVB0coGf6XM1WKk=
@@ -15603,11 +15188,6 @@ memoize-one@^4.0.0:
   resolved "http://npm.tongyu.tech/memoize-one/-/memoize-one-4.1.0.tgz#a2387c58c03fff27ca390c31b764a79addf3f906"
   integrity sha1-ojh8WMA//yfKOQwxt2Snmt3z+QY=
 
-memoize-one@^6.0.0:
-  version "6.0.0"
-  resolved "http://npm.tongyu.tech/memoize-one/-/memoize-one-6.0.0.tgz#b2591b871ed82948aee4727dc6abceeeac8c1045"
-  integrity sha1-slkbhx7YKUiu5HJ9xqvO7qyMEEU=
-
 memoizee@^0.4.15:
   version "0.4.15"
   resolved "http://npm.tongyu.tech/memoizee/-/memoizee-0.4.15.tgz#e6f3d2da863f318d02225391829a6c5956555b72"
@@ -16168,11 +15748,6 @@ moment@*, "moment@>= 2.9.0", moment@^2.24.0, moment@^2.25.3, moment@^2.27.0, mom
   resolved "http://npm.tongyu.tech/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
   integrity sha1-sr52n6MZQL6e7qZGnAdeNQBvo9M=
 
-moment@^2.29.2:
-  version "2.29.3"
-  resolved "http://npm.tongyu.tech/moment/-/moment-2.29.3.tgz#edd47411c322413999f7a5940d526de183c031f3"
-  integrity sha512-c6YRvhEo//6T2Jz/vVtYzqBzwvPT95JBQ+smCytzf7c50oMZRsR/a4w88aD34I+/QVSfnoAnSBFPJHItlOMJVw==
-
 moo@^0.5.0:
   version "0.5.1"
   resolved "http://npm.tongyu.tech/moo/-/moo-0.5.1.tgz#7aae7f384b9b09f620b6abf6f74ebbcd1b65dbc4"
@@ -16557,11 +16132,6 @@ normalize-url@^6.0.1:
   version "6.0.1"
   resolved "http://npm.tongyu.tech/normalize-url/-/normalize-url-6.0.1.tgz#a4f27f58cf8c7b287b440b8a8201f42d0b00d256"
   integrity sha1-pPJ/WM+Meyh7RAuKggH0LQsA0lY=
-
-normalize.css@^7.0.0:
-  version "7.0.0"
-  resolved "http://npm.tongyu.tech/normalize.css/-/normalize.css-7.0.0.tgz#abfb1dd82470674e0322b53ceb1aaf412938e4bf"
-  integrity sha1-q/sd2CRwZ04DIrU86xqvQSk45L8=
 
 now-and-later@^2.0.0:
   version "2.0.1"
@@ -17476,17 +17046,17 @@ path-to-regexp@0.1.7:
   resolved "http://npm.tongyu.tech/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
   integrity sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
 
-path-to-regexp@1.x, path-to-regexp@^1.7.0:
+path-to-regexp@2.4.0:
+  version "2.4.0"
+  resolved "http://npm.tongyu.tech/path-to-regexp/-/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
+  integrity sha1-Nc5/Mz1WFvHB4b/iZsOrouWy5wQ=
+
+path-to-regexp@^1.7.0:
   version "1.8.0"
   resolved "http://npm.tongyu.tech/path-to-regexp/-/path-to-regexp-1.8.0.tgz#887b3ba9d84393e87a0a0b9f4cb756198b53548a"
   integrity sha1-iHs7qdhDk+h6CgufTLdWGYtTVIo=
   dependencies:
     isarray "0.0.1"
-
-path-to-regexp@2.4.0:
-  version "2.4.0"
-  resolved "http://npm.tongyu.tech/path-to-regexp/-/path-to-regexp-2.4.0.tgz#35ce7f333d5616f1c1e1bfe266c3aba2e5b2e704"
-  integrity sha1-Nc5/Mz1WFvHB4b/iZsOrouWy5wQ=
 
 path-type@^1.0.0:
   version "1.1.0"
@@ -18746,7 +18316,7 @@ prop-types@15.x, prop-types@^15.0.0, prop-types@^15.5.10, prop-types@^15.6.0:
     object-assign "^4.1.1"
     react-is "^16.13.1"
 
-prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7:
+prop-types@^15.5.7:
   version "15.8.1"
   resolved "http://npm.tongyu.tech/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -18955,7 +18525,7 @@ quick-lru@^4.0.1:
   resolved "http://npm.tongyu.tech/quick-lru/-/quick-lru-4.0.1.tgz#5b8878f113a58217848c6482026c73e1ba57727f"
   integrity sha1-W4h48ROlgheEjGSCAmxz4bpXcn8=
 
-raf@^3.1.0, raf@^3.3.2, raf@^3.4.0, raf@^3.4.1:
+raf@^3.1.0, raf@^3.4.1:
   version "3.4.1"
   resolved "http://npm.tongyu.tech/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
   integrity sha1-B0LpmkplUvRF1z4+4DKK8P8e3jk=
@@ -19020,16 +18590,6 @@ raw-body@2.4.3:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-rc-align@^2.4.0:
-  version "2.4.5"
-  resolved "http://npm.tongyu.tech/rc-align/-/rc-align-2.4.5.tgz#c941a586f59d1017f23a428f0b468663fb7102ab"
-  integrity sha1-yUGlhvWdEBfyOkKPC0aGY/txAqs=
-  dependencies:
-    babel-runtime "^6.26.0"
-    dom-align "^1.7.0"
-    prop-types "^15.5.8"
-    rc-util "^4.0.4"
-
 rc-align@^4.0.0:
   version "4.0.9"
   resolved "http://npm.tongyu.tech/rc-align/-/rc-align-4.0.9.tgz#46d8801c4a139ff6a65ad1674e8efceac98f85f2"
@@ -19040,19 +18600,6 @@ rc-align@^4.0.0:
     dom-align "^1.7.0"
     rc-util "^5.3.0"
     resize-observer-polyfill "^1.5.1"
-
-rc-animate@2.x, rc-animate@^2.4.4:
-  version "2.11.1"
-  resolved "http://npm.tongyu.tech/rc-animate/-/rc-animate-2.11.1.tgz#2666eeb6f1f2a495a13b2af09e236712278fdb2c"
-  integrity sha1-JmbutvHypJWhOyrwniNnEieP2yw=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.6"
-    css-animation "^1.3.2"
-    prop-types "15.x"
-    raf "^3.4.0"
-    rc-util "^4.15.3"
-    react-lifecycles-compat "^3.0.4"
 
 rc-cascader@~1.4.0:
   version "1.4.3"
@@ -19065,28 +18612,6 @@ rc-cascader@~1.4.0:
     rc-util "^5.0.1"
     warning "^4.0.1"
 
-rc-cascader@~3.5.0:
-  version "3.5.0"
-  resolved "http://npm.tongyu.tech/rc-cascader/-/rc-cascader-3.5.0.tgz#a49b632bc2d0c8ef31b212c8ddd0bea346e64877"
-  integrity sha512-rpXnWCfvk7Frh2dBzMoA0c7i0nn6aJU7L2NZo8R8pNkrT0sKgytQSpdtPWP+Pq8IkvwbEd8BU8Z8OnOljcqgZg==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-    array-tree-filter "^2.1.0"
-    classnames "^2.3.1"
-    rc-select "~14.1.0"
-    rc-tree "~5.5.0"
-    rc-util "^5.6.1"
-
-rc-checkbox@~2.0.0:
-  version "2.0.3"
-  resolved "http://npm.tongyu.tech/rc-checkbox/-/rc-checkbox-2.0.3.tgz#436a9d508948e224980f0535ea738b48177a8f25"
-  integrity sha1-Q2qdUIlI4iSYDwU16nOLSBd6jyU=
-  dependencies:
-    babel-runtime "^6.23.0"
-    classnames "2.x"
-    prop-types "15.x"
-    rc-util "^4.0.4"
-
 rc-checkbox@~2.3.0:
   version "2.3.2"
   resolved "http://npm.tongyu.tech/rc-checkbox/-/rc-checkbox-2.3.2.tgz#f91b3678c7edb2baa8121c9483c664fa6f0aefc1"
@@ -19094,16 +18619,6 @@ rc-checkbox@~2.3.0:
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.1"
-
-rc-collapse@~1.9.1:
-  version "1.9.3"
-  resolved "http://npm.tongyu.tech/rc-collapse/-/rc-collapse-1.9.3.tgz#d9741db06a823353e1fd1aec3ba4c0f9d8af4b26"
-  integrity sha1-2XQdsGqCM1Ph/RrsO6TA+divSyY=
-  dependencies:
-    classnames "2.x"
-    css-animation "1.x"
-    prop-types "^15.5.6"
-    rc-animate "2.x"
 
 rc-collapse@~3.1.0:
   version "3.1.1"
@@ -19126,29 +18641,10 @@ rc-dialog@~8.5.0, rc-dialog@~8.5.1:
     rc-motion "^2.3.0"
     rc-util "^5.6.1"
 
-rc-dialog@~8.8.0, rc-dialog@~8.8.1:
-  version "8.8.1"
-  resolved "http://npm.tongyu.tech/rc-dialog/-/rc-dialog-8.8.1.tgz#cd8897fbee1de0eab6d237a6abe1e4db8d09dd72"
-  integrity sha512-7M1WKZCjfIABKEaJVskdYvb80z+RX7I11PeSjPVfLOOaJAmIepvDEd0alBtOZvOL3fZFWlMs4JVZtp9LZgONxA==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.6"
-    rc-motion "^2.3.0"
-    rc-util "^5.21.0"
-
 rc-drawer@~4.3.0:
   version "4.3.1"
   resolved "http://npm.tongyu.tech/rc-drawer/-/rc-drawer-4.3.1.tgz#356333a7af01b777abd685c96c2ce62efb44f3f3"
   integrity sha1-NWMzp68Bt3er1oXJbCzmLvtE8/M=
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.6"
-    rc-util "^5.7.0"
-
-rc-drawer@~4.4.2:
-  version "4.4.3"
-  resolved "http://npm.tongyu.tech/rc-drawer/-/rc-drawer-4.4.3.tgz#2094937a844e55dc9644236a2d9fba79c344e321"
-  integrity sha1-IJSTeoROVdyWRCNqLZ+6ecNE4yE=
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.6"
@@ -19163,16 +18659,6 @@ rc-dropdown@^3.2.0, rc-dropdown@~3.2.0:
     classnames "^2.2.6"
     rc-trigger "^5.0.4"
 
-rc-dropdown@~3.5.0:
-  version "3.5.0"
-  resolved "http://npm.tongyu.tech/rc-dropdown/-/rc-dropdown-3.5.0.tgz#6ff2e6aaacd3641aa4040cfa941ab9634ad5f1ed"
-  integrity sha512-HHMpzO6AJt3I2jBG8fFK9LqFMQhHn/V09AzQnqCCV8Fp22tNCS98Obelcc4C8T6ZlZR+/w01im0BQVP3o1Y+Cw==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.6"
-    rc-trigger "^5.0.4"
-    rc-util "^5.17.0"
-
 rc-field-form@~1.20.0:
   version "1.20.1"
   resolved "http://npm.tongyu.tech/rc-field-form/-/rc-field-form-1.20.1.tgz#d1c51888107cf075b42704b7b575bef84c359291"
@@ -19181,22 +18667,6 @@ rc-field-form@~1.20.0:
     "@babel/runtime" "^7.8.4"
     async-validator "^3.0.3"
     rc-util "^5.8.0"
-
-rc-field-form@~1.26.1:
-  version "1.26.2"
-  resolved "http://npm.tongyu.tech/rc-field-form/-/rc-field-form-1.26.2.tgz#69d92811eed09f9e1f74704695b13253bb2ae534"
-  integrity sha512-Q1QdpLAt/kxd119kJwGfFvn/ZIzjzTBJsCscy5k0z3g+eRMHkI0Exij6SE2D42N7FAzVkvuXTvzqWSiFGeer7g==
-  dependencies:
-    "@babel/runtime" "^7.8.4"
-    async-validator "^4.0.2"
-    rc-util "^5.8.0"
-
-rc-gesture@~0.0.18, rc-gesture@~0.0.22:
-  version "0.0.22"
-  resolved "http://npm.tongyu.tech/rc-gesture/-/rc-gesture-0.0.22.tgz#fbcbdd5b46387a978b3ede48b42748e8ff77dddd"
-  integrity sha1-+8vdW0Y4epeLPt5ItCdI6P933d0=
-  dependencies:
-    babel-runtime "6.x"
 
 rc-image@~5.2.4:
   version "5.2.4"
@@ -19208,16 +18678,6 @@ rc-image@~5.2.4:
     rc-dialog "~8.5.0"
     rc-util "^5.0.6"
 
-rc-image@~5.6.0:
-  version "5.6.0"
-  resolved "http://npm.tongyu.tech/rc-image/-/rc-image-5.6.0.tgz#94b998f14fff1240bff72498ede1419d2c74e165"
-  integrity sha512-fYDKjMWtVWgOJ63YCh1NXMXCSr/nXvzFyK1Z/vlfR4dUAFilRtu78PjlKgtprn1+N8EKs1+1lBCxWg58+n3ztQ==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    classnames "^2.2.6"
-    rc-dialog "~8.8.0"
-    rc-util "^5.0.6"
-
 rc-input-number@~7.1.0:
   version "7.1.4"
   resolved "http://npm.tongyu.tech/rc-input-number/-/rc-input-number-7.1.4.tgz#9d7410c91ff8dc6384d0233c20df278982989f9a"
@@ -19227,24 +18687,6 @@ rc-input-number@~7.1.0:
     classnames "^2.2.5"
     rc-util "^5.9.8"
 
-rc-input-number@~7.3.0:
-  version "7.3.4"
-  resolved "http://npm.tongyu.tech/rc-input-number/-/rc-input-number-7.3.4.tgz#674aea98260250287d36e330a7e065b174486e9d"
-  integrity sha512-W9uqSzuvJUnz8H8vsVY4kx+yK51SsAxNTwr8SNH4G3XqQNocLVmKIibKFRjocnYX1RDHMND9FFbgj2h7E7nvGA==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.5"
-    rc-util "^5.9.8"
-
-rc-input@~0.0.1-alpha.5:
-  version "0.0.1-alpha.6"
-  resolved "http://npm.tongyu.tech/rc-input/-/rc-input-0.0.1-alpha.6.tgz#b9bcfb41251ca07aa183c03a3574fbc14fa2e426"
-  integrity sha512-kgpmbxa9vp6kPLW7IP5/Lf6wuaMq+pUq+dPz98vIM58h4wkEKgBQlkMIg9OCEVQIiR8rEPEoe4dO2fc9R0aypQ==
-  dependencies:
-    "@babel/runtime" "^7.11.1"
-    classnames "^2.2.1"
-    rc-util "^5.18.1"
-
 rc-mentions@~1.6.1:
   version "1.6.1"
   resolved "http://npm.tongyu.tech/rc-mentions/-/rc-mentions-1.6.1.tgz#46035027d64aa33ef840ba0fbd411871e34617ae"
@@ -19253,18 +18695,6 @@ rc-mentions@~1.6.1:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.6"
     rc-menu "^9.0.0"
-    rc-textarea "^0.3.0"
-    rc-trigger "^5.0.4"
-    rc-util "^5.0.1"
-
-rc-mentions@~1.7.0:
-  version "1.7.0"
-  resolved "http://npm.tongyu.tech/rc-mentions/-/rc-mentions-1.7.0.tgz#717be883e92b9085df900ab5a3ffab7379247bfa"
-  integrity sha512-d3tZWCQIseQrn5ZpnUuaeKTQctgGwVzcEUVpVswxvnsLB1/e2H12xHzVqH87AvPkHMs9m3oFZINbuC5Qxevv6g==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.6"
-    rc-menu "~9.5.1"
     rc-textarea "^0.3.0"
     rc-trigger "^5.0.4"
     rc-util "^5.0.1"
@@ -19295,19 +18725,6 @@ rc-menu@~9.0.12:
     rc-util "^5.12.0"
     shallowequal "^1.1.0"
 
-rc-menu@~9.5.1, rc-menu@~9.5.5:
-  version "9.5.5"
-  resolved "http://npm.tongyu.tech/rc-menu/-/rc-menu-9.5.5.tgz#aa2f151d4191ed089dc1a8141fe365c9b77d61a9"
-  integrity sha512-wj2y2BAKwSMyWXO3RBf9sNN5V+DFWxFl45Ma6qQEHA5nwwh7p07bNgc6AAJc+L1+LAz+rWz3AU8PYyT17hMHCw==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "2.x"
-    rc-motion "^2.4.3"
-    rc-overflow "^1.2.0"
-    rc-trigger "^5.1.2"
-    rc-util "^5.12.0"
-    shallowequal "^1.1.0"
-
 rc-motion@^2.0.0, rc-motion@^2.0.1, rc-motion@^2.2.0, rc-motion@^2.3.0, rc-motion@^2.3.4, rc-motion@^2.4.0, rc-motion@^2.4.1, rc-motion@^2.4.3:
   version "2.4.4"
   resolved "http://npm.tongyu.tech/rc-motion/-/rc-motion-2.4.4.tgz#e995d5fa24fc93065c24f714857cf2677d655bb0"
@@ -19316,15 +18733,6 @@ rc-motion@^2.0.0, rc-motion@^2.0.1, rc-motion@^2.2.0, rc-motion@^2.3.0, rc-motio
     "@babel/runtime" "^7.11.1"
     classnames "^2.2.1"
     rc-util "^5.2.1"
-
-rc-motion@^2.4.4, rc-motion@^2.5.1:
-  version "2.5.1"
-  resolved "http://npm.tongyu.tech/rc-motion/-/rc-motion-2.5.1.tgz#3eceb7d891079c0f67a72639d30e168b91839e03"
-  integrity sha512-h3GKMjFJkK+4z6fNfVlIMrb7WFCZsreivVvHOBb38cKcpKDx5g3kpHwn5Ekbo1+g0nnC02Dtap2trfCAPGxllw==
-  dependencies:
-    "@babel/runtime" "^7.11.1"
-    classnames "^2.2.1"
-    rc-util "^5.21.0"
 
 rc-notification@~4.5.7:
   version "4.5.7"
@@ -19335,16 +18743,6 @@ rc-notification@~4.5.7:
     classnames "2.x"
     rc-motion "^2.2.0"
     rc-util "^5.0.1"
-
-rc-notification@~4.6.0:
-  version "4.6.0"
-  resolved "http://npm.tongyu.tech/rc-notification/-/rc-notification-4.6.0.tgz#4e76fc2d0568f03cc93ac18c9e20763ebe29fa46"
-  integrity sha512-xF3MKgIoynzjQAO4lqsoraiFo3UXNYlBfpHs0VWvwF+4pimen9/H1DYLN2mfRWhHovW6gRpla73m2nmyIqAMZQ==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "2.x"
-    rc-motion "^2.2.0"
-    rc-util "^5.20.1"
 
 rc-overflow@^1.0.0, rc-overflow@^1.2.0:
   version "1.2.2"
@@ -19360,14 +18758,6 @@ rc-pagination@~3.1.6:
   version "3.1.7"
   resolved "http://npm.tongyu.tech/rc-pagination/-/rc-pagination-3.1.7.tgz#13ba071a7fcb0c79896076806f3944653e7bf29e"
   integrity sha1-E7oHGn/LDHmJYHaAbzlEZT578p4=
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.1"
-
-rc-pagination@~3.1.9:
-  version "3.1.15"
-  resolved "http://npm.tongyu.tech/rc-pagination/-/rc-pagination-3.1.15.tgz#e05eddf4c15717a5858290bed0857e27e2f957ff"
-  integrity sha512-4L3fot8g4E+PjWEgoVGX0noFCg+8ZFZmeLH4vsnZpB3O2T2zThtakjNxG+YvSaYtyMVT4B+GLayjKrKbXQpdAg==
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.1"
@@ -19400,20 +18790,6 @@ rc-picker@~2.5.10:
     rc-util "^5.4.0"
     shallowequal "^1.1.0"
 
-rc-picker@~2.6.4:
-  version "2.6.7"
-  resolved "http://npm.tongyu.tech/rc-picker/-/rc-picker-2.6.7.tgz#bdde4156e219ef36b0006b7d4d72020373f21229"
-  integrity sha512-+P2Grt0r2kmCkw2XTp9ew3zTCwBCFEOQLd5BYs+hFaGDSSZwEWJtlbGXAGqWnAUMFx6JrCsKYkDKXDxAWlRz3A==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.1"
-    date-fns "2.x"
-    dayjs "1.x"
-    moment "^2.24.0"
-    rc-trigger "^5.0.4"
-    rc-util "^5.4.0"
-    shallowequal "^1.1.0"
-
 rc-progress@~3.1.0:
   version "3.1.4"
   resolved "http://npm.tongyu.tech/rc-progress/-/rc-progress-3.1.4.tgz#66040d0fae7d8ced2b38588378eccb2864bad615"
@@ -19421,15 +18797,6 @@ rc-progress@~3.1.0:
   dependencies:
     "@babel/runtime" "^7.10.1"
     classnames "^2.2.6"
-
-rc-progress@~3.2.1:
-  version "3.2.4"
-  resolved "http://npm.tongyu.tech/rc-progress/-/rc-progress-3.2.4.tgz#4036acdae2566438545bc4df2203248babaf7549"
-  integrity sha512-M9WWutRaoVkPUPIrTpRIDpX0SPSrVHzxHdCRCbeoBFrd9UFWTYNWRlHsruJM5FH1AZI+BwB4wOJUNNylg/uFSw==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.6"
-    rc-util "^5.16.1"
 
 rc-queue-anim@^2.0.0:
   version "2.0.0"
@@ -19477,7 +18844,7 @@ rc-resize-observer@^1.0.0:
     rc-util "^5.0.0"
     resize-observer-polyfill "^1.5.1"
 
-rc-resize-observer@^1.1.0, rc-resize-observer@^1.2.0:
+rc-resize-observer@^1.1.0:
   version "1.2.0"
   resolved "http://npm.tongyu.tech/rc-resize-observer/-/rc-resize-observer-1.2.0.tgz#9f46052f81cdf03498be35144cb7c53fd282c4c7"
   integrity sha512-6W+UzT3PyDM0wVCEHfoW3qTHPTvbdSgiA43buiy8PzmeMnfgnDeb9NjdimMXMl3/TcrvvWl5RRVdp+NqcR47pQ==
@@ -19486,16 +18853,6 @@ rc-resize-observer@^1.1.0, rc-resize-observer@^1.2.0:
     classnames "^2.2.1"
     rc-util "^5.15.0"
     resize-observer-polyfill "^1.5.1"
-
-rc-segmented@~2.0.0:
-  version "2.0.0"
-  resolved "http://npm.tongyu.tech/rc-segmented/-/rc-segmented-2.0.0.tgz#209b55bec85c1a8b1821c30e62d3ebef4da04b52"
-  integrity sha512-YsdS+aP7E6ZMEY35WSlewJIsrjPbBSP4X/7RvZtzLExKDZwFvXdCPCbWFVDNks4jOYY9TUPYt7qlVifEu9/zXA==
-  dependencies:
-    "@babel/runtime" "^7.11.1"
-    classnames "^2.2.1"
-    rc-motion "^2.4.4"
-    rc-util "^5.17.0"
 
 rc-select@^12.0.0:
   version "12.1.10"
@@ -19523,43 +18880,6 @@ rc-select@~12.1.6:
     rc-util "^5.9.8"
     rc-virtual-list "^3.2.0"
 
-rc-select@~14.1.0, rc-select@~14.1.1:
-  version "14.1.1"
-  resolved "http://npm.tongyu.tech/rc-select/-/rc-select-14.1.1.tgz#87a51ce515aba5cfa083ae0f5be15e7c550ad93f"
-  integrity sha512-l2TSSy/rwvfob0SmQ0sPQ1pUMUq65u6U4Y9lc9dvQOMSMzDSga4b3tEgIgzN1YKzakV65wGXMOBVecjixPEZ4Q==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "2.x"
-    rc-motion "^2.0.1"
-    rc-overflow "^1.0.0"
-    rc-trigger "^5.0.4"
-    rc-util "^5.16.1"
-    rc-virtual-list "^3.2.0"
-
-rc-slider@~10.0.0:
-  version "10.0.0"
-  resolved "http://npm.tongyu.tech/rc-slider/-/rc-slider-10.0.0.tgz#8ffe1dd3c8799c9d1f81ac808976f18af3dca206"
-  integrity sha512-Bk54UIKWW4wyhHcL8ehAxt+wX+n69dscnHTX6Uv0FMxSke/TGrlkZz1LSIWblCpfE2zr/dwR2Ca8nZGk3U+Tbg==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.5"
-    rc-tooltip "^5.0.1"
-    rc-util "^5.18.1"
-    shallowequal "^1.1.0"
-
-rc-slider@~8.2.0:
-  version "8.2.0"
-  resolved "http://npm.tongyu.tech/rc-slider/-/rc-slider-8.2.0.tgz#ae37d17144cad60e1da6eac0ee4ffcfea0b0a6e8"
-  integrity sha1-rjfRcUTK1g4dpurA7k/8/qCwpug=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.5"
-    prop-types "^15.5.4"
-    rc-tooltip "^3.4.2"
-    rc-util "^4.0.4"
-    shallowequal "^1.0.1"
-    warning "^3.0.0"
-
 rc-slider@~9.7.1:
   version "9.7.2"
   resolved "http://npm.tongyu.tech/rc-slider/-/rc-slider-9.7.2.tgz#282f571f7582752ebaa33964e441184f4e79ad74"
@@ -19579,16 +18899,6 @@ rc-steps@~4.1.0:
     "@babel/runtime" "^7.10.2"
     classnames "^2.2.3"
     rc-util "^5.0.1"
-
-rc-swipeout@~2.0.0:
-  version "2.0.11"
-  resolved "http://npm.tongyu.tech/rc-swipeout/-/rc-swipeout-2.0.11.tgz#dfad9c7b38a15ea0376e39cb3356e36fed7a4155"
-  integrity sha1-362cezihXqA3bjnLM1bjb+16QVU=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "2.x"
-    rc-gesture "~0.0.22"
-    react-native-swipeout "^2.2.2"
 
 rc-switch@~3.2.0:
   version "3.2.2"
@@ -19610,17 +18920,6 @@ rc-table@~7.15.1, rc-table@~7.15.2:
     rc-util "^5.13.0"
     shallowequal "^1.1.0"
 
-rc-table@~7.24.0:
-  version "7.24.1"
-  resolved "http://npm.tongyu.tech/rc-table/-/rc-table-7.24.1.tgz#15ecabc9d69f8300b988caa52986e3b215150f2b"
-  integrity sha512-DRWpv5z5pmOaTmy5GqWoskeV1thaOu5HuD+2f61b/CkbBqlgJR3cygc5R/Qvd2uVW6pHU0lYulhmz0VLVFm+rw==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "^2.2.5"
-    rc-resize-observer "^1.1.0"
-    rc-util "^5.14.0"
-    shallowequal "^1.1.0"
-
 rc-tabs@^11.7.1, rc-tabs@~11.9.1:
   version "11.9.1"
   resolved "http://npm.tongyu.tech/rc-tabs/-/rc-tabs-11.9.1.tgz#5b2e74da9a276978c2172ef9a05ae8af14da74cb"
@@ -19633,18 +18932,6 @@ rc-tabs@^11.7.1, rc-tabs@~11.9.1:
     rc-resize-observer "^1.0.0"
     rc-util "^5.5.0"
 
-rc-tabs@~11.13.0:
-  version "11.13.0"
-  resolved "http://npm.tongyu.tech/rc-tabs/-/rc-tabs-11.13.0.tgz#083eed578f8ad02dc0d462d73da487fe32e3a573"
-  integrity sha512-aUw1Pq0B1a2zGX4o/m3yrQycZcCLgDp6gKwn8IAU07q148RRONsVGxi0oLVVe5SE51kOB+j0bk1RX43ZBdZNgA==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    classnames "2.x"
-    rc-dropdown "~3.5.0"
-    rc-menu "~9.5.1"
-    rc-resize-observer "^1.0.0"
-    rc-util "^5.5.0"
-
 rc-textarea@^0.3.0, rc-textarea@~0.3.0:
   version "0.3.4"
   resolved "http://npm.tongyu.tech/rc-textarea/-/rc-textarea-0.3.4.tgz#1408a64c87b5e76db5c847699ef9ab5ee97dd6f9"
@@ -19654,15 +18941,6 @@ rc-textarea@^0.3.0, rc-textarea@~0.3.0:
     classnames "^2.2.1"
     rc-resize-observer "^1.0.0"
     rc-util "^5.7.0"
-
-rc-tooltip@^3.4.2:
-  version "3.7.3"
-  resolved "http://npm.tongyu.tech/rc-tooltip/-/rc-tooltip-3.7.3.tgz#280aec6afcaa44e8dff0480fbaff9e87fc00aecc"
-  integrity sha1-KArsavyqROjf8EgPuv+eh/wArsw=
-  dependencies:
-    babel-runtime "6.x"
-    prop-types "^15.5.8"
-    rc-trigger "^2.2.2"
 
 rc-tooltip@^5.0.1, rc-tooltip@~5.1.1:
   version "5.1.1"
@@ -19682,17 +18960,6 @@ rc-tree-select@~4.3.0:
     rc-select "^12.0.0"
     rc-tree "^4.0.0"
     rc-util "^5.0.5"
-
-rc-tree-select@~5.3.0:
-  version "5.3.0"
-  resolved "http://npm.tongyu.tech/rc-tree-select/-/rc-tree-select-5.3.0.tgz#6edd19d1066ad2bfa212f043c3ff701b93828026"
-  integrity sha512-UN6CUBulmch+CsihnJ73+DtWijEB1hVTC8sdVxq6E0teVAkHQZUvDj+cwZShtShAKvWwXy73PZ1hIHEUrmVcKw==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "2.x"
-    rc-select "~14.1.0"
-    rc-tree "~5.5.0"
-    rc-util "^5.16.1"
 
 rc-tree@^4.0.0:
   version "4.1.5"
@@ -19727,30 +18994,6 @@ rc-tree@^5.2.0:
     rc-util "^5.16.1"
     rc-virtual-list "^3.4.1"
 
-rc-tree@~5.5.0:
-  version "5.5.0"
-  resolved "http://npm.tongyu.tech/rc-tree/-/rc-tree-5.5.0.tgz#ba7c8aea2ad29f40a9c7168e490300f7a50c0f22"
-  integrity sha512-vpKeFsDyj7weik8UPseCTaSNAPt939qn1dQd8goSbRDajbjJEja0v/WFXyRhOiF1HLemNTfqMz4MYc9qlqyNXg==
-  dependencies:
-    "@babel/runtime" "^7.10.1"
-    classnames "2.x"
-    rc-motion "^2.0.1"
-    rc-util "^5.16.1"
-    rc-virtual-list "^3.4.2"
-
-rc-trigger@^2.2.2:
-  version "2.6.5"
-  resolved "http://npm.tongyu.tech/rc-trigger/-/rc-trigger-2.6.5.tgz#140a857cf28bd0fa01b9aecb1e26a50a700e9885"
-  integrity sha1-FAqFfPKL0PoBua7LHialCnAOmIU=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.6"
-    prop-types "15.x"
-    rc-align "^2.4.0"
-    rc-animate "2.x"
-    rc-util "^4.4.0"
-    react-lifecycles-compat "^3.0.4"
-
 rc-trigger@^5.0.0, rc-trigger@^5.0.4, rc-trigger@^5.1.2, rc-trigger@^5.2.1:
   version "5.2.9"
   resolved "http://npm.tongyu.tech/rc-trigger/-/rc-trigger-5.2.9.tgz#795a787d2b038347dcde27b89a4a5cec8fc40f3e"
@@ -19762,17 +19005,6 @@ rc-trigger@^5.0.0, rc-trigger@^5.0.4, rc-trigger@^5.1.2, rc-trigger@^5.2.1:
     rc-motion "^2.0.0"
     rc-util "^5.5.0"
 
-rc-trigger@^5.2.10:
-  version "5.2.17"
-  resolved "http://npm.tongyu.tech/rc-trigger/-/rc-trigger-5.2.17.tgz#c4ccf21cdcf22ba555a51e256faf71d4f43b8c99"
-  integrity sha512-s+Y7ms8kBtTVHPmCQRGnmOZxEh7Z/LZneLhQ6D6hSqC+Y5Q0O+XtNoboCvEcyNmAddUx4BhdX0qCl+nHDCDGXw==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    classnames "^2.2.6"
-    rc-align "^4.0.0"
-    rc-motion "^2.0.0"
-    rc-util "^5.19.2"
-
 rc-upload@~4.3.0:
   version "4.3.1"
   resolved "http://npm.tongyu.tech/rc-upload/-/rc-upload-4.3.1.tgz#d6ee66b8bd1e1dd2f78526c486538423f7e7ed84"
@@ -19782,7 +19014,7 @@ rc-upload@~4.3.0:
     classnames "^2.2.5"
     rc-util "^5.2.0"
 
-rc-util@4.x, rc-util@^4.0.4, rc-util@^4.13.0, rc-util@^4.15.3, rc-util@^4.19.0, rc-util@^4.4.0:
+rc-util@^4.13.0, rc-util@^4.19.0:
   version "4.21.1"
   resolved "http://npm.tongyu.tech/rc-util/-/rc-util-4.21.1.tgz#88602d0c3185020aa1053d9a1e70eac161becb05"
   integrity sha1-iGAtDDGFAgqhBT2aHnDqwWG+ywU=
@@ -19806,15 +19038,6 @@ rc-util@^5.13.0, rc-util@~5.13.1:
   version "5.13.2"
   resolved "http://npm.tongyu.tech/rc-util/-/rc-util-5.13.2.tgz#a8a0bb77743351841ba8bed6393e03b8d2f685c8"
   integrity sha1-qKC7d3QzUYQbqL7WOT4DuNL2hcg=
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-    react-is "^16.12.0"
-    shallowequal "^1.1.0"
-
-rc-util@^5.14.0, rc-util@^5.17.0, rc-util@^5.18.1, rc-util@^5.19.2, rc-util@^5.20.0, rc-util@^5.20.1, rc-util@^5.21.0:
-  version "5.21.0"
-  resolved "http://npm.tongyu.tech/rc-util/-/rc-util-5.21.0.tgz#3c97bbfa3e89354746978b15d275b7b7ef007045"
-  integrity sha512-5THhvHk69Mqfn9CHoqOWKFjfOrJop0364bT2NU8baMthJCiyfJs3SyDfJJbKZqw9LHhw17eMpat3g4WVFmLIng==
   dependencies:
     "@babel/runtime" "^7.12.5"
     react-is "^16.12.0"
@@ -19855,15 +19078,6 @@ rc-virtual-list@^3.4.1:
     classnames "^2.2.6"
     rc-resize-observer "^1.0.0"
     rc-util "^5.0.7"
-
-rc-virtual-list@^3.4.2:
-  version "3.4.6"
-  resolved "http://npm.tongyu.tech/rc-virtual-list/-/rc-virtual-list-3.4.6.tgz#af34235915221173dd42d9f25b32e95d4c0f5698"
-  integrity sha512-wMJ7Bl+AxgIDojp0VxuQxjpNulKodwxGXSsTyxA9Mwzwemj5vKAgTbkPT64ZW5ORf8FOQAaPRlMiTADrPEo3sQ==
-  dependencies:
-    classnames "^2.2.6"
-    rc-resize-observer "^1.0.0"
-    rc-util "^5.15.0"
 
 rc@^1.2.7, rc@^1.2.8:
   version "1.2.8"
@@ -20049,7 +19263,7 @@ react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-
   resolved "http://npm.tongyu.tech/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha1-eJcppNw23imZ3BVt1sHZwYzqVqQ=
 
-react-is@^17.0.1, react-is@^17.0.2:
+react-is@^17.0.1:
   version "17.0.2"
   resolved "http://npm.tongyu.tech/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
   integrity sha1-5pHUqOnHiTZWVVOas3J2Kw77VPA=
@@ -20097,15 +19311,6 @@ react-motion@^0.5.2:
     prop-types "^15.5.8"
     raf "^3.1.0"
 
-react-native-swipeout@^2.2.2:
-  version "2.3.6"
-  resolved "http://npm.tongyu.tech/react-native-swipeout/-/react-native-swipeout-2.3.6.tgz#47dac8a835825cf3f2eef9e495574a3d9ab6d3fa"
-  integrity sha1-R9rIqDWCXPPy7vnklVdKPZq20/o=
-  dependencies:
-    create-react-class "^15.6.0"
-    prop-types "^15.5.10"
-    react-tween-state "^0.1.5"
-
 react-redux@=4.4.10:
   version "4.4.10"
   resolved "http://npm.tongyu.tech/react-redux/-/react-redux-4.4.10.tgz#ad57bd1db00c2d0aa7db992b360ce63dd0b80ec5"
@@ -20117,18 +19322,6 @@ react-redux@=4.4.10:
     lodash "^4.17.11"
     loose-envify "^1.4.0"
     prop-types "^15.7.2"
-
-react-redux@^7.1.0:
-  version "7.2.8"
-  resolved "http://npm.tongyu.tech/react-redux/-/react-redux-7.2.8.tgz#a894068315e65de5b1b68899f9c6ee0923dd28de"
-  integrity sha512-6+uDjhs3PSIclqoCk0kd6iX74gzrGc3W5zcAjbrFgEdIjRSQObdIwfx80unTkVUYvbQ95Y8Av3OvFHq1w5EOUw==
-  dependencies:
-    "@babel/runtime" "^7.15.4"
-    "@types/react-redux" "^7.1.20"
-    hoist-non-react-statics "^3.3.2"
-    loose-envify "^1.4.0"
-    prop-types "^15.7.2"
-    react-is "^17.0.2"
 
 react-refresh@0.10.0:
   version "0.10.0"
@@ -20178,41 +19371,12 @@ react-router-dom@5.2.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router-dom@^5.1.2:
-  version "5.3.1"
-  resolved "http://npm.tongyu.tech/react-router-dom/-/react-router-dom-5.3.1.tgz#0151baf2365c5fcd8493f6ec9b9b31f34d0f8ae1"
-  integrity sha512-f0pj/gMAbv9e8gahTmCEY20oFhxhrmHwYeIwH5EO5xu0qme+wXtsdB8YfUOAZzUz4VaXmb58m3ceiLtjMhqYmQ==
-  dependencies:
-    "@babel/runtime" "^7.12.13"
-    history "^4.9.0"
-    loose-envify "^1.3.1"
-    prop-types "^15.6.2"
-    react-router "5.3.1"
-    tiny-invariant "^1.0.2"
-    tiny-warning "^1.0.0"
-
 react-router@5.2.0:
   version "5.2.0"
   resolved "http://npm.tongyu.tech/react-router/-/react-router-5.2.0.tgz#424e75641ca8747fbf76e5ecca69781aa37ea293"
   integrity sha1-Qk51ZByodH+/duXsyml4GqN+opM=
   dependencies:
     "@babel/runtime" "^7.1.2"
-    history "^4.9.0"
-    hoist-non-react-statics "^3.1.0"
-    loose-envify "^1.3.1"
-    mini-create-react-context "^0.4.0"
-    path-to-regexp "^1.7.0"
-    prop-types "^15.6.2"
-    react-is "^16.6.0"
-    tiny-invariant "^1.0.2"
-    tiny-warning "^1.0.0"
-
-react-router@5.3.1:
-  version "5.3.1"
-  resolved "http://npm.tongyu.tech/react-router/-/react-router-5.3.1.tgz#b13e84a016c79b9e80dde123ca4112c4f117e3cf"
-  integrity sha512-v+zwjqb7bakqgF+wMVKlAPTca/cEmPOvQ9zt7gpSNyPXau1+0qvuYZ5BWzzNDP1y6s15zDwgb9rPN63+SIniRQ==
-  dependencies:
-    "@babel/runtime" "^7.12.13"
     history "^4.9.0"
     hoist-non-react-statics "^3.1.0"
     loose-envify "^1.3.1"
@@ -20275,14 +19439,6 @@ react-textarea-autosize@^8.3.2:
     "@babel/runtime" "^7.10.2"
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
-
-react-tween-state@^0.1.5:
-  version "0.1.5"
-  resolved "http://npm.tongyu.tech/react-tween-state/-/react-tween-state-0.1.5.tgz#e98b066551efb93cb92dd1be14995c2e3deae339"
-  integrity sha1-6YsGZVHvuTy5LdG+FJlcLj3q4zk=
-  dependencies:
-    raf "^3.1.0"
-    tween-functions "^1.0.1"
 
 react-window@^1.8.6:
   version "1.8.6"
@@ -20513,11 +19669,6 @@ redux-immutable@3.1.0:
   dependencies:
     immutable "^3.8.1"
 
-redux-saga@^0.16.0:
-  version "0.16.2"
-  resolved "http://npm.tongyu.tech/redux-saga/-/redux-saga-0.16.2.tgz#993662e86bc945d8509ac2b8daba3a8c615cc971"
-  integrity sha1-mTZi6GvJRdhQmsK42ro6jGFcyXE=
-
 redux@=3.7.2:
   version "3.7.2"
   resolved "http://npm.tongyu.tech/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
@@ -20532,13 +19683,6 @@ redux@^4.0.0:
   version "4.1.0"
   resolved "http://npm.tongyu.tech/redux/-/redux-4.1.0.tgz#eb049679f2f523c379f1aff345c8612f294c88d4"
   integrity sha1-6wSWefL1I8N58a/zRchhLylMiNQ=
-  dependencies:
-    "@babel/runtime" "^7.9.2"
-
-redux@^4.0.1:
-  version "4.2.0"
-  resolved "http://npm.tongyu.tech/redux/-/redux-4.2.0.tgz#46f10d6e29b6666df758780437651eeb2b969f13"
-  integrity sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==
   dependencies:
     "@babel/runtime" "^7.9.2"
 
@@ -20561,13 +19705,6 @@ reftools@^1.1.9:
   resolved "http://npm.tongyu.tech/reftools/-/reftools-1.1.9.tgz#e16e19f662ccd4648605312c06d34e5da3a2b77e"
   integrity sha1-4W4Z9mLM1GSGBTEsBtNOXaOit34=
 
-regenerate-unicode-properties@9.0.0:
-  version "9.0.0"
-  resolved "http://npm.tongyu.tech/regenerate-unicode-properties/-/regenerate-unicode-properties-9.0.0.tgz#54d09c7115e1f53dc2314a974b32c1c344efe326"
-  integrity sha1-VNCccRXh9T3CMUqXSzLBw0Tv4yY=
-  dependencies:
-    regenerate "^1.4.2"
-
 regenerate-unicode-properties@^8.2.0:
   version "8.2.0"
   resolved "http://npm.tongyu.tech/regenerate-unicode-properties/-/regenerate-unicode-properties-8.2.0.tgz#e5de7111d655e7ba60c057dbe9ff37c87e65cdec"
@@ -20575,7 +19712,7 @@ regenerate-unicode-properties@^8.2.0:
   dependencies:
     regenerate "^1.4.0"
 
-regenerate@^1.4.0, regenerate@^1.4.2:
+regenerate@^1.4.0:
   version "1.4.2"
   resolved "http://npm.tongyu.tech/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
   integrity sha1-uTRtiCfo9aMve6KWN9OYtpAUhIo=
@@ -21180,158 +20317,6 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rmc-align@~1.0.0:
-  version "1.0.0"
-  resolved "http://npm.tongyu.tech/rmc-align/-/rmc-align-1.0.0.tgz#8d64ab484609a041ab424506012a15b7c5b933dd"
-  integrity sha1-jWSrSEYJoEGrQkUGASoVt8W5M90=
-  dependencies:
-    babel-runtime "6.x"
-    dom-align "1.x"
-    rc-util "4.x"
-
-rmc-calendar@^1.0.0:
-  version "1.1.4"
-  resolved "http://npm.tongyu.tech/rmc-calendar/-/rmc-calendar-1.1.4.tgz#7db4990087877cd49a7772f4524d33b8016d3bd2"
-  integrity sha1-fbSZAIeHfNSad3L0Uk0zuAFtO9I=
-  dependencies:
-    babel-runtime "^6.26.0"
-    rc-animate "^2.4.4"
-    rmc-date-picker "^6.0.8"
-
-rmc-cascader@~5.0.0:
-  version "5.0.3"
-  resolved "http://npm.tongyu.tech/rmc-cascader/-/rmc-cascader-5.0.3.tgz#c605b1eac6613e4c54aa6aed2cbae7f9c5a8c65f"
-  integrity sha1-xgWx6sZhPkxUqmrtLLrn+cWoxl8=
-  dependencies:
-    array-tree-filter "2.1.x"
-    babel-runtime "6.x"
-    rmc-picker "~5.0.0"
-
-rmc-date-picker@^6.0.8:
-  version "6.0.10"
-  resolved "http://npm.tongyu.tech/rmc-date-picker/-/rmc-date-picker-6.0.10.tgz#34dc7dfd424248be2d43527421576247c31583f6"
-  integrity sha1-NNx9/UJCSL4tQ1J0IVdiR8MVg/Y=
-  dependencies:
-    babel-runtime "6.x"
-    rmc-picker "~5.0.0"
-
-rmc-dialog@^1.0.1, rmc-dialog@^1.1.1:
-  version "1.1.1"
-  resolved "http://npm.tongyu.tech/rmc-dialog/-/rmc-dialog-1.1.1.tgz#1d7fbc6b2cad5b0b53fbab71fe29636d76f78217"
-  integrity sha1-HX+8ayytWwtT+6tx/iljbXb3ghc=
-  dependencies:
-    babel-runtime "6.x"
-    rc-animate "2.x"
-
-rmc-drawer@^0.4.11:
-  version "0.4.11"
-  resolved "http://npm.tongyu.tech/rmc-drawer/-/rmc-drawer-0.4.11.tgz#9a8c6125a4ccd37b916f32f7e8b477d11d413ee3"
-  integrity sha1-moxhJaTM03uRbzL36LR30R1BPuM=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.4"
-    prop-types "^15.5.10"
-
-rmc-feedback@^2.0.0:
-  version "2.0.0"
-  resolved "http://npm.tongyu.tech/rmc-feedback/-/rmc-feedback-2.0.0.tgz#cbc6cb3ae63c7a635eef0e25e4fbaf5ac366eeaa"
-  integrity sha1-y8bLOuY8emNe7w4l5PuvWsNm7qo=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.5"
-
-rmc-input-number@^1.0.0:
-  version "1.0.5"
-  resolved "http://npm.tongyu.tech/rmc-input-number/-/rmc-input-number-1.0.5.tgz#42e02a27b0c3c366be9ff0ce19d818b71e406f8f"
-  integrity sha1-QuAqJ7DDw2a+n/DOGdgYtx5Ab48=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.0"
-    rmc-feedback "^2.0.0"
-
-rmc-list-view@^0.11.0:
-  version "0.11.5"
-  resolved "http://npm.tongyu.tech/rmc-list-view/-/rmc-list-view-0.11.5.tgz#8e152a5dbec6aec45a8ccd1f33cb8ef140b93a1e"
-  integrity sha1-jhUqXb7GrsRajM0fM8uO8UC5Oh4=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.5"
-    fbjs "^0.8.3"
-    prop-types "^15.5.8"
-    warning "^3.0.0"
-    zscroller "~0.4.0"
-
-rmc-notification@~1.0.0:
-  version "1.0.0"
-  resolved "http://npm.tongyu.tech/rmc-notification/-/rmc-notification-1.0.0.tgz#1fcee98f99b9733f7ce63a91d7663a578743d075"
-  integrity sha1-H87pj5m5cz985jqR12Y6V4dD0HU=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "2.x"
-    prop-types "^15.5.8"
-    rc-animate "2.x"
-    rc-util "^4.0.4"
-
-rmc-nuka-carousel@~3.0.0:
-  version "3.0.1"
-  resolved "http://npm.tongyu.tech/rmc-nuka-carousel/-/rmc-nuka-carousel-3.0.1.tgz#a2a997676b0f986354976dac39ec66d8701b4b71"
-  integrity sha1-oqmXZ2sPmGNUl22sOexm2HAbS3E=
-  dependencies:
-    exenv "^1.2.0"
-    raf "^3.3.2"
-
-rmc-picker@~5.0.0:
-  version "5.0.10"
-  resolved "http://npm.tongyu.tech/rmc-picker/-/rmc-picker-5.0.10.tgz#9ca0acf45ad2c8afe9015a103a898436d825e18f"
-  integrity sha1-nKCs9FrSyK/pAVoQOomENtgl4Y8=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.6"
-    rmc-dialog "^1.1.1"
-    rmc-feedback "^2.0.0"
-
-rmc-pull-to-refresh@~1.0.1:
-  version "1.0.13"
-  resolved "http://npm.tongyu.tech/rmc-pull-to-refresh/-/rmc-pull-to-refresh-1.0.13.tgz#8fc1bd36c9b09fcd50e8d8632f556b6a8462ef1a"
-  integrity sha1-j8G9Nsmwn81Q6NhjL1VraoRi7xo=
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.5"
-
-rmc-steps@~1.0.0:
-  version "1.0.1"
-  resolved "http://npm.tongyu.tech/rmc-steps/-/rmc-steps-1.0.1.tgz#b63a0f1ddd2826d03b1bcec85963077255e8f798"
-  integrity sha1-tjoPHd0oJtA7G87IWWMHclXo95g=
-  dependencies:
-    babel-runtime "^6.23.0"
-    classnames "^2.2.3"
-
-rmc-tabs@~1.2.0:
-  version "1.2.29"
-  resolved "http://npm.tongyu.tech/rmc-tabs/-/rmc-tabs-1.2.29.tgz#dd2191525debbf8521e85aeb6d97670f652e4c83"
-  integrity sha1-3SGRUl3rv4Uh6FrrbZdnD2UuTIM=
-  dependencies:
-    babel-runtime "6.x"
-    rc-gesture "~0.0.18"
-
-rmc-tooltip@~1.0.0:
-  version "1.0.1"
-  resolved "http://npm.tongyu.tech/rmc-tooltip/-/rmc-tooltip-1.0.1.tgz#5af16a3e8f764fa26d2b11932975bd88b1d848d2"
-  integrity sha1-WvFqPo92T6JtKxGTKXW9iLHYSNI=
-  dependencies:
-    babel-runtime "6.x"
-    rmc-trigger "1.x"
-
-rmc-trigger@1.x:
-  version "1.0.12"
-  resolved "http://npm.tongyu.tech/rmc-trigger/-/rmc-trigger-1.0.12.tgz#34df10a16f1fc8f9e8b14d13d58cabe294ab7488"
-  integrity sha1-NN8QoW8fyPnosU0T1Yyr4pSrdIg=
-  dependencies:
-    babel-runtime "6.x"
-    rc-animate "2.x"
-    rc-util "4.x"
-    rmc-align "~1.0.0"
-
 rollup-plugin-postcss@3.1.8:
   version "3.1.8"
   resolved "http://npm.tongyu.tech/rollup-plugin-postcss/-/rollup-plugin-postcss-3.1.8.tgz#d1bcaf8eb0fcb0936e3684c22dd8628d13a82fd1"
@@ -21568,11 +20553,6 @@ scroll-into-view-if-needed@^2.2.25:
   dependencies:
     compute-scroll-into-view "^1.0.17"
 
-seamless-immutable@^7.1.3:
-  version "7.1.4"
-  resolved "http://npm.tongyu.tech/seamless-immutable/-/seamless-immutable-7.1.4.tgz#6e9536def083ddc4dea0207d722e0e80d0f372f8"
-  integrity sha1-bpU23vCD3cTeoCB9ci4OgNDzcvg=
-
 seedrandom@^3.0.5:
   version "3.0.5"
   resolved "http://npm.tongyu.tech/seedrandom/-/seedrandom-3.0.5.tgz#54edc85c95222525b0c7a6f6b3543d8e0b3aa0a7"
@@ -21751,7 +20731,7 @@ shallow-equal@^1.1.0, shallow-equal@^1.2.1:
   resolved "http://npm.tongyu.tech/shallow-equal/-/shallow-equal-1.2.1.tgz#4c16abfa56043aa20d050324efa68940b0da79da"
   integrity sha1-TBar+lYEOqINBQMk76aJQLDaedo=
 
-shallowequal@^1.0.1, shallowequal@^1.1.0:
+shallowequal@^1.1.0:
   version "1.1.0"
   resolved "http://npm.tongyu.tech/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
   integrity sha1-GI1SHelbkIdAT9TctosT3wrk5/g=
@@ -23565,7 +22545,7 @@ tunnel-agent@^0.6.0:
   dependencies:
     safe-buffer "^5.0.1"
 
-tween-functions@^1.0.1, tween-functions@^1.2.0:
+tween-functions@^1.2.0:
   version "1.2.0"
   resolved "http://npm.tongyu.tech/tween-functions/-/tween-functions-1.2.0.tgz#1ae3a50e7c60bb3def774eac707acbca73bbc3ff"
   integrity sha1-GuOlDnxguz3vd06scHrLynO7w/8=
@@ -23706,11 +22686,6 @@ ua-parser-js@^0.7.18:
   resolved "http://npm.tongyu.tech/ua-parser-js/-/ua-parser-js-0.7.28.tgz#8ba04e653f35ce210239c64661685bf9121dec31"
   integrity sha1-i6BOZT81ziECOcZGYWhb+RId7DE=
 
-ua-parser-js@^0.7.30:
-  version "0.7.31"
-  resolved "http://npm.tongyu.tech/ua-parser-js/-/ua-parser-js-0.7.31.tgz#649a656b191dffab4f21d5e053e27ca17cbff5c6"
-  integrity sha1-ZJplaxkd/6tPIdXgU+J8oXy/9cY=
-
 ua-parser-js@^1.0.2:
   version "1.0.2"
   resolved "http://npm.tongyu.tech/ua-parser-js/-/ua-parser-js-1.0.2.tgz#e2976c34dbfb30b15d2c300b2a53eac87c57a775"
@@ -23753,14 +22728,6 @@ umask@^1.1.0:
   version "1.1.0"
   resolved "http://npm.tongyu.tech/umask/-/umask-1.1.0.tgz#f29cebf01df517912bb58ff9c4e50fde8e33320d"
   integrity sha1-8pzr8B31F5ErtY/5xOUP3o4zMg0=
-
-umi-request@^1.2.14:
-  version "1.4.0"
-  resolved "http://npm.tongyu.tech/umi-request/-/umi-request-1.4.0.tgz#ed0e54e47f043d2be06e691477f0890383f9dd8a"
-  integrity sha1-7Q5U5H8EPSvgbmkUd/CJA4P53Yo=
-  dependencies:
-    isomorphic-fetch "^2.2.1"
-    qs "^6.9.1"
 
 umi-request@^1.2.17, umi-request@^1.3.5, umi-request@^1.3.9:
   version "1.3.9"
@@ -24596,13 +23563,6 @@ walker@^1.0.7, walker@~1.0.5:
   dependencies:
     makeerror "1.0.x"
 
-warning@^3.0.0:
-  version "3.0.0"
-  resolved "http://npm.tongyu.tech/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
-  integrity sha1-MuU3fLVy3kqwR1O9+IIcAe1gW3w=
-  dependencies:
-    loose-envify "^1.0.0"
-
 warning@^4.0.1, warning@^4.0.3:
   version "4.0.3"
   resolved "http://npm.tongyu.tech/warning/-/warning-4.0.3.tgz#16e9e077eb8a86d6af7d64aa1e05fd85b4678ca3"
@@ -25232,13 +24192,6 @@ zenscroll@^4.0.2:
   version "4.0.2"
   resolved "http://npm.tongyu.tech/zenscroll/-/zenscroll-4.0.2.tgz#e8d5774d1c0738a47bcfa8729f3712e2deddeb25"
   integrity sha1-6NV3TRwHOKR7z6hynzcS4t7d6yU=
-
-zscroller@~0.4.0:
-  version "0.4.8"
-  resolved "http://npm.tongyu.tech/zscroller/-/zscroller-0.4.8.tgz#69eed68690808eedf81f9714014356b36cdd20f4"
-  integrity sha1-ae7WhpCAju34H5cUAUNWs2zdIPQ=
-  dependencies:
-    babel-runtime "6.x"
 
 zwitch@^1.0.0:
   version "1.0.5"
