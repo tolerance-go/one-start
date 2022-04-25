@@ -13,6 +13,7 @@ import type {
 import type { OSTriggerButtonType } from './trigger';
 import type { RequestIO } from './core';
 import type { OSResMessage } from './message';
+import type { ReactNode } from 'react';
 
 export type OSLayoutFormAPIBase = OSFormAPI;
 
@@ -113,6 +114,7 @@ export type OSLayoutStepsFormAPI = Pick<
   OSLayoutFormAPIBase,
   'setDataSource' | 'getDataSource' | 'clearPrevUserCellInputs'
 > & {
+  resetStepsForm: () => void;
   validate: () => Promise<
     | {
         error: false;
@@ -184,6 +186,13 @@ export type _OSLayoutStepsFormType<
     >;
     /** 异步请求初始化数据 */
     requestInitialValues?: RequestIO<void, RecordType>;
+  };
+  slots?: {
+    renderExtraActions?: (options: {
+      current: number;
+      formsRef: React.RefObject<React.MutableRefObject<OSFormAPI | null>[]>;
+      apisRef: React.RefObject<OSLayoutStepsFormAPI | null>;
+    }) => ReactNode;
   };
 };
 
