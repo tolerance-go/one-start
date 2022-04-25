@@ -1,5 +1,5 @@
 import { CopyrightOutlined } from '@ant-design/icons';
-import { Layout } from '@ty/antd';
+import { Layout } from 'antd';
 import type { CSSProperties } from 'react';
 import React, { Fragment } from 'react';
 

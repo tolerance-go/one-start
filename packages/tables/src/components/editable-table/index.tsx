@@ -1,5 +1,5 @@
 import { PlusOutlined } from '@ant-design/icons';
-import { Row } from '@ty/antd';
+import { Row } from 'antd';
 import invariant from 'invariant';
 import utl from 'lodash';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';

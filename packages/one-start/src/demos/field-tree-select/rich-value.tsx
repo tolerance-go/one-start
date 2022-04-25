@@ -1,6 +1,6 @@
 import type { OSTreeSelectFieldValueType } from '@ty-one-start/one-start';
 import { OSProviderWrapper, OSTreeSelectField } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import delay from 'delay';
 import React, { useState } from 'react';
 import type { OSSelectFieldLabelValueType } from '@ty-one-start/typings';

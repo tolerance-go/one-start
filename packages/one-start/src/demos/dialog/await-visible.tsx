@@ -1,6 +1,6 @@
 import type { OSDialogAPI } from '@ty-one-start/one-start';
 import { OSDialog, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Button, Space } from '@ty/antd';
+import { Button, Space } from 'antd';
 import delay from 'delay';
 import React, { useRef, useState } from 'react';
 

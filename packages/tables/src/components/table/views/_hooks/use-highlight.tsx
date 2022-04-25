@@ -1,4 +1,4 @@
-import { Badge, Space, Tooltip } from '@ty/antd';
+import { Badge, Space, Tooltip } from 'antd';
 import { useMemo } from 'react';
 import type { OSTableType } from '@ty-one-start/typings';
 import type { RequiredRecursion } from '@ty-one-start/typings';

@@ -4,7 +4,7 @@ import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
 import { mock, Random } from 'mockjs';
 import moment from 'moment';
 import React, { useState, useRef } from 'react';
-import { Button } from '@ty/antd';
+import { Button } from 'antd';
 
 export default () => {
   const [values, setValues] = useState<RecordType | undefined>();

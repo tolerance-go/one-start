@@ -1,5 +1,5 @@
-﻿import { ConfigProvider } from '@ty/antd';
-import zhCN from '@ty/antd/es/locale/zh_CN';
+﻿import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 import Layout from './components/layout';
 import moment from 'moment';
 import 'moment/locale/zh-cn';

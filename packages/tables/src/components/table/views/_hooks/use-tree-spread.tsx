@@ -1,6 +1,6 @@
 import { MinusSquareOutlined } from '@ant-design/icons';
 import type { OSTableValueType } from '@ty-one-start/typings';
-import { Button } from '@ty/antd';
+import { Button } from 'antd';
 import { useMemo, useState } from 'react';
 import type { TreeSpreadActions } from '../../typings';
 import { useActionsRef } from '@ty-one-start/utils';

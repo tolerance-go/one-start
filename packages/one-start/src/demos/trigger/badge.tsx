@@ -1,6 +1,6 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Col, Row } from '@ty/antd';
+import { Col, Row } from 'antd';
 import delay from 'delay';
 import React from 'react';
 

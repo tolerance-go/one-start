@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { DownOutlined, CloseOutlined } from '@ant-design/icons';
 import classNames from 'classnames';
-import type { SizeType } from '@ty/antd/lib/config-provider/SizeContext';
-import { ConfigProvider } from '@ty/antd';
+import type { SizeType } from 'antd/lib/config-provider/SizeContext';
+import { ConfigProvider } from 'antd';
 import './index.less';
 
 export type FieldLabelProps = {

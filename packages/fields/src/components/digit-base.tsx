@@ -1,6 +1,6 @@
-import type { InputNumberProps } from '@ty/antd';
-import { ConfigProvider } from '@ty/antd';
-import { Col, Input, InputNumber, Row } from '@ty/antd';
+import type { InputNumberProps } from 'antd';
+import { ConfigProvider } from 'antd';
+import { Col, Input, InputNumber, Row } from 'antd';
 import cls from 'classnames';
 import numeral from 'numeral';
 import React, { useContext } from 'react';

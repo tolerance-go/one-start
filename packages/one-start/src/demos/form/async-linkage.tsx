@@ -5,7 +5,7 @@
  */
 
 import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Divider } from '@ty/antd';
+import { Divider } from 'antd';
 import delay from 'delay';
 import React from 'react';
 

@@ -5,7 +5,7 @@ import {
   SettingOutlined,
 } from '@ant-design/icons';
 import { isBrowser, merge } from '@ty-one-start/utils';
-import { Alert, Button, ConfigProvider, Divider, Drawer, List, message, Switch } from '@ty/antd';
+import { Alert, Button, ConfigProvider, Divider, Drawer, List, message, Switch } from 'antd';
 import { disable as darkreaderDisable, enable as darkreaderEnable } from '@umijs/ssr-darkreader';
 import { useUrlSearchParams } from '@umijs/use-params';
 import omit from 'omit.js';

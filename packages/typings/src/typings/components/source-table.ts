@@ -1,4 +1,4 @@
-import type { DataNode, EventDataNode } from '@ty/antd/lib/tree';
+import type { DataNode, EventDataNode } from 'antd/lib/tree';
 import type React from 'react';
 import type { Key } from 'react';
 import type { RecordType } from '../core';

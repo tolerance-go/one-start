@@ -25,7 +25,7 @@ import type {
 } from '@ty-one-start/typings';
 import { OSDialog } from '@ty-one-start/dialogs';
 import { useRefsRef } from './references';
-import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import type { OSFieldValueType } from '@ty-one-start/typings';
 
 export const globalRefKeys = {

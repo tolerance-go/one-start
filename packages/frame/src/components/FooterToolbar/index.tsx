@@ -1,4 +1,4 @@
-import { ConfigProvider } from '@ty/antd';
+import { ConfigProvider } from 'antd';
 import classNames from 'classnames';
 import omit from 'omit.js';
 import React, { useContext, useEffect, useMemo } from 'react';

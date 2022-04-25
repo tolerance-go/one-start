@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { CloseSquareOutlined, InfoCircleOutlined } from '@ant-design/icons';
-import { Col, Modal, Row, Space } from '@ty/antd';
+import { Col, Modal, Row, Space } from 'antd';
 import cls from 'classnames';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle } from 'react';

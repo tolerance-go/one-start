@@ -1,4 +1,4 @@
-import { Col, Row, Space } from '@ty/antd';
+import { Col, Row, Space } from 'antd';
 import React, { useMemo } from 'react';
 import type {
   OSFormFieldItem,

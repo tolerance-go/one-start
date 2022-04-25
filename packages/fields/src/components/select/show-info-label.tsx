@@ -1,4 +1,4 @@
-import { Col, Typography } from '@ty/antd';
+import { Col, Typography } from 'antd';
 import ResizeObserver from 'rc-resize-observer';
 import React, { useState } from 'react';
 

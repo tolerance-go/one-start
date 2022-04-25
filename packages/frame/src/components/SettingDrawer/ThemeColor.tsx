@@ -2,7 +2,7 @@ import './ThemeColor.less';
 
 import { CheckOutlined } from '@ant-design/icons';
 
-import { Tooltip } from '@ty/antd';
+import { Tooltip } from 'antd';
 
 import React from 'react';
 

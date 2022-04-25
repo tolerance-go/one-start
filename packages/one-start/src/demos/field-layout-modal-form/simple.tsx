@@ -1,5 +1,5 @@
 import { OSProviderWrapper, RecordType, OSLayoutModalFormField } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import delay from 'delay';
 import React, { useState } from 'react';
 

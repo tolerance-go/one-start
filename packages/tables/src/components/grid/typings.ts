@@ -1,5 +1,5 @@
-import type { ColumnProps } from '@ty/antd/es/table';
-import type { SorterResult } from '@ty/antd/lib/table/interface';
+import type { ColumnProps } from 'antd/es/table';
+import type { SorterResult } from 'antd/lib/table/interface';
 import type { ColDef } from '@ag-grid-enterprise/all-modules';
 import type { FixedType } from 'rc-table/lib/interface';
 import type { OSFormType, RecordType, SettingsDataNode } from '@ty-one-start/typings';

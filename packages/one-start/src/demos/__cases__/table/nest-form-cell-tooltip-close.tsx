@@ -4,7 +4,7 @@
  */
 import type { OSFormAPI, RecordType } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Divider, Space } from '@ty/antd';
+import { Divider, Space } from 'antd';
 import delay from 'delay';
 import React, { useRef, useState } from 'react';
 

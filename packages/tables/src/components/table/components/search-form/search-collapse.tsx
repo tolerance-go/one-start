@@ -1,4 +1,4 @@
-import { Row, Typography } from '@ty/antd';
+import { Row, Typography } from 'antd';
 import React from 'react';
 
 export const SearchCollapse = ({

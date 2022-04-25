@@ -1,5 +1,5 @@
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
-import { Button, Space } from '@ty/antd';
+import { Button, Space } from 'antd';
 import type { MutableRefObject } from 'react';
 import { useCallback, useEffect } from 'react';
 import { useActionsRef } from '@ty-one-start/utils';

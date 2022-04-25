@@ -1,6 +1,6 @@
 import { CloseOutlined, DownOutlined, SettingOutlined } from '@ant-design/icons';
 import { mapTreeNode } from '@ty-one-start/one-start';
-import { Col, Drawer, Row, Tabs, Tree } from '@ty/antd';
+import { Col, Drawer, Row, Tabs, Tree } from 'antd';
 import cls from 'classnames';
 import type { DataNode } from 'rc-tree/lib/interface';
 import React, { useMemo, useState } from 'react';

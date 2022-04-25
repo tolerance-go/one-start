@@ -1,4 +1,4 @@
-import { Badge } from '@ty/antd';
+import { Badge } from 'antd';
 import cls from 'classnames';
 import React, { useContext, useEffect, useImperativeHandle, useRef } from 'react';
 import type {

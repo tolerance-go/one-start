@@ -1,9 +1,9 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import type { FormInstance } from '@ty/antd';
-import { ConfigProvider, Form, Table } from '@ty/antd';
-import type { FormProps } from '@ty/antd/es/form/Form';
-import type { SorterResult } from '@ty/antd/es/table/interface';
-import type { NamePath } from '@ty/antd/lib/form/interface';
+import type { FormInstance } from 'antd';
+import { ConfigProvider, Form, Table } from 'antd';
+import type { FormProps } from 'antd/es/form/Form';
+import type { SorterResult } from 'antd/es/table/interface';
+import type { NamePath } from 'antd/lib/form/interface';
 import cls from 'classnames';
 import EventEmitter from 'eventemitter3';
 import utl from 'lodash';

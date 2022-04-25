@@ -11,8 +11,8 @@ import '@ag-grid-enterprise/all-modules/dist/styles/ag-theme-material.css';
 import 'ag-grid-enterprise';
 import { LicenseManager } from '@ag-grid-enterprise/core';
 import { LoadingOutlined } from '@ant-design/icons';
-import type { FormInstance } from '@ty/antd';
-import { Col, Form, Row, Spin } from '@ty/antd';
+import type { FormInstance } from 'antd';
+import { Col, Form, Row, Spin } from 'antd';
 import EventEmitter from 'eventemitter3';
 import React, {
   useCallback,

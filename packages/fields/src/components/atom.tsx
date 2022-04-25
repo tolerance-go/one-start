@@ -1,6 +1,6 @@
 import React from 'react';
 import type { OSAtomFieldAPI, OSAtomFieldType } from '@ty-one-start/typings';
-import { renderFieldBase } from '@ty-one-start/utils';
+import { renderFieldBase } from '../utils/render-field-base';
 
 const OSAtomField: React.ForwardRefRenderFunction<OSAtomFieldAPI, OSAtomFieldType> = (
   props,

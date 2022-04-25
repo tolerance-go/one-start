@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
-import type { PopoverProps } from '@ty/antd';
-import { Col, Popover, Row } from '@ty/antd';
+import type { PopoverProps } from 'antd';
+import { Col, Popover, Row } from 'antd';
 import React from 'react';
 import { CloseIconAction } from '@ty-one-start/utils';
 

@@ -1,5 +1,5 @@
-import type { RadioProps } from '@ty/antd';
-import { Radio } from '@ty/antd';
+import type { RadioProps } from 'antd';
+import { Radio } from 'antd';
 import React, { useMemo } from 'react';
 import type { OSRadioFieldAPI, OSRadioFieldType, OSRadioOptionItem } from '@ty-one-start/typings';
 import { convertEnumsToOptions } from './_utils/convert-enum-to-options';

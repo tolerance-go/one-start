@@ -1,4 +1,4 @@
-import type { FormInstance } from '@ty/antd';
+import type { FormInstance } from 'antd';
 import type React from 'react';
 import type { ReactNode } from 'react';
 import type { RecordType } from '../core';

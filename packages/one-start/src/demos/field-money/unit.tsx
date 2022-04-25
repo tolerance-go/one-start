@@ -1,6 +1,6 @@
 import type { OSMoneyFieldValueType } from '@ty-one-start/one-start';
 import { OSMoneyField, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import React, { useState } from 'react';
 
 export default () => {

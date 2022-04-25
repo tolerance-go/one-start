@@ -1,6 +1,6 @@
 import type { OSCore } from './core';
 import type { RecordType } from '../core';
-import { SizeType } from '@ty/antd/es/config-provider/SizeContext';
+import { SizeType } from 'antd/es/config-provider/SizeContext';
 
 export interface OSPageAPI {
   /** 打开指定 tab 页面 */

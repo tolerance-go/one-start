@@ -1,5 +1,5 @@
 import { OSProviderWrapper, OSTreeSelectField } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import { mock } from 'mockjs';
 import React from 'react';
 

@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import type { ErrorInfo } from 'react';
-import { Button, Result } from '@ty/antd';
+import { Button, Result } from 'antd';
 
 import ProLayout, { PageContainer } from '@ty-one-components/frame';
 

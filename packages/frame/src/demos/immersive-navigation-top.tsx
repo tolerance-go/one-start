@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Result, Avatar, Tag, Input } from '@ty/antd';
+import { Button, Result, Avatar, Tag, Input } from 'antd';
 import { CrownOutlined, UserOutlined, SmileOutlined } from '@ant-design/icons';
 import ProLayout, { PageContainer } from '@ty-one-components/frame';
 

@@ -1,7 +1,7 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import type { TreeSelectProps } from '@ty/antd';
-import { Col, Row, Spin, Tree, TreeSelect, Typography } from '@ty/antd';
-import type { DataNode } from '@ty/antd/lib/tree';
+import type { TreeSelectProps } from 'antd';
+import { Col, Row, Spin, Tree, TreeSelect, Typography } from 'antd';
+import type { DataNode } from 'antd/lib/tree';
 import { useUpdateEffect } from 'ahooks';
 import cls from 'classnames';
 import utl from 'lodash';

@@ -1,6 +1,6 @@
 import type { OSSelectFieldValueType, RecordType } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper, OSSelectField } from '@ty-one-start/one-start';
-import { Divider } from '@ty/antd';
+import { Divider } from 'antd';
 import { mock } from 'mockjs';
 import React, { useState } from 'react';
 

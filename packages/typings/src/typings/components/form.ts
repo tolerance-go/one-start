@@ -4,7 +4,7 @@ import type {
   OSTimeLagFieldType,
   OSTreeSelectFieldValueType,
 } from './field';
-import type { FormInstance, FormItemProps, FormProps } from '@ty/antd/lib/form';
+import type { FormInstance, FormItemProps, FormProps } from 'antd/lib/form';
 import type { ValidateErrorEntity } from 'rc-field-form/es/interface';
 import type { OSCore, RequestIO } from './core';
 import type { RecordType } from '../core';
@@ -32,11 +32,11 @@ import type {
   OSUploadFieldType,
 } from './field';
 import type { OSFormItemType } from './form-item';
-import type { NamePath } from '@ty/antd/lib/form/interface';
+import type { NamePath } from 'antd/lib/form/interface';
 import type { Meta } from 'rc-field-form/es/interface';
 import type { ValueAsyncLinkage, ValueLinkage } from './linkage';
 import type { OSFormItemInputHistoryData } from './form-item';
-import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
 
 export interface OSFormGroupFieldType extends OSField {
   type?: 'group';

@@ -1,4 +1,4 @@
-import type { FormInstance } from '@ty/antd/es/form/Form';
+import type { FormInstance } from 'antd/es/form/Form';
 import type { RequiredRecursion } from '../utils';
 import type { _OSAttachmentTableAPI, _OSAttachmentTableType } from './attachment-table';
 import type { RecordType } from '../core';

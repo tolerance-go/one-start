@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import type { OSFormAPI } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Row } from '@ty/antd';
+import { Row } from 'antd';
 import { mock, Random } from 'mockjs';
 import React, { useRef } from 'react';
 

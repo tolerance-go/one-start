@@ -1,6 +1,6 @@
 import Icon, { createFromIconfontCN } from '@ant-design/icons';
 import { isImg, isUrl, useMountMergeState } from '@ty-one-start/utils';
-import { Menu, Skeleton } from '@ty/antd';
+import { Menu, Skeleton } from 'antd';
 import classNames from 'classnames';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import defaultSettings from '../../defaultSettings';

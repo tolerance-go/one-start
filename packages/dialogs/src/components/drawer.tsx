@@ -1,5 +1,5 @@
 import { CloseSquareOutlined } from '@ant-design/icons';
-import { Drawer } from '@ty/antd';
+import { Drawer } from 'antd';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle } from 'react';
 import { useActionsRef } from '@ty-one-start/utils';

@@ -150,7 +150,7 @@ tailPkgs.forEach((pkg) => {
       {
         react: 'React',
         'react-dom': 'ReactDOM',
-        antd: '@ty/antd',
+        antd: 'antd',
         moment: 'moment',
         ...externals,
       },

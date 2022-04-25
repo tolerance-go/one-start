@@ -1,4 +1,4 @@
-import type { FormProps } from '@ty/antd';
+import type { FormProps } from 'antd';
 import React, { useImperativeHandle, useRef, useState } from 'react';
 import type {
   OSDialogModalAPI,

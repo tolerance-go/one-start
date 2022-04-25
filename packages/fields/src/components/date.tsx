@@ -1,6 +1,6 @@
-import type { DatePickerProps } from '@ty/antd';
-import { DatePicker } from '@ty/antd';
-import type { PickerProps } from '@ty/antd/lib/date-picker/generatePicker';
+import type { DatePickerProps } from 'antd';
+import { DatePicker } from 'antd';
+import type { PickerProps } from 'antd/lib/date-picker/generatePicker';
 import type { Moment } from 'moment';
 import moment from 'moment';
 import type { Component } from 'react';

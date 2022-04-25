@@ -33,7 +33,7 @@
   "bugs": "http://github.com/umijs/plugins/issues",
   "homepage": "http://npm.tongyu.tech/-/web/detail/utils",
   "peerDependencies": {
-    "@ty/antd": ">=4.13.0",
+    "antd": ">=4.13.0",
     "react": ">=16.8.0",
     "umi": "3.x"
   },

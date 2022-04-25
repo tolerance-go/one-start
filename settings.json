@@ -1,5 +1,21 @@
 {
-  "headPkgs": ["utils", "request", "provider", "frame", "one-start", "one-proto"],
+  "headPkgs": [
+    "scripts",
+    "themes",
+    "typings",
+    "utils",
+    "request",
+    "provider",
+    "fields",
+    "form-items",
+    "triggers",
+    "dialogs",
+    "forms",
+    "tables",
+    "frame",
+    "one-start",
+    "one-proto"
+  ],
   "scope": "ty-one-start",
   "siteTitle": "One-Start",
   "requestLibPath": "import request from '@ty-one-start/request';",
@@ -15,7 +31,7 @@
   },
   "ignoreUsedPkgsCheck": [
     "rc-select/lib/interface/generator",
-    "@ty/antd/lib/form",
+    "antd/lib/form",
     "path",
     "fs",
     "(.*)"

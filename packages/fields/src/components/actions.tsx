@@ -1,4 +1,4 @@
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import React from 'react';
 import type { OSActionsFieldType } from '@ty-one-start/typings';
 

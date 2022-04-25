@@ -1,4 +1,4 @@
-import type { Rule } from '@ty/antd/lib/form';
+import type { Rule } from 'antd/lib/form';
 import type { Moment, unitOfTime } from 'moment';
 import moment from 'moment';
 

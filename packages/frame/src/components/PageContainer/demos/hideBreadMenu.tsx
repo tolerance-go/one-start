@@ -1,5 +1,5 @@
 import React from 'react';
-import { Descriptions } from '@ty/antd';
+import { Descriptions } from 'antd';
 import { PageContainer } from '@ty-one-components/frame';
 
 export default () => (

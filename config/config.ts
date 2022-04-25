@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import chalk from 'chalk';
 import fs from 'fs';
 import { join } from 'path';
@@ -61,12 +62,53 @@ const getOpenapiConfigs = () => {
 };
 
 const configs = (
-  process.env.OPEN_API
+  process.env.ADMIN
+    ? defineConfig({
+        // https://umijs.org/zh-CN/plugins/plugin-locale
+        // locale: {
+        //   // default zh-CN
+        //   default: 'zh-CN',
+        //   antd: true,
+        //   // default true, when it is true, will use `navigator.language` overwrite default
+        //   baseNavigator: true,
+        // },
+        dynamicImport: {
+          // loading: '@ant-design/pro-layout/es/PageLoading',
+        },
+        targets: {
+          ie: 11,
+        },
+        esbuild: {},
+        title: false,
+        ignoreMomentLocale: true,
+        base: '/',
+        publicPath: '/',
+        fastRefresh: {},
+        nodeModulesTransform: { type: 'none' },
+        // mfsu: {},
+        webpack5: {},
+        // exportStatic: {},
+        extraBabelPlugins: [
+          [
+            'import',
+            {
+              libraryName: 'antd',
+              libraryDirectory: 'es',
+              style: true,
+            },
+            'antd',
+          ],
+        ],
+        alias: {},
+        externals: {},
+        headScripts: [],
+      })
+    : process.env.OPEN_API
     ? defineConfig({
         openAPI: getOpenapiConfigs(),
         plugins: [
           require.resolve(
-            join(process.cwd(), 'node_modules/@ty-umijs/plugin-openapi/lib/index.js'),
+            join(process.cwd(), 'node_modules/@umijs/plugin-openapi/lib/index.js'),
           ),
         ],
       })

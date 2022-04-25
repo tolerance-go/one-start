@@ -1,6 +1,6 @@
 import type { RecordType } from '@ty-one-start/one-start';
 import { OSEditableTableField, OSProviderWrapper, parseTableValue } from '@ty-one-start/one-start';
-import { Divider } from '@ty/antd';
+import { Divider } from 'antd';
 import React, { useState } from 'react';
 
 export default () => {

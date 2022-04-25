@@ -3,7 +3,7 @@
  * 应该只关联 table 内部的某个组件中，比如 table-header-row
  */
 
-import type { EventDataNode } from '@ty/antd/lib/tree';
+import type { EventDataNode } from 'antd/lib/tree';
 import React from 'react';
 
 export const CategorizableRenderModel = React.createContext<{

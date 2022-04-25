@@ -1,7 +1,7 @@
 /**
  * 批量操作视图
  */
-import { Space, Typography } from '@ty/antd';
+import { Space, Typography } from 'antd';
 import React from 'react';
 
 export const BulkOperationView = ({

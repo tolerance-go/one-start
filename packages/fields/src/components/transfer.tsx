@@ -1,4 +1,4 @@
-import { Spin, Transfer } from '@ty/antd';
+import { Spin, Transfer } from 'antd';
 import React, { useEffect, useState } from 'react';
 import type {
   OSTransferFieldAPI,

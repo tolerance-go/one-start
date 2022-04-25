@@ -1,5 +1,5 @@
-import type { InputProps } from '@ty/antd';
-import { Image, Input } from '@ty/antd';
+import type { InputProps } from 'antd';
+import { Image, Input } from 'antd';
 import React from 'react';
 import type {
   OSImageFieldAPI,

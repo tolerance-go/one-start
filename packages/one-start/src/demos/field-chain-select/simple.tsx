@@ -1,6 +1,6 @@
 import type { OSChainSelectFieldValueType } from '@ty-one-start/one-start';
 import { OSChainSelectField, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import { mock } from 'mockjs';
 import React, { useState } from 'react';
 

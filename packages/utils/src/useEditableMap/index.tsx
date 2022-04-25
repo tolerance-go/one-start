@@ -2,8 +2,8 @@
 import type React from 'react';
 import { useCallback, useMemo } from 'react';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
-import type { FormInstance } from '@ty/antd';
-import { message } from '@ty/antd';
+import type { FormInstance } from 'antd';
+import { message } from 'antd';
 import type {
   ActionRenderConfig,
   ActionTypeText,

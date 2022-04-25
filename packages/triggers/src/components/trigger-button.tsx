@@ -1,6 +1,6 @@
 import { LoadingOutlined, SyncOutlined } from '@ant-design/icons';
-import { Badge, Button, Space, Typography, Upload } from '@ty/antd';
-import type { RcFile } from '@ty/antd/lib/upload';
+import { Badge, Button, Space, Typography, Upload } from 'antd';
+import type { RcFile } from 'antd/lib/upload';
 import cls from 'classnames';
 import utl from 'lodash';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';

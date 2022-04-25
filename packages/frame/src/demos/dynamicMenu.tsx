@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import ProLayout, { PageContainer } from '@ty-one-components/frame';
-import { Button } from '@ty/antd';
+import { Button } from 'antd';
 import customMenuDate from './customMenu';
 
 const waitTime = (time: number = 100) => {

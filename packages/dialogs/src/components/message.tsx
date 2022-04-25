@@ -1,5 +1,5 @@
-import { message } from '@ty/antd';
-import type { ArgsProps } from '@ty/antd/lib/message';
+import { message } from 'antd';
+import type { ArgsProps } from 'antd/lib/message';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle } from 'react';
 import type { OSDialogMessageAPI, OSDialogMessageType } from '@ty-one-start/typings';

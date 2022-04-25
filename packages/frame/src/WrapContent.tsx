@@ -1,6 +1,6 @@
 import type { CSSProperties } from 'react';
 import React from 'react';
-import { Layout } from '@ty/antd';
+import { Layout } from 'antd';
 import { ConfigProviderWrap } from '@ty-one-components/provider';
 import { ErrorBoundary } from '@ty-one-start/utils';
 

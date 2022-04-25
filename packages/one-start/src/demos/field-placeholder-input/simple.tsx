@@ -1,5 +1,5 @@
 import { OSPlaceholderInputField, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Divider, Space } from '@ty/antd';
+import { Divider, Space } from 'antd';
 import { mock, Random } from 'mockjs';
 import React, { useState } from 'react';
 

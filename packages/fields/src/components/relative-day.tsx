@@ -1,4 +1,4 @@
-import type { InputNumberProps } from '@ty/antd';
+import type { InputNumberProps } from 'antd';
 import React, { useImperativeHandle, useRef, useState } from 'react';
 import type {
   OSDigitFieldBaseAPI,

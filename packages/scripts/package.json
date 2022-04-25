@@ -3,8 +3,8 @@
   "version": "0.3.0",
   "description": "@ty-one-start/scripts",
   "module": "es/index.js",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  
+  "types": "es/index.d.ts",
   "files": [
     "lib",
     "src",
@@ -39,7 +39,7 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@ty/antd": "4.x",
+    "antd": "4.x",
     "lodash": "4.x",
     "prettier": "2.x",
     "react": "16.x",

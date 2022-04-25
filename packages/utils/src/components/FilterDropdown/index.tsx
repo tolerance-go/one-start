@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Dropdown, ConfigProvider } from '@ty/antd';
+import { Dropdown, ConfigProvider } from 'antd';
 import type { DropdownFooterProps } from '../DropdownFooter';
 import Footer from '../DropdownFooter';
 import './index.less';

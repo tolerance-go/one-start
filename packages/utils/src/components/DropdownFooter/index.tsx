@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Button, ConfigProvider } from '@ty/antd';
+import { Button, ConfigProvider } from 'antd';
 
 import './index.less';
 

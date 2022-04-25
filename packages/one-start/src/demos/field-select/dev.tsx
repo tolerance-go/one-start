@@ -2,7 +2,7 @@
  * debug: true
  */
 import { OSProviderWrapper, OSSelectField, OSSelectFieldValueType } from '@ty-one-start/one-start';
-import { Divider, Typography } from '@ty/antd';
+import { Divider, Typography } from 'antd';
 import React, { useState } from 'react';
 
 export default () => {

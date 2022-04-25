@@ -4,7 +4,7 @@ import {
   RecordType,
   parseTableValue,
 } from '@ty-one-start/one-start';
-import { Radio } from '@ty/antd';
+import { Radio } from 'antd';
 import React, { useState } from 'react';
 
 export default () => {

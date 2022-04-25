@@ -1,5 +1,5 @@
 import type { OSPlaceholderInputFieldType } from '@ty-one-start/one-start';
-import type { Rule } from '@ty/antd/lib/form';
+import type { Rule } from 'antd/lib/form';
 
 /** 增加符号 */
 export const increasingSymbol = (

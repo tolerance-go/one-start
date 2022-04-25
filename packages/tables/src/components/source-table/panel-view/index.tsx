@@ -1,4 +1,4 @@
-import { Col, Row } from '@ty/antd';
+import { Col, Row } from 'antd';
 import React from 'react';
 import type { OSSourceTableType } from '@ty-one-start/typings';
 import OSEmpty from '../../table/components/empty';

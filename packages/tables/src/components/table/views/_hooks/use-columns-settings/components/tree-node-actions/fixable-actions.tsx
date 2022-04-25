@@ -9,7 +9,7 @@ import type { FixedType } from 'rc-table/lib/interface';
 import React from 'react';
 import { findTreeNodeMeta } from '@ty-one-start/utils';
 import type { SettingsDataNode } from '@ty-one-start/typings';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 
 const cancelEventDefaults = (e: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
   e.stopPropagation();

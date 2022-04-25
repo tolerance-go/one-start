@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { PageContainer } from '@ty-one-components/frame';
-import { Card } from '@ty/antd';
+import { Card } from 'antd';
 
 export default () => {
   const customLoadingDom = useMemo(

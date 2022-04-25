@@ -3,7 +3,7 @@
  */
 import type { OSDateRangeFieldInputAPI, OSDateRangeFieldValueType } from '@ty-one-start/one-start';
 import { OSDateRangeField, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Button, Space } from '@ty/antd';
+import { Button, Space } from 'antd';
 import React, { useState, useRef } from 'react';
 
 export default () => {

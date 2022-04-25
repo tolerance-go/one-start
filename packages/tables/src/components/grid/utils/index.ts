@@ -1,4 +1,4 @@
-import type { NamePath } from '@ty/antd/lib/form/interface';
+import type { NamePath } from 'antd/lib/form/interface';
 import type {
   OSFormFieldItem,
   OSTableFormFieldItem,

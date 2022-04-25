@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "@ty-one-start/tables",
   "module": "es/index.js",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  
+  "types": "es/index.d.ts",
   "files": [
     "lib",
     "src",
@@ -31,7 +31,7 @@
   "license": "MIT",
   "peerDependencies": {
     "umi": "3.x",
-    "@ty/antd": "4.x",
+    "antd": "4.x",
     "react": "16.x",
     "lodash": "4.x"
   },

@@ -1,4 +1,4 @@
-import type { RcFile } from '@ty/antd/lib/upload';
+import type { RcFile } from 'antd/lib/upload';
 import type { RequiredRecursion } from '../utils';
 import type { RequestIO } from './core';
 import type { RecordType } from '../core';

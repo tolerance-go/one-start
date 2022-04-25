@@ -1,5 +1,5 @@
 import { CloseSquareOutlined } from '@ant-design/icons';
-import { Affix, Modal } from '@ty/antd';
+import { Affix, Modal } from 'antd';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle, useRef } from 'react';
 import { v4 as uuid } from 'uuid';

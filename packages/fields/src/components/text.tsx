@@ -1,5 +1,5 @@
-import type { InputProps } from '@ty/antd';
-import { Input } from '@ty/antd';
+import type { InputProps } from 'antd';
+import { Input } from 'antd';
 import React, { useEffect, useImperativeHandle, useRef } from 'react';
 import type {
   OSTextFieldAPI,

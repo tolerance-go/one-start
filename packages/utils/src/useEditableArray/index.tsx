@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useMemo, useRef, useState } from 'react';
-import type { GetRowKey } from '@ty/antd/lib/table/interface';
+import type { GetRowKey } from 'antd/lib/table/interface';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
-import type { FormInstance, FormProps } from '@ty/antd';
-import useLazyKVMap from '@ty/antd/lib/table/hooks/useLazyKVMap';
+import type { FormInstance, FormProps } from 'antd';
+import useLazyKVMap from 'antd/lib/table/hooks/useLazyKVMap';
 import { LoadingOutlined } from '@ant-design/icons';
-import { message, Popconfirm } from '@ty/antd';
+import { message, Popconfirm } from 'antd';
 import set from 'rc-util/lib/utils/set';
 import useMountMergeState from '../useMountMergeState';
 import ProFormContext from '../components/ProFormContext';
 import { merge } from '../merge';
-import type { NamePath } from '@ty/antd/lib/form/interface';
+import type { NamePath } from 'antd/lib/form/interface';
 import usePrevious from '../hooks/usePrevious';
 import get from 'rc-util/lib/utils/get';
 import { useDeepCompareEffectDebounce } from '../hooks/useDeepCompareEffect';

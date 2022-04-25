@@ -1,5 +1,5 @@
-import { ConfigProvider as AntdConfigProvider } from '@ty/antd';
-import zh_CN from '@ty/antd/lib/locale/zh_CN';
+import { ConfigProvider as AntdConfigProvider } from 'antd';
+import zh_CN from 'antd/lib/locale/zh_CN';
 import React, { useContext, useEffect } from 'react';
 import { SWRConfig, useSWRConfig } from 'swr';
 import arEG from './locale/ar_EG';

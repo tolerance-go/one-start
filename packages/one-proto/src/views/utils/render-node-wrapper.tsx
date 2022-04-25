@@ -1,4 +1,4 @@
-import { Popover } from '@ty/antd';
+import { Popover } from 'antd';
 import { NodeDataType } from '../typings';
 import { renderNodeActions } from './render-node-actions';
 

@@ -1,6 +1,6 @@
 import { InfoCircleOutlined, LoadingOutlined } from '@ant-design/icons';
-import { Col, Popover, Row, Select, Spin, Typography } from '@ty/antd';
-import type { SelectProps } from '@ty/antd/lib/select';
+import { Col, Popover, Row, Select, Spin, Typography } from 'antd';
+import type { SelectProps } from 'antd/lib/select';
 import cls from 'classnames';
 import utl from 'lodash';
 import React, {

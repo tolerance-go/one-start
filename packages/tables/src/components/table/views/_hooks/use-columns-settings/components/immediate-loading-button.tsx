@@ -1,5 +1,5 @@
-import type { ButtonProps } from '@ty/antd';
-import { Button } from '@ty/antd';
+import type { ButtonProps } from 'antd';
+import { Button } from 'antd';
 import React, { useState, useEffect } from 'react';
 
 export const ImmediateLoadingButton: React.ForwardRefRenderFunction<

@@ -1,7 +1,7 @@
 import React from 'react';
 import ProLayout, { PageContainer } from '@ty-one-components/frame';
 
-import { Descriptions } from '@ty/antd';
+import { Descriptions } from 'antd';
 import defaultProps from './_defaultProps';
 
 const content = (

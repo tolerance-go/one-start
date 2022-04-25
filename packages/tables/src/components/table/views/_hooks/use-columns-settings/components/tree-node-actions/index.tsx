@@ -1,5 +1,5 @@
 import { PushpinFilled } from '@ant-design/icons';
-import { Col, Row, Space, Typography } from '@ty/antd';
+import { Col, Row, Space, Typography } from 'antd';
 import type { FixedType } from 'rc-table/lib/interface';
 import React, { useState } from 'react';
 import type { SettingsDataNode } from '@ty-one-start/typings';

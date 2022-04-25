@@ -1,6 +1,6 @@
 import { InfoCircleOutlined, UploadOutlined } from '@ant-design/icons';
 import { OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Divider, Row, Space } from '@ty/antd';
+import { Divider, Row, Space } from 'antd';
 import delay from 'delay';
 import React from 'react';
 import { OSDialog } from '../../components';

@@ -1,5 +1,5 @@
-import type { BreadcrumbProps, PageHeaderProps, SpinProps } from '@ty/antd';
-import { Affix, Breadcrumb, ConfigProvider, PageHeader, Tabs } from '@ty/antd';
+import type { BreadcrumbProps, PageHeaderProps, SpinProps } from 'antd';
+import { Affix, Breadcrumb, ConfigProvider, PageHeader, Tabs } from 'antd';
 import classNames from 'classnames';
 import React, { useContext, useMemo } from 'react';
 import RouteContext from '../../RouteContext';

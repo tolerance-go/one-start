@@ -1,4 +1,4 @@
-import { Col, Row, Space } from '@ty/antd';
+import { Col, Row, Space } from 'antd';
 import utl from 'lodash';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useActionsRef } from '@ty-one-start/utils';

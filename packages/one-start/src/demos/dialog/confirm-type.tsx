@@ -1,5 +1,5 @@
 import { OSDialog, OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import delay from 'delay';
 import React from 'react';
 

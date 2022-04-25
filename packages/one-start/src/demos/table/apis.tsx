@@ -1,5 +1,5 @@
 import { OSProviderWrapper, OSTable } from '@ty-one-start/one-start';
-import { Button } from '@ty/antd';
+import { Button } from 'antd';
 import delay from 'delay';
 import Mock from 'mockjs';
 import React from 'react';

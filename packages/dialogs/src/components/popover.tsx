@@ -1,4 +1,4 @@
-import { Popover } from '@ty/antd';
+import { Popover } from 'antd';
 import { useClickAway } from 'ahooks';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle, useRef, useState } from 'react';

@@ -1,5 +1,5 @@
-import type { SwitchProps } from '@ty/antd';
-import { Switch } from '@ty/antd';
+import type { SwitchProps } from 'antd';
+import { Switch } from 'antd';
 import React from 'react';
 import type { OSSwitchFieldAPI, OSSwitchFieldType } from '@ty-one-start/typings';
 import { useClsPrefix } from '@ty-one-start/utils';

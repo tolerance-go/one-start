@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Tooltip, Select, Switch } from '@ty/antd';
+import { List, Tooltip, Select, Switch } from 'antd';
 import defaultSettings from '../../defaultSettings';
 import type { SettingItemProps, ProSettings } from '../../typings';
 import { getFormatMessage } from './utils';

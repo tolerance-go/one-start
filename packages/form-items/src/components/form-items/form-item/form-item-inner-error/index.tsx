@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
-import { Form } from '@ty/antd';
-import type { FormItemProps } from '@ty/antd/lib/form';
+import { Form } from 'antd';
+import type { FormItemProps } from 'antd/lib/form';
 import utl from 'lodash';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { unstable_batchedUpdates } from 'react-dom';

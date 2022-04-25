@@ -1,4 +1,4 @@
-﻿import type { FormInstance } from '@ty/antd';
+﻿import type { FormInstance } from 'antd';
 import { runFunction } from '../runFunction';
 
 /**

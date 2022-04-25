@@ -1,5 +1,5 @@
 import { OSProviderWrapper, OSSelectField } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import React from 'react';
 
 export default () => {

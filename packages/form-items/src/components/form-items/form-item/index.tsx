@@ -1,6 +1,6 @@
 import { LoadingOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import { Form, message, Spin, Tooltip, Typography } from '@ty/antd';
-import type { Rule, RuleObject } from '@ty/antd/lib/form';
+import { Form, message, Spin, Tooltip, Typography } from 'antd';
+import type { Rule, RuleObject } from 'antd/lib/form';
 import cls from 'classnames';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import type {

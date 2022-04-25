@@ -4,7 +4,7 @@
  */
 import type { OSFormAPI, RecordType } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import React, { useRef, useState } from 'react';
 
 export default () => {

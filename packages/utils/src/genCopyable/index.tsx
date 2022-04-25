@@ -1,4 +1,4 @@
-﻿import { Typography } from '@ty/antd';
+﻿import { Typography } from 'antd';
 import React from 'react';
 
 const isNeedTranText = (item: any): boolean => {

@@ -1,5 +1,5 @@
-import type { SelectProps } from '@ty/antd';
-import type { SorterResult } from '@ty/antd/lib/table/interface';
+import type { SelectProps } from 'antd';
+import type { SorterResult } from 'antd/lib/table/interface';
 import utl from 'lodash';
 import moment from 'moment';
 import type { MutableRefObject } from 'react';

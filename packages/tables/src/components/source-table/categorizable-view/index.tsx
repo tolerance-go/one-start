@@ -1,7 +1,7 @@
 import { DownOutlined } from '@ant-design/icons';
-import type { TreeProps } from '@ty/antd';
-import { Col, Row, Skeleton, Tree, Typography } from '@ty/antd';
-import type { DataNode, EventDataNode } from '@ty/antd/lib/tree';
+import type { TreeProps } from 'antd';
+import { Col, Row, Skeleton, Tree, Typography } from 'antd';
+import type { DataNode, EventDataNode } from 'antd/lib/tree';
 import utl from 'lodash';
 import type { Key } from 'react';
 import { useMemo } from 'react';

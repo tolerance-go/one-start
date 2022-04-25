@@ -1,8 +1,8 @@
-import type { PaginationProps } from '@ty/antd';
-import type { FormInstance } from '@ty/antd/lib/form';
-import type { NamePath } from '@ty/antd/lib/form/interface';
-import type { ColumnType } from '@ty/antd/lib/table';
-import type { SorterResult } from '@ty/antd/lib/table/interface';
+import type { PaginationProps } from 'antd';
+import type { FormInstance } from 'antd/lib/form';
+import type { NamePath } from 'antd/lib/form/interface';
+import type { ColumnType } from 'antd/lib/table';
+import type { SorterResult } from 'antd/lib/table/interface';
 import type EventEmitter from 'eventemitter3';
 import type { FieldError, ValidateErrorEntity } from 'rc-field-form/es/interface';
 import type { CustomizeComponent, FixedType } from 'rc-table/lib/interface';

@@ -1,6 +1,6 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Divider, Space } from '@ty/antd';
+import { Divider, Space } from 'antd';
 import delay from 'delay';
 import { Random } from 'mockjs';
 import React from 'react';

@@ -1,5 +1,5 @@
 import { OSProviderWrapper, OSSourceTable } from '@ty-one-start/one-start';
-import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import delay from 'delay';
 import Mock, { mock, Random } from 'mockjs';
 import moment from 'moment';

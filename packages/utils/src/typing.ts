@@ -1,7 +1,7 @@
-import type { InputProps } from '@ty/antd';
-import type { FormInstance, FormItemProps } from '@ty/antd/lib/form';
-import type { LabelTooltipType } from '@ty/antd/lib/form/FormItemLabel';
-import type { NamePath } from '@ty/antd/lib/form/interface';
+import type { InputProps } from 'antd';
+import type { FormInstance, FormItemProps } from 'antd/lib/form';
+import type { LabelTooltipType } from 'antd/lib/form/FormItemLabel';
+import type { NamePath } from 'antd/lib/form/interface';
 import type { Moment } from 'moment';
 import type { ReactNode } from 'react';
 import type { ProFieldValueType, ValueTypeWithFieldProps } from './types';

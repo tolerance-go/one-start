@@ -1,4 +1,4 @@
-import { Col, Row, Typography } from '@ty/antd';
+import { Col, Row, Typography } from 'antd';
 import utl from 'lodash';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { OSDialog } from '@ty-one-start/dialogs';

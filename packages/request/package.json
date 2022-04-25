@@ -28,7 +28,7 @@
   ],
   "license": "MIT",
   "peerDependencies": {
-    "@ty/antd": "4.x",
+    "antd": "4.x",
     "lodash": "4.x",
     "react": "16.x",
     "umi": "3.x"

@@ -8,13 +8,13 @@ import type {
   TransferProps,
   TreeSelectProps,
   UploadProps,
-} from '@ty/antd';
-import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
-import type { PickerProps, RangePickerDateProps } from '@ty/antd/es/date-picker/generatePicker';
-import type { TextAreaRef } from '@ty/antd/es/input/TextArea';
-import type { RefSelectProps } from '@ty/antd/es/select';
-import type { ParagraphProps } from '@ty/antd/es/typography/Paragraph';
-import type { UploadFile } from '@ty/antd/es/upload/interface';
+} from 'antd';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
+import type { PickerProps, RangePickerDateProps } from 'antd/es/date-picker/generatePicker';
+import type { TextAreaRef } from 'antd/es/input/TextArea';
+import type { RefSelectProps } from 'antd/es/select';
+import type { ParagraphProps } from 'antd/es/typography/Paragraph';
+import type { UploadFile } from 'antd/es/upload/interface';
 import type { Moment } from 'moment';
 import type { NamePath } from 'rc-field-form/es/interface';
 import type { SharedTimeProps } from 'rc-picker/es/panels/TimePanel';

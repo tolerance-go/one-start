@@ -1,6 +1,6 @@
 import type { RecordType } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Divider } from '@ty/antd';
+import { Divider } from 'antd';
 import { mock, Random } from 'mockjs';
 import moment from 'moment';
 import React, { useState } from 'react';

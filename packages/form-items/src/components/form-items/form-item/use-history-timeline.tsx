@@ -1,5 +1,5 @@
 import { HistoryOutlined } from '@ant-design/icons';
-import { Popover, Timeline } from '@ty/antd';
+import { Popover, Timeline } from 'antd';
 import React from 'react';
 import type { OSFormItemInputHistoryData, RecordType } from '@ty-one-start/typings';
 import { useClsPrefix } from '@ty-one-start/utils';

@@ -1,6 +1,6 @@
 import { OSGrid, OSLayout, OSProviderWrapper, OSForm } from '@ty-one-start/one-start';
 import Mock, { Random } from 'mockjs';
-import { Row, Col } from '@ty/antd';
+import { Row, Col } from 'antd';
 
 const Order = () => {
   return (

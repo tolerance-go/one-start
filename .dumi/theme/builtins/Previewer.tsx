@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import LazyLoad from 'react-lazyload';
 import PreView, { IPreviewerProps } from 'dumi-theme-default/src/builtins/Previewer';
-import { Spin, Skeleton } from '@ty/antd';
+import { Spin, Skeleton } from 'antd';
 
 export default ({
   children,

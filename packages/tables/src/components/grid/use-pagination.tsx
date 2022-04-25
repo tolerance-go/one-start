@@ -1,5 +1,5 @@
-import type { PaginationProps } from '@ty/antd';
-import { Pagination } from '@ty/antd';
+import type { PaginationProps } from 'antd';
+import { Pagination } from 'antd';
 import { useMemo } from 'react';
 import type { RequestDataSourceActions } from './typings';
 import type { OSGridType } from '@ty-one-start/typings';

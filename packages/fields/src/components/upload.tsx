@@ -1,7 +1,7 @@
 import { UploadOutlined } from '@ant-design/icons';
-import type { UploadProps } from '@ty/antd';
-import { message, notification, Space, Typography, Upload } from '@ty/antd';
-import type { UploadFile } from '@ty/antd/es/upload/interface';
+import type { UploadProps } from 'antd';
+import { message, notification, Space, Typography, Upload } from 'antd';
+import type { UploadFile } from 'antd/es/upload/interface';
 import utl from 'lodash';
 import React from 'react';
 import type { OSUploadFieldAPI, OSUploadFieldType } from '@ty-one-start/typings';

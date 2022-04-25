@@ -1,5 +1,5 @@
 import type { ColDef, ColGroupDef } from '@ag-grid-enterprise/all-modules';
-import type { ColumnsType } from '@ty/antd/lib/table';
+import type { ColumnsType } from 'antd/lib/table';
 import React from 'react';
 import { OSActionsField } from '@ty-one-start/fields';
 import type { OSGridType, RecordType, OSGridAPI } from '@ty-one-start/typings';

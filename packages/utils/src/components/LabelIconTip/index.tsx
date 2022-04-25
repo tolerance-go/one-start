@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { Tooltip, ConfigProvider } from '@ty/antd';
+import { Tooltip, ConfigProvider } from 'antd';
 import './index.less';
-import type { LabelTooltipType, WrapperTooltipProps } from '@ty/antd/lib/form/FormItemLabel';
+import type { LabelTooltipType, WrapperTooltipProps } from 'antd/lib/form/FormItemLabel';
 import classNames from 'classnames';
 
 /**

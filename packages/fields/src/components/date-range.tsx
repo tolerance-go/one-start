@@ -1,7 +1,7 @@
 import { SwapRightOutlined } from '@ant-design/icons';
-import { DatePicker } from '@ty/antd';
-import type { RangePickerDateProps } from '@ty/antd/es/date-picker/generatePicker';
-import type { RangePickerProps } from '@ty/antd/lib/date-picker/generatePicker';
+import { DatePicker } from 'antd';
+import type { RangePickerDateProps } from 'antd/es/date-picker/generatePicker';
+import type { RangePickerProps } from 'antd/lib/date-picker/generatePicker';
 import type { Moment } from 'moment';
 import moment from 'moment';
 import type { Component } from 'react';

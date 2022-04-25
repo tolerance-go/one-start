@@ -1,4 +1,4 @@
-import type { ColumnProps } from '@ty/antd/es/table';
+import type { ColumnProps } from 'antd/es/table';
 import type { ICellRendererParams } from '@ag-grid-enterprise/all-modules';
 import type { RecordType } from '@ty-one-start/typings';
 

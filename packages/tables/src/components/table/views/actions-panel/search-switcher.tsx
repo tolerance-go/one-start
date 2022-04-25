@@ -1,5 +1,5 @@
 import { DownOutlined, UpOutlined } from '@ant-design/icons';
-import { Button, Space } from '@ty/antd';
+import { Button, Space } from 'antd';
 import React from 'react';
 import type { TableCoreAPI } from '@ty-one-start/typings';
 import { eventNames } from '../../constants';

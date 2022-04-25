@@ -1,6 +1,6 @@
 import { ConfigProviderWrap } from '@ty-one-components/provider';
 import { isBrowser, useDocumentTitle, useMountMergeState } from '@ty-one-start/utils';
-import { ConfigProvider, Layout } from '@ty/antd';
+import { ConfigProvider, Layout } from 'antd';
 import { getMatchMenu } from '@umijs/route-utils';
 import classNames from 'classnames';
 import Omit from 'omit.js';

@@ -1,7 +1,7 @@
 import { DownOutlined, SettingOutlined } from '@ant-design/icons';
-import type { TreeProps } from '@ty/antd';
-import { Button, Col, Drawer, Row, Tree } from '@ty/antd';
-import type { ColumnGroupType, ColumnsType, ColumnType } from '@ty/antd/lib/table';
+import type { TreeProps } from 'antd';
+import { Button, Col, Drawer, Row, Tree } from 'antd';
+import type { ColumnGroupType, ColumnsType, ColumnType } from 'antd/lib/table';
 import utl from 'lodash';
 import type { FixedType } from 'rc-table/lib/interface';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
@@ -18,7 +18,7 @@ import type {
   ColumnsSettingsActions,
   OSTableFormFieldItemWithStaticPureConfigsWithChildren,
 } from '@ty-one-start/tables';
-import { getKeyIndexId } from '../../../utils';
+import { getKeyIndexId } from '@ty-one-start/utils';
 import { ImmediateLoadingButton } from './components/immediate-loading-button';
 import { TreeNodeActions } from './components/tree-node-actions';
 import { findTreeItem, sortTreeWithOrder } from './utils';

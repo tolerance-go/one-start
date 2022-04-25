@@ -1,7 +1,7 @@
 import { DownOutlined, EllipsisOutlined, LoadingOutlined } from '@ant-design/icons';
-import type { DropDownProps } from '@ty/antd';
-import { Button, Dropdown, Menu, Space, Typography, Upload } from '@ty/antd';
-import type { RcFile } from '@ty/antd/lib/upload';
+import type { DropDownProps } from 'antd';
+import { Button, Dropdown, Menu, Space, Typography, Upload } from 'antd';
+import type { RcFile } from 'antd/lib/upload';
 import utl from 'lodash';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import type { ReactNode } from 'react';

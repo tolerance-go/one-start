@@ -1,6 +1,6 @@
 ﻿import React, { useState, useEffect, useContext } from 'react';
-import { Form, Popover, ConfigProvider } from '@ty/antd';
-import type { FormItemProps, PopoverProps } from '@ty/antd';
+import { Form, Popover, ConfigProvider } from 'antd';
+import type { FormItemProps, PopoverProps } from 'antd';
 import type { NamePath } from 'rc-field-form/es/interface';
 import './index.less';
 import { LoadingOutlined } from '@ant-design/icons';

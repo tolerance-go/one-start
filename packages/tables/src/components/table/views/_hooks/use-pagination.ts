@@ -1,4 +1,4 @@
-import type { PaginationProps } from '@ty/antd/es/pagination';
+import type { PaginationProps } from 'antd/es/pagination';
 import { useMemo } from 'react';
 import type { OSTableType } from '@ty-one-start/typings';
 

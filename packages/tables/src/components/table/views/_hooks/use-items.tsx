@@ -1,11 +1,15 @@
 import { InfoCircleOutlined, QuestionCircleOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import type { FormInstance } from '@ty/antd';
-import { Space, Tooltip } from '@ty/antd';
-import type { ColumnGroupType, ColumnsType, ColumnType } from '@ty/antd/lib/table';
-import cls from 'classnames';
-import utl from 'lodash';
-import type { Rule } from '@ty/antd/lib/form';
-import React, { useMemo, useRef } from 'react';
+import { renderField } from '@ty-one-start/fields';
+import {
+  mergeRuleToTooltip,
+  normalizeTooltip,
+  renderTableFormItem,
+} from '@ty-one-start/form-items';
+import type {
+  OSTableFormFieldItemWithStaticPureConfigsWithChildren,
+  RequestDataSourceActions,
+  SearchFormAPI,
+} from '@ty-one-start/tables';
 import type {
   OSFieldBaseSettings,
   OSFormFieldItem,
@@ -29,10 +33,14 @@ import type {
   RequiredRecursion,
   TableCoreAPI,
 } from '@ty-one-start/typings';
-import { mergeRuleToTooltip, normalizeTooltip } from '@ty-one-start/form-items';
 import { useActionsRef } from '@ty-one-start/utils';
-import { renderField } from '@ty-one-start/utils';
-import { renderTableFormItem } from '@ty-one-start/utils';
+import type { FormInstance } from 'antd';
+import { Space, Tooltip } from 'antd';
+import type { Rule } from 'antd/lib/form';
+import type { ColumnGroupType, ColumnsType, ColumnType } from 'antd/lib/table';
+import cls from 'classnames';
+import utl from 'lodash';
+import React, { useMemo, useRef } from 'react';
 import type { ResizeableHeaderCellProps } from '../../components/resizeable-header-cell';
 import {
   DEFAULT_WIDTH,
@@ -41,12 +49,8 @@ import {
   tdSelfClassTag,
   verticalRowCellWithKeyClsPrefix,
 } from '../../constants';
-import type {
-  OSTableFormFieldItemWithStaticPureConfigsWithChildren,
-  RequestDataSourceActions,
-  SearchFormAPI,
-} from '@ty-one-start/tables';
-import { getDataIndexId, getKeyIndexId, runTableSettings } from '../../utils';
+import { runTableSettings } from '../../utils';
+import { getDataIndexId, getKeyIndexId } from '@ty-one-start/utils';
 import { getColEditable } from '../../utils/get-col-editable';
 import type { SearchRequestOptionsMapColIdType } from '../_typeings';
 

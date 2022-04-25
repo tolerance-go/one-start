@@ -1,4 +1,4 @@
-import { Typography } from '@ty/antd';
+import { Typography } from 'antd';
 import { useState, useMemo } from 'react';
 import type { RequiredRecursion } from '@ty-one-start/typings';
 import type { OSTableType, OSGridAPI } from '@ty-one-start/typings';

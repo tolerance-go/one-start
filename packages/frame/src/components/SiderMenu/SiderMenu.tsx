@@ -1,5 +1,5 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { Layout, Menu } from '@ty/antd';
+import { Layout, Menu } from 'antd';
 import classNames from 'classnames';
 import React from 'react';
 import type { PrivateSiderMenuProps, SiderMenuProps } from '../../typings';

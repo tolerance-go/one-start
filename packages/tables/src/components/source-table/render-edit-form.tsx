@@ -1,4 +1,4 @@
-import { message } from '@ty/antd';
+import { message } from 'antd';
 import React from 'react';
 import type {
   OSDialogDrawerAPI,

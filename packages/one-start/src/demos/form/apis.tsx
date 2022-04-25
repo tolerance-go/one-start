@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import type { OSFormAPI } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Space } from '@ty/antd';
+import { Space } from 'antd';
 import moment from 'moment';
 import React, { useRef } from 'react';
 import { useDemoSettings } from '../../../../../hooks/use-demo-settings';

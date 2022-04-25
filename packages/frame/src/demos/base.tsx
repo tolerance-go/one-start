@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Descriptions, Result, Avatar, Space, Statistic } from '@ty/antd';
+import { Button, Descriptions, Result, Avatar, Space, Statistic } from 'antd';
 import { LikeOutlined, UserOutlined } from '@ant-design/icons';
 
 import type { ProSettings } from '@ty-one-components/frame';

@@ -1,4 +1,4 @@
-import { Col, Row, Space } from '@ty/antd';
+import { Col, Row, Space } from 'antd';
 import React from 'react';
 import type { OSFormFieldItem, OSGridAPI, OSGridType } from '@ty-one-start/typings';
 import type { RequiredRecursion } from '@ty-one-start/typings';

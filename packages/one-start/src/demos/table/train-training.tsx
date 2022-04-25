@@ -8,7 +8,7 @@ import type {
   RequiredRecursion,
 } from '@ty-one-start/one-start';
 import { OSDialog, OSForm, OSProviderWrapper, OSTable, OSTrigger } from '@ty-one-start/one-start';
-import { Divider } from '@ty/antd';
+import { Divider } from 'antd';
 import delay from 'delay';
 import produce from 'immer';
 import Mock, { Random } from 'mockjs';

@@ -1,4 +1,4 @@
-import { Breadcrumb, Col, Row, Space, Tabs } from '@ty/antd';
+import { Breadcrumb, Col, Row, Space, Tabs } from 'antd';
 import qs from 'qs';
 import React, { useImperativeHandle, useMemo, useState } from 'react';
 import type { OSPageAPI, OSPageType, RecordType } from '@ty-one-start/typings';

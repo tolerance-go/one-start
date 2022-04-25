@@ -1,9 +1,9 @@
 import { AntdIconProps } from '@ant-design/icons/lib/components/AntdIcon';
-import type { BadgeProps, ButtonProps, UploadProps } from '@ty/antd';
-import { SizeType } from '@ty/antd/es/config-provider/SizeContext';
-import type { RibbonProps } from '@ty/antd/lib/badge/Ribbon';
-import type { DropdownButtonProps } from '@ty/antd/lib/dropdown';
-import type { RcFile } from '@ty/antd/lib/upload';
+import type { BadgeProps, ButtonProps, UploadProps } from 'antd';
+import { SizeType } from 'antd/es/config-provider/SizeContext';
+import type { RibbonProps } from 'antd/lib/badge/Ribbon';
+import type { DropdownButtonProps } from 'antd/lib/dropdown';
+import type { RcFile } from 'antd/lib/upload';
 import type React from 'react';
 import type { RecordType } from '../core';
 import type { OSCore, RequestIO } from './core';

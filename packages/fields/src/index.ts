@@ -27,6 +27,9 @@ import OSTransferField from './components/transfer';
 import OSAtomField from './components/atom';
 import OSTreeSelectField from './components/tree-select';
 
+export * from './utils/render-field-base';
+export * from './utils/render-field';
+
 export {
   OSActionsField,
   OSAttachmentTableField,

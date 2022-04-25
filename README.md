@@ -33,9 +33,9 @@ one-start 是可扩展的金融领域企业级 web 前端界面构建工具集
 ## one-start 的特性
 
 - 简单易用，在 Ant Design 上进行了自己的封装，更加易用
-- Ant Design，与 Ant Design 设计体系一脉相承，无缝对接 @ty/antd 项目
+- Ant Design，与 Ant Design 设计体系一脉相承，无缝对接 antd 项目
 - 国际化，提供完备的国际化语言支持，与 Ant Design 体系打通
-- 预设样式，样式风格与 @ty/antd 一脉相承，无需魔改，浑然天成
+- 预设样式，样式风格与 antd 一脉相承，无需魔改，浑然天成
 - 预设行为，更少的代码，更少的 Bug
 - TypeScript，使用 TypeScript 开发，提供完整的类型定义文件
 

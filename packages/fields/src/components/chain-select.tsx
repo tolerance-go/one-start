@@ -1,7 +1,7 @@
 import { SwapRightOutlined } from '@ant-design/icons';
-import { Badge, Space, Tag } from '@ty/antd';
+import { Badge, Space, Tag } from 'antd';
 import utl from 'lodash';
-import type { RawValueType } from 'rc-select/lib/interface/generator';
+import type { RawValueType } from 'rc-select/lib/interface';
 import React from 'react';
 import type {
   OSChainSelectBaseAPI,

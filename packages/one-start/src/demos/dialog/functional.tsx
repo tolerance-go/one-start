@@ -1,5 +1,5 @@
 import { OSDialog, OSDialogAPI, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Button, Space } from '@ty/antd';
+import { Button, Space } from 'antd';
 import React, { useRef } from 'react';
 
 export default () => {

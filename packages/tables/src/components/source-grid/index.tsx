@@ -1,4 +1,4 @@
-import { Col, Row } from '@ty/antd';
+import { Col, Row } from 'antd';
 import React, { useContext, useState, useImperativeHandle, useRef } from 'react';
 import { OSDialog } from '@ty-one-start/dialogs';
 import { OSForm } from '@ty-one-start/forms';

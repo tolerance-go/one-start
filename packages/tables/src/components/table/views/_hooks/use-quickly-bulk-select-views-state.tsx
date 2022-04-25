@@ -7,10 +7,10 @@
  *  - 反选当前页
  */
 
-import type { TableProps } from '@ty/antd';
-import { message } from '@ty/antd';
-import { Table } from '@ty/antd';
-import type { INTERNAL_SELECTION_ITEM } from '@ty/antd/es/table/hooks/useSelection';
+import type { TableProps } from 'antd';
+import { message } from 'antd';
+import { Table } from 'antd';
+import type { INTERNAL_SELECTION_ITEM } from 'antd/es/table/hooks/useSelection';
 import type {
   OSTableType,
   RecordType,

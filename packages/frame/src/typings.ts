@@ -6,13 +6,13 @@ import type {
   SpinProps,
   TabPaneProps,
   TabsProps,
-} from '@ty/antd';
-import type { SiderProps } from '@ty/antd/lib/layout/Sider';
+} from 'antd';
+import type { SiderProps } from 'antd/lib/layout/Sider';
 import type * as H from 'history';
 import type React from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import type { match, RouteComponentProps as BasicRouteProps } from 'react-router-dom';
-import type { BreadcrumbProps as AntdBreadcrumbProps } from '@ty/antd';
+import type { BreadcrumbProps as AntdBreadcrumbProps } from 'antd';
 import type { LocaleType } from './locales';
 
 export type LayoutBreadcrumbProps = {

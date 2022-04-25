@@ -1,5 +1,5 @@
-﻿import type { FormInstance } from '@ty/antd';
-import type { NamePath } from '@ty/antd/lib/form/interface';
+﻿import type { FormInstance } from 'antd';
+import type { NamePath } from 'antd/lib/form/interface';
 import React from 'react';
 
 const ProFormContext = React.createContext<{

@@ -1,6 +1,6 @@
-import { Input, Typography } from '@ty/antd';
-import type { TextAreaProps } from '@ty/antd/lib/input';
-import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
+import { Input, Typography } from 'antd';
+import type { TextAreaProps } from 'antd/lib/input';
+import type { TextAreaRef } from 'antd/lib/input/TextArea';
 import utl from 'lodash';
 import React, { useImperativeHandle, useRef } from 'react';
 import type { OSTextareaFieldAPI, OSTextareaFieldType } from '@ty-one-start/typings';

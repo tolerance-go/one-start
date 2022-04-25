@@ -3,7 +3,8 @@ import {
   OSReferencesCollectorDispatchContext,
   PrioritizedComponentSizeContext,
 } from '@ty-one-start/provider';
-import { getDataIndexId, getKeyIndexId, runFormSettings } from '@ty-one-start/tables';
+import { runFormSettings } from '@ty-one-start/tables';
+import { getDataIndexId, getKeyIndexId } from '@ty-one-start/utils';
 import type {
   OSEditableTableAPI,
   OSField,
@@ -27,19 +28,19 @@ import type {
   ValueAsyncLinkage,
   _OSFormFieldItems,
 } from '@ty-one-start/typings';
+import { renderField } from '@ty-one-start/fields';
+import { renderFormItem } from '@ty-one-start/form-items';
 import {
   findParent,
   normalizeRequestOutputs,
-  renderField,
-  renderFormItem,
   useActionsRef,
   useClsPrefix,
   useLoading,
   withDebounce,
 } from '@ty-one-start/utils';
-import type { FormInstance } from '@ty/antd';
-import { Col, Divider, Empty, Form, Row, Space, Spin, Typography } from '@ty/antd';
-import type { FormProps } from '@ty/antd/es/form/Form';
+import type { FormInstance } from 'antd';
+import { Col, Divider, Empty, Form, Row, Space, Spin, Typography } from 'antd';
+import type { FormProps } from 'antd/es/form/Form';
 import type { NamePath } from 'rc-field-form/es/interface';
 import cls from 'classnames';
 import EventEmitter from 'eventemitter3';

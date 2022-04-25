@@ -1,5 +1,5 @@
-import type { FormItemProps, Rule } from '@ty/antd/lib/form';
-import type { AbstractTooltipProps } from '@ty/antd/lib/tooltip';
+import type { FormItemProps, Rule } from 'antd/lib/form';
+import type { AbstractTooltipProps } from 'antd/lib/tooltip';
 import type React from 'react';
 import type { CSSProperties } from 'react';
 import type { OSCore, RequestIO } from './core';

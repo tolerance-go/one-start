@@ -1,4 +1,4 @@
-import { ConfigProvider } from '@ty/antd';
+import { ConfigProvider } from 'antd';
 import classNames from 'classnames';
 import React, { useContext } from 'react';
 import RouteContext from '../../RouteContext';

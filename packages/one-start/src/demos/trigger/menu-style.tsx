@@ -1,6 +1,6 @@
 import { UploadOutlined } from '@ant-design/icons';
 import { OSForm, OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Divider } from '@ty/antd';
+import { Divider } from 'antd';
 import delay from 'delay';
 import React, { useState, useRef } from 'react';
 

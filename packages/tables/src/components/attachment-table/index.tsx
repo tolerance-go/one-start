@@ -1,4 +1,4 @@
-import { message } from '@ty/antd';
+import { message } from 'antd';
 import cls from 'classnames';
 import useMergedState from 'rc-util/lib/hooks/useMergedState';
 import React from 'react';

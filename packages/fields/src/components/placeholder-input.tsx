@@ -1,6 +1,6 @@
-import { Input, Popover, Space, Tag, Typography } from '@ty/antd';
-import type { TextAreaProps } from '@ty/antd/lib/input';
-import type { TextAreaRef } from '@ty/antd/lib/input/TextArea';
+import { Input, Popover, Space, Tag, Typography } from 'antd';
+import type { TextAreaProps } from 'antd/lib/input';
+import type { TextAreaRef } from 'antd/lib/input/TextArea';
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type {
   OSPlaceholderInputFieldAPI,

@@ -1,4 +1,4 @@
-import { Empty } from '@ty/antd';
+import { Empty } from 'antd';
 import React from 'react';
 
 const OSEmpty: React.FC<{

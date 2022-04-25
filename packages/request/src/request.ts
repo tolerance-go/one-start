@@ -1,7 +1,7 @@
 import { extend } from 'umi-request';
 import type { RequestOptionsInit, ResponseError } from 'umi-request';
-import { notification } from '@ty/antd';
-import type { ArgsProps } from '@ty/antd/lib/notification';
+import { notification } from 'antd';
+import type { ArgsProps } from 'antd/lib/notification';
 
 export const BCTServicePrefix = process.env.NODE_ENV === 'development' ? '/bct-service' : '';
 

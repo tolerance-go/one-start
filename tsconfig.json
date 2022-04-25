@@ -15,6 +15,7 @@
     "declaration": true,
     "skipLibCheck": true,
     "paths": {
+      "@/*": ["./src/*"],
       "@@/*": [".umi/*"],
       "@ty-one-start/utils": ["./packages/utils/src/index"],
       "@ty-one-start/form-items": ["./packages/form-items/src/index"],

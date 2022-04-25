@@ -1,6 +1,6 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import type { MenuProps } from '@ty/antd';
-import { Col, Layout, Menu, Row, Skeleton, Space, Tabs } from '@ty/antd';
+import type { MenuProps } from 'antd';
+import { Col, Layout, Menu, Row, Skeleton, Space, Tabs } from 'antd';
 import cls from 'classnames';
 import produce from 'immer';
 import React, { useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';

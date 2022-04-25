@@ -1,6 +1,6 @@
 import { DownOutlined, LoadingOutlined, RightOutlined } from '@ant-design/icons';
-import type { FormProps } from '@ty/antd';
-import { Form, Spin, Tabs } from '@ty/antd';
+import type { FormProps } from 'antd';
+import { Form, Spin, Tabs } from 'antd';
 import cls from 'classnames';
 import EventEmitter from 'eventemitter3';
 import invariant from 'invariant';

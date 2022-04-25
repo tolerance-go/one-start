@@ -1,4 +1,4 @@
-import { Popconfirm } from '@ty/antd';
+import { Popconfirm } from 'antd';
 import { useClickAway } from 'ahooks';
 import type { PropsWithChildren } from 'react';
 import React, { useImperativeHandle, useRef, useState } from 'react';

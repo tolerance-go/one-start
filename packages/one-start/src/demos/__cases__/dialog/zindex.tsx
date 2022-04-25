@@ -5,7 +5,7 @@
  */
 import { OSProviderWrapper, OSSourceTable } from '@ty-one-start/one-start';
 import request from '@ty-one-start/request';
-import { Typography } from '@ty/antd';
+import { Typography } from 'antd';
 import delay from 'delay';
 import Mock, { mock, Random } from 'mockjs';
 import moment from 'moment';

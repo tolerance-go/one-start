@@ -1,5 +1,5 @@
 import { OSActionsField, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Button } from '@ty/antd';
+import { Button } from 'antd';
 import React from 'react';
 
 export default () => {

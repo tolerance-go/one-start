@@ -1,4 +1,4 @@
-import type { ColumnsType } from '@ty/antd/lib/table';
+import type { ColumnsType } from 'antd/lib/table';
 import React from 'react';
 import { OSActionsField } from '@ty-one-start/fields';
 import type { OSTableType, RecordType, OSTableAPI } from '@ty-one-start/typings';

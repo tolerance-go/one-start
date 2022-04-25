@@ -1,4 +1,4 @@
-import { Layout } from '@ty/antd';
+import { Layout } from 'antd';
 import classNames from 'classnames';
 import React, { Component } from 'react';
 import GlobalHeader from './components/GlobalHeader';

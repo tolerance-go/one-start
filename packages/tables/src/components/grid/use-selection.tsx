@@ -1,4 +1,4 @@
-import { Space, Typography } from '@ty/antd';
+import { Space, Typography } from 'antd';
 import utl from 'lodash';
 import React, { useMemo, useState } from 'react';
 import { useActionsRef } from '@ty-one-start/utils';

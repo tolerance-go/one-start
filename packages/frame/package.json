@@ -24,7 +24,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@ty/antd": "4.x",
+    "antd": "4.x",
     "history": "4.x",
     "lodash": "4.x",
     "react": "16.x",

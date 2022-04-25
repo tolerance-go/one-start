@@ -1,4 +1,4 @@
-import { Col, message, Row } from '@ty/antd';
+import { Col, message, Row } from 'antd';
 import React from 'react';
 import type {
   OSDialogDrawerAPI,

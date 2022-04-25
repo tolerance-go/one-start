@@ -1,5 +1,5 @@
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import { Tooltip } from '@ty/antd';
+import { Tooltip } from 'antd';
 import React, { useState } from 'react';
 
 export const useRenderTooltip = ({ title }: { title?: string }) => {

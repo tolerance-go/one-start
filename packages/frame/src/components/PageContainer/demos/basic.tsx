@@ -1,6 +1,6 @@
 import React from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
-import { Button, Dropdown, Menu } from '@ty/antd';
+import { Button, Dropdown, Menu } from 'antd';
 import { PageContainer } from '@ty-one-components/frame';
 
 export default () => (

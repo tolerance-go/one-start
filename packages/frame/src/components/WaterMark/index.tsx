@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ConfigProvider } from '@ty/antd';
+import { ConfigProvider } from 'antd';
 import classNames from 'classnames';
 import type { WaterMarkProps } from '../../typings';
 

@@ -1,5 +1,5 @@
 import { OSDigitField, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Typography } from '@ty/antd';
+import { Typography } from 'antd';
 import React, { useState } from 'react';
 
 export default () => {

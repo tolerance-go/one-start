@@ -1,7 +1,7 @@
 import type { OSFormAPI, RecordType } from '@ty-one-start/one-start';
 import { OSLayoutForm, OSProviderWrapper, OSTrigger, OSForm } from '@ty-one-start/one-start';
 import React, { useRef, useState } from 'react';
-import { Divider, Space } from '@ty/antd';
+import { Divider, Space } from 'antd';
 
 export default () => {
   const formRef = useRef<OSFormAPI>(null);

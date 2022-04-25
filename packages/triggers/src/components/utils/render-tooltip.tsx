@@ -1,6 +1,6 @@
 import { QuestionCircleOutlined } from '@ant-design/icons';
-import type { TooltipProps } from '@ty/antd';
-import { Tooltip } from '@ty/antd';
+import type { TooltipProps } from 'antd';
+import { Tooltip } from 'antd';
 import React, { useState, useImperativeHandle } from 'react';
 
 export type OSTooltipAPI = {

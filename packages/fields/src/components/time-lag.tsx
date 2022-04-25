@@ -1,4 +1,4 @@
-import { InputNumber, Space } from '@ty/antd';
+import { InputNumber, Space } from 'antd';
 import React, { useImperativeHandle, useRef } from 'react';
 import type { OSTimeLagFieldAPI, OSTimeLagFieldType } from '@ty-one-start/typings';
 

@@ -1,6 +1,6 @@
 import type { OSFormAPI } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper } from '@ty-one-start/one-start';
-import { Button } from '@ty/antd';
+import { Button } from 'antd';
 import moment from 'moment';
 import React, { useRef } from 'react';
 

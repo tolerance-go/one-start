@@ -1,22 +1,19 @@
 import type { ColDef, ColGroupDef } from '@ag-grid-enterprise/all-modules';
 import { InfoCircleOutlined, QuestionCircleOutlined, ThunderboltOutlined } from '@ant-design/icons';
-import type { FormInstance } from '@ty/antd';
-import { Space, Tooltip } from '@ty/antd';
-import type { ColumnGroupType, ColumnType } from '@ty/antd/lib/table';
-import cls from 'classnames';
-import utl from 'lodash';
-import type { Rule } from '@ty/antd/lib/form';
-import React, { useMemo, useRef } from 'react';
-import { mergeRuleToTooltip, normalizeTooltip } from '@ty-one-start/form-items';
-import { useActionsRef } from '@ty-one-start/utils';
+import { renderField } from '@ty-one-start/fields';
+import {
+  mergeRuleToTooltip,
+  normalizeTooltip,
+  renderTableFormItem,
+} from '@ty-one-start/form-items';
 import type {
   OSFormFieldItem,
   OSFormFieldItemWithStaticPureConfigs,
   OSFormItemSimpleTooltip,
   OSFormItemType,
+  OSGridAPI,
   OSRule,
   OSSelectFieldType,
-  OSGridAPI,
   OSTableFormFieldItemExtra,
   OSTableFormFieldItemRender,
   OSTableFormFieldItems,
@@ -25,10 +22,16 @@ import type {
   OSTableType,
   RecordType,
   RenderFieldOptions,
+  RequiredRecursion,
 } from '@ty-one-start/typings';
-import { renderField } from '@ty-one-start/utils';
-import { renderTableFormItem } from '@ty-one-start/utils';
-import type { RequiredRecursion } from '@ty-one-start/typings';
+import { useActionsRef } from '@ty-one-start/utils';
+import type { FormInstance } from 'antd';
+import { Space, Tooltip } from 'antd';
+import type { Rule } from 'antd/lib/form';
+import type { ColumnGroupType, ColumnType } from 'antd/lib/table';
+import cls from 'classnames';
+import utl from 'lodash';
+import React, { useMemo, useRef } from 'react';
 import {
   DEFAULT_WIDTH,
   searchHeadFormFieldRowId,

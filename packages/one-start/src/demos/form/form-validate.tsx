@@ -1,6 +1,6 @@
 import type { OSFormAPI } from '@ty-one-start/one-start';
 import { OSForm, OSProviderWrapper, OSTrigger } from '@ty-one-start/one-start';
-import { Col, Row } from '@ty/antd';
+import { Col, Row } from 'antd';
 import { mock, Random } from 'mockjs';
 import moment from 'moment';
 import React, { useRef } from 'react';

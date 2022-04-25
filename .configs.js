@@ -3,7 +3,7 @@ module.exports = {
     [
       'import',
       {
-        libraryName: '@ty/antd',
+        libraryName: 'antd',
         libraryDirectory: 'es',
         style: true,
       },

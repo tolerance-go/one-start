@@ -10,8 +10,8 @@ import {
   Table,
   Card,
   Tabs,
-} from '@ty/antd';
-import type { SizeType } from '@ty/antd/es/config-provider/SizeContext';
+} from 'antd';
+import type { SizeType } from 'antd/es/config-provider/SizeContext';
 import SourceTable from './source-table';
 
 const { TabPane } = Tabs;

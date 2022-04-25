@@ -1,6 +1,6 @@
 import type { OSDialogAPI } from '@ty-one-start/one-start';
 import { OSDialog, OSLayoutForm, OSTrigger } from '@ty-one-start/one-start';
-import { message } from '@ty/antd';
+import { message } from 'antd';
 import delay from 'delay';
 import React, { useRef } from 'react';
 

@@ -1,5 +1,5 @@
 import { LoadingOutlined } from '@ant-design/icons';
-import { Col, Divider, Form, Row, Spin, Steps } from '@ty/antd';
+import { Col, Divider, Form, Row, Spin, Steps } from 'antd';
 import cls from 'classnames';
 import utl from 'lodash';
 import type { NamePath } from 'rc-field-form/es/interface';

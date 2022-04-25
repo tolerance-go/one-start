@@ -1,5 +1,5 @@
-import type { PaginationProps } from '@ty/antd';
-import type { ColumnGroupType, ColumnType } from '@ty/antd/es/table';
+import type { PaginationProps } from 'antd';
+import type { ColumnGroupType, ColumnType } from 'antd/es/table';
 import type { FixedType } from 'rc-table/lib/interface';
 import type {
   ColumnOrdersMetaType,

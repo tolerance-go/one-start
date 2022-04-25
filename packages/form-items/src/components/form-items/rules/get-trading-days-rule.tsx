@@ -1,4 +1,4 @@
-import type { Rule } from '@ty/antd/lib/form';
+import type { Rule } from 'antd/lib/form';
 import type { FormInstance } from 'rc-field-form/lib/interface';
 import type { Moment } from 'moment';
 import type { RequestIO } from '@ty-one-start/typings';

@@ -1,11 +1,11 @@
-import type { DrawerProps, ModalFuncProps, PopconfirmProps } from '@ty/antd';
-import type { ArgsProps } from '@ty/antd/lib/message';
+import type { DrawerProps, ModalFuncProps, PopconfirmProps } from 'antd';
+import type { ArgsProps } from 'antd/lib/message';
 import type React from 'react';
 import type { OSTriggerType } from './trigger';
 import type { OSCore, RequestIO } from './core';
 import type { RecordType } from '../core';
 import type { OSResMessage } from './message';
-import type { RcFile } from '@ty/antd/lib/upload';
+import type { RcFile } from 'antd/lib/upload';
 
 export interface OSDialogAPIBase {
   push: (settings?: RecordType) => Promise<RecordType | void>;

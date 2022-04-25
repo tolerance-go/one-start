@@ -1,4 +1,4 @@
-import type { BreadcrumbProps as AntdBreadcrumbProps } from '@ty/antd';
+import type { BreadcrumbProps as AntdBreadcrumbProps } from 'antd';
 import pathToRegexp from 'path-to-regexp';
 import React from 'react';
 import type {
